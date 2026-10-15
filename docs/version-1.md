@@ -14,7 +14,7 @@ python3 tools/bauen.py && python3 tools/pruefen.py && node --test && python3 tes
 2. **Eine Entscheidung pro Schritt.** Tablet-Weg sechs Schritte, KI-Weg fünf. »Noch nicht sicher« ist zulässig.
 3. **»Analog oder hybrid« ist ein vollwertiges Ergebnis.** Wer keinen Beitrag des Tablets benennen kann, bekommt den Prüfstein, keinen Tadel.
 4. **Keine KI-Anbindung.** Der KI-Weg baut eine sichtbare, änderbare Anfrage. Kopieren, prüfen, anpassen – die Lehrkraft bleibt verantwortlich.
-5. **Wahrheit der Daten vor Vollständigkeit.** Unbelegtes bleibt »noch offen«. Vorgeschlagene Zuordnungen tragen das Kennzeichen »Vorschlag«.
+5. **Wahrheit der Daten vor Vollständigkeit.** Unbelegtes bleibt »noch offen«. Neue, noch nicht bestätigte Zuordnungen tragen das Kennzeichen »Vorschlag«.
 6. **Keine Rangfolge des Umfangs.** Punktuell ist keine Vorstufe. Durchgängig wird nur empfohlen, wenn die Bedingungen es tragen.
 7. **Ruhiges Raster statt Bewegung.** Die optionale Entdeckungsbühne ist bewusst nicht enthalten.
 
@@ -83,15 +83,14 @@ Die Regeln stehen kommentiert in `assets/regeln.js`.
 
 - axe-core lief in einer älteren Fassung (3.5). Eine Prüfung mit der aktuellen Fassung steht aus.
 - Die Browser-Tests nutzen Python Playwright statt `npx playwright test`.
-- Viele didaktische Zuordnungen sind Vorschläge. Detailfelder (Lernaktivitäten, Bedarf, Anpassungen, Stolpersteine) sind überwiegend offen – siehe `datenluecken.md`.
+- Die didaktischen Zuordnungen (Phase, Umfang, Rolle, Mehrwert-Art) sind von der Lehrkraft bestätigt. Detailfelder (Lernaktivitäten, Bedarf, Anpassungen, Stolpersteine) sind überwiegend offen – siehe `datenluecken.md`.
 - Sechs Beispiele sind noch nicht online und deshalb nur als Bild oder Text zu sehen.
 - Es gibt nur eine helle Ansicht.
 - Die Regeln sind bewusst einfach. Sie ersetzen kein kollegiales Gespräch.
 
 ## Nächste Schritte (priorisiert)
 
-1. Vorschläge in `datenluecken.md` prüfen und bestätigen.
-2. Detailfelder der erprobten Beispiele ergänzen (Was tun die Lernenden? Stolpersteine?).
-3. Mit zwei, drei Kolleg*innen aus verschiedenen Fächern die Wege ausprobieren und Rückmeldungen sammeln.
-4. Klären, welche KI-Systeme an der Schule freigegeben sind, und den KI-Weg entsprechend ergänzen.
-5. Barrierefreiheit mit aktueller axe-Fassung und einem Screenreader prüfen.
+1. Detailfelder der erprobten Beispiele ergänzen (Was tun die Lernenden? Stolpersteine?).
+2. Mit zwei, drei Kolleg*innen aus verschiedenen Fächern die Wege ausprobieren und Rückmeldungen sammeln.
+3. Klären, welche KI-Systeme an der Schule freigegeben sind, und den KI-Weg entsprechend ergänzen.
+4. Barrierefreiheit mit aktueller axe-Fassung und einem Screenreader prüfen.

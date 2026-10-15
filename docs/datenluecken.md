@@ -28,48 +28,31 @@ Die Anliegen sind aus den bisherigen Kategorien übernommen und deshalb nicht al
 
 ### Siehst du, was sich verändert? (`psycho-ds2`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Einstieg, Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Anleiten, Moderieren
-- [ ] mehrwerte: mit Medien untersuchen oder experimentieren, Ergebnisse sichtbar machen und vergleichen
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Die fünf Säulen der NS-Ideologie (`ns-ideologie`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten, Moderieren
-- [ ] mehrwerte: authentische Informationen, Daten oder Werkzeuge nutzen, schneller Rückmeldung erhalten, gemeinsam an einem Ergebnis arbeiten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Gruppenpädagogik-Quest (`quest`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Sicherung
-- [ ] umfang: Durchgängig
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: schneller Rückmeldung erhalten, individuell üben oder Unterstützung erhalten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.
 
 ### Sexualpädagogische Dialoge (`dialoge`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten, Rückmelden
-- [ ] mehrwerte: gemeinsam an einem Ergebnis arbeiten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.
 
 ### Beschlussapp für Sitzungen (`beschlussapp`)
 
-Vorschläge zum Prüfen:
-- [ ] rollen: Moderieren
+Keine offenen Vorschläge.
 
 Noch offen: Was wird benötigt?, Stolpersteine, Dauer, Vorbereitungsaufwand.
 
@@ -81,142 +64,84 @@ Noch offen: Was wird benötigt?, Stolpersteine, Dauer, Vorbereitungsaufwand, Lin
 
 ### Landkarte der Einheit »Spiel« (`bef1`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Phasenübergreifend
-- [ ] rollen: Rückmelden
-- [ ] mehrwerte: Lernwege dokumentieren und reflektieren
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
 
 ### Übungsplattform Lebenswelten (`lf3`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Sicherung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: schneller Rückmeldung erhalten, individuell üben oder Unterstützung erhalten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.
 
 ### Fachbegriffe-Trainer (`fachbegriffe`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Sicherung
-- [ ] umfang: Punktuell
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: individuell üben oder Unterstützung erhalten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.
 
 ### Nation im Kopf (`nation`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten, Moderieren
-- [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
 
 ### Gene ohne Reisepass (`gene`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Einstieg, Erarbeitung
-- [ ] umfang: Punktuell
-- [ ] rollen: Anleiten
-- [ ] mehrwerte: mit Medien untersuchen oder experimentieren
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
 
 ### Kognitive Landkarte (`landkarte`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Phasenübergreifend
-- [ ] umfang: Punktuell
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: individuell üben oder Unterstützung erhalten, schneller Rückmeldung erhalten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
 
 ### Inhaltsverzeichnis GGK (`inhaltsverzeichnis`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Phasenübergreifend
-- [ ] umfang: Punktuell
-- [ ] rollen: Erklären
-- [ ] mehrwerte: zeit- oder ortsunabhängig weiterarbeiten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
 
 ### Planspiel Umverteilung (`planspiel`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Moderieren
-- [ ] mehrwerte: mit Medien untersuchen oder experimentieren
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
 
 ### One Step Forward (`one-step`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Einstieg
-- [ ] umfang: Punktuell
-- [ ] rollen: Moderieren
-- [ ] mehrwerte: mit Medien untersuchen oder experimentieren
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
 
 ### Karte zum Zweiten Weltkrieg (`karte-ww2`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Erklären, Begleiten
-- [ ] mehrwerte: mit Medien untersuchen oder experimentieren
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
 
 ### Politik-Check 1919 (`politik-check`)
 
-Vorschläge zum Prüfen:
-- [ ] phasen: Einstieg
-- [ ] umfang: Punktuell
-- [ ] rollen: Moderieren
-- [ ] mehrwerte: schneller Rückmeldung erhalten
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
 
 ### Fehlersuche an der Bremsanlage (`kfz-fehlersuche`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Erkunden & entdecken, Verstehen & vertiefen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten, Moderieren
-- [ ] mehrwerte: mit Medien untersuchen oder experimentieren, Ergebnisse sichtbar machen und vergleichen
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.
 
 ### KI-Antwort auf dem Prüfstand (`ki-antwort-pruefen`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Recherchieren & prüfen, Reflektieren & übertragen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten, Moderieren
-- [ ] mehrwerte: authentische Informationen, Daten oder Werkzeuge nutzen, Lernwege dokumentieren und reflektieren
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
 
 ### Drei-Fragen-Check am Stundenende (`drei-fragen-check`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Lernstand erkennen, Rückmeldung geben
-- [ ] phasen: Abschluss & Transfer
-- [ ] umfang: Punktuell
-- [ ] rollen: Rückmelden
-- [ ] mehrwerte: schneller Rückmeldung erhalten, Ergebnisse sichtbar machen und vergleichen
+Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.

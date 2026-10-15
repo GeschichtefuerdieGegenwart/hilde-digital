@@ -20,8 +20,7 @@ var BEISPIELE = [
     link: GH + "psycho-labor/ds02-veraenderungsblindheit.html", zuerst: true,
     anliegen: ["erkunden", "rueckmeldung"],
     phasen: ["einstieg", "erarbeitung"], umfang: "phasenweise", rollen: ["anleiten", "moderieren"],
-    mehrwerte: ["experimentieren", "sichtbar"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["experimentieren", "sichtbar"] },
 
   { id: "ns-ideologie", titel: "Die fünf Säulen der NS-Ideologie", fach: "Geschichte · GGK-Labor",
     faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
@@ -31,8 +30,7 @@ var BEISPIELE = [
     erfahrung: "Im Unterricht eingesetzt. Persönlicher Eindruck: Es lief gut.",
     anliegen: ["verstehen", "zusammen", "rueckmeldung"],
     phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["begleiten", "moderieren"],
-    mehrwerte: ["authentisch", "rueckmeldung", "gemeinsam"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["authentisch", "rueckmeldung", "gemeinsam"] },
 
   { id: "quest", titel: "Gruppenpädagogik-Quest", fach: "Sozialpädagogik",
     faecher: ["Sozialpädagogik"], bereich: "lernen",
@@ -41,8 +39,7 @@ var BEISPIELE = [
     erfahrung: "Im Unterricht durchgeführt. Persönlicher Eindruck: Es lief sehr gut.",
     anliegen: ["ueben", "rueckmeldung"],
     phasen: ["sicherung"], umfang: "durchgaengig", rollen: ["begleiten"],
-    mehrwerte: ["rueckmeldung", "individuell"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["rueckmeldung", "individuell"] },
 
   { id: "dialoge", titel: "Sexualpädagogische Dialoge", fach: "Sozialpädagogik",
     faecher: ["Sozialpädagogik"], bereich: "lernen",
@@ -50,16 +47,14 @@ var BEISPIELE = [
     status: "noch offen", bild: "assets/bilder/dialoge.jpg", link: null, zuerst: true,
     anliegen: ["zusammen", "ueben"],
     phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["begleiten", "rueckmelden"],
-    mehrwerte: ["gemeinsam"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["gemeinsam"] },
 
   { id: "beschlussapp", titel: "Beschlussapp für Sitzungen", fach: "Schulentwicklung",
     faecher: ["Schulentwicklung"], bereich: "ki", kiEinsatz: "entwicklung-anwendung",
     kurz: "Eine Projektgruppe entscheidet 18 offene Punkte und hat am Ende sofort ein Protokoll.",
     status: "noch offen", bild: "assets/bilder/beschlussapp.jpg",
     link: GH + "anlaufstelle-entscheidungen-neu/", zuerst: true,
-    anliegen: ["ablaeufe"], rollen: ["moderieren"],
-    vorschlag: { rollen: true } },
+    anliegen: ["ablaeufe"], rollen: ["moderieren"] },
 
   { id: "anleitertreffen", titel: "Präsentation für das Anleiter*innentreffen", fach: "Praxisanleitung · 1BKSP",
     faecher: ["Praxisanleitung"], bereich: "ki", kiEinsatz: "vorbereitung-lehrkraft",
@@ -78,8 +73,7 @@ var BEISPIELE = [
     status: "noch offen", bild: "assets/bilder/bef1.jpg", link: null,
     anliegen: ["material", "rueckmeldung"],
     phasen: ["uebergreifend"], rollen: ["rueckmelden"],
-    mehrwerte: ["dokumentieren"],
-    vorschlag: { phasen: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["dokumentieren"] },
 
   { id: "lf3", titel: "Übungsplattform Lebenswelten", fach: "Sozialpädagogik · LF 3",
     faecher: ["Sozialpädagogik"], bereich: "lernen",
@@ -87,8 +81,7 @@ var BEISPIELE = [
     status: "noch offen", link: null,
     anliegen: ["ueben", "leistung"],
     phasen: ["sicherung"], umfang: "phasenweise", rollen: ["begleiten"],
-    mehrwerte: ["rueckmeldung", "individuell"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["rueckmeldung", "individuell"] },
 
   { id: "fachbegriffe", titel: "Fachbegriffe-Trainer", fach: "Sozialpädagogik · EBG",
     faecher: ["Sozialpädagogik"], bereich: "lernen",
@@ -96,8 +89,7 @@ var BEISPIELE = [
     status: "noch offen", link: null,
     anliegen: ["ueben"],
     phasen: ["sicherung"], umfang: "punktuell", rollen: ["begleiten"],
-    mehrwerte: ["individuell"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["individuell"] },
 
   { id: "nation", titel: "Nation im Kopf", fach: "Geschichte · Gemeinschaftskunde",
     faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "lernen",
@@ -105,8 +97,7 @@ var BEISPIELE = [
     status: "noch offen", link: GH + "nation-im-kopf-gene/",
     anliegen: ["verstehen"],
     phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["begleiten", "moderieren"],
-    mehrwerte: ["zugaenge"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["zugaenge"] },
 
   { id: "gene", titel: "Gene ohne Reisepass", fach: "Demokratiebildung",
     faecher: ["Demokratiebildung"], bereich: "lernen",
@@ -114,8 +105,7 @@ var BEISPIELE = [
     status: "noch offen", link: GH + "nation-im-kopf-gene/gene-ohne-reisepass.html",
     anliegen: ["erkunden", "verstehen"],
     phasen: ["einstieg", "erarbeitung"], umfang: "punktuell", rollen: ["anleiten"],
-    mehrwerte: ["experimentieren"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["experimentieren"] },
 
   { id: "landkarte", titel: "Kognitive Landkarte", fach: "Geschichte",
     faecher: ["Geschichte"], bereich: "lernen",
@@ -123,8 +113,7 @@ var BEISPIELE = [
     status: "noch offen", link: GH + "kognitive-Landkarte-des-Geschichtsunterrichts/",
     anliegen: ["ueben", "rueckmeldung"],
     phasen: ["uebergreifend"], umfang: "punktuell", rollen: ["begleiten"],
-    mehrwerte: ["individuell", "rueckmeldung"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["individuell", "rueckmeldung"] },
 
   { id: "inhaltsverzeichnis", titel: "Inhaltsverzeichnis GGK", fach: "Geschichte · Gemeinschaftskunde",
     faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "lernen",
@@ -132,8 +121,7 @@ var BEISPIELE = [
     status: "noch offen", link: GH + "Inhaltsverzeichnis-GGK/",
     anliegen: ["verstehen"],
     phasen: ["uebergreifend"], umfang: "punktuell", rollen: ["erklaeren"],
-    mehrwerte: ["zeitort"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["zeitort"] },
 
   { id: "planspiel", titel: "Planspiel Umverteilung", fach: "Gemeinschaftskunde",
     faecher: ["Gemeinschaftskunde"], bereich: "lernen",
@@ -141,8 +129,7 @@ var BEISPIELE = [
     status: "noch offen", link: GH + "soziale-Gerechtigkeit/",
     anliegen: ["erkunden"],
     phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["moderieren"],
-    mehrwerte: ["experimentieren"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["experimentieren"] },
 
   { id: "one-step", titel: "One Step Forward", fach: "Gemeinschaftskunde",
     faecher: ["Gemeinschaftskunde"], bereich: "lernen",
@@ -150,8 +137,7 @@ var BEISPIELE = [
     status: "noch offen", link: GH + "One-Step-forward/",
     anliegen: ["interesse"],
     phasen: ["einstieg"], umfang: "punktuell", rollen: ["moderieren"],
-    mehrwerte: ["experimentieren"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["experimentieren"] },
 
   { id: "karte-ww2", titel: "Karte zum Zweiten Weltkrieg", fach: "Geschichte",
     faecher: ["Geschichte"], bereich: "lernen",
@@ -159,8 +145,7 @@ var BEISPIELE = [
     status: "In Überarbeitung", link: GH + "Karte-Zweiter-Weltkrieg/",
     anliegen: ["verstehen"],
     phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["erklaeren", "begleiten"],
-    mehrwerte: ["experimentieren"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["experimentieren"] },
 
   { id: "politik-check", titel: "Politik-Check 1919", fach: "Geschichte · Gemeinschaftskunde",
     faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "lernen",
@@ -168,8 +153,7 @@ var BEISPIELE = [
     status: "In Überarbeitung", link: GH + "Wahl-o-Mat-1919/",
     anliegen: ["interesse", "rueckmeldung"],
     phasen: ["einstieg"], umfang: "punktuell", rollen: ["moderieren"],
-    mehrwerte: ["rueckmeldung"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["rueckmeldung"] },
 
   /* ---------- Konzeptbeispiele: Ideen für Lücken im Bestand. Nicht erprobt, kein Link, kein Vorschaubild. ---------- */
   { id: "kfz-fehlersuche", titel: "Fehlersuche an der Bremsanlage", fach: "Kfz-Technik",
@@ -178,8 +162,7 @@ var BEISPIELE = [
     status: "Idee", link: null, suchbegriffe: ["Kfz", "Kraftfahrzeugtechnik", "Diagnose", "Werkstatt"],
     anliegen: ["erkunden", "verstehen"],
     phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["begleiten", "moderieren"],
-    mehrwerte: ["experimentieren", "sichtbar"],
-    vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["experimentieren", "sichtbar"] },
 
   { id: "ki-antwort-pruefen", titel: "KI-Antwort auf dem Prüfstand", fach: "fachübergreifend",
     faecher: ["fachübergreifend"], bereich: "lernen", kiEinsatz: "vorbereitung-lehrkraft", vorschauArt: "konzept",
@@ -187,8 +170,7 @@ var BEISPIELE = [
     status: "Idee", link: null, suchbegriffe: ["Recherche", "Quellen", "Medienbildung", "Faktencheck"],
     anliegen: ["recherche", "reflektieren"],
     phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["begleiten", "moderieren"],
-    mehrwerte: ["authentisch", "dokumentieren"],
-    vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+    mehrwerte: ["authentisch", "dokumentieren"] },
 
   { id: "drei-fragen-check", titel: "Drei-Fragen-Check am Stundenende", fach: "fachübergreifend",
     faecher: ["fachübergreifend"], bereich: "lernen", vorschauArt: "konzept",
@@ -196,8 +178,7 @@ var BEISPIELE = [
     status: "Idee", link: null, suchbegriffe: ["Abfrage", "Exit-Ticket", "Lernstand", "Diagnose"],
     anliegen: ["lernstand", "rueckmeldung"],
     phasen: ["abschluss"], umfang: "punktuell", rollen: ["rueckmelden"],
-    mehrwerte: ["rueckmeldung", "sichtbar"],
-    vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true } }
+    mehrwerte: ["rueckmeldung", "sichtbar"] }
 ];
 
 /* Fehlende Felder mit »leer« auffüllen, damit alle Seiten dasselbe Modell sehen.
