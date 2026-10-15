@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Beispiele – Hilde Digital</title>
+<link rel="stylesheet" href="assets/hilde.css">
+</head>
+<body>
+<header class="kopf"><div class="huelle">
+  <a class="marke" href="index.html"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="11" cy="14" r="8.5" fill="#f5e8cf" stroke="#a26a1c" stroke-width="1.6"/><circle cx="17" cy="14" r="8.5" fill="#dbeae6" fill-opacity=".75" stroke="#1e6b67" stroke-width="1.6"/></svg>Hilde Digital</a>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html">KI für meine Arbeit</a><a href="lernen.html">Unterricht digital</a><a href="beispiele.html" aria-current="page">Beispiele</a></nav>
+</div></header>
+<main>
+<section class="bereichskopf"><div class="huelle">
+  <h1>Beispiele aus dem Unterricht</h1>
+  <p class="leitfrage" style="font-size:var(--gr-text);max-width:60ch;margin-top:1rem">Persönliche Erprobungen, keine Musterlösungen. Digitaler Unterricht kann sehr unterschiedlich aussehen. Mehr Digitalität bedeutet nicht automatisch besseren Unterricht.</p>
+
+  <div class="filter" role="group" aria-label="Beispiele filtern">
+    <div class="filterzeile" id="bereich"><span>Bereich</span>
+      <button type="button" class="chip" data-bereich="alle" aria-pressed="true">alle</button>
+      <button type="button" class="chip" data-bereich="ki" aria-pressed="false">KI für unsere Arbeit</button>
+      <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Lernen</button>
+      <button type="button" class="chip" data-bereich="beide" aria-pressed="false">mit KI entwickelt</button>
+    </div>
+    <div class="filterzeile" id="wofuer" hidden></div>
+  </div>
+</div></section>
+
+<section class="abschnitt" style="padding-top:0"><div class="huelle">
+  <div class="karten" id="karten" aria-live="polite"></div>
+  <p id="leer" class="box mass" hidden><b>Noch kein Beispiel – Idee.</b> Für dieses Anliegen gibt es noch kein erprobtes Beispiel. Hast du eins? Dann ergänzen wir es gern.</p>
+  <div class="mehrknopf"><button type="button" class="knopf still" id="mehr">Mehr Beispiele</button></div>
+  <noscript><p class="box">Die Beispiele werden mit JavaScript angezeigt.</p></noscript>
+</div></section>
+<script src="assets/beispiele.js"></script>
+<script src="assets/beispiele-seite.js"></script>
+
+</main>
+<footer class="fuss"><div class="huelle">
+  <span>Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</span>
+  <a href="gestaltung.html" class="leise">Gestaltungssystem</a>
+</div></footer>
+</body>
+</html>
