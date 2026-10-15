@@ -65,7 +65,12 @@ var BEISPIELE = [
     faecher: ["Praxisanleitung"], bereich: "ki", kiEinsatz: "vorbereitung-lehrkraft",
     kurz: "Aus der Vorjahresfassung wurde eine klar gegliederte Präsentation mit Zeitstrahl und Quellen.",
     status: "noch offen", bild: "assets/bilder/anleiter-2026.jpg", link: null, zuerst: true,
-    anliegen: ["material"] },
+    anliegen: ["material"],
+    vergleich: {
+      text: "Links die Fassung von 2025, rechts die Fassung von 2026, überarbeitet mit Unterstützung von KI.",
+      vorher: { bild: "assets/bilder/anleiter-2025.jpg", alt: "Folie 2025: drei Kästen zu den Praxisphasen mit Pfeilen", text: "drei Kästen, Termine im Text" },
+      nachher: { bild: "assets/bilder/anleiter-2026.jpg", alt: "Folie 2026: Zeitstrahl des Praxisjahres mit Blöcken, Praxisbesuchen und Fristen", text: "das ganze Jahr auf einem Zeitstrahl" }
+    } },
 
   { id: "bef1", titel: "Landkarte der Einheit »Spiel«", fach: "Sozialpädagogik · BEF I",
     faecher: ["Sozialpädagogik"], bereich: "beide", kiEinsatz: "vorbereitung-lehrkraft",
@@ -176,7 +181,7 @@ var BEISPIELE = [
     faecher: [], bildungsgaenge: [], sozialformen: [], dauer: null, vorbereitung: null,
     technik: [], barrierearmut: [], datenschutz: [], lernmehrwert: null, organisatorischerNutzen: null,
     anpassungen: [], stolpersteine: [], schritte: [], erfahrung: null, bild: null,
-    link: null, quellcode: null, verwandt: [], suchbegriffe: [], vorschlag: {}, zuerst: false
+    link: null, quellcode: null, vergleich: null, verwandt: [], suchbegriffe: [], vorschlag: {}, zuerst: false
   };
   BEISPIELE.forEach(function (b) {
     Object.keys(LEER).forEach(function (k) {

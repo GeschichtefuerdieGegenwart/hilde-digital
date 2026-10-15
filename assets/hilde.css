@@ -272,5 +272,58 @@ main:focus{outline:none}
 .offen-liste{font-size:var(--gr-klein);color:var(--leise);border-top:1px solid var(--linie);padding-top:var(--a2)}
 .leitsaetze{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
 
+/* ---------- Ab Version 1, Schritt 3 ---------- */
+/* Eingabefelder */
+input[type="text"],input[type="search"],textarea,select{font:400 var(--gr-klein)/1.5 var(--schrift);color:var(--text);background:var(--flaeche);border:2px solid var(--linie);border-radius:var(--rund-klein);padding:.6rem .8rem;min-height:48px;width:100%}
+textarea{resize:vertical;line-height:1.55}
+select{appearance:none;-webkit-appearance:none;padding-right:2.4rem;background-image:linear-gradient(45deg,transparent 50%,var(--leise) 50%),linear-gradient(135deg,var(--leise) 50%,transparent 50%);background-position:calc(100% - 1.15rem) 55%,calc(100% - .8rem) 55%;background-size:.4rem .4rem;background-repeat:no-repeat;cursor:pointer}
+input:hover,textarea:hover,select:hover{border-color:var(--leise)}
+input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--fokus);outline-offset:1px;border-color:var(--fokus)}
+.eingabe{display:grid;gap:.3rem;align-content:start}
+.eingabe label{font-weight:700}
+.felder-eingabe{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:var(--a3);margin-top:var(--a3)}
+.datenhinweis{margin-top:var(--a2);padding:.6rem 1rem;border-left:4px solid var(--farbe,var(--ki));background:var(--zart,var(--ki-zart));border-radius:4px;max-width:62ch}
+.kopfnotiz{margin-top:var(--a1);max-width:60ch}
+
+/* Anfrage-Baukasten */
+.bausteine{display:grid;gap:var(--a3);margin-top:var(--a3)}
+.baustein{display:grid;gap:.25rem;background:var(--flaeche);border-radius:var(--rund-klein);border:1px solid var(--linie);border-left:6px solid var(--farbe,var(--ki));padding:var(--a2) var(--a3)}
+.baustein textarea{margin-top:.35rem;background:var(--grund)}
+.kopieren{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2);margin-top:var(--a3)}
+#rueckfall{margin-top:var(--a2);display:grid;gap:.4rem}
+.bereit{margin-top:var(--a3);font-weight:700;max-width:62ch}
+
+/* Prüfliste und nächste Schritte */
+.pruefliste{display:grid;gap:.5rem;margin-top:var(--a3);max-width:46rem}
+.haken{display:flex;gap:.8rem;align-items:flex-start;min-height:48px;padding:.7rem 1rem;background:var(--flaeche);border:2px solid var(--linie);border-radius:var(--rund-klein);cursor:pointer}
+.haken input{flex:none;width:22px;height:22px;margin:.15rem 0 0;accent-color:var(--farbe,var(--text))}
+.haken:has(input:checked){border-color:var(--farbe,var(--text));background:var(--zart,var(--grund))}
+.naechste{margin-top:var(--a4)}
+.naechste h3{font-size:var(--gr-h3)}
+.naechste-liste{margin:var(--a2) 0 0;padding-left:1.4rem;display:grid;gap:var(--a2);max-width:62ch}
+.naechste-liste .minis{max-width:22rem}
+.naechste-liste .mini a{background:var(--flaeche);box-shadow:var(--schatten)}
+
+/* Showroom: Suche und Filter */
+.suchzeile{display:grid;gap:.3rem;max-width:36rem}
+.suchzeile label{font-weight:700}
+.filterraster{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13rem),1fr));gap:var(--a2)}
+.weitere-filter{padding:var(--a1) var(--a3)}
+.weitere-filter[open] .filterraster{padding-bottom:var(--a2)}
+.ergebniskopf{display:grid;gap:var(--a1)}
+.aktive{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.chip.aktiv{background:var(--text);color:var(--flaeche);border-color:var(--text)}
+.vorschlag-hinweis{margin-top:var(--a4)}
+
+/* Über das Modul */
+.ueber{max-width:52rem}
+.paar-text{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));gap:var(--a2)}
+.paar-text .box{display:grid;gap:.5rem;align-content:start}
+.rand-ki{border-left:6px solid var(--ki)}
+.rand-lernen{border-left:6px solid var(--lernen)}
+.begriffe{display:grid;gap:var(--a2);margin:0}
+.begriffe dt{font-weight:700}
+.begriffe dd{margin:.2rem 0 0}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media print{.kopf .nav,.filter,.mehrknopf,.weg-steuerung,.schritte,.ergebnis-aktionen,.speicherhinweis,.sprung{display:none}.entscheidung{box-shadow:none}.karte,.gruppe,.wahlflaeche{box-shadow:none;border:1px solid #bbb}body{background:#fff}}

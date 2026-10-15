@@ -92,7 +92,10 @@
       '<p class="status">Status: <b>' + esc(b.status) + "</b></p></div></section>" +
       '<section class="abschnitt" style="padding-top:var(--a2)"><div class="huelle detail-raster">' +
         '<div class="detail-haupt">' +
-          (b.bild ? '<figure class="detail-bild"><img src="' + esc(b.bild) + '" alt="Bildschirmfoto von »' + esc(b.titel) + '«"><figcaption>Bildschirmfoto – auch ohne Internet sichtbar.</figcaption></figure>' : "") +
+          (b.bild && !b.vergleich ? '<figure class="detail-bild"><img src="' + esc(b.bild) + '" alt="Bildschirmfoto von »' + esc(b.titel) + '«"><figcaption>Bildschirmfoto – auch ohne Internet sichtbar.</figcaption></figure>' : "") +
+          (b.vergleich ? '<section><h2>Vorher und nachher</h2><p class="leise">' + esc(b.vergleich.text) + '</p><div class="paar">' +
+            '<figure><img src="' + esc(b.vergleich.vorher.bild) + '" alt="' + esc(b.vergleich.vorher.alt) + '"><figcaption><b>Vorher:</b> ' + esc(b.vergleich.vorher.text) + "</figcaption></figure>" +
+            '<figure><img src="' + esc(b.vergleich.nachher.bild) + '" alt="' + esc(b.vergleich.nachher.alt) + '"><figcaption><b>Nachher:</b> ' + esc(b.vergleich.nachher.text) + "</figcaption></figure></div></section>" : "") +
           abschnitte.join("") +
         "</div>" +
         '<aside class="detail-seite" aria-label="Auf einen Blick">' +

@@ -25,7 +25,8 @@ WURZEL = Path(__file__).resolve().parent.parent
 SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html", "ueber.html", "gestaltung.html"]
 EINSTIEG = ["index.html", "ki.html", "tablets.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
-EINSTIEG_SKRIPTE = ["assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js"]
+EINSTIEG_SKRIPTE = ["assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
+                    "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]
@@ -145,6 +146,10 @@ def pruefe_daten(fehler):
                 fehler.append(f"Beispiel {wer}: Konzeptbeispiel darf keine Erfahrung haben")
         if b.get("bild") and not (WURZEL / b["bild"]).exists():
             fehler.append(f"Beispiel {wer}: Bild fehlt {b['bild']}")
+        for teil in ("vorher", "nachher"):
+            v = (b.get("vergleich") or {}).get(teil)
+            if v and not (WURZEL / v["bild"]).exists():
+                fehler.append(f"Beispiel {wer}: Vergleichsbild fehlt {v['bild']}")
         for feld in (b.get("vorschlag") or {}):
             if feld not in b:
                 fehler.append(f"Beispiel {wer}: Vorschlag für unbekanntes Feld »{feld}«")
