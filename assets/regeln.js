@@ -1,0 +1,256 @@
+/* Hilde Digital – Regeln des Mehrwert-Checks und der Beispielsuche.
+
+   Grundsätze
+   - Regelbasiert und deterministisch: gleiche Antworten ergeben immer dieselbe Karte.
+   - Keine Punkte oder Noten in der Oberfläche. Die Passung der Beispiele wird intern gezählt,
+     angezeigt wird nur die Begründung.
+   - Unterschieden werden Lernmehrwert, organisatorische Erleichterung, motivationale Neuheit
+     und technische Machbarkeit. Motivation allein ist kein Lernmehrwert.
+   - »Analog oder hybrid« ist ein vollwertiges Ergebnis.
+   - Mehr Digitalität ist nicht besser. Durchgängig ist keine höhere Stufe als punktuell.
+
+   Eingabe (alle Felder dürfen fehlen):
+     { phase, anliegen, mehrwert, umfang, rahmen: { netz, geraete, erfahrung, zeit } }
+   Werte stammen aus assets/daten/taxonomien.js; »offen« heißt »noch nicht sicher«. */
+
+(function (wurzel) {
+  "use strict";
+
+  /* 1. Welche Mehrwert-Arten passen besonders gut zu welchem Anliegen?
+        Grundlage: die fünf Prüfdimensionen (Lernzielbezug, Lernaktivität, funktionaler Mehrwert,
+        Unterrichtsanpassung, Aufwand). Steht ein Paar hier, ist der funktionale Beitrag
+        des Tablets für dieses Anliegen gut begründbar. */
+  var PASST = {
+    interesse: ["experimentieren", "authentisch", "sichtbar"],
+    vorwissen: ["sichtbar", "rueckmeldung"],
+    erkunden: ["experimentieren", "authentisch"],
+    verstehen: ["experimentieren", "zugaenge", "sichtbar"],
+    ueben: ["rueckmeldung", "individuell"],
+    zusammen: ["gemeinsam", "sichtbar"],
+    recherche: ["authentisch", "dokumentieren"],
+    rueckmeldung: ["rueckmeldung", "sichtbar"],
+    lernstand: ["rueckmeldung", "sichtbar", "dokumentieren"],
+    differenzieren: ["individuell", "zugaenge"],
+    sichern: ["dokumentieren", "sichtbar", "zeitort"],
+    reflektieren: ["dokumentieren", "sichtbar"],
+    leistung: ["dokumentieren", "rueckmeldung"]
+  };
+
+  /* Mehrwert-Arten, die ohne verlässliches Netz kaum tragen. */
+  var BRAUCHT_NETZ = ["authentisch", "zeitort"];
+
+  function istGesetzt(w) { return w !== undefined && w !== null && w !== "" && w !== "offen"; }
+  function rahmenVon(a) { return (a && a.rahmen) || {}; }
+
+  /* 2. Einstufung – genau eine von vier, mit Begründung in zwei bis drei Sätzen. */
+  function einstufung(a) {
+    a = a || {};
+    var r = rahmenVon(a);
+    var m = a.mehrwert;
+
+    if (m === "organisation") {
+      return { id: "organisatorisch", grund:
+        "Du hast vor allem Verteilen und Einsammeln genannt. Das spart Zeit und Papier, verändert aber das Lernen noch nicht. " +
+        "Ein Lernmehrwert entsteht erst, wenn sich die Aufgabe selbst verändert." };
+    }
+    if (!istGesetzt(m) || m === "unklar") {
+      return { id: "analog", grund:
+        "Noch ist nicht klar, was durch das Tablet besser werden soll. Dann ist Papier oft die ruhigere Wahl. " +
+        "Geht es auf Papier genauso gut, bleib beim Papier. Du kannst den Weg mit einer Idee für den Mehrwert jederzeit wiederholen." };
+    }
+    if (r.netz === "nein" && BRAUCHT_NETZ.indexOf(m) > -1) {
+      return { id: "analog", grund:
+        "Dein Vorhaben braucht ein verlässliches Netz. Das fehlt im Raum. " +
+        "Eine Mischung passt hier vermutlich besser: Material vorher laden oder ausdrucken und digital nur dort arbeiten, wo es ohne Netz geht." };
+    }
+
+    var passt = istGesetzt(a.anliegen) && (PASST[a.anliegen] || []).indexOf(m) > -1;
+    var anspruchsvoll = a.umfang === "durchgaengig" && (r.erfahrung === "wenig" || r.zeit === "wenig");
+
+    if (passt && !anspruchsvoll) {
+      return { id: "klar", grund:
+        "Dein Anliegen und der erhoffte Beitrag des Tablets passen gut zusammen. " +
+        "Die Lernenden tun dabei etwas, das auf Papier so nicht oder nur mühsam ginge. " +
+        "Entscheidend bleibt, dass die Ergebnisse im Unterricht aufgegriffen werden." };
+    }
+    if (passt && anspruchsvoll) {
+      return { id: "anpassung", grund:
+        "Der Mehrwert ist gut begründbar. Ein durchgängiges Setting ist mit wenig Vorbereitungszeit oder wenig Tablet-Erfahrung der Klasse aber anspruchsvoll. " +
+        "Ein kleinerer Umfang macht den Mehrwert wahrscheinlicher." };
+    }
+    if (!istGesetzt(a.anliegen)) {
+      return { id: "anpassung", grund:
+        "Ein Mehrwert ist möglich. Noch fehlt die Lernabsicht, an der du ihn prüfen kannst. " +
+        "Lege zuerst fest, was die Lernenden am Ende können sollen." };
+    }
+    return { id: "anpassung", grund:
+      "Ein Mehrwert ist möglich, ergibt sich aber nicht von selbst aus deinem Anliegen. " +
+      "Damit er entsteht, muss die Aufgabe dazu passen. Die nötige Anpassung steht unten." };
+  }
+
+  /* 3. Empfohlener Umfang. Die Wahl der Lehrkraft gilt, außer sie ist unter den genannten
+        Bedingungen schwer umsetzbar. Dann wird ein kleinerer Umfang vorgeschlagen – mit Begründung. */
+  function umfang(a, stufe) {
+    a = a || {};
+    var r = rahmenVon(a);
+    if (stufe === "analog") return { id: "punktuell", grund: "Höchstens punktuell – oder ganz auf Papier." };
+    if (stufe === "organisatorisch") return { id: "punktuell", grund: "Punktuell reicht für Verteilen und Einsammeln." };
+    if (a.umfang === "durchgaengig" && (r.erfahrung === "wenig" || r.zeit === "wenig")) {
+      return { id: "phasenweise", grund: "Beginne phasenweise. Ein durchgängiges Setting bleibt möglich, wenn Klasse und Material bereit sind." };
+    }
+    if (a.umfang === "durchgaengig" && r.geraete === "geteilt") {
+      return { id: "phasenweise", grund: "Mit geteilten Geräten ist ein phasenweiser Einsatz leichter zu organisieren." };
+    }
+    if (istGesetzt(a.umfang)) return { id: a.umfang, grund: "Das hast du gewählt. Es passt zu deinem Vorhaben." };
+    // Noch offen: Vorschlag aus Phase und Mehrwert.
+    if (a.phase === "einstieg" || a.phase === "abschluss") return { id: "punktuell", grund: "Für einen Einstieg oder Abschluss reicht meist ein kurzer Impuls." };
+    if (a.mehrwert === "gemeinsam" || a.mehrwert === "experimentieren" || a.phase === "erarbeitung") {
+      return { id: "phasenweise", grund: "Untersuchen und gemeinsames Arbeiten brauchen Zeit. Eine ganze Phase passt meist gut." };
+    }
+    return { id: "punktuell", grund: "Fang klein an. Ein punktueller Einsatz ist keine Vorstufe, sondern oft genau richtig." };
+  }
+
+  /* 4. Rolle der Lehrkraft – aus Mehrwert, Anliegen und Phase, nie aus dem Redeanteil. */
+  var ROLLE_ZU_MEHRWERT = {
+    rueckmeldung: "rueckmelden", sichtbar: "moderieren", gemeinsam: "moderieren",
+    experimentieren: "begleiten", individuell: "begleiten", zugaenge: "begleiten",
+    dokumentieren: "begleiten", authentisch: "begleiten", zeitort: "begleiten",
+    organisation: "anleiten", unklar: "anleiten"
+  };
+  function rollen(a) {
+    a = a || {};
+    var haupt = ROLLE_ZU_MEHRWERT[a.mehrwert] || "anleiten";
+    var dazu = null;
+    if (a.anliegen === "verstehen" && haupt !== "erklaeren") dazu = "erklaeren";
+    else if ((a.anliegen === "lernstand" || a.anliegen === "rueckmeldung") && haupt !== "rueckmelden") dazu = "rueckmelden";
+    else if (a.phase === "einstieg" && haupt !== "anleiten") dazu = "anleiten";
+    else if (haupt === "begleiten") dazu = "moderieren"; // Ergebnisse wieder ins Gespräch holen
+    return dazu ? [haupt, dazu] : [haupt];
+  }
+
+  /* 5. Nötige Anpassung des Unterrichts – je Mehrwert-Art ein konkreter Satz. */
+  var ANPASSUNG = {
+    rueckmeldung: "Plane eine kurze Pause ein, in der die Klasse die Rückmeldungen gemeinsam auswertet.",
+    sichtbar: "Plane Zeit zum Vergleichen ein. Lege vorher fest, worauf ihr dabei achtet.",
+    experimentieren: "Gib eine klare Frage vor. Haltet danach fest, was die Lernenden herausgefunden haben.",
+    gemeinsam: "Verteile Rollen in der Gruppe. Kläre vorher, woran man ein gutes gemeinsames Ergebnis erkennt.",
+    individuell: "Lege fest, wie die Lernenden Hilfe bekommen. Plane, wie die einzelnen Wege am Ende zusammenkommen.",
+    zugaenge: "Lege ein gemeinsames Ziel für alle Niveaus fest. Führe die Ergebnisse im Gespräch zusammen.",
+    dokumentieren: "Gib Leitfragen für die Dokumentation vor. Plane Zeit ein, um sie zu besprechen.",
+    authentisch: "Gib Prüffragen für Quellen vor. Ordnet die Fundstücke gemeinsam ein.",
+    zeitort: "Kläre, wer außerhalb des Unterrichts Gerät und Netz hat. Plane, wie die Arbeit im Unterricht aufgegriffen wird.",
+    organisation: "Für einen Lernmehrwert: Verändere die Aufgabe selbst, nicht nur den Weg, auf dem sie verteilt wird.",
+    unklar: "Formuliere zuerst, was die Lernenden am Ende können sollen. Prüfe dann, ob das Tablet dabei hilft."
+  };
+  function anpassung(a) {
+    a = a || {};
+    return ANPASSUNG[a.mehrwert] || ANPASSUNG.unklar;
+  }
+
+  /* 6. Wichtigster Stolperstein – genau einer. Reihenfolge: Technik vor Didaktik,
+        weil technische Hürden eine Stunde sofort stoppen. */
+  function stolperstein(a) {
+    a = a || {};
+    var r = rahmenVon(a);
+    if ((r.netz === "nein" || r.netz === "wackelig") && (BRAUCHT_NETZ.indexOf(a.mehrwert) > -1 || a.umfang === "durchgaengig")) {
+      return "Das Netz ist nicht verlässlich. Halte eine Fassung auf Papier oder offline bereit.";
+    }
+    if (a.anliegen === "leistung") {
+      return "Fairness und Datenschutz: Kläre vorher, was gespeichert wird und wie gleiche Bedingungen für alle gelten.";
+    }
+    if (r.geraete === "geteilt" && (a.umfang === "durchgaengig" || a.mehrwert === "zeitort" || a.mehrwert === "dokumentieren")) {
+      return "Geteilte Geräte: Arbeitsstände können verloren gehen. Lege fest, wo die Ergebnisse gespeichert werden.";
+    }
+    if (r.erfahrung === "wenig") {
+      return "Die Klasse kennt das Arbeiten mit Tablets noch kaum. Plane eine kurze Einführung in die Bedienung ein.";
+    }
+    var nachMehrwert = {
+      experimentieren: "Ausprobieren ohne Auswertung bleibt Spielerei. Plane die Auswertung fest ein.",
+      gemeinsam: "In Gruppen arbeiten oft nur einige. Achte darauf, dass alle einen Teil übernehmen.",
+      individuell: "Einzelne verlieren den Anschluss an die Klasse. Hole alle am Ende wieder zusammen.",
+      zugaenge: "Einzelne verlieren den Anschluss an die Klasse. Hole alle am Ende wieder zusammen.",
+      rueckmeldung: "Schnelle Rückmeldung verleitet zum Raten. Bitte um kurze Begründungen.",
+      sichtbar: "Ergebnisse werden gezeigt, aber nicht besprochen. Plane dafür Zeit ein.",
+      authentisch: "Nicht jede Quelle ist verlässlich. Gib Prüffragen vor."
+    };
+    return nachMehrwert[a.mehrwert] || "Ablenkung: Lege fest, wann die Geräte zu bleiben, z. B. Hülle zu oder Bildschirm nach unten.";
+  }
+
+  /* 7. Ein konkreter nächster Schritt. */
+  function naechsterSchritt(a, stufe) {
+    if (stufe === "analog") return "Plane die Phase auf Papier. Prüfe beim nächsten Mal, ob ein digitaler Baustein etwas verbessert.";
+    if (stufe === "organisatorisch") return "Nimm eine vorhandene Aufgabe und überlege: Was könnten die Lernenden mit dem Tablet tun, das auf Papier nicht geht?";
+    if (stufe === "anpassung") return "Sieh dir ein passendes Beispiel an. Übernimm daraus nur einen Baustein und probiere ihn in einer Phase aus.";
+    return "Probiere es in einer Stunde aus. Notiere danach in zwei Sätzen, was du beobachtet hast.";
+  }
+
+  /* 8. Passende Beispiele.
+        Harte Ausschlüsse: reine KI-Beispiele (nicht Lernen), ohne Netz keine Anwendung, die Netz braucht.
+        Gewichtete Passung: Anliegen 3, Mehrwert-Art 3, Phase 2 (phasenübergreifend 1), Umfang 1, Rolle 1.
+        »In Überarbeitung« zählt 3 weniger und steht damit hinter gleich passenden Beispielen. Gleichstand: Reihenfolge der Daten.
+        Lockerung: Gibt es kein Beispiel mit Anliegen oder Mehrwert, werden die nächstpassenden gezeigt
+        und als solche benannt. */
+  function beispiele(a, liste, anzahl, rolleIds) {
+    a = a || {};
+    anzahl = anzahl || 3;
+    var r = rahmenVon(a);
+    var ohneNetz = r.netz === "nein";
+    var kandidaten = (liste || []).filter(function (b) {
+      if (b.bereich === "ki") return false;
+      if (ohneNetz && b.link) return false;
+      return true;
+    });
+    var gewertet = kandidaten.map(function (b, i) {
+      var p = 0, kern = false;
+      if (istGesetzt(a.anliegen) && b.anliegen.indexOf(a.anliegen) > -1) { p += 3; kern = true; }
+      if (istGesetzt(a.mehrwert) && b.mehrwerte.indexOf(a.mehrwert) > -1) { p += 3; kern = true; }
+      if (istGesetzt(a.phase)) {
+        if (b.phasen.indexOf(a.phase) > -1) p += 2;
+        else if (b.phasen.indexOf("uebergreifend") > -1) p += 1;
+      }
+      if (b.umfang && rolleIds && rolleIds.umfang && b.umfang === rolleIds.umfang) p += 1;
+      if (rolleIds && rolleIds.rollen && b.rollen.some(function (x) { return rolleIds.rollen.indexOf(x) > -1; })) p += 1;
+      if (b.status === "In Überarbeitung") p -= 3; // steht hinter gleich passenden fertigen Beispielen
+      return { b: b, p: p, kern: kern, i: i };
+    });
+    gewertet.sort(function (x, y) { return y.p - x.p || x.i - y.i; });
+    var genau = gewertet.filter(function (g) { return g.kern; });
+    var gelockert = genau.length === 0;
+    var auswahl = (gelockert ? gewertet : genau).slice(0, anzahl).map(function (g) { return g.b; });
+    return { beispiele: auswahl, gelockert: gelockert, ohneNetz: ohneNetz };
+  }
+
+  /* 9. Die ganze Entscheidungskarte. */
+  function entscheidungskarte(a, liste) {
+    a = a || {};
+    var stufe = einstufung(a);
+    var u = umfang(a, stufe.id);
+    var ro = rollen(a);
+    var bsp = beispiele(a, liste, 3, { umfang: u.id, rollen: ro });
+    return {
+      einstufung: stufe.id,
+      begruendung: stufe.grund,
+      lernzweck: a.anliegen || null,
+      mehrwert: a.mehrwert || null,
+      mehrwertArt: a.mehrwert === "organisation" ? "organisation" : (!istGesetzt(a.mehrwert) || a.mehrwert === "unklar") ? "offen" : "lernen",
+      umfang: u.id,
+      umfangGrund: u.grund,
+      rollen: ro,
+      anpassung: anpassung(a),
+      stolperstein: stolperstein(a),
+      beispiele: bsp.beispiele,
+      gelockert: bsp.gelockert,
+      ohneNetz: bsp.ohneNetz,
+      naechsterSchritt: naechsterSchritt(a, stufe.id),
+      schluss: "Das ist eine Planungshilfe, keine Bewertung. Du entscheidest."
+    };
+  }
+
+  var REGELN = {
+    PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
+    stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
+    entscheidungskarte: entscheidungskarte
+  };
+  if (typeof module !== "undefined") module.exports = REGELN;
+  else wurzel.REGELN = REGELN;
+})(this);

@@ -1,0 +1,31 @@
+<section class="bereichskopf"><div class="huelle">
+  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung</p>
+  <h1 style="margin-top:1.25rem">Über das Modul</h1>
+  <p class="leitfrage" style="font-size:var(--gr-text);max-width:60ch;margin-top:1rem">Hilde Digital ist ein persönlicher Entwicklungsstand zur Diskussion. Es ist noch kein beschlossenes Schulkonzept.</p>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a2)"><div class="huelle stapel-gross mass">
+  <div class="stapel">
+    <h2>Leitsätze</h2>
+    <ul class="leitsaetze">
+      <li>Erst das Anliegen, dann das Werkzeug.</li>
+      <li>KI kann Unterricht vorbereiten. Digitalität kann Lernen gestalten. Beides kann zusammenkommen – muss es aber nicht.</li>
+      <li>Nicht zeigen, was technisch möglich ist, sondern was Unterricht und schulische Arbeit konkret verbessert.</li>
+      <li>Mehr Digitalität bedeutet nicht automatisch besseren Unterricht. Ein punktueller Einsatz ist keine Vorstufe.</li>
+    </ul>
+  </div>
+  <div class="stapel">
+    <h2>Deine Daten</h2>
+    <p>Hilde Digital braucht keine Anmeldung und keinen Server. Deine Antworten bleiben nur in diesem Browser.</p>
+    <p><button type="button" class="knopf still" id="alles-loeschen">Eingaben löschen</button> <span id="geloescht" class="leise klein" aria-live="polite"></span></p>
+  </div>
+  <p class="leise">Diese Seite wird noch ergänzt: Hinweise zu KI, Fachbegriffe zum Nachlesen und ein freiwilliges Beratungsangebot.</p>
+</div></section>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/hilde.js"></script>
+<script>
+document.getElementById("alles-loeschen").addEventListener("click", function () {
+  HILDE.loescheAlles();
+  document.getElementById("geloescht").textContent = "Alle Eingaben wurden gelöscht.";
+});
+</script>

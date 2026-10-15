@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Über das Modul – Hilde Digital</title>
+<link rel="stylesheet" href="assets/hilde.css">
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<header class="kopf"><div class="huelle">
+  <a class="marke" href="index.html"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="11" cy="14" r="8.5" fill="#f5e8cf" stroke="#a26a1c" stroke-width="1.6"/><circle cx="17" cy="14" r="8.5" fill="#dbeae6" fill-opacity=".75" stroke="#1e6b67" stroke-width="1.6"/></svg>Hilde Digital</a>
+  <nav class="nav" aria-label="Bereiche"><a href="index.html">Start</a><a href="ki.html">KI für meine Arbeit</a><a href="tablets.html">Unterricht mit Tablets</a><a href="showroom.html">Showroom</a><a href="ueber.html" aria-current="page">Über das Modul</a></nav>
+</div></header>
+<main id="inhalt" tabindex="-1">
+<section class="bereichskopf"><div class="huelle">
+  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung</p>
+  <h1 style="margin-top:1.25rem">Über das Modul</h1>
+  <p class="leitfrage" style="font-size:var(--gr-text);max-width:60ch;margin-top:1rem">Hilde Digital ist ein persönlicher Entwicklungsstand zur Diskussion. Es ist noch kein beschlossenes Schulkonzept.</p>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a2)"><div class="huelle stapel-gross mass">
+  <div class="stapel">
+    <h2>Leitsätze</h2>
+    <ul class="leitsaetze">
+      <li>Erst das Anliegen, dann das Werkzeug.</li>
+      <li>KI kann Unterricht vorbereiten. Digitalität kann Lernen gestalten. Beides kann zusammenkommen – muss es aber nicht.</li>
+      <li>Nicht zeigen, was technisch möglich ist, sondern was Unterricht und schulische Arbeit konkret verbessert.</li>
+      <li>Mehr Digitalität bedeutet nicht automatisch besseren Unterricht. Ein punktueller Einsatz ist keine Vorstufe.</li>
+    </ul>
+  </div>
+  <div class="stapel">
+    <h2>Deine Daten</h2>
+    <p>Hilde Digital braucht keine Anmeldung und keinen Server. Deine Antworten bleiben nur in diesem Browser.</p>
+    <p><button type="button" class="knopf still" id="alles-loeschen">Eingaben löschen</button> <span id="geloescht" class="leise klein" aria-live="polite"></span></p>
+  </div>
+  <p class="leise">Diese Seite wird noch ergänzt: Hinweise zu KI, Fachbegriffe zum Nachlesen und ein freiwilliges Beratungsangebot.</p>
+</div></section>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/hilde.js"></script>
+<script>
+document.getElementById("alles-loeschen").addEventListener("click", function () {
+  HILDE.loescheAlles();
+  document.getElementById("geloescht").textContent = "Alle Eingaben wurden gelöscht.";
+});
+</script>
+
+</main>
+<footer class="fuss"><div class="huelle">
+  <span>Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</span>
+  <span class="fusslinks"><a href="ueber.html" class="leise">Über das Modul</a> <a href="gestaltung.html" class="leise">Gestaltungssystem</a></span>
+</div></footer>
+</body>
+</html>
