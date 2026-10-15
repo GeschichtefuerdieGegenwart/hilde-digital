@@ -22,11 +22,11 @@ import sys
 from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html", "ueber.html", "gestaltung.html"]
-EINSTIEG = ["index.html", "ki.html", "tablets.html"]
+SEITEN = ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html", "ueber.html", "gestaltung.html"]
+EINSTIEG = ["index.html", "ki.html", "tablets.html", "passt.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
-                    "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js"]
+                    "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]

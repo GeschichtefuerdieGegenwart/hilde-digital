@@ -187,3 +187,36 @@ Vorschläge zum Prüfen:
 - [ ] mehrwerte: schneller Rückmeldung erhalten
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz.
+
+### Fehlersuche an der Bremsanlage (`kfz-fehlersuche`)
+
+Vorschläge zum Prüfen:
+- [ ] anliegen: Erkunden & entdecken, Verstehen & vertiefen
+- [ ] phasen: Erarbeitung
+- [ ] umfang: Phasenweise
+- [ ] rollen: Begleiten, Moderieren
+- [ ] mehrwerte: mit Medien untersuchen oder experimentieren, Ergebnisse sichtbar machen und vergleichen
+
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.
+
+### KI-Antwort auf dem Prüfstand (`ki-antwort-pruefen`)
+
+Vorschläge zum Prüfen:
+- [ ] anliegen: Recherchieren & prüfen, Reflektieren & übertragen
+- [ ] phasen: Erarbeitung
+- [ ] umfang: Phasenweise
+- [ ] rollen: Begleiten, Moderieren
+- [ ] mehrwerte: authentische Informationen, Daten oder Werkzeuge nutzen, Lernwege dokumentieren und reflektieren
+
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
+
+### Drei-Fragen-Check am Stundenende (`drei-fragen-check`)
+
+Vorschläge zum Prüfen:
+- [ ] anliegen: Lernstand erkennen, Rückmeldung geben
+- [ ] phasen: Abschluss & Transfer
+- [ ] umfang: Punktuell
+- [ ] rollen: Rückmelden
+- [ ] mehrwerte: schneller Rückmeldung erhalten, Ergebnisse sichtbar machen und vergleichen
+
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.

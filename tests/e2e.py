@@ -14,7 +14,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html#quest", "beispiel.html#anleitertreffen", "ueber.html"]
+SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "passt.html", "ueber.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -108,7 +108,7 @@ def main():
         pg.click("#neu")
         antworte(pg, "phase", "abschluss")
         pg.click("#weitere")
-        antworte(pg, "anliegen", "reflektieren")
+        antworte(pg, "anliegen", "vorwissen")
         antworte(pg, "mehrwert", "zeitort")
         antworte(pg, "umfang", "punktuell")
         pg.check('input[name="rahmen-netz"][value="nein"]')
@@ -170,8 +170,29 @@ def main():
         pg.click("#lockerung [data-zuruecksetzen]")
         pruefe(pg.locator(".karte").count() >= 6 and pg.locator("#aktive li").count() == 0, "Showroom: Alle Filter zurücksetzen")
         pg.fill("#suche", "Kfz")
-        pruefe(pg.locator(".karte").count() == 0 and pg.is_visible("#lockerung"), "Showroom: Kfz – ehrlicher Hinweis statt leerer Seite (Konzeptbeispiele folgen)")
+        pruefe(pg.locator(".karte").count() >= 1 and "Konzeptbeispiel – noch nicht erprobt" in pg.inner_text("#karten"), "Showroom: Kfz findet ein klar gekennzeichnetes Konzeptbeispiel")
+        pg.click("#karten .karte a.knopf")
+        pg.wait_for_selector("#detail-titel")
+        pruefe(pg.locator(".konzept-hinweis").count() == 1 and pg.locator('a[target="_blank"]').count() == 0, "Konzeptbeispiel: kein Link, deutlicher Hinweis")
         pruefe(not pg.konsole, f"Showroom: keine Konsolenfehler {pg.konsole}")
+        pg.context.close()
+
+        # 2d. Selbsteinschätzung
+        pg = neue_seite(b)
+        pg.goto(url("passt.html"))
+        for f, v in [("steuern", 4), ("begleiten", 2), ("gespraech", 5), ("technik", 2), ("zeit", 2)]:
+            pg.check(f'input[name="{f}"][value="{v}"]')
+        pg.select_option("#s-phase", "einstieg")
+        pg.click('button[type="submit"]')
+        txt = pg.inner_text("#ergebnis")
+        pruefe("Andere Wege sind ebenso möglich." in txt and "Moderieren" in txt, "Selbsteinschätzung: Empfehlung mit Moderieren und Schlusssatz")
+        pruefe(2 <= pg.locator("#ergebnis .mini").count() <= 3, "Selbsteinschätzung: zwei bis drei Beispiele")
+        pruefe(pg.evaluate("document.activeElement.id") == "selbst-titel", "Selbsteinschätzung: Fokus auf dem Ergebnis")
+        pg.reload()
+        pruefe(pg.is_checked('input[name="gespraech"][value="5"]'), "Selbsteinschätzung: Antworten bleiben im Browser")
+        pg.click("#loeschen")
+        pruefe(pg.locator("input:checked").count() == 0, "Selbsteinschätzung: Eingaben löschen")
+        pruefe(not pg.konsole, f"Selbsteinschätzung: keine Konsolenfehler {pg.konsole}")
         pg.context.close()
 
         # 3. Nur Tastatur (Szenario 10)
@@ -202,6 +223,9 @@ def main():
         for s in SEITEN:
             pg.goto(url(s))
             pg.wait_for_load_state("load")
+        pg.goto(url("index.html"))
+        dauer = pg.evaluate("getComputedStyle(document.querySelector('.wahlflaeche')).transitionDuration")
+        pruefe(dauer in ("0s", "0s, 0s"), f"Reduzierte Bewegung: Übergänge abgeschaltet ({dauer})")
         pruefe(not pg.extern, f"Ohne Internet: keine externen Anfragen {pg.extern[:3]}")
         pg.goto(url("showroom.html"))
         pruefe(pg.locator(".karte").count() >= 6, "Showroom: Karten erscheinen ohne Angaben")

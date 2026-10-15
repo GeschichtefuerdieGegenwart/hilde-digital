@@ -187,7 +187,7 @@
   /* 8. Passende Beispiele.
         Harte Ausschlüsse: reine KI-Beispiele (nicht Lernen), ohne Netz keine Anwendung, die Netz braucht.
         Gewichtete Passung: Anliegen 3, Mehrwert-Art 3, Phase 2 (phasenübergreifend 1), Umfang 1, Rolle 1.
-        »In Überarbeitung« zählt 3 weniger und steht damit hinter gleich passenden Beispielen. Gleichstand: Reihenfolge der Daten.
+        »In Überarbeitung« zählt 3 weniger, Konzeptbeispiele 1 weniger. So stehen sie hinter gleich passenden Beispielen. Gleichstand: Reihenfolge der Daten.
         Lockerung: Gibt es kein Beispiel mit Anliegen oder Mehrwert, werden die nächstpassenden gezeigt
         und als solche benannt. */
   function beispiele(a, liste, anzahl, rolleIds) {
@@ -211,6 +211,7 @@
       if (b.umfang && rolleIds && rolleIds.umfang && b.umfang === rolleIds.umfang) p += 1;
       if (rolleIds && rolleIds.rollen && b.rollen.some(function (x) { return rolleIds.rollen.indexOf(x) > -1; })) p += 1;
       if (b.status === "In Überarbeitung") p -= 3; // steht hinter gleich passenden fertigen Beispielen
+      if (b.vorschauArt === "konzept") p -= 1;    // Konzeptbeispiele hinter gleich passenden echten Beispielen
       return { b: b, p: p, kern: kern, i: i };
     });
     gewertet.sort(function (x, y) { return y.p - x.p || x.i - y.i; });
@@ -246,10 +247,71 @@
     };
   }
 
+  /* 10. Selbsteinschätzung »Was passt gerade zu mir?« – situativ, kein Test, kein Typ.
+         Eingabe: { steuern, begleiten, gespraech, technik, zeit } je 1–5, dazu phase und wichtig (Anliegen).
+         Grundsätze: Viel Wert auf Gespräch und Erklären führt nicht zu einer schwächeren Empfehlung,
+         sondern zu Formaten, die digitale Phasen ins Gespräch zurückführen. Empfohlen wird nie der
+         Verzicht auf digitale Bildung – höchstens ein kleinerer, geführter Einstieg. */
+  function wert(x) { var n = parseInt(x, 10); return n >= 1 && n <= 5 ? n : 3; }
+
+  function selbsteinschaetzung(e, liste) {
+    e = e || {};
+    var st = wert(e.steuern), be = wert(e.begleiten), ge = wert(e.gespraech), te = wert(e.technik), ze = wert(e.zeit);
+
+    var umf, umfGrund;
+    if (te <= 2 || ze <= 2) { umf = "punktuell"; umfGrund = "Du möchtest wenig Technik oder wenig Vorbereitung. Ein kurzer, gezielter Einsatz passt dazu."; }
+    else if (te >= 4 && ze >= 4 && be >= 3) { umf = "durchgaengig"; umfGrund = "Du bringst Zeit mit und traust dir mehr Technik zu. Auch ein durchgängiges Setting ist möglich – ein phasenweiser Einsatz ebenso."; }
+    else { umf = "phasenweise"; umfGrund = "Eine digitale Phase mit klarem Anfang und Ende passt zu deinen Angaben."; }
+
+    var haupt, dazu = null;
+    if (ge >= 4) { haupt = "moderieren"; dazu = st >= 4 ? "erklaeren" : null; }
+    else if (st >= 4) { haupt = "anleiten"; }
+    else if (be >= 4) { haupt = "begleiten"; }
+    else { haupt = "anleiten"; }
+    if (e.wichtig === "lernstand" || e.wichtig === "rueckmeldung") dazu = dazu || (haupt !== "rueckmelden" ? "rueckmelden" : null);
+    if (!dazu && haupt === "anleiten" && be >= 3) dazu = "begleiten";
+    var rollen = dazu ? [haupt, dazu] : [haupt];
+
+    var format;
+    if (ge >= 4) format = "Eine kurze digitale Phase, deren Ergebnisse ihr danach gemeinsam besprecht – zum Beispiel Antworten, die alle sehen und die ihr im Gespräch einordnet.";
+    else if (st >= 4 && be <= 2) format = "Ein klar angeleiteter Einsatz mit festem Ablauf und festen Zeiten.";
+    else if (be >= 4 && st <= 2) format = "Eine offenere Erarbeitungsphase, in der du beobachtest und gezielt unterstützt.";
+    else format = "Ein geplanter digitaler Baustein in einer Phase, mit gemeinsamer Auswertung am Ende.";
+
+    var gruende = [];
+    if (ge >= 4) gruende.push("Gemeinsame Gesprächs- und Erklärphasen sind dir wichtig. Digitale Phasen können sie gezielt vorbereiten.");
+    if (st >= 4) gruende.push("Du steuerst den Ablauf gern selbst. Ein klarer Rahmen gibt dir und der Klasse Sicherheit.");
+    if (be <= 2) gruende.push("Beim Begleiten selbstständiger Arbeit fühlst du dich noch unsicher. Ein kleinerer, geführter Einstieg passt dazu.");
+    if (be >= 4 && st <= 3) gruende.push("Du begleitest gern, während Lernende selbstständig arbeiten. Das öffnet offenere Formen.");
+    if (te <= 2) gruende.push("Du möchtest wenig Technik. Ein einfaches Werkzeug reicht.");
+    if (!gruende.length) gruende.push("Deine Angaben liegen in der Mitte. Ein überschaubarer Einsatz lässt dir viel Spielraum.");
+
+    var alternative = umf === "punktuell"
+      ? "Noch kleiner: Ein einziger digitaler Impuls von fünf Minuten, den ihr sofort gemeinsam auswertet."
+      : "Risikoarm: Beginne mit einem punktuellen Einsatz und erweitere ihn, wenn er trägt.";
+
+    var bsp = beispiele({ phase: e.phase, anliegen: e.wichtig }, liste, 3, { umfang: umf, rollen: rollen });
+    if (bsp.beispiele.length < 2) { // mindestens zwei Beispiele: mit Phase und Umfang auffüllen
+      var dazuB = beispiele({ phase: e.phase }, liste, 6, { umfang: umf, rollen: rollen }).beispiele;
+      dazuB.forEach(function (b) { if (bsp.beispiele.length < 3 && bsp.beispiele.indexOf(b) < 0) bsp.beispiele.push(b); });
+    }
+
+    return {
+      einordnung: "Du kennst deine Klasse und deinen Unterricht am besten. Diese Einschätzung gilt für dein aktuelles Vorhaben – nicht für dich als Person.",
+      gruende: gruende.slice(0, 3),
+      umfang: umf, umfangGrund: umfGrund,
+      rollen: rollen,
+      format: format,
+      beispiele: bsp.beispiele, gelockert: bsp.gelockert,
+      alternative: alternative,
+      schluss: "Andere Wege sind ebenso möglich."
+    };
+  }
+
   var REGELN = {
     PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
     stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
-    entscheidungskarte: entscheidungskarte
+    entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung
   };
   if (typeof module !== "undefined") module.exports = REGELN;
   else wurzel.REGELN = REGELN;

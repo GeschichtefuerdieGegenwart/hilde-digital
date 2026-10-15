@@ -14,6 +14,7 @@ SEITEN = [
     ("index.html", "Hilde Digital", "start"),
     ("ki.html", "KI für meine Arbeit – Hilde Digital", "ki"),
     ("tablets.html", "Unterricht mit Tablets gestalten – Hilde Digital", "tablets"),
+    ("passt.html", "Was passt gerade zu mir? – Hilde Digital", "tablets"),
     ("showroom.html", "Showroom – Hilde Digital", "showroom"),
     ("beispiel.html", "Beispiel – Hilde Digital", "showroom"),
     ("ueber.html", "Über das Modul – Hilde Digital", "ueber"),

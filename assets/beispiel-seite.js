@@ -81,7 +81,9 @@
     var oeffnen = b.link
       ? '<a class="knopf" href="' + esc(b.link) + '" target="_blank" rel="noopener">Anwendung öffnen <span aria-hidden="true">↗</span><span class="sr-only"> (öffnet in einem neuen Tab, braucht Internet)</span></a>' +
         '<p class="leise klein">Externe Seite. Sie braucht eine Internetverbindung.</p>'
-      : '<span class="knopf" aria-disabled="true">noch nicht online</span>';
+      : b.vorschauArt === "konzept"
+        ? '<p class="konzept-hinweis"><b>Konzeptbeispiel – noch nicht erprobt.</b> Eine Idee für eine Lücke im Bestand. Es gibt noch keine Anwendung.</p>'
+        : '<span class="knopf" aria-disabled="true">noch nicht online</span>';
     var quellcode = b.quellcode ? ' <a class="textlink klein" href="' + esc(b.quellcode) + '" target="_blank" rel="noopener">Quellcode ansehen <span aria-hidden="true">↗</span></a>' : "";
 
     var bereichKlasse = nurKI ? "bereich-ki" : "bereich-lernen";

@@ -169,7 +169,35 @@ var BEISPIELE = [
     anliegen: ["interesse", "rueckmeldung"],
     phasen: ["einstieg"], umfang: "punktuell", rollen: ["moderieren"],
     mehrwerte: ["rueckmeldung"],
-    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } }
+    vorschlag: { phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+
+  /* ---------- Konzeptbeispiele: Ideen für Lücken im Bestand. Nicht erprobt, kein Link, kein Vorschaubild. ---------- */
+  { id: "kfz-fehlersuche", titel: "Fehlersuche an der Bremsanlage", fach: "Kfz-Technik",
+    faecher: ["Kfz-Technik"], bereich: "lernen", vorschauArt: "konzept",
+    kurz: "Konzeptidee: Die Lernenden untersuchen Fotos und Messwerte einer Bremsanlage und begründen, wo der Fehler liegt.",
+    status: "Idee", link: null, suchbegriffe: ["Kfz", "Kraftfahrzeugtechnik", "Diagnose", "Werkstatt"],
+    anliegen: ["erkunden", "verstehen"],
+    phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["begleiten", "moderieren"],
+    mehrwerte: ["experimentieren", "sichtbar"],
+    vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+
+  { id: "ki-antwort-pruefen", titel: "KI-Antwort auf dem Prüfstand", fach: "fachübergreifend",
+    faecher: ["fachübergreifend"], bereich: "lernen", kiEinsatz: "vorbereitung-lehrkraft", vorschauArt: "konzept",
+    kurz: "Konzeptidee: Die Lernenden prüfen eine vorbereitete KI-Antwort mit zwei verlässlichen Quellen und markieren, was stimmt, was fehlt und was erfunden ist.",
+    status: "Idee", link: null, suchbegriffe: ["Recherche", "Quellen", "Medienbildung", "Faktencheck"],
+    anliegen: ["recherche", "reflektieren"],
+    phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["begleiten", "moderieren"],
+    mehrwerte: ["authentisch", "dokumentieren"],
+    vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true } },
+
+  { id: "drei-fragen-check", titel: "Drei-Fragen-Check am Stundenende", fach: "fachübergreifend",
+    faecher: ["fachübergreifend"], bereich: "lernen", vorschauArt: "konzept",
+    kurz: "Konzeptidee: Drei kurze Fragen am Ende der Stunde. Die Klasse sieht, was sitzt – du siehst, womit die nächste Stunde beginnt.",
+    status: "Idee", link: null, suchbegriffe: ["Abfrage", "Exit-Ticket", "Lernstand", "Diagnose"],
+    anliegen: ["lernstand", "rueckmeldung"],
+    phasen: ["abschluss"], umfang: "punktuell", rollen: ["rueckmelden"],
+    mehrwerte: ["rueckmeldung", "sichtbar"],
+    vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true } }
 ];
 
 /* Fehlende Felder mit »leer« auffüllen, damit alle Seiten dasselbe Modell sehen.
@@ -188,7 +216,7 @@ var BEISPIELE = [
       if (b[k] === undefined) b[k] = Array.isArray(LEER[k]) ? [] : LEER[k];
     });
     if (!b.slug) b.slug = b.id;
-    if (!b.bild) b.vorschauArt = b.status === "Idee" ? "konzept" : "bild";
+    if (b.status === "Idee") b.vorschauArt = "konzept";
   });
 })();
 

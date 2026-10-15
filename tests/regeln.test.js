@@ -88,7 +88,7 @@ test("passendes Beispiel steht vorn: Üben mit Rückmeldung findet die Quest", (
 });
 
 test("ohne genaue Übereinstimmung wird gelockert und das gesagt", () => {
-  const k = karte({ phase: "abschluss", anliegen: "reflektieren", mehrwert: "zeitort", rahmen: { netz: "nein" } });
+  const k = karte({ phase: "abschluss", anliegen: "vorwissen", mehrwert: "zeitort", rahmen: { netz: "nein" } });
   assert.equal(k.gelockert, true);
   assert.ok(k.beispiele.length > 0);
 });
@@ -106,5 +106,59 @@ test("jede Antwortkombination liefert alle Felder der Entscheidungskarte", () =>
     for (const f of ["einstufung", "begruendung", "umfang", "anpassung", "stolperstein", "naechsterSchritt"]) assert.ok(k[f], f);
     assert.ok(k.rollen.length >= 1 && k.rollen.length <= 2);
     assert.ok(T.einstufungen.some((e) => e.id === k.einstufung));
+  }
+});
+
+/* ---------- Selbsteinschätzung ---------- */
+const selbst = (e) => R.selbsteinschaetzung(e, B);
+
+test("Selbsteinschätzung: leere Eingabe liefert eine vollständige, wertschätzende Empfehlung", () => {
+  const r = selbst({});
+  assert.ok(r.einordnung && r.format && r.alternative && r.umfang);
+  assert.equal(r.schluss, "Andere Wege sind ebenso möglich.");
+  assert.ok(r.beispiele.length >= 2 && r.beispiele.length <= 3);
+});
+
+test("Selbsteinschätzung: Gespräch wichtig führt zu Moderieren, nicht zu weniger", () => {
+  const r = selbst({ gespraech: 5, technik: 4, zeit: 4, begleiten: 4 });
+  assert.equal(r.rollen[0], "moderieren");
+  assert.notEqual(r.umfang, "punktuell");
+  assert.match(r.format, /gemeinsam besprecht/);
+});
+
+test("Selbsteinschätzung: nie Verzicht auf digitale Bildung, höchstens kleiner Einstieg", () => {
+  for (let x = 1; x <= 5; x++) {
+    const r = selbst({ steuern: x, begleiten: x, gespraech: x, technik: x, zeit: x });
+    assert.ok(["punktuell", "phasenweise", "durchgaengig"].includes(r.umfang));
+    assert.ok(!/verzicht|kein digital/i.test(JSON.stringify(r.gruende) + r.format + r.alternative));
+  }
+});
+
+test("Selbsteinschätzung: wenig Technik oder Zeit ergibt punktuell", () => {
+  assert.equal(selbst({ technik: 1, zeit: 5 }).umfang, "punktuell");
+  assert.equal(selbst({ technik: 5, zeit: 1 }).umfang, "punktuell");
+});
+
+test("Selbsteinschätzung: ungültige Werte zählen als Mitte", () => {
+  assert.deepEqual(selbst({ steuern: "x", begleiten: 9 }).umfang, selbst({}).umfang);
+});
+
+/* ---------- Konzeptbeispiele ---------- */
+test("Kfz-Technik: der Weg findet das Konzeptbeispiel (Szenario 7)", () => {
+  const k = karte({ phase: "erarbeitung", anliegen: "erkunden", mehrwert: "experimentieren" });
+  assert.ok(k.beispiele.length >= 1);
+  const S = require("../assets/suche.js");
+  const e = S.finde(B, {}, "Kfz");
+  assert.equal(e.treffer[0].id, "kfz-fehlersuche");
+});
+
+test("Konzeptbeispiele: Status Idee, kein Link, kein Bild, keine Erfahrung", () => {
+  const konzepte = B.filter((b) => b.vorschauArt === "konzept");
+  assert.ok(konzepte.length >= 3);
+  for (const b of konzepte) {
+    assert.equal(b.status, "Idee");
+    assert.equal(b.link, null);
+    assert.equal(b.bild, null);
+    assert.equal(b.erfahrung, null);
   }
 });

@@ -269,6 +269,7 @@ main:focus{outline:none}
 .detail-seite .aktion{display:grid;gap:.4rem;justify-items:start}
 .klein-titel{font-size:1.15rem}
 .vorschlag{display:inline-block;font-size:.875rem;font-weight:700;padding:0 .5rem;border-radius:999px;border:1px dashed var(--leise);color:var(--leise);vertical-align:.1em}
+.konzept-hinweis{border:1px dashed var(--leise);border-radius:var(--rund-klein);padding:.6rem .9rem;font-size:var(--gr-klein)}
 .offen-liste{font-size:var(--gr-klein);color:var(--leise);border-top:1px solid var(--linie);padding-top:var(--a2)}
 .leitsaetze{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
 
@@ -324,6 +325,21 @@ input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px soli
 .begriffe{display:grid;gap:var(--a2);margin:0}
 .begriffe dt{font-weight:700}
 .begriffe dd{margin:.2rem 0 0}
+
+/* Selbsteinschätzung */
+.skala{border:0;margin:0;padding:0;min-width:0;max-width:44rem}
+.skala legend{font-weight:700;font-size:var(--gr-text);padding:0;margin-bottom:.6rem}
+.stufen{display:grid;grid-template-columns:repeat(5,minmax(44px,1fr));gap:.5rem}
+.stufe{display:grid;place-items:center;min-height:52px;border:2px solid var(--linie);border-radius:var(--rund-klein);background:var(--flaeche);cursor:pointer;position:relative}
+.stufe input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.stufe:hover{border-color:var(--farbe,var(--text))}
+.stufe:has(input:checked){background:var(--farbe,var(--text));border-color:var(--farbe,var(--text));color:var(--flaeche)}
+.stufe:has(input:focus-visible){outline:3px solid var(--fokus);outline-offset:3px}
+.stufe-zahl{font-weight:700}
+.skala-enden{display:flex;justify-content:space-between;gap:1rem;font-size:var(--gr-klein);color:var(--leise);margin-top:.35rem}
+.kontextfragen{max-width:44rem;margin-top:var(--a4)}
+#ergebnis{margin-top:var(--a4)}
+@media (max-width:600px){.nav a[href="index.html"]{display:none}.nav a{padding:.45rem .6rem}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media print{.kopf .nav,.filter,.mehrknopf,.weg-steuerung,.schritte,.ergebnis-aktionen,.speicherhinweis,.sprung{display:none}.entscheidung{box-shadow:none}.karte,.gruppe,.wahlflaeche{box-shadow:none;border:1px solid #bbb}body{background:#fff}}
