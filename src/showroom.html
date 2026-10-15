@@ -1,0 +1,38 @@
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1>Showroom</h1>
+  <p class="detail-kurz">Persönliche Erprobungen, keine Musterlösungen. Mehr Digitalität bedeutet nicht automatisch besseren Unterricht.</p>
+
+  <form class="filter" id="filter" role="search" aria-label="Beispiele suchen und filtern">
+    <div class="suchzeile">
+      <label for="suche">Suchen</label>
+      <input type="search" id="suche" name="suche" autocomplete="off" placeholder="z. B. Rückmeldung, Geschichte, Fälle">
+    </div>
+    <div class="filterzeile" id="bereich" role="group" aria-label="Bereich"><span aria-hidden="true">Bereich</span>
+      <button type="button" class="chip" data-bereich="alle" aria-pressed="true">alle</button>
+      <button type="button" class="chip" data-bereich="ki" aria-pressed="false">KI für meine Arbeit</button>
+      <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Unterricht mit Tablets</button>
+      <button type="button" class="chip" data-bereich="beide" aria-pressed="false">mit KI entwickelt</button>
+    </div>
+    <div class="filterraster" id="auswahlfilter"></div>
+    <details class="mehr weitere-filter">
+      <summary>Weitere Filter</summary>
+      <div class="filterraster" id="weitere"></div>
+    </details>
+  </form>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a3)"><div class="huelle">
+  <div class="ergebniskopf">
+    <p class="ergebniszeile" id="ergebniszeile" aria-live="polite"></p>
+    <ul class="aktive" id="aktive" aria-label="Aktive Filter"></ul>
+  </div>
+  <p class="lockerung" id="lockerung" hidden></p>
+  <div class="karten" id="karten"></div>
+  <div class="mehrknopf"><button type="button" class="knopf still" id="mehr">Mehr Beispiele</button></div>
+  <noscript><p class="box">Die Beispiele werden mit JavaScript angezeigt.</p></noscript>
+</div></section>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/daten/beispiele.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/suche.js"></script>
+<script src="assets/showroom.js"></script>

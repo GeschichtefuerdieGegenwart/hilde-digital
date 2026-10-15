@@ -1,56 +1,26 @@
 <div class="bereich-ki">
-<section class="bereichskopf"><div class="huelle">
+<section class="bereichskopf kompakt"><div class="huelle">
   <p class="marker">KI für meine Arbeit</p>
-  <h1>Wobei kann KI mich bei meiner Arbeit unterstützen?</h1>
-  <p class="notiz">Das Ergebnis kann analog oder digital eingesetzt werden. Ein mit KI vorbereitetes Arbeitsblatt kann ganz auf Papier bearbeitet werden.</p>
+  <h1 class="h1-frage">Wobei kann KI dich bei deiner Arbeit unterstützen?</h1>
+  <p class="leise kopfnotiz">Das Ergebnis kann ganz analog eingesetzt werden – zum Beispiel als Arbeitsblatt auf Papier.</p>
 </div></section>
 
-<section class="abschnitt" style="padding-top:var(--a2)"><div class="huelle stapel-gross">
-  <h2>Ich möchte …</h2>
-  <div class="gruppen">
-    <div class="gruppe"><h3>Informieren und Ideen finden</h3><ul class="anliegen">
-      <li>Informationen zu einem Thema suchen</li>
-      <li>Ideen für meinen Unterricht finden</li>
-      <li>einen Einstieg entwickeln</li></ul></div>
-    <div class="gruppe"><h3>Planen</h3><ul class="anliegen">
-      <li>eine einzelne Aufgabe entwickeln</li>
-      <li>eine Unterrichtsphase planen</li>
-      <li>eine ganze Stunde oder Reihe planen</li></ul></div>
-    <div class="gruppe"><h3>Material erstellen und verbessern</h3><ul class="anliegen">
-      <li>neues Material erstellen</li>
-      <li>vorhandenes Material überarbeiten</li>
-      <li>einen Text vereinfachen</li>
-      <li>Aufgaben differenzieren</li>
-      <li>eine Präsentation oder Übersicht gestalten</li></ul></div>
-    <div class="gruppe"><h3>Bewerten und rückmelden</h3><ul class="anliegen">
-      <li>einen Erwartungshorizont entwickeln</li>
-      <li>eine Leistungsfeststellung vorbereiten</li>
-      <li>Feedback oder ein Bewertungsraster formulieren</li></ul></div>
-    <div class="gruppe"><h3>Zusammenarbeit an der Schule</h3><ul class="anliegen">
-      <li>Arbeitsabläufe ordnen</li>
-      <li>eine Konferenz vorbereiten und Ergebnisse sichern</li></ul></div>
-    <div class="gruppe"><h3>Digital mit KI entwickeln <span class="marke-beide">beide Bereiche</span></h3><ul class="anliegen">
-      <li>eine Website oder digitale Lernumgebung bauen</li></ul></div>
+<section class="abschnitt weg-abschnitt"><div class="huelle">
+  <nav aria-label="Schritte des Wegs"><ol class="schritte" id="fortschritt"></ol></nav>
+  <form id="weg" class="weg" novalidate></form>
+  <p id="ansage" class="sr-only" aria-live="polite"></p>
+  <p id="hinweis" class="hinweis-fehler" role="alert" hidden></p>
+  <div class="weg-steuerung" id="steuerung">
+    <button type="button" class="knopf still" id="zurueck">← Zurück</button>
+    <button type="button" class="knopf" id="weiter">Weiter →</button>
   </div>
-  <p class="leise klein">Zu jedem Anliegen erscheinen im nächsten Schritt Ideen, ein passendes Beispiel und ein kleiner nächster Schritt.</p>
-
-  <div class="box mass">
-    <h3>Darauf achten</h3>
-    <ul>
-      <li>Stimmt der Inhalt? KI erfindet manchmal Fakten.</li>
-      <li>Gibt es die Quellen wirklich?</li>
-      <li>Keine Namen oder Noten von Schüler*innen eingeben.</li>
-    </ul>
-  </div>
-</div></section>
-
-<section class="abschnitt"><div class="huelle stapel">
-  <h2>Was KI bei der Erstellung verbessern kann</h2>
-  <p class="mass leise">Beispiel: eine Präsentation für das Treffen mit den Praxisanleiter*innen. Links die Fassung von 2025, rechts die Fassung von 2026, überarbeitet mit Unterstützung von KI.</p>
-  <div class="paar">
-    <figure><img src="assets/bilder/anleiter-2025.jpg" alt="Folie 2025: drei Kästen zu den Praxisphasen mit Pfeilen" loading="lazy"><figcaption><b>Vorher:</b> drei Kästen, Termine im Text</figcaption></figure>
-    <figure><img src="assets/bilder/anleiter-2026.jpg" alt="Folie 2026: Zeitstrahl des Praxisjahres mit Blöcken, Praxisbesuchen und Fristen" loading="lazy"><figcaption><b>Nachher:</b> das ganze Jahr auf einem Zeitstrahl</figcaption></figure>
-  </div>
-  <p><a class="textlink" href="beispiele.html">Alle Beispiele ansehen <span aria-hidden="true">→</span></a></p>
+  <p class="leise klein speicherhinweis">Deine Auswahl bleibt nur in diesem Browser. Freitexte werden nicht gespeichert. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button></p>
+  <noscript><p class="box">Der Weg braucht JavaScript. Die Beispiele findest du auch im <a href="showroom.html">Showroom</a>.</p></noscript>
 </div></section>
 </div>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/daten/beispiele.js"></script>
+<script src="assets/daten/texte.js"></script>
+<script src="assets/ki-anfrage.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/ki-weg.js"></script>

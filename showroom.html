@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Showroom – Hilde Digital</title>
+<link rel="stylesheet" href="assets/hilde.css">
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<header class="kopf"><div class="huelle">
+  <a class="marke" href="index.html"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="11" cy="14" r="8.5" fill="#f5e8cf" stroke="#a26a1c" stroke-width="1.6"/><circle cx="17" cy="14" r="8.5" fill="#dbeae6" fill-opacity=".75" stroke="#1e6b67" stroke-width="1.6"/></svg>Hilde Digital</a>
+  <nav class="nav" aria-label="Bereiche"><a href="index.html">Start</a><a href="ki.html">KI für meine Arbeit</a><a href="tablets.html">Unterricht mit Tablets</a><a href="showroom.html" aria-current="page">Showroom</a><a href="ueber.html">Über das Modul</a></nav>
+</div></header>
+<main id="inhalt" tabindex="-1">
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1>Showroom</h1>
+  <p class="detail-kurz">Persönliche Erprobungen, keine Musterlösungen. Mehr Digitalität bedeutet nicht automatisch besseren Unterricht.</p>
+
+  <form class="filter" id="filter" role="search" aria-label="Beispiele suchen und filtern">
+    <div class="suchzeile">
+      <label for="suche">Suchen</label>
+      <input type="search" id="suche" name="suche" autocomplete="off" placeholder="z. B. Rückmeldung, Geschichte, Fälle">
+    </div>
+    <div class="filterzeile" id="bereich" role="group" aria-label="Bereich"><span aria-hidden="true">Bereich</span>
+      <button type="button" class="chip" data-bereich="alle" aria-pressed="true">alle</button>
+      <button type="button" class="chip" data-bereich="ki" aria-pressed="false">KI für meine Arbeit</button>
+      <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Unterricht mit Tablets</button>
+      <button type="button" class="chip" data-bereich="beide" aria-pressed="false">mit KI entwickelt</button>
+    </div>
+    <div class="filterraster" id="auswahlfilter"></div>
+    <details class="mehr weitere-filter">
+      <summary>Weitere Filter</summary>
+      <div class="filterraster" id="weitere"></div>
+    </details>
+  </form>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a3)"><div class="huelle">
+  <div class="ergebniskopf">
+    <p class="ergebniszeile" id="ergebniszeile" aria-live="polite"></p>
+    <ul class="aktive" id="aktive" aria-label="Aktive Filter"></ul>
+  </div>
+  <p class="lockerung" id="lockerung" hidden></p>
+  <div class="karten" id="karten"></div>
+  <div class="mehrknopf"><button type="button" class="knopf still" id="mehr">Mehr Beispiele</button></div>
+  <noscript><p class="box">Die Beispiele werden mit JavaScript angezeigt.</p></noscript>
+</div></section>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/daten/beispiele.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/suche.js"></script>
+<script src="assets/showroom.js"></script>
+
+</main>
+<footer class="fuss"><div class="huelle">
+  <span>Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</span>
+  <span class="fusslinks"><a href="ueber.html" class="leise">Über das Modul</a> <a href="gestaltung.html" class="leise">Gestaltungssystem</a></span>
+</div></footer>
+</body>
+</html>
