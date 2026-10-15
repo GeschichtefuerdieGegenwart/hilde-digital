@@ -253,6 +253,13 @@ def main():
         else:
             print("! axe.min.js fehlt unter tests/vendor/ – Prüfung mit axe-core übersprungen")
 
+        # 5b. Zoom 200 %: entspricht 640 × 360 Pixeln
+        q = neue_seite(b, viewport={"width": 640, "height": 360})
+        for s_ in ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html#quest", "ueber.html"]:
+            q.goto(url(s_))
+            pruefe(q.evaluate("document.documentElement.scrollWidth") <= 640, f"Zoom 200 % {s_}: kein waagerechtes Scrollen")
+        q.context.close()
+
         # 6. Bildschirmfotos in drei Breiten
         if fotos:
             for name, vp in [("beamer", {"width": 1280, "height": 720}), ("ipad", {"width": 820, "height": 1180}), ("schmal", {"width": 390, "height": 844})]:

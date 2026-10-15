@@ -125,7 +125,7 @@ details.mehr[open] summary{margin-bottom:var(--a2)}
 .anliegen{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
 .anliegen li{padding:.55rem 0;border-top:1px solid var(--linie)}
 .anliegen li:first-child{border-top:0}
-.marke-beide{display:inline-block;font-size:.875rem;font-weight:700;padding:.1rem .6rem;border-radius:999px;background:linear-gradient(90deg,var(--ki-zart) 0 50%,var(--lernen-zart) 50% 100%);color:var(--text);margin-left:.4rem;vertical-align:.1em}
+.marke-beide{display:inline-block;font-size:var(--gr-klein);font-weight:700;padding:.1rem .6rem;border-radius:999px;background:linear-gradient(90deg,var(--ki-zart) 0 50%,var(--lernen-zart) 50% 100%);color:var(--text);margin-left:.4rem;vertical-align:.1em}
 
 /* Hinweisbox */
 .box{background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);border:1px solid var(--linie)}
@@ -146,10 +146,10 @@ details.mehr[open] summary{margin-bottom:var(--a2)}
 .karte .fach{font-size:var(--gr-klein);color:var(--leise)}
 .karte h3{font-size:1.25rem}
 .karte .fussleiste{padding:0 var(--a3) var(--a3);display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
-.status{font-size:.95rem;color:var(--leise)}
+.status{font-size:var(--gr-klein);color:var(--leise)}
 .status b{color:var(--text)}
 .kennzeichen{display:flex;flex-wrap:wrap;gap:.4rem}
-.kz{font-size:.875rem;font-weight:700;padding:.15rem .65rem;border-radius:999px}
+.kz{font-size:var(--gr-klein);font-weight:700;padding:.15rem .65rem;border-radius:999px}
 .kz.ki{background:var(--ki-zart);color:var(--ki-tief)}
 .kz.lernen{background:var(--lernen-zart);color:var(--lernen-tief)}
 .kz.beide{background:linear-gradient(90deg,var(--ki-zart) 0 50%,var(--lernen-zart) 50% 100%);color:var(--text)}
@@ -268,7 +268,7 @@ main:focus{outline:none}
 .detail-seite{background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);box-shadow:var(--schatten);display:grid;gap:var(--a2)}
 .detail-seite .aktion{display:grid;gap:.4rem;justify-items:start}
 .klein-titel{font-size:1.15rem}
-.vorschlag{display:inline-block;font-size:.875rem;font-weight:700;padding:0 .5rem;border-radius:999px;border:1px dashed var(--leise);color:var(--leise);vertical-align:.1em}
+.vorschlag{display:inline-block;font-size:var(--gr-klein);font-weight:700;padding:0 .5rem;border-radius:999px;border:1px dashed var(--leise);color:var(--leise);vertical-align:.1em}
 .konzept-hinweis{border:1px dashed var(--leise);border-radius:var(--rund-klein);padding:.6rem .9rem;font-size:var(--gr-klein)}
 .offen-liste{font-size:var(--gr-klein);color:var(--leise);border-top:1px solid var(--linie);padding-top:var(--a2)}
 .leitsaetze{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}

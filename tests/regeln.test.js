@@ -162,3 +162,32 @@ test("Konzeptbeispiele: Status Idee, kein Link, kein Bild, keine Erfahrung", () 
     assert.equal(b.erfahrung, null);
   }
 });
+
+/* ---------- Szenarien aus dem Auftrag ---------- */
+test("Szenario 3: tabletgestützte Erarbeitung mit Zusammenarbeit", () => {
+  const k = karte({ phase: "erarbeitung", anliegen: "zusammen", mehrwert: "gemeinsam", umfang: "phasenweise" });
+  assert.equal(k.einstufung, "klar");
+  assert.equal(k.rollen[0], "moderieren");
+  assert.ok(k.beispiele.some((b) => b.mehrwerte.includes("gemeinsam")));
+});
+
+test("Szenario 4: Lernstand erkennen findet passende Ideen", () => {
+  const k = karte({ phase: "abschluss", anliegen: "lernstand", mehrwert: "rueckmeldung" });
+  assert.equal(k.einstufung, "klar");
+  assert.ok(k.rollen.includes("rueckmelden"));
+  assert.equal(k.gelockert, false);
+});
+
+test("Szenario 5: unterschiedliche Lernwege anbieten", () => {
+  const k = karte({ phase: "erarbeitung", anliegen: "differenzieren", mehrwert: "zugaenge" });
+  assert.equal(k.einstufung, "klar");
+  assert.match(k.anpassung, /gemeinsames Ziel/);
+  assert.match(k.stolperstein, /Anschluss/);
+});
+
+test("Szenario 6: durchgängige HTML-Lernumgebung ist möglich, aber kein Standard", () => {
+  const gut = karte({ phase: "erarbeitung", anliegen: "ueben", mehrwert: "individuell", umfang: "durchgaengig", rahmen: { erfahrung: "viel", zeit: "viel", netz: "ja" } });
+  assert.equal(gut.umfang, "durchgaengig");
+  const knapp = karte({ phase: "erarbeitung", anliegen: "ueben", mehrwert: "individuell", umfang: "durchgaengig", rahmen: { zeit: "wenig" } });
+  assert.equal(knapp.umfang, "phasenweise");
+});

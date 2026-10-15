@@ -67,6 +67,13 @@ def pruefe_seiten(fehler):
             fehler.append(f"{name}: Schrift kleiner als 16 Pixel im Seitentext")
 
 
+def pruefe_css(fehler):
+    css = (WURZEL / "assets" / "hilde.css").read_text(encoding="utf-8")
+    for zahl, einheit in re.findall(r"font-size:\s*([0-9.]+)(rem|px)", css):
+        if (einheit == "rem" and float(zahl) < 1) or (einheit == "px" and float(zahl) < 16):
+            fehler.append(f"hilde.css: Schrift kleiner als 16 Pixel ({zahl}{einheit})")
+
+
 def pruefe_skripte(fehler):
     for pfad in sorted((WURZEL / "assets").rglob("*.js")):
         rel = pfad.relative_to(WURZEL).as_posix()
@@ -160,6 +167,7 @@ def main():
     fehler = []
     pruefe_seiten(fehler)
     pruefe_skripte(fehler)
+    pruefe_css(fehler)
     pruefe_daten(fehler)
     for zeile in fehler:
         print("✗", zeile)
