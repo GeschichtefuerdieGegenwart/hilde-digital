@@ -58,13 +58,20 @@ var HILDE = (function () {
     return m.length ? '<p class="merkmale">' + m.map(esc).join(" · ") + "</p>" : "";
   }
 
+  /* Stärken aus einem freigegebenen Qualitätscheck: höchstens drei, ohne Zahl. */
+  function staerken(b) {
+    var q = b.qualitaetscheck;
+    if (!q || !q.staerken || !q.staerken.length) return "";
+    return '<ul class="label-vorschau" aria-label="Geprüfte Stärken">' + q.staerken.slice(0, 3).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>";
+  }
+
   function detailLink(b) { return "beispiel.html#" + encodeURIComponent(b.slug); }
 
   /* Große Showroom-Karte */
   function karte(b) {
     return '<article class="karte' + (b.bild ? "" : " kompakt") + '">' + bildHtml(b) +
       '<div class="koerper">' + kennzeichen(b) +
-      '<p class="fach">' + esc(b.fach) + "</p><h3>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + merkmale(b) + "</div>" +
+      '<p class="fach">' + esc(b.fach) + "</p><h3>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + merkmale(b) + staerken(b) + "</div>" +
       '<div class="fussleiste"><span class="status">Status: <b>' + esc(b.status) + "</b></span>" +
       '<a class="knopf" href="' + detailLink(b) + '">Beispiel ansehen <span class="sr-only">: ' + esc(b.titel) + "</span></a></div></article>";
   }

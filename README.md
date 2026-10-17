@@ -17,7 +17,7 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/suche.js`, `assets/ki-anfrage.js` | Suche und Filter im Showroom, Anfrage-Baukasten |
 | `assets/hilde.js` | gemeinsame Helfer: Speichern im Browser, Karten |
 | `tests/` | Unit-Tests (`node --test`) und Browser-Tests (`tests/e2e.py`) |
-| `docs/` | Version 1 im Überblick, Annahmen, Datenschutz, Datenlücken zur Prüfung |
+| `docs/` | Version 1 und 2 im Überblick, Annahmen, Datenschutz, Datenlücken zur Prüfung |
 | `assets/fonts/` | Atkinson Hyperlegible, SIL Open Font License (OFL.txt) |
 | `assets/bilder/` | Bildschirmfotos der Beispiele, auch für den Betrieb ohne Netz |
 
@@ -33,7 +33,7 @@ Die Browser-Tests brauchen Python Playwright mit Chromium. Für die Prüfung mit
 
 Nach Änderungen an den Beispielen: `python3 tools/datenluecken.py` aktualisiert `docs/datenluecken.md`.
 
-Die fertigen Seiten (`index.html`, `ki.html`, `tablets.html`, `passt.html`, `showroom.html`, `beispiel.html`, `ueber.html`, `gestaltung.html`) lassen sich ohne Server direkt im Browser öffnen.
+Die fertigen Seiten (`index.html`, `ki.html`, `tablets.html`, `passt.html`, `showroom.html`, `beispiel.html`, `mehrwert.html`, `ueber.html`, `gestaltung.html`) lassen sich ohne Server direkt im Browser öffnen.
 
 ## Bilder
 

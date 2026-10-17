@@ -20,6 +20,52 @@
     return werte.map(function (w) { return esc(tax ? T.name(tax, w) : w); }).join(", ");
   }
 
+  /* Qualitätscheck: Stärken erscheinen nur aus einem freigegebenen Check (Feld »qualitaetscheck«).
+     Ohne Check steht »noch offen« – das ist keine Abwertung. */
+  function qualitaetscheck(b) {
+    var q = b.qualitaetscheck;
+    var mehr = '<a class="textlink klein" href="mehrwert.html">Wie wir den Mehrwert prüfen <span aria-hidden="true">→</span></a>';
+    if (q && q.staerken && q.staerken.length) {
+      return '<div class="qualitaet"><h2 class="klein-titel">Qualitätscheck</h2>' +
+        '<ul class="label-vorschau">' + q.staerken.slice(0, 3).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" +
+        '<p class="leise">Geprüft am ' + esc(q.datum || "") + (q.sicherheit ? " · Sicherheit: " + esc(q.sicherheit) : "") + "</p>" + mehr + "</div>";
+    }
+    return '<div class="qualitaet"><h2 class="klein-titel">Qualitätscheck</h2>' +
+      "<p><b>noch offen</b></p><p class=\"leise\">Das ist keine Abwertung. Stärken erscheinen hier erst nach Prüfung und Freigabe.</p>" + mehr + "</div>";
+  }
+
+  /* Passende Beispiele: feste, nachvollziehbare Regel statt Zufall.
+     Ausdrücklich verwandt: 6 Punkte · gleiches Fach: 3 Punkte je Fach · gleiches Anliegen: 1 Punkt je Anliegen.
+     Konzeptbeispiele nur, wenn das Beispiel selbst eines ist. Mindestens 1 Punkt, höchstens drei.
+     Bei Gleichstand stehen Beispiele mit Anwendung im Netz vorn. */
+  function passend(b) {
+    return BEISPIELE.filter(function (x) {
+      return x !== b && (x.vorschauArt !== "konzept" || b.vorschauArt === "konzept");
+    }).map(function (x) {
+      var fach = x.faecher.filter(function (f) { return b.faecher.indexOf(f) >= 0; });
+      var anl = x.anliegen.filter(function (a) { return b.anliegen.indexOf(a) >= 0; });
+      var verwandt = b.verwandt.indexOf(x.id) >= 0 || x.verwandt.indexOf(b.id) >= 0;
+      var punkte = (verwandt ? 6 : 0) + 3 * fach.length + anl.length;
+      var warum = [];
+      if (verwandt) warum.push("gehört thematisch dazu");
+      if (fach.length) warum.push("gleiches Fach");
+      if (anl.length) warum.push("ähnliches Anliegen: " + T.name("anliegen", anl[0]));
+      return { b: x, punkte: punkte, rang: punkte + (x.link ? 0.5 : 0), warum: warum.join(" · ") };
+    }).filter(function (t) { return t.punkte >= 1; })
+      .sort(function (a, c) { return c.rang - a.rang; })
+      .slice(0, 3);
+  }
+
+  function passtDazu(b) {
+    var liste = passend(b);
+    if (!liste.length) return "";
+    return '<section class="abschnitt" style="padding-top:0" aria-labelledby="t-passt"><div class="huelle passt-dazu">' +
+      '<h2 id="t-passt" class="klein-titel">Passt dazu</h2>' +
+      '<ul class="minis">' + liste.map(function (t) {
+        return H.miniKarte(t.b).replace('<span class="mini-weiter">', '<span class="warum-passend">' + esc(t.warum) + '</span><span class="mini-weiter">');
+      }).join("") + "</ul></div></section>";
+  }
+
   function zurueckLeiste() {
     var weg = H.lies("tabletweg");
     var html = '<a class="textlink" href="showroom.html"><span aria-hidden="true">←</span> Zum Showroom</a>';
@@ -106,8 +152,9 @@
           '<h2 class="klein-titel">Einordnung</h2><dl class="felder schmal">' + einordnung.join("") + "</dl>" +
           (Object.keys(b.vorschlag || {}).length ? '<p class="leise klein">»Vorschlag« heißt: Diese Zuordnung ist noch nicht bestätigt.</p>' : "") +
           (offen.length ? '<p class="offen-liste"><b>Noch offen:</b> ' + offen.map(esc).join(", ") + "</p>" : "") +
+          qualitaetscheck(b) +
         "</aside>" +
-      "</div></section></div>";
+      "</div></section>" + passtDazu(b) + "</div>";
 
     var zk = document.getElementById("zur-karte");
     if (zk) zk.addEventListener("click", function () {

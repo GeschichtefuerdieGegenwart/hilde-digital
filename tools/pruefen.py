@@ -8,11 +8,13 @@ Geprüft werden
 - Kennzeichnung in der Fußzeile jeder Seite,
 - verbotene Inhalte (Platzhalter, Logo, Kontaktadresse, »offizielles Digitalkonzept«),
 - Fachbegriffe auf Start- und Bereichsseiten und in den Texten der geführten Wege,
+  auf »Mehrwert« und »Über das Modul« nur in aufklappbaren Vertiefungen,
 - externe Dateien und Links in den Seiten (nicht erlaubt),
 - interne Links (Ziel muss existieren),
 - Schriftgrößen unter 16 Pixel im Seitentext,
 - die Beispieldaten: Pflichtfelder, erlaubte Werte, eindeutige IDs und Slugs,
-  Links nur auf die freigegebenen Seiten, Konzeptbeispiele ohne Link, Vorschläge nur für vorhandene Felder.
+  Links nur auf die freigegebenen Seiten, Konzeptbeispiele ohne Link, Vorschläge nur für vorhandene Felder,
+  Qualitätscheck nur mit Datum, höchstens drei Stärken ohne Zahl, Sicherheit mindestens »mittel«.
 """
 import json
 import re
@@ -22,10 +24,12 @@ import sys
 from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html", "ueber.html", "gestaltung.html"]
+SEITEN = ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html", "mehrwert.html", "ueber.html", "gestaltung.html"]
+# Seiten, auf denen Fachbegriffe nur in aufklappbaren Vertiefungen (<details>) stehen dürfen
+MIT_VERTIEFUNG = ["mehrwert.html", "ueber.html"]
 EINSTIEG = ["index.html", "ki.html", "tablets.html", "passt.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
-EINSTIEG_SKRIPTE = ["assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
+EINSTIEG_SKRIPTE = ["assets/start.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation"]
@@ -54,6 +58,11 @@ def pruefe_seiten(fehler):
         for wort in VERBOTEN:
             if wort in html:
                 fehler.append(f"{name}: verbotener Inhalt »{wort}«")
+        if name in MIT_VERTIEFUNG:
+            ohne_vertiefung = text_ohne_tags(re.sub(r"<details[\s\S]*?</details>", " ", html))
+            for wort in FACHBEGRIFFE:
+                if wort.lower() in ohne_vertiefung.lower():
+                    fehler.append(f"{name}: Fachbegriff außerhalb einer Vertiefung »{wort}«")
         if name in EINSTIEG:
             for wort in FACHBEGRIFFE:
                 if wort.lower() in text.lower():
@@ -157,6 +166,16 @@ def pruefe_daten(fehler):
             v = (b.get("vergleich") or {}).get(teil)
             if v and not (WURZEL / v["bild"]).exists():
                 fehler.append(f"Beispiel {wer}: Vergleichsbild fehlt {v['bild']}")
+        q = b.get("qualitaetscheck")
+        if q:
+            if not q.get("datum") or not q.get("staerken"):
+                fehler.append(f"Beispiel {wer}: Qualitätscheck braucht Datum und Stärken")
+            if len(q.get("staerken") or []) > 3:
+                fehler.append(f"Beispiel {wer}: höchstens drei Stärken")
+            if q.get("sicherheit") not in ("hoch", "mittel"):
+                fehler.append(f"Beispiel {wer}: Stärken erst ab mittlerer Sicherheit")
+            if any(ch.isdigit() for st in q.get("staerken") or [] for ch in st):
+                fehler.append(f"Beispiel {wer}: Stärken ohne Zahl")
         for feld in (b.get("vorschlag") or {}):
             if feld not in b:
                 fehler.append(f"Beispiel {wer}: Vorschlag für unbekanntes Feld »{feld}«")
