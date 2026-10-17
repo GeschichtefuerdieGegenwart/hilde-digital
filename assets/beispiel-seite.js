@@ -68,7 +68,8 @@
 
     // Die Kurzbeschreibung steht schon oben. Ein eigener Abschnitt nur, wenn es mehr zu sagen gibt.
     if (b.beschreibung) abschnitt("Worum geht es?", "<p>" + esc(b.beschreibung) + "</p>");
-    if (!nurKI) abschnitt("Was tun die Lernenden?", punkte(b.lernaktivitaeten), "was die Lernenden tun");
+    if (!nurKI) abschnitt("Was tun die Lernenden?", punkte(b.lernaktivitaeten) +
+      (b.lernaktivitaeten.length && b.vorschlag && b.vorschlag.lernaktivitaeten ? '<p class="leise klein">Aus dem Material abgeleitet.' + vorschlag(b, "lernaktivitaeten") + "</p>" : ""), "was die Lernenden tun");
     var mw = "";
     if (b.lernmehrwert) mw += "<p>" + esc(b.lernmehrwert) + "</p>";
     if (b.mehrwerte.length) mw += "<p>Das Tablet soll helfen: " + liste(b.mehrwerte, "mehrwerte") + vorschlag(b, "mehrwerte") + "</p>";
