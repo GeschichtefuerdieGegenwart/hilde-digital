@@ -27,6 +27,15 @@
   var suche = "", alleZeigen = false;
 
   var el = function (id) { return document.getElementById(id); };
+
+  /* Entdeckungsbühne (optional, nur auf großen Bildschirmen).
+     Bedingungen aus dem Auftrag: per Tastatur bedienbar, sichtbare Vor- und Zurück-Steuerung,
+     keine Pflicht-Wischgeste, kein Autoplay, reduzierte Bewegung wird respektiert,
+     das Raster ist jederzeit verfügbar, keine Information nur während einer Animation. */
+  var GROSS = window.matchMedia ? window.matchMedia("(min-width: 1100px)") : { matches: false };
+  var RUHIG = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+  var ansicht = H.lies("showroom-ansicht") === "buehne" ? "buehne" : "raster";
+  function buehneAktiv() { return ansicht === "buehne" && GROSS.matches; }
   var ziel = el("karten"), mehr = el("mehr"), zeile = el("ergebniszeile"), aktiveListe = el("aktive"), lockerung = el("lockerung");
 
   function anzahl(feld, wert) {
@@ -62,6 +71,7 @@
     var gefiltert = erg.felder.length > 0 || suche.trim() !== "";
     var sichtbar = (gefiltert || alleZeigen) ? erg.treffer : erg.treffer.filter(function (b) { return b.zuerst; });
     ziel.innerHTML = sichtbar.map(H.karte).join("");
+    zeigeAnsicht();
     var rest = erg.treffer.length - sichtbar.length;
     mehr.hidden = rest <= 0;
     mehr.textContent = "Mehr Beispiele (" + rest + ")";
@@ -98,6 +108,41 @@
     H.schreib(SPEICHER, speichern);
   }
 
+  function zeigeAnsicht() {
+    var an = buehneAktiv();
+    ziel.classList.toggle("buehne", an);
+    if (an) { ziel.setAttribute("role", "region"); ziel.setAttribute("aria-label", "Bühne mit Beispielen"); ziel.tabIndex = 0; }
+    else { ziel.removeAttribute("role"); ziel.removeAttribute("aria-label"); ziel.removeAttribute("tabindex"); ziel.scrollLeft = 0; }
+    el("buehne-steuerung").hidden = !an;
+    el("ansicht").querySelectorAll("[data-ansicht]").forEach(function (x) {
+      x.setAttribute("aria-pressed", x.getAttribute("data-ansicht") === ansicht ? "true" : "false");
+    });
+    standBuehne();
+  }
+
+  function kartenBreite() {
+    var k = ziel.children[0];
+    if (!k) return 1;
+    var abstand = parseFloat(getComputedStyle(ziel).columnGap) || 0;
+    return k.getBoundingClientRect().width + abstand;
+  }
+
+  function standBuehne() {
+    if (!buehneAktiv()) return;
+    var n = ziel.children.length, b = kartenBreite();
+    var erste = Math.round(ziel.scrollLeft / b) + 1;
+    var abstand = parseFloat(getComputedStyle(ziel).columnGap) || 0;
+    var proAnsicht = Math.max(1, Math.floor((ziel.clientWidth + abstand + 1) / b));
+    var letzte = Math.min(n, erste + proAnsicht - 1);
+    el("buehne-stand").textContent = n ? "Beispiel " + erste + (letzte > erste ? "–" + letzte : "") + " von " + n : "";
+    el("buehne-zurueck").disabled = ziel.scrollLeft <= 2;
+    el("buehne-vor").disabled = ziel.scrollLeft + ziel.clientWidth >= ziel.scrollWidth - 2;
+  }
+
+  function blaettern(richtung) {
+    ziel.scrollBy({ left: richtung * kartenBreite(), behavior: RUHIG.matches ? "auto" : "smooth" });
+  }
+
   function zuruecksetzen() {
     Object.keys(wahl).forEach(function (k) { wahl[k] = k === "bereich" ? "alle" : ""; });
     suche = ""; el("suche").value = ""; alleZeigen = false;
@@ -131,6 +176,31 @@
     var vorher = ziel.children.length;
     alleZeigen = true; zeichne();
     var neu = ziel.children[vorher] && ziel.children[vorher].querySelector("a"); if (neu) neu.focus();
+  });
+
+  el("ansicht").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-ansicht]"); if (!b) return;
+    ansicht = b.getAttribute("data-ansicht");
+    H.schreib("showroom-ansicht", ansicht);
+    zeigeAnsicht();
+  });
+  el("buehne-zurueck").addEventListener("click", function () { blaettern(-1); });
+  el("buehne-vor").addEventListener("click", function () { blaettern(1); });
+  ziel.addEventListener("keydown", function (e) {
+    if (!buehneAktiv()) return;
+    if (e.key === "ArrowRight") { e.preventDefault(); blaettern(1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); blaettern(-1); }
+  });
+  var warte = null;
+  ziel.addEventListener("scroll", function () { clearTimeout(warte); warte = setTimeout(standBuehne, 80); });
+  if (GROSS.addEventListener) GROSS.addEventListener("change", zeigeAnsicht);
+
+  el("loeschen").addEventListener("click", function () {
+    // Erst zurücksetzen (das zeichnet neu und speichert leere Filter), dann alles löschen.
+    zuruecksetzen();
+    ansicht = "raster"; zeigeAnsicht();
+    H.loescheAlles();
+    el("geloescht").textContent = "Alle Eingaben wurden gelöscht.";
   });
 
   if (wahl.fach || wahl.ki) document.querySelector(".weitere-filter").open = true;

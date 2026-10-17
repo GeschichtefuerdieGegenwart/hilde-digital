@@ -24,7 +24,8 @@
      Ohne Check steht »noch offen« – das ist keine Abwertung. */
   function qualitaetscheck(b) {
     var q = b.qualitaetscheck;
-    var mehr = '<a class="textlink klein" href="mehrwert.html">Wie wir den Mehrwert prüfen <span aria-hidden="true">→</span></a>';
+    var mehr = '<a class="textlink klein" href="mehrwert.html">Wie wir den Mehrwert prüfen <span aria-hidden="true">→</span></a>' +
+      '<a class="textlink klein" href="selbstcheck.html">Eigenes Material prüfen <span aria-hidden="true">→</span></a>';
     if (q && q.staerken && q.staerken.length) {
       return '<div class="qualitaet"><h2 class="klein-titel">Qualitätscheck</h2>' +
         '<ul class="label-vorschau">' + q.staerken.slice(0, 3).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" +
@@ -116,10 +117,21 @@
     if (b.beschreibung) abschnitt("Worum geht es?", "<p>" + esc(b.beschreibung) + "</p>");
     if (!nurKI) abschnitt("Was tun die Lernenden?", punkte(b.lernaktivitaeten) +
       (b.lernaktivitaeten.length && b.vorschlag && b.vorschlag.lernaktivitaeten ? '<p class="leise klein">Aus dem Material abgeleitet.' + vorschlag(b, "lernaktivitaeten") + "</p>" : ""), "was die Lernenden tun");
+    // Was tut die Lehrkraft? Die Rollen mit ihrer Erklärung – keine Rolle ist höherwertig.
+    if (b.rollen.length) abschnitt("Was tut die Lehrkraft?", "<ul>" + b.rollen.map(function (r) {
+      var x = T.rollen.filter(function (y) { return y.id === r; })[0];
+      return x ? "<li><b>" + esc(x.name) + "</b> – " + esc(x.hilfe) + "</li>" : "";
+    }).join("") + "</ul>" + (b.vorschlag && b.vorschlag.rollen ? '<p class="leise klein">Zuordnung' + vorschlag(b, "rollen") + "</p>" : ""));
     var mw = "";
     if (b.lernmehrwert) mw += "<p>" + esc(b.lernmehrwert) + "</p>";
     if (b.mehrwerte.length) mw += "<p>Das Tablet soll helfen: " + liste(b.mehrwerte, "mehrwerte") + vorschlag(b, "mehrwerte") + "</p>";
     if (!nurKI) abschnitt("Worin liegt der Lernmehrwert?", mw, "Lernmehrwert");
+    // Wie umfangreich ist der digitale Einsatz? Ohne Rangfolge: punktuell ist keine Vorstufe.
+    if (!nurKI && b.umfang) {
+      var u = T.umfang.filter(function (y) { return y.id === b.umfang; })[0];
+      abschnitt("Wie umfangreich ist der digitale Einsatz?", "<p><b>" + esc(u.name) + "</b> – " + esc(u.hilfe) + vorschlag(b, "umfang") + "</p>" +
+        '<p class="leise klein">Mehr Digitalität ist nicht besser. Ein punktueller Einsatz ist keine Vorstufe.</p>');
+    }
     abschnitt("Was wird benötigt?", punkte(b.technik), "was benötigt wird");
     if (!nurKI) abschnitt("Was muss am Unterricht angepasst werden?", punkte(b.anpassungen), "nötige Anpassungen");
     abschnitt("Stolpersteine", punkte(b.stolpersteine), "Stolpersteine");

@@ -14,7 +14,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "mehrwert.html", "ueber.html", "gestaltung.html"]
+SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -218,6 +218,47 @@ def main():
         pruefe(ok, "Tastatur: Beispiel aus der Karte öffnen")
         pg.context.close()
 
+        # 3b. Ab Version 2.1: vollständiger Rahmen, Detailfragen, Entdeckungsbühne, Eingaben löschen
+        pg = neue_seite(b)
+        pg.goto(url("tablets.html"))
+        pg.evaluate("localStorage.setItem('hilde.tabletweg', JSON.stringify({schritt:4,erreicht:4,phase:'erarbeitung',anliegen:'zusammen',mehrwert:'gemeinsam',umfang:'phasenweise',rahmen:{}}))")
+        pg.reload()
+        pruefe(pg.locator("fieldset.rahmenfrage").count() == 7, "Rahmen: sieben freiwillige Fragen (Netz, Geräte, Erfahrung, Zeit, Sozialform, Zugang, Daten)")
+        pg.check('input[name="rahmen-sozialform"][value="allein"]')
+        pg.check('input[name="rahmen-daten"][value="ja"]')
+        pg.click("#weiter")
+        felder = pg.inner_text(".felder")
+        pruefe("zu zweit oder in Gruppen" in felder and "Datenschutz:" in felder, "Rahmen: Sozialform und Datenschutz ändern Anpassung und Stolperstein")
+        pg.goto(url("beispiel.html#quest"))
+        h2 = pg.locator(".detail-haupt h2").all_inner_texts()
+        pruefe("Was tut die Lehrkraft?" in h2 and "Wie umfangreich ist der digitale Einsatz?" in h2, f"Detail: Fragen zu Lehrkraft und Umfang beantwortet {h2}")
+        pg.goto(url("showroom.html"))
+        pg.click("#mehr")
+        pg.click('[data-ansicht="buehne"]')
+        pruefe(pg.is_visible("#buehne-steuerung") and pg.is_disabled("#buehne-zurueck"), "Bühne: sichtbare Steuerung, »Vorherige« am Anfang gesperrt")
+        vorher = pg.evaluate("document.getElementById('karten').scrollLeft")
+        pg.click("#buehne-vor")
+        pg.wait_for_timeout(700)
+        nachher = pg.evaluate("document.getElementById('karten').scrollLeft")
+        pruefe(nachher > vorher, "Bühne: »Nächste« blättert weiter")
+        pg.focus("#karten")
+        pg.keyboard.press("ArrowRight")
+        pg.wait_for_timeout(700)
+        pruefe(pg.evaluate("document.getElementById('karten').scrollLeft") > nachher, "Bühne: Pfeiltaste blättert weiter")
+        pg.wait_for_timeout(1500)
+        stand = pg.inner_text("#buehne-stand")
+        pg.wait_for_timeout(1500)
+        pruefe(stand == pg.inner_text("#buehne-stand"), "Bühne: kein Autoplay")
+        pg.click('[data-ansicht="raster"]')
+        pruefe(not pg.evaluate("document.getElementById('karten').classList.contains('buehne')"), "Bühne: Raster jederzeit wieder wählbar")
+        pg.click("#loeschen")
+        pruefe(pg.evaluate("Object.keys(localStorage).filter(k => k.startsWith('hilde.')).length") == 0, "Showroom: Eingaben löschen entfernt alles")
+        q = neue_seite(b, viewport={"width": 820, "height": 1180})
+        q.goto(url("showroom.html"))
+        pruefe(not q.is_visible("#ansicht"), "Bühne: auf dem Tablet hochkant nur das Raster")
+        q.context.close()
+        pruefe(not pg.konsole, f"Version 2.1: keine Konsolenfehler {pg.konsole}")
+
         # 4. Ohne Internet, reduzierte Bewegung, Showroom und Detail (Szenarien 8, 11, 12)
         pg = neue_seite(b, reduced_motion="reduce")
         for s in SEITEN:
@@ -246,6 +287,27 @@ def main():
         pruefe(1 <= pg.locator("#neu-liste .mini").count() <= 3, "Start: höchstens drei neue Beispiele")
         pg.goto(url("mehrwert.html"))
         pruefe(pg.locator(".pruefkette .glied").count() == 3, "Mehrwert: drei Fragen in der Prüfkette")
+        # Selbstcheck: ganzer Weg bis zum Bericht
+        pg.goto(url("selbstcheck.html"))
+        pg.evaluate("localStorage.removeItem('hilde.selbstcheck')"); pg.reload()
+        pg.click("#weiter")
+        pruefe(pg.is_visible("#hinweis"), "Selbstcheck: Hinweis, wenn kein Material gewählt ist")
+        pg.check('input[name="typ"][value="quiz"]'); pg.click("#weiter")
+        pruefe(pg.locator('input[name="bereich"]:checked').count() == 2, "Selbstcheck: Kernbereiche des Typs sind vorausgewählt")
+        pg.click("#weiter")
+        pg.check('input[name="a-lernstand"][value="1"]'); pg.check('input[name="a-rueckmeldung"][value="3"]'); pg.click("#weiter")
+        pruefe(pg.is_disabled('input[name="b-lernstand"][value="3"]'), "Selbstcheck: schwache Qualität sperrt hohen digitalen Beitrag")
+        pg.check('input[name="b-lernstand"][value="1"]'); pg.check('input[name="b-rueckmeldung"][value="3"]')
+        pg.check('input[name="v-rueckmeldung"][value="kaum"]'); pg.click("#weiter")
+        for k, v in {"fachlich": "ja", "vollstaendig": "ja", "anmeldung": "ja", "vorbereitung": "klein", "daten": "nein", "rechte": "ja"}.items():
+            pg.check(f'input[name="r-{k}"][value="{v}"]')
+        pg.click("#weiter")
+        bericht = pg.inner_text(".bericht")
+        pruefe(bericht.index("Besondere Stärken") < bericht.index("Profil"), "Selbstcheck: Bericht beginnt mit den Stärken")
+        pruefe("starke Rückmeldung für jede Person" in bericht and "Note" not in bericht.replace("keine Note", ""), "Selbstcheck: Stärke-Hinweis ohne Note")
+        pruefe("Planungshilfe, keine Bewertung" in pg.inner_text(".entscheidung"), "Selbstcheck: Schlusssatz")
+        gespeichert = pg.evaluate("localStorage.getItem('hilde.selbstcheck')")
+        pruefe(gespeichert and "titel" not in gespeichert, "Selbstcheck: keine Freitexte gespeichert")
         pg.goto(url("beispiel.html#gibt-es-nicht"))
         pruefe("gibt es hier nicht" in pg.inner_text("#detail-titel"), "Detail: unbekannte Adresse ohne Sackgasse")
         pruefe(not pg.konsole, f"Keine Konsolenfehler auf den Seiten {pg.konsole}")
@@ -268,7 +330,7 @@ def main():
 
         # 5b. Zoom 200 %: entspricht 640 × 360 Pixeln
         q = neue_seite(b, viewport={"width": 640, "height": 360})
-        for s_ in ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "ueber.html"]:
+        for s_ in ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "selbstcheck.html", "ueber.html"]:
             q.goto(url(s_))
             pruefe(q.evaluate("document.documentElement.scrollWidth") <= 640, f"Zoom 200 % {s_}: kein waagerechtes Scrollen")
         q.context.close()

@@ -40,6 +40,7 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede a
 - Seiteninhalt steht in src/*.html; Kopf- und Fußzeile nur in tools/bauen.py.
 - Alle Beispiele stehen in assets/daten/beispiele.js. Neues Beispiel = neuer Eintrag dort.
 - Empfehlungsregeln stehen kommentiert in assets/regeln.js; jede Regeländerung braucht einen Test in tests/regeln.test.js.
+- Regeln des Selbstchecks stehen kommentiert in assets/check-regeln.js (Daten: assets/daten/qualitaet.js); jede Änderung braucht einen Test in tests/check-regeln.test.js. Stärke-Hinweise im Showroom nur aus einem freigegebenen Check (Feld `qualitaetscheck`).
 - Daten als JS-Dateien, nicht als JSON per fetch, damit die Seiten per file:// laufen.
 - Gestaltung nur über die Variablen in assets/hilde.css (siehe gestaltung.html).
 - Vor jedem Commit: `python3 tools/bauen.py && python3 tools/pruefen.py && node --test && python3 tests/e2e.py`.

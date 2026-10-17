@@ -67,7 +67,8 @@ var TAXONOMIEN = {
     { id: "unklar", name: "noch unklar", art: "offen" }
   ],
 
-  /* Rahmen: nur Bedingungen, die die Empfehlung tatsächlich ändern. Alle Angaben sind freiwillig. */
+  /* Rahmen: nur Bedingungen, die die Empfehlung tatsächlich ändern. Alle Angaben sind freiwillig.
+     Ein Test (tests/regeln.test.js) prüft, dass jede Frage mindestens eine Aussage der Karte ändert. */
   rahmen: [
     { id: "netz", frage: "Ist das Netz im Raum verlässlich?",
       optionen: [{ id: "ja", name: "ja" }, { id: "wackelig", name: "manchmal" }, { id: "nein", name: "nein" }] },
@@ -76,7 +77,13 @@ var TAXONOMIEN = {
     { id: "erfahrung", frage: "Wie vertraut ist die Klasse mit Tablets im Unterricht?",
       optionen: [{ id: "wenig", name: "wenig" }, { id: "etwas", name: "etwas" }, { id: "viel", name: "sehr" }] },
     { id: "zeit", frage: "Wie viel Vorbereitungszeit hast du?",
-      optionen: [{ id: "wenig", name: "unter 30 Minuten" }, { id: "mittel", name: "etwa eine Stunde" }, { id: "viel", name: "mehr" }] }
+      optionen: [{ id: "wenig", name: "unter 30 Minuten" }, { id: "mittel", name: "etwa eine Stunde" }, { id: "viel", name: "mehr" }] },
+    { id: "sozialform", frage: "Wie arbeiten die Lernenden vor allem?",
+      optionen: [{ id: "allein", name: "allein" }, { id: "paar", name: "zu zweit" }, { id: "gruppe", name: "in Gruppen" }, { id: "klasse", name: "mit der ganzen Klasse" }] },
+    { id: "zugang", frage: "Brauchen Einzelne Hilfe beim Lesen, Sehen, Hören oder Bedienen?",
+      optionen: [{ id: "ja", name: "ja" }, { id: "nein", name: "nein" }] },
+    { id: "daten", frage: "Entstehen Daten zu einzelnen Lernenden (Namen, Fotos, Ergebnisse)?",
+      optionen: [{ id: "ja", name: "ja" }, { id: "nein", name: "nein" }] }
   ],
 
   /* Die vier Einstufungen der Entscheidungskarte – qualitativ, ohne Punkte oder Noten. */

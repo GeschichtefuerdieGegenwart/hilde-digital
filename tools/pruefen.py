@@ -24,12 +24,12 @@ import sys
 from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html", "mehrwert.html", "ueber.html", "gestaltung.html"]
+SEITEN = ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
 # Seiten, auf denen Fachbegriffe nur in aufklappbaren Vertiefungen (<details>) stehen dürfen
-MIT_VERTIEFUNG = ["mehrwert.html", "ueber.html"]
+MIT_VERTIEFUNG = ["mehrwert.html", "selbstcheck.html", "ueber.html"]
 EINSTIEG = ["index.html", "ki.html", "tablets.html", "passt.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
-EINSTIEG_SKRIPTE = ["assets/start.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
+EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation"]

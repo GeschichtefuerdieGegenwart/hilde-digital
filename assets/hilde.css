@@ -410,11 +410,13 @@ input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px soli
 .mehrwert-teaser .zeichen i{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--lernen-zart);color:var(--lernen-tief);font-style:normal}
 .mehrwert-teaser .zeichen i:nth-of-type(2){background:var(--ki-zart);color:var(--ki-tief)}
 .mehrwert-teaser .zeichen i:nth-of-type(3){background:var(--grund);color:var(--text)}
+.teaser-links{display:grid;gap:.5rem;justify-items:start}
 @media (max-width:760px){.mehrwert-teaser{grid-template-columns:1fr}}
 
 /* Detailseite: Qualitätscheck und passende Beispiele */
 .qualitaet{border-top:1px solid var(--linie);padding-top:var(--a2);display:grid;gap:.4rem}
 .qualitaet p{font-size:var(--gr-klein)}
+.qualitaet .textlink{justify-self:start}
 .passt-dazu{border-top:1px solid var(--linie);padding-top:var(--a4)}
 .passt-dazu .minis a{background:var(--flaeche);box-shadow:var(--schatten)}
 .warum-passend{display:block;font-size:var(--gr-klein);color:var(--leise)}
@@ -426,5 +428,39 @@ input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px soli
 .neu-liste b{display:block}
 @media print{.pruefkette .glied::after{display:none}.glied,.profil-beispiel,.stand-band{box-shadow:none;border:1px solid #bbb}}
 
+/* Entdeckungsbühne im Showroom (optional, ab 1100 px Breite) */
+.ergebnis-oben{display:flex;justify-content:space-between;align-items:center;gap:var(--a2);flex-wrap:wrap}
+.ansicht{display:none;align-items:center;gap:.5rem}
+.ansicht>span{font-weight:700}
+@media (min-width:1100px){.ansicht{display:flex}}
+.karten.buehne{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:2px;padding:4px 2px var(--a2);gap:var(--a3)}
+.karten.buehne>.karte{flex:0 0 calc((100% - 2 * var(--a3)) / 3);scroll-snap-align:start}
+.karten.buehne:focus-visible{outline:3px solid var(--fokus);outline-offset:4px}
+.buehne-steuerung{display:flex;justify-content:space-between;align-items:center;gap:var(--a2);margin-top:var(--a2)}
+.buehne-steuerung .knopf[disabled]{opacity:.45;cursor:default}
+@media (prefers-reduced-motion:no-preference){.karten.buehne{scroll-behavior:smooth}}
+
+/* ---------- Selbstcheck »Eigenes Material prüfen« ---------- */
+.kern-marke{display:inline-block;font-size:var(--gr-klein);font-weight:700;padding:0 .55rem;border-radius:999px;background:var(--lernen-zart);color:var(--lernen-tief);margin-left:.3rem;vertical-align:.1em}
+.bereich-fragen{margin-top:var(--a3)}
+.bereichsfrage{border:1px solid var(--linie);border-radius:var(--rund);background:var(--flaeche);padding:var(--a3);margin:0;min-width:0;display:grid;gap:var(--a2)}
+.bereichsfrage>legend{float:left;width:100%;font-weight:700;font-size:var(--gr-h3);line-height:1.3;padding:0;margin-bottom:var(--a1)}
+.bereichsfrage>legend+*{clear:both}
+.stufen-optionen{grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr));margin-top:0}
+.stufen-optionen .option{background:var(--grund)}
+.option:has(input:disabled){opacity:.6;cursor:not-allowed}
+.option input:disabled{cursor:not-allowed}
+.analogfrage{border:0;border-top:1px solid var(--linie);margin:0;padding:var(--a2) 0 0;min-width:0}
+.analogfrage legend{font-weight:700;padding:0}
+.analogfrage legend .leise{display:block;font-weight:400;font-size:var(--gr-klein)}
+.bereich-vertiefung{background:var(--grund);border:0;padding:var(--a1) var(--a2)}
+.bereich-vertiefung p{margin-top:.35rem}
+.bericht{display:grid;gap:var(--a4);margin-top:var(--a4)}
+.bericht>section h3{font-size:var(--gr-h3);margin-bottom:.6rem}
+.bericht .profil-beispiel{box-shadow:none;border:1px solid var(--linie)}
+.bericht textarea{margin-top:.4rem;background:var(--grund)}
+.bericht .label-vorschau{margin-top:var(--a2)}
+@media print{.bericht details{display:none}.bericht .profil-beispiel{border:1px solid #bbb}}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-@media print{.kopf .nav,.filter,.mehrknopf,.weg-steuerung,.schritte,.ergebnis-aktionen,.speicherhinweis,.sprung{display:none}.entscheidung{box-shadow:none}.karte,.gruppe,.wahlflaeche{box-shadow:none;border:1px solid #bbb}body{background:#fff}}
+@media print{.ansicht,.buehne-steuerung,.kopf .nav,.filter,.mehrknopf,.weg-steuerung,.schritte,.ergebnis-aktionen,.speicherhinweis,.sprung{display:none}.entscheidung{box-shadow:none}.karte,.gruppe,.wahlflaeche{box-shadow:none;border:1px solid #bbb}body{background:#fff}}

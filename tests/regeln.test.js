@@ -191,3 +191,72 @@ test("Szenario 6: durchgängige HTML-Lernumgebung ist möglich, aber kein Standa
   const knapp = karte({ phase: "erarbeitung", anliegen: "ueben", mehrwert: "individuell", umfang: "durchgaengig", rahmen: { zeit: "wenig" } });
   assert.equal(knapp.umfang, "phasenweise");
 });
+
+/* Ab Version 2.1: vollständiger Rahmen (Sozialform, Zugänglichkeit, Datenschutz) und motivationale Neuheit. */
+
+test("Interesse: Neugier auf das Gerät allein ist kein Lernmehrwert", () => {
+  const k = karte({ anliegen: "interesse", mehrwert: "experimentieren" });
+  assert.equal(k.einstufung, "klar");
+  assert.match(k.begruendung, /Neugier auf das Gerät allein ist aber noch kein Lernmehrwert/);
+});
+
+test("Sozialform »allein« passt nicht zu »gemeinsam an einem Ergebnis arbeiten«", () => {
+  const ohne = karte({ anliegen: "zusammen", mehrwert: "gemeinsam" });
+  const allein = karte({ anliegen: "zusammen", mehrwert: "gemeinsam", rahmen: { sozialform: "allein" } });
+  assert.notEqual(ohne.anpassung, allein.anpassung);
+  assert.match(allein.anpassung, /zu zweit oder in Gruppen/);
+});
+
+test("Individuelles Üben mit der ganzen Klasse braucht eine eigene Phase", () => {
+  const k = karte({ anliegen: "ueben", mehrwert: "individuell", rahmen: { sozialform: "klasse" } });
+  assert.match(k.anpassung, /Phase allein oder zu zweit/);
+});
+
+test("Ergebnisse vergleichen in Einzelarbeit braucht ein Gegenüber", () => {
+  const k = karte({ anliegen: "zusammen", mehrwert: "sichtbar", rahmen: { sozialform: "allein" } });
+  assert.match(k.anpassung, /Gegenüber/);
+});
+
+test("Daten zu einzelnen Lernenden machen Datenschutz zum wichtigsten Stolperstein", () => {
+  const k = karte({ anliegen: "ueben", mehrwert: "rueckmeldung", rahmen: { daten: "ja" } });
+  assert.match(k.stolperstein, /^Datenschutz:/);
+  assert.match(k.stolperstein, /freigegebenes Werkzeug/);
+});
+
+test("Unterstützungsbedarf macht Zugänglichkeit zum wichtigsten Stolperstein", () => {
+  const k = karte({ anliegen: "ueben", mehrwert: "rueckmeldung", rahmen: { zugang: "ja" } });
+  assert.match(k.stolperstein, /^Zugänglichkeit:/);
+});
+
+test("Netz geht vor Datenschutz, Datenschutz vor Zugänglichkeit", () => {
+  const alle = { netz: "nein", daten: "ja", zugang: "ja" };
+  assert.match(karte({ mehrwert: "authentisch", anliegen: "recherche", rahmen: alle }).stolperstein, /Netz/);
+  assert.match(karte({ mehrwert: "rueckmeldung", anliegen: "ueben", rahmen: { daten: "ja", zugang: "ja" } }).stolperstein, /^Datenschutz/);
+});
+
+test("»nein« bei Datenschutz und Zugänglichkeit ändert nichts", () => {
+  const a = { anliegen: "ueben", mehrwert: "rueckmeldung" };
+  const ohne = karte(a);
+  const nein = karte({ ...a, rahmen: { daten: "nein", zugang: "nein" } });
+  assert.equal(ohne.stolperstein, nein.stolperstein);
+  assert.equal(ohne.einstufung, nein.einstufung);
+});
+
+test("Jede Rahmenfrage ändert mindestens eine Aussage der Karte", () => {
+  const faelle = {
+    netz: [{ anliegen: "recherche", mehrwert: "authentisch" }, "nein"],
+    geraete: [{ anliegen: "ueben", mehrwert: "individuell", umfang: "durchgaengig" }, "geteilt"],
+    erfahrung: [{ anliegen: "ueben", mehrwert: "individuell", umfang: "durchgaengig" }, "wenig"],
+    zeit: [{ anliegen: "ueben", mehrwert: "individuell", umfang: "durchgaengig" }, "wenig"],
+    sozialform: [{ anliegen: "zusammen", mehrwert: "gemeinsam" }, "allein"],
+    zugang: [{ anliegen: "ueben", mehrwert: "rueckmeldung" }, "ja"],
+    daten: [{ anliegen: "ueben", mehrwert: "rueckmeldung" }, "ja"]
+  };
+  for (const r of T.rahmen) {
+    assert.ok(faelle[r.id], "Testfall fehlt für Rahmenfrage " + r.id);
+    const [a, wert] = faelle[r.id];
+    const ohne = JSON.stringify(karte(a));
+    const mit = JSON.stringify(karte({ ...a, rahmen: { [r.id]: wert } }));
+    assert.notEqual(ohne, mit, "Rahmenfrage ohne Wirkung: " + r.id);
+  }
+});
