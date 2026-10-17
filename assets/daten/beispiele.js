@@ -324,7 +324,10 @@ var BEISPIELE = [
     technik: [], barrierearmut: [], datenschutz: [], lernmehrwert: null, organisatorischerNutzen: null,
     anpassungen: [], stolpersteine: [], schritte: [], erfahrung: null, bild: null,
     link: null, quellcode: null, vergleich: null, verwandt: [], suchbegriffe: [], vorschlag: {}, zuerst: false,
-    aufgenommen: null, qualitaetscheck: null
+    aufgenommen: null, qualitaetscheck: null,
+    /* Getrennte Dimensionen (Master-Prompt, Abschnitt 5): Lernaktivität steht in »lernaktivitaeten«.
+       Methode, digitales Format und konkretes Werkzeug bleiben eigene Felder – auch wenn sie noch leer sind. */
+    methoden: [], format: null, werkzeuge: []
   };
   BEISPIELE.forEach(function (b) {
     Object.keys(LEER).forEach(function (k) {

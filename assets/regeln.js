@@ -10,7 +10,8 @@
    - Mehr Digitalität ist nicht besser. Durchgängig ist keine höhere Stufe als punktuell.
 
    Eingabe (alle Felder dürfen fehlen):
-     { phase, anliegen, mehrwert, umfang, rahmen: { netz, geraete, erfahrung, zeit } }
+     { phase, anliegen, mehrwert, umfang, rahmen: { netz, geraete, erfahrung, zeit, sozialform, zugang, daten } }
+   Jede Rahmenfrage ändert mindestens eine Aussage der Karte. Fragen ohne Wirkung werden nicht gestellt.
    Werte stammen aus assets/daten/taxonomien.js; »offen« heißt »noch nicht sicher«. */
 
 (function (wurzel) {
@@ -68,6 +69,13 @@
     var anspruchsvoll = a.umfang === "durchgaengig" && (r.erfahrung === "wenig" || r.zeit === "wenig");
 
     if (passt && !anspruchsvoll) {
+      // Motivationale Neuheit: Beim Anliegen »Interesse« wird ausdrücklich gesagt, dass das Gerät allein nicht trägt.
+      if (a.anliegen === "interesse") {
+        return { id: "klar", grund:
+          "Dein Anliegen und der erhoffte Beitrag des Tablets passen gut zusammen. " +
+          "Neugier auf das Gerät allein ist aber noch kein Lernmehrwert. " +
+          "Er entsteht, wenn die Lernenden dabei eine Frage zum Thema entwickeln, mit der der Unterricht weiterarbeitet." };
+      }
       return { id: "klar", grund:
         "Dein Anliegen und der erhoffte Beitrag des Tablets passen gut zusammen. " +
         "Die Lernenden tun dabei etwas, das auf Papier so nicht oder nur mühsam ginge. " +
@@ -142,18 +150,36 @@
     organisation: "Für einen Lernmehrwert: Verändere die Aufgabe selbst, nicht nur den Weg, auf dem sie verteilt wird.",
     unklar: "Formuliere zuerst, was die Lernenden am Ende können sollen. Prüfe dann, ob das Tablet dabei hilft."
   };
+  /* Sozialform: Passt die Arbeitsform nicht zum erhofften Beitrag, wird die Anpassung konkret benannt. */
   function anpassung(a) {
     a = a || {};
+    var s = rahmenVon(a).sozialform;
+    if (a.mehrwert === "gemeinsam" && s === "allein") {
+      return "Gemeinsam an einem Ergebnis arbeiten geht nicht allein. Plane mindestens eine Phase zu zweit oder in Gruppen ein.";
+    }
+    if ((a.mehrwert === "individuell" || a.mehrwert === "zugaenge") && s === "klasse") {
+      return "Individuelles Arbeiten braucht eine Phase allein oder zu zweit. Plane sie ein und führe die Ergebnisse danach in der Klasse zusammen.";
+    }
+    if (a.mehrwert === "sichtbar" && s === "allein") {
+      return "Ergebnisse vergleichen braucht ein Gegenüber. Plane nach der Einzelarbeit einen Vergleich zu zweit oder in der Klasse ein.";
+    }
     return ANPASSUNG[a.mehrwert] || ANPASSUNG.unklar;
   }
 
   /* 6. Wichtigster Stolperstein – genau einer. Reihenfolge: Technik vor Didaktik,
-        weil technische Hürden eine Stunde sofort stoppen. */
+        weil technische Hürden eine Stunde sofort stoppen. Danach Datenschutz und Zugänglichkeit,
+        weil sie vor der Stunde geklärt sein müssen. */
   function stolperstein(a) {
     a = a || {};
     var r = rahmenVon(a);
     if ((r.netz === "nein" || r.netz === "wackelig") && (BRAUCHT_NETZ.indexOf(a.mehrwert) > -1 || a.umfang === "durchgaengig")) {
       return "Das Netz ist nicht verlässlich. Halte eine Fassung auf Papier oder offline bereit.";
+    }
+    if (r.daten === "ja") {
+      return "Datenschutz: Nutze nur ein an deiner Schule freigegebenes Werkzeug. Arbeite mit Kürzeln statt Namen und kläre vorher, wo die Daten bleiben.";
+    }
+    if (r.zugang === "ja") {
+      return "Zugänglichkeit: Prüfe vorher, ob sich Schrift vergrößern und Text vorlesen lässt und ob alles ohne Wischgesten bedienbar ist. Halte eine gleichwertige Fassung bereit.";
     }
     if (a.anliegen === "leistung") {
       return "Fairness und Datenschutz: Kläre vorher, was gespeichert wird und wie gleiche Bedingungen für alle gelten.";

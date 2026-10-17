@@ -2,7 +2,7 @@
 """Baut die Seiten von Hilde Digital aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
 
 Aufruf:  python3 tools/bauen.py
-Ergebnis: index.html, ki.html, tablets.html, passt.html, showroom.html, beispiel.html, mehrwert.html, ueber.html, gestaltung.html.
+Ergebnis: index.html, ki.html, tablets.html, passt.html, showroom.html, beispiel.html, mehrwert.html, selbstcheck.html, ueber.html, gestaltung.html.
 Kopfzeile, Statuszeile und Fußzeile stehen nur hier – so bleiben sie auf allen Seiten gleich.
 """
 from pathlib import Path
@@ -18,6 +18,7 @@ SEITEN = [
     ("showroom.html", "Showroom – Hilde Digital", "showroom"),
     ("beispiel.html", "Beispiel – Hilde Digital", "showroom"),
     ("mehrwert.html", "Wie wir den Mehrwert prüfen – Hilde Digital", "ueber"),
+    ("selbstcheck.html", "Eigenes Material prüfen – Hilde Digital", ""),
     ("ueber.html", "Über das Modul – Hilde Digital", "ueber"),
     ("gestaltung.html", "Gestaltungssystem – Hilde Digital", "ueber"),
 ]
@@ -61,7 +62,7 @@ def rahmen(titel, aktiv, inhalt):
 </main>
 <footer class="fuss"><div class="huelle">
   <span>Hilde Digital (Arbeitstitel) · {KENNZEICHNUNG}</span>
-  <span class="fusslinks"><a href="mehrwert.html" class="leise">Wie wir den Mehrwert prüfen</a> <a href="ueber.html" class="leise">Über das Modul</a> <a href="gestaltung.html" class="leise">Gestaltungssystem</a></span>
+  <span class="fusslinks"><a href="mehrwert.html" class="leise">Wie wir den Mehrwert prüfen</a> <a href="ueber.html" class="leise">Über das Modul</a> <a href="gestaltung.html" class="leise">Gestaltungssystem</a> <a href="ueber.html#t-daten" class="leise">Eingaben löschen</a></span>
 </div></footer>
 </body>
 </html>
