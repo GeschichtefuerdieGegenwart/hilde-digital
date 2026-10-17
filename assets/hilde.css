@@ -341,5 +341,90 @@ input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px soli
 #ergebnis{margin-top:var(--a4)}
 @media (max-width:600px){.nav a[href="index.html"]{display:none}.nav a{padding:.45rem .6rem}}
 
+/* ---------- Ab Version 2: Mehrwert prüfen, Kennzahlen, Qualitätscheck ---------- */
+/* Prüfkette: drei Fragen mit Pfeilen */
+.pruefkette{list-style:none;margin:var(--a2) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a4);counter-reset:none}
+.glied{position:relative;background:var(--flaeche);border-radius:var(--rund);box-shadow:var(--schatten);padding:var(--a4) var(--a3) var(--a3);display:grid;gap:.6rem;align-content:start;border-top:6px solid var(--lernen)}
+.glied:nth-child(2){border-top-color:var(--ki)}
+.glied:nth-child(3){border-top-color:var(--leise)}
+.glied:not(:last-child)::after{content:"→";position:absolute;right:calc(-1 * var(--a4));top:50%;width:var(--a4);text-align:center;transform:translateY(-50%);font-size:1.6rem;font-weight:700;color:var(--leise)}
+.glied-nr{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--grund);font-weight:700;font-size:1.25rem}
+.glied h3{font-size:var(--gr-h3)}
+.glied-skala{font-size:var(--gr-klein);color:var(--leise);border-top:1px solid var(--linie);padding-top:.6rem;margin-top:auto}
+@media (max-width:860px){.pruefkette{grid-template-columns:1fr;gap:var(--a4)}.glied:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:calc(-1 * var(--a4));transform:translateX(-50%);height:var(--a4);line-height:var(--a4)}}
+.kette-ergebnis{margin-top:var(--a2);background:linear-gradient(90deg,var(--ki-zart),var(--lernen-zart));border-radius:var(--rund);padding:var(--a3);max-width:none}
+.kette-ergebnis p{max-width:62ch}
+
+/* Gekoppeltes Profil als Beispiel */
+.profil-beispiel{margin:var(--a1) 0 0;background:var(--flaeche);border-radius:var(--rund);box-shadow:var(--schatten);padding:var(--a3);display:grid;gap:var(--a3)}
+.profil-zeile{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,16rem) minmax(0,1fr);gap:.5rem var(--a3);align-items:start;padding-bottom:var(--a3);border-bottom:1px solid var(--linie)}
+@media (max-width:860px){.profil-zeile{grid-template-columns:1fr}}
+.profil-name{font-weight:700}
+.profil-werte{display:grid;gap:.35rem;font-size:var(--gr-klein);color:var(--leise)}
+.profil-werte p{display:flex;justify-content:space-between;gap:.75rem;align-items:center}
+.punkte{display:inline-flex;gap:.3rem}
+.punkte i{width:18px;height:18px;border-radius:50%;border:2px solid var(--lernen);background:var(--flaeche)}
+.punkte i.voll{background:var(--lernen)}
+.punkte.digital i{border-color:var(--ki)}
+.punkte.digital i.voll{background:var(--ki)}
+.profil-satz{max-width:52ch}
+
+/* Was wir nicht tun */
+.nicht-liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:var(--a2)}
+.nicht-liste li{background:var(--flaeche);border:1px solid var(--linie);border-radius:var(--rund-klein);padding:var(--a2) var(--a3)}
+.nicht-liste b{display:block;margin-bottom:.2rem}
+
+/* Stärke-Hinweise (Vorschau) */
+.label-vorschau{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.label-vorschau li{font-size:var(--gr-klein);font-weight:700;padding:.35rem .9rem;border-radius:999px;background:var(--flaeche);border:2px dashed var(--lernen);color:var(--lernen-tief)}
+
+/* Sicherheit und Zeitstrahl */
+.sicherheit{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:var(--a2)}
+.sicherheit li{display:grid;gap:.25rem;background:var(--flaeche);border-radius:var(--rund-klein);border:1px solid var(--linie);padding:var(--a2)}
+.sicherheit li:nth-child(1){border-left:6px solid var(--lernen)}
+.sicherheit li:nth-child(2){border-left:6px solid var(--ki)}
+.sicherheit li:nth-child(3){border-left:6px solid var(--linie)}
+.sicherheit li:nth-child(4){border-left:6px dashed var(--leise)}
+.sicherheit span,.zeitstrahl span{color:var(--leise);font-size:var(--gr-klein)}
+.zeitstrahl{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:46rem}
+.zeitstrahl li{position:relative;display:grid;gap:.15rem;padding:0 0 var(--a3) 2.4rem}
+.zeitstrahl li::before{content:"";position:absolute;left:.45rem;top:.35rem;width:1.1rem;height:1.1rem;border-radius:50%;border:3px solid var(--linie);background:var(--flaeche);box-sizing:border-box}
+.zeitstrahl li::after{content:"";position:absolute;left:.95rem;top:1.55rem;bottom:.1rem;width:2px;background:var(--linie)}
+.zeitstrahl li:last-child::after{display:none}
+.zeitstrahl li.erledigt::before{background:var(--lernen);border-color:var(--lernen)}
+.zeitstrahl li.jetzt::before{background:var(--ki);border-color:var(--ki)}
+.zeitstrahl li.jetzt b::after{content:" – als Nächstes";color:var(--ki-tief)}
+
+/* Startseite: Stand in Zahlen und Neues */
+.stand-band{background:var(--flaeche);border-radius:var(--rund);box-shadow:var(--schatten);padding:clamp(1.25rem,3vw,2rem);display:grid;gap:var(--a3)}
+.stand-kopf{display:flex;justify-content:space-between;align-items:baseline;gap:var(--a2);flex-wrap:wrap}
+.stand-kopf h2{font-size:var(--gr-h3)}
+.kennzahlen{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:var(--a2)}
+.kennzahlen li{display:grid;gap:.1rem;padding:var(--a2);border-radius:var(--rund-klein);background:var(--grund)}
+.kennzahlen b{font-size:clamp(2rem,1.6rem + 1.6vw,2.75rem);line-height:1.05}
+.kennzahlen span{color:var(--leise);font-size:var(--gr-klein)}
+.neu-titel{font-size:1.15rem}
+.minis.neu a{background:var(--grund)}
+.mehrwert-teaser{display:grid;grid-template-columns:auto 1fr auto;gap:var(--a2) var(--a3);align-items:center;border-top:1px solid var(--linie);padding-top:var(--a3)}
+.mehrwert-teaser .zeichen{display:flex;gap:.3rem;align-items:center;font-weight:700;color:var(--leise)}
+.mehrwert-teaser .zeichen i{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--lernen-zart);color:var(--lernen-tief);font-style:normal}
+.mehrwert-teaser .zeichen i:nth-of-type(2){background:var(--ki-zart);color:var(--ki-tief)}
+.mehrwert-teaser .zeichen i:nth-of-type(3){background:var(--grund);color:var(--text)}
+@media (max-width:760px){.mehrwert-teaser{grid-template-columns:1fr}}
+
+/* Detailseite: Qualitätscheck und passende Beispiele */
+.qualitaet{border-top:1px solid var(--linie);padding-top:var(--a2);display:grid;gap:.4rem}
+.qualitaet p{font-size:var(--gr-klein)}
+.passt-dazu{border-top:1px solid var(--linie);padding-top:var(--a4)}
+.passt-dazu .minis a{background:var(--flaeche);box-shadow:var(--schatten)}
+.warum-passend{display:block;font-size:var(--gr-klein);color:var(--leise)}
+
+/* Über: Was ist neu */
+.neu-liste{list-style:none;margin:0;padding:0;display:grid;gap:var(--a2)}
+.neu-liste li{background:var(--flaeche);border-radius:var(--rund-klein);border:1px solid var(--linie);border-left:6px solid var(--lernen);padding:var(--a2) var(--a3)}
+.neu-liste li:nth-child(even){border-left-color:var(--ki)}
+.neu-liste b{display:block}
+@media print{.pruefkette .glied::after{display:none}.glied,.profil-beispiel,.stand-band{box-shadow:none;border:1px solid #bbb}}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media print{.kopf .nav,.filter,.mehrknopf,.weg-steuerung,.schritte,.ergebnis-aktionen,.speicherhinweis,.sprung{display:none}.entscheidung{box-shadow:none}.karte,.gruppe,.wahlflaeche{box-shadow:none;border:1px solid #bbb}body{background:#fff}}

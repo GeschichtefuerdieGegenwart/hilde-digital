@@ -48,7 +48,7 @@ Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird ben
 
 Keine offenen Vorschläge.
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Beschlussapp für Sitzungen (`beschlussapp`)
 
@@ -66,19 +66,19 @@ Noch offen: Was wird benötigt?, Stolpersteine, Dauer, Vorbereitungsaufwand, Lin
 
 Keine offenen Vorschläge.
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Übungsplattform Lebenswelten (`lf3`)
 
 Keine offenen Vorschläge.
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Fachbegriffe-Trainer (`fachbegriffe`)
 
 Keine offenen Vorschläge.
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Nation im Kopf (`nation`)
 
@@ -209,6 +209,30 @@ Vorschläge zum Prüfen:
 - [ ] rollen: Begleiten
 - [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten
 - [ ] lernaktivitaeten: die Situation in Dänemark untersuchen, ein zweites Land auswählen und vergleichen, Opferrate und Hauptfaktoren notieren und eine Erkenntnis formulieren
+
+Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+
+### TEACCH – Visualisierte Materialien (`teacch`)
+
+Vorschläge zum Prüfen:
+- [ ] anliegen: Verstehen & vertiefen, Reflektieren & übertragen
+- [ ] phasen: Erarbeitung
+- [ ] umfang: Phasenweise
+- [ ] rollen: Begleiten
+- [ ] mehrwerte: mit Medien untersuchen oder experimentieren, unterschiedliche Zugänge und Niveaus anbieten
+- [ ] lernaktivitaeten: einen visuellen Tagesplan Schritt für Schritt abhaken, Handlungen wie Händewaschen in eine Bildfolge zerlegen, Gefühlskarte, Aufräumplan und Time-Timer selbst ausprobieren, Tipps für die Praxis auf die eigene Einrichtung übertragen
+
+Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+
+### Widerstandsformen im NS (`widerstandsformen`)
+
+Vorschläge zum Prüfen:
+- [ ] anliegen: Verstehen & vertiefen, Recherchieren & prüfen
+- [ ] phasen: Erarbeitung
+- [ ] umfang: Phasenweise
+- [ ] rollen: Begleiten
+- [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten
+- [ ] lernaktivitaeten: Profile von Personen und Gruppen lesen, nach Art des Widerstands filtern und vergleichen, Aktionen, Folgen und Besonderheiten gegenüberstellen
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 

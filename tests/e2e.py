@@ -14,7 +14,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "passt.html", "ueber.html"]
+SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "mehrwert.html", "ueber.html", "gestaltung.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -229,10 +229,23 @@ def main():
         pruefe(not pg.extern, f"Ohne Internet: keine externen Anfragen {pg.extern[:3]}")
         pg.goto(url("showroom.html"))
         pruefe(pg.locator(".karte").count() >= 6, "Showroom: Karten erscheinen ohne Angaben")
+        try:  # Bilder laden verzögert (loading="lazy"); kurz warten statt zufällig scheitern
+            pg.wait_for_function("[...document.images].every(i => i.complete)", timeout=5000)
+        except Exception:
+            pass
         bilder_ok = pg.evaluate("[...document.images].every(i => i.complete && i.naturalWidth > 0)")
         pruefe(bilder_ok, "Showroom: Bildschirmfotos laden ohne Internet")
         pg.goto(url("beispiel.html#psycho-ds2"))
         pruefe(pg.get_attribute(".aktion a.knopf", "target") == "_blank", "Detail: externe Anwendung öffnet in neuem Tab und ist gekennzeichnet")
+        pruefe("noch offen" in pg.inner_text(".qualitaet"), "Detail: Qualitätscheck steht als »noch offen«, ohne Bewertung")
+        n_passt = pg.locator(".passt-dazu .mini").count()
+        pruefe(1 <= n_passt <= 3, f"Detail: bis zu drei passende Beispiele ({n_passt})")
+        pg.goto(url("index.html"))
+        zahlen = pg.locator("#kennzahlen li b").all_inner_texts()
+        pruefe(len(zahlen) == 4 and all(z.isdigit() for z in zahlen), f"Start: Kennzahlen aus den Daten {zahlen}")
+        pruefe(1 <= pg.locator("#neu-liste .mini").count() <= 3, "Start: höchstens drei neue Beispiele")
+        pg.goto(url("mehrwert.html"))
+        pruefe(pg.locator(".pruefkette .glied").count() == 3, "Mehrwert: drei Fragen in der Prüfkette")
         pg.goto(url("beispiel.html#gibt-es-nicht"))
         pruefe("gibt es hier nicht" in pg.inner_text("#detail-titel"), "Detail: unbekannte Adresse ohne Sackgasse")
         pruefe(not pg.konsole, f"Keine Konsolenfehler auf den Seiten {pg.konsole}")
@@ -255,7 +268,7 @@ def main():
 
         # 5b. Zoom 200 %: entspricht 640 × 360 Pixeln
         q = neue_seite(b, viewport={"width": 640, "height": 360})
-        for s_ in ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html#quest", "ueber.html"]:
+        for s_ in ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "ueber.html"]:
             q.goto(url(s_))
             pruefe(q.evaluate("document.documentElement.scrollWidth") <= 640, f"Zoom 200 % {s_}: kein waagerechtes Scrollen")
         q.context.close()
@@ -264,7 +277,7 @@ def main():
         if fotos:
             for name, vp in [("beamer", {"width": 1280, "height": 720}), ("ipad", {"width": 820, "height": 1180}), ("schmal", {"width": 390, "height": 844})]:
                 q = neue_seite(b, viewport=vp)
-                for s in ["index.html", "tablets.html", "showroom.html", "beispiel.html#ns-ideologie"]:
+                for s in ["index.html", "tablets.html", "showroom.html", "beispiel.html#ns-ideologie", "mehrwert.html"]:
                     q.goto(url(s))
                     q.screenshot(path=fotos / f"{name}-{s.split('.')[0]}{'-' + s.split('#')[1] if '#' in s else ''}.png", full_page=name != "beamer")
                     breite = q.evaluate("document.documentElement.scrollWidth")
