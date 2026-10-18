@@ -1,7 +1,7 @@
-/* Hilde-Digital – Startseite: Register-Bewegung, Papierprobe, der Showroom in Zahlen und die neuesten Beispiele.
+/* Hilde Digital – Startseite: Register-Bewegung, Galerie-Ausschnitt und Zahlen aus den Daten.
    Alle Zahlen werden aus assets/daten/beispiele.js gezählt. Nichts wird von Hand eingetragen.
    Konzeptbeispiele (Status »Idee«) zählen nicht als Material.
-   Braucht: TAXONOMIEN, BEISPIELE, HILDE, REGELN. */
+   Braucht: TAXONOMIEN, BEISPIELE, GALERIE, HILDE. */
 (function () {
   "use strict";
   var H = HILDE, esc = H.esc;
@@ -17,34 +17,12 @@
   var schnitt = document.getElementById("schnitt-link");
   if (schnitt && beide) schnitt.textContent = beide + (beide === 1 ? " Lernangebot liegt" : " Lernangebote liegen") + " in beiden Bereichen";
 
-  /* Papierprobe: Regeln und Tests in assets/regeln.js (REGELN.papierprobe). Nichts wird gespeichert. */
-  var form = document.getElementById("probe"), aus = document.getElementById("probe-ergebnis");
-  if (form && aus && typeof REGELN !== "undefined") {
-    var namen = {};
-    TAXONOMIEN.einstufungen.forEach(function (e) { namen[e.id] = e.name; });
-    var FOLGE = { ablage: "Beantworte noch die zweite Frage.", ziel: "Beantworte noch die zweite Frage.", neu: "Beantworte die erste Frage." };
-    var wert = function (n) { var e = form.querySelector('input[name="' + n + '"]:checked'); return e ? e.value : ""; };
-    var zeigen = function () {
-      var a = { neu: wert("neu"), ablage: wert("ablage"), ziel: wert("ziel") };
-      form.querySelector('[data-frage="ablage"]').hidden = a.neu !== "nein";
-      form.querySelector('[data-frage="ziel"]').hidden = a.neu !== "ja";
-      if (a.neu !== "nein") a.ablage = "";
-      if (a.neu !== "ja") a.ziel = "";
-      var e = REGELN.papierprobe(a);
-      aus.className = "probe-ergebnis" + (e.id ? " stufe-" + e.id : "");
-      aus.innerHTML = e.id
-        ? '<p class="probe-name">' + esc(namen[e.id]) + "</p><p>" + esc(e.grund) + "</p>"
-        : '<p class="probe-name">Noch offen</p><p>' + esc(FOLGE[e.frage]) + "</p>";
-    };
-    form.addEventListener("change", zeigen);
-    form.addEventListener("reset", function () { setTimeout(zeigen, 0); });
-  }
   var materialien = BEISPIELE.filter(function (b) { return b.vorschauArt !== "konzept"; });
   var faecher = [];
   materialien.forEach(function (b) { b.faecher.forEach(function (f) { if (faecher.indexOf(f) < 0) faecher.push(f); }); });
 
   var zahlen = [
-    [materialien.length, "Materialien im Showroom"],
+    [materialien.length, "Materialien in der Galerie"],
     [materialien.filter(function (b) { return b.status === "im Unterricht erprobt"; }).length, "davon im Unterricht erprobt"],
     [materialien.filter(function (b) { return !!b.link; }).length, "direkt im Browser nutzbar"],
     [faecher.length, "Fächer und Arbeitsbereiche"]
@@ -54,16 +32,14 @@
     return "<li><b>" + z[0] + "</b><span>" + esc(z[1]) + "</span></li>";
   }).join("");
 
-  /* Neueste Beispiele: zuletzt aufgenommen, mit Bild und Link zuerst. Höchstens drei. */
-  var neu = materialien.filter(function (b) { return b.aufgenommen; });
-  if (!neu.length) return;
-  var letzter = neu.map(function (b) { return b.aufgenommen; }).sort().pop();
-  neu = neu.filter(function (b) { return b.aufgenommen === letzter && b.bild; })
-    .sort(function (a, b) { return (b.link ? 1 : 0) - (a.link ? 1 : 0); })
-    .slice(0, 3);
-  var block = document.getElementById("neu");
-  if (block && neu.length) {
-    document.getElementById("neu-liste").innerHTML = neu.map(H.miniKarte).join("");
-    block.hidden = false;
+  /* Galerie-Ausschnitt: je ein echtes Bild aus drei Projekten, die viel zeigen. */
+  var ziel = document.getElementById("teaser-bilder");
+  if (ziel && typeof GALERIE !== "undefined") {
+    ziel.innerHTML = ["psycho-ds2", "ns-ideologie", "gene"].map(function (id) {
+      var b = BEISPIELE.filter(function (x) { return x.id === id; })[0], a = (GALERIE[id] || [])[0];
+      if (!b || !a) return "";
+      return '<li><a href="' + H.detailLink(b) + '"><img src="' + esc(a.bild) + '" alt="' + esc(a.alt) + '" width="1040" height="650" loading="lazy">' +
+        '<span class="teaser-text"><b>' + esc(b.titel) + "</b>" + esc(a.text) + "</span></a></li>";
+    }).join("");
   }
 })();

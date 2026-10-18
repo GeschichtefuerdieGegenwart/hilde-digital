@@ -1,4 +1,4 @@
-/* Hilde-Digital – Selbstcheck »Eigenes Material prüfen«: sechs Schritte bis zum Bericht.
+/* Hilde Digital – Digital-Check, Weg A »Selbst prüfen«: sechs Schritte bis zum Bericht.
    Stufe 2 und 5 des KI-Entwicklungskonzepts, aber ohne KI: ein regelbasierter Fragenablauf,
    der das gekoppelte Profil zeigt und beratende Fragen stellt. Nichts wird übertragen.
    Gespeichert werden nur Auswahlwerte, nie Freitexte. Fachbegriffe stehen nur in Vertiefungen.
@@ -165,7 +165,7 @@
     return h + "</span>";
   }
 
-  /* Showroom-Beispiele zum Anliegen des ersten Entwicklungsschritts, sonst der ersten Stärke. */
+  /* Galerie-Beispiele zum Anliegen des ersten Entwicklungsschritts, sonst der ersten Stärke. */
   function beispieleFuer(r) {
     var kandidaten = r.schritte.map(function (s) { return s.bereich; })
       .concat(r.staerken.map(function (x) { return x.id; }), r.profil.map(function (x) { return x.id; }));
@@ -225,7 +225,7 @@
 
     var hinweise = r.hinweise.length
       ? '<ul class="label-vorschau" aria-label="Mögliche Stärke-Hinweise">' + r.hinweise.map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") + "</ul>" +
-        '<p class="leise klein">Diese Hinweise sind nicht veröffentlicht. Im Showroom erscheinen sie erst nach Prüfung und Freigabe.</p>'
+        '<p class="leise klein">Diese Hinweise sind nicht veröffentlicht. In der Galerie erscheinen sie erst nach Prüfung und Freigabe.</p>'
       : '<p class="leise klein">' + (r.fachlichOffen ? "Stärke-Hinweise erscheinen erst, wenn der Inhalt fachlich geprüft ist." :
           r.sicherheit !== "mittel" ? "Stärke-Hinweise erscheinen erst bei mindestens mittlerer Sicherheit." :
           "Für einen Stärke-Hinweis braucht ein Bereich mindestens Stufe 3.") + "</p>";
@@ -245,7 +245,7 @@
       ? '<ol class="leitsaetze">' + r.schritte.map(function (s) { return "<li>" + esc(s.text) + ' <span class="leise">Aufwand: ' + esc(s.aufwand) + "</span></li>"; }).join("") + "</ol>"
       : "<p>Kein Bereich fällt deutlich ab. Du kannst die beratenden Fragen unten nutzen, um weiterzudenken.</p>";
     var beispiele = bsp.liste.length
-      ? '<h3 class="minis-titel">Im Showroom zum Weiterdenken</h3><p class="leise klein">Beispiele zum selben Anliegen. Sie sind noch nicht nach diesem Check geprüft.</p><ul class="minis">' + bsp.liste.map(H.miniKarte).join("") + "</ul>"
+      ? '<h3 class="minis-titel">In der Galerie zum Weiterdenken</h3><p class="leise klein">Beispiele zum selben Anliegen. Sie sind noch nicht nach diesem Check geprüft.</p><ul class="minis">' + bsp.liste.map(H.miniKarte).join("") + "</ul>"
       : "";
 
     return '<section class="entscheidung" aria-labelledby="ergebnis-titel">' +

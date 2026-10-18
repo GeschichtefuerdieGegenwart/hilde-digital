@@ -1,20 +1,23 @@
 #!/usr/bin/env python3
-"""Prüft die gebauten Seiten und die Daten von Hilde-Digital auf die vereinbarten Regeln.
+"""Prüft die gebauten Seiten und die Daten von Hilde Digital auf die vereinbarten Regeln.
 
 Aufruf:  python3 tools/pruefen.py      (nach tools/bauen.py)
 Ergebnis: Liste der Verstöße; Rückgabewert 1, wenn etwas gefunden wurde.
 
 Geprüft werden
-- Kennzeichnung in der Fußzeile jeder Seite,
+- Kennzeichnung in der Fußzeile jeder Seite, Hauptnavigation mit genau drei Bereichen,
+- alte Namen (»Showroom«, »Mehrwert-Check«, »Hilde-Digital«) nur noch auf der Weiterleitung,
 - verbotene Inhalte (Platzhalter, Logo, Kontaktadresse, »offizielles Digitalkonzept«),
 - Fachbegriffe auf Start- und Bereichsseiten und in den Texten der geführten Wege,
-  auf »Mehrwert« und »Über das Modul« nur in aufklappbaren Vertiefungen,
+  auf »Mehrwert« und »Über Hilde Digital« nur in aufklappbaren Vertiefungen,
 - externe Dateien und Links in den Seiten (nicht erlaubt),
 - interne Links (Ziel muss existieren),
 - Schriftgrößen unter 16 Pixel im Seitentext,
 - die Beispieldaten: Pflichtfelder, erlaubte Werte, eindeutige IDs und Slugs,
   Links nur auf die freigegebenen Seiten, Konzeptbeispiele ohne Link, Vorschläge nur für vorhandene Felder,
-  Qualitätscheck nur mit Datum, höchstens drei Stärken ohne Zahl, Sicherheit mindestens »mittel«.
+  Qualitätscheck nur mit Datum, höchstens drei Stärken ohne Zahl, Sicherheit mindestens »mittel«,
+- die Galerie: jedes Bild vorhanden, eigener Alternativtext, Bildtext, Bilder nur für bekannte Beispiele,
+  keine Galeriebilder für Konzeptbeispiele.
 """
 import json
 import re
@@ -24,17 +27,20 @@ import sys
 from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "tablets.html", "passt.html", "digital-check.html", "selbstcheck.html", "mehrwert.html",
+          "galerie.html", "beispiel.html", "showroom.html", "ueber.html", "gestaltung.html"]
 # Seiten, auf denen Fachbegriffe nur in aufklappbaren Vertiefungen (<details>) stehen dürfen
-MIT_VERTIEFUNG = ["mehrwert.html", "selbstcheck.html", "ueber.html"]
-EINSTIEG = ["index.html", "ki.html", "tablets.html", "passt.html"]
+MIT_VERTIEFUNG = ["mehrwert.html", "selbstcheck.html", "digital-check.html", "ueber.html"]
+EINSTIEG = ["index.html", "ki.html", "unterricht.html", "tablets.html", "passt.html", "galerie.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
-                    "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js"]
+                    "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js",
+                    "assets/probe.js", "assets/digital-check.js", "assets/material-regeln.js", "assets/galerie-buehne.js", "assets/daten/galerie.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]
-KENNZEICHNUNG = "Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
+KENNZEICHNUNG = "Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
+ALTE_NAMEN = ["Showroom", "Mehrwert-Check", "Hilde-Digital", "Über das Modul", "KI für meine Arbeit"]
 ERLAUBTE_HOSTS = ("https://geschichtefuerdiegegenwart.github.io/",)
 
 PFLICHT = ["id", "slug", "titel", "kurz", "status", "bereich", "fach"]
@@ -55,6 +61,13 @@ def pruefe_seiten(fehler):
         text = text_ohne_tags(html)
         if KENNZEICHNUNG not in text:
             fehler.append(f"{name}: Kennzeichnung fehlt")
+        nav = re.search(r'<nav class="nav"[^>]*>([\s\S]*?)</nav>', html)
+        if not nav or re.findall(r"<a [^>]*>([^<]+)</a>", nav.group(1)) != ["KI-Training", "Digitaler Unterricht", "Galerie"]:
+            fehler.append(f"{name}: Hauptnavigation muss genau KI-Training · Digitaler Unterricht · Galerie zeigen")
+        if name != "showroom.html":
+            for alt in ALTE_NAMEN:
+                if alt in text:
+                    fehler.append(f"{name}: alter Name »{alt}«")
         for wort in VERBOTEN:
             if wort in html:
                 fehler.append(f"{name}: verbotener Inhalt »{wort}«")
@@ -104,15 +117,15 @@ def lade_daten():
     if not node:
         return None, None
     skript = ("const t=require('./assets/daten/taxonomien.js');const b=require('./assets/daten/beispiele.js');"
-              "process.stdout.write(JSON.stringify({t,b}))")
+              "const g=require('./assets/daten/galerie.js');process.stdout.write(JSON.stringify({t,b,g}))")
     aus = subprocess.run([node, "-e", skript], cwd=WURZEL, capture_output=True, text=True, check=True)
     d = json.loads(aus.stdout)
-    return d["t"], d["b"]
+    return d["t"], d["b"], d["g"]
 
 
 def pruefe_daten(fehler):
     try:
-        tax, beispiele = lade_daten()
+        tax, beispiele, galerie = lade_daten()
     except subprocess.CalledProcessError as e:
         fehler.append(f"Daten: lassen sich nicht laden ({e.stderr.strip()[:200]})")
         return
@@ -179,7 +192,33 @@ def pruefe_daten(fehler):
         for feld in (b.get("vorschlag") or {}):
             if feld not in b:
                 fehler.append(f"Beispiel {wer}: Vorschlag für unbekanntes Feld »{feld}«")
+    pruefe_galerie(fehler, beispiele, galerie)
     print(f"Daten: {len(beispiele)} Beispiele geprüft")
+
+
+def pruefe_galerie(fehler, beispiele, galerie):
+    nach_id = {b["id"]: b for b in beispiele}
+    alts = set()
+    zahl = 0
+    for pid, ansichten in galerie.items():
+        b = nach_id.get(pid)
+        if not b:
+            fehler.append(f"Galerie {pid}: kein Beispiel mit dieser ID")
+            continue
+        if b.get("vorschauArt") == "konzept" or b["status"] == "Idee":
+            fehler.append(f"Galerie {pid}: Konzeptbeispiel darf kein echtes Bild haben")
+        for a in ansichten:
+            zahl += 1
+            if not (WURZEL / a.get("bild", "")).exists():
+                fehler.append(f"Galerie {pid}: Bild fehlt {a.get('bild')}")
+            if not a.get("alt") or len(a["alt"]) < 20:
+                fehler.append(f"Galerie {pid}: Alternativtext fehlt oder ist zu kurz ({a.get('bild')})")
+            elif a["alt"] in alts:
+                fehler.append(f"Galerie {pid}: Alternativtext doppelt ({a.get('bild')})")
+            alts.add(a.get("alt"))
+            if not a.get("text"):
+                fehler.append(f"Galerie {pid}: Bildtext fehlt ({a.get('bild')})")
+    print(f"Galerie: {zahl} Ansichten aus {len(galerie)} Projekten geprüft")
 
 
 def main():

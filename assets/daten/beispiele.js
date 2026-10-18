@@ -1,4 +1,4 @@
-/* Hilde-Digital – alle Beispiele an einem Ort.
+/* Hilde Digital – alle Beispiele an einem Ort.
 
    Regeln (siehe CLAUDE.md, »Wahrheit der Daten«):
    - Titel, Kurzbeschreibung, Fach, Status und Links stammen aus dem abgestimmten Prototyp. Nicht verändern.
@@ -10,8 +10,8 @@
 
    Neues Beispiel: einen Eintrag kopieren, id und slug neu vergeben, nur Belegtes eintragen.
 
-   aufgenommen: Monat, in dem das Beispiel in den Showroom kam (»2026-10«). Die Startseite zeigt die neuesten.
-   qualitaetscheck: erst eintragen, wenn ein Check nach »Wie wir den Mehrwert prüfen« geprüft UND freigegeben ist.
+   aufgenommen: Monat, in dem das Beispiel in die Galerie kam (»2026-10«). Die Startseite zeigt die neuesten.
+   qualitaetscheck: erst eintragen, wenn ein Check nach »So arbeitet der Digital-Check« geprüft UND freigegeben ist.
      Form: { datum: "2026-11-20", sicherheit: "mittel", staerken: ["anschauliche Darstellung"] }
      Höchstens drei Stärken, ohne Zahl. Ohne Eintrag zeigt die Detailseite »Qualitätscheck: noch offen«. */
 

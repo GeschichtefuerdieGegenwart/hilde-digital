@@ -1,5 +1,5 @@
 ---
-name: Hilde-Digital
+name: Hilde Digital
 description: Orientierungsmodul für Lehrkräfte – zwei Druckfarben, Überdruck als Schnittmenge, Werkstattbogen statt Hochglanz.
 colors:
   grund: "#F0EEEB"
@@ -155,15 +155,15 @@ components:
     height: "64px"
 ---
 
-# Design System: Hilde-Digital
+# Design System: Hilde Digital
 
 ## 1. Overview
 
 **Creative North Star: »Der Werkstattbogen im Überdruck«**
 
-Hilde-Digital sieht aus wie ein sauber gedruckter Arbeitsbogen aus einer guten Druckwerkstatt: warmes Naturpapier, zwei Druckfarben, präzise Passermarken. Honig steht für »KI für meine Arbeit«, Petrol für »Unterricht mit Tablets«. Wo beide Platten übereinanderliegen, entsteht von selbst ein dunkles Grün – der Überdruck. Er markiert ausschließlich die Schnittmenge »mit KI entwickelt«. Es gibt keine dritte Farbe, die man sich ausgedacht hat; die Schnittmenge ist physikalisch ableitbar (Multiplikation #F2B233 × #1E6B67 = #1C4B15).
+Hilde Digital sieht aus wie ein sauber gedruckter Arbeitsbogen aus einer guten Druckwerkstatt: warmes Naturpapier, zwei Druckfarben, präzise Passermarken. Honig steht für »KI-Training«, Petrol für »Digitaler Unterricht«. Wo beide Platten übereinanderliegen, entsteht von selbst ein dunkles Grün – der Überdruck. Er markiert ausschließlich die Schnittmenge »mit KI entwickelt«. Es gibt keine dritte Farbe, die man sich ausgedacht hat; die Schnittmenge ist physikalisch ableitbar (Multiplikation #F2B233 × #1E6B67 = #1C4B15).
 
-Die Oberfläche ist ruhig, flach und handwerklich. Tiefe entsteht nicht aus weichen Schatten, sondern aus einer versetzten Farbplatte hinter der Karte, wie ein leicht verrutschter Druckgang. Signaturelemente sind die überlappenden Platten selbst, Stanzloch-Fortschrittspunkte, die Stundenlinie für den Umfang und Rasterpunkte als ehrlicher Platzhalter. Werkzeug-Ornamente wie Schnittmarken, Passerkreuze oder Haarlinien werden nicht als Dekoration verwendet (Abgleich mit Taste Skill, 18.10.2026). Bewegung ist knapp und funktional; das einzige größere Motiv ist das »Registrieren« der beiden Platten beim ersten Aufruf.
+Die Oberfläche ist ruhig, flach und handwerklich. Tiefe entsteht nicht aus weichen Schatten, sondern aus einer versetzten Farbplatte hinter der Karte, wie ein leicht verrutschter Druckgang. Signaturelemente sind die überlappenden Platten selbst, Stanzloch-Fortschrittspunkte, die Stundenlinie für den Umfang und Rasterpunkte als ehrlicher Platzhalter. Werkzeug-Ornamente wie Schnittmarken, Passerkreuze oder Haarlinien werden nicht als Dekoration verwendet (Abgleich mit Taste Skill, 18.10.2026). Bewegung ist knapp und funktional; das einzige größere Motiv ist das »Registrieren« der beiden Platten beim ersten Aufruf; die Galerie darf mit der Bildansicht etwas inszenierter sein.
 
 Das System lehnt ab: Hochglanz-EdTech mit Verläufen und Glas, verspielte Illustrationen, Gamification, Ampel-Bewertungen, Dashboards mit Prozentwerten, das Erscheinungsbild der Schule, sowie jede Ästhetik, die Digitalität als Fortschritt an sich feiert.
 
@@ -180,12 +180,12 @@ Das System lehnt ab: Hochglanz-EdTech mit Verläufen und Glas, verspielte Illust
 Zwei Druckfarben auf warmem Papier. Alles andere ist neutral.
 
 ### Primary
-- **Honigplatte** (#F2B233): Fläche des Bereichs »KI für meine Arbeit«. Text darauf immer #2A2622 (8,00:1). Gegen den Grund nur 1,6:1 – Platten erhalten deshalb eine 2-px-Kante in Honig oder Text.
+- **Honigplatte** (#F2B233): Fläche des Bereichs »KI-Training«. Text darauf immer #2A2622 (8,00:1). Gegen den Grund nur 1,6:1 – Platten erhalten deshalb eine 2-px-Kante in Honig oder Text.
 - **Honig** (#A26A1C): Kanten, Symbole, Stundenlinie im KI-Bereich. Als Text nur ab 24 px (3,9:1).
 - **Honig zart / tief** (#F5E8CF / #6F4710): Hintergrund von Hinweisen bzw. Text darauf (6,70:1).
 
 ### Secondary
-- **Petrol** (#1E6B67): Bereich »Unterricht mit Tablets«. Heller Text darauf 6,2:1, als Text auf Grund 5,4:1.
+- **Petrol** (#1E6B67): Bereich »Digitaler Unterricht«. Heller Text darauf 6,2:1, als Text auf Grund 5,4:1.
 - **Petrol zart / tief** (#DBEAE6 / #134A47): Hinweisflächen und Text darauf (8,07:1).
 
 ### Tertiary
@@ -241,7 +241,7 @@ Nacht #17140F, Text #F3EADB, Honig #F2B233 wird Textfarbe, Petrol hell #5CC3C0, 
 
 ## 4. Layout
 
-Inhaltsbreite 72 rem, weit 90 rem, Seitenrand clamp(1rem, 4vw, 3rem). Raster 4 / 8 / 12 Spalten. Abstände in der Skala 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 px. Umbrüche bei 600, 1024 und 1280 px sowie eine Höhenabfrage `max-height: 760px` für Beamer. Karten nutzen Container Queries. Gleichförmige Kartenraster werden vermieden: Der Showroom arbeitet mit Bahnen (Stöbern) und einer Ergebnisliste (Suchen).
+Inhaltsbreite 72 rem, weit 90 rem, Seitenrand clamp(1rem, 4vw, 3rem). Raster 4 / 8 / 12 Spalten. Abstände in der Skala 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 px. Umbrüche bei 600, 1024 und 1280 px sowie eine Höhenabfrage `max-height: 760px` für Beamer. Karten nutzen Container Queries. Gleichförmige Kartenraster werden vermieden: Die Galerie arbeitet mit Bahnen (Stöbern) und einer Ergebnisliste (Suchen).
 
 ### Named Rules
 **The Two-Line Rule.** Jede Überschrift (h1–h6) hat bei 1440, 1280, 768 und 390 px höchstens zwei Zeilen. Erst Wörter streichen, dann die Zeilenbreite erweitern, zuletzt die Größe senken. Ein großer Satz ist ein `<p>` (≤ 36 px Desktop, ≤ 24 px Telefon).
@@ -277,14 +277,23 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - Fläche mit 2-px-Kante Stahl, Pill-Form, mindestens 44 px hoch. Aktiv: Druckschwarz mit hellem Text und ✓ als Text. Entfernbar mit sichtbarem ×-Button und zugänglichem Namen.
 
 ### Karten
-- Fläche, 4 px Ecken, keine Haarlinie (Abgrenzung über Tonstufe), versetzte Platte in Bereichsfarbe nur beim Überfahren oder im Showroom. Unter dem Titel: Bereichsetikett und Status als Text. Bild im Passepartout (Karton), alle Vorschauen im Format 16:10. Im Stöbern-Modus Duplex-Vorschau (Petrol, Honig oder Überdruck), Original auf Hover/Fokus.
+- Fläche, 4 px Ecken, keine Haarlinie (Abgrenzung über Tonstufe), versetzte Platte in Bereichsfarbe nur beim Überfahren oder in der Galerie. Unter dem Titel: Bereichsetikett und Status als Text. Bild im Passepartout (Karton), alle Vorschauen im Format 16:10. Im Stöbern-Modus Duplex-Vorschau (Petrol, Honig oder Überdruck), Original auf Hover/Fokus.
 - Ganze Karte klickbar über einen Link im Titel (Pseudo-Element), keine verschachtelten Bedienelemente.
 
 ### Eingaben
 - Fläche, 2-px-Kante Stahl, 48 px hoch, Label darüber, Hilfetext darunter. Fehler: Kante Fehlerrot plus Text, nie nur Farbe.
 
 ### Navigation
-- Höchstens fünf Punkte, Wortmarke links, aktiver Punkt mit 3-px-Unterstrich in Druckschwarz und `aria-current`. Unter 768 px ein Knopf »Menü«, der ohne JavaScript zur vollständigen Navigation im Fuß springt.
+- Drei Punkte (KI-Training · Digitaler Unterricht · Galerie), Wortmarke links und als Link zum Start, aktiver Punkt mit 3-px-Unterstrich in Druckschwarz und `aria-current`. Unter 768 px steht die Leiste in einer eigenen Zeile unter der Wortmarke, immer sichtbar. »Über Hilde Digital« und die Hinweise stehen im Fuß.
+
+### Bewegung (ab Version 4)
+- Tokens: `--dauer-druck` 100 ms, `--dauer-schnell` 140 ms (Mikro), `--dauer-mittel` 200 ms (Übergang), `--dauer-aus` 150 ms (Schließen), `--dauer-register` 280 ms. Nie über 300 ms, immer `--ease-out`.
+- Nur `transform` und `opacity` werden animiert; die versetzte Platte erscheint ohne Übergang. Kein `transition: all`.
+- Drücken: `--druck` 0,97 für Schaltflächen, `--druck-gross` 0,99 für große Flächen. Die Bildansicht öffnet aus dem angeklickten Bild heraus von `--auftauchen` 0,95 auf 1.
+- Weniger Bewegung: keine Lage- oder Größenänderung, nur Überblenden bis 150 ms.
+
+### Bildansicht
+- `<dialog>` auf Druckschwarz-Schleier, Titel und »Schließen« oben, Bild mit Bildtext, »Vorherige« · »Ansicht n von m« · »Nächste« unten. Escape, Pfeiltasten, Klick daneben. Fokus zurück zum auslösenden Bild.
 
 ### Bereichskopf
 - Überschrift zuerst, darunter »Bereich: …« mit einem kleinen Plattenstreifen in der Bereichsfarbe. Kein Etikett über der Überschrift.

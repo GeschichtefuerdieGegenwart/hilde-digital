@@ -1,4 +1,4 @@
-/* Hilde-Digital – baut aus den Antworten im KI-Weg eine transparente Anfrage (Prompt).
+/* Hilde Digital – baut aus den Antworten im KI-Weg eine transparente Anfrage (Prompt).
    Keine KI-Anbindung: Die Anfrage wird nur angezeigt und kann kopiert werden.
    Eingabe: { ziel, form, kontext: { fach, thema, gruppe, niveau, besonderes } }
    Ausgabe: { ziel, kontext, anforderungen, format, pruefkriterien } als Texte, dazu alsText(). */

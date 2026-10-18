@@ -18,18 +18,18 @@ Ihre Aufgabe: mit wenig Aufwand zu einer didaktisch begründeten, umsetzbaren En
 
 ## Product Purpose
 
-Hilde-Digital ist ein Orientierungs- und Werkzeugmodul zum Projekt »Vom digitalen Schnellhefter zum lernwirksamen Tablet-Unterricht«. Es trennt zwei gleichwertige Perspektiven:
+Hilde Digital ist ein Orientierungs- und Werkzeugmodul zum Projekt »Vom digitalen Schnellhefter zum lernwirksamen Tablet-Unterricht«. Es trennt zwei gleichwertige Perspektiven:
 
-- **KI für meine Arbeit:** Lehrkräfte nutzen KI als professionelle Anwender*innen, um analogen oder digitalen Unterricht vorzubereiten (geführter Weg, höchstens 5 Schritte).
-- **Unterricht mit Tablets:** Digitalität aus Sicht der Lernenden; beginnt beim Lernzweck, nicht beim Werkzeug (geführter Weg, höchstens 6 Schritte).
+- **KI-Training:** Lehrkräfte nutzen KI als professionelle Anwender*innen, um analogen oder digitalen Unterricht vorzubereiten (geführter Weg, höchstens 5 Schritte).
+- **Digitaler Unterricht:** Digitalität aus Sicht der Lernenden; beginnt beim Lernzweck, nicht beim Werkzeug (geführter Weg, höchstens 6 Schritte).
 
-Die Schnittmenge sind Lernangebote, die mit KI entwickelt wurden; sie erscheinen in beiden Bereichen. Dazu kommt ein Showroom mit echten Beispielen aus dem Kollegium.
+Die Schnittmenge sind Lernangebote, die mit KI entwickelt wurden; sie erscheinen in beiden Bereichen. Dazu kommt eine Galerie mit echten Beispielen aus dem Kollegium.
 
 Erfolg heißt: Eine Lehrkraft findet nach kurzer Einführung sofort den passenden Einstieg, versteht den Unterschied zwischen KI-Unterstützung und digitalem Lernen, erhält mit wenigen Entscheidungen eine nachvollziehbare Empfehlung, kann den Mehrwert eines Tableteinsatzes kritisch einschätzen, findet ein passendes Beispiel und fühlt sich unterstützt, aber weder geprüft noch bewertet.
 
 ## Positioning
 
-Erst das Anliegen, dann das Werkzeug. Hilde-Digital empfiehlt digitalen Einsatz nie um seiner selbst willen: Zulässige Ergebnisse sind ausdrücklich auch »analog wahrscheinlich sinnvoller«, »punktueller Einsatz reicht« oder »vor allem organisatorischer Nutzen«. Der Prüfstein lautet: »Geht es auf Papier genauso gut? Dann bleib beim Papier.« Alle Beispiele stammen aus dem eigenen Kollegium; nichts ist erfunden.
+Erst das Anliegen, dann das Werkzeug. Hilde Digital empfiehlt digitalen Einsatz nie um seiner selbst willen: Zulässige Ergebnisse sind ausdrücklich auch »analog wahrscheinlich sinnvoller«, »punktueller Einsatz reicht« oder »vor allem organisatorischer Nutzen«. Der Prüfstein lautet: »Geht es auf Papier genauso gut? Dann bleib beim Papier.« Alle Beispiele stammen aus dem eigenen Kollegium; nichts ist erfunden.
 
 ## Operating Context
 
@@ -37,11 +37,13 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 
 ## Capabilities and Constraints
 
-- Hauptnavigation mit höchstens fünf Punkten: Start · KI für meine Arbeit · Unterricht mit Tablets · Showroom · Über das Modul.
+- Hauptnavigation mit drei Punkten: KI-Training · Digitaler Unterricht · Galerie. Die Wortmarke führt zum Start. »Über Hilde Digital«, »Inhalte und Funktionen« und »Hinweise« stehen im Fuß.
+- Digital-Check mit zwei Wegen: »Selbst prüfen« und »Material prüfen lassen« (regelbasierte Textsuche mit Fundstellen, keine KI, keine Bewertung, keine Prozente).
+- Galerie mit echten Ansichten aus den Anwendungen (1–4 je Projekt) und einer Bildansicht für Maus, Tastatur und Finger.
 - Geführte Wege mit einer Entscheidung pro Schritt, Zurück, »Noch nicht sicher«, Ergebnis ohne Sackgasse, »Neu starten« und »Eingaben löschen«.
-- Showroom mit Freitextsuche und Filtern (Bereich, Phase, Anliegen, Umfang, Rolle, Fach), entfernbaren Chips, Ergebniszeile und kontrollierter Lockerung bei zu wenigen Treffern.
+- Galerie mit Freitextsuche und Filtern (Bereich, Phase, Anliegen, Umfang, Rolle, Fach), entfernbaren Chips, Ergebniszeile und kontrollierter Lockerung bei zu wenigen Treffern.
 - Umfang der Digitalität ohne Rangfolge: punktuell, phasenweise, durchgängig. Rollen der Lehrkraft ohne Wertung: Anleiten, Erklären, Moderieren, Begleiten, Rückmelden.
-- Mehrwert-Check (Entscheidungskarte), Papierprobe auf der Startseite und Selbstcheck »Eigenes Material prüfen«: regelbasiert und transparent (`assets/regeln.js`, `assets/check-regeln.js`, jeweils mit Tests), vier qualitative Einstufungen, keine Prozentwerte oder Noten.
+- Digital-Check (Entscheidungskarte), Papierprobe auf der Startseite und Digital-Check, Weg A »Selbst prüfen«: regelbasiert und transparent (`assets/regeln.js`, `assets/check-regeln.js`, jeweils mit Tests), vier qualitative Einstufungen, keine Prozentwerte oder Noten.
 - Keine echte KI-Anbindung, keine simulierten KI-Antworten, keine Nennung konkreter KI-Anbieter (»ein an deiner Schule freigegebenes KI-System«).
 - Keine Anmeldung, kein Server, keine Tracker; Eingaben nur lokal (localStorage in try/catch), Freitexte werden nicht gespeichert.
 - Externe Anwendungen werden verlinkt, nicht eingebettet; das Bildschirmfoto dient als Vorschau und als Ersatz ohne Netz.
@@ -51,8 +53,8 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 
 ## Brand Commitments
 
-- Name in der Oberfläche: **Hilde-Digital** (mit Bindestrich, entschieden am 18.10.2026).
-- Jede Seite trägt in der Fußzeile: »Hilde-Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.« Die Startseite zeigt zusätzlich zurückhaltend: »Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung«.
+- Name in der Oberfläche: **Hilde Digital** (mit Bindestrich, entschieden am 18.10.2026).
+- Jede Seite trägt in der Fußzeile: »Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.« Die Startseite zeigt zusätzlich zurückhaltend: »Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung«.
 - Kein Schullogo, keine Nachahmung des schulischen Erscheinungsbilds, keine Formulierung wie »offizielles Digitalkonzept«, keine Kontaktadresse, kein Kontaktformular.
 - Sprache: »du«, kurze Sätze, eine Aussage pro Satz, Verben statt Substantive; keine Defizitsprache, keine Technikbegeisterung als Selbstzweck, keine Gleichsetzung von Digitalisierung mit Innovation.
 - Leitsätze: »Erst das Anliegen, dann das Werkzeug.« · »KI kann Unterricht vorbereiten. Digitalität kann Lernen gestalten. Beides kann zusammenkommen – muss es aber nicht.« · »Mehr Digitalität bedeutet nicht automatisch besseren Unterricht.«
@@ -76,4 +78,4 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 
 ## Accessibility & Inclusion
 
-Mindestens WCAG 2.2 AA: semantisches HTML, vollständige Tastaturbedienung mit sichtbarem Fokus, Bedienflächen mindestens 44 × 44 px, Kontrast mindestens 4,5:1, Statusmeldungen über `aria-live`, programmatisch zugeordnete Labels, Farbe nie als einziger Informationsträger, Zoom bis 200 % ohne Verlust, Schrift mindestens 16 px und Fließtext 18–20 px. Schrift für Sehschwäche: Atkinson Hyperlegible. Bewegung abschaltbar (globaler Schalter und Systemeinstellung).
+Mindestens WCAG 2.2 AA: semantisches HTML, vollständige Tastaturbedienung mit sichtbarem Fokus, Bedienflächen mindestens 44 × 44 px, Kontrast mindestens 4,5:1, Statusmeldungen über `aria-live`, programmatisch zugeordnete Labels, Farbe nie als einziger Informationsträger, Zoom bis 200 % ohne Verlust, Schrift mindestens 16 px und Fließtext 18–20 px. Schrift für Sehschwäche: Atkinson Hyperlegible Next. Bewegung abschaltbar (globaler Schalter und Systemeinstellung).

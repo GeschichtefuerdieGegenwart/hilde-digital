@@ -1,4 +1,4 @@
-/* Hilde-Digital – gemeinsame Helfer für alle Seiten:
+/* Hilde Digital – gemeinsame Helfer für alle Seiten:
    sicheres Speichern im Browser, Darstellung von Kennzeichen und Beispielkarten.
    Braucht: assets/daten/taxonomien.js (TAXONOMIEN). */
 var HILDE = (function () {
@@ -35,8 +35,8 @@ var HILDE = (function () {
   /* Bereich immer als Text und Farbe, nie nur Farbe. */
   function kennzeichen(b) {
     var k = [];
-    if (b.bereich === "ki") k.push('<span class="kz ki">KI für meine Arbeit</span>');
-    if (b.bereich === "lernen") k.push('<span class="kz lernen">Unterricht mit Tablets</span>');
+    if (b.bereich === "ki") k.push('<span class="kz ki">KI-Training</span>');
+    if (b.bereich === "lernen") k.push('<span class="kz lernen">Digitaler Unterricht</span>');
     if (b.bereich === "beide" || b.kiEinsatz === "entwicklung-anwendung") k.push('<span class="kz beide">mit KI entwickelt</span>');
     if (b.status === "In Überarbeitung") k.push('<span class="kz ueberarbeitung">In Überarbeitung</span>');
     if (b.vorschauArt === "konzept") k.push('<span class="kz konzept">Konzeptbeispiel – noch nicht erprobt</span>');
@@ -45,7 +45,7 @@ var HILDE = (function () {
 
   function bildHtml(b) {
     if (!b.bild) return "";
-    return '<div class="bild"><img src="' + esc(b.bild) + '" alt="" loading="lazy"></div>';
+    return '<div class="bild" data-bildrahmen><img src="' + esc(b.bild) + '" alt="" loading="lazy" width="1040" height="650"></div>';
   }
 
   /* Merkmale in einer Zeile: Phase · Umfang · Rolle · Anliegen. Nur Belegtes oder Vorgeschlagenes. */
@@ -67,7 +67,7 @@ var HILDE = (function () {
 
   function detailLink(b) { return "beispiel.html#" + encodeURIComponent(b.slug); }
 
-  /* Große Showroom-Karte */
+  /* Große Galerie-Karte */
   function karte(b) {
     return '<article class="karte' + (b.bild ? "" : " kompakt") + '">' + bildHtml(b) +
       '<div class="koerper">' + kennzeichen(b) +
@@ -85,6 +85,79 @@ var HILDE = (function () {
       '<span class="mini-weiter">Beispiel ansehen <span aria-hidden="true">→</span></span></span></a></li>';
   }
 
+  /* ---------- Bildansicht (Lichtbild) ----------
+     Ein <dialog> für die Ansichten eines Projekts. Öffnet sich aus dem angeklickten Bild heraus
+     (transform-origin), schließt mit Escape, »Schließen« oder Klick daneben. Pfeiltasten blättern.
+     Der Fokus kehrt zum auslösenden Element zurück. Bewegung nur über transform und opacity. */
+  var dlg = null, liste = [], pos = 0, titel = "", ausloeser = null;
+  function ruhig() { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  function baue() {
+    dlg = document.createElement("dialog");
+    dlg.className = "lichtbild";
+    dlg.setAttribute("aria-labelledby", "lb-titel");
+    dlg.innerHTML = '<div class="lb-kopf"><p id="lb-titel" class="lb-titel"></p>' +
+      '<button type="button" class="lb-zu knopf still" data-lb="zu">Schließen <span aria-hidden="true">×</span></button></div>' +
+      '<figure class="lb-bild"><img alt="" width="1040" height="650"><figcaption></figcaption></figure>' +
+      '<div class="lb-steuerung"><button type="button" class="knopf still" data-lb="zurueck"><span aria-hidden="true">←</span> Vorherige</button>' +
+      '<p class="lb-stand" aria-live="polite"></p>' +
+      '<button type="button" class="knopf still" data-lb="vor">Nächste <span aria-hidden="true">→</span></button></div>';
+    document.body.appendChild(dlg);
+    dlg.addEventListener("click", function (e) {
+      var k = e.target.closest("[data-lb]");
+      if (k) { var a = k.getAttribute("data-lb"); if (a === "zu") schliesse(); else blaettere(a === "vor" ? 1 : -1); return; }
+      if (e.target === dlg) schliesse(); // Klick auf den Schleier
+    });
+    dlg.addEventListener("cancel", function (e) { e.preventDefault(); schliesse(); });
+    dlg.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); blaettere(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); blaettere(-1); }
+    });
+    var img = dlg.querySelector("img");
+    img.addEventListener("error", function () { dlg.querySelector(".lb-bild").classList.add("bild-fehlt"); });
+    img.addEventListener("load", function () { dlg.querySelector(".lb-bild").classList.remove("bild-fehlt"); });
+  }
+  function zeigeBild() {
+    var a = liste[pos], img = dlg.querySelector("img");
+    var fig = dlg.querySelector(".lb-bild");
+    fig.classList.add("wechselt");
+    img.src = a.bild; img.alt = a.alt;
+    dlg.querySelector("figcaption").textContent = a.text;
+    dlg.querySelector(".lb-titel").textContent = titel;
+    dlg.querySelector(".lb-stand").textContent = "Ansicht " + (pos + 1) + " von " + liste.length;
+    dlg.querySelector('[data-lb="zurueck"]').disabled = pos === 0;
+    dlg.querySelector('[data-lb="vor"]').disabled = pos === liste.length - 1;
+    requestAnimationFrame(function () { fig.classList.remove("wechselt"); });
+  }
+  function blaettere(r) { var n = pos + r; if (n < 0 || n >= liste.length) return; pos = n; zeigeBild(); }
+  function oeffne(ansichten, start, name, element) {
+    if (!ansichten || !ansichten.length) return;
+    if (!dlg) baue();
+    liste = ansichten; pos = Math.max(0, Math.min(start || 0, ansichten.length - 1)); titel = name || ""; ausloeser = element || document.activeElement;
+    // Räumlich: Das Bild wächst aus dem angeklickten Element heraus.
+    if (element && element.getBoundingClientRect) {
+      var r = element.getBoundingClientRect();
+      dlg.style.transformOrigin = Math.round(r.left + r.width / 2) + "px " + Math.round(r.top + r.height / 2) + "px";
+    }
+    zeigeBild();
+    dlg.classList.remove("zu");
+    dlg.showModal();
+    dlg.querySelector('[data-lb="zu"]').focus();
+  }
+  function schliesse() {
+    if (!dlg || !dlg.open) return;
+    var fertig = function () { dlg.close(); dlg.classList.remove("zu"); if (ausloeser && ausloeser.focus) ausloeser.focus(); };
+    if (ruhig()) { fertig(); return; }
+    dlg.classList.add("zu");
+    setTimeout(fertig, 150); // Ausblenden ist kürzer als Einblenden (siehe --dauer-aus)
+  }
+
+  /* Fehlt ein Galeriebild, zeigt der Rahmen Rasterpunkte und »Bild nicht verfügbar« statt eines kaputten Bildes. */
+  document.addEventListener("error", function (e) {
+    var t = e.target;
+    if (t && t.tagName === "IMG" && t.closest && t.closest("[data-bildrahmen]")) t.closest("[data-bildrahmen]").classList.add("bild-fehlt");
+  }, true);
+
   return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name,
-           kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink };
+           kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink,
+           lichtbild: oeffne };
 })();

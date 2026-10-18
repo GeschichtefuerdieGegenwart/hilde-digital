@@ -1,4 +1,4 @@
-/* Unit-Tests für Suche und Filter im Showroom.  Aufruf: node --test */
+/* Unit-Tests für Suche und Filter in der Galerie.  Aufruf: node --test */
 "use strict";
 const test = require("node:test");
 const assert = require("node:assert/strict");
