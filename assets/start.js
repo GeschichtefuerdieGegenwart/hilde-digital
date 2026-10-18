@@ -12,11 +12,6 @@
   try { erst = !sessionStorage.getItem("hilde.registriert"); sessionStorage.setItem("hilde.registriert", "1"); } catch (e) { erst = false; }
   if (erst) document.documentElement.classList.add("registrieren");
 
-  /* Überdruck: Wie viele Lernangebote liegen in beiden Bereichen? Gezählt aus den Daten. */
-  var beide = BEISPIELE.filter(function (b) { return b.bereich === "beide" && b.vorschauArt !== "konzept"; }).length;
-  var schnitt = document.getElementById("schnitt-link");
-  if (schnitt && beide) schnitt.textContent = beide + (beide === 1 ? " Lernangebot liegt" : " Lernangebote liegen") + " in beiden Bereichen";
-
   var materialien = BEISPIELE.filter(function (b) { return b.vorschauArt !== "konzept"; });
   var faecher = [];
   materialien.forEach(function (b) { b.faecher.forEach(function (f) { if (faecher.indexOf(f) < 0) faecher.push(f); }); });

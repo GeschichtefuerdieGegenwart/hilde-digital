@@ -23,7 +23,7 @@ Hilde Digital ist ein Orientierungs- und Werkzeugmodul zum Projekt »Vom digital
 - **KI-Training:** Lehrkräfte nutzen KI als professionelle Anwender*innen, um analogen oder digitalen Unterricht vorzubereiten (geführter Weg, höchstens 5 Schritte).
 - **Digitaler Unterricht:** Digitalität aus Sicht der Lernenden; beginnt beim Lernzweck, nicht beim Werkzeug (geführter Weg, höchstens 6 Schritte).
 
-Die Schnittmenge sind Lernangebote, die mit KI entwickelt wurden; sie erscheinen in beiden Bereichen. Dazu kommt eine Galerie mit echten Beispielen aus dem Kollegium.
+Es gibt genau zwei Bereiche. Ein Lernangebot, das mit KI gebaut wurde, gehört zum Digitalen Unterricht, sobald Lernende damit arbeiten; eine eigene Kategorie »mit KI entwickelt« gibt es nicht. Dazu kommt eine Galerie mit echten Beispielen aus dem Kollegium.
 
 Erfolg heißt: Eine Lehrkraft findet nach kurzer Einführung sofort den passenden Einstieg, versteht den Unterschied zwischen KI-Unterstützung und digitalem Lernen, erhält mit wenigen Entscheidungen eine nachvollziehbare Empfehlung, kann den Mehrwert eines Tableteinsatzes kritisch einschätzen, findet ein passendes Beispiel und fühlt sich unterstützt, aber weder geprüft noch bewertet.
 

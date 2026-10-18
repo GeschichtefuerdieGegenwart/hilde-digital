@@ -70,6 +70,7 @@ def rahmen(titel, aktiv, inhalt, datei):
 <header class="kopf"><div class="huelle">
   <a class="marke" href="index.html"{' aria-current="page"' if datei == "index.html" else ""}><span class="marke-name">Hilde Digital</span>{PLATTEN}<span class="sr-only">, zum Start</span></a>
   <nav class="nav" aria-label="Bereiche">{nav}</nav>
+  <a class="hefter-link" href="galerie.html#hefter" aria-label="Mein Schnellhefter"><svg viewBox="0 0 30 24" aria-hidden="true"><rect x="1" y="2" width="28" height="21" rx="2" fill="#f2b233" stroke="#a26a1c" stroke-width="2"/><rect x="1" y="2" width="6" height="21" fill="#a26a1c"/><circle cx="4" cy="8" r="1.3" fill="#f0eeeb"/><circle cx="4" cy="17" r="1.3" fill="#f0eeeb"/></svg><span class="hefter-zahl" aria-hidden="true">0</span></a>
 </div></header>
 <main id="inhalt" tabindex="-1">
 {inhalt}
@@ -79,6 +80,7 @@ def rahmen(titel, aktiv, inhalt, datei):
   <nav class="fusslinks" aria-label="Über Hilde Digital"><ul>{fuss}<li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
   <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · {KENNZEICHNUNG}</p>
 </div></footer>
+<script src="assets/motion.js"></script>
 </body>
 </html>
 """

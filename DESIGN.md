@@ -1,6 +1,6 @@
 ---
 name: Hilde Digital
-description: Orientierungsmodul für Lehrkräfte – zwei Druckfarben, Überdruck als Schnittmenge, Werkstattbogen statt Hochglanz.
+description: Orientierungsmodul für Lehrkräfte – zwei Druckfarben, Überdruck nur wo Platten sich überlagern, Werkstattbogen statt Hochglanz.
 colors:
   grund: "#F0EEEB"
   flaeche: "#FFFFFD"
@@ -168,7 +168,7 @@ Die Oberfläche ist ruhig, flach und handwerklich. Tiefe entsteht nicht aus weic
 Das System lehnt ab: Hochglanz-EdTech mit Verläufen und Glas, verspielte Illustrationen, Gamification, Ampel-Bewertungen, Dashboards mit Prozentwerten, das Erscheinungsbild der Schule, sowie jede Ästhetik, die Digitalität als Fortschritt an sich feiert.
 
 **Key Characteristics:**
-- Zwei Bereichsfarben plus Neutraltöne; der Überdruck nur dort, wo beide zusammenkommen.
+- Zwei Bereichsfarben plus Neutraltöne; der Überdruck nur dort, wo sich Platten sichtbar überlagern. Es gibt keine dritte Kategorie.
 - Knochenweißer Grund (niedrige Sättigung) statt Creme; Wärme kommt aus der Honigplatte als voller Farbfläche. Text in warmem Druckschwarz.
 - Ecken 4 px, keine weichen Schatten, versetzte Platte als Ebene.
 - Bricolage Grotesque für Überschriften, Atkinson Hyperlegible Next für alles Lesbare.
@@ -189,7 +189,7 @@ Zwei Druckfarben auf warmem Papier. Alles andere ist neutral.
 - **Petrol zart / tief** (#DBEAE6 / #134A47): Hinweisflächen und Text darauf (8,07:1).
 
 ### Tertiary
-- **Überdruck** (#1C4B15): ausschließlich Schnittmenge »mit KI entwickelt«. Heller Text darauf 10,00:1.
+- **Überdruck** (#1C4B15): entsteht nur, wo Honig- und Petrolplatte sich überlagern (Wortmarke, Platten der Startseite, Plattenwechsel, Farbauszug). Keine Kategorie, kein Etikett. Heller Text darauf 10,00:1.
 
 ### Neutral
 - **Grund** (#F0EEEB): Seitenhintergrund, Knochenweiß (HSL-Sättigung < 16 %). Text 12,9:1.
@@ -207,7 +207,7 @@ Erfolg #2E6B34, Warnung #8A5300, Fehler #B0281C, »In Überarbeitung« #7A3324 a
 Nacht #17140F, Text #F3EADB, Honig #F2B233 wird Textfarbe, Petrol hell #5CC3C0, Überdruck dunkel #2F6B3A.
 
 ### Named Rules
-**The Overprint Rule.** Überdruck-Grün erscheint nur, wo beide Bereiche wirklich zusammenkommen. Nie als Akzent, nie als Erfolgsfarbe, nie zur Dekoration.
+**The Overprint Rule.** Überdruck-Grün erscheint nur, wo sich zwei Platten physisch überlagern. Nie als Kategorie, nie als Akzent, nie als Erfolgsfarbe. Die Kategorie »mit KI entwickelt« ist seit Version 4.4 gestrichen: Ein mit KI gebautes Lernangebot gehört zum Digitalen Unterricht.
 
 **The Two-Inks Rule.** Es gibt genau zwei Bereichsfarben. Eine dritte Akzentfarbe wird nicht eingeführt; Hervorhebung entsteht über Druckschwarz, Gewicht und Größe.
 
@@ -296,6 +296,20 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - Fächer (ab Version 4.3, ersetzt das Laufband): Karten in einer scrollbaren Reihe mit Einrasten; die Mitte steht gerade und farbig, nach außen drehen sich die Karten weg (rotateY bis 38°), werden kleiner und verblassen in die Duplex-Vorschau. In der Galerie gleitet der Fächer langsam (24 px/s), auf der Startseite nur von Hand. Anhalten bei Überfahren, Fokus, Berührung (6 s Ruhe), außer Sicht und per Knopf. Weniger Bewegung: flach, kein Gleiten.
 - Laufband der Galerie (bis Version 4.2): einzige Dauerbewegung. Linear (ein Band soll gleichmäßig gleiten), etwa 24 px/s, nur `transform`. Hält an beim Überfahren, beim Fokus, per Knopf und außerhalb des Bildschirms; die Wahl »angehalten« bleibt im Browser. Bei weniger Bewegung steht es still und lässt sich von Hand verschieben.
 
+### Bewegungsmuster aus dem Motion-Musterbuch 2 (ab Version 4.4)
+Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch die Nutzerin oder einmal beim Erscheinen, nie in Schleife; bei »weniger Bewegung« bleibt nur der Endzustand.
+- **F Passer:** Die Überschrift von KI-Training, Digitalem Unterricht und Galerie rastet einmal je Sitzung ein: zwei Farbplatten, dann Druckschwarz (620 ms). `data-passer` an der h1.
+- **G Farbauszug:** Kleine Ansichten (Collage auf dem Start, Detailbilder der Einblicke) sind in Ruhe zweifarbig gedruckt. Beim Überfahren rutschen die Platten auseinander, dann erscheint das echte Bild. Reines CSS, Graustufenbild plus zwei Farbflächen mit multiply.
+- **I Stundenlinie:** Der Umfang als Balken auf der Linie der Stunde (Punkt, Abschnitt, ganze Stunde). Im Planungsweg bei der Umfang-Frage und auf der Entscheidungskarte. `HILDE.stundenlinie()`.
+- **J Stanzloch:** Erledigte Schritte der geführten Wege sind gelocht; der zuletzt erledigte gibt kurz nach (160 ms).
+- **K Schnellhefter:** »Merken« legt ein Beispiel in den Schnellhefter im Kopf. Die Karte fliegt hinein (440 ms, nicht mit der Tastatur), die Zahl rollt. Die Liste steht in der Galerie unter »Mein Schnellhefter«. Gespeichert werden nur IDs, nur im Browser (`hilde.merkliste`).
+- **L Durchschlag:** Beim Kopieren eines Prompts löst sich ein Durchschlag vom Textfeld und gleitet weg (420 ms).
+- **M Zählwerk:** Die Kennzahlen auf der Startseite rollen einmal auf ihren Wert, wenn sie ins Bild kommen. Die Zahl steht immer auch als Text da.
+- **N Leporello:** Die Schritte der großen Einblicke entfalten sich einmal, wenn sie ins Bild kommen (ab 700 px Breite).
+- **O Plattenwechsel:** Über der Galerie schiebt sich die Platte des gewählten Bereichs ins Bild.
+- Ausnahmen von »nie über 300 ms«: Plattenwechsel 320, Leporello 380 (gestaffelt), Durchschlag 420, Flug in den Schnellhefter 440, Passer 620, Zählwerk 720. Alle sind selten, einmalig oder räumlich und blockieren keine Eingabe.
+- Bewusst nicht übernommen: **H Druckwalze**.
+
 ### Bildansicht
 - `<dialog>` auf Druckschwarz-Schleier, Titel und »Schließen« oben, Bild mit Bildtext, »Vorherige« · »Ansicht n von m« · »Nächste« unten. Escape, Pfeiltasten, Klick daneben. Fokus zurück zum auslösenden Bild.
 
@@ -306,7 +320,7 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - Wortmarke in voller Breite als gestalteter Abschluss, darunter der Pflichttext. Keine Linkfarm.
 
 ### Bereichsetiketten
-- KI: Honigplatte mit Text. Tablets: Petrol mit hellem Text. Beide: Überdruck mit hellem Text. Immer mit Wort, nie nur Farbfläche.
+- KI-Training: Honigplatte mit Text. Digitaler Unterricht: Petrol mit hellem Text. Es gibt nur diese zwei Bereiche. Immer mit Wort, nie nur Farbfläche.
 
 ### Geführter Weg
 - Eine Frage pro Schritt (H3, höchstens zwei Zeilen), Antworten als große Auswahlkarten, Stanzloch-Fortschritt mit Text »Schritt 2 von 5« (funktionale Orientierung, keine dekorative 01/02-Nummerierung), Zurück und »Noch nicht sicher« immer sichtbar.
@@ -318,7 +332,7 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 
 ### Do:
 - **Do** Bereich und Status immer als Wort zeigen.
-- **Do** den Überdruck nur für »mit KI entwickelt« verwenden.
+- **Do** den Überdruck nur dort zeigen, wo sich Platten wirklich überlagern.
 - **Do** Hauptaktionen in Druckschwarz halten.
 - **Do** versetzte Platte statt Schatten nutzen.
 - **Do** Bewegung nur auf Knopfdruck starten und pausierbar machen.

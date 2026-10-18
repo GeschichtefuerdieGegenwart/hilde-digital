@@ -19,7 +19,7 @@ var GH = "https://geschichtefuerdiegegenwart.github.io/";
 
 var BEISPIELE = [
   { id: "psycho-ds2", titel: "Siehst du, was sich verändert?", fach: "Psychologie · Psycho-Labor",
-    faecher: ["Psychologie"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Psychologie"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Klasse testet ihre eigene Wahrnehmung und vergleicht die Ergebnisse mit einer echten Studie.",
     status: "im Unterricht erprobt", bild: "assets/bilder/psycho-ds2.jpg",
     link: GH + "psycho-labor/ds02-veraenderungsblindheit.html", zuerst: true,
@@ -28,7 +28,7 @@ var BEISPIELE = [
     mehrwerte: ["experimentieren", "sichtbar"] },
 
   { id: "ns-ideologie", titel: "Die fünf Säulen der NS-Ideologie", fach: "Geschichte · GGK-Labor",
-    faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Klasse ordnet Zeugnisse der Täter Denkmustern zu und entdeckt so die Ideen hinter der Ausgrenzung.",
     status: "im Unterricht erprobt", bild: "assets/bilder/ns-ideologie.jpg",
     link: GH + "GGK-Einheit-Nationalsozialismus/ns-ideologie.html", zuerst: true,
@@ -47,7 +47,7 @@ var BEISPIELE = [
     mehrwerte: ["rueckmeldung", "individuell"] },
 
   { id: "dialoge", titel: "Sexualpädagogische Dialoge", fach: "Sozialpädagogik",
-    faecher: ["Sozialpädagogik"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Zu dritt üben die Lernenden Gespräche über Kinderfragen: Kind, Fachkraft und Beobachtung.",
     status: "noch offen", bild: "assets/bilder/dialoge.jpg", link: GH + "sozpaed-psychologie/sexualpaedagogische-dialoge/", zuerst: true,
     anliegen: ["zusammen", "ueben"],
@@ -73,7 +73,7 @@ var BEISPIELE = [
     } },
 
   { id: "bef1", titel: "Landkarte der Einheit »Spiel«", fach: "Sozialpädagogik · BEF I",
-    faecher: ["Sozialpädagogik"], bereich: "beide", kiEinsatz: "vorbereitung-lehrkraft",
+    faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "vorbereitung-lehrkraft",
     kurz: "Eine Übersicht zeigt den roten Faden der Einheit; die Lernenden schätzen sich zu drei Zeitpunkten selbst ein.",
     status: "noch offen", bild: "assets/bilder/bef1.jpg", link: GH + "sozpaed-psychologie/landkarte-spiel/",
     anliegen: ["material", "rueckmeldung"],
@@ -81,7 +81,7 @@ var BEISPIELE = [
     mehrwerte: ["dokumentieren"] },
 
   { id: "lf3", titel: "Übungsplattform Lebenswelten", fach: "Sozialpädagogik · LF 3",
-    faecher: ["Sozialpädagogik"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Wiederholen mit sofortiger Rückmeldung und eine Übungsklausur mit Musterlösung.",
     status: "noch offen", bild: "assets/bilder/lf3.jpg", link: GH + "sozpaed-psychologie/uebungsplattform-lf3/",
     anliegen: ["ueben", "leistung"],
@@ -89,7 +89,7 @@ var BEISPIELE = [
     mehrwerte: ["rueckmeldung", "individuell"] },
 
   { id: "fachbegriffe", titel: "Fachbegriffe-Trainer", fach: "Sozialpädagogik · EBG",
-    faecher: ["Sozialpädagogik"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "74 Fachbegriffe aus sechs Lernfeldern: selbst erklären, vergleichen, mit Karteikarten üben.",
     status: "noch offen", bild: "assets/bilder/fachbegriffe.jpg", link: GH + "sozpaed-psychologie/fachbegriffe-trainer/",
     anliegen: ["ueben"],
@@ -97,7 +97,7 @@ var BEISPIELE = [
     mehrwerte: ["individuell"] },
 
   { id: "nation", titel: "Nation im Kopf", fach: "Geschichte · Gemeinschaftskunde",
-    faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden wählen einen Länderfall und begründen ein Urteil mit Kriterien.",
     status: "im Unterricht erprobt", link: GH + "nation-im-kopf-gene/",
     erfahrung: "Eingesetzt in der PIA3 in einem Wahlfach zur Demokratiebildung in der frühen Kindheit. Persönlicher Eindruck: Es lief bisher sehr gut. Was die Lernenden gelernt haben, wurde noch nicht abgefragt.",
@@ -106,7 +106,7 @@ var BEISPIELE = [
     mehrwerte: ["zugaenge"] },
 
   { id: "gene", titel: "Gene ohne Reisepass", fach: "Demokratiebildung",
-    faecher: ["Demokratiebildung"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Demokratiebildung"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Mit Reglern prüfen die Lernenden, ob Nationalität in den Genen steht.",
     status: "noch offen", link: GH + "nation-im-kopf-gene/gene-ohne-reisepass.html",
     anliegen: ["erkunden", "verstehen"],
@@ -114,7 +114,7 @@ var BEISPIELE = [
     mehrwerte: ["experimentieren"] },
 
   { id: "landkarte", titel: "Kognitive Landkarte", fach: "Geschichte",
-    faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Begriffe des Geschichtsunterrichts zum Nachschlagen, mit Übungen und erklärender Rückmeldung.",
     status: "noch offen", link: GH + "kognitive-Landkarte-des-Geschichtsunterrichts/",
     anliegen: ["ueben", "rueckmeldung"],
@@ -122,7 +122,7 @@ var BEISPIELE = [
     mehrwerte: ["individuell", "rueckmeldung"] },
 
   { id: "inhaltsverzeichnis", titel: "Inhaltsverzeichnis GGK", fach: "Geschichte · Gemeinschaftskunde",
-    faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Eine Kurslandkarte zeigt, wie die Themen zusammenhängen.",
     status: "noch offen", link: GH + "Inhaltsverzeichnis-GGK/",
     anliegen: ["verstehen"],
@@ -130,7 +130,7 @@ var BEISPIELE = [
     mehrwerte: ["zeitort"] },
 
   { id: "planspiel", titel: "Planspiel Umverteilung", fach: "Gemeinschaftskunde",
-    faecher: ["Gemeinschaftskunde"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden verändern Stellschrauben der Umverteilung und sehen die Folgen.",
     status: "noch offen", link: GH + "soziale-Gerechtigkeit/",
     anliegen: ["erkunden"],
@@ -138,7 +138,7 @@ var BEISPIELE = [
     mehrwerte: ["experimentieren"] },
 
   { id: "one-step", titel: "One Step Forward", fach: "Gemeinschaftskunde",
-    faecher: ["Gemeinschaftskunde"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Jede Person zieht zufällig ein Leben. Danach zeigt eine Übung im Raum, wie ungleich die Startbedingungen sind.",
     status: "noch offen", link: GH + "One-Step-forward/",
     anliegen: ["interesse"],
@@ -146,7 +146,7 @@ var BEISPIELE = [
     mehrwerte: ["experimentieren"] },
 
   { id: "karte-ww2", titel: "Karte zum Zweiten Weltkrieg", fach: "Geschichte",
-    faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Der Krieg von 1937 bis 1945 auf einer Karte mit Zeitleiste und Zeitzeugenstimmen.",
     status: "In Überarbeitung", link: GH + "Karte-Zweiter-Weltkrieg/",
     anliegen: ["verstehen"],
@@ -154,7 +154,7 @@ var BEISPIELE = [
     mehrwerte: ["experimentieren"] },
 
   { id: "politik-check", titel: "Politik-Check 1919", fach: "Geschichte · Gemeinschaftskunde",
-    faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Zehn Fragen aus der Sicht von 1919: Welche Partei hättest du gewählt? Selbst entwickelt, kein Angebot der bpb.",
     status: "In Überarbeitung", link: GH + "Wahl-o-Mat-1919/",
     anliegen: ["interesse", "rueckmeldung"],
@@ -166,7 +166,7 @@ var BEISPIELE = [
      am 17.10.2026 bestätigt. Alle didaktischen Zuordnungen und die Lernaktivitäten sind Vorschläge
      und stehen deshalb in »vorschlag«. ---------- */
   { id: "gallery-walk", aufgenommen: "2026-10", titel: "Gallery Walk – Raumwirkung erleben", fach: "Sozialpädagogik · EBG LF 4",
-    faecher: ["Sozialpädagogik"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden betrachten Kita-Raumfotos, formulieren eigene Kriterien und vergleichen sie danach mit der Fachtheorie.",
     status: "im Unterricht erprobt", bild: "assets/bilder/gallery-walk.jpg", link: null,
     lernaktivitaeten: ["Raumfotos still betrachten und grüne oder rote Punkte vergeben",
@@ -182,7 +182,7 @@ var BEISPIELE = [
     vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true, lernaktivitaeten: true } },
 
   { id: "hilberg", aufgenommen: "2026-10", titel: "Historische Kategorisierung im Nationalsozialismus", fach: "Geschichte",
-    faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden ordnen historische Akteur*innen nach dem Modell von Raul Hilberg fünf Kategorien zu – auch mehreren zugleich.",
     status: "im Unterricht erprobt", bild: "assets/bilder/hilberg.jpg", link: GH + "T-ter-innen-Opfer-Zuschauer-innen.../",
     lernaktivitaeten: ["Karten zu Personen und Gruppen lesen",
@@ -195,7 +195,7 @@ var BEISPIELE = [
     vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true, lernaktivitaeten: true } },
 
   { id: "widerstandsmodelle", aufgenommen: "2026-10", titel: "Widerstandsmodelle im NS", fach: "Geschichte",
-    faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden lernen das Peukert-Modell und ein Agency-Modell kennen und leiten Kriterien ab, um Widerstand zu analysieren.",
     status: "im Unterricht erprobt", bild: "assets/bilder/widerstandsmodelle.jpg", link: GH + "Widerstandsmodelle-im-Vergleich/",
     lernaktivitaeten: ["zwei Modelle lesen und vergleichen",
@@ -208,7 +208,7 @@ var BEISPIELE = [
     vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true, lernaktivitaeten: true } },
 
   { id: "lerntheorien", aufgenommen: "2026-10", titel: "Lerntheorien für angehende Erzieher*innen", fach: "Sozialpädagogik",
-    faecher: ["Sozialpädagogik"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Ein Lernkurs zu Behaviorismus und Lernen am Modell mit Zuordnungsübungen und Fallaufgaben auf Prüfungsniveau.",
     status: "im Unterricht erprobt", bild: "assets/bilder/lerntheorien.jpg", link: null,
     lernaktivitaeten: ["Begriffe den richtigen Definitionen zuordnen und Rückmeldung erhalten",
@@ -221,7 +221,7 @@ var BEISPIELE = [
     vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true, lernaktivitaeten: true } },
 
   { id: "milieus-1919", aufgenommen: "2026-10", titel: "Soziale Milieus und ihre Wahlentscheidung", fach: "Geschichte · Gemeinschaftskunde",
-    faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Über eine Milieu-Pyramide erkunden die Lernenden die Gesellschaft von 1919: wer wie lebte, was forderte und wen wählte.",
     status: "im Unterricht erprobt", bild: "assets/bilder/milieus.jpg", link: GH + "Die-Gesellschaft-der-Weimarer-Republik-1919/",
     lernaktivitaeten: ["Milieus in der Pyramide anklicken und vergleichen",
@@ -233,7 +233,7 @@ var BEISPIELE = [
     vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true, lernaktivitaeten: true } },
 
   { id: "ns-kontinuitaeten", aufgenommen: "2026-10", titel: "NS-Kontinuitäten in der BRD", fach: "Geschichte",
-    faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden untersuchen, in welchen Bereichen der Bundesrepublik frühere NS-Täter weiterarbeiteten, warum das möglich war und was es für die junge Demokratie bedeutete.",
     status: "im Unterricht erprobt", bild: "assets/bilder/ns-kontinuitaeten.jpg", link: GH + "NS-Kontinuit-ten/",
     lernaktivitaeten: ["einen von neun Bereichen auswählen und untersuchen",
@@ -245,7 +245,7 @@ var BEISPIELE = [
     vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true, lernaktivitaeten: true } },
 
   { id: "shoa-vergleich", aufgenommen: "2026-10", titel: "Der Holocaust in Europa – Ländervergleich", fach: "Geschichte",
-    faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden vergleichen Dänemark mit einem anderen Land und formulieren eine zentrale historische Erkenntnis.",
     status: "im Unterricht erprobt", bild: "assets/bilder/shoa-vergleich.jpg", link: GH + "Shoa-im-Vergleich/",
     lernaktivitaeten: ["die Situation in Dänemark untersuchen",
@@ -261,7 +261,7 @@ var BEISPIELE = [
      aufgenommen werden sollten. Die Korrekturen sind erledigt und online. Status ist nicht bestätigt
      und bleibt deshalb »noch offen«. Didaktische Zuordnungen sind Vorschläge. ---------- */
   { id: "teacch", aufgenommen: "2026-10", titel: "TEACCH – Visualisierte Materialien", fach: "Sozialpädagogik · Inklusion",
-    faecher: ["Sozialpädagogik"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Angehende Erzieher*innen probieren Hilfen nach dem TEACCH-Ansatz selbst aus: Tagesplan, Schritt-für-Schritt-Streifen, Gefühlskarte, Aufräumplan und Time-Timer.",
     status: "noch offen", bild: "assets/bilder/teacch.jpg", link: GH + "sozpaed-psychologie/teacch-materialien/",
     lernaktivitaeten: ["einen visuellen Tagesplan Schritt für Schritt abhaken",
@@ -275,7 +275,7 @@ var BEISPIELE = [
     vorschlag: { anliegen: true, phasen: true, umfang: true, rollen: true, mehrwerte: true, lernaktivitaeten: true } },
 
   { id: "widerstandsformen", aufgenommen: "2026-10", titel: "Widerstandsformen im NS", fach: "Geschichte",
-    faecher: ["Geschichte"], bereich: "beide", kiEinsatz: "entwicklung-anwendung",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden vergleichen Formen des Widerstands – von der Swing-Jugend bis zum 20. Juli 1944 – und filtern nach Art des Widerstands.",
     status: "noch offen", bild: "assets/bilder/widerstandsformen.jpg", link: GH + "Widerstandsformen-im-NS-Vergleich-/",
     lernaktivitaeten: ["Profile von Personen und Gruppen lesen",

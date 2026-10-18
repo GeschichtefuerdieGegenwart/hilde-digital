@@ -1,7 +1,7 @@
 /* Hilde Digital – Gestaltungssystem »Überdruck«
    Haltung: ein Arbeitsbogen in zwei Druckfarben. Honig steht für »KI-Training«,
    Petrol für »Digitaler Unterricht«. Wo beide übereinander drucken, entsteht das Überdruck-Grün –
-   es steht nur für Lernangebote, die mit KI entwickelt wurden.
+   es ist keine Kategorie und erscheint nur, wo sich Platten wirklich überlagern.
    Flach und ruhig: Ecken 4 px, keine weichen Schatten, Tiefe nur als versetzte Farbplatte.
    Quelle aller Entscheidungen: DESIGN.md. Bewusst hell (Beamer zuerst). */
 
@@ -180,7 +180,6 @@ details.mehr[open] summary{margin-bottom:var(--a2)}
 .gruppe h3{font-size:1.15rem;color:var(--tief);margin-bottom:.6rem}
 .anliegen{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
 .anliegen li{padding:.4rem 0}
-.marke-beide{display:inline-block;font-size:var(--gr-klein);font-weight:700;padding:.05rem .5rem;border-radius:var(--rund);background:var(--ueberdruck);color:var(--flaeche);margin-left:.4rem;vertical-align:.1em}
 
 /* Hinweisbox */
 .box{background:var(--flaeche);border-radius:var(--rund);padding:var(--a3)}
@@ -198,7 +197,6 @@ details.mehr[open] summary{margin-bottom:var(--a2)}
 .karte{--platte-farbe:var(--karton);background:var(--flaeche);border-radius:var(--rund);display:flex;flex-direction:column;transition:transform var(--dauer-schnell) var(--ease-out)}
 .karte:has(.kz.ki){--platte-farbe:var(--ki-platte)}
 .karte:has(.kz.lernen){--platte-farbe:var(--lernen)}
-.karte:has(.kz.beide){--platte-farbe:var(--ueberdruck)}
 @media (hover:hover) and (pointer:fine){.karte:hover{transform:translate(-2px,-2px);box-shadow:var(--platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
 .karte .bild{aspect-ratio:16/10;background:var(--karton);overflow:hidden;margin:.6rem .6rem 0;border-radius:2px}
 .karte .bild img{width:100%;height:100%;object-fit:cover;object-position:top}
@@ -212,7 +210,6 @@ details.mehr[open] summary{margin-bottom:var(--a2)}
 .kz{font-size:var(--gr-klein);font-weight:700;padding:.05rem .55rem;border-radius:var(--rund)}
 .kz.ki{background:var(--ki-platte);color:var(--text);outline:2px solid var(--ki);outline-offset:-2px}
 .kz.lernen{background:var(--lernen);color:var(--flaeche)}
-.kz.beide{background:var(--ueberdruck);color:var(--flaeche)}
 .kz.ueberarbeitung{background:var(--ueberarbeitung-zart);color:var(--ueberarbeitung)}
 .karte.kompakt .bild{display:none}
 .mehrknopf{display:flex;justify-content:center;margin-top:var(--a4)}
@@ -250,7 +247,14 @@ main:focus{outline:none}
 .schritte li>button{cursor:pointer;color:var(--text);border-color:var(--stahl);background:var(--flaeche)}
 .schritte li>button:hover{border-color:var(--farbe,var(--text))}
 .schritte .nr{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--linie);font-weight:700;background:var(--flaeche)}
-.schritte li.erledigt .nr{background:var(--zart,var(--lernen-zart));border-color:var(--farbe,var(--lernen));color:var(--tief,var(--lernen-tief))}
+/* Stanzloch-Fortschritt (Muster J): Erledigte Schritte sind gelocht wie ein Blatt für den Ordner. */
+.schritte .nr{position:relative}
+.schritte li.erledigt .nr{background:var(--farbe,var(--lernen));border-color:var(--farbe,var(--lernen));color:transparent}
+.schritte li.erledigt .nr::after{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--grund);box-shadow:inset 0 0 0 2px var(--tief,var(--lernen-tief))} /* taste-skill-ignore: Rand des Stanzlochs, kein Schatten */
+.schritte li.erledigt:has(+ li.aktuell) .nr{animation:stanzen 160ms var(--ease-out)}
+.schritte li.erledigt:has(+ li.aktuell) .nr::after{animation:loch 160ms var(--ease-out)}
+@keyframes stanzen{40%{transform:translateY(2px) scale(.9)}to{transform:none}}
+@keyframes loch{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
 .schritte li.aktuell>.ohne{color:var(--text);font-weight:700;background:var(--zart,var(--lernen-zart))}
 .schritte li.aktuell .nr{background:var(--farbe,var(--lernen));border-color:var(--farbe,var(--lernen));color:var(--flaeche)}
 @media (max-width:600px){.schritte li:not(.aktuell)>*>span:not(.nr){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.schritte li>button,.schritte li>.ohne{padding-right:.4rem}.schritte li.aktuell>.ohne{padding-right:.8rem}}
@@ -734,7 +738,6 @@ main p,main li,main dd{max-width:60ch}
 }
 .einblick:has(.kz.ki),.einblick-klein:has(.kz.ki){--platte-bild:var(--ki-platte)}
 .einblick:has(.kz.lernen),.einblick-klein:has(.kz.lernen){--platte-bild:var(--lernen)}
-.einblick:has(.kz.beide),.einblick-klein:has(.kz.beide){--platte-bild:var(--ueberdruck)}
 .galerie-zwischen{margin:clamp(4rem,9vw,8rem) 0 var(--a4);font-weight:700}
 .einblicke-klein{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a6) var(--a4)}
 .einblick-klein{display:grid;gap:var(--a2);align-content:start}
@@ -1058,3 +1061,102 @@ main .werkzeug,main .faecher-karte{max-width:none}
 @media (max-width:1023px){.faecher-start{grid-column:1/-1}}
 .faecher-karte:not(.ist-mitte) .faecher-name{visibility:hidden} /* Titel steht unter dem Fächer; verblasste Namen wären schlecht lesbar */
 .geraet.sofort,.geraet.sofort *{transition:none!important}
+
+
+/* ---------- Ab Version 4.4: Bewegungsmuster F, G, I, J, K, L, M, N, O (Motion-Musterbuch 2) ----------
+   Alle Muster starten erst durch die Nutzerin oder einmal beim Erscheinen. Bei »weniger Bewegung« bleibt nur Überblenden.
+   Steuerung in assets/motion.js. */
+
+/* F · Passer: Die Überschrift eines Bereichs rastet einmal je Sitzung ein. Zwei Farbplatten, dann Druckschwarz. */
+.passer{position:relative;overflow-x:clip}
+.passer::before,.passer::after{content:attr(data-passer);position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:0}
+.passer::before{color:var(--ki-platte)}
+.passer::after{color:var(--lernen)}
+.passer.passer-lauf{animation:passer-text 620ms linear both}
+.passer.passer-lauf::before{animation:passer-ki 620ms var(--ease-out) both}
+.passer.passer-lauf::after{animation:passer-le 620ms var(--ease-out) both}
+@keyframes passer-text{0%,62%{color:transparent}to{color:var(--text)}}
+@keyframes passer-ki{0%{opacity:1;transform:translate(-14px,-8px)}70%{opacity:1;transform:none}to{opacity:0;transform:none}}
+@keyframes passer-le{0%{opacity:1;transform:translate(14px,8px)}70%{opacity:1;transform:none}to{opacity:0;transform:none}}
+
+/* G · Farbauszug: In Ruhe zweifarbig gedruckt; beim Überfahren rutschen die Platten auseinander, dann erscheint das echte Bild. */
+.auszug{position:relative;display:block;overflow:hidden;background:#fff}
+.auszug .platte{position:absolute;inset:0;isolation:isolate;mix-blend-mode:multiply;transition:transform var(--dauer-mittel) var(--ease-out)}
+.auszug .platte img{width:100%;height:100%;object-fit:cover;object-position:top;filter:grayscale(1) contrast(1.15);mix-blend-mode:screen}
+.auszug .p-ki{background:var(--ki-platte)}
+.auszug .p-le{background:var(--lernen)}
+.auszug .auszug-original{position:relative;opacity:0;transition:opacity var(--dauer-mittel) var(--ease-out) 100ms}
+@media (hover:hover) and (pointer:fine){
+  :is(.collage,.einblick-detail,.ek-detail):hover .p-ki{transform:translate(-6px,-4px)}
+  :is(.collage,.einblick-detail,.ek-detail):hover .p-le{transform:translate(6px,4px)}
+  :is(.collage,.einblick-detail,.ek-detail):hover .auszug-original{opacity:1}
+}
+:is(.collage,.einblick-detail,.ek-detail):focus-visible .auszug-original{opacity:1}
+
+/* I · Stundenlinie: Der Umfang wird zur Form. Punkt, Abschnitt, ganze Stunde – ohne Wertung. */
+.stundenlinie{position:relative;height:44px;max-width:32rem;margin-top:var(--a3)}
+.stundenlinie .sl-spur{position:absolute;left:0;right:0;top:21px;height:2px;background:var(--stahl)}
+.stundenlinie .sl-spur i{position:absolute;top:-8px;width:2px;height:18px;background:var(--stahl)}
+.stundenlinie .sl-spur i:nth-child(1){left:0}.stundenlinie .sl-spur i:nth-child(2){left:25%}.stundenlinie .sl-spur i:nth-child(3){left:50%}.stundenlinie .sl-spur i:nth-child(4){left:75%}.stundenlinie .sl-spur i:nth-child(5){left:calc(100% - 2px)}
+.stundenlinie .sl-balken{position:absolute;top:12px;height:20px;border-radius:10px;background:var(--lernen);left:calc(37% - 10px);width:20px;opacity:0;transition:left 260ms var(--ease-out),width 260ms var(--ease-out),opacity var(--dauer-schnell) var(--ease-out)}
+.stundenlinie[data-umfang="punktuell"] .sl-balken{opacity:1}
+.stundenlinie[data-umfang="phasenweise"] .sl-balken{opacity:1;left:25%;width:25%}
+.stundenlinie[data-umfang="durchgaengig"] .sl-balken{opacity:1;left:0;width:100%}
+.stundenlinie.klein{height:32px;max-width:14rem;margin-top:.4rem}
+.stundenlinie.klein .sl-spur{top:15px}.stundenlinie.klein .sl-balken{top:8px;height:16px}
+.stundenlinie-namen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:32rem;font-size:var(--gr-klein);color:var(--leise)}
+
+/* K · Schnellhefter: gemerkte Beispiele, nur in diesem Browser. */
+.hefter-link{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;padding:0 .5rem;font-weight:700;text-decoration:none;border-radius:var(--rund)}
+.hefter-link svg{width:30px;height:24px;flex:none}
+.hefter-link.andruck svg{animation:andruck 220ms var(--ease-out)}
+@keyframes andruck{40%{transform:scale(.88) translateY(2px)}to{transform:none}}
+.hefter-zahl{display:inline-block;min-width:1ch;font-variant-numeric:tabular-nums;transition:transform 110ms var(--ease-out),opacity 110ms var(--ease-out)}
+.hefter-zahl.rollt{transform:translateY(-40%);opacity:0}
+.merken[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--flaeche)}
+.flieger{position:fixed;z-index:30;pointer-events:none;object-fit:cover;object-position:top;border-radius:2px;transition:transform 440ms cubic-bezier(.77,0,.175,1),opacity 440ms cubic-bezier(.77,0,.175,1)}
+.hefter-bereich{display:grid;gap:var(--a2)}
+.hefter-bereich h2{font-size:var(--gr-h2)}
+.hefter-leer{max-width:56ch}
+
+/* L · Durchschlag beim Kopieren */
+.durchschlag-geist{position:fixed;z-index:30;pointer-events:none;border-radius:var(--rund);background:var(--ki-zart);border:2px solid var(--ki);opacity:.95;transition:transform 420ms var(--ease-out),opacity 420ms var(--ease-out)}
+
+/* M · Zählwerk: Ziffern rollen einmal auf ihren Wert. Die Zahl steht immer auch als Text da. */
+.zaehlwerk{display:inline-flex;height:1em;overflow:hidden;vertical-align:top}
+.zaehlwerk .ziffer{display:block;height:1em;overflow:hidden}
+.zaehlwerk .band{display:flex;flex-direction:column;transition:transform 720ms var(--ease-out)}
+.zaehlwerk .band span{display:block;height:1em;line-height:1}
+
+/* N · Leporello: Die Schritte eines Labors entfalten sich einmal, wenn sie ins Bild kommen. */
+.leporello-an .einblick-schritte{perspective:900px}
+.leporello-an .einblick-schritte li{transform-origin:50% 0;transition:transform 380ms var(--ease-out),opacity 380ms var(--ease-out);transition-delay:calc(var(--i,0) * 70ms)}
+@media (min-width:700px){
+  .leporello-an .gefaltet .einblick-schritte{overflow:hidden}
+  .leporello-an .gefaltet .einblick-schritte li{transform:rotateX(-70deg);opacity:.25}
+  .leporello-an .gefaltet .einblick-schritte li:nth-child(even){transform:rotateX(70deg)}
+}
+
+/* O · Plattenwechsel: Über der Galerie schiebt sich die Platte des gewählten Bereichs ins Bild. */
+.plattenband{position:relative;height:clamp(14px,2vw,22px);overflow:hidden;margin-bottom:var(--a3);background:var(--flaeche)}
+.plattenband .pl{position:absolute;inset:0;mix-blend-mode:multiply;transition:transform 320ms cubic-bezier(.77,0,.175,1)}
+.plattenband .pl-ki{background:var(--ki-platte);transform:translateX(-52%)}
+.plattenband .pl-le{background:var(--lernen);transform:translateX(52%)}
+.plattenband[data-wahl="ki"] .pl-ki{transform:none}
+.plattenband[data-wahl="ki"] .pl-le{transform:translateX(100%)}
+.plattenband[data-wahl="lernen"] .pl-ki{transform:translateX(-100%)}
+.plattenband[data-wahl="lernen"] .pl-le{transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .passer.passer-lauf,.passer.passer-lauf::before,.passer.passer-lauf::after{animation:none!important}
+  .auszug .platte{transform:none!important}
+  .schritte .nr,.schritte .nr::after,.hefter-link svg{animation:none!important}
+  .leporello-an .gefaltet .einblick-schritte li{transform:none!important;opacity:1!important}
+  .plattenband .pl{transition:none!important}
+}
+@media print{ /* taste-skill-ignore: Druckfassung */ .leporello-an .einblick-schritte li{transform:none!important;opacity:1!important}.hefter-link,.plattenband{display:none}}
+.fuss-knoepfe{display:flex;flex-wrap:wrap;gap:.5rem}
+.einblick-aktionen .merken{min-height:44px}
+.collage-karte .auszug{width:100%;height:100%}
+.auszug .auszug-original{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.kopf .hefter-link{margin-left:.25rem}

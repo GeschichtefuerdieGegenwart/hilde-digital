@@ -108,6 +108,7 @@
         '<p class="hilfe">' + esc(s.hilfe) + '</p><div class="optionen">' +
         sichtbar.map(function (o) { return option(s.id, o, gewaehlt); }).join("") + "</div>" +
         (mehr > 0 ? '<button type="button" class="knopf still weitere" id="weitere">Weitere anzeigen (' + mehr + ")</button>" : "") +
+        (s.id === "umfang" ? H.stundenlinie(gewaehlt) + '<p class="stundenlinie-namen" aria-hidden="true"><span>Einstieg</span><span>Erarbeitung</span><span>Sicherung</span><span>Abschluss</span></p>' : "") +
         "</fieldset>";
       if (s.id === "umfang") html += rahmenHtml();
     }
@@ -163,7 +164,7 @@
         "<div><dt>Lernzweck</dt><dd>" + (k.lernzweck && k.lernzweck !== "offen" ? esc(T.name("anliegen", k.lernzweck)) : offen) +
           (z.phase && z.phase !== "offen" ? ' <span class="leise">in der Phase ' + esc(T.name("phasen", z.phase)) + "</span>" : "") + "</dd></div>" +
         "<div><dt>Art des Mehrwerts</dt><dd>" + (k.mehrwert && k.mehrwert !== "unklar" ? esc(T.name("mehrwerte", k.mehrwert)) + ' <span class="leise">(' + mehrwertArt + ")</span>" : offen) + "</dd></div>" +
-        "<div><dt>Empfohlener Umfang</dt><dd><b>" + esc(T.name("umfang", k.umfang)) + "</b> – " + esc(k.umfangGrund) + "</dd></div>" +
+        "<div><dt>Empfohlener Umfang</dt><dd><b>" + esc(T.name("umfang", k.umfang)) + "</b> – " + esc(k.umfangGrund) + H.stundenlinie(k.umfang, true) + "</dd></div>" +
         "<div><dt>Rolle der Lehrkraft</dt><dd>" + rollen + "</dd></div>" +
         "<div><dt>Nötige Anpassung</dt><dd>" + esc(k.anpassung) + "</dd></div>" +
         "<div><dt>Wichtigster Stolperstein</dt><dd>" + esc(k.stolperstein) + "</dd></div>" +
@@ -187,6 +188,7 @@
       if (t.value) z.rahmen[id] = t.value; else delete z.rahmen[id];
     } else {
       z[t.name] = t.value;
+      if (t.name === "umfang") { var sl = form.querySelector(".stundenlinie"); if (sl) sl.setAttribute("data-umfang", t.value); }
     }
     hinweis.hidden = true;
     sichern();

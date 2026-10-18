@@ -409,7 +409,7 @@ def main():
         pruefe(gross.count() >= 3, f"Galerie: mindestens drei große Einblicke ({gross.count()})")
         for name in ["Psycho-Labor", "Gene ohne Reisepass"]:
             pruefe(name.lower() in pg2.inner_text("#einblicke").lower(), f"Galerie: Einblick »{name}«")
-        alts = pg2.eval_on_selector_all(".galerie-buehne img", "els => els.map(e => e.alt)")
+        alts = pg2.eval_on_selector_all(".galerie-buehne img", "els => els.filter(e => !e.closest('[aria-hidden=\"true\"]')).map(e => e.alt)")  # Farbauszug: Druckplatten sind schmückende Kopien
         pruefe(all(len(a) > 20 for a in alts) and len(set(alts)) == len(alts), "Galerie: jedes Bild hat einen eigenen Alternativtext")
         pruefe(pg2.eval_on_selector_all(".galerie-buehne img", "els => els.every(e => e.getAttribute('width') && e.getAttribute('height'))"), "Galerie: Bildmaße gesetzt (kein Springen beim Laden)")
         pg2.click(".einblick-detail >> nth=0")
@@ -508,6 +508,29 @@ def main():
             q.goto(url(s_))
             pruefe(q.evaluate("document.documentElement.scrollWidth") <= 640, f"Zoom 200 % {s_}: kein waagerechtes Scrollen")
         q.context.close()
+
+        # 5b2. Version 4.4: Schnellhefter, Stundenlinie, Plattenwechsel, keine Kategorie »mit KI entwickelt«
+        m = neue_seite(b)
+        m.goto(url("galerie.html"))
+        m.evaluate("localStorage.removeItem('hilde.merkliste')"); m.reload()
+        pruefe(m.locator('#bereich [data-bereich]').count() == 3, "Galerie: nur noch die Bereiche alle, KI-Training, Digitaler Unterricht")
+        m.click('#bereich [data-bereich="ki"]')
+        pruefe(m.get_attribute("#plattenband", "data-wahl") == "ki", "Galerie: Plattenwechsel folgt dem Bereichsfilter")
+        m.click('[data-bereich="alle"]')
+        knopf = m.locator(".einblick [data-merken]").first
+        knopf.click(); m.wait_for_timeout(600)
+        pruefe(knopf.get_attribute("aria-pressed") == "true", "Schnellhefter: »Merken« schaltet um")
+        pruefe(m.inner_text(".kopf .hefter-zahl").strip() == "1", "Schnellhefter: Zahl im Kopf steigt")
+        pruefe(m.locator("#hefter-liste .mini").count() == 1, "Schnellhefter: gemerktes Beispiel erscheint in der Galerie")
+        m.goto(url("index.html"))
+        pruefe(m.inner_text(".kopf .hefter-zahl").strip() == "1", "Schnellhefter: bleibt beim Seitenwechsel erhalten")
+        m.goto(url("ueber.html")); m.evaluate("localStorage.clear()"); m.goto(url("galerie.html"))
+        pruefe(m.inner_text(".kopf .hefter-zahl").strip() == "0", "Schnellhefter: nach dem Löschen leer")
+        m.goto(url("tablets.html"))
+        m.evaluate("localStorage.removeItem('hilde.planungsweg'); localStorage.removeItem('hilde.tabletsweg')")
+        texte = m.inner_text("main")
+        pruefe("mit KI entwickelt" not in texte.lower(), "Keine Kategorie »mit KI entwickelt« mehr")
+        pruefe(not m.konsole, f"Version 4.4: keine Konsolenfehler {m.konsole}")
 
         # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
         for breite in (375, 768, 1280, 1440):
