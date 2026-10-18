@@ -1,4 +1,4 @@
-/* Hilde-Digital – Texte für den Weg »KI für meine Arbeit«.
+/* Hilde Digital – Texte für den Weg »KI-Training«.
    Hier stehen die Ziele, Ergebnisformen, Bausteine der Anfrage und die Prüflisten.
    Keine Namen von KI-Anbietern: Welche Systeme an der Schule zugelassen sind, ist noch offen.
    Die Anfrage selbst baut assets/ki-anfrage.js aus diesen Texten zusammen. */
@@ -121,7 +121,7 @@ var KI_TEXTE = {
     ausprobieren: "Was hat mir geholfen – und was nicht?"
   },
 
-  /* Schritt 5: passendes Beispiel aus dem Showroom je Ziel. */
+  /* Schritt 5: passendes Beispiel aus der Galerie je Ziel. */
   beispielZuZiel: {
     planen: "bef1", erstellen: "anleitertreffen", vereinfachen: "bef1", rueckmeldung: "bef1",
     ideen: "anleitertreffen", strukturieren: "anleitertreffen", kommunikation: "beschlussapp", ausprobieren: "anleitertreffen"

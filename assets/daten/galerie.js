@@ -1,0 +1,140 @@
+/* Hilde Digital – Ansichten für die Galerie.
+
+   Jede Ansicht ist ein Bildschirmfoto aus der echten Anwendung, aufgenommen am 18.10.2026
+   aus den öffentlichen Repositories (lokal geöffnet, ohne Änderung am Inhalt).
+   Herkunft je Bild: docs/galerie-quellen.md. Nichts ist nachgebaut oder nachbearbeitet.
+
+   Felder je Ansicht:
+     bild – Datei in assets/galerie/ (1040 × 650 Pixel, WebP)
+     alt  – was das Bild zeigt, mit der Funktion (nicht nur der Projektname)
+     text – kurze Bildunterschrift: was man an dieser Stelle tun kann
+   Die erste Ansicht ist das Hauptbild. Ohne Eintrag zeigt die Galerie das bisherige Vorschaubild. */
+
+var GALERIE = {
+  "psycho-ds2": [
+    { bild: "assets/galerie/psycho-ds2-1.webp", text: "Der Versuch: Zwei Bilder wechseln sich ab. Wer die Änderung entdeckt, tippt auf »Gefunden!«.",
+      alt: "Psycho-Labor im Versuch: ein gezeichnetes Bücherregal mit Uhr, Vase und Pflanze, darüber die laufende Zeit und unten der Knopf »Gefunden!«" },
+    { bild: "assets/galerie/psycho-ds2-2.webp", text: "Vorher legen sich die Lernenden fest: Wie lange werden sie brauchen?",
+      alt: "Vorhersage im Psycho-Labor: ein Schieberegler für die geschätzten Sekunden und drei Antworten, eine davon ausgewählt" },
+    { bild: "assets/galerie/psycho-ds2-3.webp", text: "Danach vergleichen sie ihr Ergebnis mit der Originalstudie.",
+      alt: "Abschnitt »Was die Forschung sagt« mit den Ergebnissen des Flacker-Tests von Rensink, O’Regan und Clark und einem Kasten zur Tür-Studie" },
+    { bild: "assets/galerie/psycho-ds2-4.webp", text: "Das Psycho-Labor bietet mehrere Selbstversuche zur Wahrnehmung.",
+      alt: "Übersicht des Psycho-Labors mit den Versuchen DS 2 bis DS 4 und weiteren angekündigten Versuchen" }
+  ],
+  "ns-ideologie": [
+    { bild: "assets/galerie/ns-ideologie-1.webp", text: "Die Lernenden lesen ein Zeugnis und wählen, welches Denkmuster dahintersteckt.",
+      alt: "GGK-Labor, Schritt »Sechs Zeugnisse«: Auftrag und fünf Denkmuster zur Auswahl, eines ist markiert" },
+    { bild: "assets/galerie/ns-ideologie-2.webp", text: "Sie ordnen Maßnahmen von 1933 den Ideen zu und begründen mit einem Detail.",
+      alt: "Schritt »Von der Idee zur Tat«: ein Beispiel zum Boykott 1933 und darunter das Berufsbeamtengesetz mit fünf Säulen zum Antippen und einem Begründungsfeld" },
+    { bild: "assets/galerie/ns-ideologie-3.webp", text: "In der Expertengruppe wählt jede Gruppe eine Quelle und untersucht sie genau.",
+      alt: "Schritt »Expertengruppe«: Liste mit fünf Quellen, jeweils mit der zugehörigen Säule der NS-Ideologie" },
+    { bild: "assets/galerie/ns-ideologie-4.webp", text: "Die Rückmeldung zeigt, welche Zuordnung den Kern trifft.",
+      alt: "Schritt »Deine Zuordnungen – mit Rückmeldung«: Legende »trifft den Kern, auch begründbar, kaum haltbar« und zwei Aufträge mit Schreibfeldern" }
+  ],
+  "gene": [
+    { bild: "assets/galerie/gene-1.webp", text: "Ein Regler verschiebt die Staatsgrenze. Die genetische Vielfalt ändert sich an der Linie kaum.",
+      alt: "Farbverlauf von Blau über Gelb nach Orange mit verschiebbarer Staatsgrenze, darunter »Unterschied: kaum sichtbar« und drei Kennzahlen aus einer Studie" },
+    { bild: "assets/galerie/gene-2.webp", text: "Zum Einstieg prüfen die Lernenden fünf Aussagen. Jede Karte lässt sich umdrehen.",
+      alt: "Fünf Aussagekarten zum Umdrehen; eine Karte ist umgedreht und erklärt, warum die Aussage falsch ist" },
+    { bild: "assets/galerie/gene-3.webp", text: "Das Balkan-Beispiel zeigt: Die Linien kommen in allen drei Gruppen vor.",
+      alt: "Balkendiagramm zu Haplogruppen bei Kroaten, Bosniaken und Serben, daneben die Erklärung »Was zeigt die Grafik?«" },
+    { bild: "assets/galerie/gene-4.webp", text: "Die meisten Unterschiede liegen innerhalb einer Bevölkerung.",
+      alt: "Punktgrafik mit 100 Punkten: etwa 85 für Unterschiede innerhalb einer Bevölkerung, etwa 15 für Unterschiede zwischen Bevölkerungen" }
+  ],
+  "nation": [
+    { bild: "assets/galerie/nation-1.webp", text: "Die Lernenden ordnen ihren Länderfall zwischen Willens-, Kultur- und Abstammungsnation ein.",
+      alt: "Nation im Kopf, Modul »Fall einordnen«: Lernweg links, rechts die Idealtypen Willensnation und Kulturnation" },
+    { bild: "assets/galerie/nation-2.webp", text: "Jede Person wählt einen von fünf Länderfällen und untersucht ihn gründlich.",
+      alt: "Modul »Länderfall wählen« mit Hinweis zu den historischen Fällen und dem Arbeitsauftrag" },
+    { bild: "assets/galerie/nation-3.webp", text: "Theorien werden mit Fachbegriffen und kurzen Textauszügen erschlossen.",
+      alt: "Modul »Anderson: Vorstellung« mit Erklärtext und Begriffskarten »begrenzt«, »souverän«, »Printkapitalismus«" }
+  ],
+  "beschlussapp": [
+    { bild: "assets/galerie/beschlussapp-1.webp", text: "Zu jedem Punkt stehen Entwurf, Klärungsbedarf und Optionen mit Vor- und Nachteilen.",
+      alt: "Beschlussapp, Punkt D1 »Name und Kürzel«: Entwurfsfassung, Klärungsbedarf und drei Optionen A, B, C mit Empfehlung" }
+  ],
+  "politik-check": [
+    { bild: "assets/galerie/politik-check-1.webp", text: "Zehn Fragen aus der Sicht von 1919. Hier: Welche Staatsform wünschst du dir?",
+      alt: "Politik-Check 1919, Frage 1 von 10 zur Staatsform mit drei Antwortmöglichkeiten" }
+  ],
+  "landkarte": [
+    { bild: "assets/galerie/landkarte-1.webp", text: "Vier Bereiche führen durch die Werkzeuge der Geschichtsanalyse.",
+      alt: "Kognitive Landkarte mit vier farbigen Bereichen: Wozu Geschichte, Was ist Geschichte, Auswirkungen der Geschichte, Prüfen wie Profis" }
+  ],
+  "inhaltsverzeichnis": [
+    { bild: "assets/galerie/inhaltsverzeichnis-1.webp", text: "Eine Kurslandkarte mit Zeitleiste, Suche und Filtern nach Kompetenzen.",
+      alt: "Inhaltsverzeichnis GGK mit Zeitleiste von 1914 bis heute, Suchfeld, Filtern und den ersten Modulen der Jahrgangsstufe 1" }
+  ],
+  "planspiel": [
+    { bild: "assets/galerie/planspiel-1.webp", text: "Die Gruppe stellt mit Reglern ihre eigenen Steuersätze ein.",
+      alt: "Planspiel Umverteilung, Reiter »Stellschrauben«: Regler für den Spitzensteuersatz mit dem heutigen Wert zum Vergleich" },
+    { bild: "assets/galerie/planspiel-2.webp", text: "Danach sehen alle, was ihr Konzept bewirken würde.",
+      alt: "Reiter »Auswirkungen«: Vermögensverteilung heute als Balken, darunter die Prognose für das eigene Konzept" }
+  ],
+  "one-step": [
+    { bild: "assets/galerie/one-step-1.webp", text: "Jede Person lost eine Lebenslage aus und behält sie bis zur Übung im Raum.",
+      alt: "One Step Forward: ausgeloste Rolle »Erzieherin« mit Angaben zu Einkommen, Bildung der Eltern, Herkunft und Wohnsituation" }
+  ],
+  "hilberg": [
+    { bild: "assets/galerie/hilberg-1.webp", text: "Jede Karte lässt sich einer oder mehreren Kategorien zuordnen.",
+      alt: "Karten historischer Akteur*innen mit Ankreuzfeldern Täter*in, Opfer, Zuschauer*in, Helfer*in und Nutznießer*in; bei zwei Karten ist Täter*in angekreuzt" }
+  ],
+  "widerstandsmodelle": [
+    { bild: "assets/galerie/widerstandsmodelle-1.webp", text: "Das Peukert-Modell in vier Stufen, jeweils mit Kriterien und Beispielen.",
+      alt: "Widerstandsmodelle: die vier Stufen Nonkonformität, Verweigerung, Protest und Widerstand mit Kriterien und Beispielen" },
+    { bild: "assets/galerie/widerstandsmodelle-2.webp", text: "Ein zweites Modell setzt beim Handlungsspielraum an.",
+      alt: "Reiter »Agency-Modell« mit Hinweis, Leitfrage und zentraler These zum Handlungsspielraum" }
+  ],
+  "milieus-1919": [
+    { bild: "assets/galerie/milieus-1919-1.webp", text: "Ein Klick auf die Pyramide öffnet Lebenslage, Interessen und Ängste des Milieus.",
+      alt: "Milieu-Pyramide 1919, die Industriearbeiterklasse ist ausgewählt; rechts ihre Lebenssituation, Interessen und Ängste" },
+    { bild: "assets/galerie/milieus-1919-2.webp", text: "Die Pyramide zeigt die Anteile der Milieus an der Gesellschaft von 1919.",
+      alt: "Milieu-Pyramide von der Oberschicht bis zur Industriearbeiterklasse, darunter Frauen als erstmals wahlberechtigte Gruppe" }
+  ],
+  "ns-kontinuitaeten": [
+    { bild: "assets/galerie/ns-kontinuitaeten-1.webp", text: "Neun Bereiche der Bundesrepublik stehen zur Auswahl.",
+      alt: "NS-Kontinuitäten: Kacheln Bundesnachrichtendienst, Justiz, Medizin, Bundeswehr, Auswärtiges Amt, Polizei und weitere" }
+  ],
+  "shoa-vergleich": [
+    { bild: "assets/galerie/shoa-vergleich-1.webp", text: "Für Dänemark sind Opferrate, Rettung und die Faktoren dahinter aufbereitet.",
+      alt: "Ländervergleich: Kennzahlen zu Opferrate und Rettung in Dänemark und aufklappbare strukturelle und politische Faktoren" }
+  ],
+  "widerstandsformen": [
+    { bild: "assets/galerie/widerstandsformen-1.webp", text: "Ein Filter zeigt nur eine Form des Widerstands, hier den Jugendwiderstand.",
+      alt: "Widerstandsformen im NS mit aktivem Filter »Jugendwiderstand« und dem Profil der Swing-Jugend" }
+  ],
+  "teacch": [
+    { bild: "assets/galerie/teacch-1.webp", text: "Der Tagesplan ist zum Antippen: Erledigte Schritte werden markiert.",
+      alt: "TEACCH-Materialien: interaktiver Tagesplan für die Morgenroutine in der Kita mit Bildsymbolen, ein Schritt ist markiert" },
+    { bild: "assets/galerie/teacch-2.webp", text: "Weitere Materialien wie die Gefühlskarte lassen sich direkt ausprobieren.",
+      alt: "Abschnitt »Emotionskarte – Wie geht es mir?« mit Erklärung und Beginn der interaktiven Gefühls-Ampel" }
+  ],
+  "dialoge": [
+    { bild: "assets/galerie/dialoge-1.webp", text: "Ein Generator verteilt die drei Rollen für das Rollenspiel.",
+      alt: "Sexualpädagogische Dialoge: Rollenzuweisung mit Erklärung und dem Rollen-Generator zum Antippen" }
+  ],
+  "lf3": [
+    { bild: "assets/galerie/lf3-1.webp", text: "Jedes Thema beginnt mit einer Definition. Fortschritt und Punkte stehen oben.",
+      alt: "LF3 Übungsplattform, Thema Familie: Zähler für Übungen, Punkte und Erfolgsquote, darunter die Definition Familie" }
+  ],
+  "fachbegriffe": [
+    { bild: "assets/galerie/fachbegriffe-1.webp", text: "Die Lernenden erklären einen Begriff zuerst selbst. Danach vergleichen sie mit der Musterlösung.",
+      alt: "Fachbegriffe-Trainer, Modus »Begriff erklären«: der Begriff Bewahrpädagogik mit Eingabefeld und den Knöpfen Auswerten und Musterlösung zeigen" }
+  ],
+  "bef1": [
+    { bild: "assets/galerie/bef1-1.webp", text: "Die Landkarte zeigt alle zwölf Doppelstunden auf einen Blick.",
+      alt: "Landkarte der Einheit »Spiel«: Leitfrage, vier Abschnitte A bis D und die ersten Doppelstunden" },
+    { bild: "assets/galerie/bef1-2.webp", text: "Zu drei Zeitpunkten schätzen sich die Lernenden selbst ein.",
+      alt: "Abschnitt »Das kann ich am Ende der Einheit« mit Ankreuzspalten für drei Zeitpunkte" }
+  ]
+};
+
+/* Die erste Ansicht wird auch zum Vorschaubild der Karte. Titel, Text, Status und Links bleiben unverändert. */
+if (typeof BEISPIELE !== "undefined") {
+  BEISPIELE.forEach(function (b) {
+    var a = GALERIE[b.id];
+    if (a && a.length) { b.ansichten = a; b.bild = a[0].bild; } else { b.ansichten = []; }
+  });
+}
+
+if (typeof module !== "undefined") module.exports = GALERIE;

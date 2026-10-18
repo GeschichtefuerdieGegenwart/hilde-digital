@@ -1,4 +1,4 @@
-/* Hilde-Digital – Showroom: Freitextsuche, kombinierbare Filter, entfernbare Chips, kontrollierte Lockerung.
+/* Hilde Digital – Galerie: Freitextsuche, kombinierbare Filter, entfernbare Chips, kontrollierte Lockerung.
    Ohne Angaben erscheinen zuerst die ausgewählten Beispiele, der Rest über »Mehr Beispiele«.
    Gespeichert werden nur die Filter (keine Suchtexte).
    Braucht: TAXONOMIEN, BEISPIELE, HILDE, SUCHE. */

@@ -4,26 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>KI für meine Arbeit – Hilde-Digital</title>
+<meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+<title>KI-Training – Hilde Digital</title>
 <link rel="stylesheet" href="assets/hilde.css">
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 <header class="kopf"><div class="huelle">
-  <a class="marke" href="index.html" aria-label="Hilde-Digital, Start">Hilde<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span>Digital</a>
-  <a class="menue-link" href="#menue">Menü</a>
-  <nav class="nav" aria-label="Bereiche"><a href="index.html">Start</a><a href="ki.html" aria-current="page">KI für meine Arbeit</a><a href="tablets.html">Unterricht mit Tablets</a><a href="showroom.html">Showroom</a><a href="ueber.html">Über das Modul</a></nav>
+  <a class="marke" href="index.html"><span class="marke-name">Hilde Digital</span><span class="strich" aria-hidden="true"><i></i><i></i><i></i></span><span class="sr-only">, zum Start</span></a>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html" aria-current="page">KI-Training</a><a href="unterricht.html">Digitaler Unterricht</a><a href="galerie.html">Galerie</a></nav>
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-ki">
 <section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Wobei kann KI dich bei deiner Arbeit unterstützen?</h1>
-  <p class="marker">Bereich: KI für meine Arbeit</p>
-  <p class="leise kopfnotiz">Das Ergebnis kann ganz analog eingesetzt werden – zum Beispiel als Arbeitsblatt auf Papier.</p>
+  <h1>KI-Training</h1>
+  <p class="marker">Bereich: KI-Training</p>
+  <p class="detail-kurz">KI ausprobieren, gute Anfragen bauen und Ergebnisse prüfen. Du brauchst keine Vorkenntnisse.</p>
 </div></section>
 
-<section class="abschnitt weg-abschnitt"><div class="huelle">
-  <nav aria-label="Schritte des Wegs"><ol class="schritte" id="fortschritt"></ol></nav>
+<section class="abschnitt ki-auftakt" style="padding-top:var(--a4)" aria-labelledby="t-aufbau"><div class="huelle ki-raster">
+  <div class="ki-aufbau">
+    <h2 id="t-aufbau">So ist eine gute Anfrage aufgebaut</h2>
+    <p>Eine gute Anfrage an ein KI-System hat fünf Teile. Der Prompt-Generator unten baut sie mit dir zusammen.</p>
+    <ol class="bausteine-liste" id="bausteine-liste"></ol>
+    <noscript><p class="klein">Ziel · Kontext · Anforderungen · Format · Prüfkriterien</p></noscript>
+  </div>
+  <div class="ki-regeln">
+    <h2 class="klein-titel">Bevor du loslegst</h2>
+    <ul class="leitsaetze">
+      <li>Nutze ein an deiner Schule freigegebenes KI-System.</li>
+      <li>Gib keine Namen, Noten oder anderen personenbezogenen Daten ein.</li>
+      <li>KI kann Fakten und Quellen erfinden. Du prüfst, was du übernimmst.</li>
+      <li>Das Ergebnis darf ganz analog bleiben, zum Beispiel als Arbeitsblatt auf Papier.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-generator"><div class="huelle">
+  <h2 id="t-generator" class="weg-titel">Prompt-Generator</h2>
+  <p class="leise kopfnotiz">In fünf Schritten zu einer Anfrage, die du kopieren und anpassen kannst. Hilde Digital ist mit keiner KI verbunden.</p>
+  <nav aria-label="Schritte des Prompt-Generators"><ol class="schritte" id="fortschritt"></ol></nav>
   <form id="weg" class="weg" novalidate></form>
   <p id="ansage" class="sr-only" aria-live="polite"></p>
   <p id="hinweis" class="hinweis-fehler" role="alert" hidden></p>
@@ -32,22 +52,36 @@
     <button type="button" class="knopf" id="weiter">Weiter →</button>
   </div>
   <p class="leise klein speicherhinweis">Deine Auswahl bleibt nur in diesem Browser. Freitexte werden nicht gespeichert. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button></p>
-  <noscript><p class="box">Der Weg braucht JavaScript. Die Beispiele findest du auch im <a href="showroom.html">Showroom</a>.</p></noscript>
+  <noscript><p class="box">Der Prompt-Generator braucht JavaScript. Beispiele findest du auch in der <a href="galerie.html">Galerie</a>.</p></noscript>
+</div></section>
+
+<section class="abschnitt band-karton" aria-labelledby="t-bezug"><div class="huelle bezug-band">
+  <h2 id="t-bezug" class="klein-titel">KI-Training und Digitaler Unterricht</h2>
+  <p>KI kann Unterricht vorbereiten, der ganz analog bleibt. Mit KI können aber auch digitale Lernangebote entstehen. Sie tragen in der Galerie das Kennzeichen »mit KI entwickelt«.</p>
+  <p><a class="textlink" href="galerie.html#beide">Mit KI entwickelte Lernangebote <span aria-hidden="true">→</span></a> <a class="textlink" href="unterricht.html">Zum Digitalen Unterricht <span aria-hidden="true">→</span></a></p>
 </div></section>
 </div>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/daten/beispiele.js"></script>
+<script src="assets/daten/galerie.js"></script>
 <script src="assets/daten/texte.js"></script>
 <script src="assets/ki-anfrage.js"></script>
 <script src="assets/hilde.js"></script>
 <script src="assets/ki-weg.js"></script>
+<script>
+(function () {
+  var l = document.getElementById("bausteine-liste");
+  if (l && window.KI_TEXTE) l.innerHTML = KI_TEXTE.bausteine.map(function (b) {
+    return "<li><b>" + HILDE.esc(b.name) + "</b><span>" + HILDE.esc(b.warum) + "</span></li>";
+  }).join("");
+})();
+</script>
 
 </main>
 <footer class="fuss"><div class="huelle">
-  <nav class="fussnav" id="menue" aria-label="Menü"><p class="fussnav-titel">Menü</p><ul><li><a href="index.html">Start</a></li><li><a href="ki.html" aria-current="page">KI für meine Arbeit</a></li><li><a href="tablets.html">Unterricht mit Tablets</a></li><li><a href="showroom.html">Showroom</a></li><li><a href="ueber.html">Über das Modul</a></li></ul></nav>
-  <p class="fuss-marke" aria-hidden="true">Hilde<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span>Digital</p>
-  <p class="kennzeichnung">Hilde-Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
-  <span class="fusslinks"><a href="mehrwert.html" class="leise">Wie wir den Mehrwert prüfen</a> <a href="ueber.html" class="leise">Über das Modul</a> <a href="gestaltung.html" class="leise">Gestaltungssystem</a> <a href="ueber.html#t-daten" class="leise">Eingaben löschen</a></span>
+  <p class="fuss-marke" aria-hidden="true">Hilde Digital<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span></p>
+  <nav class="fusslinks" aria-label="Über Hilde Digital"><ul><li><a href="ueber.html">Über Hilde Digital</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
 </div></footer>
 </body>
 </html>

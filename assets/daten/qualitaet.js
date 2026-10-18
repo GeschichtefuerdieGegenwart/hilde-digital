@@ -1,13 +1,13 @@
-/* Hilde-Digital – Qualitätsmodell (Fassung 2) als Daten für den Selbstcheck »Eigenes Material prüfen«.
+/* Hilde Digital – Qualitätsmodell (Fassung 2) als Daten für den Digital-Check, Weg A »Selbst prüfen«.
 
-   Quelle: »Hilde-Digital – Qualitätsmodell 2: Mehrwert als Ergebnis« (17.10.2026), Abschnitte 5, 7, 9 und 11.
+   Quelle: »Hilde Digital – Qualitätsmodell 2: Mehrwert als Ergebnis« (17.10.2026), Abschnitte 5, 7, 9 und 11.
    Die Anker sind ein erster Entwurf und werden in der Erprobung überarbeitet.
    Die Oberfläche zeigt zuerst die alltagssprachliche Frage (frage) und den kurzen Namen (name).
    Fachbegriffe (fachname) stehen nur in aufklappbaren Vertiefungen.
 
    a: Anker für die pädagogische Qualität, Stufe 0 bis 4.
    b: Anker für den digitalen Beitrag, Stufe 1 bis 3 (0 heißt immer: Papier leistet dasselbe).
-   anliegen: verwandtes Anliegen aus taxonomien.js – damit findet der Bericht Beispiele im Showroom. */
+   anliegen: verwandtes Anliegen aus taxonomien.js – damit findet der Bericht Beispiele in der Galerie. */
 
 var QUALITAET = {
 

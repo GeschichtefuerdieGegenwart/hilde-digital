@@ -1,4 +1,4 @@
-/* Hilde-Digital – Regeln des Mehrwert-Checks und der Beispielsuche.
+/* Hilde Digital – Regeln der Entscheidungskarte (Unterricht planen), der Papierprobe und der Beispielsuche.
 
    Grundsätze
    - Regelbasiert und deterministisch: gleiche Antworten ergeben immer dieselbe Karte.
@@ -336,13 +336,13 @@
 
   /* 7. Papierprobe (Startseite) – die Kurzform des Prüfsteins »Geht es auf Papier genauso gut?«.
         Drei Ja/Nein-Fragen, jeweils mit »noch nicht sicher«. Ergebnis ist eine der vier Einstufungen
-        aus taxonomien.js – dieselben Namen wie auf der Entscheidungskarte. Der Tablet-Weg prüft genauer.
+        aus taxonomien.js – dieselben Namen wie auf der Entscheidungskarte. Der Planungsweg prüft genauer.
           neu:    Tun die Lernenden mit dem Tablet etwas, das auf Papier nicht oder nur mühsam ginge?
           ablage: Hilft das Tablet vor allem beim Verteilen, Einsammeln oder Ablegen?   (nur bei neu = nein)
           ziel:   Dient das dem, was die Lernenden lernen sollen?                        (nur bei neu = ja)
         Regeln (in dieser Reihenfolge):
           neu fehlt                        → noch offen (null)
-          neu = offen                      → analog   (wie »Mehrwert noch unklar« im Tablet-Weg)
+          neu = offen                      → analog   (wie »Mehrwert noch unklar« im Planungsweg)
           neu = nein, ablage = ja          → organisatorisch
           neu = nein, ablage = nein/offen  → analog
           neu = ja,   ziel = ja            → klar

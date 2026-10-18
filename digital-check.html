@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+<title>Digital-Check – Hilde Digital</title>
+<link rel="stylesheet" href="assets/hilde.css">
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<header class="kopf"><div class="huelle">
+  <a class="marke" href="index.html"><span class="marke-name">Hilde Digital</span><span class="strich" aria-hidden="true"><i></i><i></i><i></i></span><span class="sr-only">, zum Start</span></a>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html">KI-Training</a><a href="unterricht.html" aria-current="true">Digitaler Unterricht</a><a href="galerie.html">Galerie</a></nav>
+</div></header>
+<main id="inhalt" tabindex="-1">
+<div class="bereich-lernen">
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1>Digital-Check</h1>
+  <p class="marker">Bereich: Digitaler Unterricht</p>
+  <p class="detail-kurz">Was kann dein Material – und was trägt die digitale Form dazu bei? Wähle einen von zwei Wegen.</p>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-wege"><div class="huelle">
+  <h2 id="t-wege" class="sr-only">Zwei Wege</h2>
+  <div class="check-wege">
+    <a class="check-weg" href="selbstcheck.html">
+      <span class="check-weg-name">Weg A</span>
+      <h3>Selbst prüfen</h3>
+      <p>Du schätzt dein Material in sechs Schritten selbst ein. Am Ende steht ein Bericht, der mit den Stärken beginnt.</p>
+      <span class="weiter">Selbst prüfen <span aria-hidden="true">→</span></span>
+    </a>
+    <a class="check-weg" href="#pruefen-lassen">
+      <span class="check-weg-name">Weg B</span>
+      <h3>Material prüfen lassen</h3>
+      <p>Du fügst Aufgaben oder eine Beschreibung ein. Hilde Digital sucht darin nach Merkmalen guten Lernens und zeigt dir jede Fundstelle.</p>
+      <span class="weiter">Text einfügen <span aria-hidden="true">↓</span></span>
+    </a>
+  </div>
+  <p class="leise klein">Wie geprüft wird, steht auf der Seite <a href="mehrwert.html">So arbeitet der Digital-Check</a>.</p>
+</div></section>
+
+<section class="band band-flaeche" id="pruefen-lassen" aria-labelledby="t-lassen" tabindex="-1"><div class="huelle lassen">
+  <div class="lassen-kopf">
+    <h2 id="t-lassen">Material prüfen lassen</h2>
+    <p>Füge Arbeitsaufträge, ein Arbeitsblatt oder eine kurze Beschreibung deiner Stunde ein.</p>
+    <p class="datenhinweis">Keine Namen, Noten oder Schülerdaten einfügen. Der Text bleibt auf deinem Gerät. Er wird weder gespeichert noch gesendet.</p>
+    <details class="mehr">
+      <summary>Wie funktioniert das?</summary>
+      <p class="klein">Hilde Digital ist mit keiner KI verbunden. Die Seite durchsucht deinen Text nach Signalwörtern, zum Beispiel »begründe«, »vergleiche«, »zu zweit« oder »Lösung«. Jedes Signalwort gehört zu einem Bereich des Qualitätsmodells. Du siehst immer, an welcher Stelle etwas gefunden wurde.</p>
+    </details>
+  </div>
+  <form class="lassen-form" id="lassen" novalidate>
+    <div class="eingabe">
+      <label for="material-typ">Was für ein Material ist es?</label>
+      <select id="material-typ" name="typ"></select>
+    </div>
+    <div class="eingabe">
+      <label for="material-text">Dein Material als Text</label>
+      <textarea id="material-text" name="text" rows="12" aria-describedby="material-hilfe"></textarea>
+      <p class="leise klein" id="material-hilfe">Mindestens zwei, drei Sätze. Bilder und Gestaltung werden nicht erfasst.</p>
+    </div>
+    <p class="hinweis-fehler" id="lassen-fehler" role="alert" hidden></p>
+    <div class="lassen-aktionen">
+      <button type="submit" class="knopf" id="lassen-start">Text prüfen</button>
+      <button type="reset" class="knopf still" id="lassen-neu">Zurücksetzen</button>
+      <span class="lassen-status" id="lassen-status" aria-live="polite"></span>
+    </div>
+  </form>
+  <div class="lassen-ergebnis" id="lassen-ergebnis" tabindex="-1" hidden></div>
+  <noscript><p class="box">Die Textsuche braucht JavaScript. Ohne JavaScript nutzt du <a href="selbstcheck.html">Weg A: Selbst prüfen</a> – der Weg braucht es allerdings auch. Die Kriterien stehen auf der Seite <a href="mehrwert.html">So arbeitet der Digital-Check</a>.</p></noscript>
+</div></section>
+</div>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/daten/beispiele.js"></script>
+<script src="assets/daten/galerie.js"></script>
+<script src="assets/daten/qualitaet.js"></script>
+<script src="assets/material-regeln.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/digital-check.js"></script>
+
+</main>
+<footer class="fuss"><div class="huelle">
+  <p class="fuss-marke" aria-hidden="true">Hilde Digital<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span></p>
+  <nav class="fusslinks" aria-label="Über Hilde Digital"><ul><li><a href="ueber.html">Über Hilde Digital</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
+</div></footer>
+</body>
+</html>

@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Browser-Tests für Hilde-Digital (Python Playwright, Chromium).
+"""Browser-Tests für Hilde Digital (Python Playwright, Chromium).
 
 Aufruf:  python3 tests/e2e.py [Ordner für Bildschirmfotos]
 Barrierefreiheit: Liegt axe.min.js unter tests/vendor/ (oder in der Umgebungsvariable AXE_PFAD),
 wird jede Seite zusätzlich mit axe-core geprüft. Die Datei gehört nicht ins Repository.
 
-Geprüft: Kernweg Start → Tablet-Weg → Entscheidungskarte → Beispiel → Detail, nur per Tastatur,
-Zurück und Ändern, Speichern und Löschen, Lockerung, ohne Internet, Konsolenfehler, reduzierte Bewegung.
+Geprüft: Kernweg Start → Digitaler Unterricht → Planungsweg → Entscheidungskarte → Beispiel → Detail,
+nur per Tastatur, Zurück und Ändern, Speichern und Löschen, Lockerung, ohne Internet, Konsolenfehler,
+reduzierte Bewegung, Digital-Check (Weg B), Galerie mit Bildansicht, Breiten 375 / 768 / 1280 / 1440.
 """
 import os
 import sys
@@ -14,7 +15,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "tablets.html", "showroom.html", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -57,11 +58,17 @@ def main():
         pg = neue_seite(b)
         pg.goto(url("index.html"))
         pruefe(pg.locator(".wahlflaeche").count() == 2, "Start: zwei gleichwertige Einstiege")
-        hoehe = pg.locator('a[href="showroom.html"].textlink').bounding_box()
-        pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: alles Wesentliche ohne Scrollen bei 1280 × 720")
-        pg.click('a.wahlflaeche[href="tablets.html"]')
+        nav = pg.locator(".kopf .nav a").all_inner_texts()
+        pruefe(nav == ["KI-Training", "Digitaler Unterricht", "Galerie"], f"Kopf: drei Bereiche {nav}")
+        pruefe(pg.get_attribute(".kopf .marke", "href") == "index.html", "Kopf: Wortmarke führt zum Start")
+        pruefe("Über Hilde Digital" in pg.inner_text(".fuss") and "Über" not in " ".join(nav), "Über Hilde Digital steht im Fuß, nicht in der Navigation")
+        hoehe = pg.locator(".galerie-zugang").bounding_box()
+        pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
+        pg.click('a.wahlflaeche[href="unterricht.html"]')
+        pruefe(pg.locator(".werkzeug").count() == 4 and "Digital-Check" in pg.inner_text(".werkzeug.haupt"), "Digitaler Unterricht: vier Werkzeuge, Digital-Check zuerst")
+        pg.click('.werkzeug a[href="tablets.html"]')
         pg.click("#weiter")
-        pruefe(pg.is_visible("#hinweis"), "Tablet-Weg: Hinweis, wenn nichts gewählt ist")
+        pruefe(pg.is_visible("#hinweis"), "Planungsweg: Hinweis, wenn nichts gewählt ist")
         antworte(pg, "phase", "einstieg")
         pruefe(pg.locator('input[name="anliegen"]').count() < 14, "Lernabsicht: zuerst nur häufige Anliegen")
         pg.click("#weitere")
@@ -140,7 +147,7 @@ def main():
         pruefe("freigegebenes KI-System" in pg.inner_text("#weg"), "KI-Weg: Hinweis auf freigegebenes KI-System")
         pg.click("#weiter")
         pruefe(pg.locator(".haken").count() == 7, "KI-Weg: Prüfliste mit Ziel-Punkt")
-        pruefe(pg.locator(".naechste-liste > li").count() <= 3 and pg.locator(".naechste .mini").count() == 1, "KI-Weg: höchstens drei nächste Schritte, einer zum Showroom")
+        pruefe(pg.locator(".naechste-liste > li").count() <= 3 and pg.locator(".naechste .mini").count() == 1, "KI-Weg: höchstens drei nächste Schritte, einer zum Galerie")
         pg.check(".haken input >> nth=0")
         pg.reload()
         pruefe(pg.is_checked(".haken input >> nth=0"), "KI-Weg: Auswahl bleibt nach Neuladen")
@@ -151,30 +158,30 @@ def main():
         pruefe(not pg.konsole, f"KI-Weg: keine Konsolenfehler {pg.konsole}")
         pg.context.close()
 
-        # 2c. Showroom: Filter, Chips, Lockerung, Zurücksetzen (Szenarien 4, 7, 8, 9)
+        # 2c. Galerie: Filter, Chips, Lockerung, Zurücksetzen (Szenarien 4, 7, 8, 9)
         pg = neue_seite(b)
-        pg.goto(url("showroom.html"))
+        pg.goto(url("galerie.html"))
         pg.select_option("#f-phase", "sicherung")
         pg.select_option("#f-anliegen", "ueben")
         zeile = pg.inner_text("#ergebniszeile")
-        pruefe(zeile.startswith(("1 Beispiel", "2 Beispiele", "3 Beispiele", "4 Beispiele")) and "Sicherung · Üben & anwenden" in zeile, f"Showroom: Ergebniszeile »{zeile}«")
-        pruefe(pg.locator("#aktive [data-entfernen]").count() == 2, "Showroom: aktive Filter als Chips")
+        pruefe(zeile.startswith(("1 Beispiel", "2 Beispiele", "3 Beispiele", "4 Beispiele")) and "Sicherung · Üben & anwenden" in zeile, f"Galerie: Ergebniszeile »{zeile}«")
+        pruefe(pg.locator("#aktive [data-entfernen]").count() == 2, "Galerie: aktive Filter als Chips")
         pg.click('#aktive [data-entfernen="phase"]')
-        pruefe(pg.locator("#aktive [data-entfernen]").count() == 1, "Showroom: Chip entfernt Filter")
+        pruefe(pg.locator("#aktive [data-entfernen]").count() == 1, "Galerie: Chip entfernt Filter")
         pg.click("summary >> text=Weitere Filter")
         pg.select_option("#f-fach", "Psychologie")
         pg.select_option("#f-anliegen", "leistung")
-        pruefe(pg.is_visible("#lockerung") and pg.locator(".karte").count() > 0, "Showroom: ohne exakten Treffer nächstpassende Ideen mit Hinweis")
+        pruefe(pg.is_visible("#lockerung") and pg.locator(".karte").count() > 0, "Galerie: ohne exakten Treffer nächstpassende Ideen mit Hinweis")
         pg.fill("#suche", "Raumfahrt")
-        pruefe("noch kein Beispiel" in pg.inner_text("#lockerung"), "Showroom: Suchwort ohne Treffer wird benannt")
+        pruefe("noch kein Beispiel" in pg.inner_text("#lockerung"), "Galerie: Suchwort ohne Treffer wird benannt")
         pg.click("#lockerung [data-zuruecksetzen]")
-        pruefe(pg.locator(".karte").count() >= 6 and pg.locator("#aktive li").count() == 0, "Showroom: Alle Filter zurücksetzen")
+        pruefe(pg.locator(".karte").count() >= 6 and pg.locator("#aktive li").count() == 0, "Galerie: Alle Filter zurücksetzen")
         pg.fill("#suche", "Kfz")
-        pruefe(pg.locator(".karte").count() >= 1 and "Konzeptbeispiel – noch nicht erprobt" in pg.inner_text("#karten"), "Showroom: Kfz findet ein klar gekennzeichnetes Konzeptbeispiel")
+        pruefe(pg.locator(".karte").count() >= 1 and "Konzeptbeispiel – noch nicht erprobt" in pg.inner_text("#karten"), "Galerie: Kfz findet ein klar gekennzeichnetes Konzeptbeispiel")
         pg.click("#karten .karte a.knopf")
         pg.wait_for_selector("#detail-titel")
         pruefe(pg.locator(".konzept-hinweis").count() == 1 and pg.locator('a[target="_blank"]').count() == 0, "Konzeptbeispiel: kein Link, deutlicher Hinweis")
-        pruefe(not pg.konsole, f"Showroom: keine Konsolenfehler {pg.konsole}")
+        pruefe(not pg.konsole, f"Galerie: keine Konsolenfehler {pg.konsole}")
         pg.context.close()
 
         # 2d. Selbsteinschätzung
@@ -232,7 +239,7 @@ def main():
         pg.goto(url("beispiel.html#quest"))
         h2 = pg.locator(".detail-haupt h2").all_inner_texts()
         pruefe("Was tut die Lehrkraft?" in h2 and "Wie umfangreich ist der digitale Einsatz?" in h2, f"Detail: Fragen zu Lehrkraft und Umfang beantwortet {h2}")
-        pg.goto(url("showroom.html"))
+        pg.goto(url("galerie.html"))
         pg.click("#mehr")
         pg.click('[data-ansicht="buehne"]')
         pruefe(pg.is_visible("#buehne-steuerung") and pg.is_disabled("#buehne-zurueck"), "Bühne: sichtbare Steuerung, »Vorherige« am Anfang gesperrt")
@@ -252,30 +259,31 @@ def main():
         pg.click('[data-ansicht="raster"]')
         pruefe(not pg.evaluate("document.getElementById('karten').classList.contains('buehne')"), "Bühne: Raster jederzeit wieder wählbar")
         pg.click("#loeschen")
-        pruefe(pg.evaluate("Object.keys(localStorage).filter(k => k.startsWith('hilde.')).length") == 0, "Showroom: Eingaben löschen entfernt alles")
+        pruefe(pg.evaluate("Object.keys(localStorage).filter(k => k.startsWith('hilde.')).length") == 0, "Galerie: Eingaben löschen entfernt alles")
         q = neue_seite(b, viewport={"width": 820, "height": 1180})
-        q.goto(url("showroom.html"))
+        q.goto(url("galerie.html"))
         pruefe(not q.is_visible("#ansicht"), "Bühne: auf dem Tablet hochkant nur das Raster")
         q.context.close()
         pruefe(not pg.konsole, f"Version 2.1: keine Konsolenfehler {pg.konsole}")
 
-        # 4. Ohne Internet, reduzierte Bewegung, Showroom und Detail (Szenarien 8, 11, 12)
+        # 4. Ohne Internet, reduzierte Bewegung, Galerie und Detail (Szenarien 8, 11, 12)
         pg = neue_seite(b, reduced_motion="reduce")
         for s in SEITEN:
             pg.goto(url(s))
             pg.wait_for_load_state("load")
         pg.goto(url("index.html"))
-        dauer = pg.evaluate("getComputedStyle(document.querySelector('.wahlflaeche')).transitionDuration")
-        pruefe(dauer in ("0s", "0s, 0s"), f"Reduzierte Bewegung: Übergänge abgeschaltet ({dauer})")
+        stil = pg.evaluate("(() => { const s = getComputedStyle(document.querySelector('.wahlflaeche')); return [s.transitionProperty, s.transitionDuration, getComputedStyle(document.querySelector('.knopf, .weiter')).transitionProperty]; })()")
+        pruefe("transform" not in stil[0] and "transform" not in stil[2] and all(float(d.rstrip("s")) <= .15 for d in stil[1].split(", ")), f"Reduzierte Bewegung: keine Bewegung, nur kurzes Überblenden {stil}")
         pruefe(not pg.extern, f"Ohne Internet: keine externen Anfragen {pg.extern[:3]}")
-        pg.goto(url("showroom.html"))
-        pruefe(pg.locator(".karte").count() >= 6, "Showroom: Karten erscheinen ohne Angaben")
+        pg.goto(url("galerie.html"))
+        pruefe(pg.locator(".karte").count() >= 6, "Galerie: Karten erscheinen ohne Angaben")
+        pg.evaluate("window.scrollTo(0, document.body.scrollHeight)")  # verzögert geladene Bilder anstoßen
         try:  # Bilder laden verzögert (loading="lazy"); kurz warten statt zufällig scheitern
             pg.wait_for_function("[...document.images].every(i => i.complete)", timeout=5000)
         except Exception:
             pass
         bilder_ok = pg.evaluate("[...document.images].every(i => i.complete && i.naturalWidth > 0)")
-        pruefe(bilder_ok, "Showroom: Bildschirmfotos laden ohne Internet")
+        pruefe(bilder_ok, "Galerie: Bildschirmfotos laden ohne Internet")
         pg.goto(url("beispiel.html#psycho-ds2"))
         pruefe(pg.get_attribute(".aktion a.knopf", "target") == "_blank", "Detail: externe Anwendung öffnet in neuem Tab und ist gekennzeichnet")
         pruefe("noch offen" in pg.inner_text(".qualitaet"), "Detail: Qualitätscheck steht als »noch offen«, ohne Bewertung")
@@ -284,7 +292,8 @@ def main():
         pg.goto(url("index.html"))
         zahlen = pg.locator("#kennzahlen li b").all_inner_texts()
         pruefe(len(zahlen) == 4 and all(z.isdigit() for z in zahlen), f"Start: Kennzahlen aus den Daten {zahlen}")
-        pruefe(1 <= pg.locator("#neu-liste .mini").count() <= 3, "Start: höchstens drei neue Beispiele")
+        teaser = pg.locator("#teaser-bilder img")
+        pruefe(teaser.count() == 3 and all(a and len(a) > 20 for a in [teaser.nth(i).get_attribute("alt") for i in range(3)]), "Start: drei echte Ansichten aus der Galerie mit eigenem Alternativtext")
         pg.goto(url("mehrwert.html"))
         pruefe(pg.locator(".pruefkette .glied").count() == 3, "Mehrwert: drei Fragen in der Prüfkette")
         # Selbstcheck: ganzer Weg bis zum Bericht
@@ -312,6 +321,74 @@ def main():
         pruefe("gibt es hier nicht" in pg.inner_text("#detail-titel"), "Detail: unbekannte Adresse ohne Sackgasse")
         pruefe(not pg.konsole, f"Keine Konsolenfehler auf den Seiten {pg.konsole}")
 
+
+        # 4b. Version 4: Digital-Check Weg B, Galerie, Bildansicht, alte Adresse
+        pg2 = neue_seite(b)
+        pg2.goto(url("digital-check.html"))
+        pruefe(pg2.locator(".check-weg").count() == 2, "Digital-Check: zwei Wege")
+        pg2.click("#lassen-start")
+        pruefe(pg2.is_visible("#lassen-fehler") and pg2.is_hidden("#lassen-ergebnis"), "Weg B: leerer Text ergibt eine Fehlermeldung, kein Ergebnis")
+        pg2.fill("#material-text", "Lies den Text.")
+        pg2.click("#lassen-start")
+        pruefe("mindestens" in pg2.inner_text("#lassen-fehler").lower() or "kurz" in pg2.inner_text("#lassen-fehler").lower(), "Weg B: zu kurzer Text wird benannt")
+        pg2.fill("#material-text", "Arbeitet zu zweit. Vergleicht die beiden Quellen und begründet, welche glaubwürdiger ist. "
+                 "Prüft eure Lösung anschließend mit dem Lösungsblatt. Wer Hilfe braucht, nimmt die Tippkarte. "
+                 "Am Ende stellt jede Gruppe ihr Ergebnis kurz vor.")
+        pg2.click("#lassen-start")
+        pg2.wait_for_selector("#lassen-ergebnis:not([hidden])")
+        erg = pg2.inner_text("#lassen-ergebnis")
+        teile = ["Besondere Stärke", "Abgedeckte Bereiche", "Beobachtungen am Material", "Mögliche Weiterentwicklung", "Grenzen der Einschätzung"]
+        pruefe(all(t in erg for t in teile) and [erg.index(t) for t in teile] == sorted(erg.index(t) for t in teile), "Weg B: Ergebnis in fünf Teilen und richtiger Reihenfolge")
+        pruefe("%" not in erg and "Note" not in erg.replace("keine Note", ""), "Weg B: keine Prozente, keine Noten")
+        pruefe(pg2.locator("q.fundstelle").count() >= 2, "Weg B: Beobachtungen zeigen ihre Fundstellen")
+        pruefe(pg2.inner_text("#lassen-status").startswith("Fertig") and not pg2.evaluate("document.getElementById('lassen-status').classList.contains('sucht')"), "Weg B: Ladezustand endet mit einer Fertig-Meldung")
+        pruefe("Vergleicht" not in (pg2.evaluate("JSON.stringify(localStorage)") or ""), "Weg B: Text wird nicht gespeichert")
+        pg2.click("#anfrage-zeigen")
+        pruefe(pg2.is_visible("#anfrage-block") and "freigegebenes KI-System" in pg2.inner_text("#anfrage-block"), "Weg B: Anfrage für ein freigegebenes KI-System, ohne Verbindung")
+        pg2.click("#nochmal")
+        pruefe(pg2.input_value("#material-text") == "" and pg2.is_hidden("#lassen-ergebnis"), "Weg B: »Anderen Text prüfen« setzt zurück")
+        pruefe(not pg2.extern, f"Weg B: keine Anfrage ins Netz {pg2.extern[:3]}")
+
+        pg2.goto(url("galerie.html"))
+        gross = pg2.locator(".einblick")
+        pruefe(gross.count() >= 3, f"Galerie: mindestens drei große Einblicke ({gross.count()})")
+        for name in ["Psycho-Labor", "Gene ohne Reisepass"]:
+            pruefe(name.lower() in pg2.inner_text("#einblicke").lower(), f"Galerie: Einblick »{name}«")
+        alts = pg2.eval_on_selector_all(".galerie-buehne img", "els => els.map(e => e.alt)")
+        pruefe(all(len(a) > 20 for a in alts) and len(set(alts)) == len(alts), "Galerie: jedes Bild hat einen eigenen Alternativtext")
+        pruefe(pg2.eval_on_selector_all(".galerie-buehne img", "els => els.every(e => e.getAttribute('width') && e.getAttribute('height'))"), "Galerie: Bildmaße gesetzt (kein Springen beim Laden)")
+        pg2.click(".einblick-detail >> nth=0")
+        pg2.wait_for_selector("dialog.lichtbild[open]")
+        pruefe("Ansicht 2 von" in pg2.inner_text(".lb-stand"), "Bildansicht: öffnet die angeklickte Ansicht")
+        pg2.keyboard.press("ArrowRight")
+        pruefe("Ansicht 3 von" in pg2.inner_text(".lb-stand"), "Bildansicht: Pfeiltaste blättert")
+        pg2.keyboard.press("Escape")
+        pg2.wait_for_selector("dialog.lichtbild", state="hidden")
+        pruefe(pg2.evaluate("document.activeElement.classList.contains('einblick-detail')"), "Bildansicht: Escape schließt, Fokus kehrt zum Bild zurück")
+        pg2.focus(".einblick-haupt >> nth=0"); pg2.keyboard.press("Enter")
+        pg2.wait_for_selector("dialog.lichtbild[open]")
+        pruefe(pg2.evaluate("document.activeElement.dataset.lb") == "zu", "Bildansicht: per Tastatur geöffnet, Fokus auf »Schließen«")
+        pg2.click('[data-lb="zu"]')
+        pg2.wait_for_selector("dialog.lichtbild", state="hidden")
+        pg2.goto(url("beispiel.html#ns-ideologie"))
+        pruefe(pg2.locator(".detail-ansichten [data-ansicht]").count() == 4, "Detail: vier Ansichten aus der Anwendung")
+        pg2.goto(url("showroom.html"))
+        pg2.wait_for_url("**/galerie.html*")
+        pruefe(pg2.url.endswith("galerie.html"), "Alte Adresse showroom.html führt zur Galerie")
+        pruefe(not pg2.konsole, f"Version 4: keine Konsolenfehler {pg2.konsole}")
+        pg2.context.close()
+
+        # 4c. Bildansicht auf dem Telefon (Berührung)
+        t = neue_seite(b, viewport={"width": 375, "height": 812}, has_touch=True, is_mobile=True)
+        t.goto(url("galerie.html"))
+        t.tap(".einblick-haupt >> nth=0")
+        t.wait_for_selector("dialog.lichtbild[open]")
+        t.tap('[data-lb="vor"]')
+        pruefe("Ansicht 2 von" in t.inner_text(".lb-stand"), "Bildansicht: auf dem Telefon mit dem Finger blätterbar")
+        t.tap('[data-lb="zu"]')
+        t.wait_for_selector("dialog.lichtbild", state="hidden")
+        t.context.close()
+
         # 5. axe-core
         if AXE.exists():
             quelle = AXE.read_text(encoding="utf-8")
@@ -330,16 +407,26 @@ def main():
 
         # 5b. Zoom 200 %: entspricht 640 × 360 Pixeln
         q = neue_seite(b, viewport={"width": 640, "height": 360})
-        for s_ in ["index.html", "ki.html", "tablets.html", "passt.html", "showroom.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "selbstcheck.html", "ueber.html"]:
+        for s_ in ["index.html", "ki.html", "unterricht.html", "digital-check.html", "tablets.html", "passt.html", "galerie.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "selbstcheck.html", "ueber.html"]:
             q.goto(url(s_))
             pruefe(q.evaluate("document.documentElement.scrollWidth") <= 640, f"Zoom 200 % {s_}: kein waagerechtes Scrollen")
         q.context.close()
 
+        # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
+        for breite in (375, 768, 1280, 1440):
+            q = neue_seite(b, viewport={"width": breite, "height": 900})
+            for s_ in ["index.html", "ki.html", "unterricht.html", "digital-check.html", "galerie.html", "beispiel.html#psycho-ds2", "ueber.html", "gestaltung.html"]:
+                q.goto(url(s_))
+                ok = q.evaluate("document.documentElement.scrollWidth") <= breite
+                sichtbar = all(q.locator(".kopf .nav a").nth(i).is_visible() for i in range(3))
+                pruefe(ok and sichtbar, f"{breite} px {s_}: kein waagerechtes Scrollen, drei Bereiche sichtbar")
+            q.context.close()
+
         # 6. Bildschirmfotos in drei Breiten
         if fotos:
-            for name, vp in [("beamer", {"width": 1280, "height": 720}), ("ipad", {"width": 820, "height": 1180}), ("schmal", {"width": 390, "height": 844})]:
+            for name, vp in [("beamer", {"width": 1280, "height": 720}), ("ipad", {"width": 820, "height": 1180}), ("schmal", {"width": 375, "height": 812}), ("breit", {"width": 1440, "height": 900})]:
                 q = neue_seite(b, viewport=vp)
-                for s in ["index.html", "tablets.html", "showroom.html", "beispiel.html#ns-ideologie", "mehrwert.html"]:
+                for s in ["index.html", "ki.html", "unterricht.html", "digital-check.html", "galerie.html", "beispiel.html#ns-ideologie", "mehrwert.html"]:
                     q.goto(url(s))
                     q.screenshot(path=fotos / f"{name}-{s.split('.')[0]}{'-' + s.split('#')[1] if '#' in s else ''}.png", full_page=name != "beamer")
                     breite = q.evaluate("document.documentElement.scrollWidth")

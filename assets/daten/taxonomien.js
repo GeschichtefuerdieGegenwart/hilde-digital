@@ -1,6 +1,6 @@
-/* Hilde-Digital – gemeinsame Sprache für alle Seiten.
+/* Hilde Digital – gemeinsame Sprache für alle Seiten.
    Phasen, Anliegen, Umfang, Rollen und Mehrwert-Arten werden überall gleich verwendet:
-   im Tablet-Weg, im Showroom, auf den Detailseiten und in den Regeln (assets/regeln.js).
+   im Planungsweg, in der Galerie, auf den Detailseiten und in den Regeln (assets/regeln.js).
    Ein Eintrag hier ändert die Auswahl überall. Schlüssel (id) nie umbenennen, nur Texte. */
 
 var TAXONOMIEN = {
@@ -15,7 +15,7 @@ var TAXONOMIEN = {
     { id: "offen", name: "Noch offen" }
   ],
 
-  /* Didaktische Anliegen. haeufig = steht im Tablet-Weg zuerst. bereich "ki" = nur KI für meine Arbeit. */
+  /* Didaktische Anliegen. haeufig = steht im Planungsweg zuerst. bereich "ki" = nur KI-Training. */
   anliegen: [
     { id: "interesse", name: "Interesse & Motivation", haeufig: true },
     { id: "vorwissen", name: "Vorwissen aktivieren" },
@@ -99,8 +99,8 @@ var TAXONOMIEN = {
            "für die Präsentation vorbereitet", "noch offen"],
 
   bereiche: [
-    { id: "ki", name: "KI für meine Arbeit" },
-    { id: "lernen", name: "Unterricht mit Tablets" },
+    { id: "ki", name: "KI-Training" },
+    { id: "lernen", name: "Digitaler Unterricht" },
     { id: "beide", name: "mit KI entwickelt" }
   ],
 

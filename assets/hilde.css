@@ -1,6 +1,6 @@
-/* Hilde-Digital – Gestaltungssystem »Überdruck«
-   Haltung: ein Arbeitsbogen in zwei Druckfarben. Honig steht für »KI für meine Arbeit«,
-   Petrol für »Unterricht mit Tablets«. Wo beide übereinander drucken, entsteht das Überdruck-Grün –
+/* Hilde Digital – Gestaltungssystem »Überdruck«
+   Haltung: ein Arbeitsbogen in zwei Druckfarben. Honig steht für »KI-Training«,
+   Petrol für »Digitaler Unterricht«. Wo beide übereinander drucken, entsteht das Überdruck-Grün –
    es steht nur für Lernangebote, die mit KI entwickelt wurden.
    Flach und ruhig: Ecken 4 px, keine weichen Schatten, Tiefe nur als versetzte Farbplatte.
    Quelle aller Entscheidungen: DESIGN.md. Bewusst hell (Beamer zuerst). */
@@ -53,8 +53,16 @@
   --platte-farbe:var(--karton);
   --platte:6px 6px 0 0 var(--platte-farbe);
   --breite:76rem;
-  /* Bewegung (Emil Kowalski): kurz und auslaufend (ease-out), nie langsam beginnend */
-  --dauer-druck:100ms; --dauer-schnell:160ms; --dauer-mittel:220ms; --dauer-register:720ms;
+  /* Bewegung (Emil Kowalski): kurz und auslaufend (ease-out), nie langsam beginnend.
+     Mikro 100–180 ms, Übergänge 150–250 ms, nie über 300 ms. Nur transform und opacity bewegen. */
+  --dauer-druck:100ms;    /* Drücken */
+  --dauer-schnell:140ms;  /* Mikro: Überfahren, Farbe, Haken */
+  --dauer-mittel:200ms;   /* Übergang: Ergebnis, Bildansicht öffnen */
+  --dauer-aus:150ms;      /* Schließen ist kürzer als Öffnen */
+  --dauer-register:280ms; /* Startseite: die zwei Platten finden ihr Register (einmalig) */
+  --druck:.97;            /* Schaltflächen beim Drücken */
+  --druck-gross:.99;      /* große Flächen beim Drücken – weniger, weil sie größer sind */
+  --auftauchen:.95;       /* Bildansicht öffnet aus 95 % */
   --ease-out:cubic-bezier(.23,1,.32,1); --ease-register:cubic-bezier(.22,1,.36,1);
 }
 
@@ -102,6 +110,7 @@ p{margin:0}
 .abschnitt{padding-block:var(--a6)}
 .stapel{display:grid;gap:var(--a2)}
 .stapel-gross{display:grid;gap:var(--a4)}
+.stapel>*,.stapel-gross>*{min-width:0} /* lange Bilder und Zeilen sprengen das Raster nicht */
 
 /* Start */
 .start{padding-block:clamp(.75rem,3vh,3rem) var(--a4)}
@@ -119,9 +128,9 @@ p{margin:0}
 .wahlflaeche p{max-width:30ch}
 .wahlflaeche.ki{grid-column:1/8;grid-row:1/3;background:var(--ki-platte);color:var(--text);border:2px solid var(--ki);padding-right:calc(2/7*100% + 1.5rem)}
 .wahlflaeche.lernen{grid-column:6/13;grid-row:2/4;background:var(--lernen);color:var(--flaeche);padding-left:calc(2/7*100% + 1.5rem)}
-.wahlflaeche .weiter{display:inline-flex;align-items:center;gap:.6rem;margin-top:auto;min-height:48px;padding:.6rem 1.25rem;border-radius:var(--rund);font-weight:700;background:var(--aktion);color:var(--aktion-text);transition:box-shadow var(--dauer-schnell) var(--ease-out)}
+.wahlflaeche .weiter{display:inline-flex;align-items:center;gap:.6rem;margin-top:auto;min-height:48px;padding:.6rem 1.25rem;border-radius:var(--rund);font-weight:700;background:var(--aktion);color:var(--aktion-text)}
 .wahlflaeche.lernen .weiter{background:var(--flaeche);color:var(--text)}
-.wahlflaeche:active{transform:translate(2px,2px);transition-duration:var(--dauer-druck)}
+.wahlflaeche:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
 @media (hover:hover) and (pointer:fine){
   .wahlflaeche.ki:hover .weiter{box-shadow:4px 4px 0 0 var(--ki)} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
   .wahlflaeche.lernen:hover .weiter{box-shadow:4px 4px 0 0 var(--lernen-tief)} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
@@ -131,8 +140,8 @@ p{margin:0}
 .schnitt a{font-size:var(--gr-klein);font-weight:700;text-underline-offset:3px}
 .registrieren .wahlflaeche.ki{animation:reg-ki var(--dauer-register) var(--ease-register) both}
 .registrieren .wahlflaeche.lernen{animation:reg-lernen var(--dauer-register) var(--ease-register) both}
-@keyframes reg-ki{from{transform:translate(-14px,-10px)}}
-@keyframes reg-lernen{from{transform:translate(14px,10px)}}
+@keyframes reg-ki{from{transform:translate(-8px,-6px)}}
+@keyframes reg-lernen{from{transform:translate(8px,6px)}}
 @media (max-width:767px){
   .platten{grid-template-columns:1fr;grid-template-rows:auto auto auto}
   .wahlflaeche.ki,.wahlflaeche.lernen,.schnitt{grid-column:1;padding:1.5rem}
@@ -142,8 +151,8 @@ p{margin:0}
 /* Textlinks und Schaltflächen */
 .textlink{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.22em;min-height:44px}
 @media (hover:hover) and (pointer:fine){.textlink:hover{text-decoration-color:var(--stahl)}}
-.knopf{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.65rem 1.25rem;border-radius:var(--rund);border:2px solid var(--aktion);background:var(--aktion);color:var(--aktion-text);font:700 1.125rem/1.2 var(--schrift);text-decoration:none;cursor:pointer;touch-action:manipulation;transition:transform var(--dauer-schnell) var(--ease-out),box-shadow var(--dauer-schnell) var(--ease-out)}
-.knopf:active{transform:translate(2px,2px);transition-duration:var(--dauer-druck)}
+.knopf{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.65rem 1.25rem;border-radius:var(--rund);border:2px solid var(--aktion);background:var(--aktion);color:var(--aktion-text);font:700 1.125rem/1.2 var(--schrift);text-decoration:none;cursor:pointer;touch-action:manipulation;transition:transform var(--dauer-schnell) var(--ease-out)}
+.knopf:active{transform:scale(var(--druck));transition-duration:var(--dauer-druck)}
 @media (hover:hover) and (pointer:fine){.knopf:hover{box-shadow:4px 4px 0 0 var(--karton)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
 .knopf.still{background:transparent;color:var(--text);border:2px solid var(--stahl)}
 @media (hover:hover) and (pointer:fine){.knopf.still:hover{border-color:var(--text);box-shadow:none}}
@@ -186,7 +195,7 @@ details.mehr[open] summary{margin-bottom:var(--a2)}
 .chip[aria-pressed="true"]{background:var(--text);color:var(--flaeche);border-color:var(--text)}
 .chip[aria-pressed="true"]::before{content:"";display:inline-block;width:.4em;height:.75em;border:solid currentColor;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg);margin-right:.55em}
 .karten{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr));gap:var(--a3);margin-top:var(--a3)}
-.karte{--platte-farbe:var(--karton);background:var(--flaeche);border-radius:var(--rund);display:flex;flex-direction:column;transition:transform var(--dauer-schnell) var(--ease-out),box-shadow var(--dauer-schnell) var(--ease-out)}
+.karte{--platte-farbe:var(--karton);background:var(--flaeche);border-radius:var(--rund);display:flex;flex-direction:column;transition:transform var(--dauer-schnell) var(--ease-out)}
 .karte:has(.kz.ki){--platte-farbe:var(--ki-platte)}
 .karte:has(.kz.lernen){--platte-farbe:var(--lernen)}
 .karte:has(.kz.beide){--platte-farbe:var(--ueberdruck)}
@@ -226,7 +235,7 @@ details.mehr[open] summary{margin-bottom:var(--a2)}
 main:focus{outline:none}
 .fusslinks{display:inline-flex;gap:var(--a2);flex-wrap:wrap}
 .linkknopf{font:inherit;color:inherit;background:none;border:0;padding:.5rem .25rem;min-height:44px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
-.linkknopf:hover{color:var(--text)}
+@media (hover:hover) and (pointer:fine){.linkknopf:hover{color:var(--text)}}
 .knopf.still[aria-disabled="true"]{border-color:transparent}
 .bereichskopf.kompakt{padding-block:var(--a2) 0}
 
@@ -293,7 +302,7 @@ main:focus{outline:none}
 .minis-titel{margin-top:var(--a4);font-size:1.15rem}
 .lockerung{margin-top:var(--a1);padding:.6rem 1rem;background:var(--zart,var(--grund));border-radius:var(--rund);max-width:62ch}
 .minis{list-style:none;margin:var(--a2) 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:var(--a2)}
-.mini a{display:grid;grid-template-rows:auto 1fr;height:100%;text-decoration:none;background:var(--grund);border-radius:var(--rund-klein);overflow:hidden;transition:transform var(--dauer-schnell) var(--ease-out),box-shadow var(--dauer-schnell) var(--ease-out)}
+.mini a{display:grid;grid-template-rows:auto 1fr;height:100%;text-decoration:none;background:var(--grund);border-radius:var(--rund-klein);overflow:hidden;transition:transform var(--dauer-schnell) var(--ease-out)}
 @media (hover:hover) and (pointer:fine){.mini a:hover{transform:translate(-2px,-2px);box-shadow:var(--platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
 .mini img,.mini .ohne-bild{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;background:var(--linie)}
 .mini .ohne-bild{display:block;background:radial-gradient(circle,var(--stahl) 1.5px,transparent 1.8px) 0 0/12px 12px var(--karton)} /* taste-skill-ignore: Rasterpunkte = ehrlicher Platzhalter (DESIGN.md) */
@@ -514,7 +523,7 @@ main p,main li,main dd{max-width:60ch}
 .bericht .label-vorschau{margin-top:var(--a2)}
 @media print{ /* taste-skill-ignore: Druckfassung */ .bericht details{display:none}.bericht .profil-beispiel{border:1px solid #bbb}}
 
-@media (prefers-reduced-motion:reduce){*{transition:none!important}.registrieren .wahlflaeche{animation:none!important}}
+
 @media print{ /* taste-skill-ignore: Druckfassung */ .ansicht,.buehne-steuerung,.kopf .nav,.filter,.mehrknopf,.weg-steuerung,.schritte,.ergebnis-aktionen,.speicherhinweis,.sprung{display:none}.entscheidung{box-shadow:none}.karte,.gruppe,.wahlflaeche{box-shadow:none;border:1px solid #bbb}body{background:#fff}}
 
 /* ---------- Ab Version 3: Gestaltung »Überdruck« ---------- */
@@ -589,3 +598,247 @@ main p,main li,main dd{max-width:60ch}
 .schriftprobe-h2{font:600 var(--gr-h2)/1.12 var(--schrift-titel)}
 .schriftprobe-h3{font:600 var(--gr-h3)/1.2 var(--schrift-titel)}
 .kennzeichnung{max-width:46ch}
+
+/* ---------- Ab Version 4: KI-Training · Digitaler Unterricht · Galerie ---------- */
+/* Kopfzeile: Wortmarke führt zum Start, drei Bereiche. Auf schmalen Bildschirmen bleibt die Leiste sichtbar. */
+.marke{gap:.15em}
+.marke-name{white-space:nowrap}
+.kopf .nav{display:flex}
+.nav a{transition:border-color var(--dauer-schnell) var(--ease-out)}
+.nav a[aria-current="true"]{border-bottom-color:var(--stahl)}
+@media (max-width:767px){
+  .kopf .huelle{gap:.25rem}
+  .kopf .nav{flex-basis:100%;display:grid;grid-template-columns:auto auto auto;justify-content:start;gap:0 .25rem;margin-inline:-.5rem}
+  .nav a{font-size:1rem;padding:0 .5rem;line-height:1.2}
+}
+@media (max-width:359px){.nav a{padding:0 .3rem}}
+
+/* Fuß: Über Hilde Digital, Inhalte und Funktionen, Hinweise */
+.fusslinks ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 var(--a3)}
+.fusslinks a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-underline-offset:3px}
+.fuss-marke{font-size:clamp(2.5rem,10.5vw,10rem);gap:.1em;flex-wrap:nowrap;white-space:nowrap}
+
+/* Start: Zugang zur Galerie unter den zwei Platten */
+.start-galerie{margin-top:var(--a3)}
+.galerie-zugang{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.4rem var(--a3);padding:1rem clamp(1.25rem,2.5vw,2.25rem);background:var(--flaeche);border:2px solid var(--text);border-radius:var(--rund);text-decoration:none;min-height:64px;
+  transition:transform var(--dauer-schnell) var(--ease-out)}
+.galerie-zugang-titel{font:700 var(--gr-h3)/1.1 var(--schrift-titel)}
+.galerie-zugang>span:last-child{font-size:1.5rem;font-weight:700}
+.galerie-zugang:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+@media (hover:hover) and (pointer:fine){.galerie-zugang:hover{box-shadow:var(--platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+@media (max-width:520px){.galerie-zugang{grid-template-columns:1fr auto}.galerie-zugang>span:nth-child(2){grid-row:2;grid-column:1/-1}}
+
+/* Dunkles Band: Ausschnitte aus der Galerie */
+.band-dunkel{background:var(--text);color:var(--flaeche)}
+.band-dunkel a{color:var(--flaeche)}
+.band-dunkel :focus-visible{outline-color:var(--flaeche);box-shadow:0 0 0 5px var(--text)} /* taste-skill-ignore: Fokus-Doppelring auf dunklem Grund */
+.knopf.hell{background:var(--flaeche);color:var(--text);border-color:var(--flaeche)}
+@media (hover:hover) and (pointer:fine){.knopf.hell:hover{box-shadow:4px 4px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+.galerie-teaser{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4);align-items:start}
+.galerie-teaser-kopf{grid-column:1/5;display:grid;gap:var(--a2);justify-items:start;position:sticky;top:var(--a4)}
+.galerie-teaser-kopf h2{font-weight:700}
+.galerie-teaser-bilder{grid-column:5/13;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a3)}
+.galerie-teaser-bilder li:first-child{grid-column:1/-1}
+.galerie-teaser-bilder a{display:grid;gap:.6rem;text-decoration:none}
+.galerie-teaser-bilder img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:2px;background:var(--leise);
+  transition:transform var(--dauer-schnell) var(--ease-out)}
+.teaser-text{font-size:var(--gr-klein);display:grid;gap:.1rem}
+.teaser-text b{font-size:1.125rem}
+@media (hover:hover) and (pointer:fine){.galerie-teaser-bilder a:hover img{transform:translate(-3px,-3px);box-shadow:6px 6px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+@media (max-width:1023px){.galerie-teaser-kopf,.galerie-teaser-bilder{grid-column:1/-1}.galerie-teaser-kopf{position:static}}
+@media (max-width:600px){.galerie-teaser-bilder{grid-template-columns:1fr}}
+
+/* Digitaler Unterricht: vier Werkzeuge, der Digital-Check zuerst */
+.werkzeuge{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3)}
+.werkzeug.haupt{grid-column:1/-1}
+.werkzeug a{height:100%;display:grid;grid-template-columns:auto 1fr auto;gap:var(--a2);align-items:start;padding:var(--a3);background:var(--flaeche);border-radius:var(--rund);text-decoration:none;
+  transition:transform var(--dauer-schnell) var(--ease-out)}
+.werkzeug a:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+@media (hover:hover) and (pointer:fine){.werkzeug a:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 0 var(--lernen)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+.werkzeug-nr{font:700 2rem/1 var(--schrift-titel);color:var(--lernen-tief);min-width:1.4em}
+.werkzeug-text{display:grid;gap:.35rem}
+.werkzeug-text b{font:700 var(--gr-h3)/1.15 var(--schrift-titel)}
+.werkzeug-los{font-size:1.5rem;font-weight:700}
+.werkzeug.haupt a{background:var(--lernen);color:var(--flaeche);padding:clamp(1.5rem,3vw,2.5rem)}
+.werkzeug.haupt .werkzeug-nr{color:var(--flaeche)}
+.werkzeug.haupt .werkzeug-text b{font-size:var(--gr-h2)}
+.werkzeug.haupt .werkzeug-text{max-width:60ch}
+@media (hover:hover) and (pointer:fine){.werkzeug.haupt a:hover{box-shadow:6px 6px 0 0 var(--lernen-tief)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+@media (max-width:1023px){.werkzeuge{grid-template-columns:1fr}}
+.bezug-ki{margin-top:var(--a4);padding:var(--a2) var(--a3);background:var(--ki-zart);border-radius:var(--rund);max-width:72ch}
+
+/* KI-Training: Aufbau einer Anfrage und Regeln */
+.ki-raster{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4);align-items:start}
+.ki-aufbau{grid-column:1/8;display:grid;gap:var(--a2)}
+.ki-regeln{grid-column:9/13;background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);display:grid;gap:var(--a2);border-top:10px solid var(--ki-platte)}
+.bausteine-liste{list-style:none;margin:0;padding:0;display:grid;gap:.5rem;counter-reset:baustein}
+.bausteine-liste li{counter-increment:baustein;display:grid;grid-template-columns:2.5rem 1fr;gap:.1rem var(--a2);background:var(--flaeche);border-radius:var(--rund);padding:.85rem 1rem}
+.bausteine-liste li::before{content:counter(baustein);grid-row:1/3;display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:var(--rund);background:var(--ki-platte);font:700 1.25rem/1 var(--schrift-titel)}
+.bausteine-liste b{font-size:1.125rem}
+.weg-titel{font-weight:700;margin-bottom:.4rem}
+.bezug-band{display:grid;gap:var(--a2);max-width:60rem}
+.bezug-band p:last-child{display:flex;flex-wrap:wrap;gap:0 var(--a3)}
+@media (max-width:1023px){.ki-aufbau,.ki-regeln{grid-column:1/-1}}
+
+/* Digital-Check: zwei Wege */
+.check-wege{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a3)}
+.check-weg{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;padding:clamp(1.25rem,2.5vw,2.25rem);background:var(--flaeche);border-radius:var(--rund);text-decoration:none;border-top:10px solid var(--lernen);
+  transition:transform var(--dauer-schnell) var(--ease-out)}
+.check-weg+.check-weg{border-top-color:var(--text)}
+.check-weg-name{font-weight:700;color:var(--lernen-tief)}
+.check-weg+.check-weg .check-weg-name{color:var(--leise)}
+.check-weg h3{font-size:var(--gr-h2);font-weight:700}
+.check-weg p{max-width:44ch}
+.check-weg .weiter{margin-top:auto;display:inline-flex;align-items:center;gap:.6rem;min-height:48px;padding:.6rem 1.25rem;border-radius:var(--rund);font-weight:700;background:var(--aktion);color:var(--aktion-text)}
+.check-weg:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+@media (hover:hover) and (pointer:fine){.check-weg:hover{transform:translate(-2px,-2px);box-shadow:var(--platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+@media (max-width:767px){.check-wege{grid-template-columns:1fr}}
+
+/* Weg B: Material prüfen lassen */
+#pruefen-lassen:focus{outline:none}
+.lassen{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4);align-items:start}
+.lassen-kopf{grid-column:1/5;display:grid;gap:var(--a2)}
+.lassen-kopf h2{font-weight:700}
+.lassen-form{grid-column:5/13;display:grid;gap:var(--a3)}
+.lassen-form label{display:block;font-weight:700;margin-bottom:.4rem}
+.lassen-form select{max-width:28rem}
+.lassen-form textarea{min-height:14rem;resize:vertical;background:var(--grund)}
+.lassen-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem var(--a2)}
+.lassen-status{font-weight:700;display:inline-flex;align-items:center;gap:.6rem}
+.lassen-status.sucht::before{content:"";width:.8rem;height:.8rem;background:var(--lernen);border-radius:2px;animation:suchen 600ms var(--ease-out) infinite alternate}
+@keyframes suchen{from{opacity:.25;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.lassen-ergebnis{grid-column:5/13;display:grid;gap:var(--a3)}
+.lassen-ergebnis:focus{outline:none}
+@media (max-width:1023px){.lassen-kopf,.lassen-form,.lassen-ergebnis{grid-column:1/-1}}
+.ergebnis-block{background:var(--grund);border-radius:var(--rund);padding:var(--a3);display:grid;gap:.6rem}
+.ergebnis-block h3{display:flex;align-items:center;gap:.6rem;font-size:var(--gr-h3)}
+.ergebnis-block .nr{flex:none;display:grid;place-items:center;width:2rem;height:2rem;border-radius:var(--rund);background:var(--text);color:var(--flaeche);font-size:1.05rem}
+.ergebnis-block ul{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
+.staerke-block{background:var(--lernen);color:var(--flaeche)}
+.staerke-block .nr{background:var(--flaeche);color:var(--text)}
+.staerke-block a{color:var(--flaeche)}
+.staerke-name{font:700 var(--gr-h2)/1.1 var(--schrift-titel)}
+.grenzen-block{background:var(--flaeche);border:2px solid var(--stahl)}
+ul.bereich-chips{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.bereich-chips li{background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);padding:.35rem .75rem;font-weight:700}
+.bereich-chips .leise{font-weight:400}
+.beobachtungen li{line-height:1.5}
+q.fundstelle{display:block;margin-top:.35rem;padding:.35rem .75rem;background:var(--flaeche);border-left:4px solid var(--lernen);font-size:var(--gr-klein);quotes:"»" "«"}
+.anfrage-block{display:grid;gap:.6rem;background:var(--ki-zart);border-radius:var(--rund);padding:var(--a3)}
+.anfrage-block textarea{background:var(--flaeche)}
+.kopieren{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2)}
+.erscheint{animation:erscheinen var(--dauer-mittel) var(--ease-out) both}
+@keyframes erscheinen{from{opacity:0;transform:translateY(8px)}}
+
+/* Galerie: Kopf, redaktionelle Einblicke, Liste */
+.galerie-kopf{padding-block:var(--a4) var(--a4)}
+.galerie-kopf h1{font-size:var(--gr-display);line-height:1;letter-spacing:-.025em}
+.galerie-kopf .detail-kurz{font-size:clamp(1.25rem,1.1rem + .5vw,1.6rem);max-width:44ch}
+.galerie-hinweis{margin-top:var(--a2);color:var(--leise)}
+.galerie-buehne{padding-bottom:var(--a8)}
+.einblicke{display:grid;gap:clamp(3rem,8vw,7rem)}
+.einblick{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4);align-items:start}
+.einblick-bilder{grid-column:1/9;display:grid;gap:var(--a2)}
+.einblick-text{grid-column:9/13;display:grid;gap:.75rem;align-content:start;position:sticky;top:var(--a3)}
+.einblick.gespiegelt .einblick-bilder{grid-column:5/13;grid-row:1}
+.einblick.gespiegelt .einblick-text{grid-column:1/5;grid-row:1}
+.einblick-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a2)}
+.einblick-details>:only-child{grid-column:1/3}
+.einblick h3{font-size:var(--gr-h2);font-weight:700}
+.einblick-kurz{max-width:40ch}
+.einblick-schritte{margin:0;padding-left:1.4rem;display:grid;gap:.5rem;font-size:var(--gr-klein)}
+.einblick-schritte li::marker{font-weight:700}
+.einblick-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem var(--a3);margin-top:.25rem}
+/* Bildknöpfe: das Bildschirmfoto liegt auf einem Passepartout aus Karton */
+[data-bildrahmen]{position:relative}
+.einblick-haupt,.einblick-detail,.ek-haupt,.ek-detail,.detail-haupt-bild,.detail-weitere button{display:block;width:100%;padding:.5rem;margin:0;border:0;border-radius:var(--rund);background:var(--karton);cursor:zoom-in;touch-action:manipulation;
+  transition:transform var(--dauer-schnell) var(--ease-out)}
+.einblick-haupt img,.einblick-detail img,.ek-haupt img,.ek-detail img,.detail-haupt-bild img,.detail-weitere img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:2px;background:var(--flaeche)}
+.einblick-haupt{padding:.75rem}
+.einblick-haupt:active,.einblick-detail:active,.ek-haupt:active,.ek-detail:active,.detail-haupt-bild:active,.detail-weitere button:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+@media (hover:hover) and (pointer:fine){
+  .einblick-haupt:hover,.einblick-detail:hover,.ek-haupt:hover,.ek-detail:hover,.detail-haupt-bild:hover,.detail-weitere button:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 0 var(--platte-bild,var(--stahl))} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+}
+.einblick:has(.kz.ki),.einblick-klein:has(.kz.ki){--platte-bild:var(--ki-platte)}
+.einblick:has(.kz.lernen),.einblick-klein:has(.kz.lernen){--platte-bild:var(--lernen)}
+.einblick:has(.kz.beide),.einblick-klein:has(.kz.beide){--platte-bild:var(--ueberdruck)}
+.galerie-zwischen{margin:clamp(4rem,9vw,8rem) 0 var(--a4);font-weight:700}
+.einblicke-klein{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a6) var(--a4)}
+.einblick-klein{display:grid;gap:var(--a2);align-content:start}
+.einblick-klein-bilder{display:grid;grid-template-columns:2fr 1fr;gap:var(--a2);align-items:end}
+.einblick-klein:nth-child(even) .einblick-klein-bilder{grid-template-columns:1fr 2fr}
+.einblick-klein:nth-child(even) .ek-haupt{order:2}
+.einblick-klein-text{display:grid;gap:.5rem}
+.einblick-klein h3{font-size:var(--gr-h3);font-weight:700}
+.alle-kopf{padding-top:var(--a8)}
+.alle-kopf h2{font-size:var(--gr-h1);font-weight:700}
+@media (max-width:1023px){
+  .einblick-bilder,.einblick-text,.einblick.gespiegelt .einblick-bilder,.einblick.gespiegelt .einblick-text{grid-column:1/-1;grid-row:auto}
+  .einblick-text{position:static}
+}
+@media (max-width:767px){
+  .einblicke-klein{grid-template-columns:1fr}
+  .einblick-details{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .einblick-details>:nth-child(3){display:none} /* auf dem Telefon zwei Details; alle Ansichten bleiben in der Bildansicht */
+}
+
+/* Detailseite: Ansichten aus der Anwendung */
+.detail-ansichten{display:grid;gap:var(--a2)}
+.detail-bild-text{font-size:var(--gr-klein);font-weight:700}
+.detail-weitere{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,12rem),1fr));gap:var(--a2)}
+.detail-weitere li{display:grid;gap:.4rem;font-size:var(--gr-klein);align-content:start}
+
+/* Bildansicht (Lichtbild): öffnet aus dem angeklickten Bild, 95 % → 100 %, nur transform und opacity */
+dialog.lichtbild{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:clamp(.75rem,3vw,2.5rem);border:0;background:rgba(42,38,34,.85);color:var(--flaeche);
+  display:none;grid-template-rows:auto minmax(0,1fr) auto;gap:var(--a2);overflow:auto}
+dialog.lichtbild[open]{display:grid;animation:lb-auf var(--dauer-mittel) var(--ease-out) both}
+dialog.lichtbild::backdrop{background:rgba(42,38,34,.97);animation:lb-schleier var(--dauer-mittel) var(--ease-out) both} /* taste-skill-ignore: Druckschwarz als Schleier */
+dialog.lichtbild.zu{animation:lb-zu var(--dauer-aus) var(--ease-out) both}
+dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ease-out) both}
+@keyframes lb-auf{from{opacity:0;transform:scale(var(--auftauchen))}}
+@keyframes lb-zu{to{opacity:0;transform:scale(var(--auftauchen))}}
+@keyframes lb-schleier{from{opacity:0}}
+@keyframes lb-schleier-zu{to{opacity:0}}
+.lb-kopf,.lb-steuerung{display:flex;align-items:center;justify-content:space-between;gap:var(--a2);max-width:min(100%,90rem);width:100%;margin-inline:auto}
+.lb-titel{font:700 var(--gr-h3)/1.15 var(--schrift-titel)}
+.lichtbild .knopf.still{color:var(--flaeche);border-color:var(--flaeche);background:transparent}
+.lichtbild .knopf.still:disabled{opacity:.35;cursor:default}
+.lichtbild .knopf.still:disabled:active{transform:none}
+.lichtbild :focus-visible{outline-color:var(--flaeche);box-shadow:0 0 0 5px var(--text)} /* taste-skill-ignore: Fokus-Doppelring auf dunklem Grund */
+.lb-bild{margin:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:.75rem;justify-items:center;min-height:0}
+.lb-bild img{align-self:center;max-width:min(100%,90rem);max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:2px;background:var(--flaeche);
+  transition:opacity var(--dauer-schnell) var(--ease-out),transform var(--dauer-schnell) var(--ease-out)}
+.lb-bild.wechselt img{opacity:0;transform:scale(.98);transition:none}
+.lb-bild figcaption{max-width:60ch;text-align:center;font-size:var(--gr-klein)}
+.lb-stand{font-weight:700;font-size:var(--gr-klein)}
+@media (max-width:520px){.lb-steuerung .knopf{padding-inline:.8rem}.lb-titel{font-size:1.125rem}}
+@media (hover:hover) and (pointer:fine){.lichtbild .knopf.still:not(:disabled):hover{box-shadow:4px 4px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+
+/* Fehlendes Bild: Rasterpunkte statt kaputtem Symbol */
+.bild-fehlt img{visibility:hidden}
+.bild-fehlt::after{content:"Bild nicht verfügbar";position:absolute;inset:.5rem;display:grid;place-items:center;border-radius:2px;color:var(--leise);font-weight:700;font-size:var(--gr-klein);
+  background-color:var(--grund);background-image:radial-gradient(var(--stahl) 1px,transparent 1.5px);background-size:12px 12px} /* taste-skill-ignore: Rasterpunkte wie im Druck, kein Verlauf */
+.karte .bild.bild-fehlt{position:relative}
+
+/* Über Hilde Digital: Inhalte und Funktionen */
+.inhalte-liste{margin:0;display:grid;gap:var(--a2)}
+.inhalte-liste>div{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);border-left:8px solid var(--karton)}
+.inhalte-liste>.rand-ki{border-left-color:var(--ki-platte)}
+.inhalte-liste>.rand-lernen{border-left-color:var(--lernen)}
+.inhalte-liste dt{font-weight:700;font-size:1.25rem}
+.inhalte-liste dd{margin:.25rem 0 0}
+
+/* Ansicht wechseln zwischen Seiten (wo der Browser es kann): kurzes Überblenden */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:var(--dauer-mittel);animation-timing-function:var(--ease-out)}
+
+/* Weniger Bewegung: keine Wege und keine Größenänderung, nur kurzes Überblenden (≤ 150 ms) */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-property:opacity,color,background-color,border-color!important;transition-duration:var(--dauer-aus)!important;scroll-behavior:auto!important}
+  .registrieren .wahlflaeche{animation:none!important}
+  .erscheint,dialog.lichtbild[open],dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
+  .lassen-status.sucht::before{animation:none}
+  .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
+  .karte:hover,.werkzeug a:hover,.check-weg:hover,[data-bildrahmen]:hover,.galerie-teaser-bilder a:hover img{transform:none!important}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+}

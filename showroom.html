@@ -4,75 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Showroom – Hilde-Digital</title>
+<meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+<meta http-equiv="refresh" content="0; url=galerie.html">
+<script>location.replace("galerie.html" + location.hash)</script>
+<title>Galerie – Hilde Digital</title>
 <link rel="stylesheet" href="assets/hilde.css">
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 <header class="kopf"><div class="huelle">
-  <a class="marke" href="index.html" aria-label="Hilde-Digital, Start">Hilde<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span>Digital</a>
-  <a class="menue-link" href="#menue">Menü</a>
-  <nav class="nav" aria-label="Bereiche"><a href="index.html">Start</a><a href="ki.html">KI für meine Arbeit</a><a href="tablets.html">Unterricht mit Tablets</a><a href="showroom.html" aria-current="page">Showroom</a><a href="ueber.html">Über das Modul</a></nav>
+  <a class="marke" href="index.html"><span class="marke-name">Hilde Digital</span><span class="strich" aria-hidden="true"><i></i><i></i><i></i></span><span class="sr-only">, zum Start</span></a>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html">KI-Training</a><a href="unterricht.html">Digitaler Unterricht</a><a href="galerie.html" aria-current="true">Galerie</a></nav>
 </div></header>
 <main id="inhalt" tabindex="-1">
 <section class="bereichskopf kompakt"><div class="huelle">
-  <h1>Showroom</h1>
-  <p class="detail-kurz">Persönliche Erprobungen, keine Musterlösungen. Mehr Digitalität bedeutet nicht automatisch besseren Unterricht.</p>
-
-  <form class="filter" id="filter" role="search" aria-label="Beispiele suchen und filtern">
-    <div class="suchzeile">
-      <label for="suche">Suchen</label>
-      <input type="search" id="suche" name="suche" autocomplete="off" placeholder="z. B. Rückmeldung, Geschichte, Fälle">
-    </div>
-    <div class="filterzeile" id="bereich" role="group" aria-label="Bereich"><span aria-hidden="true">Bereich</span>
-      <button type="button" class="chip" data-bereich="alle" aria-pressed="true">alle</button>
-      <button type="button" class="chip" data-bereich="ki" aria-pressed="false">KI für meine Arbeit</button>
-      <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Unterricht mit Tablets</button>
-      <button type="button" class="chip" data-bereich="beide" aria-pressed="false">mit KI entwickelt</button>
-    </div>
-    <div class="filterraster" id="auswahlfilter"></div>
-    <details class="mehr weitere-filter">
-      <summary>Weitere Filter</summary>
-      <div class="filterraster" id="weitere"></div>
-    </details>
-  </form>
+  <h1>Der Showroom heißt jetzt Galerie</h1>
+  <p class="detail-kurz">Du wirst gleich weitergeleitet. Falls nicht: <a class="textlink" href="galerie.html">Zur Galerie <span aria-hidden="true">→</span></a></p>
 </div></section>
-
-<section class="abschnitt" style="padding-top:var(--a3)"><div class="huelle">
-  <div class="ergebniskopf">
-    <div class="ergebnis-oben">
-      <p class="ergebniszeile" id="ergebniszeile" aria-live="polite"></p>
-      <div class="ansicht" id="ansicht" role="group" aria-label="Ansicht der Beispiele">
-        <span aria-hidden="true">Ansicht</span>
-        <button type="button" class="chip" data-ansicht="raster" aria-pressed="true">Raster</button>
-        <button type="button" class="chip" data-ansicht="buehne" aria-pressed="false">Bühne</button>
-      </div>
-    </div>
-    <ul class="aktive" id="aktive" aria-label="Aktive Filter"></ul>
-  </div>
-  <p class="lockerung" id="lockerung" hidden></p>
-  <div class="karten" id="karten"></div>
-  <div class="buehne-steuerung" id="buehne-steuerung" hidden>
-    <button type="button" class="knopf still" id="buehne-zurueck"><span aria-hidden="true">←</span> Vorherige</button>
-    <p id="buehne-stand" class="leise" aria-live="polite"></p>
-    <button type="button" class="knopf still" id="buehne-vor">Nächste <span aria-hidden="true">→</span></button>
-  </div>
-  <div class="mehrknopf"><button type="button" class="knopf still" id="mehr">Mehr Beispiele</button></div>
-  <p class="leise klein speicherhinweis">Deine Filter bleiben nur in diesem Browser. Suchwörter werden nicht gespeichert. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button> <span id="geloescht" aria-live="polite"></span></p>
-  <noscript><p class="box">Die Beispiele werden mit JavaScript angezeigt.</p></noscript>
-</div></section>
-<script src="assets/daten/taxonomien.js"></script>
-<script src="assets/daten/beispiele.js"></script>
-<script src="assets/hilde.js"></script>
-<script src="assets/suche.js"></script>
-<script src="assets/showroom.js"></script>
 
 </main>
 <footer class="fuss"><div class="huelle">
-  <nav class="fussnav" id="menue" aria-label="Menü"><p class="fussnav-titel">Menü</p><ul><li><a href="index.html">Start</a></li><li><a href="ki.html">KI für meine Arbeit</a></li><li><a href="tablets.html">Unterricht mit Tablets</a></li><li><a href="showroom.html" aria-current="page">Showroom</a></li><li><a href="ueber.html">Über das Modul</a></li></ul></nav>
-  <p class="fuss-marke" aria-hidden="true">Hilde<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span>Digital</p>
-  <p class="kennzeichnung">Hilde-Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
-  <span class="fusslinks"><a href="mehrwert.html" class="leise">Wie wir den Mehrwert prüfen</a> <a href="ueber.html" class="leise">Über das Modul</a> <a href="gestaltung.html" class="leise">Gestaltungssystem</a> <a href="ueber.html#t-daten" class="leise">Eingaben löschen</a></span>
+  <p class="fuss-marke" aria-hidden="true">Hilde Digital<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span></p>
+  <nav class="fusslinks" aria-label="Über Hilde Digital"><ul><li><a href="ueber.html">Über Hilde Digital</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
 </div></footer>
 </body>
 </html>

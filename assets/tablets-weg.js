@@ -1,4 +1,4 @@
-/* Hilde-Digital – Weg B »Unterricht mit Tablets gestalten«: sechs Schritte bis zur Entscheidungskarte.
+/* Hilde Digital – Digitaler Unterricht: Planungsweg »Unterricht planen«: sechs Schritte bis zur Entscheidungskarte.
    Eine Entscheidung pro Schritt. »Noch nicht sicher« ist überall erlaubt, wo es fachlich sinnvoll ist.
    Braucht: TAXONOMIEN, BEISPIELE, REGELN, HILDE. */
 (function () {
@@ -142,7 +142,7 @@
         (k.ohneNetz ? '<p class="leise klein">Ohne Netz zeigen wir nur Beispiele, die nicht online geöffnet werden müssen.</p>' : "") +
         '<ul class="minis">' + k.beispiele.map(H.miniKarte).join("") + "</ul>";
     } else {
-      bsp = '<p class="box">Für diese Angaben gibt es noch kein Beispiel. Im <a href="showroom.html">Showroom</a> findest du alle Ideen.</p>';
+      bsp = '<p class="box">Für diese Angaben gibt es noch kein Beispiel. In der <a href="galerie.html">Galerie</a> findest du alle Ideen.</p>';
     }
 
     return '<section class="entscheidung stufe-' + k.einstufung + '" aria-labelledby="ergebnis-titel">' +
@@ -164,7 +164,7 @@
       '<div class="ergebnis-aktionen">' +
         '<button type="button" class="knopf still" data-gehe="0">Antworten ändern</button>' +
         '<button type="button" class="knopf still" id="neu">Neu starten</button>' +
-        '<a class="knopf" href="showroom.html" id="zum-showroom">Im Showroom weitersuchen</a>' +
+        '<a class="knopf" href="galerie.html" id="zum-showroom">In der Galerie weitersuchen</a>' +
       "</div></section>";
   }
 
@@ -195,7 +195,7 @@
     }
     if (e.target.closest("#neu")) { neuStart(); return; }
     if (e.target.closest("#zum-showroom")) {
-      // Showroom mit Phase und Anliegen aus dem Weg öffnen
+      // Galerie mit Phase und Anliegen aus dem Weg öffnen
       H.schreib("showroom", { bereich: "lernen", phase: z.phase && z.phase !== "offen" ? z.phase : "",
         anliegen: z.anliegen && z.anliegen !== "offen" ? z.anliegen : "" });
     }

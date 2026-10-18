@@ -1,64 +1,34 @@
 <section class="start" aria-labelledby="t-start"><div class="huelle">
-  <h1 id="t-start" class="display">Erst das Anliegen, dann das Werkzeug.</h1>
-  <p class="leit">KI kann Unterricht vorbereiten. Digitalität kann Lernen gestalten. Beides kann zusammenkommen – muss es aber nicht.</p>
+  <h1 id="t-start" class="display">Hilde Digital</h1>
+  <p class="leit">Hier probierst du KI für deine Arbeit aus, prüfst digitale Unterrichtsideen und siehst, was Kolleg*innen schon gebaut haben.</p>
 
   <div class="platten" id="platten">
     <a class="wahlflaeche ki" href="ki.html">
-      <h2>KI für meine Arbeit</h2>
-      <p>Ideen finden, Material erstellen und Unterricht vorbereiten.</p>
-      <span class="weiter">Weg starten <span aria-hidden="true">→</span></span>
+      <h2>KI-Training</h2>
+      <p>KI ausprobieren, gute Anfragen bauen und Ergebnisse prüfen.</p>
+      <span class="weiter">KI-Training öffnen <span aria-hidden="true">→</span></span>
     </a>
     <div class="schnitt">
       <p class="schnitt-titel">Mit KI entwickelt</p>
-      <a class="textlink" href="showroom.html" id="schnitt-link">Lernangebote aus beiden Bereichen im Showroom</a>
+      <a class="textlink" href="galerie.html#beide" id="schnitt-link">Lernangebote aus beiden Bereichen in der Galerie</a>
     </div>
-    <a class="wahlflaeche lernen" href="tablets.html">
-      <h2>Unterricht mit Tablets</h2>
-      <p>Prüfen, wo das Tablet beim Lernen wirklich hilft.</p>
-      <span class="weiter">Weg starten <span aria-hidden="true">→</span></span>
+    <a class="wahlflaeche lernen" href="unterricht.html">
+      <h2>Digitaler Unterricht</h2>
+      <p>Ideen finden, Material prüfen und passende Werkzeuge auswählen.</p>
+      <span class="weiter">Digitalen Unterricht öffnen <span aria-hidden="true">→</span></span>
     </a>
   </div>
-  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung. Du kannst deine Wahl jederzeit ändern.</p>
+  <p class="start-galerie"><a class="galerie-zugang" href="galerie.html"><span class="galerie-zugang-titel">Galerie</span><span>Echte Lernanwendungen aus dem Kollegium ansehen</span><span aria-hidden="true">→</span></a></p>
+  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung.</p>
 </div></section>
 
-<section class="band band-flaeche" aria-labelledby="t-probe"><div class="huelle probe">
-  <div class="probe-kopf">
-    <h2 id="t-probe">Geht es auf Papier genauso gut?</h2>
-    <p>Dann bleib beim Papier. Prüfe eine Aktivität, die du planst, in höchstens drei Fragen.</p>
-    <p class="leise klein">Deine Antworten werden nicht gespeichert. Das Ergebnis ist eine Planungshilfe, keine Bewertung.</p>
+<section class="band band-dunkel" aria-labelledby="t-galerie"><div class="huelle galerie-teaser">
+  <div class="galerie-teaser-kopf">
+    <h2 id="t-galerie">Was in den Projekten passiert</h2>
+    <p>Keine Startseiten, sondern echte Ansichten: Hier testen Lernende ihre Wahrnehmung, ordnen Quellen zu oder verschieben eine Grenze.</p>
+    <a class="knopf hell" href="galerie.html">Zur Galerie <span aria-hidden="true">→</span></a>
   </div>
-  <form class="probe-form" id="probe">
-    <fieldset class="probe-frage" data-frage="neu">
-      <legend>Tun die Lernenden mit dem Tablet etwas, das auf Papier nicht oder nur mühsam ginge?</legend>
-      <div class="probe-wahl">
-        <label><input type="radio" name="neu" value="ja"><span>Ja</span></label>
-        <label><input type="radio" name="neu" value="nein"><span>Nein</span></label>
-        <label><input type="radio" name="neu" value="offen"><span>Noch nicht sicher</span></label>
-      </div>
-    </fieldset>
-    <fieldset class="probe-frage" data-frage="ablage" hidden>
-      <legend>Hilft das Tablet vor allem beim Verteilen, Einsammeln oder Ablegen?</legend>
-      <div class="probe-wahl">
-        <label><input type="radio" name="ablage" value="ja"><span>Ja</span></label>
-        <label><input type="radio" name="ablage" value="nein"><span>Nein</span></label>
-        <label><input type="radio" name="ablage" value="offen"><span>Noch nicht sicher</span></label>
-      </div>
-    </fieldset>
-    <fieldset class="probe-frage" data-frage="ziel" hidden>
-      <legend>Dient das dem, was die Lernenden lernen sollen?</legend>
-      <div class="probe-wahl">
-        <label><input type="radio" name="ziel" value="ja"><span>Ja</span></label>
-        <label><input type="radio" name="ziel" value="nein"><span>Nein</span></label>
-        <label><input type="radio" name="ziel" value="offen"><span>Noch nicht sicher</span></label>
-      </div>
-    </fieldset>
-    <div class="probe-ergebnis" id="probe-ergebnis" aria-live="polite">
-      <p class="probe-name">Noch offen</p>
-      <p>Beantworte die erste Frage.</p>
-    </div>
-    <noscript><p class="klein">Ohne JavaScript: Prüfe deine Aktivität ausführlich im <a href="tablets.html">Tablet-Weg</a>.</p></noscript>
-    <p class="probe-aktionen"><a class="textlink" href="tablets.html">Genauer prüfen im Tablet-Weg <span aria-hidden="true">→</span></a> <button class="knopf still" type="reset">Eingaben löschen</button></p>
-  </form>
+  <ul class="galerie-teaser-bilder" id="teaser-bilder" aria-label="Ansichten aus drei Projekten"></ul>
 </div></section>
 
 <section class="band" aria-labelledby="t-stand"><div class="huelle">
@@ -66,32 +36,21 @@
     <div class="stand-kopf">
       <h2 id="t-stand">Was bisher entstanden ist</h2>
     </div>
-    <ul class="kennzahlen" id="kennzahlen" aria-label="Der Showroom in Zahlen"></ul>
-    <p class="klein">Gezählt aus den Beispieldaten. Stand: 17. Oktober 2026</p>
-    <div id="neu" hidden>
-      <h3 class="neu-titel">Neu im Showroom</h3>
-      <ul class="minis neu" id="neu-liste"></ul>
-    </div>
-    <div class="mehrwert-teaser">
-      <p class="zeichen" aria-hidden="true"><i>1</i><i>2</i><i>3</i></p>
-      <p><b>Digital ist nicht automatisch besser.</b> Drei Fragen zeigen, wann die digitale Form etwas beiträgt.</p>
-      <span class="teaser-links"><a class="textlink" href="mehrwert.html">Wie wir den Mehrwert prüfen <span aria-hidden="true">→</span></a> <a class="textlink" href="selbstcheck.html">Eigenes Material prüfen <span aria-hidden="true">→</span></a></span>
-    </div>
+    <ul class="kennzahlen" id="kennzahlen" aria-label="Die Galerie in Zahlen"></ul>
+    <p class="klein">Gezählt aus den Beispieldaten.</p>
   </div>
 </div></section>
 
 <section class="band band-karton" aria-labelledby="t-zusammen"><div class="huelle leitsatz-band">
-  <h2 id="t-zusammen" class="sr-only">Wie hängt beides zusammen?</h2>
-  <p class="leitsatz">Mehr Digitalität bedeutet nicht automatisch besseren Unterricht.</p>
+  <h2 id="t-zusammen" class="leitsatz">Wie hängen KI-Training und Digitaler Unterricht zusammen?</h2>
   <ul class="zusammen-liste" id="zusammenhang">
-    <li>KI kann Unterricht vorbereiten, der ganz analog bleibt.</li>
-    <li>Digitaler Unterricht kann ohne KI entstehen.</li>
-    <li>Im Überdruck hilft KI dabei, ein digitales Lernangebot zu bauen.</li>
-    <li><a class="textlink" href="ueber.html">Mehr über das Modul <span aria-hidden="true">→</span></a></li>
+    <li><b>KI-Training</b> ist dein eigener Übungsraum. KI hilft dir hier bei der Vorbereitung – auch für Unterricht ganz auf Papier.</li>
+    <li><b>Digitaler Unterricht</b> umfasst mehr als KI. Es geht darum, was Lernende am Gerät besser tun können.</li>
+    <li><b>Mit KI entwickelt</b> sind Lernangebote, die in beiden Bereichen liegen: KI hat beim Bauen geholfen, die Lernenden arbeiten digital.</li>
   </ul>
 </div></section>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/daten/beispiele.js"></script>
+<script src="assets/daten/galerie.js"></script>
 <script src="assets/hilde.js"></script>
-<script src="assets/regeln.js"></script>
 <script src="assets/start.js"></script>

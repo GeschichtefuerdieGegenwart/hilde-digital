@@ -1,4 +1,4 @@
-/* Unit-Tests für die Regeln des Mehrwert-Checks.  Aufruf: node --test */
+/* Unit-Tests für die Regeln des Digital-Checks.  Aufruf: node --test */
 "use strict";
 const test = require("node:test");
 const assert = require("node:assert/strict");
@@ -280,7 +280,7 @@ test("Papierprobe: nichts Neues und keine Ablage heißt Papier", () => {
   assert.equal(R.papierprobe({ neu: "nein", ablage: "offen" }).id, "analog");
 });
 
-test("Papierprobe: Unsicherheit beim Neuen führt wie im Tablet-Weg zu analog", () => {
+test("Papierprobe: Unsicherheit beim Neuen führt wie im Planungsweg zu analog", () => {
   assert.equal(R.papierprobe({ neu: "offen" }).id, "analog");
 });
 

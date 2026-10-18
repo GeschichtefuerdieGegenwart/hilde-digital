@@ -1,4 +1,4 @@
-/* Hilde-Digital – Selbsteinschätzung »Was passt gerade zu mir?«.
+/* Hilde Digital – Selbsteinschätzung »Was passt gerade zu mir?«.
    Freiwillig, situativ, nur lokal. Kein Test, kein Typ, keine Persönlichkeitsaussage.
    Braucht: TAXONOMIEN, BEISPIELE, REGELN, HILDE. */
 (function () {
@@ -69,7 +69,7 @@
       '<ul class="minis">' + r.beispiele.map(H.miniKarte).join("") + "</ul>" +
       '<div class="naechster"><h3>Risikoarme Alternative</h3><p>' + esc(r.alternative) + "</p></div>" +
       '<p class="schluss">' + esc(r.schluss) + "</p>" +
-      '<div class="ergebnis-aktionen"><a class="knopf" href="tablets.html">Zum Weg »Unterricht mit Tablets«</a><a class="knopf still" href="showroom.html">Zum Showroom</a></div>' +
+      '<div class="ergebnis-aktionen"><a class="knopf" href="tablets.html">Zum Planungsweg »Unterricht planen«</a><a class="knopf still" href="galerie.html">Zur Galerie</a></div>' +
       "</section>";
     if (fokus) document.getElementById("selbst-titel").focus();
   }

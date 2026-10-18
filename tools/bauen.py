@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Baut die Seiten von Hilde-Digital aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
+"""Baut die Seiten von Hilde Digital aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
 
 Aufruf:  python3 tools/bauen.py
-Ergebnis: index.html, ki.html, tablets.html, passt.html, showroom.html, beispiel.html, mehrwert.html, selbstcheck.html, ueber.html, gestaltung.html.
+Ergebnis: alle Seiten aus SEITEN. showroom.html leitet auf galerie.html weiter (alte Links bleiben gültig).
 Kopfzeile, Statuszeile und Fußzeile stehen nur hier – so bleiben sie auf allen Seiten gleich.
 """
 from pathlib import Path
@@ -10,67 +10,73 @@ from pathlib import Path
 WURZEL = Path(__file__).resolve().parent.parent
 
 SEITEN = [
-    # Datei, Titel, Navigationspunkt
-    ("index.html", "Hilde-Digital – Start", "start"),
-    ("ki.html", "KI für meine Arbeit – Hilde-Digital", "ki"),
-    ("tablets.html", "Unterricht mit Tablets gestalten – Hilde-Digital", "tablets"),
-    ("passt.html", "Was passt gerade zu mir? – Hilde-Digital", "tablets"),
-    ("showroom.html", "Showroom – Hilde-Digital", "showroom"),
-    ("beispiel.html", "Beispiel – Hilde-Digital", "showroom"),
-    ("mehrwert.html", "Wie wir den Mehrwert prüfen – Hilde-Digital", "ueber"),
-    ("selbstcheck.html", "Eigenes Material prüfen – Hilde-Digital", ""),
-    ("ueber.html", "Über das Modul – Hilde-Digital", "ueber"),
-    ("gestaltung.html", "Gestaltungssystem – Hilde-Digital", "ueber"),
+    # Datei, Titel, Navigationspunkt ("" = kein Hauptbereich)
+    ("index.html", "Hilde Digital", ""),
+    ("ki.html", "KI-Training – Hilde Digital", "ki"),
+    ("unterricht.html", "Digitaler Unterricht – Hilde Digital", "unterricht"),
+    ("tablets.html", "Unterricht planen – Hilde Digital", "unterricht"),
+    ("passt.html", "Was passt gerade zu mir? – Hilde Digital", "unterricht"),
+    ("digital-check.html", "Digital-Check – Hilde Digital", "unterricht"),
+    ("selbstcheck.html", "Digital-Check: Selbst prüfen – Hilde Digital", "unterricht"),
+    ("mehrwert.html", "So arbeitet der Digital-Check – Hilde Digital", "unterricht"),
+    ("galerie.html", "Galerie – Hilde Digital", "galerie"),
+    ("beispiel.html", "Beispiel – Hilde Digital", "galerie"),
+    ("showroom.html", "Galerie – Hilde Digital", "galerie"),
+    ("ueber.html", "Über Hilde Digital", ""),
+    ("gestaltung.html", "Gestaltungssystem – Hilde Digital", ""),
 ]
 
-# Wortmarke: der Bindestrich besteht aus zwei überdruckten Balken (Honig, Petrol, Überdruck).
-STRICH = '<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span>'
+# Wortmarke: zwei überdruckte Druckplatten (Honig, Petrol, Überdruck) neben dem Namen.
+PLATTEN = '<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span>'
 
 NAV = [
-    # höchstens fünf Punkte (Master-Prompt, Abschnitt 4)
-    ("start", "index.html", "Start"),
-    ("ki", "ki.html", "KI für meine Arbeit"),
-    ("tablets", "tablets.html", "Unterricht mit Tablets"),
-    ("showroom", "showroom.html", "Showroom"),
-    ("ueber", "ueber.html", "Über das Modul"),
+    # Die drei Kernbereiche. Die Wortmarke führt zum Start.
+    ("ki", "ki.html", "KI-Training"),
+    ("unterricht", "unterricht.html", "Digitaler Unterricht"),
+    ("galerie", "galerie.html", "Galerie"),
+]
+
+FUSS = [
+    ("ueber.html", "Über Hilde Digital"),
+    ("ueber.html#inhalte", "Inhalte und Funktionen"),
+    ("ueber.html#t-daten", "Hinweise zu Daten und KI"),
+    ("gestaltung.html", "Gestaltungssystem"),
 ]
 
 KENNZEICHNUNG = "Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
 
 
-def rahmen(titel, aktiv, inhalt):
+def rahmen(titel, aktiv, inhalt, datei):
     nav = "".join(
-        f'<a href="{href}"{" aria-current=\"page\"" if key == aktiv else ""}>{text}</a>'
+        f'<a href="{href}"{" aria-current=\"page\"" if key == aktiv and datei == href else (" aria-current=\"true\"" if key == aktiv else "")}>{text}</a>'
         for key, href, text in NAV
     )
-    fussnav = "".join(
-        f'<li><a href="{href}"{" aria-current=\"page\"" if key == aktiv else ""}>{text}</a></li>'
-        for key, href, text in NAV
-    )
+    fuss = "".join(f'<li><a href="{href}">{text}</a></li>' for href, text in FUSS)
+    weiterleitung = ('<meta http-equiv="refresh" content="0; url=galerie.html">\n<script>location.replace("galerie.html" + location.hash)</script>\n'
+                     if datei == "showroom.html" else "")
     return f"""<!doctype html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>{titel}</title>
+<meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+{weiterleitung}<title>{titel}</title>
 <link rel="stylesheet" href="assets/hilde.css">
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 <header class="kopf"><div class="huelle">
-  <a class="marke" href="index.html" aria-label="Hilde-Digital, Start">Hilde{STRICH}Digital</a>
-  <a class="menue-link" href="#menue">Menü</a>
+  <a class="marke" href="index.html"{' aria-current="page"' if datei == "index.html" else ""}><span class="marke-name">Hilde Digital</span>{PLATTEN}<span class="sr-only">, zum Start</span></a>
   <nav class="nav" aria-label="Bereiche">{nav}</nav>
 </div></header>
 <main id="inhalt" tabindex="-1">
 {inhalt}
 </main>
 <footer class="fuss"><div class="huelle">
-  <nav class="fussnav" id="menue" aria-label="Menü"><p class="fussnav-titel">Menü</p><ul>{fussnav}</ul></nav>
-  <p class="fuss-marke" aria-hidden="true">Hilde{STRICH}Digital</p>
-  <p class="kennzeichnung">Hilde-Digital (Arbeitstitel) · {KENNZEICHNUNG}</p>
-  <span class="fusslinks"><a href="mehrwert.html" class="leise">Wie wir den Mehrwert prüfen</a> <a href="ueber.html" class="leise">Über das Modul</a> <a href="gestaltung.html" class="leise">Gestaltungssystem</a> <a href="ueber.html#t-daten" class="leise">Eingaben löschen</a></span>
+  <p class="fuss-marke" aria-hidden="true">Hilde Digital{PLATTEN}</p>
+  <nav class="fusslinks" aria-label="Über Hilde Digital"><ul>{fuss}<li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · {KENNZEICHNUNG}</p>
 </div></footer>
 </body>
 </html>
@@ -82,7 +88,7 @@ def main():
         (WURZEL / alt).unlink(missing_ok=True)
     for datei, titel, aktiv in SEITEN:
         inhalt = (WURZEL / "src" / datei).read_text(encoding="utf-8")
-        (WURZEL / datei).write_text(rahmen(titel, aktiv, inhalt), encoding="utf-8")
+        (WURZEL / datei).write_text(rahmen(titel, aktiv, inhalt, datei), encoding="utf-8")
         print("gebaut:", datei)
 
 

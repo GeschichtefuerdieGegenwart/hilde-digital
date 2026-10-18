@@ -1,4 +1,4 @@
-/* Hilde-Digital – Weg A »KI für meine Arbeit«: fünf Schritte bis zu einer guten Anfrage und ihrer Prüfung.
+/* Hilde Digital – KI-Training: Prompt-Generator: fünf Schritte bis zu einer guten Anfrage und ihrer Prüfung.
    Keine KI-Anbindung, keine simulierte Antwort. Die Anfrage wird nur gebaut, angezeigt und kopiert.
    Gespeichert werden nur Auswahlwerte (Ziel, Ergebnisform, Niveau, Prüfliste), nie Freitexte.
    Braucht: KI_TEXTE, KI_ANFRAGE, BEISPIELE, HILDE. */
@@ -112,12 +112,12 @@
         '<section class="naechste" aria-labelledby="naechste-titel"><h3 id="naechste-titel">Nächste Schritte</h3><ol class="naechste-liste">' +
         "<li><b>Anpassen:</b> Übernimm nur, was zu deiner Klasse passt. Das Ergebnis darf ganz auf Papier bleiben.</li>" +
         (digital
-          ? '<li><b>Digital einsetzen?</b> Prüfe im <a href="tablets.html">Weg »Unterricht mit Tablets«</a>, ob das Tablet beim Lernen wirklich hilft.</li>'
+          ? '<li><b>Digital einsetzen?</b> Prüfe im <a href="tablets.html">Planungsweg »Unterricht planen«</a>, ob das Tablet beim Lernen wirklich hilft.</li>'
           : '<li><b>Noch eine Aufgabe?</b> <button type="button" class="linkknopf" id="neu2">Starte den Weg neu</button> mit einer anderen Aufgabe.</li>') +
         (bsp ? "<li><b>Beispiel ansehen:</b> So kann ein mit KI überarbeitetes Ergebnis aussehen.<ul class=\"minis\">" + H.miniKarte(bsp) + "</ul></li>" : "") +
         "</ol></section>" +
         '<div class="ergebnis-aktionen"><button type="button" class="knopf still" data-gehe="0">Antworten ändern</button>' +
-        '<button type="button" class="knopf still" id="neu">Neu starten</button><a class="knopf" href="showroom.html">Zum Showroom</a></div>';
+        '<button type="button" class="knopf still" id="neu">Neu starten</button><a class="knopf" href="galerie.html">Zur Galerie</a></div>';
     }
     form.innerHTML = html;
     zurueck.hidden = z.schritt === 0 || s.id === "pruefen";

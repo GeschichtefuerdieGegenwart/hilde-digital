@@ -81,13 +81,14 @@
     "motion": {
       "durations": {
         "press": "100ms",
-        "release": "160ms",
-        "fast": "160ms",
-        "medium": "220ms",
-        "slow": "300ms",
+        "release": "140ms",
+        "fast": "140ms",
+        "medium": "200ms",
+        "slow": "300ms (Obergrenze)",
         "exit": "150ms",
-        "register": "720ms (nur erster Aufruf je Sitzung)"
+        "register": "280ms (nur erster Aufruf je Sitzung)"
       },
+      "scale": { "press": 0.97, "pressLarge": 0.99, "enter": 0.95 },
       "easing": {
         "out": "cubic-bezier(0.23, 1, 0.32, 1)",
         "inOut": "cubic-bezier(0.77, 0, 0.175, 1)",
@@ -100,6 +101,8 @@
         "kein Autoplay",
         "Hover nur unter @media (hover:hover) and (pointer:fine)",
         "Tastaturaktionen nicht animieren",
+        "nur transform und opacity animieren, kein transition: all",
+        "Bildansicht öffnet aus dem angeklickten Element (transform-origin), schließt kürzer als sie öffnet",
         "prefers-reduced-motion: nur Deckkraft/Farbe ≤150ms",
         "touch-action: manipulation; -webkit-tap-highlight-color: transparent"
       ]

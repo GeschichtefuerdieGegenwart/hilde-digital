@@ -1,0 +1,67 @@
+<section class="galerie-kopf" aria-labelledby="t-galerie"><div class="huelle">
+  <h1 id="t-galerie">Galerie</h1>
+  <p class="detail-kurz">Echte Ansichten aus Lernanwendungen des Kollegiums. Du siehst, was Lernende dort tun – nicht nur die Startseite.</p>
+  <p class="klein galerie-hinweis">Persönliche Erprobungen, keine Musterlösungen. Alle Bilder sind Bildschirmfotos aus den Anwendungen selbst.</p>
+</div></section>
+
+<section class="galerie-buehne" aria-labelledby="t-einblicke"><div class="huelle">
+  <h2 id="t-einblicke" class="sr-only">Einblicke in ausgewählte Projekte</h2>
+  <div class="einblicke" id="einblicke"></div>
+  <h2 class="galerie-zwischen">Weitere Einblicke</h2>
+  <div class="einblicke-klein" id="einblicke-klein"></div>
+  <noscript><p class="box">Die Galerie zeigt ihre Bilder mit JavaScript. Ohne JavaScript findest du die Projekte über die Beispielseiten.</p></noscript>
+</div></section>
+
+<section class="bereichskopf kompakt alle-kopf" id="alle" aria-labelledby="t-alle"><div class="huelle">
+  <h2 id="t-alle">Alle Beispiele durchsuchen</h2>
+  <p class="klein">Suche nach Thema, Fach oder Anliegen. Filter lassen sich kombinieren.</p>
+
+  <form class="filter" id="filter" role="search" aria-label="Beispiele suchen und filtern">
+    <div class="suchzeile">
+      <label for="suche">Suchen</label>
+      <input type="search" id="suche" name="suche" autocomplete="off" placeholder="z. B. Rückmeldung, Geschichte, Fälle">
+    </div>
+    <div class="filterzeile" id="bereich" role="group" aria-label="Bereich"><span aria-hidden="true">Bereich</span>
+      <button type="button" class="chip" data-bereich="alle" aria-pressed="true">alle</button>
+      <button type="button" class="chip" data-bereich="ki" aria-pressed="false">KI-Training</button>
+      <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Digitaler Unterricht</button>
+      <button type="button" class="chip" data-bereich="beide" aria-pressed="false">mit KI entwickelt</button>
+    </div>
+    <div class="filterraster" id="auswahlfilter"></div>
+    <details class="mehr weitere-filter">
+      <summary>Weitere Filter</summary>
+      <div class="filterraster" id="weitere"></div>
+    </details>
+  </form>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a3)"><div class="huelle">
+  <div class="ergebniskopf">
+    <div class="ergebnis-oben">
+      <p class="ergebniszeile" id="ergebniszeile" aria-live="polite"></p>
+      <div class="ansicht" id="ansicht" role="group" aria-label="Ansicht der Beispiele">
+        <span aria-hidden="true">Ansicht</span>
+        <button type="button" class="chip" data-ansicht="raster" aria-pressed="true">Raster</button>
+        <button type="button" class="chip" data-ansicht="buehne" aria-pressed="false">Bühne</button>
+      </div>
+    </div>
+    <ul class="aktive" id="aktive" aria-label="Aktive Filter"></ul>
+  </div>
+  <p class="lockerung" id="lockerung" hidden></p>
+  <div class="karten" id="karten"></div>
+  <div class="buehne-steuerung" id="buehne-steuerung" hidden>
+    <button type="button" class="knopf still" id="buehne-zurueck"><span aria-hidden="true">←</span> Vorherige</button>
+    <p id="buehne-stand" class="leise" aria-live="polite"></p>
+    <button type="button" class="knopf still" id="buehne-vor">Nächste <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="mehrknopf"><button type="button" class="knopf still" id="mehr">Mehr Beispiele</button></div>
+  <p class="leise klein speicherhinweis">Deine Filter bleiben nur in diesem Browser. Suchwörter werden nicht gespeichert. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button> <span id="geloescht" aria-live="polite"></span></p>
+  <noscript><p class="box">Die Beispiele werden mit JavaScript angezeigt.</p></noscript>
+</div></section>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/daten/beispiele.js"></script>
+<script src="assets/daten/galerie.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/suche.js"></script>
+<script src="assets/showroom.js"></script>
+<script src="assets/galerie-buehne.js"></script>

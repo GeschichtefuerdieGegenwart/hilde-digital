@@ -1,4 +1,4 @@
-/* Hilde-Digital – Detailansicht eines Beispiels. Adresse: beispiel.html#<slug>
+/* Hilde Digital – Detailansicht eines Beispiels. Adresse: beispiel.html#<slug>
    Zeigt nur, was in den Daten steht. Leere Felder erscheinen gesammelt als »noch offen«,
    nie als allgemeine Sätze. Vorgeschlagene Zuordnungen tragen das Kennzeichen »Vorschlag«.
    Braucht: TAXONOMIEN, BEISPIELE, HILDE. */
@@ -24,8 +24,8 @@
      Ohne Check steht »noch offen« – das ist keine Abwertung. */
   function qualitaetscheck(b) {
     var q = b.qualitaetscheck;
-    var mehr = '<a class="textlink klein" href="mehrwert.html">Wie wir den Mehrwert prüfen <span aria-hidden="true">→</span></a>' +
-      '<a class="textlink klein" href="selbstcheck.html">Eigenes Material prüfen <span aria-hidden="true">→</span></a>';
+    var mehr = '<a class="textlink klein" href="mehrwert.html">So arbeitet der Digital-Check <span aria-hidden="true">→</span></a>' +
+      '<a class="textlink klein" href="digital-check.html">Eigenes Material prüfen <span aria-hidden="true">→</span></a>';
     if (q && q.staerken && q.staerken.length) {
       return '<div class="qualitaet"><h2 class="klein-titel">Qualitätscheck</h2>' +
         '<ul class="label-vorschau">' + q.staerken.slice(0, 3).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" +
@@ -67,9 +67,21 @@
       }).join("") + "</ul></div></section>";
   }
 
+  /* Ansichten aus der echten Anwendung: ein großes Bild, darunter die weiteren. Jedes öffnet die Bildansicht. */
+  function ansichtenHtml(b) {
+    var a = b.ansichten;
+    return '<section class="detail-ansichten" aria-label="Ansichten aus der Anwendung">' +
+      '<button type="button" class="detail-haupt-bild" data-bildrahmen data-ansicht="0"><img src="' + esc(a[0].bild) + '" alt="' + esc(a[0].alt) + '" width="1040" height="650"><span class="sr-only">Groß zeigen</span></button>' +
+      '<p class="detail-bild-text">' + esc(a[0].text) + "</p>" +
+      (a.length > 1 ? '<ul class="detail-weitere">' + a.slice(1).map(function (x, i) {
+        return '<li><button type="button" data-bildrahmen data-ansicht="' + (i + 1) + '"><img src="' + esc(x.bild) + '" alt="' + esc(x.alt) + '" width="1040" height="650" loading="lazy"><span class="sr-only">Ansicht ' + (i + 2) + " groß zeigen</span></button><span>" + esc(x.text) + "</span></li>";
+      }).join("") + "</ul>" : "") +
+      '<p class="leise klein">Bildschirmfotos aus der Anwendung – auch ohne Internet sichtbar.</p></section>';
+  }
+
   function zurueckLeiste() {
     var weg = H.lies("tabletweg");
-    var html = '<a class="textlink" href="showroom.html"><span aria-hidden="true">←</span> Zum Showroom</a>';
+    var html = '<a class="textlink" href="galerie.html"><span aria-hidden="true">←</span> Zur Galerie</a>';
     if (weg && weg.erreicht >= 5) {
       html += '<a class="textlink" href="tablets.html" id="zur-karte"><span aria-hidden="true">←</span> Zurück zu deiner Entscheidungskarte</a>';
     }
@@ -80,13 +92,13 @@
     var slug = decodeURIComponent((location.hash || "").replace(/^#/, ""));
     var b = finde(slug);
     if (!b) {
-      document.title = "Beispiel nicht gefunden – Hilde-Digital";
+      document.title = "Beispiel nicht gefunden – Hilde Digital";
       ziel.innerHTML = '<section class="abschnitt"><div class="huelle stapel">' + zurueckLeiste() +
         '<h1 tabindex="-1" id="detail-titel">Dieses Beispiel gibt es hier nicht.</h1>' +
-        '<p>Vielleicht hat sich die Adresse geändert. Im <a href="showroom.html">Showroom</a> findest du alle Beispiele.</p></div></section>';
+        '<p>Vielleicht hat sich die Adresse geändert. In der <a href="galerie.html">Galerie</a> findest du alle Beispiele.</p></div></section>';
       return;
     }
-    document.title = b.titel + " – Hilde-Digital";
+    document.title = b.titel + " – Hilde Digital";
     var nurKI = b.bereich === "ki";
     var offen = [];
 
@@ -139,7 +151,7 @@
 
     var oeffnen = b.link
       ? '<a class="knopf" href="' + esc(b.link) + '" target="_blank" rel="noopener">Anwendung öffnen <span aria-hidden="true">↗</span><span class="sr-only"> (öffnet in einem neuen Tab, braucht Internet)</span></a>' +
-        '<p class="leise klein">Externe Seite. Sie braucht eine Internetverbindung.</p>'
+        '<p class="leise klein">Externe Seite. Sie braucht eine Internetverbindung. Öffnet sie sich nicht, ist sie gerade nicht erreichbar – die Bilder hier zeigen trotzdem, was dort passiert.</p>'
       : b.vorschauArt === "konzept"
         ? '<p class="konzept-hinweis"><b>Konzeptbeispiel – noch nicht erprobt.</b> Eine Idee für eine Lücke im Bestand. Es gibt noch keine Anwendung.</p>'
         : '<span class="knopf" aria-disabled="true">noch nicht online</span>';
@@ -153,7 +165,8 @@
       '<p class="status">Status: <b>' + esc(b.status) + "</b></p></div></section>" +
       '<section class="abschnitt" style="padding-top:var(--a2)"><div class="huelle detail-raster">' +
         '<div class="detail-haupt">' +
-          (b.bild && !b.vergleich ? '<figure class="detail-bild"><img src="' + esc(b.bild) + '" alt="Bildschirmfoto von »' + esc(b.titel) + '«"><figcaption>Bildschirmfoto – auch ohne Internet sichtbar.</figcaption></figure>' : "") +
+          (b.ansichten && b.ansichten.length ? ansichtenHtml(b) :
+            b.bild && !b.vergleich ? '<figure class="detail-bild" data-bildrahmen><img src="' + esc(b.bild) + '" alt="Bildschirmfoto von »' + esc(b.titel) + '«" width="1040" height="650"><figcaption>Bildschirmfoto – auch ohne Internet sichtbar.</figcaption></figure>' : "") +
           (b.vergleich ? '<section><h2>Vorher und nachher</h2><p class="leise">' + esc(b.vergleich.text) + '</p><div class="paar">' +
             '<figure><img src="' + esc(b.vergleich.vorher.bild) + '" alt="' + esc(b.vergleich.vorher.alt) + '"><figcaption><b>Vorher:</b> ' + esc(b.vergleich.vorher.text) + "</figcaption></figure>" +
             '<figure><img src="' + esc(b.vergleich.nachher.bild) + '" alt="' + esc(b.vergleich.nachher.alt) + '"><figcaption><b>Nachher:</b> ' + esc(b.vergleich.nachher.text) + "</figcaption></figure></div></section>" : "") +
@@ -173,6 +186,13 @@
       var weg = H.lies("tabletweg"); if (weg) { weg.schritt = 5; H.schreib("tabletweg", weg); }
     });
   }
+
+  ziel.addEventListener("click", function (e) {
+    var k = e.target.closest("[data-ansicht]");
+    if (!k) return;
+    var b = finde(decodeURIComponent((location.hash || "").replace(/^#/, "")));
+    if (b && b.ansichten) H.lichtbild(b.ansichten, parseInt(k.getAttribute("data-ansicht"), 10), b.titel, k);
+  });
 
   window.addEventListener("hashchange", function () {
     zeige();
