@@ -38,7 +38,7 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 ## Capabilities and Constraints
 
 - Hauptnavigation mit drei Punkten: KI-Training · Digitaler Unterricht · Galerie. Die Wortmarke führt zum Start. »Über Hilde Digital«, »Inhalte und Funktionen« und »Hinweise« stehen im Fuß.
-- Digital-Check mit zwei Wegen: »Selbst prüfen« und »Material prüfen lassen« (regelbasierte Textsuche mit Fundstellen, keine KI, keine Bewertung, keine Prozente).
+- Digital-Check mit zwei Wegen: »Selbst prüfen« und »Mit KI prüfen« (ein Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren; die Lehrkraft gibt ihn mit ihrem Material in ein an der Schule freigegebenes KI-System ein; keine Anbindung, kein Upload auf dieser Seite).
 - Galerie mit echten Ansichten aus den Anwendungen (1–4 je Projekt) und einer Bildansicht für Maus, Tastatur und Finger.
 - Geführte Wege mit einer Entscheidung pro Schritt, Zurück, »Noch nicht sicher«, Ergebnis ohne Sackgasse, »Neu starten« und »Eingaben löschen«.
 - Galerie mit Freitextsuche und Filtern (Bereich, Phase, Anliegen, Umfang, Rolle, Fach), entfernbaren Chips, Ergebniszeile und kontrollierter Lockerung bei zu wenigen Treffern.
@@ -48,7 +48,7 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 - Keine Anmeldung, kein Server, keine Tracker; Eingaben nur lokal (localStorage in try/catch), Freitexte werden nicht gespeichert.
 - Externe Anwendungen werden verlinkt, nicht eingebettet; das Bildschirmfoto dient als Vorschau und als Ersatz ohne Netz.
 - Fachbegriffe (Adaptivität, kognitive Aktivierung, formative Diagnostik u. a.) nur in aufklappbaren Vertiefungen.
-- Bewegung: kein Autoplay. Bewegte Bereiche starten nur auf Knopfdruck, sind pausierbar und respektieren `prefers-reduced-motion`; eine statische Rasteransicht ist jederzeit verfügbar.
+- Bewegung: kein Autoplay – mit einer bewusst gewählten Ausnahme (Entscheidung vom 18.10.2026): das Laufband der Galerie. Es läuft sehr langsam (etwa 24 px/s), hält beim Überfahren, beim Fokus, per Knopf »Anhalten« und außerhalb des Bildschirms an und steht bei `prefers-reduced-motion` still. Alle anderen bewegten Bereiche starten nur auf Knopfdruck; eine statische Ansicht ist jederzeit verfügbar.
 - Offene Punkte zu den Daten stehen in `docs/datenluecken.md`, offene Punkte der Versionen in `docs/version-*.md`.
 
 ## Brand Commitments

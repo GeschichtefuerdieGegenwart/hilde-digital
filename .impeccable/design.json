@@ -98,7 +98,7 @@
       "stagger": "30ms, max. 8 Elemente",
       "driftSpeed": "20px/s, nur nach Klick auf »Rundgang starten«",
       "rules": [
-        "kein Autoplay",
+        "kein Autoplay – Ausnahme: Laufband der Galerie (linear, ca. 24px/s, anhaltbar, hält bei Hover/Fokus/außer Sicht, still bei reduced motion)",
         "Hover nur unter @media (hover:hover) and (pointer:fine)",
         "Tastaturaktionen nicht animieren",
         "nur transform und opacity animieren, kein transition: all",

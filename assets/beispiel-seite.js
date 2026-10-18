@@ -82,7 +82,7 @@
   function zurueckLeiste() {
     var weg = H.lies("tabletweg");
     var html = '<a class="textlink" href="galerie.html"><span aria-hidden="true">←</span> Zur Galerie</a>';
-    if (weg && weg.erreicht >= 5) {
+    if (weg && weg.erreicht >= 4) {
       html += '<a class="textlink" href="tablets.html" id="zur-karte"><span aria-hidden="true">←</span> Zurück zu deiner Entscheidungskarte</a>';
     }
     return '<p class="zurueck-leiste">' + html + "</p>";

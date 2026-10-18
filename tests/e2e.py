@@ -7,7 +7,7 @@ wird jede Seite zusätzlich mit axe-core geprüft. Die Datei gehört nicht ins R
 
 Geprüft: Kernweg Start → Digitaler Unterricht → Planungsweg → Entscheidungskarte → Beispiel → Detail,
 nur per Tastatur, Zurück und Ändern, Speichern und Löschen, Lockerung, ohne Internet, Konsolenfehler,
-reduzierte Bewegung, Digital-Check (Weg B), Galerie mit Bildansicht, Breiten 375 / 768 / 1280 / 1440.
+reduzierte Bewegung, Digital-Check (Weg B: Prüf-Auftrag), Galerie mit Bildansicht, Breiten 375 / 768 / 1280 / 1440.
 """
 import os
 import sys
@@ -70,13 +70,17 @@ def main():
         pg.click("#weiter")
         pruefe(pg.is_visible("#hinweis"), "Planungsweg: Hinweis, wenn nichts gewählt ist")
         antworte(pg, "phase", "einstieg")
-        pruefe(pg.locator('input[name="anliegen"]').count() < 14, "Lernabsicht: zuerst nur häufige Anliegen")
+        pruefe(pg.inner_text("#frage") == "Was soll dein digitaler Abschnitt vor allem bewirken?", "Planungsweg: Frage 2 fragt nach dem Ziel des digitalen Abschnitts")
+        pruefe(pg.locator('input[name="anliegen"]').count() == 7, "Ziel: zuerst nur sechs Ziele und »noch nicht sicher«")
+        pruefe(pg.locator(".schritte li").count() == 5, "Planungsweg: vier Fragen und die Entscheidungskarte")
+        ziele = pg.locator(".option b").all_inner_texts()
+        pruefe("Motivieren und Interesse wecken" in ziele and "Leistung feststellen" in ziele, f"Ziel: kurze, klare Antworten {ziele}")
         pg.click("#weitere")
         pruefe(pg.locator('input[name="anliegen"]').count() == 14, "Lernabsicht: »Weitere anzeigen« zeigt alle")
         antworte(pg, "anliegen", "interesse")
+        pruefe(pg.locator('input[name="mehrwert"]').count() == 6 and pg.is_visible("#weitere"), "Mehrwert: zuerst sechs Antworten, der Rest unter »Weitere anzeigen«")
         antworte(pg, "mehrwert", "experimentieren")
         antworte(pg, "umfang", "offen")
-        pg.click("#weiter")
         pruefe(pg.inner_text("#ergebnis-titel") == "Klarer Lernmehrwert erkennbar", "Entscheidungskarte: Einstufung erscheint")
         pruefe("Das ist eine Planungshilfe, keine Bewertung. Du entscheidest." in pg.inner_text(".entscheidung"), "Entscheidungskarte: Schlusssatz")
         n = pg.locator(".mini").count()
@@ -86,7 +90,7 @@ def main():
         # Zurück und ändern
         pg.click('.schritte button[data-gehe="2"]')
         antworte(pg, "mehrwert", "organisation")
-        pg.click('.schritte button[data-gehe="5"]')
+        pg.click('.schritte button[data-gehe="4"]')
         pruefe(pg.inner_text("#ergebnis-titel") == "Vor allem organisatorischer Nutzen", "Ändern: neue Antwort ändert die Karte")
 
         # Persistenz
@@ -110,14 +114,16 @@ def main():
         # 2. Analog-Ergebnis und Lockerung
         for name, wert in [("phase", "offen"), ("anliegen", "offen"), ("mehrwert", "unklar"), ("umfang", "offen")]:
             antworte(pg, name, wert)
-        pg.click("#weiter")
         pruefe(pg.inner_text("#ergebnis-titel") == "Analog oder hybrid vermutlich passender", "Analog oder hybrid ist ein mögliches Ergebnis")
         pg.click("#neu")
         antworte(pg, "phase", "abschluss")
         pg.click("#weitere")
         antworte(pg, "anliegen", "vorwissen")
+        pg.click("#weitere")
         antworte(pg, "mehrwert", "zeitort")
-        antworte(pg, "umfang", "punktuell")
+        pruefe(not pg.is_visible('input[name="rahmen-netz"]') and pg.locator("#rahmen-mehr").count() == 1, "Rahmen: kein eigener Schritt, sondern aufklappbar unter dem Umfang")
+        pg.check('input[name="umfang"][value="punktuell"]')
+        pg.click("#rahmen-mehr summary")
         pg.check('input[name="rahmen-netz"][value="nein"]')
         pg.click("#weiter")
         pruefe(pg.is_visible(".lockerung") or pg.locator(".mini").count() == 0, "Keine exakte Übereinstimmung: Lockerung wird erklärt")
@@ -216,7 +222,6 @@ def main():
             pg.keyboard.press("ArrowDown"); pg.keyboard.press("Space")
             tab_bis("#weiter"); pg.keyboard.press("Enter")
             pruefe(ok, f"Tastatur: Auswahl »{name}« erreichbar")
-        tab_bis("#weiter"); pg.keyboard.press("Enter")
         pruefe(pg.is_visible("#ergebnis-titel"), "Tastatur: Entscheidungskarte erreicht")
         pruefe(pg.evaluate("document.activeElement.id") == "ergebnis-titel", "Tastatur: Fokus springt auf die Karte")
         ok = tab_bis(".mini a")
@@ -228,8 +233,9 @@ def main():
         # 3b. Ab Version 2.1: vollständiger Rahmen, Detailfragen, Entdeckungsbühne, Eingaben löschen
         pg = neue_seite(b)
         pg.goto(url("tablets.html"))
-        pg.evaluate("localStorage.setItem('hilde.tabletweg', JSON.stringify({schritt:4,erreicht:4,phase:'erarbeitung',anliegen:'zusammen',mehrwert:'gemeinsam',umfang:'phasenweise',rahmen:{}}))")
+        pg.evaluate("localStorage.setItem('hilde.tabletweg', JSON.stringify({schritt:3,erreicht:3,phase:'erarbeitung',anliegen:'zusammen',mehrwert:'gemeinsam',umfang:'phasenweise',rahmen:{}}))")
         pg.reload()
+        pg.click("#rahmen-mehr summary")
         pruefe(pg.locator("fieldset.rahmenfrage").count() == 7, "Rahmen: sieben freiwillige Fragen (Netz, Geräte, Erfahrung, Zeit, Sozialform, Zugang, Daten)")
         pg.check('input[name="rahmen-sozialform"][value="allein"]')
         pg.check('input[name="rahmen-daten"][value="ja"]')
@@ -272,17 +278,21 @@ def main():
             pg.goto(url(s))
             pg.wait_for_load_state("load")
         pg.goto(url("index.html"))
+        pg.goto(url("galerie.html"))
+        pruefe(pg.is_hidden("#laufband-pause") and pg.evaluate("getComputedStyle(document.getElementById('laufband')).animationName") == "none", "Weniger Bewegung: Laufband steht still, ohne Knopf")
+        pg.goto(url("index.html"))
         stil = pg.evaluate("(() => { const s = getComputedStyle(document.querySelector('.wahlflaeche')); return [s.transitionProperty, s.transitionDuration, getComputedStyle(document.querySelector('.knopf, .weiter')).transitionProperty]; })()")
         pruefe("transform" not in stil[0] and "transform" not in stil[2] and all(float(d.rstrip("s")) <= .15 for d in stil[1].split(", ")), f"Reduzierte Bewegung: keine Bewegung, nur kurzes Überblenden {stil}")
         pruefe(not pg.extern, f"Ohne Internet: keine externen Anfragen {pg.extern[:3]}")
         pg.goto(url("galerie.html"))
         pruefe(pg.locator(".karte").count() >= 6, "Galerie: Karten erscheinen ohne Angaben")
-        pg.evaluate("window.scrollTo(0, document.body.scrollHeight)")  # verzögert geladene Bilder anstoßen
+        for y in range(0, pg.evaluate("document.body.scrollHeight"), 600):  # verzögert geladene Bilder anstoßen
+            pg.evaluate(f"window.scrollTo(0, {y})"); pg.wait_for_timeout(60)
         try:  # Bilder laden verzögert (loading="lazy"); kurz warten statt zufällig scheitern
-            pg.wait_for_function("[...document.images].every(i => i.complete)", timeout=5000)
+            pg.wait_for_function("[...document.images].filter(i => !i.closest('#laufband')).every(i => i.complete)", timeout=5000)
         except Exception:
             pass
-        bilder_ok = pg.evaluate("[...document.images].every(i => i.complete && i.naturalWidth > 0)")
+        bilder_ok = pg.evaluate("[...document.images].filter(i => !i.closest('#laufband')).every(i => i.complete && i.naturalWidth > 0)")
         pruefe(bilder_ok, "Galerie: Bildschirmfotos laden ohne Internet")
         pg.goto(url("beispiel.html#psycho-ds2"))
         pruefe(pg.get_attribute(".aktion a.knopf", "target") == "_blank", "Detail: externe Anwendung öffnet in neuem Tab und ist gekennzeichnet")
@@ -326,28 +336,21 @@ def main():
         pg2 = neue_seite(b)
         pg2.goto(url("digital-check.html"))
         pruefe(pg2.locator(".check-weg").count() == 2, "Digital-Check: zwei Wege")
-        pg2.click("#lassen-start")
-        pruefe(pg2.is_visible("#lassen-fehler") and pg2.is_hidden("#lassen-ergebnis"), "Weg B: leerer Text ergibt eine Fehlermeldung, kein Ergebnis")
-        pg2.fill("#material-text", "Lies den Text.")
-        pg2.click("#lassen-start")
-        pruefe("mindestens" in pg2.inner_text("#lassen-fehler").lower() or "kurz" in pg2.inner_text("#lassen-fehler").lower(), "Weg B: zu kurzer Text wird benannt")
-        pg2.fill("#material-text", "Arbeitet zu zweit. Vergleicht die beiden Quellen und begründet, welche glaubwürdiger ist. "
-                 "Prüft eure Lösung anschließend mit dem Lösungsblatt. Wer Hilfe braucht, nimmt die Tippkarte. "
-                 "Am Ende stellt jede Gruppe ihr Ergebnis kurz vor.")
-        pg2.click("#lassen-start")
-        pg2.wait_for_selector("#lassen-ergebnis:not([hidden])")
-        erg = pg2.inner_text("#lassen-ergebnis")
-        teile = ["Besondere Stärke", "Abgedeckte Bereiche", "Beobachtungen am Material", "Mögliche Weiterentwicklung", "Grenzen der Einschätzung"]
-        pruefe(all(t in erg for t in teile) and [erg.index(t) for t in teile] == sorted(erg.index(t) for t in teile), "Weg B: Ergebnis in fünf Teilen und richtiger Reihenfolge")
-        pruefe("%" not in erg and "Note" not in erg.replace("keine Note", ""), "Weg B: keine Prozente, keine Noten")
-        pruefe(pg2.locator("q.fundstelle").count() >= 2, "Weg B: Beobachtungen zeigen ihre Fundstellen")
-        pruefe(pg2.inner_text("#lassen-status").startswith("Fertig") and not pg2.evaluate("document.getElementById('lassen-status').classList.contains('sucht')"), "Weg B: Ladezustand endet mit einer Fertig-Meldung")
-        pruefe("Vergleicht" not in (pg2.evaluate("JSON.stringify(localStorage)") or ""), "Weg B: Text wird nicht gespeichert")
-        pg2.click("#anfrage-zeigen")
-        pruefe(pg2.is_visible("#anfrage-block") and "freigegebenes KI-System" in pg2.inner_text("#anfrage-block"), "Weg B: Anfrage für ein freigegebenes KI-System, ohne Verbindung")
-        pg2.click("#nochmal")
-        pruefe(pg2.input_value("#material-text") == "" and pg2.is_hidden("#lassen-ergebnis"), "Weg B: »Anderen Text prüfen« setzt zurück")
-        pruefe(not pg2.extern, f"Weg B: keine Anfrage ins Netz {pg2.extern[:3]}")
+        pruefe("Mit KI prüfen" in pg2.inner_text(".check-wege") and pg2.locator("textarea#material-text").count() == 0, "Weg B: Prüf-Auftrag statt Texteingabe")
+        prompt = pg2.input_value("#pruef-prompt")
+        pruefe("Besondere Stärke" in prompt and "besser als ein Arbeitsblatt auf Papier" in prompt and prompt.count("\n## ") == 14, "Weg B: Auftrag enthält das ganze Qualitätsmodell und den Vergleich mit Papier")
+        pruefe("Bestimme zuerst den Materialtyp" in prompt, "Weg B: ohne Angabe bestimmt die KI den Materialtyp")
+        pg2.select_option("#material-typ", "quiz")
+        prompt = pg2.input_value("#pruef-prompt")
+        pruefe("Materialtyp: Quiz oder Selbsttest" in prompt and prompt.count("[wichtig für diesen Materialtyp]") == 2, "Weg B: Materialtyp passt den Auftrag an")
+        pg2.context.grant_permissions(["clipboard-read", "clipboard-write"])
+        pg2.click("#prompt-kopieren")
+        pg2.wait_for_function("document.getElementById('kopier-status').textContent.length > 0")
+        st = pg2.inner_text("#kopier-status")
+        pruefe(st.startswith("Kopiert") or ("markiert" in st and pg2.evaluate("document.getElementById('prompt-ansicht').open")), f"Weg B: Kopieren oder markierter Text als Rückfall ({st[:40]})")
+        pg2.reload()
+        pruefe(pg2.input_value("#material-typ") == "quiz" and "Freitext" not in (pg2.evaluate("JSON.stringify(localStorage)") or ""), "Weg B: nur der Materialtyp bleibt gespeichert")
+        pruefe("freigegebenes KI-System" in pg2.inner_text("#mit-ki") and not pg2.extern, f"Weg B: freigegebenes KI-System, keine Anfrage ins Netz {pg2.extern[:3]}")
 
         pg2.goto(url("galerie.html"))
         gross = pg2.locator(".einblick")
@@ -369,6 +372,25 @@ def main():
         pg2.wait_for_selector("dialog.lichtbild[open]")
         pruefe(pg2.evaluate("document.activeElement.dataset.lb") == "zu", "Bildansicht: per Tastatur geöffnet, Fokus auf »Schließen«")
         pg2.click('[data-lb="zu"]')
+        pg2.wait_for_selector("dialog.lichtbild", state="hidden")
+        # Laufband: bewegt sich langsam, hält an, öffnet die Bildansicht
+        pg2.goto(url("galerie.html"))
+        pg2.mouse.move(5, 5)
+        lauf = lambda: pg2.evaluate("new DOMMatrix(getComputedStyle(document.getElementById('laufband')).transform).m41")
+        x1 = lauf(); pg2.wait_for_timeout(1200); x2 = lauf()
+        pruefe(x2 < x1 and (x1 - x2) < 80, f"Laufband: bewegt sich langsam ({x1 - x2:.0f} px in 1,2 s)")
+        pruefe(pg2.locator("#laufband > li:not([aria-hidden])").count() == 37, "Laufband: alle 37 Ansichten, die Wiederholung ist für Vorleseprogramme verborgen")
+        pg2.click("#laufband-pause")
+        pruefe(pg2.get_attribute("#laufband-pause", "aria-pressed") == "true", "Laufband: Knopf hält an")
+        x1 = lauf(); pg2.wait_for_timeout(600)
+        pruefe(abs(lauf() - x1) < 1, "Laufband: steht nach »Anhalten« still")
+        pg2.reload()
+        pruefe(pg2.get_attribute("#laufband-pause", "aria-pressed") == "true", "Laufband: bleibt angehalten nach dem Neuladen")
+        pg2.click("#laufband-pause")
+        pg2.click("#laufband > li:not([aria-hidden]) .laufband-bild >> nth=1")
+        pg2.wait_for_selector("dialog.lichtbild[open]")
+        pruefe(pg2.is_visible(".lb-titel"), "Laufband: ein Bild öffnet die Bildansicht")
+        pg2.keyboard.press("Escape")
         pg2.wait_for_selector("dialog.lichtbild", state="hidden")
         pg2.goto(url("beispiel.html#ns-ideologie"))
         pruefe(pg2.locator(".detail-ansichten [data-ansicht]").count() == 4, "Detail: vier Ansichten aus der Anwendung")
@@ -395,7 +417,7 @@ def main():
             for s in SEITEN + ["tablets-ergebnis"]:
                 if s == "tablets-ergebnis":
                     pg.goto(url("tablets.html"))
-                    pg.evaluate("localStorage.setItem('hilde.tabletweg', JSON.stringify({schritt:5,erreicht:5,phase:'sicherung',anliegen:'ueben',mehrwert:'rueckmeldung',umfang:'offen',rahmen:{}}))")
+                    pg.evaluate("localStorage.setItem('hilde.tabletweg', JSON.stringify({schritt:4,erreicht:4,phase:'sicherung',anliegen:'ueben',mehrwert:'rueckmeldung',umfang:'offen',rahmen:{}}))")
                     pg.reload()
                 else:
                     pg.goto(url(s))
