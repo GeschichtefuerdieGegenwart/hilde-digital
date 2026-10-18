@@ -1,4 +1,4 @@
-/* Hilde Digital – Weg A »KI für meine Arbeit«: fünf Schritte bis zu einer guten Anfrage und ihrer Prüfung.
+/* Hilde-Digital – Weg A »KI für meine Arbeit«: fünf Schritte bis zu einer guten Anfrage und ihrer Prüfung.
    Keine KI-Anbindung, keine simulierte Antwort. Die Anfrage wird nur gebaut, angezeigt und kopiert.
    Gespeichert werden nur Auswahlwerte (Ziel, Ergebnisform, Niveau, Prüfliste), nie Freitexte.
    Braucht: KI_TEXTE, KI_ANFRAGE, BEISPIELE, HILDE. */

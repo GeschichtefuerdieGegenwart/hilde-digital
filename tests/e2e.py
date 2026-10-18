@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Browser-Tests für Hilde Digital (Python Playwright, Chromium).
+"""Browser-Tests für Hilde-Digital (Python Playwright, Chromium).
 
 Aufruf:  python3 tests/e2e.py [Ordner für Bildschirmfotos]
 Barrierefreiheit: Liegt axe.min.js unter tests/vendor/ (oder in der Umgebungsvariable AXE_PFAD),

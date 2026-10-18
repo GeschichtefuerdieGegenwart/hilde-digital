@@ -1,4 +1,4 @@
-/* Hilde Digital – Texte für den Weg »KI für meine Arbeit«.
+/* Hilde-Digital – Texte für den Weg »KI für meine Arbeit«.
    Hier stehen die Ziele, Ergebnisformen, Bausteine der Anfrage und die Prüflisten.
    Keine Namen von KI-Anbietern: Welche Systeme an der Schule zugelassen sind, ist noch offen.
    Die Anfrage selbst baut assets/ki-anfrage.js aus diesen Texten zusammen. */

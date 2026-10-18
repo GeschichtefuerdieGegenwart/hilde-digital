@@ -1,0 +1,8 @@
+{
+  "note": "Hilde-Digital nutzt keine gezogene Richtung (Marke steht: DESIGN.md). Begründete Ausnahmen für inspect.mjs.",
+  "allow": ["still-page", "no-footage"],
+  "reasons": {
+    "still-page": "Thema des Projekts ist Aufmerksamkeit und Ablenkung; Beamer-Einsatz in Konferenzen. Kein Autoplay, keine Scroll-Einblendungen. Bewegung nur: Register-Bewegung beim ersten Aufruf je Sitzung, Rückmeldung an Bedienelementen, Rundgang auf Knopfdruck.",
+    "no-footage": "Es gibt keinen ehrlichen Clip aus dem Unterricht (keine Aufnahmen von Personen, keine erfundenen Szenen); Videoschleifen widersprächen der Regel 'kein Autoplay'."
+  }
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Baut die Seiten von Hilde Digital aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
+"""Baut die Seiten von Hilde-Digital aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
 
 Aufruf:  python3 tools/bauen.py
 Ergebnis: index.html, ki.html, tablets.html, passt.html, showroom.html, beispiel.html, mehrwert.html, selbstcheck.html, ueber.html, gestaltung.html.
@@ -11,19 +11,20 @@ WURZEL = Path(__file__).resolve().parent.parent
 
 SEITEN = [
     # Datei, Titel, Navigationspunkt
-    ("index.html", "Hilde Digital", "start"),
-    ("ki.html", "KI für meine Arbeit – Hilde Digital", "ki"),
-    ("tablets.html", "Unterricht mit Tablets gestalten – Hilde Digital", "tablets"),
-    ("passt.html", "Was passt gerade zu mir? – Hilde Digital", "tablets"),
-    ("showroom.html", "Showroom – Hilde Digital", "showroom"),
-    ("beispiel.html", "Beispiel – Hilde Digital", "showroom"),
-    ("mehrwert.html", "Wie wir den Mehrwert prüfen – Hilde Digital", "ueber"),
-    ("selbstcheck.html", "Eigenes Material prüfen – Hilde Digital", ""),
-    ("ueber.html", "Über das Modul – Hilde Digital", "ueber"),
-    ("gestaltung.html", "Gestaltungssystem – Hilde Digital", "ueber"),
+    ("index.html", "Hilde-Digital – Start", "start"),
+    ("ki.html", "KI für meine Arbeit – Hilde-Digital", "ki"),
+    ("tablets.html", "Unterricht mit Tablets gestalten – Hilde-Digital", "tablets"),
+    ("passt.html", "Was passt gerade zu mir? – Hilde-Digital", "tablets"),
+    ("showroom.html", "Showroom – Hilde-Digital", "showroom"),
+    ("beispiel.html", "Beispiel – Hilde-Digital", "showroom"),
+    ("mehrwert.html", "Wie wir den Mehrwert prüfen – Hilde-Digital", "ueber"),
+    ("selbstcheck.html", "Eigenes Material prüfen – Hilde-Digital", ""),
+    ("ueber.html", "Über das Modul – Hilde-Digital", "ueber"),
+    ("gestaltung.html", "Gestaltungssystem – Hilde-Digital", "ueber"),
 ]
 
-MARKE = """<svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="11" cy="14" r="8.5" fill="#f5e8cf" stroke="#a26a1c" stroke-width="1.6"/><circle cx="17" cy="14" r="8.5" fill="#dbeae6" fill-opacity=".75" stroke="#1e6b67" stroke-width="1.6"/></svg>"""
+# Wortmarke: der Bindestrich besteht aus zwei überdruckten Balken (Honig, Petrol, Überdruck).
+STRICH = '<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span>'
 
 NAV = [
     # höchstens fünf Punkte (Master-Prompt, Abschnitt 4)
@@ -42,6 +43,10 @@ def rahmen(titel, aktiv, inhalt):
         f'<a href="{href}"{" aria-current=\"page\"" if key == aktiv else ""}>{text}</a>'
         for key, href, text in NAV
     )
+    fussnav = "".join(
+        f'<li><a href="{href}"{" aria-current=\"page\"" if key == aktiv else ""}>{text}</a></li>'
+        for key, href, text in NAV
+    )
     return f"""<!doctype html>
 <html lang="de">
 <head>
@@ -54,14 +59,17 @@ def rahmen(titel, aktiv, inhalt):
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 <header class="kopf"><div class="huelle">
-  <a class="marke" href="index.html">{MARKE}Hilde Digital</a>
+  <a class="marke" href="index.html" aria-label="Hilde-Digital, Start">Hilde{STRICH}Digital</a>
+  <a class="menue-link" href="#menue">Menü</a>
   <nav class="nav" aria-label="Bereiche">{nav}</nav>
 </div></header>
 <main id="inhalt" tabindex="-1">
 {inhalt}
 </main>
 <footer class="fuss"><div class="huelle">
-  <span>Hilde Digital (Arbeitstitel) · {KENNZEICHNUNG}</span>
+  <nav class="fussnav" id="menue" aria-label="Menü"><p class="fussnav-titel">Menü</p><ul>{fussnav}</ul></nav>
+  <p class="fuss-marke" aria-hidden="true">Hilde{STRICH}Digital</p>
+  <p class="kennzeichnung">Hilde-Digital (Arbeitstitel) · {KENNZEICHNUNG}</p>
   <span class="fusslinks"><a href="mehrwert.html" class="leise">Wie wir den Mehrwert prüfen</a> <a href="ueber.html" class="leise">Über das Modul</a> <a href="gestaltung.html" class="leise">Gestaltungssystem</a> <a href="ueber.html#t-daten" class="leise">Eingaben löschen</a></span>
 </div></footer>
 </body>

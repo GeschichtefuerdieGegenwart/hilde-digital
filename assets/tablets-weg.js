@@ -1,4 +1,4 @@
-/* Hilde Digital – Weg B »Unterricht mit Tablets gestalten«: sechs Schritte bis zur Entscheidungskarte.
+/* Hilde-Digital – Weg B »Unterricht mit Tablets gestalten«: sechs Schritte bis zur Entscheidungskarte.
    Eine Entscheidung pro Schritt. »Noch nicht sicher« ist überall erlaubt, wo es fachlich sinnvoll ist.
    Braucht: TAXONOMIEN, BEISPIELE, REGELN, HILDE. */
 (function () {

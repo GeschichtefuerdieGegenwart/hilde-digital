@@ -1,4 +1,4 @@
-/* Hilde Digital – Qualitätsmodell (Fassung 2) als Daten für den Selbstcheck »Eigenes Material prüfen«.
+/* Hilde-Digital – Qualitätsmodell (Fassung 2) als Daten für den Selbstcheck »Eigenes Material prüfen«.
 
    Quelle: »Hilde-Digital – Qualitätsmodell 2: Mehrwert als Ergebnis« (17.10.2026), Abschnitte 5, 7, 9 und 11.
    Die Anker sind ein erster Entwurf und werden in der Erprobung überarbeitet.

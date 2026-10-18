@@ -1,4 +1,4 @@
-/* Hilde Digital – gemeinsame Helfer für alle Seiten:
+/* Hilde-Digital – gemeinsame Helfer für alle Seiten:
    sicheres Speichern im Browser, Darstellung von Kennzeichen und Beispielkarten.
    Braucht: assets/daten/taxonomien.js (TAXONOMIEN). */
 var HILDE = (function () {

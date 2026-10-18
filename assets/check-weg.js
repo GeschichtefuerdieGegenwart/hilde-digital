@@ -1,4 +1,4 @@
-/* Hilde Digital – Selbstcheck »Eigenes Material prüfen«: sechs Schritte bis zum Bericht.
+/* Hilde-Digital – Selbstcheck »Eigenes Material prüfen«: sechs Schritte bis zum Bericht.
    Stufe 2 und 5 des KI-Entwicklungskonzepts, aber ohne KI: ein regelbasierter Fragenablauf,
    der das gekoppelte Profil zeigt und beratende Fragen stellt. Nichts wird übertragen.
    Gespeichert werden nur Auswahlwerte, nie Freitexte. Fachbegriffe stehen nur in Vertiefungen.

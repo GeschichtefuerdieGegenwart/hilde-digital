@@ -1,4 +1,4 @@
-/* Hilde Digital – Regeln des Mehrwert-Checks und der Beispielsuche.
+/* Hilde-Digital – Regeln des Mehrwert-Checks und der Beispielsuche.
 
    Grundsätze
    - Regelbasiert und deterministisch: gleiche Antworten ergeben immer dieselbe Karte.
@@ -334,10 +334,44 @@
     };
   }
 
+  /* 7. Papierprobe (Startseite) – die Kurzform des Prüfsteins »Geht es auf Papier genauso gut?«.
+        Drei Ja/Nein-Fragen, jeweils mit »noch nicht sicher«. Ergebnis ist eine der vier Einstufungen
+        aus taxonomien.js – dieselben Namen wie auf der Entscheidungskarte. Der Tablet-Weg prüft genauer.
+          neu:    Tun die Lernenden mit dem Tablet etwas, das auf Papier nicht oder nur mühsam ginge?
+          ablage: Hilft das Tablet vor allem beim Verteilen, Einsammeln oder Ablegen?   (nur bei neu = nein)
+          ziel:   Dient das dem, was die Lernenden lernen sollen?                        (nur bei neu = ja)
+        Regeln (in dieser Reihenfolge):
+          neu fehlt                        → noch offen (null)
+          neu = offen                      → analog   (wie »Mehrwert noch unklar« im Tablet-Weg)
+          neu = nein, ablage = ja          → organisatorisch
+          neu = nein, ablage = nein/offen  → analog
+          neu = ja,   ziel = ja            → klar
+          neu = ja,   ziel = nein/offen    → anpassung
+        Fehlt die Folgefrage, ist das Ergebnis noch offen (null). */
+  function papierprobe(a) {
+    a = a || {};
+    var JA = "ja", NEIN = "nein";
+    if (!a.neu) return { id: null, frage: "neu" };
+    if (a.neu === "offen") return { id: "analog", grund:
+      "Noch ist nicht klar, was durch das Tablet besser wird. Dann ist Papier oft die ruhigere Wahl." };
+    if (a.neu === NEIN) {
+      if (!a.ablage) return { id: null, frage: "ablage" };
+      if (a.ablage === JA) return { id: "organisatorisch", grund:
+        "Das Tablet ersetzt hier vor allem den Schnellhefter. Das spart Zeit, verändert aber das Lernen noch nicht." };
+      return { id: "analog", grund: "Geht es auf Papier genauso gut, bleib beim Papier." };
+    }
+    if (!a.ziel) return { id: null, frage: "ziel" };
+    if (a.ziel === JA) return { id: "klar", grund:
+      "Die Lernenden tun etwas, das auf Papier kaum ginge, und es dient dem Lernziel. Entscheidend bleibt, dass die Ergebnisse im Unterricht aufgegriffen werden." };
+    return { id: "anpassung", grund:
+      "Das Tablet ermöglicht etwas Neues. Damit daraus Lernen wird, muss die Aufgabe zum Lernziel passen." };
+  }
+
   var REGELN = {
     PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
     stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
-    entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung
+    entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung,
+    papierprobe: papierprobe
   };
   if (typeof module !== "undefined") module.exports = REGELN;
   else wurzel.REGELN = REGELN;

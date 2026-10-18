@@ -260,3 +260,43 @@ test("Jede Rahmenfrage ändert mindestens eine Aussage der Karte", () => {
     assert.notEqual(ohne, mit, "Rahmenfrage ohne Wirkung: " + r.id);
   }
 });
+
+test("Papierprobe: ohne erste Antwort bleibt das Ergebnis offen und nennt die nächste Frage", () => {
+  for (const a of [undefined, null, {}]) {
+    const e = R.papierprobe(a);
+    assert.equal(e.id, null);
+    assert.equal(e.frage, "neu");
+  }
+  assert.deepEqual(R.papierprobe({ neu: "nein" }), { id: null, frage: "ablage" });
+  assert.deepEqual(R.papierprobe({ neu: "ja" }), { id: null, frage: "ziel" });
+});
+
+test("Papierprobe: nichts Neues und nur Ablage ist organisatorischer Nutzen", () => {
+  assert.equal(R.papierprobe({ neu: "nein", ablage: "ja" }).id, "organisatorisch");
+});
+
+test("Papierprobe: nichts Neues und keine Ablage heißt Papier", () => {
+  assert.equal(R.papierprobe({ neu: "nein", ablage: "nein" }).id, "analog");
+  assert.equal(R.papierprobe({ neu: "nein", ablage: "offen" }).id, "analog");
+});
+
+test("Papierprobe: Unsicherheit beim Neuen führt wie im Tablet-Weg zu analog", () => {
+  assert.equal(R.papierprobe({ neu: "offen" }).id, "analog");
+});
+
+test("Papierprobe: Neues mit Lernzielbezug ist klarer Mehrwert, ohne Bezug Anpassung", () => {
+  assert.equal(R.papierprobe({ neu: "ja", ziel: "ja" }).id, "klar");
+  assert.equal(R.papierprobe({ neu: "ja", ziel: "nein" }).id, "anpassung");
+  assert.equal(R.papierprobe({ neu: "ja", ziel: "offen" }).id, "anpassung");
+});
+
+test("Papierprobe: jedes Ergebnis ist eine der vier Einstufungen und hat eine Begründung", () => {
+  const ids = T.einstufungen.map((e) => e.id);
+  const faelle = [{ neu: "offen" }, { neu: "nein", ablage: "ja" }, { neu: "nein", ablage: "nein" }, { neu: "ja", ziel: "ja" }, { neu: "ja", ziel: "nein" }];
+  for (const a of faelle) {
+    const e = R.papierprobe(a);
+    assert.ok(ids.includes(e.id), e.id);
+    assert.ok(e.grund && e.grund.length > 20);
+    assert.ok(!/\d+ ?%/.test(e.grund), "keine Prozentwerte");
+  }
+});

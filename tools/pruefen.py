@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prüft die gebauten Seiten und die Daten von Hilde Digital auf die vereinbarten Regeln.
+"""Prüft die gebauten Seiten und die Daten von Hilde-Digital auf die vereinbarten Regeln.
 
 Aufruf:  python3 tools/pruefen.py      (nach tools/bauen.py)
 Ergebnis: Liste der Verstöße; Rückgabewert 1, wenn etwas gefunden wurde.

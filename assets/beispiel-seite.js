@@ -1,4 +1,4 @@
-/* Hilde Digital – Detailansicht eines Beispiels. Adresse: beispiel.html#<slug>
+/* Hilde-Digital – Detailansicht eines Beispiels. Adresse: beispiel.html#<slug>
    Zeigt nur, was in den Daten steht. Leere Felder erscheinen gesammelt als »noch offen«,
    nie als allgemeine Sätze. Vorgeschlagene Zuordnungen tragen das Kennzeichen »Vorschlag«.
    Braucht: TAXONOMIEN, BEISPIELE, HILDE. */
@@ -80,13 +80,13 @@
     var slug = decodeURIComponent((location.hash || "").replace(/^#/, ""));
     var b = finde(slug);
     if (!b) {
-      document.title = "Beispiel nicht gefunden – Hilde Digital";
+      document.title = "Beispiel nicht gefunden – Hilde-Digital";
       ziel.innerHTML = '<section class="abschnitt"><div class="huelle stapel">' + zurueckLeiste() +
         '<h1 tabindex="-1" id="detail-titel">Dieses Beispiel gibt es hier nicht.</h1>' +
         '<p>Vielleicht hat sich die Adresse geändert. Im <a href="showroom.html">Showroom</a> findest du alle Beispiele.</p></div></section>';
       return;
     }
-    document.title = b.titel + " – Hilde Digital";
+    document.title = b.titel + " – Hilde-Digital";
     var nurKI = b.bereich === "ki";
     var offen = [];
 

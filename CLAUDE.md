@@ -1,4 +1,4 @@
-# Hilde Digital – Regeln für die Arbeit an diesem Projekt
+# Hilde-Digital – Regeln für die Arbeit an diesem Projekt
 
 Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede andere Bearbeitung.
 
@@ -31,7 +31,7 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede a
 - »Karte zum Zweiten Weltkrieg« und »Politik-Check 1919« bleiben »In Überarbeitung«; der Politik-Check trägt »kein Angebot der bpb«.
 
 ## Kennzeichnung
-- Jede Seite trägt in der Fußzeile: »Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.«
+- Jede Seite trägt in der Fußzeile: »Hilde-Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.«
 - Kein Schullogo, keine Nachahmung des schulischen Erscheinungsbilds, keine Kontaktadresse, keine Platzhalter im Quelltext.
 - Interne Notizen gehören nicht in dieses Repository (es ist öffentlich).
 

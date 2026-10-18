@@ -23,7 +23,7 @@ Knappe Annahmen, wo eine Angabe fehlte. Jede lässt sich später ändern.
 14. **Konzeptbeispiele:** drei Ideen für Lücken (Kfz-Technik, KI-Antwort prüfen, Lernstand am Stundenende). Sie stehen in der Suche hinter gleich passenden echten Beispielen. Alle Zuordnungen sind Vorschläge.
 15. **Selbsteinschätzung** liegt auf einer eigenen Seite (`passt.html`), verlinkt aus dem Tablet-Weg. So bleibt die Startseite ruhig. Offene Fragen zählen als Mitte der Skala.
 16. **Entdeckungsbühne** ist in Version 1 bewusst nicht enthalten. Das ruhige Raster erfüllt die Anforderungen; eine Bühne wäre zusätzlicher Pflegeaufwand ohne klaren Gewinn.
-17. **Schmale Bildschirme:** Der Navigationspunkt »Start« wird ausgeblendet; die Marke »Hilde Digital« führt zur Startseite.
+17. **Schmale Bildschirme:** Der Navigationspunkt »Start« wird ausgeblendet; die Marke »Hilde-Digital« führt zur Startseite.
 
 ## Bestätigung
 
