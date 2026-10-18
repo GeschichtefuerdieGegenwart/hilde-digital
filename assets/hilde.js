@@ -161,7 +161,7 @@ var HILDE = (function () {
   /* Einflug beim Scrollen (ab Version 4.2): Abschnitte außerhalb des Bildschirms gleiten einmal kurz herein.
      Höchstens 24 px, 240 ms, gestaffelt zu je 30 ms, höchstens 8 auf einmal. Nicht bei »weniger Bewegung«,
      nicht ohne IntersectionObserver. Was beim Laden schon zu sehen ist, wird nie versteckt. */
-  var EINFLUG = ".einblick, .einblick-klein, .werkzeug, .check-wege, .galerie-teaser-bilder > li, .kennzahlen > li, " +
+  var EINFLUG = ".einblick, .einblick-klein, .werkzeug, .check-wege, .kennzahlen > li, " +
     ".zusammen-liste > li, .bausteine-liste > li, .alle-band-raster, .detail-ansichten, .inhalte-liste > div";
   function einflug() {
     if (ruhig() || !("IntersectionObserver" in window)) return;

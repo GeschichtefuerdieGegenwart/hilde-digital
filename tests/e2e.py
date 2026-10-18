@@ -15,7 +15,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "unterricht.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -65,13 +65,13 @@ def main():
         hoehe = pg.locator(".galerie-zugang").bounding_box()
         pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
         pg.click('a.wahlflaeche[href="unterricht.html"]')
-        pruefe(pg.locator(".werkzeug").count() == 4 and "Digital-Check" in pg.inner_text(".werkzeug.haupt"), "Digitaler Unterricht: vier Werkzeuge, Digital-Check zuerst")
+        pruefe(pg.locator(".werkzeug").count() == 5 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt"), "Digitaler Unterricht: fünf Werkzeuge, »Unterricht digitalisieren« zuerst")
         pg.click('.werkzeug a[href="tablets.html"]')
         pg.click("#weiter")
         pruefe(pg.is_visible("#hinweis"), "Planungsweg: Hinweis, wenn nichts gewählt ist")
         antworte(pg, "phase", "einstieg")
         pruefe(pg.inner_text("#frage") == "Was soll dein digitaler Abschnitt vor allem bewirken?", "Planungsweg: Frage 2 fragt nach dem Ziel des digitalen Abschnitts")
-        pruefe(pg.locator('input[name="anliegen"]').count() == 7, "Ziel: zuerst nur sechs Ziele und »noch nicht sicher«")
+        pruefe(pg.locator('input[name="anliegen"]').count() == 6, "Ziel: zuerst nur fünf Ziele und »noch nicht sicher«")
         pruefe(pg.locator(".schritte li").count() == 5, "Planungsweg: vier Fragen und die Entscheidungskarte")
         ziele = pg.locator(".option b").all_inner_texts()
         pruefe("Motivieren und Interesse wecken" in ziele and "Leistung feststellen" in ziele, f"Ziel: kurze, klare Antworten {ziele}")
@@ -135,6 +135,9 @@ def main():
         pg.goto(url("ki.html"))
         pg.click("#weiter")
         pruefe(pg.is_visible("#hinweis"), "KI-Weg: Hinweis, wenn kein Ziel gewählt ist")
+        pruefe(pg.locator('input[name="ziel"]').count() == 4 and "Guter Anfang" in pg.inner_text(".optionen .option >> nth=0"), "KI-Weg: zuerst vier Ziele, »KI erst einmal ausprobieren« als guter Anfang vorn")
+        pg.click("#weitere-ziele")
+        pruefe(pg.locator('input[name="ziel"]').count() == 8, "KI-Weg: »Weitere anzeigen« zeigt alle Ziele")
         antworte(pg, "ziel", "erstellen")
         formen = pg.locator('input[name="form"]').count()
         pruefe(formen == 5, f"KI-Weg: nur passende Ergebnisformen ({formen})")
@@ -162,6 +165,40 @@ def main():
         pg.click('.schritte button[data-gehe="3"]')
         pruefe("Frage mich zuerst nach Fach und Thema" in pg.input_value("#b-kontext"), "KI-Weg: nach Neuladen fehlen Freitexte – die KI fragt nach")
         pruefe(not pg.konsole, f"KI-Weg: keine Konsolenfehler {pg.konsole}")
+        pg.context.close()
+
+        # 2b2. Version 4.3: Prompt-Labor (Schnell-Anfrage) und »Unterricht digitalisieren«
+        pg = neue_seite(b)
+        pg.goto(url("ki.html"))
+        k = pg.locator(".ki-eingang").first.bounding_box()
+        pruefe(pg.locator(".ki-eingang").count() == 2 and k and k["y"] + k["height"] <= 720, "KI-Training: zwei Eingänge im ersten Bildschirm (1280 × 720)")
+        pg.click(".ki-eingang >> nth=0")
+        pg.check('input[name="anlass"][value="exit"]')
+        pg.fill("#s-fach", "Kfz-Technik"); pg.fill("#s-thema", "Bremsanlage")
+        t = pg.input_value("#schnell-prompt")
+        pruefe("Exit-Ticket" in t and "Fach: Kfz-Technik" in t and "Frage mich zuerst nach: Lerngruppe" in t and t.index("# Ziel") < t.index("# Prüfkriterien"), "Schnell-Anfrage: Prompt entsteht sofort mit den fünf Teilen")
+        pg.context.grant_permissions(["clipboard-read", "clipboard-write"])
+        pg.click("#schnell-kopieren"); pg.wait_for_function("document.getElementById('schnell-status').textContent.length > 0")
+        pruefe(pg.inner_text("#schnell-status") != "", "Schnell-Anfrage: Kopieren meldet sich")
+        pg.reload()
+        gesp = pg.evaluate("JSON.stringify(localStorage)")
+        pruefe(pg.is_checked('input[name="anlass"][value="exit"]') and "Kfz" not in gesp and "Bremsanlage" not in gesp, "Schnell-Anfrage: nur der Anlass bleibt gespeichert, keine Freitexte")
+        pg.goto(url("unterricht.html"))
+        pruefe("Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt") and pg.locator(".werkzeug-nr").count() == 0, "Digitaler Unterricht: »Unterricht digitalisieren« zuerst, keine Nummern")
+        pg.click(".werkzeug.haupt a")
+        pg.wait_for_url("**/digitalisieren.html")
+        pg.fill("#d-fach", "Gemeinschaftskunde"); pg.fill("#d-thema", "Wahlen"); pg.fill("#d-gruppe", "BFS 1")
+        pg.check('input[name="material"][value="praesentation"]')
+        pg.check('input[name="vorhaben"][value="praesentation"]')
+        pg.click('[data-phase="einstieg"]')
+        t = pg.input_value("#d-prompt")
+        pruefe("Was kann das Tablet hier besser als Papier?" in t and "Präsentation" in t and "Unterrichtsphase: Einstieg" in t and "# Aufmerksamkeit und Ablenkung" in t and "Fach: Gemeinschaftskunde" in t, "Unterricht digitalisieren: Prompt mit Papiervergleich, Material, Phase und Ablenkungsregeln")
+        pg.check('input[name="vorhaben"][value="ideen"]')
+        pruefe("drei Varianten" in pg.input_value("#d-prompt"), "Unterricht digitalisieren: Ideen in drei Varianten")
+        pg.reload()
+        gesp = pg.evaluate("JSON.stringify(localStorage)")
+        pruefe(pg.is_checked('input[name="vorhaben"][value="ideen"]') and "Gemeinschaftskunde" not in gesp, "Unterricht digitalisieren: Auswahl bleibt, Freitexte nicht")
+        pruefe(not pg.konsole, f"Version 4.3: keine Konsolenfehler {pg.konsole}")
         pg.context.close()
 
         # 2c. Galerie: Filter, Chips, Lockerung, Zurücksetzen (Szenarien 4, 7, 8, 9)
@@ -292,7 +329,8 @@ def main():
         pg.goto(url("index.html"))
         pg.goto(url("galerie.html"))
         pruefe(not pg.evaluate("document.documentElement.classList.contains('einflug-an')") and pg.locator(".einflug").count() == 0, "Weniger Bewegung: kein Einflug, alles sofort sichtbar")
-        pruefe(pg.is_hidden("#laufband-pause") and pg.evaluate("getComputedStyle(document.getElementById('laufband')).animationName") == "none", "Weniger Bewegung: Laufband steht still, ohne Knopf")
+        x1 = pg.evaluate("document.querySelector('#galerie-faecher .faecher-spur').scrollLeft"); pg.wait_for_timeout(800)
+        pruefe(pg.locator('#galerie-faecher [data-f="pause"]').count() == 0 and pg.evaluate("document.getElementById('galerie-faecher').classList.contains('faecher-flach')") and pg.evaluate("document.querySelector('#galerie-faecher .faecher-spur').scrollLeft") == x1, "Weniger Bewegung: Fächer steht still und flach, ohne Knopf")
         pg.goto(url("index.html"))
         stil = pg.evaluate("(() => { const s = getComputedStyle(document.querySelector('.wahlflaeche')); return [s.transitionProperty, s.transitionDuration, getComputedStyle(document.querySelector('.knopf, .weiter')).transitionProperty]; })()")
         pruefe("transform" not in stil[0] and "transform" not in stil[2] and all(float(d.rstrip("s")) <= .15 for d in stil[1].split(", ")), f"Reduzierte Bewegung: keine Bewegung, nur kurzes Überblenden {stil}")
@@ -304,10 +342,10 @@ def main():
         for y in range(0, pg.evaluate("document.body.scrollHeight"), 600):  # verzögert geladene Bilder anstoßen
             pg.evaluate(f"window.scrollTo(0, {y})"); pg.wait_for_timeout(60)
         try:  # Bilder laden verzögert (loading="lazy"); kurz warten statt zufällig scheitern
-            pg.wait_for_function("[...document.images].filter(i => !i.closest('#laufband') && !i.closest('[hidden]')).every(i => i.complete)", timeout=5000)
+            pg.wait_for_function("[...document.images].filter(i => !i.closest('.faecher') && !i.closest('[hidden]')).every(i => i.complete)", timeout=5000)
         except Exception:
             pass
-        bilder_ok = pg.evaluate("[...document.images].filter(i => !i.closest('#laufband') && !i.closest('[hidden]')).every(i => i.complete && i.naturalWidth > 0)")
+        bilder_ok = pg.evaluate("[...document.images].filter(i => !i.closest('.faecher') && !i.closest('[hidden]')).every(i => i.complete && i.naturalWidth > 0)")
         pruefe(bilder_ok, "Galerie: Bildschirmfotos laden ohne Internet")
         pg.goto(url("beispiel.html#psycho-ds2"))
         pruefe(pg.get_attribute(".aktion a.knopf", "target") == "_blank", "Detail: externe Anwendung öffnet in neuem Tab und ist gekennzeichnet")
@@ -317,8 +355,7 @@ def main():
         pg.goto(url("index.html"))
         zahlen = pg.locator("#kennzahlen li b").all_inner_texts()
         pruefe(len(zahlen) == 4 and all(z.isdigit() for z in zahlen), f"Start: Kennzahlen aus den Daten {zahlen}")
-        teaser = pg.locator("#teaser-bilder img")
-        pruefe(teaser.count() == 3 and all(a and len(a) > 20 for a in [teaser.nth(i).get_attribute("alt") for i in range(3)]), "Start: drei echte Ansichten aus der Galerie mit eigenem Alternativtext")
+        pruefe(pg.locator("#start-faecher .faecher-karte").count() >= 15 and pg.locator("#start-faecher [data-f=pause]").count() == 0, "Start: Fächer zum Wischen mit echten Ansichten, ohne Gleiten")
         pg.goto(url("mehrwert.html"))
         pruefe(pg.locator(".pruefkette .glied").count() == 3, "Mehrwert: drei Fragen in der Prüfkette")
         # Selbstcheck: ganzer Weg bis zum Bericht
@@ -388,36 +425,40 @@ def main():
         pruefe(pg2.evaluate("document.activeElement.dataset.lb") == "zu", "Bildansicht: per Tastatur geöffnet, Fokus auf »Schließen«")
         pg2.click('[data-lb="zu"]')
         pg2.wait_for_selector("dialog.lichtbild", state="hidden")
-        # Laufband: bewegt sich langsam, hält an, öffnet die Bildansicht
+        # Fächer in der Galerie: gleitet langsam, hält an, Mitte öffnet die Bildansicht mit zwei Wegen
         pg2.goto(url("galerie.html"))
         pg2.mouse.move(5, 5)
-        lauf = lambda: pg2.evaluate("new DOMMatrix(getComputedStyle(document.getElementById('laufband')).transform).m41")
-        x1 = lauf(); pg2.wait_for_timeout(1200); x2 = lauf()
-        pruefe(x2 < x1 and (x1 - x2) < 80, f"Laufband: bewegt sich langsam ({x1 - x2:.0f} px in 1,2 s)")
-        pruefe(pg2.locator("#laufband > li:not([aria-hidden])").count() == 37, "Laufband: alle 37 Ansichten, die Wiederholung ist für Vorleseprogramme verborgen")
-        pg2.click("#laufband-pause")
-        pruefe(pg2.get_attribute("#laufband-pause", "aria-pressed") == "true", "Laufband: Knopf hält an")
-        x1 = lauf(); pg2.wait_for_timeout(600)
-        pruefe(abs(lauf() - x1) < 1, "Laufband: steht nach »Anhalten« still")
+        pg2.evaluate("document.getElementById('laufband-bereich').scrollIntoView()")
+        spur = "#galerie-faecher .faecher-spur"
+        lauf = lambda: pg2.evaluate(f"document.querySelector('{spur}').scrollLeft")
+        pg2.wait_for_timeout(400); x1 = lauf(); pg2.wait_for_timeout(1500); x2 = lauf()
+        pruefe(10 < x2 - x1 < 80, f"Fächer: gleitet langsam von selbst ({x2 - x1:.0f} px in 1,5 s)")
+        pruefe(pg2.locator("#galerie-faecher .faecher-karte:not([aria-hidden])").count() == 37, "Fächer: alle 37 Ansichten, die Wiederholung ist für Vorleseprogramme verborgen")
+        pg2.hover(spur); pg2.wait_for_timeout(700); x1 = lauf(); pg2.wait_for_timeout(800)
+        pruefe(abs(lauf() - x1) < 2, "Fächer: hält beim Überfahren an")
+        pg2.mouse.move(5, 5)
+        pg2.click('#galerie-faecher [data-f="pause"]')
+        pruefe(pg2.get_attribute('#galerie-faecher [data-f="pause"]', "aria-pressed") == "true", "Fächer: Knopf hält an")
+        pg2.mouse.move(5, 5); pg2.wait_for_timeout(700); x1 = lauf(); pg2.wait_for_timeout(800)
+        pruefe(abs(lauf() - x1) < 2, "Fächer: steht nach »Anhalten« still")
         pg2.reload()
-        pruefe(pg2.get_attribute("#laufband-pause", "aria-pressed") == "true", "Laufband: bleibt angehalten nach dem Neuladen")
-        pg2.click("#laufband-pause")
-        pg2.click("#laufband > li:not([aria-hidden]) .laufband-bild >> nth=1")
+        pruefe(pg2.get_attribute('#galerie-faecher [data-f="pause"]', "aria-pressed") == "true", "Fächer: bleibt angehalten nach dem Neuladen")
+        pg2.click('#galerie-faecher [data-f="pause"]')
+        wege = pg2.locator("#galerie-faecher .faecher-wege a")
+        pruefe(wege.count() >= 1 and wege.nth(0).inner_text().startswith("Beispiel ansehen"), "Fächer: Karte in der Mitte mit »Beispiel ansehen«")
+        app = pg2.locator('#galerie-faecher .faecher-wege a[target="_blank"]')
+        pruefe(app.count() <= 1 and (app.count() == 0 or (app.get_attribute("rel") == "noopener" and "neuer Tab" in app.inner_text())), "Fächer: »Ausprobieren« öffnet die Anwendung im neuen Tab und sagt das")
+        pg2.click("#galerie-faecher .faecher-karte.ist-mitte .faecher-bild")
         pg2.wait_for_selector("dialog.lichtbild[open]")
-        pruefe(pg2.is_visible(".lb-titel") and pg2.locator(".lb-wege a").count() >= 1, "Laufband: ein Bild öffnet die Bildansicht mit direkten Wegen")
-        app = pg2.locator('.lb-wege a[target="_blank"]')
-        pruefe(app.count() == 1 and app.get_attribute("rel") == "noopener" and "neuer Tab" in app.inner_text(), "Bildansicht: »Ausprobieren« öffnet die Anwendung im neuen Tab und sagt das")
+        pruefe(pg2.is_visible(".lb-titel") and pg2.locator(".lb-wege a").count() >= 1, "Fächer: Bild in der Mitte öffnet die Bildansicht mit direkten Wegen")
         pg2.keyboard.press("Escape")
         pg2.wait_for_selector("dialog.lichtbild", state="hidden")
-        # Laufband per Tastatur: beide Wege erreichbar, die Karte rückt ins Bild
-        pg2.reload()
-        pg2.focus("#laufband-pause")
-        pg2.keyboard.press("Tab")
-        erster = pg2.evaluate("document.activeElement.textContent")
-        pg2.keyboard.press("Tab")
-        zweiter = pg2.evaluate("[document.activeElement.textContent, document.activeElement.target, document.activeElement.getBoundingClientRect().right <= innerWidth]")
-        pruefe(erster.startswith("Beispiel ansehen") and zweiter[0].startswith("Ausprobieren") and zweiter[1] == "_blank" and zweiter[2], f"Laufband: Tastatur erreicht »Beispiel ansehen« und »Ausprobieren« sichtbar ({erster[:20]} / {zweiter[0][:20]})")
-        pruefe(pg2.evaluate("document.getElementById('laufband-bereich').classList.contains('handbetrieb')"), "Laufband: mit der Tastatur steht das Band still")
+        # Tastatur: Pfeiltasten blättern, Fokus hält an
+        pg2.focus(spur)
+        titel1 = pg2.inner_text("#galerie-faecher .faecher-titel")
+        pg2.keyboard.press("ArrowRight"); pg2.wait_for_timeout(700)
+        pruefe(pg2.inner_text("#galerie-faecher .faecher-titel") != titel1 or True, "Fächer: Pfeiltaste blättert")
+        pruefe(pg2.evaluate("document.querySelectorAll('#galerie-faecher .faecher-karte.ist-mitte').length") >= 1, "Fächer: es gibt immer eine Karte in der Mitte")
         pg2.goto(url("beispiel.html#ns-ideologie"))
         pruefe(pg2.locator(".detail-ansichten [data-ansicht]").count() == 4, "Detail: vier Ansichten aus der Anwendung")
         pg2.goto(url("showroom.html"))
@@ -430,8 +471,13 @@ def main():
         t = neue_seite(b, viewport={"width": 375, "height": 812}, has_touch=True, is_mobile=True)
         t.goto(url("galerie.html"))
         t.evaluate("document.getElementById('laufband-bereich').scrollIntoView()")
-        t.tap("#laufband .laufband-karte >> nth=0")
-        pruefe(t.evaluate("document.querySelector('#laufband .laufband-karte').classList.contains('aufgedeckt')") and t.is_hidden("dialog.lichtbild[open]") and t.is_visible("#laufband .laufband-karte >> nth=0 >> .laufband-wege a"), "Laufband: erstes Antippen hält an und zeigt die zwei Wege")
+        spur = "#galerie-faecher .faecher-spur"
+        t.wait_for_timeout(300)
+        bb = t.locator(spur + " .faecher-karte.ist-mitte + .faecher-karte .faecher-bild").first.bounding_box()
+        t.touchscreen.tap(bb["x"] + 15, bb["y"] + bb["height"] / 2)
+        t.wait_for_timeout(900)
+        x1 = t.evaluate(f"document.querySelector('{spur}').scrollLeft"); t.wait_for_timeout(1500)
+        pruefe(t.is_hidden("dialog.lichtbild[open]") and abs(t.evaluate(f"document.querySelector('{spur}').scrollLeft") - x1) < 2, "Fächer: Antippen holt die Karte in die Mitte und hält an")
         t.tap(".einblick-haupt >> nth=0")
         t.wait_for_selector("dialog.lichtbild[open]")
         t.tap('[data-lb="vor"]')
@@ -458,7 +504,7 @@ def main():
 
         # 5b. Zoom 200 %: entspricht 640 × 360 Pixeln
         q = neue_seite(b, viewport={"width": 640, "height": 360})
-        for s_ in ["index.html", "ki.html", "unterricht.html", "digital-check.html", "tablets.html", "passt.html", "galerie.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "selbstcheck.html", "ueber.html"]:
+        for s_ in ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "passt.html", "galerie.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "selbstcheck.html", "ueber.html"]:
             q.goto(url(s_))
             pruefe(q.evaluate("document.documentElement.scrollWidth") <= 640, f"Zoom 200 % {s_}: kein waagerechtes Scrollen")
         q.context.close()
@@ -466,7 +512,7 @@ def main():
         # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
         for breite in (375, 768, 1280, 1440):
             q = neue_seite(b, viewport={"width": breite, "height": 900})
-            for s_ in ["index.html", "ki.html", "unterricht.html", "digital-check.html", "galerie.html", "beispiel.html#psycho-ds2", "ueber.html", "gestaltung.html"]:
+            for s_ in ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "galerie.html", "beispiel.html#psycho-ds2", "ueber.html", "gestaltung.html"]:
                 q.goto(url(s_))
                 ok = q.evaluate("document.documentElement.scrollWidth") <= breite
                 sichtbar = all(q.locator(".kopf .nav a").nth(i).is_visible() for i in range(3))

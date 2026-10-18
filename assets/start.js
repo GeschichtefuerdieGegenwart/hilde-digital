@@ -32,14 +32,6 @@
     return "<li><b>" + z[0] + "</b><span>" + esc(z[1]) + "</span></li>";
   }).join("");
 
-  /* Galerie-Ausschnitt: je ein echtes Bild aus drei Projekten, die viel zeigen. */
-  var ziel = document.getElementById("teaser-bilder");
-  if (ziel && typeof GALERIE !== "undefined") {
-    ziel.innerHTML = ["psycho-ds2", "ns-ideologie", "gene"].map(function (id) {
-      var b = BEISPIELE.filter(function (x) { return x.id === id; })[0], a = (GALERIE[id] || [])[0];
-      if (!b || !a) return "";
-      return '<li><a href="' + H.detailLink(b) + '"><img src="' + esc(a.bild) + '" alt="' + esc(a.alt) + '" width="1040" height="650" loading="lazy">' +
-        '<span class="teaser-text"><b>' + esc(b.titel) + "</b>" + esc(a.text) + "</span></a></li>";
-    }).join("");
-  }
+  // Fächer zum Wischen: die erste Ansicht jedes Projekts (assets/faecher.js), ohne Gleiten.
+  if (window.FAECHER) FAECHER.starte({ id: "start-faecher", name: "Ansichten aus den Projekten", eintraege: FAECHER.ansichten(true), gleiten: false, start: 2 });
 })();

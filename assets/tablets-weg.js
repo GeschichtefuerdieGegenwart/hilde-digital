@@ -27,7 +27,7 @@
       hilfe: "Geht es auf Papier genauso gut? Dann bleib beim Papier.",
       optionen: function () { return T.mehrwerte; },
       haeufig: function (o) { return o.haeufig; } },
-    { id: "umfang", titel: "Umfang", frage: "Wie viel Digitalität passt zu deinem Vorhaben?",
+    { id: "umfang", titel: "Umfang", frage: "Wie viel Tablet passt zu deinem Vorhaben?",
       hilfe: "Durchgängig ist eine Möglichkeit, kein Standard und keine höhere Stufe.",
       optionen: function () {
         return T.umfang.concat([{ id: "offen", name: "Noch offen", hilfe: "Hilde schlägt dir einen Umfang vor" }]);

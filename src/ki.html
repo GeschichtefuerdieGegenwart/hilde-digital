@@ -3,7 +3,11 @@
   <div class="kopf-text">
   <h1>KI-Training</h1>
   <p class="marker">Bereich: KI-Training</p>
-  <p class="detail-kurz">KI ausprobieren, gute Anfragen bauen und Ergebnisse prüfen. Du brauchst keine Vorkenntnisse.</p>
+  <p class="detail-kurz">Eine gute Anfrage an die KI heißt Prompt. Hier holst du dir schnell einen fertigen – oder lernst Schritt für Schritt, wie du selbst einen baust.</p>
+  <div class="ki-eingaenge">
+    <a class="ki-eingang" href="#schnell"><b>Schnell-Anfrage</b><span>Anlass wählen, drei Angaben, kopieren. In 30 Sekunden.</span><span class="weiter">Prompt holen <span aria-hidden="true">↓</span></span></a>
+    <a class="ki-eingang still" href="#lernen-weg"><b>Prompten lernen</b><span>In fünf Schritten zu deiner eigenen Anfrage – mit Erklärung.</span><span class="weiter">Schritt für Schritt <span aria-hidden="true">↓</span></span></a>
+  </div>
   </div>
   <svg class="motiv" viewBox="0 0 360 200" aria-hidden="true" focusable="false">
     <!-- Eine Anfrage aus fünf Teilen: Ziel, Kontext, Anforderungen, Format, Prüfkriterien – gestapelte Honigplatten -->
@@ -14,12 +18,48 @@
   </svg>
 </div></section>
 
-<section class="abschnitt ki-auftakt" style="padding-top:var(--a4)" aria-labelledby="t-aufbau"><div class="huelle ki-raster">
+<section class="band band-flaeche schnell" id="schnell" aria-labelledby="t-schnell" tabindex="-1"><div class="huelle schnell-raster">
+  <div class="schnell-kopf">
+    <h2 id="t-schnell">Schnell-Anfrage</h2>
+    <p>Wähle einen Anlass und gib Fach, Thema und Lerngruppe an. Der Prompt entsteht sofort rechts. Kopiere ihn in ein an deiner Schule freigegebenes KI-System.</p>
+    <p class="datenhinweis">Keine Namen, Noten oder anderen personenbezogenen Daten eingeben. Deine Angaben werden nicht gespeichert.</p>
+  </div>
+  <form class="schnell-form" id="schnell-form" novalidate>
+    <fieldset class="schnell-anlaesse">
+      <legend>Wofür brauchst du einen Prompt?</legend>
+      <div class="anlass-raster" id="anlaesse"></div>
+    </fieldset>
+    <div class="schnell-felder">
+      <div class="eingabe"><label for="s-fach">Fach</label><input type="text" id="s-fach" autocomplete="off" placeholder="z. B. Kfz-Technik"></div>
+      <div class="eingabe"><label for="s-thema">Thema</label><input type="text" id="s-thema" autocomplete="off" placeholder="z. B. Bremsanlage"></div>
+      <div class="eingabe"><label for="s-gruppe">Lerngruppe</label><input type="text" id="s-gruppe" autocomplete="off" placeholder="z. B. 1. Ausbildungsjahr"></div>
+    </div>
+  </form>
+  <div class="schnell-ergebnis">
+    <label for="schnell-prompt"><b>Dein Prompt</b> – du kannst ihn ändern</label>
+    <textarea id="schnell-prompt" rows="16" spellcheck="false"></textarea>
+    <div class="kopieren"><button type="button" class="knopf" id="schnell-kopieren">Prompt kopieren</button><span id="schnell-status" class="leise" aria-live="polite"></span></div>
+    <p class="klein">Die fünf Überschriften im Prompt – Ziel, Kontext, Anforderungen, Format, Prüfkriterien – lernst du unten bei <a href="#lernen-weg">Prompten lernen</a> kennen.</p>
+  </div>
+  <noscript><p class="box">Die Schnell-Anfrage braucht JavaScript.</p></noscript>
+</div></section>
+
+<section class="abschnitt lernen-auftakt" id="lernen-weg" aria-labelledby="t-lernen" tabindex="-1"><div class="huelle ki-raster">
   <div class="ki-aufbau">
-    <h2 id="t-aufbau">So ist eine gute Anfrage aufgebaut</h2>
-    <p>Eine gute Anfrage an ein KI-System hat fünf Teile. Der Prompt-Generator unten baut sie mit dir zusammen.</p>
-    <ol class="bausteine-liste" id="bausteine-liste"></ol>
-    <noscript><p class="klein">Ziel · Kontext · Anforderungen · Format · Prüfkriterien</p></noscript>
+    <h2 id="t-lernen">Prompten lernen</h2>
+    <p>Eine gute Anfrage hat fünf Teile. Der Generator unten baut sie Schritt für Schritt mit dir zusammen. Im Schritt »Anfrage« siehst du alle fünf Teile und kannst jeden ändern.</p>
+    <details class="mehr">
+      <summary>Die fünf Teile einer guten Anfrage</summary>
+      <ol class="bausteine-liste" id="bausteine-liste"></ol>
+      <noscript><p class="klein">Ziel · Kontext · Anforderungen · Format · Prüfkriterien</p></noscript>
+    </details>
+    <details class="mehr">
+      <summary>Vorher und nachher: derselbe Wunsch, zwei Prompts</summary>
+      <div class="vorher-nachher">
+        <div><p class="vn-titel">Schwach</p><p class="vn-text">»Mach mir ein Arbeitsblatt über die Bremsanlage.«</p><p class="klein">Die KI muss raten: für wen, wie schwer, in welcher Form. Das Ergebnis passt selten.</p></div>
+        <div><p class="vn-titel">Gut</p><p class="vn-text">»<b>Ziel:</b> Erstelle ein Arbeitsblatt zur Scheibenbremse. <b>Kontext:</b> Kfz-Technik, 1. Ausbildungsjahr, viele Lernende mit Deutsch als Zweitsprache. <b>Anforderungen:</b> kurze Sätze, drei Aufgaben vom Benennen bis zum Begründen. <b>Format:</b> eine Seite, Tabelle für die Bauteile. <b>Prüfkriterien:</b> Prüfe die Fachbegriffe und markiere, was ich nachsehen sollte.«</p><p class="klein">Jeder Teil nimmt der KI eine Vermutung ab.</p></div>
+      </div>
+    </details>
   </div>
   <div class="ki-regeln">
     <h2 class="klein-titel">Bevor du loslegst</h2>
@@ -34,7 +74,7 @@
 
 <section class="abschnitt weg-abschnitt" aria-labelledby="t-generator"><div class="huelle">
   <h2 id="t-generator" class="weg-titel">Prompt-Generator</h2>
-  <p class="leise kopfnotiz">In fünf Schritten zu einer Anfrage, die du kopieren und anpassen kannst. Hilde Digital ist mit keiner KI verbunden.</p>
+  <p class="kopfnotiz">In fünf Schritten zu einem Prompt, den du kopieren und anpassen kannst. Hilde Digital ist mit keiner KI verbunden.</p>
   <nav aria-label="Schritte des Prompt-Generators"><ol class="schritte" id="fortschritt"></ol></nav>
   <form id="weg" class="weg" novalidate></form>
   <p id="ansage" class="sr-only" aria-live="polite"></p>
@@ -60,6 +100,9 @@
 <script src="assets/ki-anfrage.js"></script>
 <script src="assets/hilde.js"></script>
 <script src="assets/ki-weg.js"></script>
+<script src="assets/daten/schnell.js"></script>
+<script src="assets/schnell-anfrage.js"></script>
+<script src="assets/ki-schnell.js"></script>
 <script>
 (function () {
   var l = document.getElementById("bausteine-liste");

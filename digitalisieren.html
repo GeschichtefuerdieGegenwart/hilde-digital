@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+<title>Unterricht digitalisieren – Hilde Digital</title>
+<link rel="stylesheet" href="assets/hilde.css">
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<header class="kopf"><div class="huelle">
+  <a class="marke" href="index.html"><span class="marke-name">Hilde Digital</span><span class="strich" aria-hidden="true"><i></i><i></i><i></i></span><span class="sr-only">, zum Start</span></a>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html">KI-Training</a><a href="unterricht.html" aria-current="true">Digitaler Unterricht</a><a href="galerie.html">Galerie</a></nav>
+</div></header>
+<main id="inhalt" tabindex="-1">
+<div class="bereich-lernen">
+<section class="bereichskopf kompakt mit-motiv"><div class="huelle kopf-mit-motiv">
+  <div class="kopf-text">
+  <h1>Unterricht digitalisieren</h1>
+  <p class="marker">Bereich: Digitaler Unterricht</p>
+  <p class="detail-kurz">Du hast schon guten Unterricht. Wähle aus, was du hast und was entstehen soll. Du bekommst einen Prompt, mit dem dir ein an deiner Schule freigegebenes KI-System Vorschläge macht – immer mit der Frage, was das Tablet besser kann als Papier.</p>
+  <p><a class="knopf" href="#baukasten">Prompt zusammenstellen <span aria-hidden="true">↓</span></a></p>
+  </div>
+  <div class="blatt-tablet" aria-hidden="true">
+    <div class="geraet" id="geraet">
+      <p class="geraet-titel" id="geraet-titel">Arbeitsblatt</p>
+      <span class="zeile l"></span><span class="zeile m"></span><span class="zeile k"></span><span class="zeile l"></span><span class="zeile m"></span>
+      <div class="aufgaben">
+        <span class="aufgabe" style="--i:0"><span class="kreis"></span>Auswahl</span>
+        <span class="aufgabe" style="--i:1"><span class="kreis"></span>Begründung</span>
+        <span class="aufgabe" style="--i:2"><span class="kreis"></span>Hilfe</span>
+      </div>
+      <span class="rueckmeldung">Rückmeldung</span>
+    </div>
+  </div>
+</div></section>
+
+<section class="abschnitt" id="baukasten" aria-labelledby="t-baukasten" tabindex="-1" style="padding-top:var(--a3)"><div class="huelle baukasten">
+  <h2 id="t-baukasten" class="sr-only">Prompt zusammenstellen</h2>
+  <form class="baukasten-form" id="dig-form" novalidate>
+    <fieldset class="bk-schritt">
+      <legend><span class="bk-nr" aria-hidden="true">1</span> Worum geht es?</legend>
+      <div class="bk-felder">
+        <div class="eingabe"><label for="d-fach">Fach</label><input type="text" id="d-fach" autocomplete="off" placeholder="z. B. Gemeinschaftskunde"></div>
+        <div class="eingabe"><label for="d-thema">Thema</label><input type="text" id="d-thema" autocomplete="off" placeholder="z. B. Wahlen"></div>
+        <div class="eingabe"><label for="d-gruppe">Klasse oder Lerngruppe</label><input type="text" id="d-gruppe" autocomplete="off" placeholder="z. B. Berufsfachschule, 1. Jahr"></div>
+      </div>
+      <div class="bk-chips" role="group" aria-labelledby="d-phase-t"><span id="d-phase-t" class="bk-chips-titel">Phase <span class="leise">(freiwillig)</span></span><span id="d-phasen"></span></div>
+    </fieldset>
+    <fieldset class="bk-schritt">
+      <legend><span class="bk-nr" aria-hidden="true">2</span> Was gibst du der KI?</legend>
+      <div class="bk-wahl" id="d-materialien"></div>
+    </fieldset>
+    <fieldset class="bk-schritt">
+      <legend><span class="bk-nr" aria-hidden="true">3</span> Was soll entstehen?</legend>
+      <div class="bk-karten" id="d-vorhaben"></div>
+    </fieldset>
+    <details class="mehr bk-mehr">
+      <summary>Mehr einstellen <span class="leise">(freiwillig)</span></summary>
+      <div class="bk-felder">
+        <div class="eingabe"><label for="d-umfang">Wie viel Tablet?</label><select id="d-umfang"></select></div>
+        <div class="eingabe"><label for="d-ausgabe">Was möchtest du zurückbekommen?</label><select id="d-ausgabe"></select></div>
+      </div>
+    </details>
+  </form>
+  <div class="bk-ergebnis">
+    <div class="bk-ergebnis-kopf"><h2>Dein Prompt</h2><span class="leise klein" id="d-zusammenfassung" aria-live="polite"></span></div>
+    <p class="datenhinweis">Keine Namen, Noten oder Schülerdaten. Hänge nur Material an, an dem du die Rechte hast.</p>
+    <label for="d-prompt" class="sr-only">Prompt</label>
+    <textarea id="d-prompt" rows="18" spellcheck="false"></textarea>
+    <div class="kopieren"><button type="button" class="knopf" id="d-kopieren">Prompt kopieren</button><span id="d-status" class="leise" aria-live="polite"></span></div>
+    <details class="mehr">
+      <summary>So gehst du mit der Antwort um</summary>
+      <ul class="leitsaetze">
+        <li>Die KI macht Vorschläge. Du entscheidest, was zu deiner Klasse passt.</li>
+        <li>Prüfe Fachliches und jede genannte App-Funktion selbst.</li>
+        <li>Willst du wissen, ob das Ergebnis taugt? Prüfe es im <a href="digital-check.html">Digital-Check</a>.</li>
+        <li>Wie sieht so etwas fertig aus? Schau in die <a href="galerie.html">Galerie</a>.</li>
+      </ul>
+    </details>
+  </div>
+  <noscript><p class="box">Der Baukasten braucht JavaScript.</p></noscript>
+</div></section>
+</div>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/daten/qualitaet.js"></script>
+<script src="assets/daten/digitalisieren.js"></script>
+<script src="assets/digitalisieren-prompt.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/digitalisieren.js"></script>
+
+</main>
+<footer class="fuss"><div class="huelle">
+  <p class="fuss-marke" aria-hidden="true">Hilde Digital<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span></p>
+  <nav class="fusslinks" aria-label="Über Hilde Digital"><ul><li><a href="ueber.html">Über Hilde Digital</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
+</div></footer>
+</body>
+</html>

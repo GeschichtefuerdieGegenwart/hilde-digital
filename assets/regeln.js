@@ -7,7 +7,7 @@
    - Unterschieden werden Lernmehrwert, organisatorische Erleichterung, motivationale Neuheit
      und technische Machbarkeit. Motivation allein ist kein Lernmehrwert.
    - »Analog oder hybrid« ist ein vollwertiges Ergebnis.
-   - Mehr Digitalität ist nicht besser. Durchgängig ist keine höhere Stufe als punktuell.
+   - Mehr Tablet ist nicht besser. Durchgängig ist keine höhere Stufe als punktuell.
 
    Eingabe (alle Felder dürfen fehlen):
      { phase, anliegen, mehrwert, umfang, rahmen: { netz, geraete, erfahrung, zeit, sozialform, zugang, daten } }

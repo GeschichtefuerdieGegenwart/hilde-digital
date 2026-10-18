@@ -637,21 +637,12 @@ main p,main li,main dd{max-width:60ch}
 .galerie-teaser{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4);align-items:start}
 .galerie-teaser-kopf{grid-column:1/5;display:grid;gap:var(--a2);justify-items:start;position:sticky;top:var(--a4)}
 .galerie-teaser-kopf h2{font-weight:700}
-.galerie-teaser-bilder{grid-column:5/13;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a3)}
-.galerie-teaser-bilder li:first-child{grid-column:1/-1}
-.galerie-teaser-bilder a{display:grid;gap:.6rem;text-decoration:none}
-.galerie-teaser-bilder img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:2px;background:var(--leise);
-  transition:transform var(--dauer-schnell) var(--ease-out)}
-.teaser-text{font-size:var(--gr-klein);display:grid;gap:.1rem}
-.teaser-text b{font-size:1.125rem}
-@media (hover:hover) and (pointer:fine){.galerie-teaser-bilder a:hover img{transform:translate(-3px,-3px);box-shadow:6px 6px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
-@media (max-width:1023px){.galerie-teaser-kopf,.galerie-teaser-bilder{grid-column:1/-1}.galerie-teaser-kopf{position:static}}
-@media (max-width:600px){.galerie-teaser-bilder{grid-template-columns:1fr}}
+@media (max-width:1023px){.galerie-teaser-kopf{grid-column:1/-1;position:static}}
 
 /* Digitaler Unterricht: vier Werkzeuge, der Digital-Check zuerst */
-.werkzeuge{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3)}
+.werkzeuge{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a3)}
 .werkzeug.haupt{grid-column:1/-1}
-.werkzeug a{height:100%;display:grid;grid-template-columns:auto 1fr auto;gap:var(--a2);align-items:start;padding:var(--a3);background:var(--flaeche);border-radius:var(--rund);text-decoration:none;
+.werkzeug a{height:100%;display:grid;grid-template-columns:1fr auto;gap:var(--a2);align-items:start;padding:var(--a3);background:var(--flaeche);border-radius:var(--rund);text-decoration:none;
   transition:transform var(--dauer-schnell) var(--ease-out)}
 .werkzeug a:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
 @media (hover:hover) and (pointer:fine){.werkzeug a:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 0 var(--lernen)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
@@ -820,7 +811,7 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
   .registrieren .wahlflaeche{animation:none!important}
   dialog.lichtbild[open],dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
     .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
-  .karte:hover,.werkzeug a:hover,.check-weg:hover,[data-bildrahmen]:hover,.galerie-teaser-bilder a:hover img{transform:none!important}
+  .karte:hover,.werkzeug a:hover,.check-weg:hover,[data-bildrahmen]:hover{transform:none!important}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
 }
 
@@ -853,50 +844,11 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .sprung-intern:focus{left:clamp(16px,4vw,40px)}
 .stoebern{position:relative}
 
-/* Laufband: Karten mit Duplex-Vorschau, Kurzbeschreibung und zwei Wegen */
+/* Laufband-Bereich der Galerie (ab 4.3 mit dem Fächer) */
 .laufband{background:var(--text);color:var(--flaeche);padding-block:var(--a4) var(--a6);overflow:hidden}
-.laufband-kopf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem var(--a3);align-items:end;margin-bottom:var(--a4)}
+.laufband-kopf{display:grid;gap:.5rem;margin-bottom:var(--a2)}
 .laufband-titel{font-size:var(--gr-h2);font-weight:700}
-.laufband-hilfe{grid-column:1;max-width:58ch;color:var(--flaeche)}
-.laufband-knopf{grid-column:2;grid-row:1/3;align-self:end}
-@media (max-width:640px){.laufband-kopf{grid-template-columns:1fr}.laufband-knopf{grid-column:1;grid-row:auto;justify-self:start}}
-.laufband .knopf.still{color:var(--flaeche);border-color:var(--flaeche);background:transparent}
-.laufband .knopf:not(.still){background:var(--flaeche);color:var(--text);border-color:var(--flaeche)}
-.laufband :focus-visible{outline-color:var(--flaeche);box-shadow:0 0 0 5px var(--text)} /* taste-skill-ignore: Fokus-Doppelring auf dunklem Grund */
-@media (hover:hover) and (pointer:fine){.laufband .knopf:hover{box-shadow:4px 4px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
-.laufband-fenster{overflow-x:auto;scrollbar-width:thin;padding-inline:clamp(16px,4vw,40px);padding-bottom:var(--a2)}
-.laufband-spur{list-style:none;margin:0;padding:0;display:flex;align-items:flex-start;gap:var(--a3);width:max-content}
-.laufband-kopie{display:none}
-.laufband-karte{width:clamp(15rem,19vw,19rem);display:grid;gap:.75rem}
-.laufband-karte.gross{width:clamp(18rem,27vw,27rem)}
-.laufband-bild{position:relative;display:block;width:100%;padding:0;border:0;background:var(--leise);border-radius:2px;overflow:hidden;cursor:zoom-in;touch-action:manipulation;
-  transition:transform var(--dauer-schnell) var(--ease-out)}
-.laufband-bild img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
-.laufband-original{position:absolute;inset:0;height:100%;opacity:0;transition:opacity var(--dauer-schnell) var(--ease-out)}
-.laufband-bild:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
-.laufband-text{display:grid;gap:.3rem;align-content:start}
-.laufband-text .kennzeichen{margin-bottom:.15rem}
-.laufband-name{font:700 1.25rem/1.2 var(--schrift-titel)}
-.laufband-kurz{font-size:var(--gr-klein);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.laufband-wege{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-top:.5rem;
-  transition:opacity var(--dauer-schnell) var(--ease-out)}
-.laufband-wege .knopf{min-height:44px;padding:.45rem .9rem;font-size:1rem}
-.laufband-offen{font-size:var(--gr-klein);color:var(--flaeche)}
-/* Während das Band läuft, zeigen sich Original und Wege erst beim Überfahren, beim Fokus oder nach dem ersten Antippen. */
-.laufband.laeuft:not(.handbetrieb) .laufband-wege{opacity:0;pointer-events:none}
-.laufband-karte.aufgedeckt .laufband-original,.laufband-karte:focus-within .laufband-original{opacity:1}
-.laufband-karte.aufgedeckt .laufband-wege,.laufband-karte:focus-within .laufband-wege{opacity:1!important;pointer-events:auto!important}
-@media (hover:hover) and (pointer:fine){
-  .laufband-karte:hover .laufband-original{opacity:1}
-  .laufband-karte:hover .laufband-wege{opacity:1!important;pointer-events:auto!important}
-  .laufband-karte:hover .laufband-bild{box-shadow:6px 6px 0 0 var(--ki-platte)} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
-}
-.laufband.laeuft:not(.handbetrieb) .laufband-fenster{overflow:hidden;padding-inline:0}
-.laufband.laeuft:not(.handbetrieb) .laufband-kopie{display:list-item}
-.laufband.laeuft:not(.handbetrieb) .laufband-spur{padding-left:var(--a3);animation:laufen var(--laufband-dauer,300s) linear infinite}
-.laufband.laeuft:hover .laufband-spur,.laufband.laeuft:focus-within .laufband-spur,.laufband.angetippt .laufband-spur,
-.laufband.angehalten .laufband-spur,.laufband.unsichtbar .laufband-spur{animation-play-state:paused}
-@keyframes laufen{to{transform:translateX(-50%)}} /* Spur steht doppelt da; Abstand links = Lücke, deshalb genau die Hälfte */
+.laufband-hilfe{max-width:62ch;color:var(--flaeche)}
 
 /* Ende der Stöber-Ansicht: alle Beispiele als Karten */
 .alle-band-raster{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a2) var(--a4);align-items:end}
@@ -947,12 +899,12 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 @keyframes collage-drift{to{transform:translateY(-16px)}}
 @keyframes collage-gegen{to{transform:translateY(12px)}}
 
-/* Einflug beim Scrollen: einmal, kurz, höchstens 24 px. Nur mit JavaScript und ohne »weniger Bewegung«;
-   ohne beides ist alles sofort sichtbar. Text ist nie erst nach der Bewegung lesbar, weil nur Elemente
-   außerhalb des Bildschirms vorbereitet werden. */
+/* Einflug beim Scrollen: einmal, kurz, höchstens 24 px. Nur mit JavaScript und ohne »weniger Bewegung«.
+   Ab Version 4.3 nur noch als Verschiebung: Die Inhalte sind immer sichtbar (auch im Druck und auf
+   ganzseitigen Bildschirmfotos), sie rücken nur beim Hereinscrollen an ihren Platz. */
 @media (prefers-reduced-motion:no-preference){
-  html.einflug-an .einflug:not(.da){opacity:0;transform:translateY(24px)}
-  html.einflug-an .einflug{transition:opacity 240ms var(--ease-out) var(--einflug-verzug,0ms),transform 240ms var(--ease-out) var(--einflug-verzug,0ms)}
+  html.einflug-an .einflug:not(.da){transform:translateY(24px)}
+  html.einflug-an .einflug{transition:transform 240ms var(--ease-out) var(--einflug-verzug,0ms)}
 }
 @media print{ /* taste-skill-ignore: Druckfassung */ html.einflug-an .einflug{opacity:1!important;transform:none!important}}
 
@@ -973,4 +925,136 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .motiv .m-linie{stroke:var(--text);stroke-width:4;stroke-linecap:round;fill:none}
 .motiv .m-linie-dick{stroke:var(--text);stroke-width:3;fill:none}
 .motiv .m-raster{fill:var(--lernen-zart)}
-main .werkzeug,main .laufband-eintrag,main .galerie-teaser-bilder li{max-width:none}
+main .werkzeug,main .faecher-karte{max-width:none}
+
+/* ---------- Ab Version 4.3: Prompt-Labor, Unterricht digitalisieren, Fächer ---------- */
+/* KI-Training: zwei Eingänge im ersten Bildschirm */
+.ki-eingaenge{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a2);margin-top:var(--a3);max-width:46rem}
+@media (max-width:640px){.ki-eingaenge{grid-template-columns:1fr}}
+.ki-eingang{display:grid;gap:.35rem;align-content:start;padding:var(--a2) var(--a3);border-radius:var(--rund);background:var(--ki-platte);border:2px solid var(--ki);text-decoration:none;color:var(--text);
+  transition:transform var(--dauer-schnell) var(--ease-out)}
+.ki-eingang.still{background:var(--flaeche);border-color:var(--stahl)}
+.ki-eingang b{font:700 var(--gr-h3)/1.1 var(--schrift-titel)}
+.ki-eingang .weiter{font-weight:700;margin-top:.25rem}
+.ki-eingang:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+@media (hover:hover) and (pointer:fine){.ki-eingang:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 0 var(--ki)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+#schnell:focus,#lernen-weg:focus,#baukasten:focus{outline:none}
+.schnell-raster{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a3) var(--a4);align-items:start}
+.schnell-kopf{grid-column:1/-1;display:grid;gap:var(--a1);max-width:60rem}
+.schnell-kopf h2{font-weight:700}
+.schnell-form{grid-column:1/7;display:grid;gap:var(--a3)}
+.schnell-ergebnis{grid-column:7/13;display:grid;gap:.6rem;position:sticky;top:var(--a2)}
+.schnell-ergebnis textarea{min-height:24rem;font-size:1rem;line-height:1.45;background:var(--grund)}
+@media (max-width:1023px){.schnell-form,.schnell-ergebnis{grid-column:1/-1}.schnell-ergebnis{position:static}}
+.schnell-anlaesse{border:0;margin:0;padding:0;min-width:0}
+.schnell-anlaesse legend{font-weight:700;margin-bottom:.6rem;padding:0}
+.anlass-raster{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,14rem),1fr));gap:.5rem}
+.anlass{position:relative;display:block;cursor:pointer}
+.anlass input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.anlass-text{display:grid;gap:.15rem;height:100%;padding:.7rem .9rem;border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);
+  transition:border-color var(--dauer-schnell) var(--ease-out),background-color var(--dauer-schnell) var(--ease-out)}
+.anlass-text span{font-size:var(--gr-klein);color:var(--leise)}
+.anlass input:checked+.anlass-text{border-color:var(--text);background:var(--ki-zart);box-shadow:inset 0 0 0 1px var(--text)} /* taste-skill-ignore: Auswahlkante */
+.anlass input:focus-visible+.anlass-text{outline:3px solid var(--fokus);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){.anlass:hover .anlass-text{border-color:var(--text)}}
+.schnell-felder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a2)}
+@media (max-width:640px){.schnell-felder{grid-template-columns:1fr}}
+.schnell-felder label{display:block;font-weight:700;margin-bottom:.3rem}
+.tipp{display:inline-block;font-size:var(--gr-klein);font-weight:700;padding:0 .45rem;border-radius:var(--rund);background:var(--ki-platte);color:var(--text);margin-right:.35rem}
+.vorher-nachher{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a2)}
+@media (max-width:760px){.vorher-nachher{grid-template-columns:1fr}}
+.vorher-nachher>div{background:var(--grund);border-radius:var(--rund);padding:var(--a2);display:grid;gap:.4rem;align-content:start}
+.vorher-nachher>div:last-child{background:var(--ki-zart)}
+.vn-titel{font-weight:700}
+.lernen-auftakt .ki-aufbau{gap:var(--a2)}
+
+/* Unterricht digitalisieren: Baukasten links, Prompt rechts */
+.baukasten{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4);align-items:start}
+.baukasten-form{grid-column:1/8;display:grid;gap:var(--a3)}
+.bk-ergebnis{grid-column:8/13;display:grid;gap:.6rem;position:sticky;top:var(--a2);background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);border-top:8px solid var(--lernen)}
+.bk-ergebnis textarea{min-height:22rem;font-size:1rem;line-height:1.45;background:var(--grund)}
+.bk-ergebnis-kopf{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem}
+.bk-ergebnis-kopf h2{font-size:var(--gr-h3);font-weight:700}
+@media (max-width:1023px){.baukasten-form,.bk-ergebnis{grid-column:1/-1}.bk-ergebnis{position:static}}
+.bk-schritt{border:0;margin:0;padding:var(--a3);min-width:0;background:var(--flaeche);border-radius:var(--rund);display:grid;gap:var(--a2)}
+.bk-schritt legend{float:left;width:100%;padding:0;font:700 var(--gr-h3)/1.2 var(--schrift-titel);display:flex;align-items:center;gap:.6rem}
+.bk-schritt legend+*{clear:both}
+.bk-nr{display:inline-grid;place-items:center;width:2rem;height:2rem;border-radius:var(--rund);background:var(--lernen);color:var(--flaeche);font-size:1.1rem}
+.bk-felder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a2)}
+@media (max-width:760px){.bk-felder{grid-template-columns:1fr}}
+.bk-felder label{display:block;font-weight:700;margin-bottom:.3rem}
+.bk-chips{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.bk-chips-titel{font-weight:700;margin-right:.5rem}
+.bk-chips>span:last-child{display:contents}
+.bk-wahl{display:flex;flex-wrap:wrap;gap:.5rem}
+.bk-haken{position:relative;display:inline-flex}
+.bk-haken input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.bk-haken span{display:inline-flex;align-items:center;min-height:48px;padding:.5rem 1rem;border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);font-weight:700;
+  transition:background-color var(--dauer-schnell) var(--ease-out),color var(--dauer-schnell) var(--ease-out)}
+.bk-haken input:checked+span{background:var(--text);color:var(--flaeche);border-color:var(--text)}
+.bk-haken input:checked+span::before{content:"";width:.4em;height:.75em;border:solid currentColor;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg);margin-right:.6em}
+.bk-haken input:focus-visible+span,.bk-karte input:focus-visible+.bk-karte-text{outline:3px solid var(--fokus);outline-offset:2px}
+.bk-karten{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr));gap:.5rem}
+.bk-karte{position:relative;display:block;cursor:pointer}
+.bk-karte input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.bk-karte-text{display:grid;gap:.15rem;height:100%;padding:.75rem .9rem;border:2px solid var(--stahl);border-radius:var(--rund);background:var(--grund);
+  transition:border-color var(--dauer-schnell) var(--ease-out),background-color var(--dauer-schnell) var(--ease-out)}
+.bk-karte-text span{font-size:var(--gr-klein);color:var(--leise)}
+.bk-karte input:checked+.bk-karte-text{border-color:var(--lernen);background:var(--lernen-zart);box-shadow:inset 0 0 0 1px var(--lernen)} /* taste-skill-ignore: Auswahlkante */
+@media (hover:hover) and (pointer:fine){.bk-karte:hover .bk-karte-text,.bk-haken:hover span{border-color:var(--text)}}
+.bk-mehr{background:var(--flaeche)}
+
+/* Erklär-Bewegung: Vom Blatt zum Tablet (einmal, auf der Seite »Unterricht digitalisieren«) */
+.blatt-tablet{display:none}
+@media (min-width:1024px){.blatt-tablet{display:block;justify-self:end;width:min(100%,16rem)}}
+.geraet{position:relative;width:100%;aspect-ratio:3/4;background:var(--flaeche);border:2px solid var(--stahl);border-radius:3px;padding:1.1rem 1rem;display:grid;align-content:start;gap:.7rem;
+  transition:border-radius 280ms var(--ease-out),border-color 280ms var(--ease-out)}
+.geraet-titel{font:700 1.05rem/1.2 var(--schrift-titel)}
+.geraet .zeile{display:block;height:10px;border-radius:2px;background:var(--stahl);opacity:.55;transition:opacity 200ms var(--ease-out)}
+.geraet .zeile.k{width:62%}.geraet .zeile.m{width:84%}.geraet .zeile.l{width:94%}
+.geraet .aufgaben{display:grid;gap:.45rem}
+.geraet .aufgabe{display:flex;align-items:center;gap:.5rem;padding:.4rem .6rem;border:2px solid var(--stahl);border-radius:var(--rund);font-size:1rem;font-weight:700;background:var(--flaeche);opacity:0;transform:translateY(8px) scale(.97);
+  transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out);transition-delay:calc(var(--i) * 45ms)}
+.geraet .kreis{width:1rem;height:1rem;border-radius:50%;border:2px solid var(--text);flex:none}
+.geraet .rueckmeldung{position:absolute;right:-10px;bottom:14%;background:var(--ki-platte);border:2px solid var(--ki);border-radius:var(--rund);padding:.25rem .6rem;font-weight:700;font-size:1rem;opacity:0;transform:scale(.95);
+  transition:opacity 200ms var(--ease-out) 260ms,transform 200ms var(--ease-out) 260ms}
+.geraet:not(.digital) .aufgaben{height:0;overflow:hidden}
+.geraet.digital{border:12px solid var(--lernen);border-radius:20px;box-shadow:8px 8px 0 0 var(--lernen-tief);padding:.8rem .75rem} /* taste-skill-ignore: versetzte Druckplatte */
+.geraet.digital .zeile{opacity:0;height:0}
+.geraet.digital .aufgabe{opacity:1;transform:none}
+.geraet.digital .aufgabe:nth-child(1){border-color:var(--lernen);background:var(--lernen-zart)}
+.geraet.digital .rueckmeldung{opacity:1;transform:none}
+
+/* Fächer: echte Ansichten mit Tiefe (assets/faecher.js). Mitte gerade und farbig, Ränder gedreht und verblasst.
+   Nur transform und opacity; bei weniger Bewegung flach. Auf dunklem Grund (Galerie, Startseite). */
+.faecher{color:var(--flaeche)}
+.faecher-buehne{perspective:1300px}
+.faecher-spur{list-style:none;margin:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+  padding:var(--a3) calc(50% - var(--faecher-b) / 2) var(--a2);--faecher-b:clamp(15rem,30vw,24rem);overscroll-behavior-x:contain}
+.faecher-spur::-webkit-scrollbar{display:none}
+.faecher-spur.gleitend{scroll-snap-type:none}
+.faecher-spur:focus-visible{outline:3px solid var(--flaeche);outline-offset:-3px;box-shadow:none}
+.faecher-karte{flex:0 0 var(--faecher-b);scroll-snap-align:center;display:grid;gap:.6rem;transform-origin:50% 50%;will-change:transform,opacity}
+.faecher-bild{position:relative;display:block;width:100%;padding:0;border:0;border-radius:2px;overflow:hidden;background:var(--leise);cursor:pointer;touch-action:pan-x pan-y;box-shadow:0 0 0 5px var(--karton)} /* taste-skill-ignore: Passepartout als harte Kante */
+.faecher-bild img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.faecher-duplex{position:absolute;inset:0;height:100%;opacity:var(--duplex,0)}
+.faecher-karte.ist-mitte .faecher-bild{cursor:zoom-in;box-shadow:0 0 0 5px var(--karton),8px 8px 0 5px var(--ki-platte)} /* taste-skill-ignore: versetzte Platte für die Karte in der Mitte */
+.faecher-name{font-weight:700;font-size:1rem;color:var(--flaeche);opacity:.85}
+.faecher-unten{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--a2) var(--a3);align-items:end;padding:var(--a2) max(clamp(16px,4vw,40px),calc((100% - var(--breite)) / 2 + clamp(16px,4vw,40px))) 0}
+.faecher-start .faecher-unten{padding-inline:0}
+@media (max-width:640px){.faecher-unten{grid-template-columns:1fr}}
+.faecher-text{display:grid;gap:.3rem;min-height:9.5rem;align-content:start;max-width:46rem}
+.faecher-titel{font:700 var(--gr-h3)/1.15 var(--schrift-titel)}
+.faecher-kurz{max-width:58ch}
+.faecher-wege{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.4rem}
+.faecher-offen{align-self:center;font-size:var(--gr-klein)}
+.faecher-steuerung{display:flex;gap:.5rem;flex-wrap:wrap}
+.faecher .knopf.still{color:var(--flaeche);border-color:var(--flaeche);background:transparent}
+.faecher .knopf:not(.still){background:var(--flaeche);color:var(--text);border-color:var(--flaeche)}
+.faecher :focus-visible{outline-color:var(--flaeche);box-shadow:0 0 0 5px var(--text)} /* taste-skill-ignore: Fokus-Doppelring auf dunklem Grund */
+@media (hover:hover) and (pointer:fine){.faecher .knopf:hover{box-shadow:4px 4px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+.faecher-start{grid-column:5/13;min-width:0}
+.faecher-start .faecher-spur{--faecher-b:clamp(14rem,24vw,20rem)}
+@media (max-width:1023px){.faecher-start{grid-column:1/-1}}
+.faecher-karte:not(.ist-mitte) .faecher-name{visibility:hidden} /* Titel steht unter dem Fächer; verblasste Namen wären schlecht lesbar */
+.geraet.sofort,.geraet.sofort *{transition:none!important}
