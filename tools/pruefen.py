@@ -211,6 +211,8 @@ def pruefe_galerie(fehler, beispiele, galerie):
             zahl += 1
             if not (WURZEL / a.get("bild", "")).exists():
                 fehler.append(f"Galerie {pid}: Bild fehlt {a.get('bild')}")
+            elif not (WURZEL / a["bild"].replace("assets/galerie/", "assets/galerie/duplex/")).exists():
+                fehler.append(f"Galerie {pid}: Duplex-Vorschau fehlt – python3 tools/duplex.py ausführen ({a['bild']})")
             if not a.get("alt") or len(a["alt"]) < 20:
                 fehler.append(f"Galerie {pid}: Alternativtext fehlt oder ist zu kurz ({a.get('bild')})")
             elif a["alt"] in alts:

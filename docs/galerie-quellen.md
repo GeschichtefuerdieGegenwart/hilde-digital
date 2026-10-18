@@ -212,6 +212,11 @@ Rechte an Bildern innerhalb der Anwendungen (z. B. Illustrationen): **noch offen
 | `bef1-1.webp` | Die Landkarte zeigt alle zwölf Doppelstunden auf einen Blick. | Seite bei 0 px |
 | `bef1-2.webp` | Zu drei Zeitpunkten schätzen sich die Lernenden selbst ein. | Seite bei 2050 px |
 
+## Duplex-Vorschauen und Auswahl für die Startseite (Version 4.2)
+
+- `assets/galerie/duplex/` enthält zu jedem Bild eine Duplex-Vorschau in den Druckfarben des Bereichs (`tools/duplex.py`): Graustufen, 640 px breit, auf Petrol tief → Fläche (Digitaler Unterricht), Druckschwarz → Honigplatte → Fläche (KI-Training) oder Petrol tief → Honigplatte → Fläche (mit KI entwickelt). Inhalt und Ausschnitt bleiben unverändert.
+- Für die Collage der Startseite ausgewählt: `gene-1.webp` (Farbverlauf und Regler – zeigt Bewegung im Material), `milieus-1919-1.webp` (Pyramide – klare Form, auch klein lesbar), `psycho-ds2-1.webp` (Illustration – das bekannteste erprobte Beispiel, im Original). Weitere besonders klare Ansichten: `gene-4.webp`, `one-step-1.webp`, `ns-kontinuitaeten-1.webp`.
+
 ## Nicht aufgenommen
 
 - Karte zum Zweiten Weltkrieg: keine Aufnahme möglich (die Anwendung braucht Kartendaten aus dem Netz). Das bisherige Vorschaubild bleibt.

@@ -89,13 +89,14 @@ var HILDE = (function () {
      Ein <dialog> für die Ansichten eines Projekts. Öffnet sich aus dem angeklickten Bild heraus
      (transform-origin), schließt mit Escape, »Schließen« oder Klick daneben. Pfeiltasten blättern.
      Der Fokus kehrt zum auslösenden Element zurück. Bewegung nur über transform und opacity. */
-  var dlg = null, liste = [], pos = 0, titel = "", ausloeser = null;
+  var dlg = null, liste = [], pos = 0, titel = "", ausloeser = null, wege = null;
   function ruhig() { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
   function baue() {
     dlg = document.createElement("dialog");
     dlg.className = "lichtbild";
     dlg.setAttribute("aria-labelledby", "lb-titel");
     dlg.innerHTML = '<div class="lb-kopf"><p id="lb-titel" class="lb-titel"></p>' +
+      '<p class="lb-wege" hidden></p>' +
       '<button type="button" class="lb-zu knopf still" data-lb="zu">Schließen <span aria-hidden="true">×</span></button></div>' +
       '<figure class="lb-bild"><img alt="" width="1040" height="650"><figcaption></figcaption></figure>' +
       '<div class="lb-steuerung"><button type="button" class="knopf still" data-lb="zurueck"><span aria-hidden="true">←</span> Vorherige</button>' +
@@ -123,16 +124,22 @@ var HILDE = (function () {
     img.src = a.bild; img.alt = a.alt;
     dlg.querySelector("figcaption").textContent = a.text;
     dlg.querySelector(".lb-titel").textContent = titel;
+    // Zwei direkte Wege: zur Beschreibung und in die laufende Anwendung (neuer Tab).
+    var w = dlg.querySelector(".lb-wege");
+    w.hidden = !wege;
+    w.innerHTML = wege ? (wege.detail ? '<a class="knopf hell" href="' + esc(wege.detail) + '">Beispiel ansehen</a>' : "") +
+      (wege.app ? '<a class="knopf still" href="' + esc(wege.app) + '" target="_blank" rel="noopener">Ausprobieren <span aria-hidden="true">↗</span><span class="sr-only"> (neuer Tab, braucht Internet)</span></a>'
+                : '<span class="lb-offen">noch nicht online</span>') : "";
     dlg.querySelector(".lb-stand").textContent = "Ansicht " + (pos + 1) + " von " + liste.length;
     dlg.querySelector('[data-lb="zurueck"]').disabled = pos === 0;
     dlg.querySelector('[data-lb="vor"]').disabled = pos === liste.length - 1;
     requestAnimationFrame(function () { fig.classList.remove("wechselt"); });
   }
   function blaettere(r) { var n = pos + r; if (n < 0 || n >= liste.length) return; pos = n; zeigeBild(); }
-  function oeffne(ansichten, start, name, element) {
+  function oeffne(ansichten, start, name, element, links) {
     if (!ansichten || !ansichten.length) return;
     if (!dlg) baue();
-    liste = ansichten; pos = Math.max(0, Math.min(start || 0, ansichten.length - 1)); titel = name || ""; ausloeser = element || document.activeElement;
+    liste = ansichten; pos = Math.max(0, Math.min(start || 0, ansichten.length - 1)); titel = name || ""; ausloeser = element || document.activeElement; wege = links || null;
     // Räumlich: Das Bild wächst aus dem angeklickten Element heraus.
     if (element && element.getBoundingClientRect) {
       var r = element.getBoundingClientRect();
@@ -150,6 +157,33 @@ var HILDE = (function () {
     dlg.classList.add("zu");
     setTimeout(fertig, 150); // Ausblenden ist kürzer als Einblenden (siehe --dauer-aus)
   }
+
+  /* Einflug beim Scrollen (ab Version 4.2): Abschnitte außerhalb des Bildschirms gleiten einmal kurz herein.
+     Höchstens 24 px, 240 ms, gestaffelt zu je 30 ms, höchstens 8 auf einmal. Nicht bei »weniger Bewegung«,
+     nicht ohne IntersectionObserver. Was beim Laden schon zu sehen ist, wird nie versteckt. */
+  var EINFLUG = ".einblick, .einblick-klein, .werkzeug, .check-wege, .galerie-teaser-bilder > li, .kennzahlen > li, " +
+    ".zusammen-liste > li, .bausteine-liste > li, .alle-band-raster, .detail-ansichten, .inhalte-liste > div";
+  function einflug() {
+    if (ruhig() || !("IntersectionObserver" in window)) return;
+    var hoehe = window.innerHeight || 800;
+    var ziele = [].slice.call(document.querySelectorAll(EINFLUG)).filter(function (e) {
+      return e.getBoundingClientRect().top > hoehe; // nur, was noch nicht zu sehen ist
+    });
+    if (!ziele.length) return;
+    ziele.forEach(function (e) { e.classList.add("einflug"); });
+    document.documentElement.classList.add("einflug-an");
+    var io = new IntersectionObserver(function (eintraege) {
+      var n = 0;
+      eintraege.forEach(function (x) {
+        if (!x.isIntersecting) return;
+        x.target.style.setProperty("--einflug-verzug", Math.min(n++, 7) * 30 + "ms");
+        x.target.classList.add("da");
+        io.unobserve(x.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    ziele.forEach(function (e) { io.observe(e); });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", einflug); else setTimeout(einflug, 0);
 
   /* Fehlt ein Galeriebild, zeigt der Rahmen Rasterpunkte und »Bild nicht verfügbar« statt eines kaputten Bildes. */
   document.addEventListener("error", function (e) {

@@ -191,7 +191,7 @@
     var k = e.target.closest("[data-ansicht]");
     if (!k) return;
     var b = finde(decodeURIComponent((location.hash || "").replace(/^#/, "")));
-    if (b && b.ansichten) H.lichtbild(b.ansichten, parseInt(k.getAttribute("data-ansicht"), 10), b.titel, k);
+    if (b && b.ansichten) H.lichtbild(b.ansichten, parseInt(k.getAttribute("data-ansicht"), 10), b.titel, k, { detail: "", app: b.link || "" });
   });
 
   window.addEventListener("hashchange", function () {

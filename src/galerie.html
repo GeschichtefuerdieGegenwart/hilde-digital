@@ -1,53 +1,34 @@
-<section class="galerie-kopf" aria-labelledby="t-galerie"><div class="huelle">
-  <h1 id="t-galerie">Galerie</h1>
-  <p class="detail-kurz">Echte Ansichten aus Lernanwendungen des Kollegiums. Du siehst, was Lernende dort tun – nicht nur die Startseite.</p>
-  <p class="klein galerie-hinweis">Persönliche Erprobungen, keine Musterlösungen. Alle Bilder sind Bildschirmfotos aus den Anwendungen selbst.</p>
-</div></section>
-
-<section class="laufband" id="laufband-bereich" aria-labelledby="t-laufband">
-  <div class="huelle laufband-kopf">
-    <h2 id="t-laufband" class="laufband-titel">Alle Ansichten im Überblick</h2>
-    <button type="button" class="knopf still laufband-knopf" id="laufband-pause" aria-controls="laufband" aria-pressed="false" hidden>Anhalten</button>
+<section class="galerie-kopf" aria-labelledby="t-galerie"><div class="huelle galerie-kopf-raster">
+  <div class="galerie-kopf-text">
+    <h1 id="t-galerie">Galerie</h1>
+    <p class="detail-kurz">Echte Ansichten aus Lernanwendungen des Kollegiums. Sieh dir an, was Lernende dort tun – und probier es selbst aus.</p>
+    <p class="klein galerie-hinweis">Persönliche Erprobungen, keine Musterlösungen. Alle Bilder sind Bildschirmfotos aus den Anwendungen selbst.</p>
   </div>
-  <div class="laufband-fenster" id="laufband-fenster">
-    <ul class="laufband-spur" id="laufband" aria-label="Ansichten aus allen Projekten. Jedes Bild öffnet die große Ansicht."></ul>
-  </div>
-</section>
 
-<section class="galerie-buehne" aria-labelledby="t-einblicke"><div class="huelle">
-  <h2 id="t-einblicke" class="sr-only">Einblicke in ausgewählte Projekte</h2>
-  <div class="einblicke" id="einblicke"></div>
-  <h2 class="galerie-zwischen">Weitere Einblicke</h2>
-  <div class="einblicke-klein" id="einblicke-klein"></div>
-  <noscript><p class="box">Die Galerie zeigt ihre Bilder mit JavaScript. Ohne JavaScript findest du die Projekte über die Beispielseiten.</p></noscript>
-</div></section>
-
-<section class="bereichskopf kompakt alle-kopf" id="alle" aria-labelledby="t-alle"><div class="huelle">
-  <h2 id="t-alle">Alle Beispiele durchsuchen</h2>
-  <p class="klein">Suche nach Thema, Fach oder Anliegen. Filter lassen sich kombinieren.</p>
-
-  <form class="filter" id="filter" role="search" aria-label="Beispiele suchen und filtern">
+  <form class="filter galerie-suche" id="filter" role="search" aria-label="Beispiele suchen und filtern">
     <div class="suchzeile">
-      <label for="suche">Suchen</label>
-      <input type="search" id="suche" name="suche" autocomplete="off" placeholder="z. B. Rückmeldung, Geschichte, Fälle">
+      <label for="suche">Beispiele suchen</label>
+      <input type="search" id="suche" name="suche" autocomplete="off" placeholder="z. B. Rückmeldung, Geschichte, Labor" aria-describedby="suche-hilfe">
+      <p class="sr-only" id="suche-hilfe">Die Treffer erscheinen direkt unter der Suche, schon beim Tippen.</p>
     </div>
-    <div class="filterzeile" id="bereich" role="group" aria-label="Bereich"><span aria-hidden="true">Bereich</span>
+    <div class="filterzeile" id="bereich" role="group" aria-label="Bereich">
       <button type="button" class="chip" data-bereich="alle" aria-pressed="true">alle</button>
       <button type="button" class="chip" data-bereich="ki" aria-pressed="false">KI-Training</button>
       <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Digitaler Unterricht</button>
       <button type="button" class="chip" data-bereich="beide" aria-pressed="false">mit KI entwickelt</button>
     </div>
-    <div class="filterraster" id="auswahlfilter"></div>
-    <details class="mehr weitere-filter">
-      <summary>Weitere Filter</summary>
+    <details class="mehr mehr-filter" id="mehr-filter">
+      <summary>Mehr Filter</summary>
+      <div class="filterraster" id="auswahlfilter"></div>
       <div class="filterraster" id="weitere"></div>
     </details>
   </form>
 </div></section>
 
-<section class="abschnitt" style="padding-top:var(--a3)"><div class="huelle">
+<section class="ergebnisse" id="ergebnisse" aria-labelledby="t-ergebnisse" hidden><div class="huelle">
   <div class="ergebniskopf">
     <div class="ergebnis-oben">
+      <h2 id="t-ergebnisse" class="ergebnisse-titel">Treffer</h2>
       <p class="ergebniszeile" id="ergebniszeile" aria-live="polite"></p>
       <div class="ansicht" id="ansicht" role="group" aria-label="Ansicht der Beispiele">
         <span aria-hidden="true">Ansicht</span>
@@ -65,9 +46,37 @@
     <button type="button" class="knopf still" id="buehne-vor">Nächste <span aria-hidden="true">→</span></button>
   </div>
   <div class="mehrknopf"><button type="button" class="knopf still" id="mehr">Mehr Beispiele</button></div>
-  <p class="leise klein speicherhinweis">Deine Filter bleiben nur in diesem Browser. Suchwörter werden nicht gespeichert. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button> <span id="geloescht" aria-live="polite"></span></p>
-  <noscript><p class="box">Die Beispiele werden mit JavaScript angezeigt.</p></noscript>
+  <p class="ergebnis-zurueck"><button type="button" class="knopf still" data-zuruecksetzen>Zurück zum Stöbern</button></p>
+  <p class="leise klein speicherhinweis">Deine Filter bleiben nur in diesem Browser. Suchwörter stehen nur in der Adresse, damit du Treffer teilen kannst. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button> <span id="geloescht" aria-live="polite"></span></p>
 </div></section>
+
+<div class="stoebern" id="stoebern">
+<a class="sprung-intern" href="#t-einblicke">Laufband überspringen</a>
+<section class="laufband" id="laufband-bereich" aria-labelledby="t-laufband">
+  <div class="huelle laufband-kopf">
+    <h2 id="t-laufband" class="laufband-titel">Alle Projekte im Vorbeiziehen</h2>
+    <p class="laufband-hilfe">Fahr über ein Bild oder tipp es an. Dann kannst du das Beispiel ansehen oder gleich ausprobieren.</p>
+    <button type="button" class="knopf still laufband-knopf" id="laufband-pause" aria-controls="laufband" aria-pressed="false" hidden>Anhalten</button>
+  </div>
+  <div class="laufband-fenster" id="laufband-fenster">
+    <ul class="laufband-spur" id="laufband" aria-label="Ansichten aus allen Projekten"></ul>
+  </div>
+</section>
+
+<section class="galerie-buehne" aria-labelledby="t-einblicke"><div class="huelle">
+  <h2 id="t-einblicke" class="galerie-zwischen galerie-zwischen-erst" tabindex="-1">Einblicke in die Labore</h2>
+  <div class="einblicke" id="einblicke"></div>
+  <h2 class="galerie-zwischen">Weitere Einblicke</h2>
+  <div class="einblicke-klein" id="einblicke-klein"></div>
+  <noscript><p class="box">Die Galerie zeigt ihre Bilder mit JavaScript. Ohne JavaScript findest du die Projekte über die Beispielseiten.</p></noscript>
+</div></section>
+
+<section class="band band-karton alle-band" id="alle" aria-labelledby="t-alle"><div class="huelle alle-band-raster">
+  <h2 id="t-alle">Alle Beispiele auf einen Blick</h2>
+  <p>Alle Projekte als Karten, mit Phase, Anliegen und Status. Du kannst sie oben jederzeit durchsuchen und filtern.</p>
+  <p><button type="button" class="knopf" id="alle-zeigen">Alle Beispiele zeigen</button></p>
+</div></section>
+</div>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/daten/beispiele.js"></script>
 <script src="assets/daten/galerie.js"></script>
