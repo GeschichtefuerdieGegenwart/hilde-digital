@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 2,
+  "name": "Hilde-Digital",
+  "extensions": {
+    "colorMeta": {
+      "honig": {
+        "role": "Bereich KI für meine Arbeit – Linien/Symbole",
+        "textMinSize": "24px",
+        "tonalRamp": [
+          "#F9F1E2",
+          "#F5E8CF",
+          "#F2B233",
+          "#C88A2A",
+          "#A26A1C",
+          "#8A5A17",
+          "#6F4710",
+          "#4A2F0A"
+        ]
+      },
+      "petrol": {
+        "role": "Bereich Unterricht mit Tablets",
+        "tonalRamp": [
+          "#EEF5F3",
+          "#DBEAE6",
+          "#5CC3C0",
+          "#2E8A85",
+          "#1E6B67",
+          "#185A57",
+          "#134A47",
+          "#0C302E"
+        ]
+      },
+      "ueberdruck": {
+        "role": "nur Schnittmenge »mit KI entwickelt« (multiply Honigplatte × Petrol)",
+        "tonalRamp": [
+          "#E5EEE3",
+          "#C9DCC5",
+          "#5E9157",
+          "#2F6B3A",
+          "#24581F",
+          "#1C4B15",
+          "#153A10",
+          "#0D260A"
+        ]
+      },
+      "neutral": {
+        "tonalRamp": [
+          "#FFFFFD",
+          "#F0EEEB",
+          "#E8E5E0",
+          "#E4DCCF",
+          "#7D7364",
+          "#4F4842",
+          "#2A2622",
+          "#17140F"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "fonts": {
+        "display": "Bricolage Grotesque (OFL, variable opsz/wdth/wght), lokal woff2",
+        "body": "Atkinson Hyperlegible Next, lokal woff2, unverändert",
+        "mono": "entfällt (Taste-Abgleich): Metadaten in Atkinson Hyperlegible Next"
+      },
+      "minSize": "16px",
+      "bodyRange": "18–20px",
+      "measure": "68ch"
+    },
+    "shadows": {
+      "policy": "keine weichen Schatten",
+      "plate": "6px 6px 0 0 var(--plate-color)",
+      "plateHover": "8px 8px 0 0",
+      "platePress": "2px 2px 0 0"
+    },
+    "focus": {
+      "outer": "3px solid #2A2622",
+      "inner": "2px solid #FFFFFD",
+      "minContrast": 6.16,
+      "css": "outline:3px solid #2A2622;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFD"
+    },
+    "motion": {
+      "durations": {
+        "press": "100ms",
+        "release": "160ms",
+        "fast": "160ms",
+        "medium": "220ms",
+        "slow": "300ms",
+        "exit": "150ms",
+        "register": "720ms (nur erster Aufruf je Sitzung)"
+      },
+      "easing": {
+        "out": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "inOut": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "register": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "forbidden": "ease-in"
+      },
+      "stagger": "30ms, max. 8 Elemente",
+      "driftSpeed": "20px/s, nur nach Klick auf »Rundgang starten«",
+      "rules": [
+        "kein Autoplay",
+        "Hover nur unter @media (hover:hover) and (pointer:fine)",
+        "Tastaturaktionen nicht animieren",
+        "prefers-reduced-motion: nur Deckkraft/Farbe ≤150ms",
+        "touch-action: manipulation; -webkit-tap-highlight-color: transparent"
+      ]
+    },
+    "breakpoints": {
+      "sm": "600px",
+      "md": "1024px",
+      "lg": "1280px",
+      "beamer": "(max-height: 760px)",
+      "beamerTarget": "1280x720 ohne Scrollen"
+    },
+    "tasteSkill": {
+      "version": "design-taste-frontend v2 (Leonxlnx/taste-skill, MIT)",
+      "gate": [
+        "node <skill>/scripts/lint.mjs <dateien>",
+        "node <skill>/scripts/inspect.mjs <seite.html> --widths 1440,1280,768,390"
+      ],
+      "allow": [
+        "still-page",
+        "no-footage"
+      ],
+      "liveThing": "Papierprobe auf der Startseite",
+      "idea": "Die beiden Druckplatten des Arbeitsbogens – Honig für die eigene Vorbereitung, Petrol für das Lernen der Klasse – überdrucken sich nur dort, wo ein Lernangebot wirklich mit KI entstanden ist."
+    }
+  },
+  "components": {
+    "button-primary": {
+      "html": "<button class=\"ds-btn ds-btn--primary\">Weg starten</button>",
+      "css": ".ds-btn{font:700 1.125rem/1.2 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:48px;padding:12px 20px;border-radius:4px;border:2px solid #2A2622;cursor:pointer;transition:transform 100ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn--primary{background:#2A2622;color:#FFFFFD}.ds-btn:active{transform:translate(2px,2px)}@media (hover:hover) and (pointer:fine){.ds-btn:hover{box-shadow:4px 4px 0 0 #E4DCCF}}.ds-btn:focus-visible{outline:3px solid #2A2622;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFD}"
+    },
+    "chip": {
+      "html": "<button class=\"ds-chip\" aria-pressed=\"false\">Einstieg</button>",
+      "css": ".ds-chip{font:400 1rem/1.3 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:44px;padding:8px 14px;border-radius:999px;border:2px solid #7D7364;background:#FFFFFD;color:#2A2622;cursor:pointer}.ds-chip[aria-pressed=true]{background:#2A2622;color:#FFFFFD;border-color:#2A2622}.ds-chip[aria-pressed=true]::before{content:'✓ '}.ds-chip:focus-visible{outline:3px solid #2A2622;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFD}"
+    },
+    "card": {
+      "html": "<article class=\"ds-card ds-card--lernen\"><p class=\"ds-card__meta\">Tablets · im Unterricht erprobt</p><h3 class=\"ds-card__title\"><a href=\"#\">Titel</a></h3><p>Kurzsatz.</p></article>",
+      "css": ".ds-card{position:relative;background:#FFFFFD;color:#2A2622;border-radius:4px;padding:24px;box-shadow:6px 6px 0 0 var(--plate,#E8E5E0);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1)}.ds-card--ki{--plate:#F2B233}.ds-card--lernen{--plate:#1E6B67}.ds-card--beide{--plate:#1C4B15}.ds-card__meta{font:400 1rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;color:#4F4842;margin:0 0 8px}.ds-card__title{font:650 1.375rem/1.2 'Bricolage Grotesque',system-ui,sans-serif;margin:0 0 8px}.ds-card__title a{color:inherit;text-decoration:none}.ds-card__title a::after{content:'';position:absolute;inset:0}@media (hover:hover) and (pointer:fine){.ds-card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 0 var(--plate,#E8E5E0)}}.ds-card:active{transform:translate(4px,4px);box-shadow:2px 2px 0 0 var(--plate,#E8E5E0)}.ds-card:focus-within{outline:3px solid #2A2622;outline-offset:2px}"
+    },
+    "area-tag": {
+      "html": "<span class=\"ds-tag ds-tag--beide\">mit KI entwickelt</span>",
+      "css": ".ds-tag{display:inline-block;font:400 1rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;padding:2px 8px;border-radius:4px}.ds-tag--ki{background:#F2B233;color:#2A2622;border:2px solid #A26A1C}.ds-tag--lernen{background:#1E6B67;color:#FFFFFD}.ds-tag--beide{background:#1C4B15;color:#FFFFFD}"
+    },
+    "input": {
+      "html": "<label class=\"ds-field\">Suche<input class=\"ds-input\" type=\"search\"></label>",
+      "css": ".ds-field{display:grid;gap:6px;font:700 1rem/1.3 'Atkinson Hyperlegible Next',system-ui,sans-serif;color:#2A2622}.ds-input{font:400 1.125rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:48px;padding:10px 14px;border:2px solid #7D7364;border-radius:4px;background:#FFFFFD;color:#2A2622}.ds-input:focus-visible{outline:3px solid #2A2622;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFD}"
+    }
+  },
+  "narrative": {
+    "northStar": "Der Werkstattbogen im Überdruck",
+    "overview": "Zwei Druckfarben auf Naturpapier; wo beide Bereiche zusammenkommen, entsteht der Überdruck. Flach, handwerklich, beamertauglich, ohne Hochglanz.",
+    "keyCharacteristics": [
+      "zwei Bereichsfarben + Neutraltöne",
+      "Überdruck nur für die Schnittmenge",
+      "4px Ecken, versetzte Platte statt Schatten",
+      "Bricolage Grotesque + Atkinson Hyperlegible",
+      "Status und Bereich immer als Text"
+    ],
+    "rules": [
+      "The Overprint Rule",
+      "The Two-Inks Rule",
+      "The Neutral Action Rule",
+      "The Plate Edge Rule",
+      "The 16-Pixel Floor",
+      "The Display-Only-Bricolage Rule",
+      "The Beamer Rule",
+      "The Static Grid Rule",
+      "The No-Blur Rule"
+    ],
+    "dos": [
+      "Bereich und Status als Wort",
+      "Überdruck nur für »mit KI entwickelt«",
+      "Hauptaktion Druckschwarz",
+      "Bewegung nur auf Knopfdruck"
+    ],
+    "donts": [
+      "dritte Akzentfarbe, Verläufe, Glas",
+      "weiche Schatten, Pill-Buttons",
+      "Ampeln, Prozente, Abzeichen",
+      "Schullogo/Schul-CI",
+      "Autoplay",
+      "Text < 16px",
+      "Erfundenes"
+    ]
+  }
+}

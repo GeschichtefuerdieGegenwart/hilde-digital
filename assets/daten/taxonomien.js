@@ -1,4 +1,4 @@
-/* Hilde Digital – gemeinsame Sprache für alle Seiten.
+/* Hilde-Digital – gemeinsame Sprache für alle Seiten.
    Phasen, Anliegen, Umfang, Rollen und Mehrwert-Arten werden überall gleich verwendet:
    im Tablet-Weg, im Showroom, auf den Detailseiten und in den Regeln (assets/regeln.js).
    Ein Eintrag hier ändert die Auswahl überall. Schlüssel (id) nie umbenennen, nur Texte. */

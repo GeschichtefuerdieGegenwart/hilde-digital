@@ -1,4 +1,4 @@
-# Hilde Digital (Arbeitstitel)
+# Hilde-Digital (Arbeitstitel)
 
 Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.
 
@@ -18,7 +18,9 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/hilde.js` | gemeinsame Helfer: Speichern im Browser, Karten |
 | `tests/` | Unit-Tests (`node --test`) und Browser-Tests (`tests/e2e.py`) |
 | `docs/` | Version 1 und 2 im Überblick, Annahmen, Datenschutz, Datenlücken zur Prüfung |
-| `assets/fonts/` | Atkinson Hyperlegible, SIL Open Font License (OFL.txt) |
+| `assets/fonts/` | Bricolage Grotesque (Überschriften) und Atkinson Hyperlegible Next (Text), beide SIL Open Font License (OFL-*.txt) |
+| `PRODUCT.md`, `DESIGN.md`, `.impeccable/design.json` | Produktbeschreibung und Gestaltungssystem »Überdruck« (Format von Impeccable) |
+| `.taste-skill/direction.json` | begründete Ausnahmen für die Gestaltungsprüfung mit dem Taste Skill |
 | `assets/bilder/` | Bildschirmfotos der Beispiele, auch für den Betrieb ohne Netz |
 
 ## Arbeiten

@@ -1,4 +1,4 @@
-/* Hilde Digital – Suche und Filter im Showroom.
+/* Hilde-Digital – Suche und Filter im Showroom.
    Filter sind kombinierbar. Gibt es keinen exakten Treffer, werden die Filter kontrolliert gelockert:
    Jedes Beispiel bekommt intern Punkte für jeden erfüllten Filter (Anliegen 3, Phase 2, Bereich 2,
    Umfang 1, Rolle 1, Fach 1, KI-Einsatz 1). Gezeigt werden die nächstpassenden, höchstens sechs,

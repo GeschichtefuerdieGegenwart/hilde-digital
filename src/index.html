@@ -1,31 +1,73 @@
-<section class="start"><div class="huelle">
-  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung</p>
-  <h1 style="margin-top:1.25rem">Hilde Digital</h1>
-  <p class="frage">Was möchtest du heute erreichen?</p>
-  <p class="unter">Wähle einen Weg – du kannst deine Entscheidung jederzeit ändern.</p>
-  <div class="wahl">
+<section class="start" aria-labelledby="t-start"><div class="huelle">
+  <h1 id="t-start" class="display">Erst das Anliegen, dann das Werkzeug.</h1>
+  <p class="leit">KI kann Unterricht vorbereiten. Digitalität kann Lernen gestalten. Beides kann zusammenkommen – muss es aber nicht.</p>
+
+  <div class="platten" id="platten">
     <a class="wahlflaeche ki" href="ki.html">
-      <span class="symbol"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 28l3-9 13-13 6 6-13 13z"/><path d="M21 9l6 6"/><path d="M8 28l5-2"/><path d="M27 23v6M24 26h6"/><path d="M30 4v4M28 6h4"/></svg></span>
-      <div><h2>KI für meine Arbeit nutzen</h2><p>Ideen finden, Material erstellen und Unterricht vorbereiten</p></div>
+      <h2>KI für meine Arbeit</h2>
+      <p>Ideen finden, Material erstellen und Unterricht vorbereiten.</p>
       <span class="weiter">Weg starten <span aria-hidden="true">→</span></span>
     </a>
-    <a class="wahlflaeche" href="tablets.html">
-      <span class="symbol"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="20" height="28" rx="3"/><path d="M14 28h4"/><path d="M11 12h10M11 17h7"/><circle cx="27" cy="22" r="5" fill="#fffdf9"/><path d="M25 22l1.6 1.6L29.5 20.5"/></svg></span>
-      <div><h2>Unterricht mit Tablets gestalten</h2><p>Prüfen, wo das Tablet beim Lernen wirklich hilft</p></div>
+    <div class="schnitt">
+      <p class="schnitt-titel">Mit KI entwickelt</p>
+      <a class="textlink" href="showroom.html" id="schnitt-link">Lernangebote aus beiden Bereichen im Showroom</a>
+    </div>
+    <a class="wahlflaeche lernen" href="tablets.html">
+      <h2>Unterricht mit Tablets</h2>
+      <p>Prüfen, wo das Tablet beim Lernen wirklich hilft.</p>
       <span class="weiter">Weg starten <span aria-hidden="true">→</span></span>
     </a>
   </div>
-
-  <p style="margin-top:2rem"><a class="textlink" href="showroom.html">Beispiele im Showroom entdecken <span aria-hidden="true">→</span></a></p>
+  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung. Du kannst deine Wahl jederzeit ändern.</p>
 </div></section>
 
-<section class="abschnitt" style="padding-top:0" aria-labelledby="t-stand"><div class="huelle">
+<section class="band band-flaeche" aria-labelledby="t-probe"><div class="huelle probe">
+  <div class="probe-kopf">
+    <h2 id="t-probe">Geht es auf Papier genauso gut?</h2>
+    <p>Dann bleib beim Papier. Prüfe eine Aktivität, die du planst, in höchstens drei Fragen.</p>
+    <p class="leise klein">Deine Antworten werden nicht gespeichert. Das Ergebnis ist eine Planungshilfe, keine Bewertung.</p>
+  </div>
+  <form class="probe-form" id="probe">
+    <fieldset class="probe-frage" data-frage="neu">
+      <legend>Tun die Lernenden mit dem Tablet etwas, das auf Papier nicht oder nur mühsam ginge?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="neu" value="ja"><span>Ja</span></label>
+        <label><input type="radio" name="neu" value="nein"><span>Nein</span></label>
+        <label><input type="radio" name="neu" value="offen"><span>Noch nicht sicher</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="probe-frage" data-frage="ablage" hidden>
+      <legend>Hilft das Tablet vor allem beim Verteilen, Einsammeln oder Ablegen?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="ablage" value="ja"><span>Ja</span></label>
+        <label><input type="radio" name="ablage" value="nein"><span>Nein</span></label>
+        <label><input type="radio" name="ablage" value="offen"><span>Noch nicht sicher</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="probe-frage" data-frage="ziel" hidden>
+      <legend>Dient das dem, was die Lernenden lernen sollen?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="ziel" value="ja"><span>Ja</span></label>
+        <label><input type="radio" name="ziel" value="nein"><span>Nein</span></label>
+        <label><input type="radio" name="ziel" value="offen"><span>Noch nicht sicher</span></label>
+      </div>
+    </fieldset>
+    <div class="probe-ergebnis" id="probe-ergebnis" aria-live="polite">
+      <p class="probe-name">Noch offen</p>
+      <p>Beantworte die erste Frage.</p>
+    </div>
+    <noscript><p class="klein">Ohne JavaScript: Prüfe deine Aktivität ausführlich im <a href="tablets.html">Tablet-Weg</a>.</p></noscript>
+    <p class="probe-aktionen"><a class="textlink" href="tablets.html">Genauer prüfen im Tablet-Weg <span aria-hidden="true">→</span></a> <button class="knopf still" type="reset">Eingaben löschen</button></p>
+  </form>
+</div></section>
+
+<section class="band" aria-labelledby="t-stand"><div class="huelle">
   <div class="stand-band">
     <div class="stand-kopf">
       <h2 id="t-stand">Was bisher entstanden ist</h2>
-      <p class="leise klein">Stand: 17. Oktober 2026</p>
     </div>
     <ul class="kennzahlen" id="kennzahlen" aria-label="Der Showroom in Zahlen"></ul>
+    <p class="klein">Gezählt aus den Beispieldaten. Stand: 17. Oktober 2026</p>
     <div id="neu" hidden>
       <h3 class="neu-titel">Neu im Showroom</h3>
       <ul class="minis neu" id="neu-liste"></ul>
@@ -38,43 +80,18 @@
   </div>
 </div></section>
 
-<section class="abschnitt" style="padding-top:0"><div class="huelle">
-  <details class="mehr" id="zusammenhang">
-    <summary>Wie hängt beides zusammen?</summary>
-    <div class="stapel-gross">
-      <div class="venn">
-        <svg viewBox="0 0 640 330" role="img" aria-label="Zwei Bereiche mit Schnittmenge: KI unterstützt Lehrkräfte, Digitalität unterstützt Lernen, in der Mitte: mit KI digitale Lernangebote entwickeln">
-          <circle cx="250" cy="165" r="140" fill="#f5e8cf" stroke="#a26a1c" stroke-width="2"/>
-          <circle cx="390" cy="165" r="140" fill="#dbeae6" fill-opacity=".7" stroke="#1e6b67" stroke-width="2"/>
-          <g font-family="Atkinson Hyperlegible, Segoe UI, Arial, sans-serif" fill="#2a2622" text-anchor="middle">
-            <text x="185" y="132" font-size="19" font-weight="700">KI unterstützt</text>
-            <text x="185" y="156" font-size="19" font-weight="700">Lehrkräfte</text>
-            <text x="185" y="190" font-size="15">Recherche, Ideen,</text>
-            <text x="185" y="210" font-size="15">Planung, Material,</text>
-            <text x="185" y="230" font-size="15">Aufgaben, Bewertung</text>
-            <text x="455" y="132" font-size="19" font-weight="700">Digitalität</text>
-            <text x="455" y="156" font-size="19" font-weight="700">unterstützt Lernen</text>
-            <text x="455" y="190" font-size="15">Experimentieren,</text>
-            <text x="455" y="210" font-size="15">darstellen, üben,</text>
-            <text x="455" y="230" font-size="15">zusammenarbeiten,</text>
-            <text x="455" y="250" font-size="15">Rückmeldung erhalten</text>
-            <text x="320" y="148" font-size="15" font-weight="700">Mit KI</text>
-            <text x="320" y="168" font-size="15" font-weight="700">digitale</text>
-            <text x="320" y="188" font-size="15" font-weight="700">Lernangebote</text>
-            <text x="320" y="208" font-size="15" font-weight="700">entwickeln</text>
-          </g>
-        </svg>
-      </div>
-      <ul class="mass" style="margin:0;padding-left:1.2rem;display:grid;gap:.35rem">
-        <li>KI kann Unterricht vorbereiten, der ganz analog bleibt.</li>
-        <li>Digitaler Unterricht kann ohne KI entstehen.</li>
-        <li>In der Mitte hilft KI dabei, ein digitales Lernangebot zu bauen.</li>
-        <li>Beides kann zusammenkommen. Es muss aber nicht.</li>
-      </ul>
-    </div>
-  </details>
+<section class="band band-karton" aria-labelledby="t-zusammen"><div class="huelle leitsatz-band">
+  <h2 id="t-zusammen" class="sr-only">Wie hängt beides zusammen?</h2>
+  <p class="leitsatz">Mehr Digitalität bedeutet nicht automatisch besseren Unterricht.</p>
+  <ul class="zusammen-liste" id="zusammenhang">
+    <li>KI kann Unterricht vorbereiten, der ganz analog bleibt.</li>
+    <li>Digitaler Unterricht kann ohne KI entstehen.</li>
+    <li>Im Überdruck hilft KI dabei, ein digitales Lernangebot zu bauen.</li>
+    <li><a class="textlink" href="ueber.html">Mehr über das Modul <span aria-hidden="true">→</span></a></li>
+  </ul>
 </div></section>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/daten/beispiele.js"></script>
 <script src="assets/hilde.js"></script>
+<script src="assets/regeln.js"></script>
 <script src="assets/start.js"></script>

@@ -1,4 +1,4 @@
-/* Hilde Digital – alle Beispiele an einem Ort.
+/* Hilde-Digital – alle Beispiele an einem Ort.
 
    Regeln (siehe CLAUDE.md, »Wahrheit der Daten«):
    - Titel, Kurzbeschreibung, Fach, Status und Links stammen aus dem abgestimmten Prototyp. Nicht verändern.
