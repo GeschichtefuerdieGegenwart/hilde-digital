@@ -142,7 +142,7 @@
     if (!nurKI && b.umfang) {
       var u = T.umfang.filter(function (y) { return y.id === b.umfang; })[0];
       abschnitt("Wie umfangreich ist der digitale Einsatz?", "<p><b>" + esc(u.name) + "</b> – " + esc(u.hilfe) + vorschlag(b, "umfang") + "</p>" +
-        '<p class="leise klein">Mehr Digitalität ist nicht besser. Ein punktueller Einsatz ist keine Vorstufe.</p>');
+        '<p class="leise klein">Mehr Tablet ist nicht besser. Ein punktueller Einsatz ist keine Vorstufe.</p>');
     }
     abschnitt("Was wird benötigt?", punkte(b.technik), "was benötigt wird");
     if (!nurKI) abschnitt("Was muss am Unterricht angepasst werden?", punkte(b.anpassungen), "nötige Anpassungen");

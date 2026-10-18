@@ -5,6 +5,10 @@
 
 var KI_TEXTE = {
 
+  /* Schritt 1 zeigt zuerst nur diese vier Ziele, »KI erst einmal ausprobieren« als guter Anfang vorn.
+     Die übrigen stehen unter »Weitere anzeigen«. */
+  zieleZuerst: ["ausprobieren", "erstellen", "vereinfachen", "planen"],
+
   /* Schritt 1: Wobei soll KI dich unterstützen? formen = passende Ergebnisformen (Schritt 2). */
   ziele: [
     { id: "planen", name: "Unterricht planen",

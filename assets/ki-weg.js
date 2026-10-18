@@ -22,7 +22,7 @@
   var zurueck = document.getElementById("zurueck");
   var weiter = document.getElementById("weiter");
 
-  function leer() { return { schritt: 0, erreicht: 0, ziel: null, form: null, niveau: "", geprueft: [] }; }
+  function leer() { return { schritt: 0, erreicht: 0, ziel: null, form: null, niveau: "", geprueft: [], alleZiele: false }; }
   var z = H.lies(SPEICHER) || leer();
   if (!Array.isArray(z.geprueft)) z.geprueft = [];
   z.schritt = Math.max(0, Math.min(z.schritt | 0, SCHRITTE.length - 1));
@@ -32,7 +32,7 @@
   var bearbeitet = null, signatur = "";
 
   function sichern() {
-    H.schreib(SPEICHER, { schritt: z.schritt, erreicht: z.erreicht, ziel: z.ziel, form: z.form, niveau: z.niveau, geprueft: z.geprueft });
+    H.schreib(SPEICHER, { schritt: z.schritt, erreicht: z.erreicht, ziel: z.ziel, form: z.form, niveau: z.niveau, geprueft: z.geprueft, alleZiele: !!z.alleZiele });
   }
   function finde(liste, id) { for (var i = 0; i < liste.length; i++) if (liste[i].id === id) return liste[i]; return null; }
 
@@ -73,9 +73,24 @@
   function zeichneSchritt() {
     var s = SCHRITTE[z.schritt], html = "";
     if (s.id === "ziel" || s.id === "form") {
-      var liste = s.id === "ziel" ? K.ziele : A.formenFuer(z.ziel);
+      var liste = s.id === "ziel" ? K.ziele : A.formenFuer(z.ziel), mehr = 0;
+      if (s.id === "ziel") {
+        // Zuerst nur vier Ziele, »KI erst einmal ausprobieren« vorn; der Rest unter »Weitere anzeigen«.
+        var zuerst = K.zieleZuerst || [];
+        liste = zuerst.map(function (id) { return finde(K.ziele, id); }).filter(Boolean)
+          .concat(K.ziele.filter(function (x) { return zuerst.indexOf(x.id) < 0; }));
+        if (!z.alleZiele) {
+          var alle = liste.length;
+          liste = liste.filter(function (x) { return zuerst.indexOf(x.id) > -1 || x.id === z.ziel; });
+          mehr = alle - liste.length;
+        }
+      }
       html = '<fieldset class="frageblock" aria-labelledby="frage">' + kopf(s) + '<div class="optionen">' +
-        liste.map(function (o) { return option(s.id, o, z[s.id]); }).join("") + "</div></fieldset>";
+        liste.map(function (o) {
+          var opt = option(s.id, o, z[s.id]);
+          return o.id === "ausprobieren" ? opt.replace("<b>", '<b><span class="tipp">Guter Anfang</span> ') : opt;
+        }).join("") + "</div>" +
+        (mehr > 0 ? '<button type="button" class="knopf still weitere" id="weitere-ziele">Weitere anzeigen (' + mehr + ")</button>" : "") + "</fieldset>";
     } else if (s.id === "kontext") {
       html = '<div class="frageblock">' + kopf(s) +
         '<p class="datenhinweis" id="datenhinweis"><b>Wichtig:</b> ' + esc(K.datenhinweis) + "</p>" +
@@ -187,6 +202,11 @@
     if (g) { zeigeSchritt(parseInt(g.getAttribute("data-gehe"), 10)); return; }
     if (e.target.closest("#kopieren")) { kopieren(); return; }
     if (e.target.closest("#neu") || e.target.closest("#neu2")) { neuStart(); }
+    if (e.target.closest("#weitere-ziele")) {
+      z.alleZiele = true; sichern(); zeichneSchritt();
+      var f = form.querySelector('input[name="ziel"]:checked') || form.querySelectorAll('input[name="ziel"]')[4];
+      if (f) f.focus();
+    }
   });
 
   function vor() {

@@ -24,7 +24,7 @@ var TAXONOMIEN = {
     { id: "erkunden", name: "Erkunden & entdecken", ziel: "Etwas erkunden und entdecken lassen" },
     { id: "verstehen", name: "Verstehen & vertiefen", ziel: "Verständnis aufbauen und vertiefen", haeufig: true },
     { id: "ueben", name: "Üben & anwenden", ziel: "Üben und festigen", haeufig: true },
-    { id: "zusammen", name: "Zusammenarbeiten", ziel: "Zusammenarbeit fördern", haeufig: true },
+    { id: "zusammen", name: "Zusammenarbeiten", ziel: "Zusammenarbeit fördern" },
     { id: "recherche", name: "Recherchieren & prüfen", ziel: "Recherchieren und Quellen prüfen" },
     { id: "rueckmeldung", name: "Rückmeldung geben", ziel: "Rückmeldung geben" },
     { id: "lernstand", name: "Lernstand erkennen", ziel: "Sehen, wo die Klasse steht", haeufig: true },
@@ -36,11 +36,11 @@ var TAXONOMIEN = {
     { id: "ablaeufe", name: "Konferenzen und Abläufe strukturieren", bereich: "ki" }
   ],
 
-  /* Umfang der Digitalität – ohne Rangfolge. Durchgängig ist keine höhere Stufe. */
+  /* Umfang des Tablet-Einsatzes – ohne Rangfolge. Durchgängig ist keine höhere Stufe. */
   umfang: [
     { id: "punktuell", name: "Punktuell", hilfe: "eine einzelne Aktivität oder ein kurzer Impuls" },
     { id: "phasenweise", name: "Phasenweise", hilfe: "eine oder mehrere Unterrichtsphasen" },
-    { id: "durchgaengig", name: "Durchgängig", hilfe: "ein zusammenhängendes digitales Lernsetting, z. B. eine HTML-Lernumgebung für eine Stunde" }
+    { id: "durchgaengig", name: "Durchgängig", hilfe: "die ganze Stunde am Tablet, z. B. mit einer Lernanwendung im Browser" }
   ],
 
   /* Rollen der Lehrkraft – Kombinationen möglich, keine Rolle ist höherwertig. */
