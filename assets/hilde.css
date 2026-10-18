@@ -694,8 +694,8 @@ main p,main li,main dd{max-width:60ch}
 @media (hover:hover) and (pointer:fine){.check-weg:hover{transform:translate(-2px,-2px);box-shadow:var(--platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
 @media (max-width:767px){.check-wege{grid-template-columns:1fr}}
 
-/* Weg B: Material prüfen lassen */
-#pruefen-lassen:focus{outline:none}
+/* Weg B: Mit KI prüfen – Prüf-Auftrag zum Kopieren */
+#mit-ki:focus{outline:none}
 .lassen{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4);align-items:start}
 .lassen-kopf{grid-column:1/5;display:grid;gap:var(--a2)}
 .lassen-kopf h2{font-weight:700}
@@ -704,31 +704,13 @@ main p,main li,main dd{max-width:60ch}
 .lassen-form select{max-width:28rem}
 .lassen-form textarea{min-height:14rem;resize:vertical;background:var(--grund)}
 .lassen-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem var(--a2)}
-.lassen-status{font-weight:700;display:inline-flex;align-items:center;gap:.6rem}
-.lassen-status.sucht::before{content:"";width:.8rem;height:.8rem;background:var(--lernen);border-radius:2px;animation:suchen 600ms var(--ease-out) infinite alternate}
-@keyframes suchen{from{opacity:.25;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
-.lassen-ergebnis{grid-column:5/13;display:grid;gap:var(--a3)}
-.lassen-ergebnis:focus{outline:none}
-@media (max-width:1023px){.lassen-kopf,.lassen-form,.lassen-ergebnis{grid-column:1/-1}}
-.ergebnis-block{background:var(--grund);border-radius:var(--rund);padding:var(--a3);display:grid;gap:.6rem}
-.ergebnis-block h3{display:flex;align-items:center;gap:.6rem;font-size:var(--gr-h3)}
-.ergebnis-block .nr{flex:none;display:grid;place-items:center;width:2rem;height:2rem;border-radius:var(--rund);background:var(--text);color:var(--flaeche);font-size:1.05rem}
-.ergebnis-block ul{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
-.staerke-block{background:var(--lernen);color:var(--flaeche)}
-.staerke-block .nr{background:var(--flaeche);color:var(--text)}
-.staerke-block a{color:var(--flaeche)}
-.staerke-name{font:700 var(--gr-h2)/1.1 var(--schrift-titel)}
-.grenzen-block{background:var(--flaeche);border:2px solid var(--stahl)}
-ul.bereich-chips{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
-.bereich-chips li{background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);padding:.35rem .75rem;font-weight:700}
-.bereich-chips .leise{font-weight:400}
-.beobachtungen li{line-height:1.5}
-q.fundstelle{display:block;margin-top:.35rem;padding:.35rem .75rem;background:var(--flaeche);border-left:4px solid var(--lernen);font-size:var(--gr-klein);quotes:"»" "«"}
-.anfrage-block{display:grid;gap:.6rem;background:var(--ki-zart);border-radius:var(--rund);padding:var(--a3)}
-.anfrage-block textarea{background:var(--flaeche)}
-.kopieren{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2)}
-.erscheint{animation:erscheinen var(--dauer-mittel) var(--ease-out) both}
-@keyframes erscheinen{from{opacity:0;transform:translateY(8px)}}
+.lassen-status{font-weight:700;max-width:40ch}
+.ki-schritte{margin:0;padding:0;list-style:none;display:grid;gap:.6rem;counter-reset:kischritt}
+.ki-schritte li{counter-increment:kischritt;display:grid;grid-template-columns:2.25rem 1fr;gap:0 .75rem}
+.ki-schritte li::before{content:counter(kischritt);grid-row:1/3;display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:var(--rund);background:var(--lernen);color:var(--flaeche);font:700 1.125rem/1 var(--schrift-titel)}
+.ki-schritte b{display:block}
+.prompt-ansicht textarea{min-height:22rem;font-size:1rem;line-height:1.45;background:var(--grund)}
+@media (max-width:1023px){.lassen-kopf,.lassen-form{grid-column:1/-1}}
 
 /* Galerie: Kopf, redaktionelle Einblicke, Liste */
 .galerie-kopf{padding-block:var(--a4) var(--a4)}
@@ -781,6 +763,30 @@ q.fundstelle{display:block;margin-top:.35rem;padding:.35rem .75rem;background:va
   .einblick-details{grid-template-columns:repeat(2,minmax(0,1fr))}
   .einblick-details>:nth-child(3){display:none} /* auf dem Telefon zwei Details; alle Ansichten bleiben in der Bildansicht */
 }
+
+/* Galerie: Laufband – alle Ansichten, langsam und gleichmäßig (linear, nur transform).
+   Hält an beim Überfahren, beim Fokus, per Knopf und außerhalb des Bildschirms. Bei weniger Bewegung: still, von Hand verschiebbar. */
+.laufband{background:var(--text);color:var(--flaeche);padding-block:var(--a3) var(--a4);overflow:hidden}
+.laufband-kopf{display:flex;align-items:center;justify-content:space-between;gap:var(--a2);flex-wrap:wrap;margin-bottom:var(--a3)}
+.laufband-titel{font-size:var(--gr-h3);font-weight:700}
+.laufband .knopf.still{color:var(--flaeche);border-color:var(--flaeche)}
+.laufband :focus-visible{outline-color:var(--flaeche);box-shadow:0 0 0 5px var(--text)} /* taste-skill-ignore: Fokus-Doppelring auf dunklem Grund */
+@media (hover:hover) and (pointer:fine){.laufband .knopf.still:hover{box-shadow:4px 4px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+.laufband-fenster{overflow-x:auto;scrollbar-width:thin;padding-inline:clamp(16px,4vw,40px);padding-bottom:var(--a1)}
+.laufband-spur{list-style:none;margin:0;padding:0;display:flex;gap:var(--a2);width:max-content}
+.laufband-kopie{display:none}
+.laufband-bild{display:grid;gap:.5rem;width:clamp(14rem,22vw,20rem);padding:0;border:0;background:transparent;color:var(--flaeche);text-align:left;cursor:zoom-in;touch-action:manipulation;font:inherit;
+  transition:transform var(--dauer-schnell) var(--ease-out)}
+.laufband-bild img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:2px;background:var(--leise)}
+.laufband-name{font-size:var(--gr-klein);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.laufband-bild:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+@media (hover:hover) and (pointer:fine){.laufband-bild:hover img{box-shadow:6px 6px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+.laufband.laeuft .laufband-fenster{overflow:hidden;padding-inline:0}
+.laufband.laeuft .laufband-kopie{display:list-item}
+.laufband.laeuft .laufband-spur{padding-left:var(--a2);animation:laufen var(--laufband-dauer,300s) linear infinite}
+.laufband.laeuft:hover .laufband-spur,.laufband.laeuft:focus-within .laufband-spur,
+.laufband.angehalten .laufband-spur,.laufband.unsichtbar .laufband-spur{animation-play-state:paused}
+@keyframes laufen{to{transform:translateX(-50%)}} /* Spur steht doppelt da; Abstand links = Lücke, deshalb genau die Hälfte */
 
 /* Detailseite: Ansichten aus der Anwendung */
 .detail-ansichten{display:grid;gap:var(--a2)}
@@ -836,9 +842,13 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-property:opacity,color,background-color,border-color!important;transition-duration:var(--dauer-aus)!important;scroll-behavior:auto!important}
   .registrieren .wahlflaeche{animation:none!important}
-  .erscheint,dialog.lichtbild[open],dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
-  .lassen-status.sucht::before{animation:none}
-  .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
+  dialog.lichtbild[open],dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
+    .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
   .karte:hover,.werkzeug a:hover,.check-weg:hover,[data-bildrahmen]:hover,.galerie-teaser-bilder a:hover img{transform:none!important}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
 }
+
+/* Ab Version 4.1: Prüf-Auftrag und aufklappbarer Rahmen */
+.ki-pruefen .box,.lassen-kopf details.mehr,.ki-pruefen details.mehr{background:var(--grund)}
+.rahmen-mehr{margin-top:var(--a3)}
+.rahmen-mehr .rahmen{margin-top:var(--a2)}

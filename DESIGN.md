@@ -291,6 +291,7 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - Nur `transform` und `opacity` werden animiert; die versetzte Platte erscheint ohne Übergang. Kein `transition: all`.
 - Drücken: `--druck` 0,97 für Schaltflächen, `--druck-gross` 0,99 für große Flächen. Die Bildansicht öffnet aus dem angeklickten Bild heraus von `--auftauchen` 0,95 auf 1.
 - Weniger Bewegung: keine Lage- oder Größenänderung, nur Überblenden bis 150 ms.
+- Laufband der Galerie: einzige Dauerbewegung. Linear (ein Band soll gleichmäßig gleiten), etwa 24 px/s, nur `transform`. Hält an beim Überfahren, beim Fokus, per Knopf und außerhalb des Bildschirms; die Wahl »angehalten« bleibt im Browser. Bei weniger Bewegung steht es still und lässt sich von Hand verschieben.
 
 ### Bildansicht
 - `<dialog>` auf Druckschwarz-Schleier, Titel und »Schließen« oben, Bild mit Bildtext, »Vorherige« · »Ansicht n von m« · »Nächste« unten. Escape, Pfeiltasten, Klick daneben. Fokus zurück zum auslösenden Bild.
@@ -328,7 +329,7 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - **Don't** weiche Schatten, große Rundungen (> 4 px außer Chips) oder Pill-Buttons verwenden.
 - **Don't** Ampeln, Prozentwerte, Sterne, Abzeichen oder Ranglisten zeigen.
 - **Don't** Schullogo, Schulfarben oder offizielle Wirkung erzeugen.
-- **Don't** Autoplay, Endlos-Karussells oder Parallax einsetzen.
+- **Don't** Autoplay, Endlos-Karussells oder Parallax einsetzen. Einzige Ausnahme: das Laufband der Galerie (langsam, linear, anhaltbar, still bei weniger Bewegung).
 - **Don't** Text unter 16 px setzen oder Honig (#A26A1C) als Fließtextfarbe nutzen.
 - **Don't** Beispiele, Zitate, Zahlen oder Links erfinden.
 - **Don't** `ease-in` für Bewegung verwenden oder Tastaturaktionen animieren.

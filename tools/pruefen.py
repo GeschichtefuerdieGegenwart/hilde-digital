@@ -35,7 +35,7 @@ EINSTIEG = ["index.html", "ki.html", "unterricht.html", "tablets.html", "passt.h
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js",
-                    "assets/probe.js", "assets/digital-check.js", "assets/material-regeln.js", "assets/galerie-buehne.js", "assets/daten/galerie.js"]
+                    "assets/probe.js", "assets/digital-check.js", "assets/galerie-buehne.js", "assets/daten/galerie.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]

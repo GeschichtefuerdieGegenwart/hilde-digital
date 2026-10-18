@@ -17,7 +17,7 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/suche.js`, `assets/ki-anfrage.js` | Suche und Filter in der Galerie, Anfrage-Baukasten |
 | `assets/hilde.js` | gemeinsame Helfer: Speichern im Browser, Karten, Bildansicht |
 | `assets/daten/galerie.js`, `assets/galerie-buehne.js`, `assets/galerie/` | Galerie: echte Ansichten mit Bild- und Alternativtexten, Einblicke; Herkunft in `docs/galerie-quellen.md` |
-| `assets/material-regeln.js`, `assets/digital-check.js` | Digital-Check Weg B: Textsuche nach Merkmalen mit Fundstellen (keine KI) |
+| `assets/pruef-prompt.js`, `assets/digital-check.js` | Digital-Check Weg B: Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren in ein freigegebenes KI-System (keine Anbindung) |
 | `tests/` | Unit-Tests (`node --test`) und Browser-Tests (`tests/e2e.py`) |
 | `docs/` | Versionen 1 bis 4 im Überblick, Herkunft der Galeriebilder, Annahmen, Datenschutz, Datenlücken zur Prüfung |
 | `assets/fonts/` | Bricolage Grotesque (Überschriften) und Atkinson Hyperlegible Next (Text), beide SIL Open Font License (OFL-*.txt) |

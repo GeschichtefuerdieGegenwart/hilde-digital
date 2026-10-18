@@ -1,5 +1,7 @@
-/* Hilde Digital – Digitaler Unterricht: Planungsweg »Unterricht planen«: sechs Schritte bis zur Entscheidungskarte.
-   Eine Entscheidung pro Schritt. »Noch nicht sicher« ist überall erlaubt, wo es fachlich sinnvoll ist.
+/* Hilde Digital – Digitaler Unterricht: Planungsweg »Unterricht planen«: vier kurze Fragen bis zur Entscheidungskarte.
+   Eine Entscheidung pro Schritt. Zuerst stehen nur die wichtigsten Antworten da, der Rest unter »Weitere anzeigen«.
+   Die Angaben zur Klasse (Rahmen) sind freiwillig und stehen aufklappbar unter der Frage nach dem Umfang.
+   »Noch nicht sicher« ist überall erlaubt, wo es fachlich sinnvoll ist.
    Braucht: TAXONOMIEN, BEISPIELE, REGELN, HILDE. */
 (function () {
   "use strict";
@@ -14,22 +16,22 @@
       optionen: function () {
         return T.phasen.filter(function (p) { return p.id !== "offen"; }).concat([NICHT_SICHER]);
       } },
-    { id: "anliegen", titel: "Lernabsicht", frage: "Was sollen die Lernenden vor allem tun?",
-      hilfe: "Wähle das wichtigste Anliegen. Weitere findest du unter »Weitere anzeigen«.",
+    { id: "anliegen", titel: "Ziel", frage: "Was soll dein digitaler Abschnitt vor allem bewirken?",
+      hilfe: "Wähle das Wichtigste.",
       optionen: function () {
-        return T.anliegen.filter(function (x) { return x.bereich !== "ki"; }).concat([NICHT_SICHER]);
+        return T.anliegen.filter(function (x) { return x.bereich !== "ki"; })
+          .map(function (x) { return { id: x.id, name: x.ziel || x.name, haeufig: x.haeufig }; }).concat([NICHT_SICHER]);
       },
       haeufig: function (o) { return o.haeufig || o.id === "offen"; } },
     { id: "mehrwert", titel: "Mehrwert", frage: "Was soll durch das Tablet besser möglich werden?",
       hilfe: "Geht es auf Papier genauso gut? Dann bleib beim Papier.",
-      optionen: function () { return T.mehrwerte; } },
+      optionen: function () { return T.mehrwerte; },
+      haeufig: function (o) { return o.haeufig; } },
     { id: "umfang", titel: "Umfang", frage: "Wie viel Digitalität passt zu deinem Vorhaben?",
       hilfe: "Durchgängig ist eine Möglichkeit, kein Standard und keine höhere Stufe.",
       optionen: function () {
         return T.umfang.concat([{ id: "offen", name: "Noch offen", hilfe: "Hilde schlägt dir einen Umfang vor" }]);
       } },
-    { id: "rahmen", titel: "Rahmen", frage: "Was gilt in deiner Klasse?",
-      hilfe: "Alle Angaben sind freiwillig. Sie verändern nur die Empfehlung." },
     { id: "ergebnis", titel: "Entscheidungskarte" }
   ];
 
@@ -40,9 +42,11 @@
   var zurueck = document.getElementById("zurueck");
   var weiter = document.getElementById("weiter");
 
-  function leer() { return { schritt: 0, erreicht: 0, phase: null, anliegen: null, mehrwert: null, umfang: null, rahmen: {}, weitere: false }; }
+  function leer() { return { schritt: 0, erreicht: 0, phase: null, anliegen: null, mehrwert: null, umfang: null, rahmen: {}, weitere: {} }; }
   var z = H.lies(SPEICHER) || leer();
   if (!z.rahmen) z.rahmen = {};
+  // Früher galt »Weitere anzeigen« nur für eine Frage (true/false). Jetzt je Frage.
+  if (!z.weitere || typeof z.weitere !== "object") z.weitere = z.weitere === true ? { anliegen: true } : {};
   z.schritt = Math.max(0, Math.min(z.schritt | 0, SCHRITTE.length - 1));
   z.erreicht = Math.max(z.schritt, z.erreicht | 0);
 
@@ -72,26 +76,31 @@
     }).join("");
   }
 
+  /* Angaben zur Klasse: freiwillig, aufklappbar unter der Umfang-Frage. Offen, sobald etwas gewählt ist. */
+  function rahmenHtml() {
+    var gewaehlt = Object.keys(z.rahmen).length;
+    var html = '<details class="mehr rahmen-mehr" id="rahmen-mehr"' + (gewaehlt ? " open" : "") + ">" +
+      "<summary>Mehr zu deiner Klasse angeben <span class=\"leise\">(freiwillig" + (gewaehlt ? ", " + gewaehlt + " angegeben" : "") + ")</span></summary>" +
+      '<p class="hilfe">Netz, Geräte, Zeit oder Datenschutz verändern die Empfehlung. Du kannst das auch überspringen.</p><div class="rahmen">';
+    T.rahmen.forEach(function (r) {
+      html += '<fieldset class="rahmenfrage"><legend>' + esc(r.frage) + '</legend><div class="optionen klein-optionen">' +
+        r.optionen.map(function (o) { return option("rahmen-" + r.id, o, z.rahmen[r.id]); }).join("") +
+        option("rahmen-" + r.id, { id: "", name: "weiß nicht" }, z.rahmen[r.id] ? "x" : "") + "</div></fieldset>";
+    });
+    return html + "</div></details>";
+  }
+
   function zeichneSchritt() {
     var s = SCHRITTE[z.schritt];
     var html = "";
     if (s.id === "ergebnis") {
       html = ergebnisHtml();
-    } else if (s.id === "rahmen") {
-      html = '<fieldset class="frageblock" aria-labelledby="frage"><h2 class="frage" id="frage" tabindex="-1">' + esc(s.frage) + "</h2>" +
-        '<p class="hilfe">' + esc(s.hilfe) + '</p><div class="rahmen">';
-      T.rahmen.forEach(function (r) {
-        html += '<fieldset class="rahmenfrage"><legend>' + esc(r.frage) + '</legend><div class="optionen klein-optionen">' +
-          r.optionen.map(function (o) { return option("rahmen-" + r.id, o, z.rahmen[r.id]); }).join("") +
-          option("rahmen-" + r.id, { id: "", name: "weiß nicht" }, z.rahmen[r.id] ? "x" : "") + "</div></fieldset>";
-      });
-      html += "</div></fieldset>";
     } else {
       var alle = s.optionen();
       var gewaehlt = z[s.id];
       var sichtbar = alle;
       var mehr = 0;
-      if (s.haeufig && !z.weitere) {
+      if (s.haeufig && !z.weitere[s.id]) {
         sichtbar = alle.filter(function (o) { return s.haeufig(o) || o.id === gewaehlt; });
         mehr = alle.length - sichtbar.length;
       }
@@ -100,11 +109,12 @@
         sichtbar.map(function (o) { return option(s.id, o, gewaehlt); }).join("") + "</div>" +
         (mehr > 0 ? '<button type="button" class="knopf still weitere" id="weitere">Weitere anzeigen (' + mehr + ")</button>" : "") +
         "</fieldset>";
+      if (s.id === "umfang") html += rahmenHtml();
     }
     form.innerHTML = html;
     zurueck.hidden = z.schritt === 0 || s.id === "ergebnis";
     weiter.hidden = s.id === "ergebnis";
-    weiter.textContent = s.id === "rahmen" ? "Entscheidungskarte zeigen →" : "Weiter →";
+    weiter.textContent = SCHRITTE[z.schritt + 1] && SCHRITTE[z.schritt + 1].id === "ergebnis" ? "Entscheidungskarte zeigen →" : "Weiter →";
     hinweis.hidden = true;
     zeichneFortschritt();
   }
@@ -188,7 +198,7 @@
     var g = e.target.closest("[data-gehe]");
     if (g) { zeigeSchritt(parseInt(g.getAttribute("data-gehe"), 10)); return; }
     if (e.target.closest("#weitere")) {
-      z.weitere = true; sichern(); zeichneSchritt();
+      z.weitere[SCHRITTE[z.schritt].id] = true; sichern(); zeichneSchritt();
       var ziel = form.querySelector(".option input:checked") || form.querySelector(".option input");
       if (ziel) ziel.focus();
       return;

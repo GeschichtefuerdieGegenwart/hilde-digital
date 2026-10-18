@@ -300,3 +300,13 @@ test("Papierprobe: jedes Ergebnis ist eine der vier Einstufungen und hat eine Be
     assert.ok(!/\d+ ?%/.test(e.grund), "keine Prozentwerte");
   }
 });
+
+test("Planungsweg: zuerst nur wenige, klare Antworten; jedes Ziel hat eine kurze Formulierung", () => {
+  const T = require("../assets/daten/taxonomien.js");
+  const ziele = T.anliegen.filter((a) => a.bereich !== "ki");
+  assert.ok(ziele.filter((a) => a.haeufig).length <= 6, "höchstens sechs Ziele zuerst");
+  assert.ok(ziele.every((a) => a.ziel && a.ziel.length <= 45), "jedes Ziel kurz formuliert");
+  for (const id of ["interesse", "lernstand", "leistung"]) assert.ok(ziele.find((a) => a.id === id).haeufig, id + " steht zuerst");
+  const mw = T.mehrwerte.filter((m) => m.haeufig).map((m) => m.id);
+  assert.ok(mw.length <= 6 && mw.includes("organisation") && mw.includes("unklar"), "ehrliche Antworten bleiben sichtbar");
+});

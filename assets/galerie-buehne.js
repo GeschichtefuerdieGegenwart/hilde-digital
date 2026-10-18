@@ -54,6 +54,53 @@
         '<p class="einblick-aktionen"><a class="textlink" href="' + H.detailLink(b) + '">Beispiel ansehen<span class="sr-only">: ' + esc(b.titel) + '</span> <span aria-hidden="true">→</span></a> ' + oeffnen(b) + "</p></div></article>";
   }).join("");
 
+  /* ---------- Laufband: alle Ansichten, langsam und gleichmäßig ----------
+     Bewegung nur über transform (CSS-Animation, linear, damit das Band nicht ruckt).
+     Hält an beim Überfahren, beim Fokus, mit dem Knopf »Anhalten« und wenn das Band nicht zu sehen ist.
+     Bei »weniger Bewegung« steht es still und lässt sich von Hand verschieben.
+     Für die nahtlose Schleife steht die Spur zweimal da; die zweite Hälfte ist für Vorleseprogramme
+     und die Tastatur unsichtbar. Die Entscheidung »angehalten« bleibt nur in diesem Browser. */
+  var band = document.getElementById("laufband"), bereich = document.getElementById("laufband-bereich");
+  var pause = document.getElementById("laufband-pause");
+  if (band && bereich) {
+    var alleAnsichten = [];
+    BEISPIELE.forEach(function (b) {
+      (b.ansichten || []).forEach(function (a, i) { alleAnsichten.push({ b: b, a: a, i: i }); });
+    });
+    // Abwechselnd aus verschiedenen Projekten, damit nicht vier Bilder eines Projekts nebeneinanderstehen.
+    alleAnsichten.sort(function (x, y) { return x.i - y.i; });
+    var eintrag = function (x, kopie) {
+      return '<li><button type="button" class="laufband-bild" data-bildrahmen data-projekt="' + esc(x.b.id) + '" data-ansicht="' + x.i + '"' +
+        (kopie ? ' tabindex="-1"' : "") + ">" +
+        '<img src="' + esc(x.a.bild) + '" alt="' + (kopie ? "" : esc(x.a.alt)) + '" width="1040" height="650" loading="lazy" decoding="async">' +
+        '<span class="laufband-name">' + esc(x.b.titel) + "</span></button></li>";
+    };
+    band.innerHTML = alleAnsichten.map(function (x) { return eintrag(x, false); }).join("") +
+      alleAnsichten.map(function (x) { return eintrag(x, true).replace("<li>", '<li aria-hidden="true" class="laufband-kopie">'); }).join("");
+
+    var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var gemerkt = H.lies("laufband");
+    var setze = function (angehalten, merken) {
+      bereich.classList.toggle("angehalten", angehalten);
+      pause.setAttribute("aria-pressed", String(angehalten));
+      pause.textContent = angehalten ? "Weiterlaufen lassen" : "Anhalten";
+      if (merken) H.schreib("laufband", { angehalten: angehalten });
+    };
+    if (!ruhig) {
+      bereich.classList.add("laeuft");
+      pause.hidden = false;
+      // Tempo: etwa 24 Pixel pro Sekunde, unabhängig von der Zahl der Bilder.
+      var tempo = function () { band.style.setProperty("--laufband-dauer", Math.max(60, Math.round(band.scrollWidth / 2 / 24)) + "s"); };
+      tempo();
+      window.addEventListener("resize", tempo);
+      setze(!!(gemerkt && gemerkt.angehalten), false);
+      pause.addEventListener("click", function () { setze(!bereich.classList.contains("angehalten"), true); });
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (e) { bereich.classList.toggle("unsichtbar", !e[0].isIntersecting); }).observe(bereich);
+      }
+    }
+  }
+
   document.addEventListener("click", function (e) {
     var k = e.target.closest("[data-projekt]");
     if (!k) return;

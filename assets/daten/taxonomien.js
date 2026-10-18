@@ -15,21 +15,23 @@ var TAXONOMIEN = {
     { id: "offen", name: "Noch offen" }
   ],
 
-  /* Didaktische Anliegen. haeufig = steht im Planungsweg zuerst. bereich "ki" = nur KI-Training. */
+  /* Didaktische Anliegen. haeufig = steht im Planungsweg zuerst. bereich "ki" = nur KI-Training.
+     ziel = kurze Antwort auf die Frage des Planungswegs »Was soll dein digitaler Abschnitt vor allem bewirken?«.
+     Überall sonst (Galerie, Detailseite, Karte) steht name. */
   anliegen: [
-    { id: "interesse", name: "Interesse & Motivation", haeufig: true },
-    { id: "vorwissen", name: "Vorwissen aktivieren" },
-    { id: "erkunden", name: "Erkunden & entdecken", haeufig: true },
-    { id: "verstehen", name: "Verstehen & vertiefen", haeufig: true },
-    { id: "ueben", name: "Üben & anwenden", haeufig: true },
-    { id: "zusammen", name: "Zusammenarbeiten", haeufig: true },
-    { id: "recherche", name: "Recherchieren & prüfen" },
-    { id: "rueckmeldung", name: "Rückmeldung geben" },
-    { id: "lernstand", name: "Lernstand erkennen", haeufig: true },
-    { id: "differenzieren", name: "Differenzieren & unterstützen" },
-    { id: "sichern", name: "Ergebnisse sichern" },
-    { id: "reflektieren", name: "Reflektieren & übertragen" },
-    { id: "leistung", name: "Leistung erfassen" },
+    { id: "interesse", name: "Interesse & Motivation", ziel: "Motivieren und Interesse wecken", haeufig: true },
+    { id: "vorwissen", name: "Vorwissen aktivieren", ziel: "Vorwissen aktivieren" },
+    { id: "erkunden", name: "Erkunden & entdecken", ziel: "Etwas erkunden und entdecken lassen" },
+    { id: "verstehen", name: "Verstehen & vertiefen", ziel: "Verständnis aufbauen und vertiefen", haeufig: true },
+    { id: "ueben", name: "Üben & anwenden", ziel: "Üben und festigen", haeufig: true },
+    { id: "zusammen", name: "Zusammenarbeiten", ziel: "Zusammenarbeit fördern", haeufig: true },
+    { id: "recherche", name: "Recherchieren & prüfen", ziel: "Recherchieren und Quellen prüfen" },
+    { id: "rueckmeldung", name: "Rückmeldung geben", ziel: "Rückmeldung geben" },
+    { id: "lernstand", name: "Lernstand erkennen", ziel: "Sehen, wo die Klasse steht", haeufig: true },
+    { id: "differenzieren", name: "Differenzieren & unterstützen", ziel: "Unterschiedlich fördern und unterstützen" },
+    { id: "sichern", name: "Ergebnisse sichern", ziel: "Ergebnisse sichern" },
+    { id: "reflektieren", name: "Reflektieren & übertragen", ziel: "Nachdenken und übertragen lassen" },
+    { id: "leistung", name: "Leistung erfassen", ziel: "Leistung feststellen", haeufig: true },
     { id: "material", name: "Material verbessern", bereich: "ki" },
     { id: "ablaeufe", name: "Konferenzen und Abläufe strukturieren", bereich: "ki" }
   ],
@@ -52,19 +54,20 @@ var TAXONOMIEN = {
 
   /* Was soll durch das Tablet besser möglich werden?
      art: "lernen" = möglicher Lernmehrwert, "organisation" = organisatorischer Nutzen, "offen" = noch unklar.
-     netz: true = braucht in der Regel ein verlässliches Netz. */
+     netz: true = braucht in der Regel ein verlässliches Netz.
+     haeufig = steht im Planungsweg zuerst, der Rest unter »Weitere anzeigen«. */
   mehrwerte: [
-    { id: "rueckmeldung", name: "schneller Rückmeldung erhalten", art: "lernen" },
+    { id: "rueckmeldung", name: "schneller Rückmeldung erhalten", art: "lernen", haeufig: true },
     { id: "sichtbar", name: "Ergebnisse sichtbar machen und vergleichen", art: "lernen" },
-    { id: "experimentieren", name: "mit Medien untersuchen oder experimentieren", art: "lernen" },
-    { id: "gemeinsam", name: "gemeinsam an einem Ergebnis arbeiten", art: "lernen" },
-    { id: "individuell", name: "individuell üben oder Unterstützung erhalten", art: "lernen" },
+    { id: "experimentieren", name: "mit Medien untersuchen oder experimentieren", art: "lernen", haeufig: true },
+    { id: "gemeinsam", name: "gemeinsam an einem Ergebnis arbeiten", art: "lernen", haeufig: true },
+    { id: "individuell", name: "individuell üben oder Unterstützung erhalten", art: "lernen", haeufig: true },
     { id: "zugaenge", name: "unterschiedliche Zugänge und Niveaus anbieten", art: "lernen" },
     { id: "dokumentieren", name: "Lernwege dokumentieren und reflektieren", art: "lernen" },
     { id: "authentisch", name: "authentische Informationen, Daten oder Werkzeuge nutzen", art: "lernen", netz: true },
     { id: "zeitort", name: "zeit- oder ortsunabhängig weiterarbeiten", art: "lernen", netz: true },
-    { id: "organisation", name: "hauptsächlich Material verteilen oder einsammeln", art: "organisation" },
-    { id: "unklar", name: "noch unklar", art: "offen" }
+    { id: "organisation", name: "hauptsächlich Material verteilen oder einsammeln", art: "organisation", haeufig: true },
+    { id: "unklar", name: "noch unklar", art: "offen", haeufig: true }
   ],
 
   /* Rahmen: nur Bedingungen, die die Empfehlung tatsächlich ändern. Alle Angaben sind freiwillig.
