@@ -291,6 +291,8 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - Nur `transform` und `opacity` werden animiert; die versetzte Platte erscheint ohne Übergang. Kein `transition: all`.
 - Drücken: `--druck` 0,97 für Schaltflächen, `--druck-gross` 0,99 für große Flächen. Die Bildansicht öffnet aus dem angeklickten Bild heraus von `--auftauchen` 0,95 auf 1.
 - Weniger Bewegung: keine Lage- oder Größenänderung, nur Überblenden bis 150 ms.
+- Einflug beim Scrollen (ab Version 4.2): nur Abschnitte, die beim Laden außerhalb des Bildschirms liegen; einmal, 240 ms, höchstens 24 px, gestaffelt höchstens 8 × 30 ms. Parallaxe nur bei der Collage der Startseite (höchstens 16 px, scroll-gesteuerte CSS-Animation, ab 1024 px). Beides entfällt bei weniger Bewegung.
+- Bildwelt (ab Version 4.2): echte Bildschirmfotos und selbst gezeichnete SVG-Motive aus der Systemsprache (Platten, Stundenlinie, Arbeitsblatt und Tablet). Keine Fotos von Personen, keine Fremdbilder. Duplex-Vorschauen (E6) im Laufband und in der Collage; das Original erscheint beim Überfahren, beim Fokus oder beim Antippen.
 - Laufband der Galerie: einzige Dauerbewegung. Linear (ein Band soll gleichmäßig gleiten), etwa 24 px/s, nur `transform`. Hält an beim Überfahren, beim Fokus, per Knopf und außerhalb des Bildschirms; die Wahl »angehalten« bleibt im Browser. Bei weniger Bewegung steht es still und lässt sich von Hand verschieben.
 
 ### Bildansicht

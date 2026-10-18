@@ -1,6 +1,8 @@
 /* Hilde Digital – Galerie: Freitextsuche, kombinierbare Filter, entfernbare Chips, kontrollierte Lockerung.
-   Ohne Angaben erscheinen zuerst die ausgewählten Beispiele, der Rest über »Mehr Beispiele«.
-   Gespeichert werden nur die Filter (keine Suchtexte).
+   Zwei Zustände: »Stöbern« (Laufband und Einblicke) und »Treffer« (Karten direkt unter der Suche).
+   Sobald gesucht oder gefiltert wird – oder »Alle Beispiele zeigen« gewählt ist –, erscheinen die Treffer
+   direkt unter dem Suchfeld, und das Stöbern tritt zurück. Leeres Feld und keine Filter: zurück zum Stöbern.
+   Gespeichert werden nur die Filter. Das Suchwort steht nur in der Adresse (#suche=…), damit man Treffer teilen kann.
    Braucht: TAXONOMIEN, BEISPIELE, HILDE, SUCHE. */
 (function () {
   "use strict";
@@ -25,6 +27,9 @@
   var wahl = { bereich: "alle", phase: "", anliegen: "", umfang: "", rolle: "", fach: "", ki: "" };
   Object.keys(wahl).forEach(function (k) { if (typeof gespeichert[k] === "string") wahl[k] = gespeichert[k]; });
   var suche = "", alleZeigen = false;
+  // Suchwort aus der Adresse übernehmen (#suche=…)
+  var ausAdresse = (location.hash || "").match(/^#suche=(.*)$/);
+  if (ausAdresse) { try { suche = decodeURIComponent(ausAdresse[1].replace(/\+/g, " ")); } catch (e) { suche = ""; } }
 
   var el = function (id) { return document.getElementById(id); };
 
@@ -69,7 +74,11 @@
   function zeichne() {
     var erg = S.finde(BEISPIELE, wahl, suche);
     var gefiltert = erg.felder.length > 0 || suche.trim() !== "";
-    var sichtbar = (gefiltert || alleZeigen) ? erg.treffer : erg.treffer.filter(function (b) { return b.zuerst; });
+    var aktiv = gefiltert || alleZeigen;
+    el("ergebnisse").hidden = !aktiv;
+    el("stoebern").hidden = aktiv;
+    el("t-ergebnisse").textContent = gefiltert ? "Treffer" : "Alle Beispiele";
+    var sichtbar = aktiv ? erg.treffer : erg.treffer.filter(function (b) { return b.zuerst; });
     ziel.innerHTML = sichtbar.map(H.karte).join("");
     zeigeAnsicht();
     var rest = erg.treffer.length - sichtbar.length;
@@ -106,6 +115,17 @@
 
     var speichern = {}; Object.keys(wahl).forEach(function (k) { speichern[k] = wahl[k]; });
     H.schreib(SPEICHER, speichern);
+    merkeAdresse();
+    var alle = el("alle-zeigen"); if (alle) alle.textContent = "Alle " + BEISPIELE.length + " Beispiele zeigen";
+  }
+
+  /* Suchwort in der Adresse, ohne neuen Verlaufseintrag pro Tastendruck. */
+  function merkeAdresse() {
+    if (!window.history || !history.replaceState) return;
+    var neu = suche.trim() ? "#suche=" + encodeURIComponent(suche.trim()) : "";
+    if (neu === (location.hash.indexOf("#suche=") === 0 ? location.hash : "")) return;
+    if (!neu && location.hash && location.hash.indexOf("#suche=") !== 0) return; // andere Anker nicht anfassen
+    try { history.replaceState(null, "", location.pathname + location.search + neu); } catch (e) { /* file:// in manchen Browsern */ }
   }
 
   function zeigeAnsicht() {
@@ -195,6 +215,11 @@
   ziel.addEventListener("scroll", function () { clearTimeout(warte); warte = setTimeout(standBuehne, 80); });
   if (GROSS.addEventListener) GROSS.addEventListener("change", zeigeAnsicht);
 
+  el("alle-zeigen").addEventListener("click", function () {
+    alleZeigen = true; zeichne();
+    var t = el("t-ergebnisse"); t.tabIndex = -1; t.focus();
+  });
+
   el("loeschen").addEventListener("click", function () {
     // Erst zurücksetzen (das zeichnet neu und speichert leere Filter), dann alles löschen.
     zuruecksetzen();
@@ -203,6 +228,13 @@
     el("geloescht").textContent = "Alle Eingaben wurden gelöscht.";
   });
 
-  if (wahl.fach || wahl.ki) document.querySelector(".weitere-filter").open = true;
+  if (wahl.phase || wahl.anliegen || wahl.umfang || wahl.rolle || wahl.fach || wahl.ki) el("mehr-filter").open = true;
+  el("suche").value = suche;
   zeichneFilter(); zeichne();
+  window.addEventListener("hashchange", function () {
+    var m = (location.hash || "").match(/^#suche=(.*)$/);
+    if (!m) return;
+    try { suche = decodeURIComponent(m[1].replace(/\+/g, " ")); } catch (e) { return; }
+    el("suche").value = suche; zeichne();
+  });
 })();

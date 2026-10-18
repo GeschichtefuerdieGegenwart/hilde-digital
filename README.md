@@ -16,6 +16,7 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/regeln.js` | Regeln der Entscheidungskarte und der Selbsteinschätzung, kommentiert |
 | `assets/suche.js`, `assets/ki-anfrage.js` | Suche und Filter in der Galerie, Anfrage-Baukasten |
 | `assets/hilde.js` | gemeinsame Helfer: Speichern im Browser, Karten, Bildansicht |
+| `tools/duplex.py` | erzeugt die Duplex-Vorschauen der Galerie in `assets/galerie/duplex/` (braucht Pillow, nur beim Bauen) |
 | `assets/daten/galerie.js`, `assets/galerie-buehne.js`, `assets/galerie/` | Galerie: echte Ansichten mit Bild- und Alternativtexten, Einblicke; Herkunft in `docs/galerie-quellen.md` |
 | `assets/pruef-prompt.js`, `assets/digital-check.js` | Digital-Check Weg B: Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren in ein freigegebenes KI-System (keine Anbindung) |
 | `tests/` | Unit-Tests (`node --test`) und Browser-Tests (`tests/e2e.py`) |
