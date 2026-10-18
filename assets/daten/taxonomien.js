@@ -103,14 +103,13 @@ var TAXONOMIEN = {
 
   bereiche: [
     { id: "ki", name: "KI-Training" },
-    { id: "lernen", name: "Digitaler Unterricht" },
-    { id: "beide", name: "mit KI entwickelt" }
+    { id: "lernen", name: "Digitaler Unterricht" }
   ],
 
   kiEinsatz: [
     { id: "keiner", name: "ohne KI" },
     { id: "vorbereitung-lehrkraft", name: "KI hat bei der Vorbereitung geholfen" },
-    { id: "entwicklung-anwendung", name: "mit KI entwickelt" },
+    { id: "entwicklung-anwendung", name: "KI hat beim Bau der Anwendung geholfen" },
     { id: "nutzung-lernende", name: "Lernende nutzen KI" }
   ]
 };

@@ -1,6 +1,6 @@
-<section class="galerie-kopf" aria-labelledby="t-galerie"><div class="huelle galerie-kopf-raster">
+<section class="galerie-kopf" aria-labelledby="t-galerie"><div class="huelle"><div class="plattenband" id="plattenband" data-wahl="alle" aria-hidden="true"><span class="pl pl-ki"></span><span class="pl pl-le"></span></div></div><div class="huelle galerie-kopf-raster">
   <div class="galerie-kopf-text">
-    <h1 id="t-galerie">Galerie</h1>
+    <h1 id="t-galerie" class="passer" data-passer="Galerie">Galerie</h1>
     <p class="detail-kurz">Echte Ansichten aus Lernanwendungen des Kollegiums. Sieh dir an, was Lernende dort tun – und probier es selbst aus.</p>
     <p class="klein galerie-hinweis">Persönliche Erprobungen, keine Musterlösungen. Alle Bilder sind Bildschirmfotos aus den Anwendungen selbst.</p>
   </div>
@@ -15,7 +15,6 @@
       <button type="button" class="chip" data-bereich="alle" aria-pressed="true">alle</button>
       <button type="button" class="chip" data-bereich="ki" aria-pressed="false">KI-Training</button>
       <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Digitaler Unterricht</button>
-      <button type="button" class="chip" data-bereich="beide" aria-pressed="false">mit KI entwickelt</button>
     </div>
     <details class="mehr mehr-filter" id="mehr-filter">
       <summary>Mehr Filter</summary>
@@ -74,6 +73,13 @@
   <p><button type="button" class="knopf" id="alle-zeigen">Alle Beispiele zeigen</button></p>
 </div></section>
 </div>
+
+<section class="band hefter-band" id="hefter" aria-labelledby="t-hefter"><div class="huelle hefter-bereich">
+  <h2 id="t-hefter">Mein Schnellhefter</h2>
+  <p class="hefter-leer" id="hefter-leer">Noch leer. Mit »Merken« legst du ein Beispiel hier ab. Die Auswahl bleibt nur in diesem Browser.</p>
+  <ul class="minis" id="hefter-liste"></ul>
+  <p class="leise klein" id="hefter-meldung" aria-live="polite"></p>
+</div></section>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/daten/beispiele.js"></script>
 <script src="assets/daten/galerie.js"></script>

@@ -42,7 +42,8 @@ FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik",
 EINSTIEG_WOERTER = ["Digitalität", "Lernsetting", "HTML-Lernumgebung"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]
 KENNZEICHNUNG = "Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
-ALTE_NAMEN = ["Showroom", "Mehrwert-Check", "Hilde-Digital", "Über das Modul", "KI für meine Arbeit"]
+ALTE_NAMEN = ["Showroom", "Mehrwert-Check", "Hilde-Digital", "Über das Modul", "KI für meine Arbeit",
+              "mit KI entwickelt", "Mit KI entwickelt"]  # Kategorie gestrichen (Version 4.4)
 ERLAUBTE_HOSTS = ("https://geschichtefuerdiegegenwart.github.io/",)
 
 PFLICHT = ["id", "slug", "titel", "kurz", "status", "bereich", "fach"]

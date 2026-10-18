@@ -17,8 +17,7 @@
   function passt(b, feld, wert) {
     switch (feld) {
       case "bereich":
-        if (wert === "beide") return b.bereich === "beide" || b.kiEinsatz === "entwicklung-anwendung";
-        return b.bereich === wert || b.bereich === "beide";
+        return b.bereich === wert;
       case "phase": return b.phasen.indexOf(wert) > -1;
       case "anliegen": return b.anliegen.indexOf(wert) > -1;
       case "umfang": return b.umfang === wert;

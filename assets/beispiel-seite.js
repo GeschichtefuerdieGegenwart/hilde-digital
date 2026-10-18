@@ -173,7 +173,7 @@
           abschnitte.join("") +
         "</div>" +
         '<aside class="detail-seite" aria-label="Auf einen Blick">' +
-          '<div class="aktion">' + oeffnen + quellcode + "</div>" +
+          '<div class="aktion">' + oeffnen + quellcode + H.merkKnopf(b) + "</div>" +
           '<h2 class="klein-titel">Einordnung</h2><dl class="felder schmal">' + einordnung.join("") + "</dl>" +
           (Object.keys(b.vorschlag || {}).length ? '<p class="leise klein">»Vorschlag« heißt: Diese Zuordnung ist noch nicht bestätigt.</p>' : "") +
           (offen.length ? '<p class="offen-liste"><b>Noch offen:</b> ' + offen.map(esc).join(", ") + "</p>" : "") +

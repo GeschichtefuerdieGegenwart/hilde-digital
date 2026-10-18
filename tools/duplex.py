@@ -5,7 +5,6 @@ Jedes Bildschirmfoto aus assets/galerie/ wird in Graustufen umgerechnet und auf 
 seines Bereichs gelegt – wie ein Zweifarbdruck:
 - Digitaler Unterricht (lernen):   Petrol tief  -> Fläche
 - KI-Training (ki):                Druckschwarz -> Honigplatte -> Fläche
-- mit KI entwickelt (beide):       Petrol tief  -> Honigplatte -> Fläche
 
 Ergebnis: assets/galerie/duplex/<name>.webp (640 px breit). Das Original bleibt unverändert und
 erscheint auf der Seite beim Überfahren, beim Fokus oder beim Antippen.
@@ -24,7 +23,6 @@ ZIEL = WURZEL / "assets" / "galerie" / "duplex"
 FARBEN = {
     "lernen": ["#134a47", "#fffffd"],
     "ki": ["#2a2622", "#f2b233", "#fffffd"],
-    "beide": ["#134a47", "#f2b233", "#fffffd"],
 }
 
 

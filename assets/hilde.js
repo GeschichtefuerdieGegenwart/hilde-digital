@@ -37,7 +37,6 @@ var HILDE = (function () {
     var k = [];
     if (b.bereich === "ki") k.push('<span class="kz ki">KI-Training</span>');
     if (b.bereich === "lernen") k.push('<span class="kz lernen">Digitaler Unterricht</span>');
-    if (b.bereich === "beide" || b.kiEinsatz === "entwicklung-anwendung") k.push('<span class="kz beide">mit KI entwickelt</span>');
     if (b.status === "In Überarbeitung") k.push('<span class="kz ueberarbeitung">In Überarbeitung</span>');
     if (b.vorschauArt === "konzept") k.push('<span class="kz konzept">Konzeptbeispiel – noch nicht erprobt</span>');
     return '<div class="kennzeichen">' + k.join("") + "</div>";
@@ -67,13 +66,24 @@ var HILDE = (function () {
 
   function detailLink(b) { return "beispiel.html#" + encodeURIComponent(b.slug); }
 
+  /* Merken für den Schnellhefter (assets/motion.js). Gespeichert wird nur die ID, nur in diesem Browser. */
+  function merkKnopf(b) {
+    return '<button type="button" class="knopf still merken" data-merken="' + esc(b.id) + '" aria-pressed="false"><span class="merken-text">Merken</span><span class="sr-only">: ' + esc(b.titel) + "</span></button>";
+  }
+
+  /* Stundenlinie (Muster I): Der Umfang als Form – Punkt, Abschnitt, ganze Stunde. Ohne Wertung. */
+  function stundenlinie(umfang, klein) {
+    return '<div class="stundenlinie' + (klein ? " klein" : "") + '" data-umfang="' + esc(umfang || "") + '" aria-hidden="true">' +
+      '<span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></div>';
+  }
+
   /* Große Galerie-Karte */
   function karte(b) {
     return '<article class="karte' + (b.bild ? "" : " kompakt") + '">' + bildHtml(b) +
       '<div class="koerper">' + kennzeichen(b) +
       '<p class="fach">' + esc(b.fach) + "</p><h3>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + merkmale(b) + staerken(b) + "</div>" +
       '<div class="fussleiste"><span class="status">Status: <b>' + esc(b.status) + "</b></span>" +
-      '<a class="knopf" href="' + detailLink(b) + '">Beispiel ansehen <span class="sr-only">: ' + esc(b.titel) + "</span></a></div></article>";
+      '<span class="fuss-knoepfe">' + merkKnopf(b) + '<a class="knopf" href="' + detailLink(b) + '">Beispiel ansehen <span class="sr-only">: ' + esc(b.titel) + "</span></a></span></div></article>";
   }
 
   /* Kleine Karte für Empfehlungen */
@@ -192,6 +202,6 @@ var HILDE = (function () {
   }, true);
 
   return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name,
-           kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink,
+           kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf, stundenlinie: stundenlinie,
            lichtbild: oeffne };
 })();

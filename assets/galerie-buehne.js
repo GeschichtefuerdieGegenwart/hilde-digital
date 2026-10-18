@@ -18,9 +18,15 @@
     return b.ansichten.length - a.ansichten.length;
   });
 
+  /* Kleine Ansichten mit Farbauszug (Muster G): in Ruhe zweifarbig, beim Überfahren das echte Bild. */
   function knopfBild(b, a, i, klasse) {
-    return '<button type="button" class="' + klasse + '" data-bildrahmen data-projekt="' + esc(b.id) + '" data-ansicht="' + i + '">' +
-      '<img src="' + esc(a.bild) + '" alt="' + esc(a.alt) + '" width="1040" height="650" loading="' + (i === 0 ? "eager" : "lazy") + '">' +
+    var auszug = klasse === "einblick-detail" || klasse === "ek-detail";
+    var bild = '<img' + (auszug ? ' class="auszug-original"' : "") + ' src="' + esc(a.bild) + '" alt="' + esc(a.alt) + '" width="1040" height="650" loading="' + (i === 0 ? "eager" : "lazy") + '">';
+    if (auszug) {
+      var platte = function (k) { return '<span class="platte ' + k + '" aria-hidden="true"><img src="' + esc(a.bild) + '" alt="" width="1040" height="650" loading="lazy"></span>'; };
+      bild = '<span class="auszug">' + platte("p-ki") + platte("p-le") + bild + "</span>";
+    }
+    return '<button type="button" class="' + klasse + '" data-bildrahmen data-projekt="' + esc(b.id) + '" data-ansicht="' + i + '">' + bild +
       '<span class="sr-only">Ansicht ' + (i + 1) + " von " + b.ansichten.length + " groß zeigen</span></button>";
   }
 
@@ -41,7 +47,7 @@
         '<p class="einblick-kurz">' + esc(b.kurz) + "</p>" +
         '<ol class="einblick-schritte">' + a.map(function (x) { return "<li>" + esc(x.text) + "</li>"; }).join("") + "</ol>" +
         '<p class="status">Status: <b>' + esc(b.status) + "</b></p>" +
-        '<p class="einblick-aktionen"><a class="knopf" href="' + H.detailLink(b) + '">Beispiel ansehen<span class="sr-only">: ' + esc(b.titel) + "</span></a> " + oeffnen(b) + "</p>" +
+        '<p class="einblick-aktionen">' + H.merkKnopf(b) + '<a class="knopf" href="' + H.detailLink(b) + '">Beispiel ansehen<span class="sr-only">: ' + esc(b.titel) + "</span></a> " + oeffnen(b) + "</p>" +
       "</div></article>";
   }).join("");
 
@@ -51,7 +57,7 @@
       '<div class="einblick-klein-bilder">' + knopfBild(b, a[0], 0, "ek-haupt") + knopfBild(b, a[1], 1, "ek-detail") + "</div>" +
       '<div class="einblick-klein-text">' + H.kennzeichen(b) + '<h3 id="ek-' + esc(b.id) + '">' + esc(b.titel) + "</h3>" +
         "<p>" + esc(a[0].text) + "</p>" +
-        '<p class="einblick-aktionen"><a class="textlink" href="' + H.detailLink(b) + '">Beispiel ansehen<span class="sr-only">: ' + esc(b.titel) + '</span> <span aria-hidden="true">→</span></a> ' + oeffnen(b) + "</p></div></article>";
+        '<p class="einblick-aktionen">' + H.merkKnopf(b) + '<a class="textlink" href="' + H.detailLink(b) + '">Beispiel ansehen<span class="sr-only">: ' + esc(b.titel) + '</span> <span aria-hidden="true">→</span></a> ' + oeffnen(b) + "</p></div></article>";
   }).join("");
 
   /* ---------- Fächer: alle Ansichten, gleitet langsam von selbst (assets/faecher.js) ---------- */
@@ -64,9 +70,4 @@
     if (b) H.lichtbild(b.ansichten, parseInt(k.getAttribute("data-ansicht"), 10), b.titel, k, { detail: H.detailLink(b), app: b.link || "" });
   });
 
-  // Aus der Startseite: »Mit KI entwickelt« zeigt die Liste gefiltert.
-  if (location.hash === "#beide") {
-    var chip = document.querySelector('[data-bereich="beide"]');
-    if (chip) { chip.click(); var z = document.getElementById("ergebnisse"); if (z) z.scrollIntoView(); }
-  }
 })();

@@ -8,7 +8,7 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede a
 - Nicht zeigen, was technisch möglich ist, sondern was Unterricht und schulische Arbeit konkret verbessert.
 
 ## Feste Rahmenbedingungen
-- Arbeite nur auf einem eigenen Branch. Nichts in den Hauptzweig zusammenführen, GitHub Pages nicht aktivieren oder ändern.
+- Arbeite nur auf einem eigenen Branch. Zusammenführen in den Hauptzweig nur auf ausdrückliche Anweisung oder Freigabe zum Umsetzen im Chat (z. B. »führe PR 5 zusammen«). GitHub Pages nicht aktivieren oder ändern.
 - Keine KI-Anbindung, keine simulierten KI-Antworten, keine Namen von KI-Anbietern. Sprich von einem »an deiner Schule freigegebenen KI-System«.
 - Verlinkte Lernanwendungen liegen in anderen Repositories. Nur verlinken, nie ändern.
 - Keine Namen von Kolleg*innen, keine Schülerdaten, keine persönlichen Daten.
@@ -47,4 +47,5 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede a
 
 ## Arbeitsweise
 - Jede Änderung auf einem eigenen Branch, als Pull Request zur Freigabe.
-- Nie direkt in den Hauptzweig: Er wird über GitHub Pages veröffentlicht.
+- Nie direkt in den Hauptzweig committen: Er wird über GitHub Pages veröffentlicht.
+- Vor dem Zusammenführen den Prüfbefehl auf dem Branch ausführen; nur zusammenführen, wenn alles besteht und es keine Konflikte gibt. Danach den Branch löschen und das Ergebnis melden.

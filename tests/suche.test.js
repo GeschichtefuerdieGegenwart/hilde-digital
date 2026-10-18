@@ -4,6 +4,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const S = require("../assets/suche.js");
 const B = require("../assets/daten/beispiele.js");
+const T = require("../assets/daten/taxonomien.js");
 
 test("ohne Filter und Suche: alle Beispiele", () => {
   const e = S.finde(B, {}, "");
@@ -22,10 +23,13 @@ test("Filter sind kombinierbar", () => {
   assert.equal(e.gelockert, false);
 });
 
-test("Bereich »mit KI entwickelt« findet beide und mit KI entwickelte Beispiele", () => {
-  const ids = S.finde(B, { bereich: "beide" }, "").treffer.map((b) => b.id);
-  assert.ok(ids.includes("beschlussapp") && ids.includes("psycho-ds2"));
-  assert.ok(!ids.includes("quest"));
+test("Es gibt nur zwei Bereiche; jeder Filter findet genau seinen Bereich", () => {
+  assert.deepEqual(T.bereiche.map((x) => x.id), ["ki", "lernen"]);
+  assert.ok(B.every((b) => b.bereich === "ki" || b.bereich === "lernen"));
+  const ki = S.finde(B, { bereich: "ki" }, "").treffer;
+  assert.ok(ki.length > 0 && ki.every((b) => b.bereich === "ki"));
+  const lernen = S.finde(B, { bereich: "lernen" }, "").treffer;
+  assert.ok(lernen.some((b) => b.id === "psycho-ds2") && lernen.every((b) => b.bereich === "lernen"));
 });
 
 test("Freitextsuche findet Titel, Fach und Anliegen, ohne Umlaut-Probleme", () => {
