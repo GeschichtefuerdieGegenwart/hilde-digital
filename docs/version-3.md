@@ -26,7 +26,10 @@ python3 tools/bauen.py && python3 tools/pruefen.py && node --test && python3 tes
 - Keine Videoschleifen und keine Einblendungen beim Scrollen: Aufmerksamkeit ist Thema des Projekts.
 - Keine Platzhalter- oder Archivbilder als Schmuck. Werkzeugseiten (Wege, Selbstcheck, Über) bleiben ohne Bilder.
 
+## Freigabe
+
+- Gestaltung und Papierprobe (Fragen und Regeln) fachlich freigegeben am 18. Oktober 2026.
+
 ## Offen
 
-- Fragen und Regeln der Papierprobe brauchen eine fachliche Freigabe.
 - Prüfung mit axe-core: `axe.min.js` lag bei dieser Version nicht vor.
