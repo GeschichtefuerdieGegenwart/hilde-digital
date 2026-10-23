@@ -28,15 +28,23 @@ Die Anliegen sind aus den bisherigen Kategorien übernommen und deshalb nicht al
 
 ### Siehst du, was sich verändert? (`psycho-ds2`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: eine Vorhersage abgeben, in sieben Bildpaaren die Änderung finden und antippen, das eigene Ergebnis mit dem Kurs und der Forschung vergleichen, Aussagen als Beobachtung oder Deutung zuordnen, zu zweit besprechen, was das Kursergebnis zeigt und was nicht
+- [ ] technik: iPad (quer halten), Ergebnisse bleiben auf dem Gerät, QR-Code, den die Lehrkraft mit der Kamera scannt, Kursdiagramm am Beamer, Zusammenfassung als PDF speichern
+- [ ] dauer: etwa 15 Minuten
+- [ ] sozialformen: Einzelarbeit, Partnerarbeit
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Die fünf Säulen der NS-Ideologie (`ns-ideologie`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: sechs Zeugnisse lesen und Denkmustern zuordnen, die Zuordnung mit einem Wort aus dem Zeugnis begründen, in der Expertengruppe eine Quelle genau untersuchen, in gemischten Gruppen alle fünf Säulen vorstellen, Maßnahmen aus M17 den Säulen zuordnen und begründen
+- [ ] technik: iPad, Eingaben bleiben auf dem Gerät, QR-Code für das Kursbild, Kursbild am Beamer, Lernmappe als PDF für GoodNotes
+- [ ] dauer: 90 Minuten
+- [ ] sozialformen: Einzelarbeit, Plenum, Gruppenarbeit, Partnerarbeit
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Gruppenpädagogik-Quest (`quest`)
 
@@ -46,9 +54,12 @@ Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird ben
 
 ### Sexualpädagogische Dialoge (`dialoge`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: ein Szenario mit einer Kinderfrage auswählen, per Zufall Rollen verteilen (Kind, Erzieher*in, Beobachter*in), das Gespräch im Rollenspiel führen und beobachten, die Antwort mit der Musterlösung vergleichen, Reflexionsfragen in der Gruppe besprechen
+- [ ] dauer: etwa 3–5 Minuten je Rollenspiel
+- [ ] sozialformen: Gruppenarbeit
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Beschlussapp für Sitzungen (`beschlussapp`)
 
@@ -64,57 +75,75 @@ Noch offen: Was wird benötigt?, Stolpersteine, Dauer, Vorbereitungsaufwand, Lin
 
 ### Landkarte der Einheit »Spiel« (`bef1`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: den Ablauf der Einheit auf einer Landkarte überblicken, am Ende jeder Doppelstunde 2–3 Sätze ins Logbuch schreiben, sich im Ich-kann-Check selbst einschätzen, zu einer Streitfrage ein begründetes Urteil bilden, am Ende die Frage der Mutter im Elterngespräch beantworten
+- [ ] technik: drucken oder als PDF speichern, Einschätzungen antippen oder von Hand eintragen
+- [ ] dauer: 12 Doppelstunden (Einheit)
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand, Sozialform.
 
 ### Übungsplattform Lebenswelten (`lf3`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: Merkmale und Begriffe den richtigen Konzepten zuordnen, Multiple-Choice-Fragen beantworten und mit der Begründung vergleichen, Fallbeispiele analysieren (z. B. Ali, Emma und Sarah), pädagogische Maßnahmen für einen Fall planen, eine Übungsklausur mit Musterlösungen bearbeiten
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Fachbegriffe-Trainer (`fachbegriffe`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: einen Fachbegriff mit eigenen Worten erklären, die eigene Erklärung mit der Musterlösung vergleichen, Multiple-Choice-Fragen beantworten, mit Karteikarten wiederholen, Begriffe nach Lernfeld filtern
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Nation im Kopf (`nation`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: eine erste Vermutung zur Leitfrage notieren, vier Erklärungen von Nation kennenlernen, einen von fünf Länderfällen wählen und gründlich untersuchen, den Fall zwischen Willensnation und Abstammung einordnen, am Ende ein begründetes Urteil formulieren
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Gene ohne Reisepass (`gene`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: Aussagen als richtig, falsch oder „kommt darauf an“ einschätzen, mit Reglern Grenzen verschieben und beobachten, den scheinbaren Widerspruch mit Andersons Begriff erklären, Merkmale einer Ebene (biologisch, rechtlich, kulturell) zuordnen, eine Aussage zur Abstammung beurteilen
+- [ ] technik: Zusammenfassung als PDF herunterladen
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Kognitive Landkarte (`landkarte`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: Beispiele lesen und Prinzipien von Geschichte erkennen, Antworten antippen und begründetes Feedback lesen, Manipulationstechniken erkennen, im Gruppenpuzzle Schulbuchkapitel aus vier Ländern vergleichen, eine Geschichte im Netz mit einer Checkliste prüfen und das Ergebnis darstellen
+- [ ] technik: Tablet oder Smartphone (Tippen) oder Tastatur, keine externen Bilder, Schriften oder Skripte, Direktlinks für QR-Codes auf Arbeitsblättern
+- [ ] sozialformen: Gruppenarbeit
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand.
 
 ### Inhaltsverzeichnis GGK (`inhaltsverzeichnis`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: ein Modul anklicken und Lernziele und Fachbegriffe ansehen, Begriffe über die Suche nachschlagen, mit dem Quiz für die Klausur üben, abgeschlossene Module abhaken
+- [ ] technik: Browser, Beamer-Ansicht, Druckfassung schwarz-weiß, Fortschritt wird gespeichert
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Planspiel Umverteilung (`planspiel`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: Daten zur Verteilung von Vermögen und Einkommen ansehen, Diskussionsfragen in Kleingruppen bearbeiten und Antworten festhalten, Pro- und Contra-Argumente lesen und mit dem Regler zustimmen, eigene Stellschrauben einstellen und Auswirkungen ansehen, die Entscheidung der Gruppe im Plenum präsentieren
+- [ ] dauer: ca. 10–15 Minuten für die Diskussionsfragen
+- [ ] sozialformen: Gruppenarbeit, Plenum
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### One Step Forward (`one-step`)
 
-Keine offenen Vorschläge.
+Vorschläge zum Prüfen:
+- [ ] lernaktivitaeten: eine Rolle zufällig auslosen, sich den Alltag in dieser Rolle vorstellen, bei vorgelesenen Aussagen einen Schritt vorgehen oder stehen bleiben
+- [ ] sozialformen: Plenum
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand.
 
 ### Karte zum Zweiten Weltkrieg (`karte-ww2`)
 
@@ -130,109 +159,56 @@ Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird ben
 
 ### Gallery Walk – Raumwirkung erleben (`gallery-walk`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Erkunden & entdecken, Verstehen & vertiefen, Reflektieren & übertragen
-- [ ] phasen: Einstieg, Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Anleiten, Moderieren
-- [ ] mehrwerte: Ergebnisse sichtbar machen und vergleichen, Lernwege dokumentieren und reflektieren
-- [ ] lernaktivitaeten: Raumfotos still betrachten und grüne oder rote Punkte vergeben, eigene Kriterien formulieren und mit einer Partnerin abgleichen, die eigenen Kriterien mit sechs Kriterien aus der Fachliteratur vergleichen, acht Räume nach den sechs Kriterien einschätzen, Fragen im Lerntagebuch beantworten
+Keine offenen Vorschläge.
 
 Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
 
 ### Historische Kategorisierung im Nationalsozialismus (`hilberg`)
 
 Vorschläge zum Prüfen:
-- [ ] anliegen: Verstehen & vertiefen, Reflektieren & übertragen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Punktuell
-- [ ] rollen: Moderieren
-- [ ] mehrwerte: Ergebnisse sichtbar machen und vergleichen
-- [ ] lernaktivitaeten: Karten zu Personen und Gruppen lesen, jede Karte einer oder mehreren Kategorien zuordnen, die eigene Zuordnung mit Mitschüler*innen begründen
+- [ ] technik: Zuordnung über Checkboxen oder Ziehen der Karten
 
-Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Widerstandsmodelle im NS (`widerstandsmodelle`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Verstehen & vertiefen, Reflektieren & übertragen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Erklären, Moderieren
-- [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten
-- [ ] lernaktivitaeten: zwei Modelle lesen und vergleichen, Kritik an beiden Modellen nachvollziehen, mit einer Kriterienliste Formen von Widerstand einordnen
+Keine offenen Vorschläge.
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Lerntheorien für angehende Erzieher*innen (`lerntheorien`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Üben & anwenden, Verstehen & vertiefen
-- [ ] phasen: Erarbeitung, Sicherung
-- [ ] umfang: Durchgängig
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: individuell üben oder Unterstützung erhalten, schneller Rückmeldung erhalten
-- [ ] lernaktivitaeten: Begriffe den richtigen Definitionen zuordnen und Rückmeldung erhalten, Fallbeispiele mit Lerntheorien erklären, pädagogische Ziele und Maßnahmen für einen Fall entwickeln
+Keine offenen Vorschläge.
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
 
 ### Soziale Milieus und ihre Wahlentscheidung (`milieus-1919`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Erkunden & entdecken, Verstehen & vertiefen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten
-- [ ] lernaktivitaeten: Milieus in der Pyramide anklicken und vergleichen, Aufgaben zu sozialer Lage und Wahlentscheidung bearbeiten
+Keine offenen Vorschläge.
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### NS-Kontinuitäten in der BRD (`ns-kontinuitaeten`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Recherchieren & prüfen, Verstehen & vertiefen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten, Moderieren
-- [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten
-- [ ] lernaktivitaeten: einen von neun Bereichen auswählen und untersuchen, Ursachen und Folgen der Kontinuitäten herausarbeiten
+Keine offenen Vorschläge.
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Der Holocaust in Europa – Ländervergleich (`shoa-vergleich`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Verstehen & vertiefen, Recherchieren & prüfen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten
-- [ ] lernaktivitaeten: die Situation in Dänemark untersuchen, ein zweites Land auswählen und vergleichen, Opferrate und Hauptfaktoren notieren und eine Erkenntnis formulieren
+Keine offenen Vorschläge.
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### TEACCH – Visualisierte Materialien (`teacch`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Verstehen & vertiefen, Reflektieren & übertragen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: mit Medien untersuchen oder experimentieren, unterschiedliche Zugänge und Niveaus anbieten
-- [ ] lernaktivitaeten: einen visuellen Tagesplan Schritt für Schritt abhaken, Handlungen wie Händewaschen in eine Bildfolge zerlegen, Gefühlskarte, Aufräumplan und Time-Timer selbst ausprobieren, Tipps für die Praxis auf die eigene Einrichtung übertragen
+Keine offenen Vorschläge.
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
 ### Widerstandsformen im NS (`widerstandsformen`)
 
-Vorschläge zum Prüfen:
-- [ ] anliegen: Verstehen & vertiefen, Recherchieren & prüfen
-- [ ] phasen: Erarbeitung
-- [ ] umfang: Phasenweise
-- [ ] rollen: Begleiten
-- [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten
-- [ ] lernaktivitaeten: Profile von Personen und Gruppen lesen, nach Art des Widerstands filtern und vergleichen, Aktionen, Folgen und Besonderheiten gegenüberstellen
+Keine offenen Vorschläge.
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
 
