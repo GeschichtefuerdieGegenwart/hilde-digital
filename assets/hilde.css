@@ -1160,3 +1160,86 @@ main .werkzeug,main .faecher-karte{max-width:none}
 .collage-karte .auszug{width:100%;height:100%}
 .auszug .auszug-original{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
 .kopf .hefter-link{margin-left:.25rem}
+
+/* ---------- Ab Version 4.5: Beobachtungsbogen nach der Stunde ---------- */
+.bogen-form{display:grid;gap:var(--a4);max-width:52rem}
+.bogen-notiz{margin-top:var(--a2);max-width:40rem}
+.bogen-notiz textarea{background:var(--grund)}
+.bogen .weg-steuerung{display:flex;flex-wrap:wrap;gap:var(--a2)}
+.bogen #ergebnis{margin-top:var(--a4);max-width:52rem}
+.bogen-hinweise{display:grid;gap:.5rem;padding-left:1.2rem;max-width:62ch}
+.zwei-fragen{margin-top:var(--a2);display:grid;gap:.4rem;padding-left:1.4rem;font-size:1.25rem;font-weight:700}
+@media print{ /* taste-skill-ignore: Druckfassung */
+  .bogen .weg-steuerung,.bogen .ergebnis-aktionen,.bogen .speicherhinweis{display:none}
+  .bogen .probe-wahl span{min-height:0;padding:.2rem .6rem;border:1px solid #000;background:#fff;color:#000} /* taste-skill-ignore: Druckfassung */
+  .bogen .probe-wahl input:checked+span{background:#000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bogen textarea,.bogen input[type="text"]{border:1px solid #000;background:#fff}
+  .bogen-form{gap:.7rem}
+  body:has(.bogen) .fuss-marke,body:has(.bogen) .fusslinks,body:has(.bogen) .kopf .nav,body:has(.bogen) .hefter-link{display:none}
+  body:has(.bogen) .bereichskopf,body:has(.bogen) .abschnitt,body:has(.bogen) .band,body:has(.bogen) .fuss{padding-block:.6rem}
+  .bogen .probe-frage legend{margin-bottom:.3rem}
+  .bogen .probe-frage{break-inside:avoid}
+  .bogen textarea{min-height:3.2rem;height:3.2rem}
+  @page{margin:12mm}}
+
+/* ---------- Ab Version 4.5: Tablet-Phasen, Fortbildung, Leitsätze, Ist-Stand ---------- */
+.regel-liste{display:grid;gap:.7rem;padding-left:1.5rem;max-width:64ch}
+.regel-liste li::marker{font-weight:700;color:var(--tief,var(--text))}
+.punkte-liste{list-style:disc}
+.stolper-liste{display:grid;gap:.5rem;max-width:62rem}
+.stolper-liste>div{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:.4rem 1.5rem;background:var(--flaeche);border-radius:var(--rund);padding:.8rem 1rem}
+.stolper-liste dt{font-weight:700}
+.stolper-liste dd{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:.3rem 1.5rem}
+@media (max-width:640px){.stolper-liste>div{grid-template-columns:1fr}}
+/* Karte für die Tafel: groß lesbar, auch aus der letzten Reihe */
+.tafelkarte{background:var(--grund);border-radius:var(--rund);border-top:12px solid var(--lernen);padding:clamp(1.25rem,3vw,2.5rem);display:grid;gap:var(--a3);max-width:62rem}
+.tafelkarte-titel{font-family:var(--titel);font-size:clamp(2rem,1.4rem + 2.5vw,3.25rem);font-weight:800;line-height:1.05}
+.tafelkarte-felder{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--a2) var(--a3)}
+.tafelkarte-feld{display:grid;gap:.35rem;font-weight:700}
+.tafelkarte-feld:first-child{grid-row:span 2}
+.tafelkarte-feld textarea,.tafelkarte-feld input{font-size:1.4rem;font-weight:700;background:var(--flaeche)}
+.tafelkarte-feld{align-content:start}
+.tafelkarte-feld:first-child textarea{min-height:7.5rem}
+.tafelkarte-regeln{display:grid;gap:.4rem;font-size:clamp(1.15rem,1rem + .6vw,1.5rem);font-weight:700;padding-left:1.4rem}
+@media (max-width:640px){.tafelkarte-felder{grid-template-columns:1fr}.tafelkarte-feld:first-child{grid-row:auto}}
+/* Fortbildung: Ablauf mit Zeitspalte */
+.ablauf{display:grid;gap:var(--a2);list-style:none;padding:0;max-width:62rem}
+.ablauf>li{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:var(--a3);background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3)}
+.ablauf-zeit{font-weight:800;color:var(--tief,var(--text));font-variant-numeric:tabular-nums}
+.ablauf h3{font-size:1.2rem;margin-bottom:.3rem}
+@media (max-width:640px){.ablauf>li{grid-template-columns:1fr;gap:.3rem}}
+/* Leitsätze */
+.leitsatz-liste{display:grid;gap:.75rem;padding-left:1.7rem;max-width:66ch}
+.leitsatz-liste li::marker{font-weight:800;color:var(--tief,var(--text))}
+
+@media print{ /* taste-skill-ignore: Druckfassung */
+  html.nur-karte body>*:not(main),html.nur-karte main>*>*:not(.band),html.nur-karte .band .stapel,html.nur-karte .band .weg-steuerung,html.nur-karte .band .leise{display:none!important}
+  html.nur-karte .band{padding:0;background:#fff}
+  html.nur-karte .tafelkarte{page:karte;max-width:none;border-top-color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html.nur-karte .tafelkarte-titel{font-size:3.5rem}
+  html.nur-karte .tafelkarte textarea,html.nur-karte .tafelkarte input{border:2px solid #000;min-height:5rem;background:#fff} /* taste-skill-ignore: Druckfassung */
+  html.nur-karte .tafelkarte-regeln{font-size:1.6rem}
+  .ablauf>li,.stolper-liste>div{break-inside:avoid;background:#fff;border:1px solid #999} /* taste-skill-ignore: Druckfassung */
+  .kopfnotiz .knopf,[data-drucken]{display:none}
+  .leitsaetze-seite{padding-block:0!important}
+  body:has(.leitsaetze-seite) .fuss{margin-top:0}
+  body:has(.leitsaetze-seite) main{min-height:0}
+  body:has(.leitsaetze-seite) .fuss-marke,body:has(.leitsaetze-seite) .fusslinks,body:has(.leitsaetze-seite) .kopf .nav,body:has(.leitsaetze-seite) .hefter-link{display:none}
+  body:has(.leitsaetze-seite) .bereichskopf,body:has(.leitsaetze-seite) .fuss{padding-block:.4rem}
+  .leitsatz-liste{gap:.15rem;font-size:1rem;line-height:1.35}
+  body:has(.leitsaetze-seite) .stapel-gross{gap:.5rem}
+  body:has(.leitsaetze-seite) .kopfnotiz,body:has(.leitsaetze-seite) .marker{margin-top:.2rem}
+  body:has(.leitsaetze-seite) .detail-kurz{margin-top:.3rem}
+  body:has(.leitsaetze-seite) h1{font-size:1.7rem}
+  body:has(.leitsaetze-seite) h2{font-size:1.25rem;margin-bottom:.3rem}
+  body:has(.leitsaetze-seite) .detail-kurz,body:has(.leitsaetze-seite) .regel-liste{font-size:1rem;line-height:1.4}
+  body:has(.leitsaetze-seite) .regel-liste{gap:.2rem}
+  body:has(.leitsaetze-seite) .kopf{padding-block:0}
+  html.nur-karte .tafelkarte .tafelkarte-felder{grid-template-columns:1fr 2fr}
+  html.nur-karte .tafelkarte .tafelkarte-feld:first-child{grid-row:auto;grid-column:1/-1}
+  html.nur-karte .tafelkarte .tafelkarte-feld>span{font-size:1.4rem!important}
+  html.nur-karte .tafelkarte .tafelkarte-feld{align-content:start}
+  html.nur-karte .tafelkarte-feld textarea,html.nur-karte .tafelkarte-feld input{font-size:2rem;height:auto;line-height:1.3}
+  html.nur-karte .tafelkarte-feld:first-child textarea{min-height:8rem}
+}
+@page karte{size:A4 landscape;margin:12mm}

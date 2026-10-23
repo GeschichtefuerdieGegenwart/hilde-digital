@@ -1,0 +1,72 @@
+<div class="bereich-lernen">
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1 class="h1-frage">Mein Ist-Stand: Wie nutze ich Tablets heute?</h1>
+  <p class="marker">Bereich: Digitaler Unterricht</p>
+  <p class="kopfnotiz">Fünf Fragen nur für dich. Du bekommst keine Bewertung, sondern einen ehrlichen Blick auf deinen Unterricht und bis zu drei nächste Schritte.</p>
+</div></section>
+
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-fragen"><div class="huelle bogen">
+  <h2 id="t-fragen" class="sr-only">Fünf Fragen</h2>
+  <form id="ist" class="bogen-form" novalidate>
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 1 von 5</span><br>Wofür nutzt deine Klasse das Tablet im Unterricht am häufigsten? Mehrere Antworten sind möglich.</legend>
+      <div class="probe-wahl">
+        <label><input type="checkbox" name="nutzung" value="ablage"><span>Arbeitsblätter verteilen und ablegen</span></label>
+        <label><input type="checkbox" name="nutzung" value="recherche"><span>Recherchieren</span></label>
+        <label><input type="checkbox" name="nutzung" value="ueben"><span>Üben mit Rückmeldung</span></label>
+        <label><input type="checkbox" name="nutzung" value="gemeinsam"><span>Gemeinsam an etwas arbeiten</span></label>
+        <label><input type="checkbox" name="nutzung" value="erstellen"><span>Etwas erstellen, z. B. Video oder Präsentation</span></label>
+        <label><input type="checkbox" name="nutzung" value="kaum"><span>Kaum</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 2 von 5</span><br>Wie oft tun deine Lernenden am Tablet etwas, das auf Papier nicht oder nur mühsam ginge?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="neu" value="selten"><span>Selten</span></label>
+        <label><input type="radio" name="neu" value="manchmal"><span>Manchmal</span></label>
+        <label><input type="radio" name="neu" value="oft"><span>Oft</span></label>
+        <label><input type="radio" name="neu" value="weissnicht"><span>Weiß nicht</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 3 von 5</span><br>Wie oft lenkt das Tablet in deinem Unterricht ab?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="ablenkung" value="selten"><span>Selten</span></label>
+        <label><input type="radio" name="ablenkung" value="manchmal"><span>Manchmal</span></label>
+        <label><input type="radio" name="ablenkung" value="oft"><span>Oft</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 4 von 5</span><br>Wie sicher fühlst du dich, eine Tablet-Phase zu führen?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="sicherheit" value="unsicher"><span>Noch unsicher</span></label>
+        <label><input type="radio" name="sicherheit" value="teils"><span>Teils</span></label>
+        <label><input type="radio" name="sicherheit" value="sicher"><span>Sicher</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 5 von 5</span><br>Was möchtest du als Nächstes angehen?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="naechstes" value="rueckmeldung"><span>Eine Übung mit Rückmeldung</span></label>
+        <label><input type="radio" name="naechstes" value="gemeinsam"><span>Gemeinsam an etwas arbeiten</span></label>
+        <label><input type="radio" name="naechstes" value="lernstand"><span>Sehen, wo die Klasse steht</span></label>
+        <label><input type="radio" name="naechstes" value="ablenkung"><span>Weniger Ablenkung</span></label>
+        <label><input type="radio" name="naechstes" value="papier"><span>Nichts – Papier passt gerade</span></label>
+      </div>
+    </fieldset>
+
+    <div class="weg-steuerung"><button type="submit" class="knopf">Meinen Ist-Stand zeigen →</button></div>
+  </form>
+  <div id="ergebnis" aria-live="polite"></div>
+  <p class="leise klein speicherhinweis">Deine Antworten bleiben nur in diesem Browser. Niemand sonst sieht sie. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button></p>
+  <noscript><p class="box">Der Ist-Stand braucht JavaScript.</p></noscript>
+</div></section>
+</div>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/regeln.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/ist-stand.js"></script>

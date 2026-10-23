@@ -176,6 +176,7 @@
         '<button type="button" class="knopf still" data-gehe="0">Antworten ändern</button>' +
         '<button type="button" class="knopf still" id="neu">Neu starten</button>' +
         '<a class="knopf" href="galerie.html" id="zum-showroom">In der Galerie weitersuchen</a>' +
+        '<a class="knopf still" href="beobachtung.html">Nach der Stunde: Beobachtungsbogen</a>' +
       "</div></section>";
   }
 

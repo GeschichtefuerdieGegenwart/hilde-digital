@@ -367,11 +367,101 @@
       "Das Tablet ermöglicht etwas Neues. Damit daraus Lernen wird, muss die Aufgabe zum Lernziel passen." };
   }
 
+
+  /* 11. Beobachtungsbogen nach der Stunde (beobachtung.html).
+        Eingabe (alle Felder dürfen fehlen):
+          lernhandlung: ja | teilweise | nein   Haben die Lernenden das Entscheidende selbst getan?
+          mehrwert:     ja | nein               Ging mit dem Tablet etwas besser als auf Papier?
+          technik:      kaum | spuerbar | zuviel  Zeit, die für Technik verloren ging
+          aufmerksamkeit: ja | teils | nein     Waren die Lernenden bei der Sache?
+          entscheidung: lassen | nachschaerfen | papier
+        Regeln:
+          - Ohne Entscheidung gibt es noch keine Auswertung (id null).
+          - Höchstens drei Hinweise, in dieser Reihenfolge: Lernhandlung, Mehrwert, Technik, Aufmerksamkeit.
+            Ein Hinweis entsteht nur aus einer Antwort, die auf ein Problem zeigt.
+          - Der nächste Schritt folgt allein der Entscheidung der Lehrkraft. Sie wird nicht überstimmt.
+          - Passt die Entscheidung »so lassen« nicht zu einem Hinweis, wird das freundlich benannt (kein Verbot).
+          - »Zurück zu Papier« ist ein Fortschritt, kein Scheitern.
+          - Immer der Satz: persönliche Beobachtung, kein Nachweis der Wirkung. */
+  function beobachtung(a) {
+    a = a || {};
+    var hinweise = [];
+    if (a.lernhandlung === "nein") hinweise.push("Das Gerät hat den Lernenden den entscheidenden Schritt abgenommen. Lass sie beim nächsten Mal zuerst selbst antworten, ordnen oder begründen. Die Rückmeldung kommt danach.");
+    else if (a.lernhandlung === "teilweise") hinweise.push("Die Lernenden haben nur teilweise selbst gedacht. Such eine Stelle, an der sie mehr selbst tun: begründen, ordnen oder erklären.");
+    if (a.mehrwert === "nein") hinweise.push("Das Tablet hat nichts Wesentliches beigetragen. Papier ist hier eine gute Wahl.");
+    if (a.technik === "zuviel") hinweise.push("Zu viel Zeit ging für Technik verloren. Teste Anmelden und Laden vorher und nutze möglichst nur eine App.");
+    else if (a.technik === "spuerbar") hinweise.push("Die Technik hat Zeit gekostet. Plane beim nächsten Mal ein paar Minuten Puffer ein.");
+    if (a.aufmerksamkeit === "nein" || a.aufmerksamkeit === "teils") hinweise.push("Gib jeder Tablet-Phase einen klaren Auftrag und eine Zeit. Lege fest, wann die Geräte zu bleiben.");
+    hinweise = hinweise.slice(0, 3);
+
+    var SATZ = "Das sind deine persönlichen Beobachtungen. Sie sind kein Nachweis der Wirkung.";
+    if (!a.entscheidung) return { id: null, hinweise: hinweise, satz: SATZ };
+
+    var schritte = {
+      lassen: { titel: "So lassen", text: "Notiere dir, was gut lief, damit du es beim nächsten Mal wieder so machst. Passt es, stell es im Kollegium vor.",
+                link: "galerie.html", linktext: "Beispiele aus dem Kollegium ansehen" },
+      nachschaerfen: { titel: "Nachschärfen", text: "Nimm dir genau die Stelle vor, die gehakt hat. Der Digital-Check hilft dir, sie gezielt zu prüfen.",
+                link: "digital-check.html", linktext: "Zum Digital-Check" },
+      papier: { titel: "Zurück zu Papier", text: "Das ist ein Fortschritt. Du weißt jetzt, wo das Tablet nichts beiträgt. Plane die nächste Stunde in Ruhe.",
+                link: "tablets.html", linktext: "Nächste Stunde planen" }
+    };
+    var s = schritte[a.entscheidung];
+    if (!s) return { id: null, hinweise: hinweise, satz: SATZ };
+    var spannung = a.entscheidung === "lassen" && (a.lernhandlung === "nein" || a.mehrwert === "nein")
+      ? "Du willst es so lassen. Schau dir trotzdem die Hinweise oben an – vielleicht lohnt sich eine kleine Änderung." : "";
+    return { id: a.entscheidung, titel: s.titel, text: s.text, link: s.link, linktext: s.linktext,
+             hinweise: hinweise, spannung: spannung, satz: SATZ };
+  }
+
+
+  /* 12. »Mein Ist-Stand« (ist-stand.html) – fünf Fragen nur für die Lehrkraft selbst.
+        Eingabe (alle Felder dürfen fehlen):
+          nutzung:    Liste aus ablage | recherche | ueben | gemeinsam | erstellen | kaum
+          neu:        selten | manchmal | oft | weissnicht   (Tun die Lernenden etwas, das auf Papier nicht ginge?)
+          ablenkung:  selten | manchmal | oft
+          sicherheit: unsicher | teils | sicher               (eine Tablet-Phase führen)
+          naechstes:  rueckmeldung | gemeinsam | lernstand | ablenkung | papier
+        Regeln:
+          - Keine Bewertung, keine Stufe, kein Typ. Der Spiegel gibt Antworten in eigenen Worten wieder.
+          - Nur Ablage (oder Ablage und »selten/weiß nicht« bei neu) → organisatorischer Nutzen,
+            ausdrücklich als legitim benannt; das ist keine Vorstufe.
+          - Höchstens drei nächste Schritte, in dieser Reihenfolge: gewählter nächster Schritt,
+            Ablenkung (manchmal/oft) oder Unsicherheit → »Tablet-Phasen gut führen«, Papierprobe.
+          - »Papier passt« wird bestärkt, nicht umgestimmt. */
+  function istStand(a) {
+    a = a || {};
+    var n = a.nutzung || [], spiegel = [], schritte = [];
+    var nurAblage = n.length > 0 && n.every(function (x) { return x === "ablage"; });
+    if (n.indexOf("kaum") > -1) spiegel.push("Deine Klasse nutzt das Tablet im Unterricht bisher kaum.");
+    else if (nurAblage || (n.indexOf("ablage") > -1 && (a.neu === "selten" || a.neu === "weissnicht")))
+      spiegel.push("Das Tablet dient bei dir vor allem zum Verteilen und Ablegen. Das ist organisatorischer Nutzen – legitim, aber noch kein Lernmehrwert.");
+    if (a.neu === "oft") spiegel.push("Deine Lernenden tun am Tablet oft etwas, das auf Papier kaum ginge. Prüf ab und zu, ob es dem Lernziel dient.");
+    else if (a.neu === "manchmal") spiegel.push("Manchmal tun deine Lernenden am Tablet etwas, das auf Papier kaum ginge.");
+    if (a.ablenkung === "oft") spiegel.push("Ablenkung ist bei dir ein häufiges Thema.");
+    if (a.sicherheit === "unsicher") spiegel.push("Beim Führen einer Tablet-Phase fühlst du dich noch unsicher. Das geht vielen so.");
+
+    var ZIEL = {
+      rueckmeldung: { text: "Mach aus einem Arbeitsblatt eine Übung mit Rückmeldung.", link: "digitalisieren.html", linktext: "Unterricht digitalisieren" },
+      gemeinsam: { text: "Plane eine Phase, in der die Lernenden an einem gemeinsamen Ergebnis arbeiten.", link: "tablets.html", linktext: "Unterricht planen" },
+      lernstand: { text: "Plane zwei bis drei kurze Stellen, an denen du siehst, wo die Klasse steht.", link: "tablets.html", linktext: "Unterricht planen" },
+      ablenkung: { text: "Gib jeder Tablet-Phase Auftrag, Zeit und ein Ende im Plenum.", link: "tablet-phasen.html", linktext: "Tablet-Phasen gut führen" },
+      papier: { text: "Papier passt gerade gut zu deinem Unterricht. Das ist ein vollwertiges Ergebnis.", link: "unterricht.html#t-probe", linktext: "Papierprobe ansehen" }
+    };
+    if (ZIEL[a.naechstes]) schritte.push(ZIEL[a.naechstes]);
+    if ((a.ablenkung === "oft" || a.ablenkung === "manchmal" || a.sicherheit === "unsicher") && a.naechstes !== "ablenkung")
+      schritte.push(ZIEL.ablenkung);
+    if (a.naechstes !== "papier" && (nurAblage || a.neu === "weissnicht" || a.neu === "selten"))
+      schritte.push({ text: "Prüf eine geplante Aktivität mit drei Fragen: Geht es auf Papier genauso gut?", link: "unterricht.html#t-probe", linktext: "Zur Papierprobe" });
+    if (!schritte.length) schritte.push({ text: "Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" });
+    return { spiegel: spiegel, schritte: schritte.slice(0, 3),
+             satz: "Das ist keine Bewertung. Es ist ein Blick auf deinen Unterricht heute – nur für dich." };
+  }
+
   var REGELN = {
     PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
     stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
     entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung,
-    papierprobe: papierprobe
+    papierprobe: papierprobe, beobachtung: beobachtung, istStand: istStand
   };
   if (typeof module !== "undefined") module.exports = REGELN;
   else wurzel.REGELN = REGELN;
