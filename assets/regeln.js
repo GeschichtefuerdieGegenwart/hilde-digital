@@ -367,11 +367,57 @@
       "Das Tablet ermöglicht etwas Neues. Damit daraus Lernen wird, muss die Aufgabe zum Lernziel passen." };
   }
 
+
+  /* 11. Beobachtungsbogen nach der Stunde (beobachtung.html).
+        Eingabe (alle Felder dürfen fehlen):
+          lernhandlung: ja | teilweise | nein   Haben die Lernenden das Entscheidende selbst getan?
+          mehrwert:     ja | nein               Ging mit dem Tablet etwas besser als auf Papier?
+          technik:      kaum | spuerbar | zuviel  Zeit, die für Technik verloren ging
+          aufmerksamkeit: ja | teils | nein     Waren die Lernenden bei der Sache?
+          entscheidung: lassen | nachschaerfen | papier
+        Regeln:
+          - Ohne Entscheidung gibt es noch keine Auswertung (id null).
+          - Höchstens drei Hinweise, in dieser Reihenfolge: Lernhandlung, Mehrwert, Technik, Aufmerksamkeit.
+            Ein Hinweis entsteht nur aus einer Antwort, die auf ein Problem zeigt.
+          - Der nächste Schritt folgt allein der Entscheidung der Lehrkraft. Sie wird nicht überstimmt.
+          - Passt die Entscheidung »so lassen« nicht zu einem Hinweis, wird das freundlich benannt (kein Verbot).
+          - »Zurück zu Papier« ist ein Fortschritt, kein Scheitern.
+          - Immer der Satz: persönliche Beobachtung, kein Nachweis der Wirkung. */
+  function beobachtung(a) {
+    a = a || {};
+    var hinweise = [];
+    if (a.lernhandlung === "nein") hinweise.push("Das Gerät hat den Lernenden den entscheidenden Schritt abgenommen. Lass sie beim nächsten Mal zuerst selbst antworten, ordnen oder begründen. Die Rückmeldung kommt danach.");
+    else if (a.lernhandlung === "teilweise") hinweise.push("Die Lernenden haben nur teilweise selbst gedacht. Such eine Stelle, an der sie mehr selbst tun: begründen, ordnen oder erklären.");
+    if (a.mehrwert === "nein") hinweise.push("Das Tablet hat nichts Wesentliches beigetragen. Papier ist hier eine gute Wahl.");
+    if (a.technik === "zuviel") hinweise.push("Zu viel Zeit ging für Technik verloren. Teste Anmelden und Laden vorher und nutze möglichst nur eine App.");
+    else if (a.technik === "spuerbar") hinweise.push("Die Technik hat Zeit gekostet. Plane beim nächsten Mal ein paar Minuten Puffer ein.");
+    if (a.aufmerksamkeit === "nein" || a.aufmerksamkeit === "teils") hinweise.push("Gib jeder Tablet-Phase einen klaren Auftrag und eine Zeit. Lege fest, wann die Geräte zu bleiben.");
+    hinweise = hinweise.slice(0, 3);
+
+    var SATZ = "Das sind deine persönlichen Beobachtungen. Sie sind kein Nachweis der Wirkung.";
+    if (!a.entscheidung) return { id: null, hinweise: hinweise, satz: SATZ };
+
+    var schritte = {
+      lassen: { titel: "So lassen", text: "Notiere dir, was gut lief, damit du es beim nächsten Mal wieder so machst. Passt es, stell es im Kollegium vor.",
+                link: "galerie.html", linktext: "Beispiele aus dem Kollegium ansehen" },
+      nachschaerfen: { titel: "Nachschärfen", text: "Nimm dir genau die Stelle vor, die gehakt hat. Der Digital-Check hilft dir, sie gezielt zu prüfen.",
+                link: "digital-check.html", linktext: "Zum Digital-Check" },
+      papier: { titel: "Zurück zu Papier", text: "Das ist ein Fortschritt. Du weißt jetzt, wo das Tablet nichts beiträgt. Plane die nächste Stunde in Ruhe.",
+                link: "tablets.html", linktext: "Nächste Stunde planen" }
+    };
+    var s = schritte[a.entscheidung];
+    if (!s) return { id: null, hinweise: hinweise, satz: SATZ };
+    var spannung = a.entscheidung === "lassen" && (a.lernhandlung === "nein" || a.mehrwert === "nein")
+      ? "Du willst es so lassen. Schau dir trotzdem die Hinweise oben an – vielleicht lohnt sich eine kleine Änderung." : "";
+    return { id: a.entscheidung, titel: s.titel, text: s.text, link: s.link, linktext: s.linktext,
+             hinweise: hinweise, spannung: spannung, satz: SATZ };
+  }
+
   var REGELN = {
     PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
     stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
     entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung,
-    papierprobe: papierprobe
+    papierprobe: papierprobe, beobachtung: beobachtung
   };
   if (typeof module !== "undefined") module.exports = REGELN;
   else wurzel.REGELN = REGELN;

@@ -15,7 +15,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -65,7 +65,7 @@ def main():
         hoehe = pg.locator(".galerie-zugang").bounding_box()
         pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
         pg.click('a.wahlflaeche[href="unterricht.html"]')
-        pruefe(pg.locator(".werkzeug").count() == 5 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt"), "Digitaler Unterricht: fünf Werkzeuge, »Unterricht digitalisieren« zuerst")
+        pruefe(pg.locator(".werkzeug").count() == 6 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt"), "Digitaler Unterricht: sechs Werkzeuge, »Unterricht digitalisieren« zuerst")
         pg.click('.werkzeug a[href="tablets.html"]')
         pg.click("#weiter")
         pruefe(pg.is_visible("#hinweis"), "Planungsweg: Hinweis, wenn nichts gewählt ist")
@@ -255,6 +255,36 @@ def main():
         pg.click("#loeschen")
         pruefe(pg.locator("input:checked").count() == 0, "Selbsteinschätzung: Eingaben löschen")
         pruefe(not pg.konsole, f"Selbsteinschätzung: keine Konsolenfehler {pg.konsole}")
+        pg.context.close()
+
+        # 2e. Beobachtungsbogen nach der Stunde (ab Version 4.5)
+        pg = neue_seite(b)
+        pg.goto(url("beobachtung.html"))
+        pg.fill("#b-aufmerksamkeit", "Freitext darf nicht gespeichert werden")
+        for f, v in [("lernhandlung", "nein"), ("mehrwert", "nein"), ("technik", "zuviel"), ("aufmerksamkeit", "teils")]:
+            pg.check(f'input[name="{f}"][value="{v}"]')
+        pg.click('#bogen button[type="submit"]')
+        pruefe("Frage 5" in pg.inner_text("#ergebnis"), "Beobachtung: ohne Entscheidung erst ein Hinweis auf Frage 5")
+        pg.check('input[name="entscheidung"][value="lassen"]')
+        pg.click('#bogen button[type="submit"]')
+        txt = pg.inner_text("#ergebnis")
+        pruefe(pg.locator(".bogen-hinweise li").count() == 3, "Beobachtung: höchstens drei Hinweise")
+        pruefe("So lassen" in txt and "trotzdem" in txt and "kein Nachweis der Wirkung" in txt, "Beobachtung: Entscheidung gilt, Spannung wird freundlich benannt")
+        pruefe(pg.evaluate("document.activeElement.id") == "bogen-titel", "Beobachtung: Fokus auf der Auswertung")
+        gespeichert = pg.evaluate("localStorage.getItem('hilde.beobachtung')") or ""
+        pruefe("lassen" in gespeichert and "Freitext" not in gespeichert, "Beobachtung: nur Auswahl gespeichert, kein Freitext")
+        pg.reload()
+        pruefe(pg.is_checked('input[name="technik"][value="zuviel"]') and pg.input_value("#b-aufmerksamkeit") == "", "Beobachtung: Auswahl bleibt, Freitext nicht")
+        pruefe(pg.locator("#bogen-titel").count() == 1, "Beobachtung: Auswertung erscheint nach dem Neuladen wieder")
+        pg.click("#loeschen")
+        pruefe(pg.locator("#bogen input:checked").count() == 0 and pg.inner_text("#ergebnis") == "", "Beobachtung: Eingaben löschen")
+        pg.check('input[name="entscheidung"][value="papier"]')
+        pg.click('#bogen button[type="submit"]')
+        pruefe("Fortschritt" in pg.inner_text("#ergebnis") and pg.locator('#ergebnis a[href="tablets.html"]').count() == 1, "Beobachtung: zurück zu Papier ist ein Fortschritt")
+        pg.emulate_media(media="print")
+        pruefe(not pg.is_visible("#bogen .weg-steuerung"), "Beobachtung: Druckfassung ohne Knöpfe")
+        pg.emulate_media(media="screen")
+        pruefe(not pg.konsole, f"Beobachtung: keine Konsolenfehler {pg.konsole}")
         pg.context.close()
 
         # 3. Nur Tastatur (Szenario 10)
@@ -504,7 +534,7 @@ def main():
 
         # 5b. Zoom 200 %: entspricht 640 × 360 Pixeln
         q = neue_seite(b, viewport={"width": 640, "height": 360})
-        for s_ in ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "passt.html", "galerie.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "selbstcheck.html", "ueber.html"]:
+        for s_ in ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "passt.html", "beobachtung.html", "galerie.html", "beispiel.html#quest", "beispiel.html#widerstandsformen", "mehrwert.html", "selbstcheck.html", "ueber.html"]:
             q.goto(url(s_))
             pruefe(q.evaluate("document.documentElement.scrollWidth") <= 640, f"Zoom 200 % {s_}: kein waagerechtes Scrollen")
         q.context.close()

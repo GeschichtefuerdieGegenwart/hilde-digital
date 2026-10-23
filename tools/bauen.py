@@ -17,6 +17,7 @@ SEITEN = [
     ("tablets.html", "Unterricht planen – Hilde Digital", "unterricht"),
     ("passt.html", "Was passt gerade zu mir? – Hilde Digital", "unterricht"),
     ("digitalisieren.html", "Unterricht digitalisieren – Hilde Digital", "unterricht"),
+    ("beobachtung.html", "Nach der Stunde: Beobachtungsbogen – Hilde Digital", "unterricht"),
     ("digital-check.html", "Digital-Check – Hilde Digital", "unterricht"),
     ("selbstcheck.html", "Digital-Check: Selbst prüfen – Hilde Digital", "unterricht"),
     ("mehrwert.html", "So arbeitet der Digital-Check – Hilde Digital", "unterricht"),

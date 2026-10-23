@@ -8,3 +8,4 @@
 - Es gibt keine KI-Anbindung. Hilde Digital sagt nie, ein KI-Ergebnis sei korrekt oder rechtssicher.
 - Der Digital-Check, Weg A »Selbst prüfen« speichert nur Materialtyp, gewählte Bereiche, Einschätzungen und Rahmenangaben (`hilde.selbstcheck`). Name des Materials und Lernziel werden nicht gespeichert. Der Bericht ist ein privater Entwurf und wird nirgends hin gesendet.
 - Die optionale Anfrage für ein KI-System wird nur angezeigt und kann kopiert werden. Hilde Digital sendet sie nicht.
+- Der Beobachtungsbogen nach der Stunde speichert nur die fünf Auswahlwerte (`hilde.beobachtung`). Freitexte werden nicht gespeichert. Die Seite bittet darum, keine Namen von Lernenden einzutragen.
