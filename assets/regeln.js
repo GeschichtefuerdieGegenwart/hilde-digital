@@ -413,11 +413,55 @@
              hinweise: hinweise, spannung: spannung, satz: SATZ };
   }
 
+
+  /* 12. »Mein Ist-Stand« (ist-stand.html) – fünf Fragen nur für die Lehrkraft selbst.
+        Eingabe (alle Felder dürfen fehlen):
+          nutzung:    Liste aus ablage | recherche | ueben | gemeinsam | erstellen | kaum
+          neu:        selten | manchmal | oft | weissnicht   (Tun die Lernenden etwas, das auf Papier nicht ginge?)
+          ablenkung:  selten | manchmal | oft
+          sicherheit: unsicher | teils | sicher               (eine Tablet-Phase führen)
+          naechstes:  rueckmeldung | gemeinsam | lernstand | ablenkung | papier
+        Regeln:
+          - Keine Bewertung, keine Stufe, kein Typ. Der Spiegel gibt Antworten in eigenen Worten wieder.
+          - Nur Ablage (oder Ablage und »selten/weiß nicht« bei neu) → organisatorischer Nutzen,
+            ausdrücklich als legitim benannt; das ist keine Vorstufe.
+          - Höchstens drei nächste Schritte, in dieser Reihenfolge: gewählter nächster Schritt,
+            Ablenkung (manchmal/oft) oder Unsicherheit → »Tablet-Phasen gut führen«, Papierprobe.
+          - »Papier passt« wird bestärkt, nicht umgestimmt. */
+  function istStand(a) {
+    a = a || {};
+    var n = a.nutzung || [], spiegel = [], schritte = [];
+    var nurAblage = n.length > 0 && n.every(function (x) { return x === "ablage"; });
+    if (n.indexOf("kaum") > -1) spiegel.push("Deine Klasse nutzt das Tablet im Unterricht bisher kaum.");
+    else if (nurAblage || (n.indexOf("ablage") > -1 && (a.neu === "selten" || a.neu === "weissnicht")))
+      spiegel.push("Das Tablet dient bei dir vor allem zum Verteilen und Ablegen. Das ist organisatorischer Nutzen – legitim, aber noch kein Lernmehrwert.");
+    if (a.neu === "oft") spiegel.push("Deine Lernenden tun am Tablet oft etwas, das auf Papier kaum ginge. Prüf ab und zu, ob es dem Lernziel dient.");
+    else if (a.neu === "manchmal") spiegel.push("Manchmal tun deine Lernenden am Tablet etwas, das auf Papier kaum ginge.");
+    if (a.ablenkung === "oft") spiegel.push("Ablenkung ist bei dir ein häufiges Thema.");
+    if (a.sicherheit === "unsicher") spiegel.push("Beim Führen einer Tablet-Phase fühlst du dich noch unsicher. Das geht vielen so.");
+
+    var ZIEL = {
+      rueckmeldung: { text: "Mach aus einem Arbeitsblatt eine Übung mit Rückmeldung.", link: "digitalisieren.html", linktext: "Unterricht digitalisieren" },
+      gemeinsam: { text: "Plane eine Phase, in der die Lernenden an einem gemeinsamen Ergebnis arbeiten.", link: "tablets.html", linktext: "Unterricht planen" },
+      lernstand: { text: "Plane zwei bis drei kurze Stellen, an denen du siehst, wo die Klasse steht.", link: "tablets.html", linktext: "Unterricht planen" },
+      ablenkung: { text: "Gib jeder Tablet-Phase Auftrag, Zeit und ein Ende im Plenum.", link: "tablet-phasen.html", linktext: "Tablet-Phasen gut führen" },
+      papier: { text: "Papier passt gerade gut zu deinem Unterricht. Das ist ein vollwertiges Ergebnis.", link: "unterricht.html#t-probe", linktext: "Papierprobe ansehen" }
+    };
+    if (ZIEL[a.naechstes]) schritte.push(ZIEL[a.naechstes]);
+    if ((a.ablenkung === "oft" || a.ablenkung === "manchmal" || a.sicherheit === "unsicher") && a.naechstes !== "ablenkung")
+      schritte.push(ZIEL.ablenkung);
+    if (a.naechstes !== "papier" && (nurAblage || a.neu === "weissnicht" || a.neu === "selten"))
+      schritte.push({ text: "Prüf eine geplante Aktivität mit drei Fragen: Geht es auf Papier genauso gut?", link: "unterricht.html#t-probe", linktext: "Zur Papierprobe" });
+    if (!schritte.length) schritte.push({ text: "Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" });
+    return { spiegel: spiegel, schritte: schritte.slice(0, 3),
+             satz: "Das ist keine Bewertung. Es ist ein Blick auf deinen Unterricht heute – nur für dich." };
+  }
+
   var REGELN = {
     PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
     stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
     entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung,
-    papierprobe: papierprobe, beobachtung: beobachtung
+    papierprobe: papierprobe, beobachtung: beobachtung, istStand: istStand
   };
   if (typeof module !== "undefined") module.exports = REGELN;
   else wurzel.REGELN = REGELN;

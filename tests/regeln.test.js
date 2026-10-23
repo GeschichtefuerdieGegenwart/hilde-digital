@@ -345,3 +345,37 @@ test("Beobachtung: keine Noten, Punkte oder Prozentwerte in den Texten", () => {
   const e = R.beobachtung({ lernhandlung: "teilweise", mehrwert: "nein", technik: "spuerbar", aufmerksamkeit: "teils", entscheidung: "nachschaerfen" });
   for (const t of [e.text, e.satz, ...e.hinweise]) assert.ok(!/\d+ ?(%|Punkte)|Note/.test(t), t);
 });
+
+/* ---------- Mein Ist-Stand (ab Version 4.5) ---------- */
+test("Ist-Stand: leere Eingabe ohne Fehler, immer der Satz »keine Bewertung«", () => {
+  for (const a of [undefined, {}]) {
+    const e = R.istStand(a);
+    assert.match(e.satz, /keine Bewertung/);
+    assert.ok(e.schritte.length >= 1 && e.schritte.length <= 3);
+  }
+});
+
+test("Ist-Stand: nur Ablage heißt organisatorischer Nutzen – ausdrücklich legitim, keine Stufe", () => {
+  const e = R.istStand({ nutzung: ["ablage"], neu: "selten" });
+  assert.ok(e.spiegel.some((s) => /organisatorischer Nutzen – legitim/.test(s)));
+  assert.ok(!e.spiegel.join(" ").match(/Stufe|Niveau|Anfänger/));
+  assert.ok(e.schritte.some((s) => s.link.startsWith("unterricht.html#t-probe")));
+});
+
+test("Ist-Stand: der gewählte nächste Schritt kommt zuerst, höchstens drei Schritte", () => {
+  const e = R.istStand({ nutzung: ["ablage"], neu: "weissnicht", ablenkung: "oft", sicherheit: "unsicher", naechstes: "rueckmeldung" });
+  assert.equal(e.schritte[0].link, "digitalisieren.html");
+  assert.ok(e.schritte.length <= 3);
+  assert.ok(e.schritte.some((s) => s.link === "tablet-phasen.html"), "Ablenkung führt zu den Regeln für Tablet-Phasen");
+});
+
+test("Ist-Stand: »Papier passt« wird bestärkt, nicht umgestimmt", () => {
+  const e = R.istStand({ nutzung: ["kaum"], neu: "selten", naechstes: "papier" });
+  assert.match(e.schritte[0].text, /vollwertiges Ergebnis/);
+  assert.ok(!e.schritte.some((s) => /Papierprobe ansehen|Zur Papierprobe/.test(s.linktext) && s !== e.schritte[0]));
+});
+
+test("Ist-Stand: keine Noten, Punkte oder Prozentwerte", () => {
+  const e = R.istStand({ nutzung: ["ueben", "gemeinsam"], neu: "oft", ablenkung: "manchmal", sicherheit: "sicher", naechstes: "lernstand" });
+  for (const t of [e.satz, ...e.spiegel, ...e.schritte.map((s) => s.text)]) assert.ok(!/\d+ ?(%|Punkte)|Note/.test(t), t);
+});
