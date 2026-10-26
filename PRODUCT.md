@@ -18,10 +18,23 @@ Ihre Aufgabe: mit wenig Aufwand zu einer didaktisch begründeten, umsetzbaren En
 
 ## Product Purpose
 
-Hilde Digital ist ein Orientierungs- und Werkzeugmodul zum Projekt »Vom digitalen Schnellhefter zum lernwirksamen Tablet-Unterricht«. Es trennt zwei gleichwertige Perspektiven:
+Hilde Digital ist ein Orientierungs- und Werkzeugmodul zum Projekt »Vom digitalen Schnellhefter zum lernwirksamen Tablet-Unterricht«.
 
-- **KI-Training:** Lehrkräfte nutzen KI als professionelle Anwender*innen, um analogen oder digitalen Unterricht vorzubereiten (geführter Weg, höchstens 5 Schritte).
-- **Digitaler Unterricht:** Digitalität aus Sicht der Lernenden; beginnt beim Lernzweck, nicht beim Werkzeug (geführter Weg, höchstens 6 Schritte).
+### Zwei Grobziele (Entscheidung vom 26.10.2026)
+
+Hilde Digital verfolgt zwei gleichwertige Grobziele. Beide gehören zum Kern; keines ist dem anderen vorgeordnet.
+
+- **Grobziel A – KI-Kompetenz im Kollegium.** Lehrkräfte bauen KI-Kompetenzen auf, die im Schulalltag wirklich nützen – ausdrücklich auch für analog unterrichtete Klassen: Aufgaben für unterschiedliche Lernstände anpassen, Präsentationen umgestalten, neue Aufgabenformate entwickeln, Elternbriefe und Sitzungen vorbereiten. Das Prinzip ist Hilfe zur Selbsthilfe: niederschwellig, für Einsteiger*innen mit Scheu ebenso wie für Fortgeschrittene.
+- **Grobziel B – Kompetenz, digitalen Unterricht zu gestalten.** Lehrkräfte entwickeln vorhandenen analogen Unterricht begründet digital weiter – punktuell, phasenweise oder durchgängig, ohne Rangfolge. Dazu gehört, Material zu prüfen, Tablet-Phasen zu führen und nach der Stunde hinzuschauen, wie es lief.
+
+Die Galerie ist der gemeinsame Beispielvorrat beider Grobziele.
+
+### Zwei Bereiche
+
+Die Oberfläche trennt die zwei Perspektiven, die den Grobzielen entsprechen:
+
+- **KI-Training (Grobziel A):** Lehrkräfte nutzen KI als professionelle Anwender*innen, um analogen oder digitalen Unterricht vorzubereiten (geführter Weg, höchstens 5 Schritte).
+- **Digitaler Unterricht (Grobziel B):** Digitalität aus Sicht der Lernenden; beginnt beim Lernzweck, nicht beim Werkzeug (geführter Weg, höchstens 6 Schritte).
 
 Es gibt genau zwei Bereiche. Ein Lernangebot, das mit KI gebaut wurde, gehört zum Digitalen Unterricht, sobald Lernende damit arbeiten; eine eigene Kategorie »mit KI entwickelt« gibt es nicht. Dazu kommt eine Galerie mit echten Beispielen aus dem Kollegium.
 
@@ -54,7 +67,7 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 
 ## Brand Commitments
 
-- Name in der Oberfläche: **Hilde Digital** (mit Bindestrich, entschieden am 18.10.2026).
+- Name in der Oberfläche: **Hilde Digital** (ohne Bindestrich, seit Version 4 vom 18.10.2026; die Schreibweise »Hilde-Digital« aus Version 3 gilt nicht mehr).
 - Jede Seite trägt in der Fußzeile: »Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.« Die Startseite zeigt zusätzlich zurückhaltend: »Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung«.
 - Kein Schullogo, keine Nachahmung des schulischen Erscheinungsbilds, keine Formulierung wie »offizielles Digitalkonzept«, keine Kontaktadresse, kein Kontaktformular.
 - Sprache: »du«, kurze Sätze, eine Aussage pro Satz, Verben statt Substantive; keine Defizitsprache, keine Technikbegeisterung als Selbstzweck, keine Gleichsetzung von Digitalisierung mit Innovation.

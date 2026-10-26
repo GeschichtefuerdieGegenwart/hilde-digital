@@ -65,7 +65,7 @@
 <section class="abschnitt lernen-auftakt" id="lernen-weg" aria-labelledby="t-lernen" tabindex="-1"><div class="huelle ki-raster">
   <div class="ki-aufbau">
     <h2 id="t-lernen">Prompten lernen</h2>
-    <p>Eine gute Anfrage hat fünf Teile. Der Generator unten baut sie Schritt für Schritt mit dir zusammen. Im Schritt »Anfrage« siehst du alle fünf Teile und kannst jeden ändern.</p>
+    <p>Eine gute Anfrage hat fünf Teile. Der Generator unten baut sie Schritt für Schritt mit dir zusammen. Seine Schritte heißen anders als die Teile: Bei jedem Schritt steht, welcher Teil gerade entsteht. Im Schritt »Anfrage« siehst du alle fünf Teile und kannst jeden ändern.</p>
     <details class="mehr">
       <summary>Die fünf Teile einer guten Anfrage</summary>
       <ol class="bausteine-liste" id="bausteine-liste"></ol>
@@ -125,7 +125,7 @@
 (function () {
   var l = document.getElementById("bausteine-liste");
   if (l && window.KI_TEXTE) l.innerHTML = KI_TEXTE.bausteine.map(function (b) {
-    return "<li><b>" + HILDE.esc(b.name) + "</b><span>" + HILDE.esc(b.warum) + "</span></li>";
+    return "<li><b>" + HILDE.esc(b.name) + "</b><span>" + HILDE.esc(b.warum) + (b.schritt ? ' <span class="leise">' + HILDE.esc(b.schritt) + "</span>" : "") + "</span></li>";
   }).join("");
 })();
 </script>

@@ -84,13 +84,13 @@ var KI_TEXTE = {
   ],
   datenhinweis: "Keine Namen, Noten oder anderen personenbezogenen Daten eingeben.",
 
-  /* Schritt 4: Warum jeder Baustein wichtig ist. */
+  /* Schritt 4: Warum jeder Baustein wichtig ist. schritt: In welchem Schritt des Generators der Teil entsteht (nur Beschriftung). */
   bausteine: [
-    { id: "ziel", name: "Ziel", warum: "Ein klares Ziel verhindert allgemeine Antworten." },
-    { id: "kontext", name: "Kontext", warum: "Ohne Fach, Thema und Lerngruppe rät die KI – und trifft oft daneben." },
-    { id: "anforderungen", name: "Anforderungen", warum: "Hier legst du fest, was für deinen Unterricht gelten muss." },
-    { id: "format", name: "Format", warum: "Eine vorgegebene Form spart dir das Umbauen." },
-    { id: "pruefkriterien", name: "Prüfkriterien", warum: "So prüft die KI ihr Ergebnis selbst – und zeigt dir, wo du nachsehen solltest." }
+    { id: "ziel", name: "Ziel", warum: "Ein klares Ziel verhindert allgemeine Antworten.", schritt: "Im Generator: Schritt 1 »Ziel«" },
+    { id: "kontext", name: "Kontext", warum: "Ohne Fach, Thema und Lerngruppe rät die KI – und trifft oft daneben.", schritt: "Im Generator: Schritt 3 »Kontext«" },
+    { id: "anforderungen", name: "Anforderungen", warum: "Hier legst du fest, was für deinen Unterricht gelten muss.", schritt: "Im Generator: vorbereitet, änderbar in Schritt 4 »Anfrage«" },
+    { id: "format", name: "Format", warum: "Eine vorgegebene Form spart dir das Umbauen.", schritt: "Im Generator: Schritt 2 »Ergebnis«" },
+    { id: "pruefkriterien", name: "Prüfkriterien", warum: "So prüft die KI ihr Ergebnis selbst – und zeigt dir, wo du nachsehen solltest.", schritt: "Im Generator: vorbereitet, änderbar in Schritt 4 »Anfrage«" }
   ],
 
   /* Allgemeine Anforderungen und Prüfkriterien, gelten immer. */
