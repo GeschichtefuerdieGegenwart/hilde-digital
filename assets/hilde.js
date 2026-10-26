@@ -47,11 +47,11 @@ var HILDE = (function () {
     return '<div class="bild" data-bildrahmen><img src="' + esc(b.bild) + '" alt="" loading="lazy" width="1040" height="650"></div>';
   }
 
-  /* Merkmale in einer Zeile: Phase · Umfang · Rolle · Anliegen. Nur Belegtes oder Vorgeschlagenes. */
+  /* Merkmale in einer Zeile: Phase · Rolle · Anliegen. Nur Belegtes oder Vorgeschlagenes.
+     Der Umfang steht seit Version 4.7 in einer eigenen Zeile mit der Stundenlinie (umfangZeile). */
   function merkmale(b) {
     var m = [];
     if (b.phasen.length) m.push(name("phasen", b.phasen[0]));
-    if (b.umfang) m.push(name("umfang", b.umfang));
     if (b.rollen.length) m.push(name("rollen", b.rollen[0]));
     if (b.anliegen.length) m.push(name("anliegen", b.anliegen[0]));
     return m.length ? '<p class="merkmale">' + m.map(esc).join(" · ") + "</p>" : "";
@@ -71,17 +71,40 @@ var HILDE = (function () {
     return '<button type="button" class="knopf still merken" data-merken="' + esc(b.id) + '" aria-pressed="false"><span class="merken-text">Merken</span><span class="sr-only">: ' + esc(b.titel) + "</span></button>";
   }
 
-  /* Stundenlinie (Muster I): Der Umfang als Form – Punkt, Abschnitt, ganze Stunde. Ohne Wertung. */
+  /* Stundenlinie (Muster I): Der Umfang als Form – Punkt, Abschnitt, ganze Stunde. Ohne Wertung.
+     Die Linie ist für Vorleseprogramme verborgen; das Wort steht immer daneben (umfangZeile) oder darüber. */
   function stundenlinie(umfang, klein) {
-    return '<div class="stundenlinie' + (klein ? " klein" : "") + '" data-umfang="' + esc(umfang || "") + '" aria-hidden="true">' +
-      '<span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></div>';
+    // klein: true = »klein« (Entscheidungskarte), "zeile" = kleinste Form neben einem Wort (Galerie).
+    var variante = klein === true ? " klein" : klein ? " " + esc(klein) : "";
+    // Ein <span>, damit die Linie auch in einem <p> neben dem Wort stehen kann (CSS: display block bzw. inline-block).
+    return '<span class="stundenlinie' + variante + '" data-umfang="' + esc(umfang || "") + '" aria-hidden="true">' +
+      '<span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></span>';
+  }
+
+  /* I2 · Umfang auf Galerie-Karten (ab Version 4.7): kleine Stundenlinie und das Wort daneben – nie nur die Grafik.
+     Ohne Umfang keine Linie, nur »noch offen«. Für KI-Training gibt es keinen Umfang; dann bleibt die Zeile weg. */
+  function umfangZeile(b) {
+    if (b.bereich === "ki") return "";
+    if (!b.umfang) return '<p class="umfang-zeile"><span>Umfang: <b class="offen">noch offen</b></span></p>';
+    return '<p class="umfang-zeile">' + stundenlinie(b.umfang, "zeile") + "<span>Umfang: <b>" + esc(name("umfang", b.umfang)) + "</b></span></p>";
+  }
+
+  /* I2 · Die Stundenlinie zeichnet sich einmal beim Erscheinen: Der Balken wächst von 0 auf seinen Umfang (260 ms).
+     Bei »weniger Bewegung« steht sofort der Endzustand. Zwei Bildwechsel, damit der Browser den Start sieht. */
+  function stundenlinieZeichnen(elemente) {
+    var liste = elemente && elemente.length !== undefined ? [].slice.call(elemente) : (elemente ? [elemente] : []);
+    if (!liste.length || ruhig()) return;
+    liste.forEach(function (el) { el.classList.add("sl-von"); });
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      liste.forEach(function (el) { el.classList.remove("sl-von"); });
+    }); });
   }
 
   /* Große Galerie-Karte */
   function karte(b) {
     return '<article class="karte' + (b.bild ? "" : " kompakt") + '">' + bildHtml(b) +
       '<div class="koerper">' + kennzeichen(b) +
-      '<p class="fach">' + esc(b.fach) + "</p><h3>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + merkmale(b) + staerken(b) + "</div>" +
+      '<p class="fach">' + esc(b.fach) + "</p><h3>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + merkmale(b) + umfangZeile(b) + staerken(b) + "</div>" +
       '<div class="fussleiste"><span class="status">Status: <b>' + esc(b.status) + "</b></span>" +
       '<span class="fuss-knoepfe">' + merkKnopf(b) + '<a class="knopf" href="' + detailLink(b) + '">Beispiel ansehen <span class="sr-only">: ' + esc(b.titel) + "</span></a></span></div></article>";
   }
@@ -202,6 +225,7 @@ var HILDE = (function () {
   }, true);
 
   return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name,
-           kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf, stundenlinie: stundenlinie,
+           kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf,
+           stundenlinie: stundenlinie, umfangZeile: umfangZeile, stundenlinieZeichnen: stundenlinieZeichnen,
            lichtbild: oeffne };
 })();

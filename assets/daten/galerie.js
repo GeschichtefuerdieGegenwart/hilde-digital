@@ -1,6 +1,6 @@
 /* Hilde Digital – Ansichten für die Galerie.
 
-   Jede Ansicht ist ein Bildschirmfoto aus der echten Anwendung, aufgenommen am 18.10.2026
+   Jede Ansicht ist ein Bildschirmfoto aus der echten Anwendung, aufgenommen am 18.10.2026 (Ergänzungen am 26.10.2026)
    aus den öffentlichen Repositories (lokal geöffnet, ohne Änderung am Inhalt).
    Herkunft je Bild: docs/galerie-quellen.md. Nichts ist nachgebaut oder nachbearbeitet.
 
@@ -126,6 +126,50 @@ var GALERIE = {
       alt: "Landkarte der Einheit »Spiel«: Leitfrage, vier Abschnitte A bis D und die ersten Doppelstunden" },
     { bild: "assets/galerie/bef1-2.webp", text: "Zu drei Zeitpunkten schätzen sich die Lernenden selbst ein.",
       alt: "Abschnitt »Das kann ich am Ende der Einheit« mit Ankreuzspalten für drei Zeitpunkte" }
+  ],
+
+  /* Aufgenommen am 26.10.2026 (Herkunft: docs/galerie-quellen.md). */
+  "m19-appeasement": [
+    { bild: "assets/galerie/appeasement-1.webp", text: "Vor der Abstimmung wählt jede Person eine der drei Optionen und schätzt ein, ob Deutschland danach Ruhe gibt.",
+      alt: "M19 Appeasement, Baustein 2, Schritt »Ihre Stimme«: drei Optionen A, B, C zur Reaktion auf den Einmarsch ins Rheinland 1936, Option B »Sanktionen durchsetzen« ist gewählt" },
+    { bild: "assets/galerie/appeasement-2.webp", text: "Zu jeder Option stehen Hoffnungen und Risiken – immer nur mit dem Wissen von damals.",
+      alt: "Schritt »Folgen«: Reiter für die Optionen A bis C, darunter zwei Spalten »Hoffnungen« und »Risiken« mit den Kennzeichen »damals erhofft« und »damals befürchtet«" }
+  ],
+  "m20-dilemmata": [
+    { bild: "assets/galerie/dilemmata-1.webp", text: "Vor der Abstimmung diskutiert die Klasse in zwei Runden mit Uhr. Eine Tafelansicht geht an den Beamer.",
+      alt: "M20, Dilemma 1, Schritt »Diskussion«: Runde 1 »Wozu neigst du?« mit Uhr auf 2:00, Auftrag und den Knöpfen »An die Tafel (Beamer)« und »Nächste Runde«" },
+    { bild: "assets/galerie/dilemmata-2.webp", text: "Jede Quelle trägt ihre Fundstelle. Hier Churchill im Unterhaus, Mai 1940.",
+      alt: "Quellenkarte mit Churchills Rede vom 13. Mai 1940 auf Deutsch und Englisch, darunter die Fundstelle und der Knopf »Herkunft«" }
+  ],
+  "m22-wie-war-das-moeglich": [
+    { bild: "assets/galerie/wie-war-das-moeglich-1.webp", text: "Auf dem Marktplatz prüfen die Lernenden drei Streitpaare am Fall Józefów und bekommen eine Rückmeldung.",
+      alt: "M22, Marktplatz: Streitpaar »Browning gegen Goldhagen« mit beiden Thesen, darunter die Frage »Welche Seite stützt der Fall Józefów eher?« und Antworten mit Rückmeldung »Zentral« und »Auch begründbar«" },
+    { bild: "assets/galerie/wie-war-das-moeglich-2.webp", text: "Jede Forschungsakte gibt es in drei Lesestufen: Einstieg, Vertiefung, Kontroverse.",
+      alt: "Forschungsakte C »Browning: Ganz normale Männer« mit Leitfrage, Ebene »Situation« und den drei Lesestufen Einstieg, Vertiefung und Kontroverse" }
+  ],
+  "politik-werkstatt": [
+    { bild: "assets/galerie/politik-werkstatt-1.webp", text: "Der Sitzrechner zeigt den Bundestag als Halbrund – mit Mehrheitslinie und den Parteien ohne Sitz.",
+      alt: "Sitzrechner der Politik-Werkstatt: Halbrund mit 630 Sitzen nach dem Bundesergebnis 2025, Legende mit Sitzzahlen je Partei und Hinweis, welche Parteien keinen Sitz bekommen" },
+    { bild: "assets/galerie/politik-werkstatt-2.webp", text: "Zweitstimmen eintragen oder ein echtes Ergebnis laden, dann die 5-%-Hürde an- und ausschalten.",
+      alt: "Abschnitt »Der Sitzrechner« mit Knöpfen für Bundesergebnis 2025, Wahlkreis 260 und Klassenergebnis, Prozentfeldern je Partei und zwei Schaltern für 5-%-Hürde und Grundmandatsklausel" }
+  ],
+  "psycho-ds3-6": [
+    { bild: "assets/galerie/psycho-ds3-6-1.webp", text: "Welche Linie ist gleich lang? Ein Teil des Kurses sieht vorher, was fünf andere gewählt haben.",
+      alt: "DS 5 im Psycho-Labor: Vergleichslinie und drei Linien A, B, C; darunter der Kasten »So haben fünf andere Personen gewählt« mit fünfmal A und die eigene Antwort" },
+    { bild: "assets/galerie/psycho-ds3-6-2.webp", text: "Sieben Entdeckungen zu zweit: Erst beschreiben, dann die Regel finden, dann den Fachbegriff aufdecken.",
+      alt: "DS 3 im Psycho-Labor, Entdeckung 1 von 7: eine Figur, die als Vase oder als zwei Gesichter gelesen werden kann, darunter der Knopf »Farben tauschen«" }
+  ],
+  "erfundene-traditionen": [
+    { bild: "assets/galerie/erfundene-traditionen-1.webp", text: "Im Theorie-Duell positionieren die Lernenden jeden Fall zwischen Hobsbawm und Smith und vergleichen mit einem Vorschlag.",
+      alt: "Abschnitt »Hobsbawm gegen Smith«: Karten für Sedantag und Hermannsdenkmal mit je einem Regler zwischen »weitgehend erfunden« und »knüpft an Altes an« und dem Knopf »Vergleichen«" },
+    { bild: "assets/galerie/erfundene-traditionen-2.webp", text: "Hobsbawms Werkzeugkasten: vier Merkmale und drei Funktionen einer erfundenen Tradition.",
+      alt: "Vier Karten Wiederholung, Bezug auf Vergangenheit, Symbole, Feste Form; darunter drei Funktionen: Zusammenhalt stiften, Herrschaft legitimieren, Werte einüben" }
+  ],
+  "nationalismus-demokratie": [
+    { bild: "assets/galerie/nationalismus-demokratie-1.webp", text: "Fünf Regler stellen Kipp-Punkte ein. Ein Zeiger zeigt, wann das Wir zur Gefahr wird.",
+      alt: "Abschnitt »Kipp-Punkte«: fünf Schalter zu Zugehörigkeit, Verhältnis zu anderen Nationen, Vielfalt, Kritik und Grundrechten, rechts ein Zeiger im roten Bereich mit der Einordnung »Demokratiegefährdend« und der Voreinstellung Kaiserreich" },
+    { bild: "assets/galerie/nationalismus-demokratie-2.webp", text: "Zum Einstieg ordnen die Lernenden Aussagen den Begriffen zu und bekommen eine kurze Erklärung.",
+      alt: "Abschnitt »Ordne die Aussagen zu«: Aussage zur Fußball-WM mit den Knöpfen Patriotismus, Verfassungspatriotismus, Nationalismus, Chauvinismus; eine Antwort ist grün, eine rot markiert, darunter die Erklärung" }
   ]
 };
 

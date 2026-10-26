@@ -8,6 +8,7 @@ wird jede Seite zusätzlich mit axe-core geprüft. Die Datei gehört nicht ins R
 Geprüft: Kernweg Start → Digitaler Unterricht → Planungsweg → Entscheidungskarte → Beispiel → Detail,
 nur per Tastatur, Zurück und Ändern, Speichern und Löschen, Lockerung, ohne Internet, Konsolenfehler,
 reduzierte Bewegung, Digital-Check (Weg B: Prüf-Auftrag), Galerie mit Bildansicht, Breiten 375 / 768 / 1280 / 1440.
+Ab Version 4.7: »Zum Anfangen«, Stundenlinie auf Karten und Detailseite, Umfang-Chips mit Vorschau, 390 px.
 """
 import re
 import os
@@ -502,7 +503,8 @@ def main():
         lauf = lambda: pg2.evaluate(f"document.querySelector('{spur}').scrollLeft")
         pg2.wait_for_timeout(400); x1 = lauf(); pg2.wait_for_timeout(1500); x2 = lauf()
         pruefe(10 < x2 - x1 < 80, f"Fächer: gleitet langsam von selbst ({x2 - x1:.0f} px in 1,5 s)")
-        pruefe(pg2.locator("#galerie-faecher .faecher-karte:not([aria-hidden])").count() == 37, "Fächer: alle 37 Ansichten, die Wiederholung ist für Vorleseprogramme verborgen")
+        ansichten = pg2.evaluate("Object.values(GALERIE).reduce(function (n, a) { return n + a.length; }, 0)")
+        pruefe(ansichten >= 37 and pg2.locator("#galerie-faecher .faecher-karte:not([aria-hidden])").count() == ansichten, f"Fächer: alle {ansichten} Ansichten aus galerie.js, die Wiederholung ist für Vorleseprogramme verborgen")
         pg2.hover(spur); pg2.wait_for_timeout(700); x1 = lauf(); pg2.wait_for_timeout(800)
         pruefe(abs(lauf() - x1) < 2, "Fächer: hält beim Überfahren an")
         pg2.mouse.move(5, 5)
@@ -600,6 +602,68 @@ def main():
         texte = m.inner_text("main")
         pruefe("mit KI entwickelt" not in texte.lower(), "Keine Kategorie »mit KI entwickelt« mehr")
         pruefe(not m.konsole, f"Version 4.4: keine Konsolenfehler {m.konsole}")
+
+        # 5d. Version 4.7: »Zum Anfangen«, Stundenlinie auf Karten, Umfang-Chips mit Vorschau, Detailseite
+        v = neue_seite(b)
+        v.goto(url("galerie.html"))
+        pruefe(v.locator("#anfangen .anfangen-karte").count() == 6, "Zum Anfangen: sechs Karten")
+        pruefe(v.locator("#anfangen .anfangen-gruppe").count() == 3 and v.locator("#anfangen .anfangen-gruppe-kopf .stundenlinie").count() == 3, "Zum Anfangen: drei Gruppen, je eine Stundenlinie als Kopf")
+        koepfe = v.locator("#anfangen .anfangen-gruppe h3").all_inner_texts()
+        pruefe(koepfe == ["Punktuell", "Phasenweise", "Durchgängig"], f"Zum Anfangen: Reihenfolge aus den Taxonomien {koepfe}")
+        pruefe(all(v.locator(f"#anfangen .anfangen-gruppe >> nth={i} >> .anfangen-karte").count() == 2 for i in range(3)), "Zum Anfangen: zwei Karten je Umfang")
+        pruefe("keine Bestenliste" in v.inner_text("#anfangen") and "nicht weniger als durchgängig" in v.inner_text("#anfangen"), "Zum Anfangen: Satz gegen die Rangfolge steht auf der Seite")
+        pruefe(v.locator("#anfangen .anfangen-karte .grund").count() == 6 and all(len(t) > 20 for t in v.locator("#anfangen .grund").all_inner_texts()), "Zum Anfangen: jede Karte trägt ihren Grund-Satz")
+        pruefe(v.locator('#anfangen .anfangen-karte a[href^="beispiel.html#"]').count() == 6 and v.locator('#anfangen .anfangen-karte a[target="_blank"]').count() == 6, "Zum Anfangen: »Mehr dazu« und »Ausprobieren« auf jeder Karte")
+        pruefe(all("im Unterricht erprobt" in t for t in v.locator("#anfangen .status").all_inner_texts()), "Zum Anfangen: alle sechs erprobt")
+        v.wait_for_timeout(400)
+        breiten = v.eval_on_selector_all("#anfangen .anfangen-gruppe-kopf .sl-balken", "els => els.map(e => e.getBoundingClientRect().width)")
+        pruefe(len(breiten) == 3 and breiten[0] < breiten[1] < breiten[2] and breiten[0] > 0, f"Zum Anfangen: Punkt, Abschnitt, ganze Linie gezeichnet {breiten}")
+        ab = v.locator("#umfang button[data-umfang]").all_inner_texts()
+        pruefe(ab == ["alle", "Punktuell", "Phasenweise", "Durchgängig"], f"Filter Umfang: Chips aus den Taxonomien {ab}")
+        v.hover('#umfang [data-umfang="durchgaengig"]')
+        pruefe(v.get_attribute("#umfang-linie", "data-umfang") == "durchgaengig", "Filter Umfang: Überfahren zeigt den Umfang auf der Stundenlinie vor")
+        v.hover("#suche")
+        pruefe(v.get_attribute("#umfang-linie", "data-umfang") == "", "Filter Umfang: ohne Überfahren zurück zur Wahl")
+        v.focus('#umfang [data-umfang="punktuell"]')
+        pruefe(v.get_attribute("#umfang-linie", "data-umfang") == "punktuell", "Filter Umfang: Fokus per Tastatur zeigt ebenso vor")
+        v.keyboard.press("Enter"); v.hover("#suche")
+        pruefe(v.get_attribute("#umfang-linie", "data-umfang") == "punktuell" and v.get_attribute('#umfang [data-umfang="punktuell"]', "aria-pressed") == "true", "Filter Umfang: nach der Wahl bleibt die Linie so")
+        pruefe(v.is_visible("#ergebnisse") and v.is_hidden("#anfangen") and all("Punktuell" in t for t in v.locator("#karten .umfang-zeile").all_inner_texts()), "Filter Umfang: Treffer nur mit diesem Umfang, »Zum Anfangen« tritt zurück")
+        v.click('#aktive [data-entfernen="umfang"]')
+        pruefe(v.get_attribute("#umfang-linie", "data-umfang") == "" and v.is_visible("#anfangen"), "Filter Umfang: Chip entfernen setzt die Linie zurück")
+        v.click("#alle-zeigen"); v.wait_for_timeout(200)
+        n_karten = v.locator("#karten .karte").count()
+        mit_linie = v.locator("#karten .karte:has(.umfang-zeile .stundenlinie)").count()
+        pruefe(mit_linie >= 25 and v.locator("#karten .umfang-zeile:has(.stundenlinie)").count() == mit_linie, f"Galerie-Karten: Stundenlinie mit dem Wort daneben ({mit_linie} von {n_karten})")
+        pruefe(all(t.startswith("Umfang: ") for t in v.locator("#karten .umfang-zeile").all_inner_texts()), "Galerie-Karten: nie nur die Grafik, immer das Wort")
+        offen = v.locator("#karten .umfang-zeile:not(:has(.stundenlinie))")
+        pruefe(offen.count() >= 1 and all("noch offen" in t for t in offen.all_inner_texts()), "Galerie-Karten: ohne Umfang keine Linie, nur »noch offen«")
+        pruefe(v.locator("#karten .karte:has(.kz.ki) .umfang-zeile").count() == 0, "Galerie-Karten: KI-Training ohne Umfang-Zeile")
+        v.goto(url("beispiel.html#m19-appeasement")); v.wait_for_selector("#detail-titel"); v.wait_for_timeout(400)
+        sl = v.locator(".detail-haupt .stundenlinie")
+        pruefe(sl.count() == 1 and sl.get_attribute("data-umfang") == "phasenweise" and not v.evaluate("document.querySelector('.detail-haupt .stundenlinie').classList.contains('sl-von')"), "Detail: Stundenlinie zum Umfang, einmal gezeichnet")
+        b_breite = v.evaluate("document.querySelector('.detail-haupt .sl-balken').getBoundingClientRect().width")
+        pruefe(b_breite > 40, f"Detail: Balken ist auf seinen Umfang gewachsen ({b_breite:.0f} px)")
+        dauer = v.evaluate("getComputedStyle(document.querySelector('.detail-haupt .sl-balken')).transitionDuration")
+        pruefe(all(float(d.strip().rstrip("s")) <= .3 for d in dauer.split(",")), f"Detail: Stundenlinie höchstens 300 ms {dauer}")
+        v.goto(url("index.html"))
+        pruefe(v.locator('a[href="galerie.html#anfangen"]').count() == 1 and "sechs Beispiele" in v.inner_text('a[href="galerie.html#anfangen"]'), "Start: nur ein Link zu »Zum Anfangen«")
+        pruefe(not v.konsole, f"Version 4.7: keine Konsolenfehler {v.konsole}")
+        # Weniger Bewegung: nur der Endzustand, nichts wird nachgezeichnet
+        r = neue_seite(b, reduced_motion="reduce")
+        r.goto(url("galerie.html"))
+        pruefe(r.locator("#anfangen .stundenlinie.sl-von").count() == 0 and r.evaluate("[...document.querySelectorAll('#anfangen .anfangen-gruppe-kopf .sl-balken')].every(e => e.getBoundingClientRect().width > 0)"), "Weniger Bewegung: Stundenlinien stehen sofort fertig da")
+        tp = r.evaluate("getComputedStyle(document.querySelector('#umfang-linie .sl-balken')).transitionProperty")
+        pruefe("width" not in tp and "left" not in tp, f"Weniger Bewegung: Stundenlinie gleitet nicht {tp}")
+        r.goto(url("beispiel.html#m19-appeasement")); r.wait_for_selector("#detail-titel")
+        pruefe(r.locator(".detail-haupt .stundenlinie.sl-von").count() == 0 and r.evaluate("document.querySelector('.detail-haupt .sl-balken').getBoundingClientRect().width") > 40, "Weniger Bewegung: Detail zeigt sofort den Endzustand")
+        pruefe(not r.konsole, f"Version 4.7, weniger Bewegung: keine Konsolenfehler {r.konsole}")
+        for breite in (390, 768, 1280):
+            q = neue_seite(b, viewport={"width": breite, "height": 844})
+            for s_ in ["galerie.html", "beispiel.html#m19-appeasement"]:
+                q.goto(url(s_)); q.wait_for_timeout(300)
+                pruefe(q.evaluate("document.documentElement.scrollWidth") <= breite, f"Version 4.7, {breite} px {s_}: kein waagerechtes Scrollen")
+            q.context.close()
 
         # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
         for breite in (375, 768, 1280, 1440):

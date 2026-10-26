@@ -16,6 +16,7 @@ Geprüft werden
 - die Beispieldaten: Pflichtfelder, erlaubte Werte, eindeutige IDs und Slugs,
   Links nur auf die freigegebenen Seiten, Konzeptbeispiele ohne Link, Vorschläge nur für vorhandene Felder,
   Qualitätscheck nur mit Datum, höchstens drei Stärken ohne Zahl, Sicherheit mindestens »mittel«,
+  »Zum Anfangen« (Feld auswahl): genau sechs Einträge, zwei je Umfang, alle »im Unterricht erprobt«, mit Grund-Satz,
 - die Galerie: jedes Bild vorhanden, eigener Alternativtext, Bildtext, Bilder nur für bekannte Beispiele,
   keine Galeriebilder für Konzeptbeispiele.
 """
@@ -35,7 +36,7 @@ EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/ist-stand.js",
-                    "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js"]
+                    "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation"]
 # Wörter, die auf Start- und Bereichsseiten und in den geführten Wegen nicht stehen sollen (Kritik vom 18.10.2026)
@@ -201,8 +202,31 @@ def pruefe_daten(fehler):
         for feld in (b.get("vorschlag") or {}):
             if feld not in b:
                 fehler.append(f"Beispiel {wer}: Vorschlag für unbekanntes Feld »{feld}«")
+    pruefe_auswahl(fehler, beispiele)
     pruefe_galerie(fehler, beispiele, galerie)
     print(f"Daten: {len(beispiele)} Beispiele geprüft")
+
+
+def pruefe_auswahl(fehler, beispiele):
+    """»Zum Anfangen« in der Galerie: genau sechs Beispiele, zwei je Umfang, alle erprobt, jedes mit einem Grund-Satz.
+    Keine Rangfolge – deshalb gibt es auch kein Feld für eine Reihenfolge."""
+    auswahl = [b for b in beispiele if b.get("auswahl")]
+    if len(auswahl) != 6:
+        fehler.append(f"Auswahl »Zum Anfangen«: genau sechs Beispiele erwartet, {len(auswahl)} gefunden")
+    je_umfang = {}
+    for b in auswahl:
+        wer = b["id"]
+        je_umfang[b.get("umfang")] = je_umfang.get(b.get("umfang"), 0) + 1
+        if b["status"] != "im Unterricht erprobt":
+            fehler.append(f"Auswahl {wer}: nur erprobte Beispiele (Status »{b['status']}«)")
+        if not (b["auswahl"].get("grund") or "").strip():
+            fehler.append(f"Auswahl {wer}: Grund-Satz fehlt")
+        if "reihenfolge" in b["auswahl"] or "rang" in b["auswahl"]:
+            fehler.append(f"Auswahl {wer}: keine Rangfolge in der Auswahl")
+    for umfang in ("punktuell", "phasenweise", "durchgaengig"):
+        if je_umfang.get(umfang, 0) != 2:
+            fehler.append(f"Auswahl »Zum Anfangen«: je Umfang genau zwei Beispiele, »{umfang}« hat {je_umfang.get(umfang, 0)}")
+    print(f"Auswahl »Zum Anfangen«: {len(auswahl)} Beispiele geprüft")
 
 
 def pruefe_galerie(fehler, beispiele, galerie):

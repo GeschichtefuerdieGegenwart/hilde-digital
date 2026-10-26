@@ -17,7 +17,7 @@
   var FILTER = {
     phase: { name: "Phase", werte: T.phasen.filter(function (p) { return p.id !== "offen"; }) },
     anliegen: { name: "Anliegen", werte: T.anliegen },
-    umfang: { name: "Umfang", werte: T.umfang },
+    umfang: { name: "Umfang", werte: T.umfang, chips: true },
     rolle: { name: "Rolle", werte: T.rollen },
     fach: { name: "Fach", werte: faecher.map(function (f) { return { id: f, name: f }; }), weitere: true },
     ki: { name: "KI-Einsatz", werte: T.kiEinsatz.filter(function (k) { return k.id !== "keiner"; }), weitere: true }
@@ -57,8 +57,24 @@
       }).join("") + "</select></div>";
   }
 
+  /* I2 · Umfang als Chips mit einer Stundenlinie daneben (ab Version 4.7). Beim Überfahren oder Fokussieren eines Chips
+     zeigt die Linie diesen Umfang vor; beim Wählen bleibt sie so. Tastatur und Berührung sind gleichwertig. */
+  function zeichneUmfang() {
+    var g = el("umfang"); if (!g) return;
+    if (!g.children.length) {
+      g.innerHTML = '<span id="umfang-wort">Umfang</span>' + [{ id: "", name: "alle" }].concat(T.umfang).map(function (u) {
+        return '<button type="button" class="chip" data-umfang="' + esc(u.id) + '" aria-pressed="false">' + esc(u.name) + "</button>";
+      }).join("") + H.stundenlinie("", "zeile").replace('class="stundenlinie', 'id="umfang-linie" class="stundenlinie');
+    }
+    g.querySelectorAll("button[data-umfang]").forEach(function (x) {
+      x.setAttribute("aria-pressed", x.getAttribute("data-umfang") === wahl.umfang ? "true" : "false");
+    });
+    el("umfang-linie").setAttribute("data-umfang", wahl.umfang);
+  }
+
   function zeichneFilter() {
-    el("auswahlfilter").innerHTML = Object.keys(FILTER).filter(function (k) { return !FILTER[k].weitere; }).map(auswahl).join("");
+    zeichneUmfang();
+    el("auswahlfilter").innerHTML = Object.keys(FILTER).filter(function (k) { return !FILTER[k].weitere && !FILTER[k].chips; }).map(auswahl).join("");
     el("weitere").innerHTML = Object.keys(FILTER).filter(function (k) { return FILTER[k].weitere; }).map(auswahl).join("");
     el("bereich").querySelectorAll("[data-bereich]").forEach(function (x) {
       x.setAttribute("aria-pressed", x.getAttribute("data-bereich") === wahl.bereich ? "true" : "false");
@@ -175,6 +191,21 @@
     wahl.bereich = b.getAttribute("data-bereich");
     zeichneFilter(); zeichne();
   });
+  (function () {
+    var g = el("umfang"); if (!g) return;
+    var linie = function () { return el("umfang-linie"); };
+    var vorzeigen = function (e) { var c = e.target.closest("button[data-umfang]"); if (c) linie().setAttribute("data-umfang", c.getAttribute("data-umfang")); };
+    var zurueck = function () { linie().setAttribute("data-umfang", wahl.umfang); };
+    g.addEventListener("click", function (e) {
+      var c = e.target.closest("button[data-umfang]"); if (!c) return;
+      wahl.umfang = c.getAttribute("data-umfang");
+      zeichneFilter(); zeichne();
+    });
+    g.addEventListener("mouseover", vorzeigen);
+    g.addEventListener("mouseout", function (e) { if (!g.contains(e.relatedTarget)) zurueck(); else vorzeigen(e); });
+    g.addEventListener("focusin", vorzeigen);
+    g.addEventListener("focusout", function (e) { if (!g.contains(e.relatedTarget)) zurueck(); });
+  })();
   el("filter").addEventListener("change", function (e) {
     var f = e.target.getAttribute("data-filter"); if (!f) return;
     wahl[f] = e.target.value; zeichne();
