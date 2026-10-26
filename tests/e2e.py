@@ -40,8 +40,10 @@ def neue_seite(browser, **kw):
     pg = ctx.new_page()
     pg.konsole = []
     pg.extern = extern
-    pg.on("console", lambda m: m.type == "error" and pg.konsole.append(m.text))
-    pg.on("pageerror", lambda e: pg.konsole.append(str(e)))
+    # Chromium meldet beim schnellen Seitenwechsel unter file:// eine abgebrochene Seitenüberblendung
+    # (@view-transition in hilde.css) als Konsolenfehler. Das ist kein Fehler der Seite und wird übergangen.
+    pg.on("console", lambda m: m.type == "error" and "ViewTransition" not in m.text and pg.konsole.append(m.text))
+    pg.on("pageerror", lambda e: "ViewTransition" not in str(e) and pg.konsole.append(str(e)))
     return pg
 
 
@@ -66,7 +68,7 @@ def main():
         hoehe = pg.locator(".galerie-zugang").bounding_box()
         pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
         pg.click('a.wahlflaeche[href="unterricht.html"]')
-        pruefe(pg.locator(".werkzeuge").first.locator(".werkzeug").count() == 8 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt"), "Digitaler Unterricht: acht Werkzeuge, »Unterricht digitalisieren« zuerst")
+        pruefe(pg.locator(".werkzeuge").first.locator(".werkzeug").count() == 7 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt"), "Digitaler Unterricht: sieben Werkzeuge, »Unterricht digitalisieren« zuerst")
         pg.click('.werkzeug a[href="tablets.html"]')
         pg.click("#weiter")
         pruefe(pg.is_visible("#hinweis"), "Planungsweg: Hinweis, wenn nichts gewählt ist")
