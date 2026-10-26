@@ -43,16 +43,18 @@ def main():
     for b in beispiele:
         z.append(f"### {b['titel']} (`{b['id']}`)")
         z.append("")
-        vs = [f for f, an in (b.get("vorschlag") or {}).items() if an]
-        if vs:
+        vorschlaege = {f: an for f, an in (b.get("vorschlag") or {}).items() if an}
+        if vorschlaege:
             z.append("Vorschläge zum Prüfen:")
-            for f in vs:
+            for f, an in vorschlaege.items():
                 wert = b.get(f)
                 if isinstance(wert, list):
                     text = ", ".join(name(listen.get(f, f), w) if f in listen else w for w in wert)
                 else:
                     text = name("umfang", wert) if f == "umfang" else str(wert)
                 z.append(f"- [ ] {f}: {text}")
+                if isinstance(an, str):  # Begründung aus der Quelle (Wert statt true)
+                    z.append(f"  - Begründung: {an}")
         else:
             z.append("Keine offenen Vorschläge.")
         offen = [titel for f, titel in FELDER_OFFEN
