@@ -14,12 +14,16 @@
    aufgenommen: Monat, in dem das Beispiel in die Galerie kam (»2026-10«). Die Startseite zeigt die neuesten.
    qualitaetscheck: erst eintragen, wenn ein Check nach »So arbeitet der Digital-Check« geprüft UND freigegeben ist.
      Form: { datum: "2026-11-20", sicherheit: "mittel", staerken: ["anschauliche Darstellung"] }
-     Höchstens drei Stärken, ohne Zahl. Ohne Eintrag zeigt die Detailseite »Qualitätscheck: noch offen«. */
+     Höchstens drei Stärken, ohne Zahl. Ohne Eintrag zeigt die Detailseite »Qualitätscheck: noch offen«.
+   auswahl: »Zum Anfangen« in der Galerie (Entscheidung der Lehrkraft vom 26.10.2026). Genau sechs Einträge,
+     zwei je Umfang, alle »im Unterricht erprobt«. Form: { grund: "ein Satz, warum das Beispiel ausgewählt ist" }.
+     Keine Rangfolge: Die sechs sind ein Anfang, keine Bestenliste. tools/pruefen.py prüft die Regel. */
 
 var GH = "https://geschichtefuerdiegegenwart.github.io/";
 
 var BEISPIELE = [
   { id: "psycho-ds2", titel: "Siehst du, was sich verändert?", fach: "Psychologie · Psycho-Labor",
+    auswahl: { grund: "Erst vermuten, dann erleben, dann aufdecken; das Kursbild entsteht ohne Server per QR-Code." },
     faecher: ["Psychologie"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Klasse testet ihre eigene Wahrnehmung und vergleicht die Ergebnisse mit einer echten Studie.",
     status: "im Unterricht erprobt", bild: "assets/bilder/psycho-ds2.jpg",
@@ -110,6 +114,7 @@ var BEISPIELE = [
     vorschlag: { lernaktivitaeten: true } },
 
   { id: "fachbegriffe", titel: "Fachbegriffe-Trainer", fach: "Sozialpädagogik · EBG",
+    auswahl: { grund: "Üben mit sofortiger Rückmeldung – das Muster passt in jedes Fach." },
     faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "74 Fachbegriffe aus sechs Lernfeldern: selbst erklären, vergleichen, mit Karteikarten üben.",
     status: "im Unterricht erprobt", bild: "assets/bilder/fachbegriffe.jpg", link: GH + "sozpaed-psychologie/fachbegriffe-trainer/",
@@ -177,6 +182,7 @@ var BEISPIELE = [
     vorschlag: { lernaktivitaeten: true, dauer: true, sozialformen: true } },
 
   { id: "one-step", titel: "One Step Forward", fach: "Gemeinschaftskunde",
+    auswahl: { grund: "Ein Impuls fürs Plenum: Positionen werden sichtbar, ohne dass jemand bloßgestellt wird." },
     faecher: ["Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Jede Person zieht zufällig ein Leben. Danach zeigt eine Übung im Raum, wie ungleich die Startbedingungen sind.",
     status: "im Unterricht erprobt", link: GH + "One-Step-forward/",
@@ -328,6 +334,7 @@ var BEISPIELE = [
      Angaben stehen in »vorschlag«, jeweils mit dem Satz aus der Quelle, der die Zuordnung stützt.
      Kein eigenes Bildschirmfoto: Karten ohne Bild zeigt die Galerie kompakt. ---------- */
   { id: "m19-appeasement", aufgenommen: "2026-10", titel: "Appeasement-Politik – der Weg zum Frieden oder in den Zweiten Weltkrieg?", fach: "Geschichte · GGK-Labor",
+    auswahl: { grund: "Die Lernenden arbeiten am Gerät, die Abstimmung läuft mit Stimmkarte und Tafel im Plenum – so sieht hybrid aus." },
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Als Abgeordnete im Unterhaus erfahren die Lernenden in fünf Bausteinen, was London von 1933 bis 1939 wusste – und stimmen dreimal ab. Gesichert wird an der Tafel.",
     status: "im Unterricht erprobt", link: GH + "GGK-Einheit-Nationalsozialismus/appeasement.html",
@@ -383,6 +390,7 @@ var BEISPIELE = [
       sozialformen: "Lage, Optionen und Nachdenken laufen auf dem eigenen Gerät; Diskussion und Abstimmung in der Klasse (»Dilemma 2 … Schritt 2 gemeinsam am Beamer«)." } },
 
   { id: "m22-wie-war-das-moeglich", aufgenommen: "2026-10", titel: "„Große Verbrechen brauchen keine Monster!“ – Wie war das möglich?", fach: "Geschichte · GGK-Labor",
+    auswahl: { grund: "Versiegelte erste Antwort, Lesestufen, Marktplatz: eine ganze Doppelstunde, die ins Gespräch zurückführt." },
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Täterforschung in 90 Minuten: eine versiegelte erste Antwort, ein Faktencheck, der Fall Józefów 1942, sechs Forschungsakten in drei Lesestufen und ein Marktplatz.",
     status: "im Unterricht erprobt", link: GH + "GGK-Einheit-Nationalsozialismus/m22-wie-war-das-moeglich.html",
@@ -412,6 +420,7 @@ var BEISPIELE = [
       sozialformen: "Ablauf der Lehrkraftseite, Spalte »Form«: »Plenum, allein« · »allein oder zu zweit« · »Marktplatz, Tischgruppe« · »Plenum«." } },
 
   { id: "politik-werkstatt", aufgenommen: "2026-10", titel: "Politik-Werkstatt – Parteien und Wahlen", fach: "Gemeinschaftskunde · Politik-Werkstatt",
+    auswahl: { grund: "Fünf Stationen mit echtem Stimmzettel und Sitzrechner – und die einzige Lernseite mit dokumentierter Prüfkette." },
     faecher: ["Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Fünf Stationen vom Art. 21 GG bis zum Sitzrechner: Die Klasse wählt mit dem echten Stimmzettel des Wahlkreises, zählt aus und vergleicht mit dem amtlichen Ergebnis.",
     status: "im Unterricht erprobt", link: GH + "Gemeinschaftskunde/",
@@ -564,7 +573,7 @@ var BEISPIELE = [
     technik: [], barrierearmut: [], datenschutz: [], lernmehrwert: null, organisatorischerNutzen: null,
     anpassungen: [], stolpersteine: [], schritte: [], erfahrung: null, bild: null,
     link: null, quellcode: null, vergleich: null, verwandt: [], suchbegriffe: [], vorschlag: {}, zuerst: false,
-    aufgenommen: null, qualitaetscheck: null,
+    aufgenommen: null, qualitaetscheck: null, auswahl: null,
     /* Getrennte Dimensionen (Master-Prompt, Abschnitt 5): Lernaktivität steht in »lernaktivitaeten«.
        Methode, digitales Format und konkretes Werkzeug bleiben eigene Felder – auch wenn sie noch leer sind. */
     methoden: [], format: null, werkzeuge: []

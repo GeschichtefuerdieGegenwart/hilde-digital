@@ -301,6 +301,7 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 - **F Passer:** Die Überschrift von KI-Training, Digitalem Unterricht und Galerie rastet einmal je Sitzung ein: zwei Farbplatten, dann Druckschwarz (620 ms). `data-passer` an der h1.
 - **G Farbauszug:** Kleine Ansichten (Collage auf dem Start, Detailbilder der Einblicke) sind in Ruhe zweifarbig gedruckt. Beim Überfahren rutschen die Platten auseinander, dann erscheint das echte Bild. Reines CSS, Graustufenbild plus zwei Farbflächen mit multiply.
 - **I Stundenlinie:** Der Umfang als Balken auf der Linie der Stunde (Punkt, Abschnitt, ganze Stunde). Im Planungsweg bei der Umfang-Frage und auf der Entscheidungskarte. `HILDE.stundenlinie()`.
+  - **I2 Stundenlinie in der Galerie (ab Version 4.7):** Dieselbe Linie, dieselbe Funktion, drei weitere Orte. (1) Jede Galerie-Karte (Raster und Bühne) zeigt den Umfang als kleinste Form (`zeile`, 6,5 rem) mit dem Wort daneben – nie nur die Grafik; ohne Umfang keine Linie, nur »noch offen«; KI-Training hat keinen Umfang und keine Zeile. (2) Die Detailseite zeichnet die Linie einmal beim Erscheinen: Der Balken wächst von 0 auf seinen Umfang (260 ms, `HILDE.stundenlinieZeichnen()`), damit man sieht, dass er ein Stück der Stunde ist. (3) Im Filter »Umfang« stehen drei Chips; beim Überfahren oder Fokussieren eines Chips gleitet der Balken der Linie daneben in diesen Umfang (200 ms), beim Wählen bleibt er so – Tastatur und Berührung gleichwertig. (4) »Zum Anfangen«: drei Gruppen mit je einer Linie als Kopf; alle drei zeichnen sich gleichzeitig, ohne Staffelung, weil eine Reihenfolge wie Stufen wirken würde. Begründete Ausnahme von »nur transform und opacity«: Der Balken bewegt `left` und `width`, weil ein mit `scaleX` gestreckter Balken seine runden Enden verlöre (der Punkt würde zum Strich); er liegt absolut auf seiner eigenen Spur und verschiebt nichts um sich herum. Bei »weniger Bewegung« gleitet nichts, der Endzustand steht sofort.
 - **J Stanzloch:** Erledigte Schritte der geführten Wege sind gelocht; der zuletzt erledigte gibt kurz nach (160 ms).
 - **K Schnellhefter:** »Merken« legt ein Beispiel in den Schnellhefter im Kopf. Die Karte fliegt hinein (440 ms, nicht mit der Tastatur), die Zahl rollt. Die Liste steht in der Galerie unter »Mein Schnellhefter«. Gespeichert werden nur IDs, nur im Browser (`hilde.merkliste`).
 - **L Durchschlag:** Beim Kopieren eines Prompts löst sich ein Durchschlag vom Textfeld und gleitet weg (420 ms).
@@ -309,6 +310,7 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 - **O Plattenwechsel:** Über der Galerie schiebt sich die Platte des gewählten Bereichs ins Bild.
 - Ausnahmen von »nie über 300 ms«: Plattenwechsel 320, Leporello 380 (gestaffelt), Durchschlag 420, Flug in den Schnellhefter 440, Passer 620, Zählwerk 720. Alle sind selten, einmalig oder räumlich und blockieren keine Eingabe.
 - Bewusst nicht übernommen: **H Druckwalze**.
+- Durchgesehen für Version 4.7 (Musterbücher der Politik-Werkstatt und des GGK-Labors, nur Technik, keine Farben oder Metaphern): Übernommen wurde allein die Technik **»Balken wachsen vom Nullpunkt«** (Politik-Werkstatt E, Zweibild-Start wie `mv-von` im GGK-Labor) für I2 – sie zeigt, dass der Balken ein Stück der Stunde ist. Bewusst nicht übernommen: **Schwärzung aufdecken** für den Grund-Satz (die Schwärzung bedeutet dort »damals nicht zu wissen«; ein Grund-Satz ist kein Geheimnis, und in den ersten Bildern wäre der Text verdeckt – gegen »Text immer sofort lesbar«), **gestaffeltes Erscheinen der sechs Auswahl-Karten** (eine Folge von punktuell nach durchgängig läse sich wie Stufen; der Abschnitt steht beim Laden im Bild, und was zu sehen ist, wird nicht versteckt), **Stimmkarte und Codewort als Mini-Vorschau** (das wäre eine Simulation der Lernanwendung), **Stempel**, **Urne** und **Halbrund** (gehören zum Stimmzettel, nicht zur Galerie).
 
 ### Bildansicht
 - `<dialog>` auf Druckschwarz-Schleier, Titel und »Schließen« oben, Bild mit Bildtext, »Vorherige« · »Ansicht n von m« · »Nächste« unten. Escape, Pfeiltasten, Klick daneben. Fokus zurück zum auslösenden Bild.
@@ -338,6 +340,7 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 - **Do** Bewegung nur auf Knopfdruck starten und pausierbar machen.
 - **Do** fehlende Bilder mit Rasterpunkten und »noch kein Bild« kennzeichnen.
 - **Do** die Startseite im Beamerformat 1280 × 720 prüfen.
+- **Do** die Auswahl »Zum Anfangen« als Anfang zeigen, nie als Bestenliste: zwei je Umfang, Kriterien sichtbar, keine Nummern.
 
 - **Do** neue Seiten mit `lint.mjs` und `inspect.mjs` aus dem Taste Skill prüfen (Ausnahmen nur `still-page` und `no-footage`, begründet in `.taste-skill/direction.json`).
 

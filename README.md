@@ -18,6 +18,7 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/hilde.js` | gemeinsame Helfer: Speichern im Browser, Karten, Bildansicht |
 | `tools/duplex.py` | erzeugt die Duplex-Vorschauen der Galerie in `assets/galerie/duplex/` (braucht Pillow, nur beim Bauen) |
 | `assets/daten/galerie.js`, `assets/galerie-buehne.js`, `assets/galerie/` | Galerie: echte Ansichten mit Bild- und Alternativtexten, Einblicke; Herkunft in `docs/galerie-quellen.md` |
+| `assets/anfangen.js` | Galerie: »Zum Anfangen« – sechs erprobte Beispiele, zwei je Umfang (Feld `auswahl` in `beispiele.js`) |
 | `assets/daten/schnell.js`, `assets/schnell-anfrage.js`, `assets/ki-schnell.js` | KI-Training: Schnell-Anfrage für häufige Anlässe |
 | `assets/daten/digitalisieren.js`, `assets/digitalisieren-prompt.js`, `assets/digitalisieren.js` | Werkzeug »Unterricht digitalisieren« |
 | `assets/faecher.js` | Fächer mit Tiefe (Galerie gleitend, Startseite von Hand) |
