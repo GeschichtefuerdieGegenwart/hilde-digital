@@ -1,7 +1,7 @@
 # Galerie: Herkunft der Bilder
 
 Alle Bilder in `assets/galerie/` sind Bildschirmfotos aus den verlinkten Lernanwendungen selbst.
-Sie wurden am 18. Oktober 2026 aus lokalen Kopien der öffentlichen Repositories aufgenommen (Chromium, 1040 × 650 Pixel, WebP).
+Sie wurden am 18. Oktober 2026 (Ergänzungen: 26. Oktober 2026, siehe unten) aus lokalen Kopien der öffentlichen Repositories aufgenommen (Chromium, 1040 × 650 Pixel, WebP).
 Dabei wurden nur Bedienschritte genutzt, die die Anwendung selbst anbietet. Inhalte wurden nicht verändert.
 Die Bildtexte und Alternativtexte stehen in `assets/daten/galerie.js`.
 
@@ -211,6 +211,80 @@ Rechte an Bildern innerhalb der Anwendungen (z. B. Illustrationen): **noch offen
 |---|---|---|
 | `bef1-1.webp` | Die Landkarte zeigt alle zwölf Doppelstunden auf einen Blick. | Seite bei 0 px |
 | `bef1-2.webp` | Zu drei Zeitpunkten schätzen sich die Lernenden selbst ein. | Seite bei 2050 px |
+
+## Aufgenommen am 26. Oktober 2026
+
+Die folgenden Bilder wurden am 26. Oktober 2026 auf dieselbe Weise aufgenommen (Chromium, 1040 × 650 Pixel, WebP, lokale Kopien der öffentlichen Repositories). Lehrkraftbereiche blieben geschlossen; es wurden keine Texte eingegeben.
+
+### Appeasement-Politik – der Weg zum Frieden oder in den Zweiten Weltkrieg?
+
+- Repository: `GeschichtefuerdieGegenwart/GGK-Einheit-Nationalsozialismus`, Datei `appeasement.html`
+- Anwendung: https://geschichtefuerdiegegenwart.github.io/GGK-Einheit-Nationalsozialismus/appeasement.html
+
+| Bild | Was zu sehen ist | Weg in der Anwendung |
+|---|---|---|
+| `appeasement-1.webp` | Vor der Abstimmung wählt jede Person eine der drei Optionen und schätzt ein, ob Deutschland danach Ruhe gibt. | Klick auf Baustein 2; zweimal »Nächste Meldung«; »Weiter: die Optionen«; »Weiter: Folgen abwägen«; je Option A, B, C eine Abwägung gewählt; »Weiter: gewichten«; zwei Überlegungen gewählt; »Weiter zur Abstimmung«; Option B angetippt; Seite bei 1425 px |
+| `appeasement-2.webp` | Zu jeder Option stehen Hoffnungen und Risiken – immer nur mit dem Wissen von damals. | wie oben bis »Weiter: Folgen abwägen«; je Option eine Abwägung gewählt; Reiter A geöffnet; Seite bei 1275 px |
+
+### Großbritannien im Zweiten Weltkrieg – drei Dilemmata
+
+- Repository: `GeschichtefuerdieGegenwart/GGK-Einheit-Nationalsozialismus`, Datei `m20-dilemmata.html`
+- Anwendung: https://geschichtefuerdiegegenwart.github.io/GGK-Einheit-Nationalsozialismus/m20-dilemmata.html
+
+| Bild | Was zu sehen ist | Weg in der Anwendung |
+|---|---|---|
+| `dilemmata-1.webp` | Vor der Abstimmung diskutiert die Klasse in zwei Runden mit Uhr. Eine Tafelansicht geht an den Beamer. | Eröffnung übersprungen; »Dilemma 1 beginnen«; dreimal »Nächste Meldung«; »Weiter: Folgen abwägen«; je Option eine Abwägung; »Weiter: gewichten«; zwei Überlegungen; »Weiter zur Diskussion«; Seite bei 2505 px |
+| `dilemmata-2.webp` | Jede Quelle trägt ihre Fundstelle. Hier Churchill im Unterhaus, Mai 1940. | Eröffnung übersprungen; »Dilemma 1 beginnen«; dreimal »Nächste Meldung«; Seite bei 1470 px |
+
+### „Große Verbrechen brauchen keine Monster!“ – Wie war das möglich?
+
+- Repository: `GeschichtefuerdieGegenwart/GGK-Einheit-Nationalsozialismus`, Datei `m22-wie-war-das-moeglich.html`
+- Anwendung: https://geschichtefuerdiegegenwart.github.io/GGK-Einheit-Nationalsozialismus/m22-wie-war-das-moeglich.html
+
+| Bild | Was zu sehen ist | Weg in der Anwendung |
+|---|---|---|
+| `wie-war-das-moeglich-1.webp` | Auf dem Marktplatz prüfen die Lernenden drei Streitpaare am Fall Józefów und bekommen eine Rückmeldung. | Klick auf »5 · Marktplatz«; Klick auf »Eher Browning«; Seite bei 450 px |
+| `wie-war-das-moeglich-2.webp` | Jede Forschungsakte gibt es in drei Lesestufen: Einstieg, Vertiefung, Kontroverse. | Klick auf »4 · Akten«; Klick auf Akte C (Browning); Seite bei 1375 px |
+
+### Politik-Werkstatt – Parteien und Wahlen
+
+- Repository: `GeschichtefuerdieGegenwart/Gemeinschaftskunde`, Datei `parteien-wahlen/station4.html`
+- Anwendung: https://geschichtefuerdiegegenwart.github.io/Gemeinschaftskunde/
+
+| Bild | Was zu sehen ist | Weg in der Anwendung |
+|---|---|---|
+| `politik-werkstatt-1.webp` | Der Sitzrechner zeigt den Bundestag als Halbrund – mit Mehrheitslinie und den Parteien ohne Sitz. | Station 4, Reiter »Sitzrechner« (Bundesergebnis 2025 vorgeladen); Seite bei 1390 px |
+| `politik-werkstatt-2.webp` | Zweitstimmen eintragen oder ein echtes Ergebnis laden, dann die 5-%-Hürde an- und ausschalten. | Station 4, Reiter »Sitzrechner«; Seite bei 495 px |
+
+### Psycho-Labor: Gestalt, Erwartung, Konformität, Anspruchsniveau
+
+- Repository: `GeschichtefuerdieGegenwart/psycho-labor`, Dateien `ds05-andere.html` und `ds03-gestalten.html`
+- Anwendung: https://geschichtefuerdiegegenwart.github.io/psycho-labor/
+
+| Bild | Was zu sehen ist | Weg in der Anwendung |
+|---|---|---|
+| `psycho-ds3-6-1.webp` | Welche Linie ist gleich lang? Ein Teil des Kurses sieht vorher, was fünf andere gewählt haben. | `ds05-andere.html?f=1` (Fassung mit Antworten anderer, wie über den QR-Code der Lehrkraft); Schritt s-4 geöffnet (Schrittwechsel der Anwendung, ohne Eingaben); Seite bei 190 px |
+| `psycho-ds3-6-2.webp` | Sieben Entdeckungen zu zweit: Erst beschreiben, dann die Regel finden, dann den Fachbegriff aufdecken. | `ds03-gestalten.html`; Klick auf »Teil A · zu zweit«; Seite bei 62 px |
+
+### Erfundene Traditionen
+
+- Repository: `GeschichtefuerdieGegenwart/nation-im-kopf-gene`, Datei `erfundene-traditionen.html`
+- Anwendung: https://geschichtefuerdiegegenwart.github.io/nation-im-kopf-gene/erfundene-traditionen.html
+
+| Bild | Was zu sehen ist | Weg in der Anwendung |
+|---|---|---|
+| `erfundene-traditionen-1.webp` | Im Theorie-Duell positionieren die Lernenden jeden Fall zwischen Hobsbawm und Smith und vergleichen mit einem Vorschlag. | Einblend-Effekt der Seite abgeschaltet; Abschnitt »Duell«; Klick auf »Vergleichen« beim Sedantag; Seite bei 5190 px |
+| `erfundene-traditionen-2.webp` | Hobsbawms Werkzeugkasten: vier Merkmale und drei Funktionen einer erfundenen Tradition. | Einblend-Effekt der Seite abgeschaltet; Seite bei 2222 px |
+
+### Nationalismus und Demokratie
+
+- Repository: `GeschichtefuerdieGegenwart/nation-im-kopf-gene`, Datei `nationalismus-demokratie.html`
+- Anwendung: https://geschichtefuerdiegegenwart.github.io/nation-im-kopf-gene/nationalismus-demokratie.html
+
+| Bild | Was zu sehen ist | Weg in der Anwendung |
+|---|---|---|
+| `nationalismus-demokratie-1.webp` | Fünf Regler stellen Kipp-Punkte ein. Ein Zeiger zeigt, wann das Wir zur Gefahr wird. | Einblend-Effekt der Seite abgeschaltet; Abschnitt »Kipp-Punkte«; Klick auf die Voreinstellung »Kaiserreich (wilhelminisch)«; Seite bei 4080 px |
+| `nationalismus-demokratie-2.webp` | Zum Einstieg ordnen die Lernenden Aussagen den Begriffen zu und bekommen eine kurze Erklärung. | Einblend-Effekt der Seite abgeschaltet; Abschnitt »Begriffe«; Klick auf »Verfassungspatriotismus« bei der ersten Aussage; Seite bei 1635 px |
 
 ## Duplex-Vorschauen und Auswahl für die Startseite (Version 4.2)
 
