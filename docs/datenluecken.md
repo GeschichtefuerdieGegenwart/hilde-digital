@@ -232,7 +232,7 @@ Vorschläge zum Prüfen:
 - [ ] sozialformen: Einzelarbeit, Plenum
   - Begründung: Die Bausteine bearbeitet jede Person auf dem eigenen iPad; Abstimmung und Tafelbild finden in der Klasse statt (»Die Klasse stimmt ab. Das Ergebnis sichern wir an der Tafel.«).
 
-Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, KI-Einsatz.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Großbritannien im Zweiten Weltkrieg – drei Dilemmata (`m20-dilemmata`)
 
@@ -254,7 +254,7 @@ Vorschläge zum Prüfen:
 - [ ] sozialformen: Einzelarbeit, Plenum
   - Begründung: Lage, Optionen und Nachdenken laufen auf dem eigenen Gerät; Diskussion und Abstimmung in der Klasse (»Dilemma 2 … Schritt 2 gemeinsam am Beamer«).
 
-Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, KI-Einsatz.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### „Große Verbrechen brauchen keine Monster!“ – Wie war das möglich? (`m22-wie-war-das-moeglich`)
 
@@ -273,12 +273,10 @@ Vorschläge zum Prüfen:
   - Begründung: Lehrkraftseite: »Input 1: Faktencheck – Lehrkraft und alle«, »Diskussion in vier Schritten am Beamer«, »Die Lehrkraft führt am Beamer durch die Schritte«; Akten und Marktplatz laufen in Eigenregie.
 - [ ] mehrwerte: unterschiedliche Zugänge und Niveaus anbieten, schneller Rückmeldung erhalten, Ergebnisse sichtbar machen und vergleichen
   - Begründung: README: Akten »in drei Lesestufen«, »Gewichtungs-Check mit Rückmeldung je Ebene«, »Beamer-Ansicht der Tischmodelle«.
-- [ ] dauer: Doppelstunde, 90 Minuten
-  - Begründung: Lehrkraftseite: »Ablauf, 90 Minuten« und »Doppelstunde, 90 Minuten«.
 - [ ] sozialformen: Plenum, Einzelarbeit, Partnerarbeit, Gruppenarbeit
   - Begründung: Ablauf der Lehrkraftseite, Spalte »Form«: »Plenum, allein« · »allein oder zu zweit« · »Marktplatz, Tischgruppe« · »Plenum«.
 
-Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand, KI-Einsatz.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Politik-Werkstatt – Parteien und Wahlen (`politik-werkstatt`)
 
@@ -297,12 +295,10 @@ Vorschläge zum Prüfen:
   - Begründung: Lehrkraft-Modus: Beamer-Ansichten, Klassenwahl am Lehrkraftgerät, »Vermuten im Plenum, dann gemeinsam aufdecken«; die Stationen bearbeiten die Lernenden selbst.
 - [ ] mehrwerte: authentische Informationen, Daten oder Werkzeuge nutzen, mit Medien untersuchen oder experimentieren, schneller Rückmeldung erhalten
   - Begründung: README: »Stimmzettel des Wahlkreises 260 Böblingen, Positionen wörtlich aus den Wahlprogrammen 2025, Repräsentative Wahlstatistik 2025«; Sitzrechner mit Schalter für die 5-%-Hürde; Rückmeldung »Passt / Vertretbar / Eher nicht« mit Begründung.
-- [ ] dauer: zwei Doppelstunden
-  - Begründung: Startseite: »Gemeinschaftskunde J1 · zwei Doppelstunden«; Lehrkraft-Modus: »Verlaufsplan: zwei Doppelstunden«.
 - [ ] sozialformen: Einzelarbeit, Partnerarbeit, Plenum
   - Begründung: Verlaufsplan, Spalte »Sozialform«: Plenum, Einzel/Partner, Partner, Einzel.
 
-Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand, KI-Einsatz.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Psycho-Labor: Gestalt, Erwartung, Konformität, Anspruchsniveau (`psycho-ds3-6`)
 
@@ -321,12 +317,10 @@ Vorschläge zum Prüfen:
   - Begründung: Jeder Schritt trägt Zeit und Sozialform (»⏱ 2 Min. allein«); die Auflösung läuft »gemeinsam« mit dem Kursbild der Lehrkraft am Beamer.
 - [ ] mehrwerte: mit Medien untersuchen oder experimentieren, Ergebnisse sichtbar machen und vergleichen
   - Begründung: Produktbeschreibung: Das Tablet leistet »verdeckte Zuteilung von Bedingungen, genaue Zeiten, sofortige anonyme Kursdaten, Lernmappe mit eigenen Daten«.
-- [ ] dauer: je Labor etwa 17 bis 32 Minuten
-  - Begründung: Modulseiten: DS 3 Teil A 20 Min. und Teil B 12 Min., DS 4 »ca. 25 Min.«, DS 5 »ca. 22 Min.«, DS 6 »ca. 17 Min.«.
 - [ ] sozialformen: Einzelarbeit, Partnerarbeit, Plenum
   - Begründung: Modulseiten: DS 3 »Teil A · zu zweit«, »Teil B · allein«; DS 4 bis 6 »allein«, Auflösung »gemeinsam, dann allein schreiben«.
 
-Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand, KI-Einsatz.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Erfundene Traditionen (`erfundene-traditionen`)
 
@@ -348,7 +342,7 @@ Vorschläge zum Prüfen:
 - [ ] sozialformen: Einzelarbeit
   - Begründung: Alle Aufträge stehen in der Du-Form; eine Partner- oder Gruppenphase nennt das Modul nicht.
 
-Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, KI-Einsatz.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Nationalismus und Demokratie (`nationalismus-demokratie`)
 
@@ -370,7 +364,7 @@ Vorschläge zum Prüfen:
 - [ ] sozialformen: Einzelarbeit
   - Begründung: Alle Aufträge stehen in der Du-Form; eine Partner- oder Gruppenphase nennt das Modul nicht.
 
-Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, KI-Einsatz.
+Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Vorbereitungsaufwand.
 
 ### Fehlersuche an der Bremsanlage (`kfz-fehlersuche`)
 
