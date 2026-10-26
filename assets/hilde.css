@@ -264,6 +264,7 @@ main:focus{outline:none}
 .frage:focus{outline:none}
 .frage:focus-visible{outline:3px solid var(--fokus);outline-offset:2px}
 .hilfe{color:var(--leise);margin-top:.35rem;max-width:60ch}
+.teil-hinweis{display:block;margin-top:.25rem;color:var(--text)}
 .optionen{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:.75rem;margin-top:var(--a3)}
 .option{position:relative;display:flex;align-items:flex-start;gap:.75rem;min-height:56px;padding:.85rem 1rem;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund-klein);cursor:pointer;transition:border-color var(--dauer-schnell) var(--ease-out),background-color var(--dauer-schnell) var(--ease-out)}
 .option:hover{border-color:var(--farbe,var(--text))}
@@ -660,7 +661,8 @@ main p,main li,main dd{max-width:60ch}
 .werkzeug.haupt .werkzeug-text{max-width:60ch}
 @media (hover:hover) and (pointer:fine){.werkzeug.haupt a:hover{box-shadow:6px 6px 0 0 var(--lernen-tief)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
 @media (max-width:1023px){.werkzeuge{grid-template-columns:1fr}}
-.bezug-ki{margin-top:var(--a4);padding:var(--a2) var(--a3);background:var(--ki-zart);border-radius:var(--rund);max-width:72ch}
+.galerie-hinweis{margin-top:var(--a4);padding:var(--a2) var(--a3);background:var(--flaeche);border-radius:var(--rund);border-left:8px solid var(--karton);max-width:72ch}
+.bezug-ki{margin-top:var(--a3);padding:var(--a2) var(--a3);background:var(--ki-zart);border-radius:var(--rund);max-width:72ch}
 
 /* KI-Training: Aufbau einer Anfrage und Regeln */
 .ki-raster{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4);align-items:start}

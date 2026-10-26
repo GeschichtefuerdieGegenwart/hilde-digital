@@ -8,11 +8,12 @@
   var SPEICHER = "kiweg";
 
   var SCHRITTE = [
-    { id: "ziel", titel: "Ziel", frage: "Wobei soll KI dich unterstützen?", hilfe: "Wähle eine Aufgabe. Klein anfangen ist ausdrücklich gut." },
-    { id: "form", titel: "Ergebnis", frage: "Was möchtest du am Ende erhalten?", hilfe: "Hier stehen nur Formen, die zu deinem Ziel passen." },
-    { id: "kontext", titel: "Kontext", frage: "Worum geht es genau?", hilfe: "Wenige Angaben reichen. Alle Felder sind freiwillig." },
-    { id: "anfrage", titel: "Anfrage", frage: "Deine Anfrage", hilfe: "Du kannst jeden Baustein direkt ändern." },
-    { id: "pruefen", titel: "Prüfen", frage: "Prüfe das Ergebnis der KI", hilfe: "KI kann sich irren. Du entscheidest, was du übernimmst." }
+    /* teil: Welcher der fünf Teile einer guten Anfrage (KI_TEXTE.bausteine) hier entsteht. Nur Beschriftung, keine Logik. */
+    { id: "ziel", titel: "Ziel", frage: "Wobei soll KI dich unterstützen?", hilfe: "Wähle eine Aufgabe. Klein anfangen ist ausdrücklich gut.", teil: "Das wird Teil 1 der Anfrage: Ziel." },
+    { id: "form", titel: "Ergebnis", frage: "Was möchtest du am Ende erhalten?", hilfe: "Hier stehen nur Formen, die zu deinem Ziel passen.", teil: "Das wird Teil 4 der Anfrage: Format." },
+    { id: "kontext", titel: "Kontext", frage: "Worum geht es genau?", hilfe: "Wenige Angaben reichen. Alle Felder sind freiwillig.", teil: "Das wird Teil 2 der Anfrage: Kontext." },
+    { id: "anfrage", titel: "Anfrage", frage: "Deine Anfrage", hilfe: "Du kannst jeden Baustein direkt ändern.", teil: "Hier stehen alle fünf Teile. Teil 3 (Anforderungen) und Teil 5 (Prüfkriterien) sind vorbereitet." },
+    { id: "pruefen", titel: "Prüfen", frage: "Prüfe das Ergebnis der KI", hilfe: "KI kann sich irren. Du entscheidest, was du übernimmst.", teil: "Kein Teil der Anfrage mehr: Jetzt prüfst du, was die KI geliefert hat." }
   ];
 
   var form = document.getElementById("weg");
@@ -56,7 +57,8 @@
   }
 
   function kopf(s) {
-    return '<h2 class="frage" id="frage" tabindex="-1">' + esc(s.frage) + '</h2><p class="hilfe">' + esc(s.hilfe) + "</p>";
+    return '<h2 class="frage" id="frage" tabindex="-1">' + esc(s.frage) + '</h2><p class="hilfe">' + esc(s.hilfe) +
+      (s.teil ? ' <span class="teil-hinweis">' + esc(s.teil) + "</span>" : "") + "</p>";
   }
 
   function antworten() {
