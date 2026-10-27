@@ -81,12 +81,29 @@
 
   function zurueckLeiste() {
     var weg = H.lies("tabletweg");
-    var html = '<a class="textlink" href="galerie.html"><span aria-hidden="true">←</span> Zur Galerie</a>';
+    var html = '<a class="textlink" href="galerie.html" id="zur-galerie"><span aria-hidden="true">←</span> Zur Galerie</a>';
     if (weg && weg.erreicht >= 4) {
       html += '<a class="textlink" href="tablets.html" id="zur-karte"><span aria-hidden="true">←</span> Zurück zu deiner Entscheidungskarte</a>';
     }
     return '<p class="zurueck-leiste">' + html + "</p>";
   }
+
+  /* Ansichtswechsel (ab Version 4.8 Teil 2): Bild und Titel tragen dieselben Namen wie die Karte, von der aus das Beispiel
+     geöffnet wurde (bild-<id>, titel-<id>; HILDE.ansichtswechsel in hilde.js). Auf dieser Seite steht nur ein Beispiel,
+     also kann kein Name doppelt vorkommen. Beim Weg zurück zur Galerie merkt sich die Seite die ID, damit dort die
+     passende Karte benannt wird. Kam man von einer Karte, bekommt »Zur Galerie« den Fokus. */
+  var vonKarte = !!H.wechselId();
+  function benenne(b) {
+    if (!H.wechselMoeglich()) return;
+    // Nur das Hauptbild und die Überschrift – nicht die kleinen Karten unter »Passt dazu«.
+    H.wechselBenennen(null, b.id, ziel.querySelector(".detail-haupt-bild img, .detail-bild img"), document.getElementById("detail-titel"));
+    if (H.wechselId()) H.wechselMerken(b.id);
+  }
+  ziel.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="galerie.html"]');
+    var b = a && finde(decodeURIComponent((location.hash || "").replace(/^#/, "")));
+    if (b && H.wechselMoeglich()) H.wechselMerken(b.id);
+  });
 
   function zeige() {
     var slug = decodeURIComponent((location.hash || "").replace(/^#/, ""));
@@ -184,6 +201,7 @@
       "</div></section>" + passtDazu(b) + "</div>";
 
     H.stundenlinieZeichnen(ziel.querySelectorAll(".stundenlinie"));
+    benenne(b);
     var zk = document.getElementById("zur-karte");
     if (zk) zk.addEventListener("click", function () {
       var weg = H.lies("tabletweg"); if (weg) { weg.schritt = 5; H.schreib("tabletweg", weg); }
@@ -202,4 +220,5 @@
     var t = document.getElementById("detail-titel"); if (t) t.focus();
   });
   zeige();
+  if (vonKarte) { var zg = document.getElementById("zur-galerie"); if (zg) zg.focus({ preventScroll: true }); }
 })();
