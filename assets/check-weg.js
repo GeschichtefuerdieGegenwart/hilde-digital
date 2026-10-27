@@ -72,6 +72,9 @@
       return '<li class="' + zustand + '"' + (aktuell ? ' aria-current="step"' : "") + '><span class="ohne">' + inhalt +
         '<span class="sr-only"> (Schritt ' + (i + 1) + " von " + SCHRITTE.length + ")</span></span></li>";
     }).join("");
+    // Sichtbar neben den Stanzloch-Punkten (ab Version 4.8); für Vorleseprogramme steht es schon im Schritt und in der Ansage.
+    var stand = document.getElementById("schritte-stand");
+    if (stand) stand.textContent = "Schritt " + (z.schritt + 1) + " von " + SCHRITTE.length;
   }
 
   function kopf(s) {

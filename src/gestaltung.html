@@ -76,9 +76,20 @@
         <li><b>Bildansicht öffnet:</b> 200 ms, aus 95 % Größe</li>
         <li><b>Schließen:</b> 150 ms, kürzer als Öffnen</li>
         <li><b>Drücken:</b> Schaltflächen auf 97 %, große Flächen auf 99 %</li>
-        <li><b>Nie:</b> über 300 ms, langsam beginnend, alles auf einmal</li>
+        <li><b>Regel:</b> höchstens 300 ms. Nie langsam beginnend, nie alles auf einmal, nie in Schleife.</li>
+        <li><b>Begründete Ausnahmen:</b> Plattenwechsel 320, Leporello 380, Vom Blatt zum Tablet 380, Durchschlag 420, Flug in den Schnellhefter 440, Passer 620, Zählwerk 720 ms. Alle selten, einmalig oder räumlich, keine blockiert eine Eingabe.</li>
       </ul>
       <p><button type="button" class="knopf">Drück mich</button> <button type="button" class="knopf still">Nebenschaltfläche</button></p></div>
+    <div class="stapel"><h3>Schalter »Weniger Bewegung«</h3><p class="leise klein mass">Steht im Fuß jeder Seite. Gedrückt: Nichts gleitet, nichts fliegt, alles steht sofort da – nur kurzes Überblenden bleibt. Die Wahl bleibt in diesem Browser und wirkt sofort, auch auf den Fächer. Wer im System schon weniger Bewegung eingestellt hat, bekommt das ohnehin; der Schalter kann es nur verstärken. »Eingaben löschen« setzt den Schalter mit zurück.</p>
+      <p><button type="button" class="knopf still bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button></p></div>
+    <div class="stapel"><h3>Vom Blatt zum Tablet</h3><p class="leise klein mass">Auf »Unterricht digitalisieren« zieht ein Regler zwischen Arbeitsblatt und Tablet. Beide Zustände stehen als Text dabei. Einmal spielt es von selbst, wenn das Bild erscheint; sobald du anfasst, bestimmst du.</p></div>
+    <div class="stapel"><h3>Status-Farben</h3><p class="leise klein mass">Erfolg, Warnung und Fehler, jede mit einer zarten Fläche. Der Status steht immer auch als Wort. Text auf der zarten Fläche liest sich gut (mindestens 4,5:1).</p>
+      <ul class="farbliste anliegen klein">
+        <li><span class="farbfeld" style="background:var(--erfolg)"></span><span class="farbfeld rand" style="background:var(--erfolg-zart)"></span> Erfolg und Erfolg zart</li>
+        <li><span class="farbfeld" style="background:var(--warnung)"></span><span class="farbfeld rand" style="background:var(--warnung-zart)"></span> Warnung und Warnung zart</li>
+        <li><span class="farbfeld" style="background:var(--fehler)"></span><span class="farbfeld rand" style="background:var(--fehler-zart)"></span> Fehler und Fehler zart</li>
+      </ul>
+      <p class="hinweis-fehler mass">So sieht ein Hinweis aus, wenn etwas fehlt.</p></div>
     <div class="stapel"><h3>Stundenlinie</h3><p class="leise klein mass">Der Umfang als Form auf der Linie der Stunde: Punkt, Abschnitt oder ganze Stunde. Ohne Rangfolge. Das Wort steht immer daneben, die Linie ist nur ein Bild dazu. Auf Galerie-Karten in der kleinsten Form, im Filter »Umfang« gleitet der Balken beim Überfahren eines Chips in diesen Umfang.</p>
       <p class="umfang-zeile"><span class="stundenlinie zeile" data-umfang="punktuell" aria-hidden="true"><span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></span><span>Umfang: <b>Punktuell</b></span></p>
       <p class="umfang-zeile"><span class="stundenlinie zeile" data-umfang="phasenweise" aria-hidden="true"><span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></span><span>Umfang: <b>Phasenweise</b></span></p>

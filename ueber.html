@@ -7,6 +7,7 @@
 <meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 <title>Über Hilde Digital</title>
 <link rel="stylesheet" href="assets/hilde.css">
+<script>/* Schalter »Weniger Bewegung« (Fuß): die gemerkte Wahl vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger")}catch(e){}</script>
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
@@ -48,8 +49,9 @@
 
   <section class="stapel" aria-labelledby="t-neu">
     <h2 id="t-neu">Was ist neu?</h2>
-    <p class="leise">Stand: 26. Oktober 2026</p>
+    <p class="leise">Stand: 27. Oktober 2026</p>
     <ul class="neu-liste">
+      <li><b>Weniger Bewegung auf Knopfdruck</b>Im Fuß jeder Seite gibt es jetzt den Schalter »Weniger Bewegung«. Dann gleitet und fliegt nichts mehr. Der Fächer in der Galerie läuft außerdem nur noch einmal durch und bleibt dann stehen. Auf »Unterricht digitalisieren« ziehst du das Bild selbst vom Blatt zum Tablet. In den geführten Wegen steht »Schritt 2 von 5« jetzt sichtbar, bei »Was passt gerade zu mir?« das Wort zur gewählten Stufe. <a class="textlink" href="gestaltung.html">Mehr zur Gestaltung <span aria-hidden="true">→</span></a></li>
       <li><b>Zum Anfangen</b>Die Galerie zeigt jetzt sechs erprobte Beispiele, zwei je Umfang: punktuell, phasenweise, durchgängig. Keine Bestenliste, nur ein Anfang. Jede Karte in der Galerie zeigt ihren Umfang als kleine Linie der Stunde – mit dem Wort daneben. <a class="textlink" href="galerie.html#anfangen">Ansehen <span aria-hidden="true">→</span></a></li>
       <li><b>Zwei Ziele</b>Hilde Digital hat jetzt zwei klar benannte Ziele: KI-Kompetenz im Kollegium und die Kompetenz, digitalen Unterricht zu gestalten. Die Galerie liefert die Beispiele für beide. <a class="textlink" href="#t-wozu">Nachlesen <span aria-hidden="true">→</span></a></li>
       <li><b>Für Unterricht und Kollegium</b>»Tablet-Phasen gut führen« mit Karte für die Tafel, »Mein Ist-Stand« mit fünf Fragen nur für dich, ein Fortbildungsbaustein für 45 Minuten und zehn Leitsätze zur Diskussion. <a class="textlink" href="unterricht.html#t-austausch">Ansehen <span aria-hidden="true">→</span></a></li>
@@ -152,6 +154,7 @@ document.getElementById("alles-loeschen").addEventListener("click", function () 
 <footer class="fuss"><div class="huelle">
   <p class="fuss-marke" aria-hidden="true">Hilde Digital<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span></p>
   <nav class="fusslinks" aria-label="Über Hilde Digital"><ul><li><a href="ueber.html">Über Hilde Digital</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>
   <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
 </div></footer>
 <script src="assets/motion.js"></script>

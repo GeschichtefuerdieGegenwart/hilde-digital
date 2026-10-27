@@ -35,7 +35,11 @@
   --aktion:#2a2622;       /* Hauptschaltfläche, neutral für beide Bereiche */
   --aktion-text:#fffffd;
   --fokus:#2a2622;        /* Doppelring: außen Druckschwarz, innen Fläche – auf jeder Farbe sichtbar */
-  --fehler:#b0281c;
+  /* Status (ab Version 4.8 als Variablen; Werte aus DESIGN.md). Status steht immer auch als Wort.
+     Text auf der zarten Fläche: Erfolg 5,4:1 · Warnung 5,1:1 · Fehler 5,6:1 · Fehler tief 10,2:1 (alle AA). */
+  --erfolg:#2e6b34; --erfolg-zart:#e3eee2;
+  --warnung:#8a5300; --warnung-zart:#f5e6c6;
+  --fehler:#b0281c; --fehler-zart:#f8e9e2; --fehler-tief:#5e2410;
   --ueberarbeitung:#7a3324; --ueberarbeitung-zart:#f3e3df;
   /* Schrift */
   --schrift:"Atkinson Hyperlegible Next","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -241,11 +245,14 @@ main:focus{outline:none}
 
 /* Geführter Weg */
 .weg-abschnitt{padding-top:var(--a3)}
+/* Stanzloch-Punkte und daneben sichtbar »Schritt n von m« (ab Version 4.8; vorher nur für Vorleseprogramme) */
+.schritte-nav{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a1) var(--a2)}
+.schritte-stand{margin:0;font-size:var(--gr-klein);color:var(--leise);white-space:nowrap}
 .schritte{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem;counter-reset:none}
 .schritte li{display:flex}
 .schritte li>button,.schritte li>.ohne{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.35rem .8rem .35rem .4rem;border-radius:var(--rund);font:400 var(--gr-klein)/1.2 var(--schrift);color:var(--leise);background:transparent;border:2px solid transparent}
 .schritte li>button{cursor:pointer;color:var(--text);border-color:var(--stahl);background:var(--flaeche)}
-.schritte li>button:hover{border-color:var(--farbe,var(--text))}
+@media (hover:hover) and (pointer:fine){.schritte li>button:hover{border-color:var(--farbe,var(--text))}}
 .schritte .nr{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--linie);font-weight:700;background:var(--flaeche)}
 /* Stanzloch-Fortschritt (Muster J): Erledigte Schritte sind gelocht wie ein Blatt für den Ordner. */
 .schritte .nr{position:relative}
@@ -267,7 +274,7 @@ main:focus{outline:none}
 .teil-hinweis{display:block;margin-top:.25rem;color:var(--text)}
 .optionen{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:.75rem;margin-top:var(--a3)}
 .option{position:relative;display:flex;align-items:flex-start;gap:.75rem;min-height:56px;padding:.85rem 1rem;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund-klein);cursor:pointer;transition:border-color var(--dauer-schnell) var(--ease-out),background-color var(--dauer-schnell) var(--ease-out)}
-.option:hover{border-color:var(--farbe,var(--text))}
+@media (hover:hover) and (pointer:fine){.option:hover{border-color:var(--farbe,var(--text))}}
 .option input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin:.15rem 0 0;border:2px solid var(--leise);border-radius:50%;background:var(--flaeche);display:grid;place-items:center;cursor:pointer}
 .option input::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--text);transform:scale(.5);opacity:0;transition:transform var(--dauer-schnell) var(--ease-out),opacity var(--dauer-schnell) var(--ease-out)}
 .option input:checked{border-color:var(--text)}
@@ -286,7 +293,7 @@ main:focus{outline:none}
 .klein-optionen .option{min-height:48px;padding:.6rem .75rem;background:var(--grund)}
 .weg-steuerung{display:flex;justify-content:space-between;gap:var(--a2);margin-top:var(--a4);flex-wrap:wrap}
 .weg-steuerung #weiter{margin-left:auto}
-.hinweis-fehler{margin-top:var(--a2);padding:.6rem 1rem;background:#f8e9e2;color:#5e2410;border-radius:var(--rund);font-weight:700}
+.hinweis-fehler{margin-top:var(--a2);padding:.6rem 1rem;background:var(--fehler-zart);color:var(--fehler-tief);border-radius:var(--rund);font-weight:700}
 .speicherhinweis{margin-top:var(--a3)}
 
 /* Entscheidungskarte */
@@ -344,7 +351,7 @@ main:focus{outline:none}
 input[type="text"],input[type="search"],textarea,select{font:400 1.125rem/1.5 var(--schrift);color:var(--text);background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund-klein);padding:.6rem .8rem;min-height:48px;width:100%}
 textarea{resize:vertical;line-height:1.55}
 select{appearance:none;-webkit-appearance:none;padding-right:2.4rem;background-image:linear-gradient(45deg,transparent 50%,var(--text) 50%),linear-gradient(135deg,var(--text) 50%,transparent 50%); /* taste-skill-ignore: Pfeil im Formularfeld */ background-position:calc(100% - 1.15rem) 55%,calc(100% - .8rem) 55%;background-size:.4rem .4rem;background-repeat:no-repeat;cursor:pointer}
-input:hover,textarea:hover,select:hover{border-color:var(--text)}
+@media (hover:hover) and (pointer:fine){input:hover,textarea:hover,select:hover{border-color:var(--text)}}
 input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--fokus);outline-offset:2px;border-color:var(--text);box-shadow:0 0 0 5px var(--flaeche)} /* taste-skill-ignore: Fokus-Doppelring */
 .eingabe{display:grid;gap:.3rem;align-content:start}
 .eingabe label{font-weight:700}
@@ -399,11 +406,14 @@ main p,main li,main dd{max-width:60ch}
 .stufen{display:grid;grid-template-columns:repeat(5,minmax(44px,1fr));gap:.5rem}
 .stufe{display:grid;place-items:center;min-height:52px;border:2px solid var(--stahl);border-radius:var(--rund-klein);background:var(--flaeche);cursor:pointer;position:relative}
 .stufe input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
-.stufe:hover{border-color:var(--farbe,var(--text))}
+@media (hover:hover) and (pointer:fine){.stufe:hover{border-color:var(--farbe,var(--text))}}
 .stufe:has(input:checked){background:var(--text);border-color:var(--text);color:var(--flaeche)}
 .stufe:has(input:focus-visible){outline:3px solid var(--fokus);outline-offset:2px;box-shadow:0 0 0 5px var(--flaeche)} /* taste-skill-ignore: Fokus-Doppelring */
 .stufe-zahl{font-weight:700}
 .skala-enden{display:flex;justify-content:space-between;gap:1rem;font-size:var(--gr-klein);color:var(--leise);margin-top:.35rem}
+/* Das Wort der gewählten Stufe steht sichtbar unter der Skala (ab Version 4.8). */
+.stufe-wort{margin-top:.5rem;font-size:var(--gr-klein);color:var(--leise);min-height:1.5em}
+.stufe-wort b{color:var(--text)}
 .kontextfragen{max-width:44rem;margin-top:var(--a4)}
 #ergebnis{margin-top:var(--a4)}
 
@@ -504,7 +514,7 @@ main p,main li,main dd{max-width:60ch}
 .karten.buehne:focus-visible{outline:3px solid var(--fokus);outline-offset:4px}
 .buehne-steuerung{display:flex;justify-content:space-between;align-items:center;gap:var(--a2);margin-top:var(--a2)}
 .buehne-steuerung .knopf[disabled]{opacity:.45;cursor:default}
-@media (prefers-reduced-motion:no-preference){.karten.buehne{scroll-behavior:smooth}}
+@media (prefers-reduced-motion:no-preference){html:not([data-bewegung="weniger"]) .karten.buehne{scroll-behavior:smooth}}
 
 /* ---------- Selbstcheck »Eigenes Material prüfen« ---------- */
 .kern-marke{display:inline-block;font-size:var(--gr-klein);font-weight:700;padding:0 .5rem;border-radius:var(--rund);background:var(--lernen-zart);color:var(--lernen-tief);margin-left:.3rem;vertical-align:.1em}
@@ -585,6 +595,12 @@ main p,main li,main dd{max-width:60ch}
   .fussnav{display:block;flex-basis:100%;margin-bottom:var(--a4)}
   .leitsatz{font-size:1.5rem}
 }
+/* Fuß: Schalter »Weniger Bewegung« (ab Version 4.8). Ein Knopf mit aria-pressed; gedrückt = Druckschwarz mit Haken. */
+.fuss-einstellung{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:var(--a1) var(--a2);margin:0}
+.bewegung-schalter[aria-pressed="true"]{background:var(--text);color:var(--flaeche);border-color:var(--text)}
+.bewegung-schalter[aria-pressed="true"]::before{content:"";width:.4em;height:.75em;border:solid currentColor;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg);margin-right:.1em}
+.fuss-einstellung .leise{font-size:var(--gr-klein)}
+
 /* Beamer 1280 × 720: Kernaussage und beide Einstiege ohne Scrollen */
 @media (max-height:760px) and (min-width:1024px){
   .kopf{padding-block:.5rem}
@@ -810,15 +826,25 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
 @view-transition{navigation:auto}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:var(--dauer-mittel);animation-timing-function:var(--ease-out)}
 
-/* Weniger Bewegung: keine Wege und keine Größenänderung, nur kurzes Überblenden (≤ 150 ms) */
+/* Weniger Bewegung: keine Wege und keine Größenänderung, nur kurzes Überblenden (≤ 150 ms).
+   Gilt bei der Systemeinstellung (prefers-reduced-motion) und – ab Version 4.8 – beim Schalter »Weniger Bewegung«
+   im Fuß jeder Seite (html[data-bewegung="weniger"], gemerkt in diesem Browser). Die Regeln stehen zweimal,
+   weil sich eine Medienabfrage und ein Attribut nicht in einer Selektorliste verbinden lassen; beide Blöcke
+   müssen gleich bleiben. Die Zeilen mit ::view-transition stehen nur im Medienblock (sie gelten für die ganze Seite). */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-property:opacity,color,background-color,border-color!important;transition-duration:var(--dauer-aus)!important;scroll-behavior:auto!important}
   .registrieren .wahlflaeche{animation:none!important}
   dialog.lichtbild[open],dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
-    .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
+  .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
   .karte:hover,.werkzeug a:hover,.check-weg:hover,[data-bildrahmen]:hover{transform:none!important}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
 }
+html[data-bewegung="weniger"] *,html[data-bewegung="weniger"] *::before,html[data-bewegung="weniger"] *::after{transition-property:opacity,color,background-color,border-color!important;transition-duration:var(--dauer-aus)!important;scroll-behavior:auto!important}
+html[data-bewegung="weniger"] .registrieren .wahlflaeche,html[data-bewegung="weniger"] .registrieren .collage-karte{animation:none!important}
+html[data-bewegung="weniger"] dialog.lichtbild[open],html[data-bewegung="weniger"] dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
+html[data-bewegung="weniger"] :is(.knopf,.wahlflaeche,.galerie-zugang,.werkzeug a,.check-weg,[data-bildrahmen]):active{transform:none}
+html[data-bewegung="weniger"] :is(.karte,.werkzeug a,.check-weg,[data-bildrahmen]):hover{transform:none!important}
+html[data-bewegung="weniger"]::view-transition-old(root),html[data-bewegung="weniger"]::view-transition-new(root){animation:none}
 
 /* Ab Version 4.1: Prüf-Auftrag und aufklappbarer Rahmen */
 .ki-pruefen .box,.lassen-kopf details.mehr,.ki-pruefen details.mehr{background:var(--grund)}
@@ -897,8 +923,8 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .registrieren .collage-karte.c2{animation:reg-lernen var(--dauer-register) var(--ease-register) both}
 @supports (animation-timeline: scroll()){
   @media (min-width:1024px) and (prefers-reduced-motion:no-preference){
-    .collage{animation:collage-drift linear both;animation-timeline:scroll(root);animation-range:0 70vh}
-    .collage-karte.c3{animation:collage-gegen linear both;animation-timeline:scroll(root);animation-range:0 70vh}
+    html:not([data-bewegung="weniger"]) .collage{animation:collage-drift linear both;animation-timeline:scroll(root);animation-range:0 70vh}
+    html:not([data-bewegung="weniger"]) .collage-karte.c3{animation:collage-gegen linear both;animation-timeline:scroll(root);animation-range:0 70vh}
   }
 }
 @keyframes collage-drift{to{transform:translateY(-16px)}}
@@ -908,8 +934,8 @@ details.mehr.mehr-filter{padding:0;background:transparent}
    Ab Version 4.3 nur noch als Verschiebung: Die Inhalte sind immer sichtbar (auch im Druck und auf
    ganzseitigen Bildschirmfotos), sie rücken nur beim Hereinscrollen an ihren Platz. */
 @media (prefers-reduced-motion:no-preference){
-  html.einflug-an .einflug:not(.da){transform:translateY(24px)}
-  html.einflug-an .einflug{transition:transform 240ms var(--ease-out) var(--einflug-verzug,0ms)}
+  html.einflug-an:not([data-bewegung="weniger"]) .einflug:not(.da){transform:translateY(24px)}
+  html.einflug-an:not([data-bewegung="weniger"]) .einflug{transition:transform 240ms var(--ease-out) var(--einflug-verzug,0ms)}
 }
 @media print{ /* taste-skill-ignore: Druckfassung */ html.einflug-an .einflug{opacity:1!important;transform:none!important}}
 
@@ -1009,26 +1035,33 @@ main .werkzeug,main .faecher-karte{max-width:none}
 @media (hover:hover) and (pointer:fine){.bk-karte:hover .bk-karte-text,.bk-haken:hover span{border-color:var(--text)}}
 .bk-mehr{background:var(--flaeche)}
 
-/* Erklär-Bewegung: Vom Blatt zum Tablet (einmal, auf der Seite »Unterricht digitalisieren«) */
+/* Vom Blatt zum Tablet (Seite »Unterricht digitalisieren«, ab 1024 px). Ab Version 4.8 ein Regler:
+   --t läuft von 0 (Arbeitsblatt auf Papier) bis 1 (dieselbe Aufgabe am Tablet). Alles hängt an --t,
+   nur Deckkraft und Lage ändern sich; der Tablet-Rahmen liegt als eigene Fläche über dem Blatt und blendet ein.
+   Keine Übergänge: Der Regler bewegt direkt, das einmalige Abspielen rechnet assets/digitalisieren.js. */
 .blatt-tablet{display:none}
-@media (min-width:1024px){.blatt-tablet{display:block;justify-self:end;width:min(100%,16rem)}}
-.geraet{position:relative;width:100%;aspect-ratio:3/4;background:var(--flaeche);border:2px solid var(--stahl);border-radius:3px;padding:1.1rem 1rem;display:grid;align-content:start;gap:.7rem;
-  transition:border-radius 280ms var(--ease-out),border-color 280ms var(--ease-out)}
-.geraet-titel{font:700 1.05rem/1.2 var(--schrift-titel)}
-.geraet .zeile{display:block;height:10px;border-radius:2px;background:var(--stahl);opacity:.55;transition:opacity 200ms var(--ease-out)}
+@media (min-width:1024px){.blatt-tablet{display:grid;gap:var(--a2);justify-self:end;width:min(100%,16rem)}}
+.geraet{--t:0;position:relative;width:100%;aspect-ratio:3/4;background:var(--flaeche);border:2px solid var(--stahl);border-radius:3px;padding:1.1rem 1rem;display:grid;align-content:start;gap:.7rem}
+.geraet-rahmen{position:absolute;inset:-8px;border:10px solid var(--lernen);border-radius:18px;box-shadow:8px 8px 0 0 var(--lernen-tief);opacity:var(--t);pointer-events:none} /* taste-skill-ignore: versetzte Druckplatte */
+.geraet-titel{font:700 1.05rem/1.2 var(--schrift-titel);position:relative}
+.geraet-inhalt{position:relative;min-height:8.4rem}
+.geraet .zeilen{display:grid;gap:.7rem}
+.geraet .zeile{display:block;height:10px;border-radius:2px;background:var(--stahl);opacity:calc(.55 * (1 - var(--t)))}
 .geraet .zeile.k{width:62%}.geraet .zeile.m{width:84%}.geraet .zeile.l{width:94%}
-.geraet .aufgaben{display:grid;gap:.45rem}
-.geraet .aufgabe{display:flex;align-items:center;gap:.5rem;padding:.4rem .6rem;border:2px solid var(--stahl);border-radius:var(--rund);font-size:1rem;font-weight:700;background:var(--flaeche);opacity:0;transform:translateY(8px) scale(.97);
-  transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out);transition-delay:calc(var(--i) * 45ms)}
+.geraet .aufgaben{position:absolute;inset:0;display:grid;gap:.45rem;align-content:start}
+/* Jede Aufgabe erscheint in ihrem Abschnitt von --t (gestaffelt), die Rückmeldung zuletzt. */
+.geraet .aufgabe{--ab:calc(.15 + var(--i,0) * .12);--p:clamp(0,calc((var(--t) - var(--ab)) / .35),1);display:flex;align-items:center;gap:.5rem;padding:.4rem .6rem;border:2px solid var(--stahl);border-radius:var(--rund);font-size:1rem;font-weight:700;background:var(--flaeche);opacity:var(--p);transform:translateY(calc((1 - var(--p)) * 8px))}
+.geraet .aufgabe:nth-child(1){border-color:var(--lernen);background:var(--lernen-zart)}
 .geraet .kreis{width:1rem;height:1rem;border-radius:50%;border:2px solid var(--text);flex:none}
-.geraet .rueckmeldung{position:absolute;right:-10px;bottom:14%;background:var(--ki-platte);border:2px solid var(--ki);border-radius:var(--rund);padding:.25rem .6rem;font-weight:700;font-size:1rem;opacity:0;transform:scale(.95);
-  transition:opacity 200ms var(--ease-out) 260ms,transform 200ms var(--ease-out) 260ms}
-.geraet:not(.digital) .aufgaben{height:0;overflow:hidden}
-.geraet.digital{border:12px solid var(--lernen);border-radius:20px;box-shadow:8px 8px 0 0 var(--lernen-tief);padding:.8rem .75rem} /* taste-skill-ignore: versetzte Druckplatte */
-.geraet.digital .zeile{opacity:0;height:0}
-.geraet.digital .aufgabe{opacity:1;transform:none}
-.geraet.digital .aufgabe:nth-child(1){border-color:var(--lernen);background:var(--lernen-zart)}
-.geraet.digital .rueckmeldung{opacity:1;transform:none}
+.geraet .rueckmeldung{--p:clamp(0,calc((var(--t) - .62) / .38),1);position:absolute;right:-10px;bottom:14%;background:var(--ki-platte);border:2px solid var(--ki);border-radius:var(--rund);padding:.25rem .6rem;font-weight:700;font-size:1rem;opacity:var(--p);transform:scale(calc(.95 + .05 * var(--p)))}
+.geraet-regler{display:grid;gap:.35rem;margin:0}
+.geraet-regler label{font-weight:700;font-size:var(--gr-klein)}
+.geraet-regler input[type="range"]{width:100%;margin:0;accent-color:var(--text);min-height:44px;cursor:pointer;touch-action:pan-y}
+.geraet-regler input[type="range"]:focus-visible{outline:3px solid var(--fokus);outline-offset:2px}
+.geraet-enden{display:grid;gap:.15rem;font-size:var(--gr-klein);color:var(--leise)}
+.geraet-enden span::before{content:"links: ";font-weight:400;color:var(--leise)}
+.geraet-enden span:last-child::before{content:"rechts: "}
+.geraet-enden .ist{color:var(--text);font-weight:700}
 
 /* Fächer: echte Ansichten mit Tiefe (assets/faecher.js). Mitte gerade und farbig, Ränder gedreht und verblasst.
    Nur transform und opacity; bei weniger Bewegung flach. Auf dunklem Grund (Galerie, Startseite). */
@@ -1062,7 +1095,6 @@ main .werkzeug,main .faecher-karte{max-width:none}
 .faecher-start .faecher-spur{--faecher-b:clamp(14rem,24vw,20rem)}
 @media (max-width:1023px){.faecher-start{grid-column:1/-1}}
 .faecher-karte:not(.ist-mitte) .faecher-name{visibility:hidden} /* Titel steht unter dem Fächer; verblasste Namen wären schlecht lesbar */
-.geraet.sofort,.geraet.sofort *{transition:none!important}
 
 
 /* ---------- Ab Version 4.4: Bewegungsmuster F, G, I, J, K, L, M, N, O (Motion-Musterbuch 2) ----------
@@ -1194,6 +1226,7 @@ main .werkzeug,main .faecher-karte{max-width:none}
 .plattenband[data-wahl="lernen"] .pl-ki{transform:translateX(-100%)}
 .plattenband[data-wahl="lernen"] .pl-le{transform:none}
 
+/* Weniger Bewegung für die Muster F–O: Systemeinstellung und Schalter (siehe oben, beide Blöcke gleich halten). */
 @media (prefers-reduced-motion:reduce){
   .passer.passer-lauf,.passer.passer-lauf::before,.passer.passer-lauf::after{animation:none!important}
   .auszug .platte{transform:none!important}
@@ -1201,6 +1234,11 @@ main .werkzeug,main .faecher-karte{max-width:none}
   .leporello-an .gefaltet .einblick-schritte li{transform:none!important;opacity:1!important}
   .plattenband .pl{transition:none!important}
 }
+html[data-bewegung="weniger"] .passer.passer-lauf,html[data-bewegung="weniger"] .passer.passer-lauf::before,html[data-bewegung="weniger"] .passer.passer-lauf::after{animation:none!important}
+html[data-bewegung="weniger"] .auszug .platte{transform:none!important}
+html[data-bewegung="weniger"] .schritte .nr,html[data-bewegung="weniger"] .schritte .nr::after,html[data-bewegung="weniger"] .hefter-link svg{animation:none!important}
+html[data-bewegung="weniger"].leporello-an .gefaltet .einblick-schritte li{transform:none!important;opacity:1!important}
+html[data-bewegung="weniger"] .plattenband .pl{transition:none!important}
 @media print{ /* taste-skill-ignore: Druckfassung */ .leporello-an .einblick-schritte li{transform:none!important;opacity:1!important}.hefter-link,.plattenband{display:none}}
 .fuss-knoepfe{display:flex;flex-wrap:wrap;gap:.5rem}
 .einblick-aktionen .merken{min-height:44px}
@@ -1240,7 +1278,7 @@ main .werkzeug,main .faecher-karte{max-width:none}
 @media (max-width:640px){.stolper-liste>div{grid-template-columns:1fr}}
 /* Karte für die Tafel: groß lesbar, auch aus der letzten Reihe */
 .tafelkarte{background:var(--grund);border-radius:var(--rund);border-top:12px solid var(--lernen);padding:clamp(1.25rem,3vw,2.5rem);display:grid;gap:var(--a3);max-width:62rem}
-.tafelkarte-titel{font-family:var(--titel);font-size:clamp(2rem,1.4rem + 2.5vw,3.25rem);font-weight:800;line-height:1.05}
+.tafelkarte-titel{font-family:var(--schrift-titel);font-size:clamp(2rem,1.4rem + 2.5vw,3.25rem);font-weight:700;line-height:1.05}
 .tafelkarte-felder{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--a2) var(--a3)}
 .tafelkarte-feld{display:grid;gap:.35rem;font-weight:700}
 .tafelkarte-feld:first-child{grid-row:span 2}
@@ -1252,12 +1290,12 @@ main .werkzeug,main .faecher-karte{max-width:none}
 /* Fortbildung: Ablauf mit Zeitspalte */
 .ablauf{display:grid;gap:var(--a2);list-style:none;padding:0;max-width:62rem}
 .ablauf>li{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:var(--a3);background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3)}
-.ablauf-zeit{font-weight:800;color:var(--tief,var(--text));font-variant-numeric:tabular-nums}
+.ablauf-zeit{font-weight:700;color:var(--tief,var(--text));font-variant-numeric:tabular-nums}
 .ablauf h3{font-size:1.2rem;margin-bottom:.3rem}
 @media (max-width:640px){.ablauf>li{grid-template-columns:1fr;gap:.3rem}}
 /* Leitsätze */
 .leitsatz-liste{display:grid;gap:.75rem;padding-left:1.7rem;max-width:66ch}
-.leitsatz-liste li::marker{font-weight:800;color:var(--tief,var(--text))}
+.leitsatz-liste li::marker{font-weight:700;color:var(--tief,var(--text))}
 
 @media print{ /* taste-skill-ignore: Druckfassung */
   html.nur-karte body>*:not(main),html.nur-karte main>*>*:not(.band),html.nur-karte .band .stapel,html.nur-karte .band .weg-steuerung,html.nur-karte .band .leise{display:none!important}

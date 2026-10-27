@@ -1,6 +1,6 @@
 /* Hilde Digital – Bewegungsmuster aus dem Motion-Musterbuch 2 (ab Version 4.4).
    F Passer · G Farbauszug (CSS, hier nur nichts zu tun) · J Stanzloch (CSS) · I Stundenlinie (in tablets-weg.js)
-   K Schnellhefter · L Durchschlag · M Zählwerk · N Leporello · O Plattenwechsel.
+   K Schnellhefter · L Durchschlag · M Zählwerk · N Leporello · O Plattenwechsel · Schalter »Weniger Bewegung« (ab 4.8).
    Grundsätze (Emil Kowalski): Jede Bewegung hat einen Zweck, ist kurz (unter 500 ms), startet durch die Nutzerin
    oder einmal beim Erscheinen und läuft nie in Schleife. Bei »weniger Bewegung« bleibt der Zustand, die Bewegung entfällt.
    Mit der Tastatur ausgelöste Handlungen werden nicht animiert. Nichts Lesbares wird versteckt, was beim Laden schon zu sehen ist.
@@ -8,7 +8,32 @@
 (function () {
   "use strict";
   var doc = document, root = doc.documentElement;
-  function ruhig() { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  /* »Weniger Bewegung« gilt bei der Systemeinstellung oder beim Schalter im Fuß (html[data-bewegung="weniger"]).
+     Dieselbe Prüfung steht in hilde.js, faecher.js, digitalisieren.js und showroom.js – jede Datei läuft für sich. */
+  function ruhig() {
+    return root.getAttribute("data-bewegung") === "weniger" ||
+      !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
+  /* ---------- Schalter »Weniger Bewegung« im Fuß (ab Version 4.8) ----------
+     Die Wahl steht in diesem Browser unter hilde.bewegung. Beim Laden setzt ein kleines Skript im Kopf der Seite
+     (tools/bauen.py) das Attribut schon vor dem ersten Zeichnen, damit nichts flackert. Hier: Knopf anbinden,
+     Zustand anzeigen, Änderung sofort an alle Muster melden (Ereignis hilde:bewegung). */
+  var BEWEGUNG = "hilde.bewegung";
+  function bewegungZeigen() {
+    var an = root.getAttribute("data-bewegung") === "weniger";
+    doc.querySelectorAll("[data-bewegung-schalter]").forEach(function (b) { b.setAttribute("aria-pressed", String(an)); });
+  }
+  function bewegungSetzen(weniger) {
+    if (weniger) root.setAttribute("data-bewegung", "weniger"); else root.removeAttribute("data-bewegung");
+    try { localStorage.setItem(BEWEGUNG, JSON.stringify({ weniger: !!weniger })); } catch (e) { /* ohne Speicher weiter */ }
+    bewegungZeigen();
+    doc.dispatchEvent(new CustomEvent("hilde:bewegung", { detail: { weniger: !!weniger } }));
+  }
+  doc.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-bewegung-schalter]");
+    if (b) bewegungSetzen(root.getAttribute("data-bewegung") !== "weniger");
+  });
   function neuStarten(el, klasse) { el.classList.remove(klasse); void el.offsetWidth; el.classList.add(klasse); }
   function sitzung(schluessel) {
     try { if (sessionStorage.getItem(schluessel)) return false; sessionStorage.setItem(schluessel, "1"); return true; }
@@ -165,7 +190,7 @@
   }
 
   function start() {
-    passer(); zeigeZahl(false); zeigeKnoepfe(); zeigeHefter(); zaehlwerk(); leporello(); plattenwechsel();
+    bewegungZeigen(); passer(); zeigeZahl(false); zeigeKnoepfe(); zeigeHefter(); zaehlwerk(); leporello(); plattenwechsel();
     // Später gezeichnete Karten (Galerie-Treffer, Detailseite) bekommen ihren Merk-Zustand nachgereicht.
     new MutationObserver(function (m) {
       if (m.some(function (x) { return x.addedNodes.length; })) zeigeKnoepfe();

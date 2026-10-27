@@ -7,6 +7,7 @@
 <meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 <title>Unterricht digitalisieren – Hilde Digital</title>
 <link rel="stylesheet" href="assets/hilde.css">
+<script>/* Schalter »Weniger Bewegung« (Fuß): die gemerkte Wahl vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger")}catch(e){}</script>
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
@@ -24,17 +25,25 @@
   <p class="detail-kurz">Du hast schon guten Unterricht. Wähle aus, was du hast und was entstehen soll. Du bekommst einen Prompt, mit dem dir ein an deiner Schule freigegebenes KI-System Vorschläge macht – immer mit der Frage, was das Tablet besser kann als Papier.</p>
   <p><a class="knopf" href="#baukasten">Prompt zusammenstellen <span aria-hidden="true">↓</span></a></p>
   </div>
-  <div class="blatt-tablet" aria-hidden="true">
-    <div class="geraet" id="geraet">
+  <div class="blatt-tablet">
+    <div class="geraet" id="geraet" aria-hidden="true">
+      <span class="geraet-rahmen"></span>
       <p class="geraet-titel" id="geraet-titel">Arbeitsblatt</p>
-      <span class="zeile l"></span><span class="zeile m"></span><span class="zeile k"></span><span class="zeile l"></span><span class="zeile m"></span>
-      <div class="aufgaben">
-        <span class="aufgabe" style="--i:0"><span class="kreis"></span>Auswahl</span>
-        <span class="aufgabe" style="--i:1"><span class="kreis"></span>Begründung</span>
-        <span class="aufgabe" style="--i:2"><span class="kreis"></span>Hilfe</span>
+      <div class="geraet-inhalt">
+        <div class="zeilen"><span class="zeile l"></span><span class="zeile m"></span><span class="zeile k"></span><span class="zeile l"></span><span class="zeile m"></span></div>
+        <div class="aufgaben">
+          <span class="aufgabe" style="--i:0"><span class="kreis"></span>Auswahl</span>
+          <span class="aufgabe" style="--i:1"><span class="kreis"></span>Begründung</span>
+          <span class="aufgabe" style="--i:2"><span class="kreis"></span>Hilfe</span>
+        </div>
       </div>
       <span class="rueckmeldung">Rückmeldung</span>
     </div>
+    <p class="geraet-regler">
+      <label for="geraet-stufe">Vom Blatt zum Tablet</label>
+      <input type="range" id="geraet-stufe" min="0" max="100" step="1" value="0" aria-valuetext="Arbeitsblatt auf Papier">
+      <span class="geraet-enden"><span class="ist" data-geraet-ende="papier">Arbeitsblatt auf Papier</span><span data-geraet-ende="tablet">Dieselbe Aufgabe am Tablet</span></span>
+    </p>
   </div>
 </div></section>
 
@@ -96,6 +105,7 @@
 <footer class="fuss"><div class="huelle">
   <p class="fuss-marke" aria-hidden="true">Hilde Digital<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span></p>
   <nav class="fusslinks" aria-label="Über Hilde Digital"><ul><li><a href="ueber.html">Über Hilde Digital</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>
   <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
 </div></footer>
 <script src="assets/motion.js"></script>

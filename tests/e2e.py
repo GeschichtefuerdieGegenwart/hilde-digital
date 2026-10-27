@@ -9,6 +9,8 @@ Geprüft: Kernweg Start → Digitaler Unterricht → Planungsweg → Entscheidun
 nur per Tastatur, Zurück und Ändern, Speichern und Löschen, Lockerung, ohne Internet, Konsolenfehler,
 reduzierte Bewegung, Digital-Check (Weg B: Prüf-Auftrag), Galerie mit Bildansicht, Breiten 375 / 768 / 1280 / 1440.
 Ab Version 4.7: »Zum Anfangen«, Stundenlinie auf Karten und Detailseite, Umfang-Chips mit Vorschau, 390 px.
+Ab Version 4.8: Schalter »Weniger Bewegung«, Beamer-Prüfung für Digitaler Unterricht und Galerie, Fächer nur ein Durchlauf,
+Regler »Vom Blatt zum Tablet«, Wort der Stufe, »Schritt n von m«, Tafelkarte in Bricolage, Status-Variablen.
 """
 import re
 import os
@@ -68,7 +70,7 @@ def main():
         pruefe("Über Hilde Digital" in pg.inner_text(".fuss") and "Über" not in " ".join(nav), "Über Hilde Digital steht im Fuß, nicht in der Navigation")
         hoehe = pg.locator(".galerie-zugang").bounding_box()
         pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
-        pg.click('a.wahlflaeche[href="unterricht.html"]')
+        pg.click('a.wahlflaeche[href="unterricht.html"]'); pg.wait_for_url("**/unterricht.html")
         pruefe(pg.locator(".werkzeuge").first.locator(".werkzeug").count() == 7 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt"), "Digitaler Unterricht: sieben Werkzeuge, »Unterricht digitalisieren« zuerst")
         pg.click('.werkzeug a[href="tablets.html"]')
         pg.click("#weiter")
@@ -400,7 +402,7 @@ def main():
         pg.goto(url("galerie.html"))
         pruefe(not pg.evaluate("document.documentElement.classList.contains('einflug-an')") and pg.locator(".einflug").count() == 0, "Weniger Bewegung: kein Einflug, alles sofort sichtbar")
         x1 = pg.evaluate("document.querySelector('#galerie-faecher .faecher-spur').scrollLeft"); pg.wait_for_timeout(800)
-        pruefe(pg.locator('#galerie-faecher [data-f="pause"]').count() == 0 and pg.evaluate("document.getElementById('galerie-faecher').classList.contains('faecher-flach')") and pg.evaluate("document.querySelector('#galerie-faecher .faecher-spur').scrollLeft") == x1, "Weniger Bewegung: Fächer steht still und flach, ohne Knopf")
+        pruefe(pg.locator('#galerie-faecher [data-f="pause"]').is_hidden() and pg.evaluate("document.getElementById('galerie-faecher').classList.contains('faecher-flach')") and pg.evaluate("document.querySelector('#galerie-faecher .faecher-spur').scrollLeft") == x1, "Weniger Bewegung: Fächer steht still und flach, ohne Knopf")
         pg.goto(url("index.html"))
         stil = pg.evaluate("(() => { const s = getComputedStyle(document.querySelector('.wahlflaeche')); return [s.transitionProperty, s.transitionDuration, getComputedStyle(document.querySelector('.knopf, .weiter')).transitionProperty]; })()")
         pruefe("transform" not in stil[0] and "transform" not in stil[2] and all(float(d.rstrip("s")) <= .15 for d in stil[1].split(", ")), f"Reduzierte Bewegung: keine Bewegung, nur kurzes Überblenden {stil}")
@@ -664,6 +666,90 @@ def main():
                 q.goto(url(s_)); q.wait_for_timeout(300)
                 pruefe(q.evaluate("document.documentElement.scrollWidth") <= breite, f"Version 4.7, {breite} px {s_}: kein waagerechtes Scrollen")
             q.context.close()
+
+        # 5e. Version 4.8: Bewegungsschalter, Beamer, Fächer ein Durchlauf, Regler, Stufenwort, Schrittstand, Tafelkarte, Status
+        w = neue_seite(b)
+        w.goto(url("unterricht.html"))
+        h1 = w.locator("h1").first.bounding_box(); hw = w.locator(".werkzeug.haupt").bounding_box()
+        pruefe(h1 and hw and h1["y"] + h1["height"] <= 720 and hw["y"] + hw["height"] <= 720, "Beamer 1280 × 720: Digitaler Unterricht zeigt Überschrift und Hauptwerkzeug ohne Scrollen")
+        w.goto(url("galerie.html"))
+        h1 = w.locator("h1").first.bounding_box(); su = w.locator("#suche").bounding_box(); an = w.locator("#anfangen h2").first.bounding_box()
+        pruefe(all(x and x["y"] + x["height"] <= 720 for x in (h1, su, an)), "Beamer 1280 × 720: Galerie zeigt Überschrift, Suche und »Zum Anfangen« ohne Scrollen")
+        pruefe(w.locator("#bewegung-schalter").count() == 1 and w.get_attribute("#bewegung-schalter", "aria-pressed") == "false" and w.evaluate("document.documentElement.hasAttribute('data-bewegung')") is False, "Schalter: steht im Fuß, zuerst aus")
+        w.evaluate("document.getElementById('laufband-bereich').scrollIntoView()"); w.mouse.move(5, 5)
+        spur = "#galerie-faecher .faecher-spur"
+        lauf = lambda: w.evaluate(f"document.querySelector('{spur}').scrollLeft")
+        w.wait_for_timeout(400); x1 = lauf(); w.wait_for_timeout(900)
+        pruefe(lauf() > x1, "Schalter aus: der Fächer gleitet")
+        w.click("#bewegung-schalter")
+        pruefe(w.get_attribute("html", "data-bewegung") == "weniger" and w.get_attribute("#bewegung-schalter", "aria-pressed") == "true", "Schalter: Klick setzt html[data-bewegung=weniger] und aria-pressed")
+        w.mouse.move(5, 5); w.wait_for_timeout(300); x1 = lauf(); w.wait_for_timeout(1500)
+        pruefe(abs(lauf() - x1) < 2 and w.evaluate("document.getElementById('galerie-faecher').classList.contains('faecher-flach')") and w.locator('#galerie-faecher [data-f="pause"]').is_hidden(), "Schalter: der Fächer hält sofort an, wird flach, der Knopf »Anhalten« verschwindet")
+        w.reload()
+        pruefe(w.get_attribute("html", "data-bewegung") == "weniger" and w.get_attribute("#bewegung-schalter", "aria-pressed") == "true" and w.evaluate("JSON.parse(localStorage.getItem('hilde.bewegung')).weniger") is True, "Schalter: bleibt nach dem Neuladen (hilde.bewegung)")
+        pruefe(not w.evaluate("document.documentElement.classList.contains('einflug-an')"), "Schalter: kein Einflug beim Scrollen")
+        w.evaluate("document.getElementById('laufband-bereich').scrollIntoView()"); w.mouse.move(5, 5)
+        w.wait_for_timeout(400); x1 = lauf(); w.wait_for_timeout(1500)
+        pruefe(abs(lauf() - x1) < 2, "Schalter: nach dem Neuladen gleitet der Fächer nicht")
+        stil = w.evaluate("(() => { const s = getComputedStyle(document.querySelector('.knopf')); return [s.transitionProperty, s.transitionDuration]; })()")
+        pruefe("transform" not in stil[0] and all(float(d.rstrip("s")) <= .15 for d in stil[1].split(", ")), f"Schalter: nur kurzes Überblenden wie bei der Systemeinstellung {stil}")
+        w.click("#bewegung-schalter")
+        pruefe(not w.evaluate("document.documentElement.hasAttribute('data-bewegung')") and w.get_attribute("#bewegung-schalter", "aria-pressed") == "false" and w.locator('#galerie-faecher [data-f="pause"]').is_visible(), "Schalter: zweiter Klick schaltet zurück, der Knopf »Anhalten« ist wieder da")
+        # Fächer: nach einem Durchlauf steht er; »Weiterlaufen lassen« startet den nächsten
+        w.hover(spur); w.wait_for_timeout(300)
+        w.evaluate(f"(() => {{ const s = document.querySelector('{spur}'); const k = s.children; const n = k.length / 2; s.scrollLeft = k[n].offsetLeft + k[n].offsetWidth / 2 - s.clientWidth / 2; }})()")  # erste Kopie in der Mitte = Ende des Durchlaufs
+        w.mouse.move(5, 5); w.wait_for_timeout(1500)
+        kn = w.locator('#galerie-faecher [data-f="pause"]')
+        pruefe(kn.get_attribute("aria-pressed") == "true" and kn.inner_text() == "Weiterlaufen lassen", "Fächer: nach einem vollen Durchlauf steht er, der Knopf bietet »Weiterlaufen lassen« an")
+        x1 = lauf(); w.wait_for_timeout(800)
+        pruefe(abs(lauf() - x1) < 2 and w.evaluate("localStorage.getItem('hilde.faecher')") is None, "Fächer: steht wirklich, das Ende eines Durchlaufs wird nicht als Wahl gespeichert")
+        kn.click(); w.mouse.move(5, 5); w.wait_for_timeout(400); x1 = lauf(); w.wait_for_timeout(900)
+        pruefe(lauf() > x1 and kn.inner_text() == "Anhalten", "Fächer: »Weiterlaufen lassen« startet einen weiteren Durchlauf")
+        # Regler »Vom Blatt zum Tablet«
+        w.goto(url("digitalisieren.html")); w.wait_for_timeout(700)
+        t = lambda: float(w.evaluate("getComputedStyle(document.getElementById('geraet')).getPropertyValue('--t')"))
+        pruefe(w.input_value("#geraet-stufe") == "100" and t() == 1 and w.inner_text("#geraet-titel") == "Am Tablet", "Blatt zu Tablet: spielt einmal von selbst bis zum Tablet")
+        pruefe(w.locator("#geraet-stufe").is_visible() and w.inner_text('label[for="geraet-stufe"]') == "Vom Blatt zum Tablet" and "Arbeitsblatt auf Papier" in w.inner_text(".geraet-enden") and "Dieselbe Aufgabe am Tablet" in w.inner_text(".geraet-enden"), "Blatt zu Tablet: beschrifteter Regler, beide Zustände stehen als Text")
+        w.focus("#geraet-stufe"); w.keyboard.press("Home")
+        pruefe(w.input_value("#geraet-stufe") == "0" and t() == 0 and w.get_attribute("#geraet-stufe", "aria-valuetext") == "Arbeitsblatt auf Papier" and w.inner_text("#geraet-titel") == "Arbeitsblatt", "Blatt zu Tablet: Tastatur zieht zurück zum Blatt")
+        for _ in range(4): w.keyboard.press("PageUp")
+        pruefe(0 < t() < 1 and all(0 <= float(o) <= 1 for o in w.eval_on_selector_all(".geraet .aufgabe", "els => els.map(e => getComputedStyle(e).opacity)")), f"Blatt zu Tablet: Zwischenstand per Tastatur ({t():.2f})")
+        pruefe(w.evaluate("getComputedStyle(document.querySelector('.geraet')).transitionProperty") in ("all", "none") and w.evaluate("getComputedStyle(document.querySelector('.geraet')).transitionDuration") == "0s", "Blatt zu Tablet: keine Übergänge, der Regler bewegt direkt")
+        pruefe(w.evaluate("document.documentElement.scrollWidth") <= 1280, "Blatt zu Tablet: kein waagerechtes Scrollen")
+        w.reload(); w.wait_for_timeout(100); w.evaluate("document.getElementById('geraet-stufe').focus()"); w.keyboard.press("Home"); w.wait_for_timeout(500)
+        pruefe(w.input_value("#geraet-stufe") == "0", "Blatt zu Tablet: eine Berührung übernimmt, das Abspielen läuft nicht weiter")
+        # Selbsteinschätzung: das Wort der Stufe steht sichtbar
+        w.goto(url("passt.html"))
+        pruefe(w.locator(".stufe-wort").count() == 5 and all(x == "Noch nichts gewählt" for x in w.locator(".stufe-wort").all_inner_texts()), "Stufenwort: zuerst »Noch nichts gewählt«")
+        w.check('input[name="zeit"][value="1"]'); w.check('input[name="steuern"][value="3"]')
+        pruefe(w.inner_text('[data-wort="zeit"]') == "Gewählt: unter 15 Minuten (1 von 5)" and w.inner_text('[data-wort="steuern"]') == "Gewählt: Stufe 3 (3 von 5)" and w.locator('[data-wort="zeit"]').is_visible(), "Stufenwort: das Wort der gewählten Stufe steht sichtbar unter der Skala")
+        w.click("#loeschen")
+        pruefe(w.inner_text('[data-wort="zeit"]') == "Noch nichts gewählt", "Stufenwort: nach dem Löschen zurückgesetzt")
+        # Geführte Wege: »Schritt n von m« sichtbar
+        for s_, m_ in [("tablets.html", 5), ("selbstcheck.html", 6), ("ki.html", 5)]:
+            w.goto(url(s_)); w.evaluate("localStorage.clear()"); w.reload()
+            pruefe(w.locator("#schritte-stand").is_visible() and w.inner_text("#schritte-stand") == f"Schritt 1 von {m_}", f"{s_}: »Schritt 1 von {m_}« steht sichtbar neben den Punkten")
+        w.goto(url("tablets.html")); w.check('input[name="phase"][value="einstieg"]'); w.click("#weiter")
+        pruefe(w.inner_text("#schritte-stand") == "Schritt 2 von 5", "Planungsweg: der Schrittstand zählt mit")
+        # Tafelkarte in der Überschriftenschrift, Gewicht 700
+        w.goto(url("tablet-phasen.html"))
+        ff = w.evaluate("getComputedStyle(document.querySelector('.tafelkarte-titel')).fontFamily"); fw = w.evaluate("getComputedStyle(document.querySelector('.tafelkarte-titel')).fontWeight")
+        pruefe("Bricolage Grotesque" in ff and fw == "700", f"Tafelkarte: Titel in Bricolage Grotesque, Gewicht 700 ({fw})")
+        pruefe(w.evaluate("[...document.querySelectorAll('.ablauf-zeit, .leitsatz-liste li')].every(e => getComputedStyle(e).fontWeight !== '800')") and w.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--titel')") == "", "Tafelkarte: kein Gewicht 800 und keine unbekannte Variable --titel")
+        # Status-Variablen
+        w.goto(url("tablets.html")); w.click("#weiter")
+        bg = w.evaluate("getComputedStyle(document.getElementById('hinweis')).backgroundColor")
+        pruefe(bg == "rgb(248, 233, 226)" and all(w.evaluate(f"getComputedStyle(document.documentElement).getPropertyValue('{v}').trim()") for v in ("--erfolg", "--warnung", "--fehler", "--erfolg-zart", "--warnung-zart", "--fehler-zart")), f"Status: Hinweis nutzt --fehler-zart, Erfolg und Warnung sind angelegt ({bg})")
+        pruefe(not w.konsole, f"Version 4.8: keine Konsolenfehler {w.konsole}")
+        w.context.close()
+        # Weniger Bewegung (System): der Regler steht sofort am Tablet, nichts spielt
+        r = neue_seite(b, reduced_motion="reduce")
+        r.goto(url("digitalisieren.html")); r.wait_for_timeout(100)
+        pruefe(r.input_value("#geraet-stufe") == "100" and r.inner_text("#geraet-titel") == "Am Tablet", "Weniger Bewegung: Blatt zu Tablet zeigt sofort den Endzustand, ohne Abspielen")
+        r.goto(url("galerie.html"))
+        pruefe(r.locator('#galerie-faecher [data-f="pause"]').is_hidden() and r.locator("#bewegung-schalter").count() == 1, "Weniger Bewegung (System): Fächer ohne Knopf, der Schalter bleibt im Fuß")
+        pruefe(not r.konsole, f"Version 4.8, weniger Bewegung: keine Konsolenfehler {r.konsole}")
+        r.context.close()
 
         # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
         for breite in (375, 768, 1280, 1440):

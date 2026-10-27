@@ -3,11 +3,14 @@
    werden kleiner und verblassen in die Duplex-Vorschau (Druckfarben des Bereichs).
    Bewegung nur über transform und opacity, berechnet aus der Scrollposition (natives Scrollen und Einrasten).
 
-   gleiten: true  → der Fächer läuft langsam von selbst (Galerie, etwa 24 px/s, linear wie ein Laufband).
+   gleiten: true  → der Fächer läuft langsam von selbst (Galerie, etwa 24 px/s, linear wie ein Laufband),
+                    aber nur einen Durchlauf lang (ab Version 4.8): Sind alle Karten einmal vorbeigezogen, steht er.
+                    »Weiterlaufen lassen« startet einen weiteren Durchlauf.
                     Hält an beim Überfahren, beim Fokus, beim Berühren, außerhalb des Bildschirms und mit dem Knopf.
-                    Nach dem Berühren läuft er nach 6 Sekunden Ruhe weiter. »Angehalten« bleibt im Browser.
+                    Nach dem Berühren läuft er nach 6 Sekunden Ruhe weiter. »Angehalten« per Knopf bleibt im Browser.
    gleiten: false → nur Wischen, Blättern und Pfeiltasten (Startseite).
-   Weniger Bewegung: kein Gleiten, keine Drehung, nur eine flache Reihe mit Einrasten.
+   Weniger Bewegung (Systemeinstellung oder Schalter im Fuß, auch zur Laufzeit): kein Gleiten, keine Drehung,
+   nur eine flache Reihe mit Einrasten.
 
    Unter dem Fächer steht immer die Karte in der Mitte: Titel, Kurzbeschreibung und zwei Wege
    (»Beispiel ansehen«, »Ausprobieren ↗«). Ein Klick auf das mittlere Bild öffnet die Bildansicht,
@@ -24,8 +27,8 @@
     var eintraege = o.eintraege, n = eintraege.length;
     if (!n) return;
     var ruhigMQ = wurzel.matchMedia ? wurzel.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
-    var ruhig = ruhigMQ.matches;
-    var gleiten = !!o.gleiten && !ruhig;
+    function ruhig() { return document.documentElement.getAttribute("data-bewegung") === "weniger" || !!ruhigMQ.matches; }
+    var gleiten = !!o.gleiten; // Kopien und Knopf werden angelegt; ob er läuft, entscheidet laeuft() – auch zur Laufzeit.
     var duplex = function (p) { return p.replace("assets/galerie/", "assets/galerie/duplex/"); };
 
     var karte = function (x, k, kopie) {
@@ -46,13 +49,13 @@
         '<div class="faecher-steuerung">' +
           '<button type="button" class="knopf still" data-f="zurueck" aria-label="Vorherige Ansicht"><span aria-hidden="true">←</span></button>' +
           '<button type="button" class="knopf still" data-f="vor" aria-label="Nächste Ansicht"><span aria-hidden="true">→</span></button>' +
-          (gleiten ? '<button type="button" class="knopf still" data-f="pause" aria-pressed="false">Anhalten</button>' : "") +
+          (gleiten ? '<button type="button" class="knopf still" data-f="pause" aria-pressed="false"' + (ruhig() ? " hidden" : "") + '>Anhalten</button>' : "") +
         "</div></div>";
 
     var spur = huelle.querySelector(".faecher-spur"), text = document.getElementById(o.id + "-text");
     var karten = [].slice.call(spur.children);
     var pauseKnopf = huelle.querySelector('[data-f="pause"]');
-    huelle.classList.toggle("faecher-flach", ruhig);
+    huelle.classList.toggle("faecher-flach", ruhig());
     huelle.classList.toggle("faecher-gleitet", gleiten);
 
     var mitte = -1, wartet = false;
@@ -61,12 +64,12 @@
 
     function zeichne() {
       wartet = false;
-      var m = spur.scrollLeft + spur.clientWidth / 2, b = breite() || 300, best = 0, bestD = 1e9;
+      var m = spur.scrollLeft + spur.clientWidth / 2, b = breite() || 300, best = 0, bestD = 1e9, still = ruhig();
       for (var i = 0; i < karten.length; i++) {
         var k = karten[i], c = k.offsetLeft + k.offsetWidth / 2, d = (c - m) / b, a = Math.abs(d);
         if (a < bestD) { bestD = a; best = i; }
         if (a > 4) { k.style.opacity = "0"; continue; }
-        if (ruhig) {
+        if (still) {
           k.style.transform = "scale(" + (1 - Math.min(1, a) * .08).toFixed(3) + ")";
           k.style.opacity = (1 - Math.min(1, a) * .3).toFixed(3);
         } else {
@@ -75,7 +78,7 @@
           k.style.opacity = (1 - Math.min(1, a / 2.4) * .8).toFixed(3);
           k.style.zIndex = String(100 - Math.round(a * 20));
         }
-        k.style.setProperty("--duplex", ruhig ? "0" : Math.max(0, Math.min(1, (a - .35) * 1.6)).toFixed(3));
+        k.style.setProperty("--duplex", still ? "0" : Math.max(0, Math.min(1, (a - .35) * 1.6)).toFixed(3));
         k.classList.toggle("ist-mitte", a < .5);
       }
       var neu = best % n;
@@ -94,21 +97,24 @@
 
     function zuKarte(i, sofort) {
       var k = karten[i];
-      spur.scrollTo({ left: k.offsetLeft + k.offsetWidth / 2 - spur.clientWidth / 2, behavior: sofort || ruhig ? "auto" : "smooth" });
+      spur.scrollTo({ left: k.offsetLeft + k.offsetWidth / 2 - spur.clientWidth / 2, behavior: sofort || ruhig() ? "auto" : "smooth" });
     }
-    function blaettern(r) { halte(6000); spur.scrollBy({ left: r * breite(), behavior: ruhig ? "auto" : "smooth" }); }
+    function blaettern(r) { halte(6000); spur.scrollBy({ left: r * breite(), behavior: ruhig() ? "auto" : "smooth" }); }
 
     /* ---------- Gleiten ---------- */
-    var pos = 0, letzte = 0, angehalten = false, drueber = false, fokus = false, sichtbar = true, ruheBis = 0;
+    var pos = 0, letzte = 0, angehalten = false, drueber = false, fokus = false, sichtbar = true, ruheBis = 0, setze = function () {};
     function halte(ms) { ruheBis = Math.max(ruheBis, performance.now() + ms); spur.classList.remove("gleitend"); }
-    function laeuft() { return gleiten && !angehalten && !drueber && !fokus && sichtbar && performance.now() > ruheBis && document.visibilityState !== "hidden"; }
+    function laeuft() { return gleiten && !angehalten && !drueber && !fokus && sichtbar && !ruhig() && performance.now() > ruheBis && document.visibilityState !== "hidden"; }
     function schritt(t) {
       var dt = Math.min(.05, (t - (letzte || t)) / 1000); letzte = t;
       if (laeuft()) {
         if (!spur.classList.contains("gleitend")) { spur.classList.add("gleitend"); pos = spur.scrollLeft; }
         pos += (o.tempo || 24) * dt;
         var sb = satzBreite();
-        if (sb > 0 && pos >= karten[0].offsetLeft + sb - spur.clientWidth / 2 + breite() / 2) pos -= sb;
+        if (sb > 0 && pos >= karten[0].offsetLeft + sb - spur.clientWidth / 2 + breite() / 2) {
+          // Ein Durchlauf ist vorbei: an den Anfang springen (gleiche Karte, Kopie → Original) und stehen bleiben.
+          pos -= sb; setze(true, false);
+        }
         spur.scrollLeft = pos;
       } else if (spur.classList.contains("gleitend")) spur.classList.remove("gleitend");
       requestAnimationFrame(schritt);
@@ -121,7 +127,7 @@
     if (gleiten) {
       var g = H.lies("faecher") || {};
       angehalten = !!g.angehalten;
-      var setze = function (an, merken) {
+      setze = function (an, merken) {
         angehalten = an; pauseKnopf.setAttribute("aria-pressed", String(an));
         pauseKnopf.textContent = an ? "Weiterlaufen lassen" : "Anhalten";
         if (merken) H.schreib("faecher", { angehalten: an });
@@ -137,7 +143,16 @@
       if ("IntersectionObserver" in wurzel) new IntersectionObserver(function (e) { sichtbar = e[0].isIntersecting; }).observe(spur);
       requestAnimationFrame(schritt);
     }
-    huelle.addEventListener("focusin", function () { fokus = true; });
+    // »Weniger Bewegung« zur Laufzeit (Schalter im Fuß oder Systemeinstellung): sofort flach und still.
+    function bewegungWechsel() {
+      huelle.classList.toggle("faecher-flach", ruhig());
+      if (pauseKnopf) pauseKnopf.hidden = ruhig();
+      zeichne();
+    }
+    document.addEventListener("hilde:bewegung", bewegungWechsel);
+    if (ruhigMQ.addEventListener) ruhigMQ.addEventListener("change", bewegungWechsel);
+    // Fokus hält an, wenn er sichtbar ist (Tastatur). Ein Mausklick auf »Anhalten« oder »Weiterlaufen lassen« hält nicht fest.
+    huelle.addEventListener("focusin", function (e) { fokus = !!(e.target && e.target.matches && e.target.matches(":focus-visible")); });
     huelle.addEventListener("focusout", function (e) { if (!huelle.contains(e.relatedTarget)) fokus = false; });
 
     huelle.addEventListener("click", function (e) {

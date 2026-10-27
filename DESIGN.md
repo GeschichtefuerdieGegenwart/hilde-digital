@@ -19,8 +19,12 @@ colors:
   ueberdruck: "#1C4B15"
   aktion: "#2A2622"
   erfolg: "#2E6B34"
+  erfolg-zart: "#E3EEE2"
   warnung: "#8A5300"
+  warnung-zart: "#F5E6C6"
   fehler: "#B0281C"
+  fehler-zart: "#F8E9E2"
+  fehler-tief: "#5E2410"
   ueberarbeitung: "#7A3324"
   ueberarbeitung-zart: "#F3E3DF"
   nacht: "#17140F"
@@ -202,6 +206,7 @@ Zwei Druckfarben auf warmem Papier. Alles andere ist neutral.
 
 ### Status
 Erfolg #2E6B34, Warnung #8A5300, Fehler #B0281C, »In Überarbeitung« #7A3324 auf #F3E3DF. Status steht immer als Wort im Etikett.
+Ab Version 4.8 als Variablen in `hilde.css` (`--erfolg`, `--warnung`, `--fehler`) mit je einer zarten Fläche: Erfolg zart #E3EEE2 (Text Erfolg darauf 5,4:1), Warnung zart #F5E6C6 (5,1:1; bewusst etwas kühler als Honig zart, damit Hinweis und Warnung nicht gleich aussehen), Fehler zart #F8E9E2 (Fehler 5,6:1, Fehler tief #5E2410 für den Hinweistext der geführten Wege 10,2:1). Alle erfüllen AA für Fließtext; Druckschwarz auf jeder zarten Fläche über 12:1.
 
 ### Dunkelmodus
 Nacht #17140F, Text #F3EADB, Honig #F2B233 wird Textfarbe, Petrol hell #5CC3C0, Überdruck dunkel #2F6B3A.
@@ -237,7 +242,7 @@ Nacht #17140F, Text #F3EADB, Honig #F2B233 wird Textfarbe, Petrol hell #5CC3C0, 
 ### Named Rules
 **The 16-Pixel Floor.** Kein Text unter 16 px, auch nicht in Chips, Fußzeilen oder Bildunterschriften.
 
-**The Display-Only-Bricolage Rule.** Bricolage nur für Display und H1–H3 sowie die Wortmarke; nie für Fließtext, Labels oder Formulare.
+**The Display-Only-Bricolage Rule.** Bricolage nur für Display und H1–H3 sowie die Wortmarke (und die Tafelkarte, die eine Überschrift für den Raum ist); nie für Fließtext, Labels oder Formulare. Die Variable heißt `--schrift-titel`; geladen sind nur die Gewichte 600 und 700, 800 gibt es nicht.
 
 ## 4. Layout
 
@@ -290,10 +295,10 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - Tokens: `--dauer-druck` 100 ms, `--dauer-schnell` 140 ms (Mikro), `--dauer-mittel` 200 ms (Übergang), `--dauer-aus` 150 ms (Schließen), `--dauer-register` 280 ms. Nie über 300 ms, immer `--ease-out`.
 - Nur `transform` und `opacity` werden animiert; die versetzte Platte erscheint ohne Übergang. Kein `transition: all`.
 - Drücken: `--druck` 0,97 für Schaltflächen, `--druck-gross` 0,99 für große Flächen. Die Bildansicht öffnet aus dem angeklickten Bild heraus von `--auftauchen` 0,95 auf 1.
-- Weniger Bewegung: keine Lage- oder Größenänderung, nur Überblenden bis 150 ms.
+- Weniger Bewegung: keine Lage- oder Größenänderung, nur Überblenden bis 150 ms. Gilt bei der Systemeinstellung (`prefers-reduced-motion`) und – ab Version 4.8 – beim Schalter **»Weniger Bewegung«** im Fuß jeder Seite: ein Knopf mit `aria-pressed`, der `html[data-bewegung="weniger"]` setzt. Die Wahl liegt nur im Browser (`hilde.bewegung`, wie die Merkliste) und wird von einem kleinen Skript im Kopf der Seite vor dem ersten Zeichnen gesetzt, damit nichts flackert; »Eingaben löschen« setzt sie mit zurück. Die Regeln in `hilde.css` stehen deshalb zweimal (Medienabfrage und Attribut) und müssen gleich bleiben; in JavaScript prüft `ruhig()` beides. Umschalten wirkt sofort: Der Fächer hält an und wird flach, laufende Abspielvorgänge springen in den Endzustand. Der Schalter kann die Systemeinstellung nur verstärken, nie aufheben.
 - Einflug beim Scrollen (ab Version 4.2): nur Abschnitte, die beim Laden außerhalb des Bildschirms liegen; einmal, 240 ms, höchstens 24 px, gestaffelt höchstens 8 × 30 ms. Parallaxe nur bei der Collage der Startseite (höchstens 16 px, scroll-gesteuerte CSS-Animation, ab 1024 px). Beides entfällt bei weniger Bewegung.
 - Bildwelt (ab Version 4.2): echte Bildschirmfotos und selbst gezeichnete SVG-Motive aus der Systemsprache (Platten, Stundenlinie, Arbeitsblatt und Tablet). Keine Fotos von Personen, keine Fremdbilder. Duplex-Vorschauen (E6) im Laufband und in der Collage; das Original erscheint beim Überfahren, beim Fokus oder beim Antippen.
-- Fächer (ab Version 4.3, ersetzt das Laufband): Karten in einer scrollbaren Reihe mit Einrasten; die Mitte steht gerade und farbig, nach außen drehen sich die Karten weg (rotateY bis 38°), werden kleiner und verblassen in die Duplex-Vorschau. In der Galerie gleitet der Fächer langsam (24 px/s), auf der Startseite nur von Hand. Anhalten bei Überfahren, Fokus, Berührung (6 s Ruhe), außer Sicht und per Knopf. Weniger Bewegung: flach, kein Gleiten.
+- Fächer (ab Version 4.3, ersetzt das Laufband): Karten in einer scrollbaren Reihe mit Einrasten; die Mitte steht gerade und farbig, nach außen drehen sich die Karten weg (rotateY bis 38°), werden kleiner und verblassen in die Duplex-Vorschau. In der Galerie gleitet der Fächer langsam (24 px/s), auf der Startseite nur von Hand. Anhalten bei Überfahren, sichtbarem Fokus (Tastatur), Berührung (6 s Ruhe), außer Sicht und per Knopf. Ab Version 4.8 keine Dauerbewegung mehr: Der Fächer gleitet einmal durch alle Karten, dann steht er; »Weiterlaufen lassen« startet einen weiteren Durchlauf. Das Ende eines Durchlaufs wird nicht als Wahl gespeichert, nur das Anhalten per Knopf. Weniger Bewegung: flach, kein Gleiten – auch wenn der Schalter erst später gedrückt wird.
 - Laufband der Galerie (bis Version 4.2): einzige Dauerbewegung. Linear (ein Band soll gleichmäßig gleiten), etwa 24 px/s, nur `transform`. Hält an beim Überfahren, beim Fokus, per Knopf und außerhalb des Bildschirms; die Wahl »angehalten« bleibt im Browser. Bei weniger Bewegung steht es still und lässt sich von Hand verschieben.
 
 ### Bewegungsmuster aus dem Motion-Musterbuch 2 (ab Version 4.4)
@@ -308,7 +313,8 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 - **M Zählwerk:** Die Kennzahlen auf der Startseite rollen einmal auf ihren Wert, wenn sie ins Bild kommen. Die Zahl steht immer auch als Text da.
 - **N Leporello:** Die Schritte der großen Einblicke entfalten sich einmal, wenn sie ins Bild kommen (ab 700 px Breite).
 - **O Plattenwechsel:** Über der Galerie schiebt sich die Platte des gewählten Bereichs ins Bild.
-- Ausnahmen von »nie über 300 ms«: Plattenwechsel 320, Leporello 380 (gestaffelt), Durchschlag 420, Flug in den Schnellhefter 440, Passer 620, Zählwerk 720. Alle sind selten, einmalig oder räumlich und blockieren keine Eingabe.
+- **P Vom Blatt zum Tablet (ab Version 4.8, Seite »Unterricht digitalisieren«):** Ein beschrifteter Regler (`<input type="range">`, »Vom Blatt zum Tablet«) zieht zwischen »Arbeitsblatt auf Papier« und »Dieselbe Aufgabe am Tablet« – mit Finger, Maus und Tastatur; beide Zustände stehen als Text unter dem Regler, der aktuelle fett, dazu `aria-valuetext`. Das Bild hängt an einer Zahl `--t` von 0 bis 1: Die Papierzeilen verblassen, die Aufgaben erscheinen gestaffelt (Deckkraft und 8 px Lage), der Tablet-Rahmen liegt als eigene Fläche über dem Blatt und blendet ein, die Rückmeldung zuletzt. Keine Übergänge im CSS: Der Regler bewegt direkt. Abspielen von selbst höchstens einmal, erst wenn das Motiv ins Bild kommt (380 ms, auslaufend, in `digitalisieren.js` gerechnet); jede Berührung übernimmt sofort. Bei weniger Bewegung kein Abspielen, der Regler steht gleich am Tablet. Ersetzt den Zeitgeber von 900 ms aus Version 4.3.
+- Ausnahmen von »nie über 300 ms«: Plattenwechsel 320, Leporello 380 (gestaffelt), Vom Blatt zum Tablet 380 (gestaffelt, einmal), Durchschlag 420, Flug in den Schnellhefter 440, Passer 620, Zählwerk 720. Alle sind selten, einmalig oder räumlich und blockieren keine Eingabe.
 - Bewusst nicht übernommen: **H Druckwalze**.
 - Durchgesehen für Version 4.7 (Musterbücher der Politik-Werkstatt und des GGK-Labors, nur Technik, keine Farben oder Metaphern): Übernommen wurde allein die Technik **»Balken wachsen vom Nullpunkt«** (Politik-Werkstatt E, Zweibild-Start wie `mv-von` im GGK-Labor) für I2 – sie zeigt, dass der Balken ein Stück der Stunde ist. Bewusst nicht übernommen: **Schwärzung aufdecken** für den Grund-Satz (die Schwärzung bedeutet dort »damals nicht zu wissen«; ein Grund-Satz ist kein Geheimnis, und in den ersten Bildern wäre der Text verdeckt – gegen »Text immer sofort lesbar«), **gestaffeltes Erscheinen der sechs Auswahl-Karten** (eine Folge von punktuell nach durchgängig läse sich wie Stufen; der Abschnitt steht beim Laden im Bild, und was zu sehen ist, wird nicht versteckt), **Stimmkarte und Codewort als Mini-Vorschau** (das wäre eine Simulation der Lernanwendung), **Stempel**, **Urne** und **Halbrund** (gehören zum Stimmzettel, nicht zur Galerie).
 
@@ -338,6 +344,8 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 - **Do** Hauptaktionen in Druckschwarz halten.
 - **Do** versetzte Platte statt Schatten nutzen.
 - **Do** Bewegung nur auf Knopfdruck starten und pausierbar machen.
+- **Do** Zustände, die für Vorleseprogramme beschrieben sind, auch sichtbar zeigen: »Schritt n von m« neben den Stanzloch-Punkten, das Wort der gewählten Stufe unter einer Skala (ab Version 4.8).
+- **Do** Überfahren-Zustände (`:hover`) nur unter `@media (hover:hover) and (pointer:fine)` setzen, damit auf dem Tablet nichts hängen bleibt.
 - **Do** fehlende Bilder mit Rasterpunkten und »noch kein Bild« kennzeichnen.
 - **Do** die Startseite im Beamerformat 1280 × 720 prüfen.
 - **Do** die Auswahl »Zum Anfangen« als Anfang zeigen, nie als Bestenliste: zwei je Umfang, Kriterien sichtbar, keine Nummern.
@@ -349,7 +357,7 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 - **Don't** weiche Schatten, große Rundungen (> 4 px außer Chips) oder Pill-Buttons verwenden.
 - **Don't** Ampeln, Prozentwerte, Sterne, Abzeichen oder Ranglisten zeigen.
 - **Don't** Schullogo, Schulfarben oder offizielle Wirkung erzeugen.
-- **Don't** Autoplay, Endlos-Karussells oder Parallax einsetzen. Einzige Ausnahme: das Laufband der Galerie (langsam, linear, anhaltbar, still bei weniger Bewegung).
+- **Don't** Autoplay, Endlos-Karussells oder Parallax einsetzen. Einzige Ausnahme: der Fächer der Galerie – langsam, linear, anhaltbar, ein Durchlauf, dann steht er; still bei weniger Bewegung.
 - **Don't** Text unter 16 px setzen oder Honig (#A26A1C) als Fließtextfarbe nutzen.
 - **Don't** Beispiele, Zitate, Zahlen oder Links erfinden.
 - **Don't** `ease-in` für Bewegung verwenden oder Tastaturaktionen animieren.

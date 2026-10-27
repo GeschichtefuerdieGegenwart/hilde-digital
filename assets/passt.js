@@ -18,16 +18,28 @@
   var formEl = document.getElementById("selbst");
   var ergebnis = document.getElementById("ergebnis");
 
+  /* Jede Stufe hat ein Wort: die Enden tragen die Worte der Frage, die Mitte »Stufe 2« bis »Stufe 4«.
+     Das Wort steht im Radio-Label (für Vorleseprogramme) und seit Version 4.8 sichtbar unter der Skala. */
+  function wort(f, i) { return i === 1 ? f.von : i === 5 ? f.bis : "Stufe " + i; }
+  function wortZeile(f, gewaehlt) {
+    return gewaehlt ? 'Gewählt: <b>' + esc(wort(f, gewaehlt)) + "</b> (" + gewaehlt + " von 5)" : "Noch nichts gewählt";
+  }
   document.getElementById("fragen").innerHTML = FRAGEN.map(function (f, n) {
     var stufen = "";
     for (var i = 1; i <= 5; i++) {
-      var label = i === 1 ? f.von : i === 5 ? f.bis : "Stufe " + i;
       stufen += '<label class="stufe"><input type="radio" name="' + f.id + '" value="' + i + '"' + (String(a[f.id]) === String(i) ? " checked" : "") + ">" +
-        '<span class="stufe-zahl" aria-hidden="true">' + i + '</span><span class="sr-only">' + esc(label) + "</span></label>";
+        '<span class="stufe-zahl" aria-hidden="true">' + i + '</span><span class="sr-only">' + esc(wort(f, i)) + "</span></label>";
     }
     return '<fieldset class="skala"><legend><span class="leise klein">Frage ' + (n + 1) + " von 5</span><br>" + esc(f.frage) + "</legend>" +
-      '<div class="stufen">' + stufen + '</div><div class="skala-enden" aria-hidden="true"><span>' + esc(f.von) + "</span><span>" + esc(f.bis) + "</span></div></fieldset>";
+      '<div class="stufen">' + stufen + '</div><div class="skala-enden" aria-hidden="true"><span>' + esc(f.von) + "</span><span>" + esc(f.bis) + "</span></div>" +
+      '<p class="stufe-wort" data-wort="' + f.id + '" aria-hidden="true">' + wortZeile(f, parseInt(a[f.id], 10) || 0) + "</p></fieldset>";
   }).join("");
+  function zeigeWorte() {
+    FRAGEN.forEach(function (f) {
+      var c = formEl.querySelector('input[name="' + f.id + '"]:checked');
+      formEl.querySelector('[data-wort="' + f.id + '"]').innerHTML = wortZeile(f, c ? parseInt(c.value, 10) : 0);
+    });
+  }
 
   function auswahl(id, titel, werte, leer) {
     return '<div class="eingabe"><label for="s-' + id + '">' + titel + '</label><select id="s-' + id + '" name="' + id + '"><option value="">' + leer + "</option>" +
@@ -74,7 +86,7 @@
     if (fokus) document.getElementById("selbst-titel").focus();
   }
 
-  formEl.addEventListener("change", function () { H.schreib(SPEICHER, lese()); });
+  formEl.addEventListener("change", function () { H.schreib(SPEICHER, lese()); zeigeWorte(); });
   formEl.addEventListener("submit", function (e) {
     e.preventDefault();
     H.schreib(SPEICHER, lese());
@@ -84,6 +96,7 @@
     H.loescheAlles();
     formEl.querySelectorAll("input:checked").forEach(function (x) { x.checked = false; });
     formEl.querySelectorAll("select").forEach(function (x) { x.value = ""; });
+    zeigeWorte();
     ergebnis.innerHTML = "";
     formEl.querySelector("input").focus();
   });
