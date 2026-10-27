@@ -123,7 +123,11 @@ var HILDE = (function () {
      (transform-origin), schließt mit Escape, »Schließen« oder Klick daneben. Pfeiltasten blättern.
      Der Fokus kehrt zum auslösenden Element zurück. Bewegung nur über transform und opacity. */
   var dlg = null, liste = [], pos = 0, titel = "", ausloeser = null, wege = null;
-  function ruhig() { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  /* »Weniger Bewegung«: Systemeinstellung oder Schalter im Fuß (html[data-bewegung="weniger"], assets/motion.js). */
+  function ruhig() {
+    return document.documentElement.getAttribute("data-bewegung") === "weniger" ||
+      !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
   function baue() {
     dlg = document.createElement("dialog");
     dlg.className = "lichtbild";
@@ -224,7 +228,7 @@ var HILDE = (function () {
     if (t && t.tagName === "IMG" && t.closest && t.closest("[data-bildrahmen]")) t.closest("[data-bildrahmen]").classList.add("bild-fehlt");
   }, true);
 
-  return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name,
+  return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name, ruhig: ruhig,
            kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf,
            stundenlinie: stundenlinie, umfangZeile: umfangZeile, stundenlinieZeichnen: stundenlinieZeichnen,
            lichtbild: oeffne };

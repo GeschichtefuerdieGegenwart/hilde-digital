@@ -6,17 +6,25 @@
   <p class="detail-kurz">Du hast schon guten Unterricht. Wähle aus, was du hast und was entstehen soll. Du bekommst einen Prompt, mit dem dir ein an deiner Schule freigegebenes KI-System Vorschläge macht – immer mit der Frage, was das Tablet besser kann als Papier.</p>
   <p><a class="knopf" href="#baukasten">Prompt zusammenstellen <span aria-hidden="true">↓</span></a></p>
   </div>
-  <div class="blatt-tablet" aria-hidden="true">
-    <div class="geraet" id="geraet">
+  <div class="blatt-tablet">
+    <div class="geraet" id="geraet" aria-hidden="true">
+      <span class="geraet-rahmen"></span>
       <p class="geraet-titel" id="geraet-titel">Arbeitsblatt</p>
-      <span class="zeile l"></span><span class="zeile m"></span><span class="zeile k"></span><span class="zeile l"></span><span class="zeile m"></span>
-      <div class="aufgaben">
-        <span class="aufgabe" style="--i:0"><span class="kreis"></span>Auswahl</span>
-        <span class="aufgabe" style="--i:1"><span class="kreis"></span>Begründung</span>
-        <span class="aufgabe" style="--i:2"><span class="kreis"></span>Hilfe</span>
+      <div class="geraet-inhalt">
+        <div class="zeilen"><span class="zeile l"></span><span class="zeile m"></span><span class="zeile k"></span><span class="zeile l"></span><span class="zeile m"></span></div>
+        <div class="aufgaben">
+          <span class="aufgabe" style="--i:0"><span class="kreis"></span>Auswahl</span>
+          <span class="aufgabe" style="--i:1"><span class="kreis"></span>Begründung</span>
+          <span class="aufgabe" style="--i:2"><span class="kreis"></span>Hilfe</span>
+        </div>
       </div>
       <span class="rueckmeldung">Rückmeldung</span>
     </div>
+    <p class="geraet-regler">
+      <label for="geraet-stufe">Vom Blatt zum Tablet</label>
+      <input type="range" id="geraet-stufe" min="0" max="100" step="1" value="0" aria-valuetext="Arbeitsblatt auf Papier">
+      <span class="geraet-enden"><span class="ist" data-geraet-ende="papier">Arbeitsblatt auf Papier</span><span data-geraet-ende="tablet">Dieselbe Aufgabe am Tablet</span></span>
+    </p>
   </div>
 </div></section>
 

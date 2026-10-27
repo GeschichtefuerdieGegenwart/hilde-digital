@@ -4,6 +4,7 @@
 Aufruf:  python3 tools/bauen.py
 Ergebnis: alle Seiten aus SEITEN. showroom.html leitet auf galerie.html weiter (alte Links bleiben gültig).
 Kopfzeile, Statuszeile und Fußzeile stehen nur hier – so bleiben sie auf allen Seiten gleich.
+Im Fuß steht der Schalter »Weniger Bewegung« (ab Version 4.8); ein kleines Skript im Kopf setzt die gemerkte Wahl vor dem ersten Zeichnen.
 """
 from pathlib import Path
 
@@ -69,6 +70,7 @@ def rahmen(titel, aktiv, inhalt, datei):
 <meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 {weiterleitung}<title>{titel}</title>
 <link rel="stylesheet" href="assets/hilde.css">
+<script>/* Schalter »Weniger Bewegung« (Fuß): die gemerkte Wahl vor dem ersten Zeichnen setzen, damit nichts flackert. */try{{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger")}}catch(e){{}}</script>
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
@@ -83,6 +85,7 @@ def rahmen(titel, aktiv, inhalt, datei):
 <footer class="fuss"><div class="huelle">
   <p class="fuss-marke" aria-hidden="true">Hilde Digital{PLATTEN}</p>
   <nav class="fusslinks" aria-label="Über Hilde Digital"><ul>{fuss}<li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>
   <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · {KENNZEICHNUNG}</p>
 </div></footer>
 <script src="assets/motion.js"></script>

@@ -38,7 +38,7 @@
      keine Pflicht-Wischgeste, kein Autoplay, reduzierte Bewegung wird respektiert,
      das Raster ist jederzeit verfügbar, keine Information nur während einer Animation. */
   var GROSS = window.matchMedia ? window.matchMedia("(min-width: 1100px)") : { matches: false };
-  var RUHIG = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+  var RUHIG = { get matches() { return H.ruhig(); } }; // Systemeinstellung oder Schalter im Fuß
   var ansicht = H.lies("showroom-ansicht") === "buehne" ? "buehne" : "raster";
   function buehneAktiv() { return ansicht === "buehne" && GROSS.matches; }
   var ziel = el("karten"), mehr = el("mehr"), zeile = el("ergebniszeile"), aktiveListe = el("aktive"), lockerung = el("lockerung");

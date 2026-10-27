@@ -68,11 +68,53 @@
   });
   neu();
 
-  // Erklär-Bewegung: Das Blatt wird einmal zum Tablet – kurz nach dem Laden, nur ohne »weniger Bewegung«.
-  var geraet = document.getElementById("geraet");
-  var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (geraet) {
-    if (ruhig) { geraet.classList.add("sofort", "digital"); document.getElementById("geraet-titel").textContent = "Am Tablet"; }
-    else setTimeout(function () { geraet.classList.add("digital"); document.getElementById("geraet-titel").textContent = "Am Tablet"; }, 900);
+  /* Vom Blatt zum Tablet (ab Version 4.8): ein Regler zieht zwischen »Arbeitsblatt auf Papier« (0) und
+     »Dieselbe Aufgabe am Tablet« (100) – mit Finger, Maus oder Tastatur. Das Bild hängt an --t (nur Deckkraft und Lage).
+     Abspielen von selbst: höchstens einmal, erst wenn das Motiv ins Bild kommt (380 ms, auslaufend); jede Berührung
+     übernimmt sofort. Bei »weniger Bewegung« (System oder Schalter im Fuß) kein Abspielen: Es steht gleich der Endzustand. */
+  var geraet = document.getElementById("geraet"), regler = document.getElementById("geraet-stufe");
+  function ruhig() {
+    return document.documentElement.getAttribute("data-bewegung") === "weniger" ||
+      !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+  if (geraet && regler) {
+    var titel = document.getElementById("geraet-titel"), enden = [].slice.call(document.querySelectorAll("[data-geraet-ende]"));
+    var angefasst = false, lauf = 0, gespielt = false;
+    function setze(v) {
+      v = Math.max(0, Math.min(100, v));
+      var tablet = v >= 50;
+      geraet.style.setProperty("--t", (v / 100).toFixed(3));
+      geraet.classList.toggle("digital", tablet);
+      titel.textContent = tablet ? "Am Tablet" : "Arbeitsblatt";
+      regler.setAttribute("aria-valuetext", tablet ? "Dieselbe Aufgabe am Tablet" : "Arbeitsblatt auf Papier");
+      enden.forEach(function (e) { e.classList.toggle("ist", (e.getAttribute("data-geraet-ende") === "tablet") === tablet); });
+    }
+    function uebernehmen() { angefasst = true; if (lauf) { cancelAnimationFrame(lauf); lauf = 0; } }
+    regler.addEventListener("pointerdown", uebernehmen);
+    regler.addEventListener("keydown", uebernehmen);
+    regler.addEventListener("input", function () { uebernehmen(); setze(+regler.value); });
+    function spiele() {
+      if (gespielt || angefasst) return;
+      gespielt = true;
+      if (ruhig()) { regler.value = 100; setze(100); return; }
+      var start = 0, DAUER = 380;
+      lauf = requestAnimationFrame(function schritt(t) {
+        if (angefasst) return;
+        if (!start) start = t;
+        var p = Math.min(1, (t - start) / DAUER), e = 1 - Math.pow(1 - p, 3); // auslaufend (ease-out)
+        regler.value = Math.round(e * 100); setze(e * 100);
+        if (p < 1) lauf = requestAnimationFrame(schritt); else lauf = 0;
+      });
+    }
+    setze(+regler.value);
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) {
+        if (!es.some(function (x) { return x.isIntersecting; })) return;
+        io.disconnect(); spiele();
+      }, { threshold: .5 });
+      io.observe(geraet);
+    } else spiele();
+    // Wird »weniger Bewegung« eingeschaltet, während es läuft: anhalten und den Endzustand zeigen.
+    document.addEventListener("hilde:bewegung", function () { if (lauf && ruhig()) { cancelAnimationFrame(lauf); lauf = 0; regler.value = 100; setze(100); } });
   }
 })();
