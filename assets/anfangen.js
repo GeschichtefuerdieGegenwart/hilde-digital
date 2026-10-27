@@ -10,14 +10,15 @@
   if (!ort) return;
 
   function bild(b) {
-    if (b.bild) return '<div class="bild" data-bildrahmen><img src="' + esc(b.bild) + '" alt="" loading="lazy" width="1040" height="650"></div>';
+    if (b.bild) return '<div class="bild" data-bildrahmen><img src="' + esc(b.bild) + '" alt="" loading="lazy" width="1040" height="650" data-wechsel-bild></div>';
     return '<div class="bild ohne-bild" aria-hidden="true"><span>noch kein Bild</span></div>';
   }
 
   function karte(b) {
-    return '<article class="karte anfangen-karte">' + bild(b) +
+    // data-wechsel: Bild und Titel wandern beim Öffnen zur Detailseite (HILDE.ansichtswechsel in hilde.js).
+    return '<article class="karte anfangen-karte" data-wechsel="' + esc(b.id) + '">' + bild(b) +
       '<div class="koerper">' + H.kennzeichen(b) +
-      '<p class="fach">' + esc(b.fach) + "</p><h4>" + esc(b.titel) + "</h4>" +
+      '<p class="fach">' + esc(b.fach) + "</p><h4 data-wechsel-titel>" + esc(b.titel) + "</h4>" +
       '<p class="grund">' + esc(b.auswahl.grund) + "</p></div>" +
       '<div class="fussleiste"><span class="status">Status: <b>' + esc(b.status) + "</b></span>" +
       '<span class="fuss-knoepfe"><a class="knopf" href="' + H.detailLink(b) + '">Mehr dazu<span class="sr-only">: ' + esc(b.titel) + "</span></a>" +

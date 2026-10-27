@@ -1,6 +1,7 @@
 /* Hilde Digital – Bewegungsmuster aus dem Motion-Musterbuch 2 (ab Version 4.4).
    F Passer · G Farbauszug (CSS, hier nur nichts zu tun) · J Stanzloch (CSS) · I Stundenlinie (in tablets-weg.js)
-   K Schnellhefter · L Durchschlag · M Zählwerk · N Leporello · O Plattenwechsel · Schalter »Weniger Bewegung« (ab 4.8).
+   K Schnellhefter · L Durchschlag · M Zählwerk · N Leporello · O Plattenwechsel · Schalter »Weniger Bewegung« (ab 4.8)
+   und »Beamer-Ansicht« (ab 4.8 Teil 2). Alle Dauern kommen aus den Tokens in hilde.css (dauer(), wie HILDE.dauer).
    Grundsätze (Emil Kowalski): Jede Bewegung hat einen Zweck, ist kurz (unter 500 ms), startet durch die Nutzerin
    oder einmal beim Erscheinen und läuft nie in Schleife. Bei »weniger Bewegung« bleibt der Zustand, die Bewegung entfällt.
    Mit der Tastatur ausgelöste Handlungen werden nicht animiert. Nichts Lesbares wird versteckt, was beim Laden schon zu sehen ist.
@@ -34,6 +35,30 @@
     var b = e.target.closest("[data-bewegung-schalter]");
     if (b) bewegungSetzen(root.getAttribute("data-bewegung") !== "weniger");
   });
+  /* ---------- Schalter »Beamer-Ansicht« im Fuß (ab Version 4.8 Teil 2) ----------
+     Setzt html[data-theme="beamer"]; die Wahl steht in diesem Browser unter hilde.theme. Das Kopfskript (tools/bauen.py)
+     setzt das Attribut vor dem ersten Zeichnen. color-scheme bleibt light; nur die Farbwerte ändern sich (hilde.css). */
+  var THEME = "hilde.theme";
+  function themeZeigen() {
+    var an = root.getAttribute("data-theme") === "beamer";
+    doc.querySelectorAll("[data-theme-schalter]").forEach(function (b) { b.setAttribute("aria-pressed", String(an)); });
+  }
+  function themeSetzen(beamer) {
+    if (beamer) root.setAttribute("data-theme", "beamer"); else root.removeAttribute("data-theme");
+    try { localStorage.setItem(THEME, JSON.stringify({ beamer: !!beamer })); } catch (e) { /* ohne Speicher weiter */ }
+    themeZeigen();
+    doc.dispatchEvent(new CustomEvent("hilde:theme", { detail: { beamer: !!beamer } }));
+  }
+  doc.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-theme-schalter]");
+    if (b) themeSetzen(root.getAttribute("data-theme") !== "beamer");
+  });
+
+  /* Dauer-Tokens aus hilde.css in Millisekunden (gleich wie HILDE.dauer; diese Datei läuft auch ohne hilde.js). */
+  function dauer(name) {
+    var v = parseFloat(getComputedStyle(root).getPropertyValue("--dauer-" + name));
+    return isNaN(v) ? 0 : v;
+  }
   function neuStarten(el, klasse) { el.classList.remove(klasse); void el.offsetWidth; el.classList.add(klasse); }
   function sitzung(schluessel) {
     try { if (sessionStorage.getItem(schluessel)) return false; sessionStorage.setItem(schluessel, "1"); return true; }
@@ -63,7 +88,7 @@
       if (!z) return;
       if (!animiert || ruhig()) { z.textContent = n; return; }
       z.classList.add("rollt");
-      setTimeout(function () { z.textContent = n; z.classList.remove("rollt"); }, 110);
+      setTimeout(function () { z.textContent = n; z.classList.remove("rollt"); }, dauer("hefterzahl"));
       neuStarten(a, "andruck");
     });
   }
@@ -91,7 +116,7 @@
       f.style.transform = "translate(" + dx + "px," + dy + "px) scale(" + Math.max(.06, z.width / r.width) + ")";
       f.style.opacity = ".35";
     }); });
-    setTimeout(function () { f.remove(); fertig(); }, 440);
+    setTimeout(function () { f.remove(); fertig(); }, dauer("flug"));
   }
   doc.addEventListener("click", function (e) {
     var knopf = e.target.closest("[data-merken]");
@@ -132,7 +157,7 @@
     g.style.left = r.left + "px"; g.style.top = r.top + "px"; g.style.width = r.width + "px"; g.style.height = r.height + "px";
     doc.body.appendChild(g);
     requestAnimationFrame(function () { requestAnimationFrame(function () { g.style.transform = "translate(14px,14px)"; g.style.opacity = "0"; }); });
-    setTimeout(function () { g.remove(); }, 440);
+    setTimeout(function () { g.remove(); }, dauer("durchschlag") + 20); // kurz nach dem Ende des Übergangs aufräumen
   });
 
   /* ---------- M · Zählwerk: einmal, wenn die Kennzahlen ins Bild kommen ---------- */
@@ -148,13 +173,13 @@
         if (!/^\d+$/.test(wert)) return;
         var baender = wert.split("").map(function (d, i) {
           var s = ""; for (var k = 0; k <= 9; k++) s += "<span>" + k + "</span>";
-          return '<span class="ziffer"><span class="band" data-d="' + d + '" style="transition-delay:' + i * 60 + 'ms">' + s + "</span></span>";
+          return '<span class="ziffer"><span class="band" data-d="' + d + '" style="transition-delay:' + i * dauer("zaehlwerk-staffel") + 'ms">' + s + "</span></span>";
         }).join("");
         b.innerHTML = '<span class="sr-only">' + wert + '</span><span class="zaehlwerk" aria-hidden="true">' + baender + "</span>";
         requestAnimationFrame(function () { requestAnimationFrame(function () {
           b.querySelectorAll(".band").forEach(function (x) { x.style.transform = "translateY(-" + x.getAttribute("data-d") + "em)"; });
         }); });
-        setTimeout(function () { b.textContent = wert; }, 900); // danach wieder schlichter Text
+        setTimeout(function () { b.textContent = wert; }, dauer("zaehlwerk") + 3 * dauer("zaehlwerk-staffel")); // danach wieder schlichter Text (720 + 3 × 60 = 900 ms)
       });
     }, { threshold: .4 });
     io.observe(liste);
@@ -190,7 +215,7 @@
   }
 
   function start() {
-    bewegungZeigen(); passer(); zeigeZahl(false); zeigeKnoepfe(); zeigeHefter(); zaehlwerk(); leporello(); plattenwechsel();
+    bewegungZeigen(); themeZeigen(); passer(); zeigeZahl(false); zeigeKnoepfe(); zeigeHefter(); zaehlwerk(); leporello(); plattenwechsel();
     // Später gezeichnete Karten (Galerie-Treffer, Detailseite) bekommen ihren Merk-Zustand nachgereicht.
     new MutationObserver(function (m) {
       if (m.some(function (x) { return x.addedNodes.length; })) zeigeKnoepfe();

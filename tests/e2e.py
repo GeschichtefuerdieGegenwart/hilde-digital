@@ -751,6 +751,67 @@ def main():
         pruefe(not r.konsole, f"Version 4.8, weniger Bewegung: keine Konsolenfehler {r.konsole}")
         r.context.close()
 
+        # 5f. Version 4.8 Teil 2: Tokens, Andruck, keine Parallaxe, Ansichtswechsel, Beamer-Ansicht
+        w = neue_seite(b)
+        w.goto(url("index.html"))
+        tok = w.evaluate("(() => { const s = getComputedStyle(document.documentElement); return ['flug','reihe','passer','zaehlwerk','einflug','blatt'].map(n => s.getPropertyValue('--dauer-' + n).trim()); })()")
+        pruefe(tok == ["440ms", "440ms", "620ms", "720ms", "240ms", "380ms"] and w.evaluate("HILDE.dauer('flug')") == 440 and w.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--ease-beidseits').trim()") != "", f"Tokens: Dauern stehen in hilde.css und HILDE.dauer liest sie ({tok})")
+        css = (W / "assets" / "hilde.css").read_text(encoding="utf-8")
+        pruefe("collage-drift" not in css and "animation-timeline" not in css, "Collage: keine scroll-gesteuerte Parallaxe mehr")
+        knopf = [z for z in css.splitlines() if z.startswith(".knopf:active")]
+        pruefe(knopf and "translate(var(--andruck)" in knopf[0] and "scale(" not in knopf[0] and w.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--andruck').trim()") == "2px", "Andruck: der Knopf rückt 2 px auf seine Platte, keine Größenänderung")
+        pruefe("translateY(6px)" in css and "translateY(24px)" not in css, "Einflug: höchstens 6 px")
+        # Ansichtswechsel: erst beim Klick trägt genau eine Karte die Namen, die Detailseite trägt sie auch
+        w.goto(url("galerie.html")); w.wait_for_selector("#anfangen article")
+        vt = w.evaluate("!!document.startViewTransition")
+        pruefe(w.evaluate("document.querySelectorAll('[style*=\"view-transition-name\"]').length") == 0, "Ansichtswechsel: beim Zeichnen trägt keine Karte einen Namen")
+        kid = w.evaluate("document.querySelector('#anfangen [data-wechsel]').getAttribute('data-wechsel')")
+        pruefe(w.evaluate(f"document.querySelectorAll('[data-wechsel=\"{kid}\"]').length") >= 1 and w.evaluate("document.querySelectorAll('[data-wechsel] [data-wechsel-bild], [data-wechsel] [data-wechsel-titel]').length") > 0, "Ansichtswechsel: Karten tragen data-wechsel, Bild und Titel sind markiert")
+        w.evaluate(f"document.querySelector('#anfangen [data-wechsel=\"{kid}\"] a[href*=\"beispiel.html#\"]').click()")
+        w.wait_for_selector("#detail-titel")
+        if vt:
+            pruefe(w.evaluate("document.getElementById('detail-titel').style.viewTransitionName") == f"titel-{kid}" and w.evaluate(f"[...document.querySelectorAll('[style*=\"view-transition-name\"]')].filter(e => e.style.viewTransitionName === 'bild-{kid}').length") == 1, "Ansichtswechsel: die Detailseite benennt Hauptbild und Überschrift genau einmal")
+            w.go_back(); w.wait_for_selector("#anfangen article"); w.wait_for_timeout(300)
+            pruefe(w.evaluate(f"[...document.querySelectorAll('[style*=\"view-transition-name\"]')].filter(e => e.style.viewTransitionName === 'titel-{kid}').length") <= 1 and w.evaluate(f"[...document.querySelectorAll('[style*=\"view-transition-name\"]')].filter(e => e.style.viewTransitionName === 'bild-{kid}').length") <= 1, "Ansichtswechsel: zurück in der Galerie trägt höchstens eine Karte die Namen")
+        # Beamer-Ansicht: Schalter, Speicher, Kontraste, 1280 × 720
+        w.goto(url("index.html"))
+        pruefe(w.locator("#theme-schalter").count() == 1 and w.get_attribute("#theme-schalter", "aria-pressed") == "false" and not w.evaluate("document.documentElement.hasAttribute('data-theme')"), "Beamer: Schalter steht im Fuß neben »Weniger Bewegung«, zuerst aus")
+        pruefe(w.evaluate("(() => { const a = document.getElementById('bewegung-schalter'), t = document.getElementById('theme-schalter'); return a.closest('.fuss-einstellung').nextElementSibling === t.closest('.fuss-einstellung'); })()"), "Beamer: der Schalter folgt direkt auf »Weniger Bewegung«")
+        w.click("#theme-schalter")
+        pruefe(w.get_attribute("html", "data-theme") == "beamer" and w.get_attribute("#theme-schalter", "aria-pressed") == "true" and w.evaluate("JSON.parse(localStorage.getItem('hilde.theme')).beamer") is True, "Beamer: Klick setzt html[data-theme=beamer], aria-pressed und hilde.theme")
+        w.reload()
+        pruefe(w.get_attribute("html", "data-theme") == "beamer" and w.get_attribute("#theme-schalter", "aria-pressed") == "true", "Beamer: bleibt nach dem Neuladen")
+        farben = w.evaluate("""(() => {
+          const s = getComputedStyle(document.documentElement), v = n => s.getPropertyValue(n).trim();
+          const rgb = c => { if (c.startsWith('#')) { const h = c.slice(1); return [0, 2, 4].map(i => parseInt(h.substr(i, 2), 16)); } return c.match(/\\d+/g).slice(0, 3).map(Number); };
+          const lum = c => { const [r, g, b] = rgb(c).map(x => { x /= 255; return x <= .03928 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4); }); return .2126 * r + .7152 * g + .0722 * b; };
+          const k = (a, b) => { const la = lum(a), lb = lum(b); return (Math.max(la, lb) + .05) / (Math.min(la, lb) + .05); };
+          const body = getComputedStyle(document.body);
+          return { grund: v('--grund'), text: v('--text'), bodyBg: body.backgroundColor, bodyFg: body.color,
+            textGrund: k(v('--text'), v('--grund')), textFlaeche: k(v('--text'), v('--flaeche')), leiseGrund: k(v('--leise'), v('--grund')), leiseFlaeche: k(v('--leise'), v('--flaeche')),
+            stahlGrund: k(v('--stahl'), v('--grund')), petrolGrund: k(v('--lernen'), v('--grund')), kiGrund: k(v('--ki'), v('--grund')), kiFlaeche: k(v('--ki'), v('--flaeche')),
+            textPlatte: k(v('--text'), v('--ki-platte')), aufPetrol: k(v('--aktion-text'), v('--lernen')), flaecheAufPetrol: k(v('--flaeche'), v('--lernen')), ueberdruck: k(v('--aktion-text'), v('--ueberdruck')),
+            flaecheGrund: k(v('--flaeche'), v('--grund')), scheme: s.colorScheme };
+        })()""")
+        pruefe(farben["grund"] == "#ffffff" and farben["text"] == "#000000" and farben["bodyBg"] == "rgb(255, 255, 255)" and farben["bodyFg"] == "rgb(0, 0, 0)", f"Beamer: Grund reines Weiß, Text tiefes Schwarz ({farben['bodyBg']}, {farben['bodyFg']})")
+        pruefe(all(farben[p] >= 4.5 for p in ("textGrund", "textFlaeche", "leiseGrund", "leiseFlaeche", "stahlGrund", "petrolGrund", "kiGrund", "kiFlaeche", "textPlatte", "aufPetrol", "flaecheAufPetrol", "ueberdruck")), f"Beamer: alle Textpaare mindestens 4,5:1 ({ {p: round(farben[p], 1) for p in farben if isinstance(farben[p], float)} })")
+        pruefe(farben["textGrund"] >= 7 and farben["textFlaeche"] >= 7 and farben["leiseGrund"] >= 7, "Beamer: Fließtext und Leise auf Grund und Fläche mindestens 7:1")
+        pruefe(farben["flaecheGrund"] > 1.05 and farben["scheme"] == "light", f"Beamer: Karten bleiben gegen den Grund sichtbar, color-scheme bleibt light ({farben['flaecheGrund']:.2f})")
+        hoehe = w.locator(".galerie-zugang").bounding_box()
+        pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720 and w.evaluate("document.documentElement.scrollWidth") <= 1280, "Beamer 1280 × 720: Startseite zeigt beide Einstiege und die Galerie im Beamer-Theme ohne Scrollen")
+        w.goto(url("galerie.html"))
+        h1 = w.locator("h1").first.bounding_box(); su = w.locator("#suche").bounding_box(); an = w.locator("#anfangen h2").first.bounding_box()
+        pruefe(w.get_attribute("html", "data-theme") == "beamer" and all(x and x["y"] + x["height"] <= 720 for x in (h1, su, an)), "Beamer 1280 × 720: Galerie im Beamer-Theme zeigt Überschrift, Suche und »Zum Anfangen« ohne Scrollen")
+        w.goto(url("unterricht.html"))
+        h1 = w.locator("h1").first.bounding_box(); hw = w.locator(".werkzeug.haupt").bounding_box()
+        pruefe(h1 and hw and h1["y"] + h1["height"] <= 720 and hw["y"] + hw["height"] <= 720, "Beamer 1280 × 720: Digitaler Unterricht im Beamer-Theme ohne Scrollen")
+        w.goto(url("ueber.html")); w.click("#alles-loeschen"); w.reload()
+        pruefe(not w.evaluate("document.documentElement.hasAttribute('data-theme')") and w.get_attribute("#theme-schalter", "aria-pressed") == "false", "Beamer: »Eingaben löschen« setzt die Beamer-Ansicht zurück")
+        w.click("#theme-schalter"); w.click("#theme-schalter")
+        pruefe(not w.evaluate("document.documentElement.hasAttribute('data-theme')") and w.evaluate("JSON.parse(localStorage.getItem('hilde.theme')).beamer") is False, "Beamer: zweiter Klick schaltet zurück")
+        pruefe(not w.konsole, f"Version 4.8 Teil 2: keine Konsolenfehler {w.konsole}")
+        w.context.close()
+
         # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
         for breite in (375, 768, 1280, 1440):
             q = neue_seite(b, viewport={"width": breite, "height": 900})

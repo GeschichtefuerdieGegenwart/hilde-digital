@@ -32,6 +32,13 @@ var HILDE = (function () {
   }
   function name(liste, id) { return TAXONOMIEN.name(liste, id); }
 
+  /* Dauer-Tokens aus hilde.css (ab Version 4.8 Teil 2): HILDE.dauer("flug") liest --dauer-flug und gibt Millisekunden zurück.
+     Alle Tokens stehen in Millisekunden. So steht jede Zahl nur einmal, im Gestaltungssystem. */
+  function dauer(name) {
+    var v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--dauer-" + name));
+    return isNaN(v) ? 0 : v;
+  }
+
   /* Bereich immer als Text und Farbe, nie nur Farbe. */
   function kennzeichen(b) {
     var k = [];
@@ -44,7 +51,7 @@ var HILDE = (function () {
 
   function bildHtml(b) {
     if (!b.bild) return "";
-    return '<div class="bild" data-bildrahmen><img src="' + esc(b.bild) + '" alt="" loading="lazy" width="1040" height="650"></div>';
+    return '<div class="bild" data-bildrahmen><img src="' + esc(b.bild) + '" alt="" loading="lazy" width="1040" height="650" data-wechsel-bild></div>';
   }
 
   /* Merkmale in einer Zeile: Phase · Rolle · Anliegen. Nur Belegtes oder Vorgeschlagenes.
@@ -102,18 +109,18 @@ var HILDE = (function () {
 
   /* Große Galerie-Karte */
   function karte(b) {
-    return '<article class="karte' + (b.bild ? "" : " kompakt") + '">' + bildHtml(b) +
+    return '<article class="karte' + (b.bild ? "" : " kompakt") + '" data-wechsel="' + esc(b.id) + '">' + bildHtml(b) +
       '<div class="koerper">' + kennzeichen(b) +
-      '<p class="fach">' + esc(b.fach) + "</p><h3>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + merkmale(b) + umfangZeile(b) + staerken(b) + "</div>" +
+      '<p class="fach">' + esc(b.fach) + "</p><h3 data-wechsel-titel>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + merkmale(b) + umfangZeile(b) + staerken(b) + "</div>" +
       '<div class="fussleiste"><span class="status">Status: <b>' + esc(b.status) + "</b></span>" +
       '<span class="fuss-knoepfe">' + merkKnopf(b) + '<a class="knopf" href="' + detailLink(b) + '">Beispiel ansehen <span class="sr-only">: ' + esc(b.titel) + "</span></a></span></div></article>";
   }
 
   /* Kleine Karte für Empfehlungen */
   function miniKarte(b) {
-    return '<li class="mini"><a href="' + detailLink(b) + '">' +
-      (b.bild ? '<img src="' + esc(b.bild) + '" alt="" loading="lazy">' : '<span class="ohne-bild" aria-hidden="true"></span>') +
-      '<span class="mini-text">' + kennzeichen(b) + "<b>" + esc(b.titel) + "</b>" +
+    return '<li class="mini" data-wechsel="' + esc(b.id) + '"><a href="' + detailLink(b) + '">' +
+      (b.bild ? '<img src="' + esc(b.bild) + '" alt="" loading="lazy" data-wechsel-bild>' : '<span class="ohne-bild" aria-hidden="true"></span>') +
+      '<span class="mini-text">' + kennzeichen(b) + "<b data-wechsel-titel>" + esc(b.titel) + "</b>" +
       '<span class="status">Status: ' + esc(b.status) + "</span>" +
       '<span class="mini-weiter">Beispiel ansehen <span aria-hidden="true">→</span></span></span></a></li>';
   }
@@ -192,11 +199,57 @@ var HILDE = (function () {
     var fertig = function () { dlg.close(); dlg.classList.remove("zu"); if (ausloeser && ausloeser.focus) ausloeser.focus(); };
     if (ruhig()) { fertig(); return; }
     dlg.classList.add("zu");
-    setTimeout(fertig, 150); // Ausblenden ist kürzer als Einblenden (siehe --dauer-aus)
+    setTimeout(fertig, dauer("aus")); // Ausblenden ist kürzer als Einblenden (--dauer-aus)
   }
 
+  /* ---------- Ansichtswechsel Karte ↔ Detail (ab Version 4.8 Teil 2) ----------
+     Mit View Transitions (Regel view-transition in hilde.css) wandern Bild und Titel eines Beispiels von der Karte zur
+     Detailseite und zurück. Dafür brauchen beide Seiten dieselben Namen: bild-<id> und titel-<id>. Ein Name darf
+     auf einer Seite nur einmal vorkommen – in der Galerie steht ein Beispiel aber oft mehrfach (»Zum Anfangen«,
+     Einblicke, Treffer). Darum werden die Namen nicht beim Zeichnen vergeben, sondern erst beim Klick auf die eine
+     Karte, die geöffnet wird. Karten tragen data-wechsel="<id>", ihr Bild data-wechsel-bild, ihr Titel data-wechsel-titel.
+     Zurück zur Galerie: Kommt die Seite aus dem Browser-Speicher, trägt die angeklickte Karte ihre Namen noch.
+     Wird sie neu geladen, bekommt die erste gezeichnete Karte dieses Beispiels die Namen (Regel: Seitenfolge,
+     also »Zum Anfangen« vor Einblicken vor Treffern), und ihr Link erhält den Fokus. Die Beispiel-ID steht so lange
+     in sessionStorage unter hilde.wechsel. Browser ohne View Transitions wechseln sofort; bei weniger Bewegung
+     entfällt die Bewegung (CSS) und es wird nichts benannt. */
+  var WECHSEL = "hilde.wechsel", benannt = [];
+  function wechselMerken(id) { try { if (id) sessionStorage.setItem(WECHSEL, id); else sessionStorage.removeItem(WECHSEL); } catch (e) { /* ohne Speicher weiter */ } }
+  function wechselId() { try { return sessionStorage.getItem(WECHSEL) || ""; } catch (e) { return ""; } }
+  function benenne(karte, id, bild, titel) {
+    benannt.forEach(function (el) { el.style.viewTransitionName = ""; el.style.viewTransitionClass = ""; });
+    benannt = [];
+    if (!id) return;
+    if (karte) { bild = bild || karte.querySelector("[data-wechsel-bild]"); titel = titel || karte.querySelector("[data-wechsel-titel]"); }
+    if (bild) { bild.style.viewTransitionName = "bild-" + id; bild.style.viewTransitionClass = "bild"; benannt.push(bild); }
+    if (titel) { titel.style.viewTransitionName = "titel-" + id; benannt.push(titel); }
+  }
+  function wechselMoeglich() { return !!document.startViewTransition && !ruhig(); }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href*="beispiel.html#"]');
+    if (!a || /beispiel\.html$/.test(location.pathname)) return;
+    var karte = a.closest("[data-wechsel]");
+    if (!karte || !wechselMoeglich()) return;
+    benenne(karte, karte.getAttribute("data-wechsel"));
+    wechselMerken(karte.getAttribute("data-wechsel"));
+  });
+  /* Beim Laden (nicht auf der Detailseite): die erste gezeichnete Karte des zuletzt geöffneten Beispiels benennen. */
+  function wechselZurueck() {
+    if (/beispiel\.html$/.test(location.pathname)) return;
+    var id = wechselId();
+    wechselMerken("");
+    if (!id || !wechselMoeglich()) return;
+    var karten = [].slice.call(document.querySelectorAll('[data-wechsel="' + id.replace(/"/g, "") + '"]'));
+    var karte = karten.filter(function (k) { return k.offsetParent !== null; })[0];
+    if (!karte) return;
+    benenne(karte, id);
+    var link = karte.querySelector('a[href*="beispiel.html#"]');
+    if (link) link.focus({ preventScroll: true });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wechselZurueck); else setTimeout(wechselZurueck, 0);
+
   /* Einflug beim Scrollen (ab Version 4.2): Abschnitte außerhalb des Bildschirms gleiten einmal kurz herein.
-     Höchstens 24 px, 240 ms, gestaffelt zu je 30 ms, höchstens 8 auf einmal. Nicht bei »weniger Bewegung«,
+     Höchstens 6 px (seit 4.8 Teil 2), --dauer-einflug, gestaffelt zu je --dauer-staffel, höchstens 8 auf einmal. Nicht bei »weniger Bewegung«,
      nicht ohne IntersectionObserver. Was beim Laden schon zu sehen ist, wird nie versteckt. */
   var EINFLUG = ".einblick, .einblick-klein, .werkzeug, .check-wege, .kennzahlen > li, " +
     ".zusammen-liste > li, .bausteine-liste > li, .alle-band-raster, .detail-ansichten, .inhalte-liste > div";
@@ -213,7 +266,7 @@ var HILDE = (function () {
       var n = 0;
       eintraege.forEach(function (x) {
         if (!x.isIntersecting) return;
-        x.target.style.setProperty("--einflug-verzug", Math.min(n++, 7) * 30 + "ms");
+        x.target.style.setProperty("--einflug-verzug", Math.min(n++, 7) * dauer("staffel") + "ms");
         x.target.classList.add("da");
         io.unobserve(x.target);
       });
@@ -228,7 +281,8 @@ var HILDE = (function () {
     if (t && t.tagName === "IMG" && t.closest && t.closest("[data-bildrahmen]")) t.closest("[data-bildrahmen]").classList.add("bild-fehlt");
   }, true);
 
-  return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name, ruhig: ruhig,
+  return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name, ruhig: ruhig, dauer: dauer,
+           wechselId: wechselId, wechselMerken: wechselMerken, wechselBenennen: benenne, wechselMoeglich: wechselMoeglich,
            kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf,
            stundenlinie: stundenlinie, umfangZeile: umfangZeile, stundenlinieZeichnen: stundenlinieZeichnen,
            lichtbild: oeffne };

@@ -71,7 +71,8 @@
   /* Vom Blatt zum Tablet (ab Version 4.8): ein Regler zieht zwischen »Arbeitsblatt auf Papier« (0) und
      »Dieselbe Aufgabe am Tablet« (100) – mit Finger, Maus oder Tastatur. Das Bild hängt an --t (nur Deckkraft und Lage).
      Abspielen von selbst: höchstens einmal, erst wenn das Motiv ins Bild kommt (380 ms, auslaufend); jede Berührung
-     übernimmt sofort. Bei »weniger Bewegung« (System oder Schalter im Fuß) kein Abspielen: Es steht gleich der Endzustand. */
+     übernimmt sofort. Bei »weniger Bewegung« (System oder Schalter im Fuß) kein Abspielen: Es steht gleich der Endzustand.
+     Die Dauer kommt aus dem Token --dauer-blatt (HILDE.dauer). */
   var geraet = document.getElementById("geraet"), regler = document.getElementById("geraet-stufe");
   function ruhig() {
     return document.documentElement.getAttribute("data-bewegung") === "weniger" ||
@@ -97,7 +98,7 @@
       if (gespielt || angefasst) return;
       gespielt = true;
       if (ruhig()) { regler.value = 100; setze(100); return; }
-      var start = 0, DAUER = 380;
+      var start = 0, DAUER = H.dauer("blatt"); // --dauer-blatt aus hilde.css (380 ms)
       lauf = requestAnimationFrame(function schritt(t) {
         if (angefasst) return;
         if (!start) start = t;

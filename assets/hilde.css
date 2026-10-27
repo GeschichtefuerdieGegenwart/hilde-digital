@@ -64,10 +64,52 @@
   --dauer-mittel:200ms;   /* Übergang: Ergebnis, Bildansicht öffnen */
   --dauer-aus:150ms;      /* Schließen ist kürzer als Öffnen */
   --dauer-register:280ms; /* Startseite: die zwei Platten finden ihr Register (einmalig) */
-  --druck:.97;            /* Schaltflächen beim Drücken */
+  --dauer-langsam:300ms;  /* Obergrenze der Regel; was länger dauert, steht unten als begründete Ausnahme */
+  --dauer-staffel:30ms;   /* Versatz je Element beim Einflug (höchstens 8 Elemente) */
+  --dauer-einflug:240ms;  /* Einflug beim Scrollen, höchstens 6 px */
+  --dauer-stundenlinie:260ms; /* Balken der Stundenlinie wächst (left und width, begründete Ausnahme) */
+  --dauer-stanzloch:160ms;    /* J · der erledigte Schritt gibt kurz nach */
+  --dauer-andruck:220ms;      /* K · der Schnellhefter im Kopf drückt kurz an */
+  --dauer-hefterzahl:110ms;   /* K · die Zahl im Schnellhefter rollt */
+  --verzug-auszug:100ms;      /* G · das Originalbild erscheint erst, wenn die Platten auseinander sind */
+  /* Begründete Ausnahmen über 300 ms (DESIGN.md): selten, einmalig oder räumlich, keine blockiert eine Eingabe. */
+  --dauer-plattenwechsel:320ms; /* O · Platte über der Galerie */
+  --dauer-leporello:380ms; --dauer-leporello-staffel:70ms; /* N · Schritte entfalten sich */
+  --dauer-blatt:380ms;    /* P · Vom Blatt zum Tablet, einmaliges Abspielen (assets/digitalisieren.js) */
+  --dauer-durchschlag:420ms; /* L · Durchschlag beim Kopieren */
+  --dauer-flug:440ms;     /* K · Flug in den Schnellhefter */
+  --dauer-reihe:440ms;    /* Ansichtswechsel Karte ↔ Detail (View Transitions, ab Version 4.8 Teil 2) */
+  --dauer-passer:620ms;   /* F · Passer der Bereichsüberschrift */
+  --dauer-zaehlwerk:720ms; --dauer-zaehlwerk-staffel:60ms; /* M · Ziffern rollen */
+  --druck:.97;            /* Schaltflächen beim Drücken (ältere Flächen: Größenänderung) */
   --druck-gross:.99;      /* große Flächen beim Drücken – weniger, weil sie größer sind */
+  --andruck:2px;          /* Knopf und Platten der Startseite rücken beim Drücken 2 px auf ihre Platte (Gegenwart: platte-andruck) */
   --auftauchen:.95;       /* Bildansicht öffnet aus 95 % */
   --ease-out:cubic-bezier(.23,1,.32,1); --ease-register:cubic-bezier(.22,1,.36,1);
+  --ease-beidseits:cubic-bezier(.77,0,.175,1); /* beidseitig weich: Flug, Plattenwechsel, Ansichtswechsel – Wege mit Start und Ziel */
+}
+
+/* Beamer-Ansicht (ab Version 4.8 Teil 2): Schalter im Fuß setzt html[data-theme="beamer"], gemerkt in hilde.theme.
+   Reines Weiß, tiefes Schwarz, kräftigere Druckfarben – für den Beamer im Klassenzimmer. Werte aus dem Designsystem
+   »Gegenwart« (Theme »Beamer«), Kontraste in DESIGN.md. Die zarten Flächen, Honigplatte, Bilder und Duplex-Vorschauen bleiben.
+   color-scheme bleibt light. */
+html[data-theme="beamer"]{
+  --grund:#ffffff;        /* Text 21:1 */
+  --flaeche:#f6f3ee;      /* Karten und Bänder: eine Tonstufe unter dem Grund, damit sie auf Weiß sichtbar bleiben (Text 19,0:1) */
+  --karton:#ece7de;       /* Text 17,1:1 */
+  --text:#000000;
+  --leise:#3a342e;        /* 12,3:1 auf Grund, 11,1:1 auf Fläche */
+  --stahl:#4a433b;        /* 9,7:1 auf Grund, 8,8:1 auf Fläche */
+  --linie:#c9c1b4;
+  --ki:#7a4f12;           /* Kante der Honigplatte (3,8:1 auf Honig); als Text 7,1:1 auf Grund, 6,4:1 auf Fläche */
+  --lernen:#0f4f4b;       /* Weiß darauf 9,4:1, Fläche darauf 8,5:1; als Text auf Grund 9,4:1 */
+  --ueberdruck:#13380e;   /* Weiß darauf 13,1:1 */
+  --aktion:#000000;
+  --aktion-text:#ffffff;
+  --fokus:#000000;
+  --erfolg:#1f4f24;       /* 8,0:1 auf Erfolg zart */
+  --warnung:#6b4000;      /* 7,2:1 auf Warnung zart */
+  --fehler:#8a1e14;       /* 7,8:1 auf Fehler zart */
 }
 
 *{box-sizing:border-box}
@@ -134,10 +176,12 @@ p{margin:0}
 .wahlflaeche.lernen{grid-column:6/13;grid-row:2/4;background:var(--lernen);color:var(--flaeche);padding-left:calc(2/7*100% + 1.5rem)}
 .wahlflaeche .weiter{display:inline-flex;align-items:center;gap:.6rem;margin-top:auto;min-height:48px;padding:.6rem 1.25rem;border-radius:var(--rund);font-weight:700;background:var(--aktion);color:var(--aktion-text)}
 .wahlflaeche.lernen .weiter{background:var(--flaeche);color:var(--text)}
-.wahlflaeche:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+.wahlflaeche:active{transform:translate(var(--andruck),var(--andruck));transition-duration:var(--dauer-druck)} /* Andruck: 2 px auf die Platte, keine Größenänderung */
 @media (hover:hover) and (pointer:fine){
   .wahlflaeche.ki:hover .weiter{box-shadow:4px 4px 0 0 var(--ki)} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
   .wahlflaeche.lernen:hover .weiter{box-shadow:4px 4px 0 0 var(--lernen-tief)} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+  .wahlflaeche.ki:hover:active .weiter{box-shadow:var(--andruck) var(--andruck) 0 0 var(--ki)} /* taste-skill-ignore: Andruck – die Platte wird kürzer */
+  .wahlflaeche.lernen:hover:active .weiter{box-shadow:var(--andruck) var(--andruck) 0 0 var(--lernen-tief)} /* taste-skill-ignore: Andruck – die Platte wird kürzer */
 }
 .schnitt{grid-column:6/8;grid-row:2/3;z-index:1;background:var(--ueberdruck);color:var(--flaeche);padding:clamp(.9rem,1.6vw,1.5rem);display:flex;flex-direction:column;justify-content:flex-end;gap:.4rem}
 .schnitt-titel{font-weight:700}
@@ -156,8 +200,8 @@ p{margin:0}
 .textlink{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.22em;min-height:44px}
 @media (hover:hover) and (pointer:fine){.textlink:hover{text-decoration-color:var(--stahl)}}
 .knopf{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.65rem 1.25rem;border-radius:var(--rund);border:2px solid var(--aktion);background:var(--aktion);color:var(--aktion-text);font:700 1.125rem/1.2 var(--schrift);text-decoration:none;cursor:pointer;touch-action:manipulation;transition:transform var(--dauer-schnell) var(--ease-out)}
-.knopf:active{transform:scale(var(--druck));transition-duration:var(--dauer-druck)}
-@media (hover:hover) and (pointer:fine){.knopf:hover{box-shadow:4px 4px 0 0 var(--karton)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+.knopf:active{transform:translate(var(--andruck),var(--andruck));transition-duration:var(--dauer-druck)} /* Andruck: der Knopf rückt 2 px auf seine Platte (Gegenwart), keine Größenänderung mehr */
+@media (hover:hover) and (pointer:fine){.knopf:hover{box-shadow:4px 4px 0 0 var(--karton)}.knopf:hover:active{box-shadow:var(--andruck) var(--andruck) 0 0 var(--karton)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren, beim Drücken kürzer */
 .knopf.still{background:transparent;color:var(--text);border:2px solid var(--stahl)}
 @media (hover:hover) and (pointer:fine){.knopf.still:hover{border-color:var(--text);box-shadow:none}}
 .knopf[aria-disabled="true"]{background:var(--karton);border-color:var(--karton);color:var(--leise);cursor:default;box-shadow:none}
@@ -258,8 +302,8 @@ main:focus{outline:none}
 .schritte .nr{position:relative}
 .schritte li.erledigt .nr{background:var(--farbe,var(--lernen));border-color:var(--farbe,var(--lernen));color:transparent}
 .schritte li.erledigt .nr::after{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--grund);box-shadow:inset 0 0 0 2px var(--tief,var(--lernen-tief))} /* taste-skill-ignore: Rand des Stanzlochs, kein Schatten */
-.schritte li.erledigt:has(+ li.aktuell) .nr{animation:stanzen 160ms var(--ease-out)}
-.schritte li.erledigt:has(+ li.aktuell) .nr::after{animation:loch 160ms var(--ease-out)}
+.schritte li.erledigt:has(+ li.aktuell) .nr{animation:stanzen var(--dauer-stanzloch) var(--ease-out)}
+.schritte li.erledigt:has(+ li.aktuell) .nr::after{animation:loch var(--dauer-stanzloch) var(--ease-out)}
 @keyframes stanzen{40%{transform:translateY(2px) scale(.9)}to{transform:none}}
 @keyframes loch{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
 .schritte li.aktuell>.ohne{color:var(--text);font-weight:700;background:var(--zart,var(--lernen-zart))}
@@ -595,10 +639,11 @@ main p,main li,main dd{max-width:60ch}
   .fussnav{display:block;flex-basis:100%;margin-bottom:var(--a4)}
   .leitsatz{font-size:1.5rem}
 }
-/* Fuß: Schalter »Weniger Bewegung« (ab Version 4.8). Ein Knopf mit aria-pressed; gedrückt = Druckschwarz mit Haken. */
+/* Fuß: Schalter »Weniger Bewegung« (ab Version 4.8) und »Beamer-Ansicht« (ab 4.8 Teil 2). Je ein Knopf mit aria-pressed; gedrückt = Druckschwarz mit Haken. */
 .fuss-einstellung{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:var(--a1) var(--a2);margin:0}
-.bewegung-schalter[aria-pressed="true"]{background:var(--text);color:var(--flaeche);border-color:var(--text)}
-.bewegung-schalter[aria-pressed="true"]::before{content:"";width:.4em;height:.75em;border:solid currentColor;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg);margin-right:.1em}
+.fuss-einstellung+.fuss-einstellung{margin-top:calc(-1 * var(--a1))}
+.bewegung-schalter[aria-pressed="true"],.theme-schalter[aria-pressed="true"]{background:var(--text);color:var(--flaeche);border-color:var(--text)}
+.bewegung-schalter[aria-pressed="true"]::before,.theme-schalter[aria-pressed="true"]::before{content:"";width:.4em;height:.75em;border:solid currentColor;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg);margin-right:.1em}
 .fuss-einstellung .leise{font-size:var(--gr-klein)}
 
 /* Beamer 1280 × 720: Kernaussage und beide Einstiege ohne Scrollen */
@@ -822,9 +867,16 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
 .inhalte-liste dt{font-weight:700;font-size:1.25rem}
 .inhalte-liste dd{margin:.25rem 0 0}
 
-/* Ansicht wechseln zwischen Seiten (wo der Browser es kann): kurzes Überblenden */
+/* Ansicht wechseln zwischen Seiten (wo der Browser es kann): kurzes Überblenden der ganzen Seite (200 ms).
+   Ab Version 4.8 Teil 2 wandern Bild und Titel eines Beispiels von der Karte zur Detailseite und zurück: Nur das eine
+   angeklickte Beispiel trägt die Namen bild-<id> und titel-<id> (gesetzt in HILDE.ansichtswechsel beim Klick, auf der
+   Detailseite beim Zeichnen), damit auf der Galerieseite kein Name doppelt vorkommt. Weg 440 ms, beidseitig weich –
+   begründete Ausnahme, weil die Strecke über die ganze Seite geht. Browser ohne View Transitions wechseln sofort. */
 @view-transition{navigation:auto}
+::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:var(--dauer-reihe);animation-timing-function:var(--ease-beidseits)}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:var(--dauer-mittel);animation-timing-function:var(--ease-out)}
+/* Bilder (view-transition-class: bild) füllen ihre Gruppe beidseitig aus; so springt nichts, wenn die Formate abweichen. Titel bleiben unverzerrt. */
+::view-transition-old(.bild),::view-transition-new(.bild){height:100%;object-fit:cover}
 
 /* Weniger Bewegung: keine Wege und keine Größenänderung, nur kurzes Überblenden (≤ 150 ms).
    Gilt bei der Systemeinstellung (prefers-reduced-motion) und – ab Version 4.8 – beim Schalter »Weniger Bewegung«
@@ -837,14 +889,14 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
   dialog.lichtbild[open],dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
   .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
   .karte:hover,.werkzeug a:hover,.check-weg:hover,[data-bildrahmen]:hover{transform:none!important}
-  ::view-transition-old(root),::view-transition-new(root){animation:none}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none}
 }
 html[data-bewegung="weniger"] *,html[data-bewegung="weniger"] *::before,html[data-bewegung="weniger"] *::after{transition-property:opacity,color,background-color,border-color!important;transition-duration:var(--dauer-aus)!important;scroll-behavior:auto!important}
 html[data-bewegung="weniger"] .registrieren .wahlflaeche,html[data-bewegung="weniger"] .registrieren .collage-karte{animation:none!important}
 html[data-bewegung="weniger"] dialog.lichtbild[open],html[data-bewegung="weniger"] dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
 html[data-bewegung="weniger"] :is(.knopf,.wahlflaeche,.galerie-zugang,.werkzeug a,.check-weg,[data-bildrahmen]):active{transform:none}
 html[data-bewegung="weniger"] :is(.karte,.werkzeug a,.check-weg,[data-bildrahmen]):hover{transform:none!important}
-html[data-bewegung="weniger"]::view-transition-old(root),html[data-bewegung="weniger"]::view-transition-new(root){animation:none}
+html[data-bewegung="weniger"]::view-transition-group(*),html[data-bewegung="weniger"]::view-transition-old(*),html[data-bewegung="weniger"]::view-transition-new(*){animation:none}
 
 /* Ab Version 4.1: Prüf-Auftrag und aufklappbarer Rahmen */
 .ki-pruefen .box,.lassen-kopf details.mehr,.ki-pruefen details.mehr{background:var(--grund)}
@@ -898,8 +950,8 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .galerie-zwischen:focus{outline:none}
 
 /* Start: Collage aus drei echten Ansichten rechts neben dem Titel (ab 1024 px).
-   Zwei Duplex-Drucke und ein Original, versetzt wie verrutschte Druckbogen. Sie rasten beim ersten Aufruf ein
-   und verschieben sich beim Scrollen leicht gegeneinander (höchstens 16 px, nur transform). */
+   Zwei Duplex-Drucke und ein Original, versetzt wie verrutschte Druckbogen. Sie rasten beim ersten Aufruf ein.
+   Die scroll-gesteuerte Parallaxe aus Version 4.2 ist seit Version 4.8 Teil 2 gestrichen (DESIGN.md: kein Parallax). */
 .start-kopf{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--a4);align-items:center}
 .collage{display:none}
 @media (min-width:1024px){
@@ -921,21 +973,13 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 @media (max-height:760px) and (min-width:1024px){.collage{height:clamp(9rem,13vw,11rem)}}
 .registrieren .collage-karte.c1{animation:reg-ki var(--dauer-register) var(--ease-register) both}
 .registrieren .collage-karte.c2{animation:reg-lernen var(--dauer-register) var(--ease-register) both}
-@supports (animation-timeline: scroll()){
-  @media (min-width:1024px) and (prefers-reduced-motion:no-preference){
-    html:not([data-bewegung="weniger"]) .collage{animation:collage-drift linear both;animation-timeline:scroll(root);animation-range:0 70vh}
-    html:not([data-bewegung="weniger"]) .collage-karte.c3{animation:collage-gegen linear both;animation-timeline:scroll(root);animation-range:0 70vh}
-  }
-}
-@keyframes collage-drift{to{transform:translateY(-16px)}}
-@keyframes collage-gegen{to{transform:translateY(12px)}}
 
-/* Einflug beim Scrollen: einmal, kurz, höchstens 24 px. Nur mit JavaScript und ohne »weniger Bewegung«.
+/* Einflug beim Scrollen: einmal, kurz, höchstens 6 px (bis Version 4.8 Teil 1: 24 px). Nur mit JavaScript und ohne »weniger Bewegung«.
    Ab Version 4.3 nur noch als Verschiebung: Die Inhalte sind immer sichtbar (auch im Druck und auf
    ganzseitigen Bildschirmfotos), sie rücken nur beim Hereinscrollen an ihren Platz. */
 @media (prefers-reduced-motion:no-preference){
-  html.einflug-an:not([data-bewegung="weniger"]) .einflug:not(.da){transform:translateY(24px)}
-  html.einflug-an:not([data-bewegung="weniger"]) .einflug{transition:transform 240ms var(--ease-out) var(--einflug-verzug,0ms)}
+  html.einflug-an:not([data-bewegung="weniger"]) .einflug:not(.da){transform:translateY(6px)}
+  html.einflug-an:not([data-bewegung="weniger"]) .einflug{transition:transform var(--dauer-einflug) var(--ease-out) var(--einflug-verzug,0ms)}
 }
 @media print{ /* taste-skill-ignore: Druckfassung */ html.einflug-an .einflug{opacity:1!important;transform:none!important}}
 
@@ -1106,9 +1150,9 @@ main .werkzeug,main .faecher-karte{max-width:none}
 .passer::before,.passer::after{content:attr(data-passer);position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:0}
 .passer::before{color:var(--ki-platte)}
 .passer::after{color:var(--lernen)}
-.passer.passer-lauf{animation:passer-text 620ms linear both}
-.passer.passer-lauf::before{animation:passer-ki 620ms var(--ease-out) both}
-.passer.passer-lauf::after{animation:passer-le 620ms var(--ease-out) both}
+.passer.passer-lauf{animation:passer-text var(--dauer-passer) linear both}
+.passer.passer-lauf::before{animation:passer-ki var(--dauer-passer) var(--ease-out) both}
+.passer.passer-lauf::after{animation:passer-le var(--dauer-passer) var(--ease-out) both}
 @keyframes passer-text{0%,62%{color:transparent}to{color:var(--text)}}
 @keyframes passer-ki{0%{opacity:1;transform:translate(-14px,-8px)}70%{opacity:1;transform:none}to{opacity:0;transform:none}}
 @keyframes passer-le{0%{opacity:1;transform:translate(14px,8px)}70%{opacity:1;transform:none}to{opacity:0;transform:none}}
@@ -1119,7 +1163,7 @@ main .werkzeug,main .faecher-karte{max-width:none}
 .auszug .platte img{width:100%;height:100%;object-fit:cover;object-position:top;filter:grayscale(1) contrast(1.15);mix-blend-mode:screen}
 .auszug .p-ki{background:var(--ki-platte)}
 .auszug .p-le{background:var(--lernen)}
-.auszug .auszug-original{position:relative;opacity:0;transition:opacity var(--dauer-mittel) var(--ease-out) 100ms}
+.auszug .auszug-original{position:relative;opacity:0;transition:opacity var(--dauer-mittel) var(--ease-out) var(--verzug-auszug)}
 @media (hover:hover) and (pointer:fine){
   :is(.collage,.einblick-detail,.ek-detail):hover .p-ki{transform:translate(-6px,-4px)}
   :is(.collage,.einblick-detail,.ek-detail):hover .p-le{transform:translate(6px,4px)}
@@ -1132,7 +1176,7 @@ main .werkzeug,main .faecher-karte{max-width:none}
 .stundenlinie .sl-spur{position:absolute;left:0;right:0;top:21px;height:2px;background:var(--stahl)}
 .stundenlinie .sl-spur i{position:absolute;top:-8px;width:2px;height:18px;background:var(--stahl)}
 .stundenlinie .sl-spur i:nth-child(1){left:0}.stundenlinie .sl-spur i:nth-child(2){left:25%}.stundenlinie .sl-spur i:nth-child(3){left:50%}.stundenlinie .sl-spur i:nth-child(4){left:75%}.stundenlinie .sl-spur i:nth-child(5){left:calc(100% - 2px)}
-.stundenlinie .sl-balken{position:absolute;top:12px;height:20px;border-radius:10px;background:var(--lernen);left:calc(37% - 10px);width:20px;opacity:0;transition:left 260ms var(--ease-out),width 260ms var(--ease-out),opacity var(--dauer-schnell) var(--ease-out)}
+.stundenlinie .sl-balken{position:absolute;top:12px;height:20px;border-radius:10px;background:var(--lernen);left:calc(37% - 10px);width:20px;opacity:0;transition:left var(--dauer-stundenlinie) var(--ease-out),width var(--dauer-stundenlinie) var(--ease-out),opacity var(--dauer-schnell) var(--ease-out)}
 .stundenlinie[data-umfang="punktuell"] .sl-balken{opacity:1}
 .stundenlinie[data-umfang="phasenweise"] .sl-balken{opacity:1;left:25%;width:25%}
 .stundenlinie[data-umfang="durchgaengig"] .sl-balken{opacity:1;left:0;width:100%}
@@ -1141,7 +1185,7 @@ main .werkzeug,main .faecher-karte{max-width:none}
 .stundenlinie-namen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:32rem;font-size:var(--gr-klein);color:var(--leise)}
 /* Begründete Ausnahme von »nur transform und opacity«: Der Balken bewegt left und width (260 ms). Ein mit scaleX
    gestreckter Balken verlöre seine runden Enden – der Punkt würde zum Strich. Das Element liegt absolut auf seiner
-   eigenen Spur und verschiebt nichts um sich herum. Bei »weniger Bewegung« entfällt die Bewegung (siehe unten). */
+   eigenen Spur und verschiebt nichts um sich herum. Bei »weniger Bewegung« entfällt die Bewegung (siehe unten). Dauer: --dauer-stundenlinie. */
 
 /* I2 · Stundenlinie in der Galerie (ab Version 4.7) */
 /* Zeile: die kleinste Form, neben dem Wort auf Karten und neben den Umfang-Chips. Immer mit Text daneben. */
@@ -1188,28 +1232,28 @@ main .werkzeug,main .faecher-karte{max-width:none}
 /* K · Schnellhefter: gemerkte Beispiele, nur in diesem Browser. */
 .hefter-link{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;padding:0 .5rem;font-weight:700;text-decoration:none;border-radius:var(--rund)}
 .hefter-link svg{width:30px;height:24px;flex:none}
-.hefter-link.andruck svg{animation:andruck 220ms var(--ease-out)}
+.hefter-link.andruck svg{animation:andruck var(--dauer-andruck) var(--ease-out)}
 @keyframes andruck{40%{transform:scale(.88) translateY(2px)}to{transform:none}}
-.hefter-zahl{display:inline-block;min-width:1ch;font-variant-numeric:tabular-nums;transition:transform 110ms var(--ease-out),opacity 110ms var(--ease-out)}
+.hefter-zahl{display:inline-block;min-width:1ch;font-variant-numeric:tabular-nums;transition:transform var(--dauer-hefterzahl) var(--ease-out),opacity var(--dauer-hefterzahl) var(--ease-out)}
 .hefter-zahl.rollt{transform:translateY(-40%);opacity:0}
 .merken[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--flaeche)}
-.flieger{position:fixed;z-index:30;pointer-events:none;object-fit:cover;object-position:top;border-radius:2px;transition:transform 440ms cubic-bezier(.77,0,.175,1),opacity 440ms cubic-bezier(.77,0,.175,1)}
+.flieger{position:fixed;z-index:30;pointer-events:none;object-fit:cover;object-position:top;border-radius:2px;transition:transform var(--dauer-flug) var(--ease-beidseits),opacity var(--dauer-flug) var(--ease-beidseits)}
 .hefter-bereich{display:grid;gap:var(--a2)}
 .hefter-bereich h2{font-size:var(--gr-h2)}
 .hefter-leer{max-width:56ch}
 
 /* L · Durchschlag beim Kopieren */
-.durchschlag-geist{position:fixed;z-index:30;pointer-events:none;border-radius:var(--rund);background:var(--ki-zart);border:2px solid var(--ki);opacity:.95;transition:transform 420ms var(--ease-out),opacity 420ms var(--ease-out)}
+.durchschlag-geist{position:fixed;z-index:30;pointer-events:none;border-radius:var(--rund);background:var(--ki-zart);border:2px solid var(--ki);opacity:.95;transition:transform var(--dauer-durchschlag) var(--ease-out),opacity var(--dauer-durchschlag) var(--ease-out)}
 
 /* M · Zählwerk: Ziffern rollen einmal auf ihren Wert. Die Zahl steht immer auch als Text da. */
 .zaehlwerk{display:inline-flex;height:1em;overflow:hidden;vertical-align:top}
 .zaehlwerk .ziffer{display:block;height:1em;overflow:hidden}
-.zaehlwerk .band{display:flex;flex-direction:column;transition:transform 720ms var(--ease-out)}
+.zaehlwerk .band{display:flex;flex-direction:column;transition:transform var(--dauer-zaehlwerk) var(--ease-out)}
 .zaehlwerk .band span{display:block;height:1em;line-height:1}
 
 /* N · Leporello: Die Schritte eines Labors entfalten sich einmal, wenn sie ins Bild kommen. */
 .leporello-an .einblick-schritte{perspective:900px}
-.leporello-an .einblick-schritte li{transform-origin:50% 0;transition:transform 380ms var(--ease-out),opacity 380ms var(--ease-out);transition-delay:calc(var(--i,0) * 70ms)}
+.leporello-an .einblick-schritte li{transform-origin:50% 0;transition:transform var(--dauer-leporello) var(--ease-out),opacity var(--dauer-leporello) var(--ease-out);transition-delay:calc(var(--i,0) * var(--dauer-leporello-staffel))}
 @media (min-width:700px){
   .leporello-an .gefaltet .einblick-schritte{overflow:hidden}
   .leporello-an .gefaltet .einblick-schritte li{transform:rotateX(-70deg);opacity:.25}
@@ -1218,7 +1262,7 @@ main .werkzeug,main .faecher-karte{max-width:none}
 
 /* O · Plattenwechsel: Über der Galerie schiebt sich die Platte des gewählten Bereichs ins Bild. */
 .plattenband{position:relative;height:clamp(14px,2vw,22px);overflow:hidden;margin-bottom:var(--a3);background:var(--flaeche)}
-.plattenband .pl{position:absolute;inset:0;mix-blend-mode:multiply;transition:transform 320ms cubic-bezier(.77,0,.175,1)}
+.plattenband .pl{position:absolute;inset:0;mix-blend-mode:multiply;transition:transform var(--dauer-plattenwechsel) var(--ease-beidseits)}
 .plattenband .pl-ki{background:var(--ki-platte);transform:translateX(-52%)}
 .plattenband .pl-le{background:var(--lernen);transform:translateX(52%)}
 .plattenband[data-wahl="ki"] .pl-ki{transform:none}
@@ -1305,7 +1349,7 @@ html[data-bewegung="weniger"] .plattenband .pl{transition:none!important}
   html.nur-karte .tafelkarte textarea,html.nur-karte .tafelkarte input{border:2px solid #000;min-height:5rem;background:#fff} /* taste-skill-ignore: Druckfassung */
   html.nur-karte .tafelkarte-regeln{font-size:1.6rem}
   .ablauf>li,.stolper-liste>div{break-inside:avoid;background:#fff;border:1px solid #999} /* taste-skill-ignore: Druckfassung */
-  .kopfnotiz .knopf,[data-drucken]{display:none}
+  .kopfnotiz .knopf,[data-drucken],.fuss-einstellung{display:none} /* Schalter im Fuß gelten nur im Browser, nicht auf Papier */
   .leitsaetze-seite{padding-block:0!important}
   body:has(.leitsaetze-seite) .fuss{margin-top:0}
   body:has(.leitsaetze-seite) main{min-height:0}
