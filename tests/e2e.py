@@ -19,7 +19,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -327,6 +327,41 @@ def main():
         pdf = pg.pdf(format="A4", print_background=True)
         seiten = len(re.findall(rb"/Type\s*/Page(?!s)", pdf))
         pruefe(seiten == 1, f"Leitsätze: Druck auf genau einer Seite A4 ({seiten})")
+        pg.context.close()
+
+        # 2g. Werkstatt-Seiten (ab Version 4.9): Unterrichtsmuster, Aufträge, KI für dein Fach, Sicher arbeiten
+        pg = neue_seite(b)
+        pg.goto(url("muster.html"))
+        pruefe(pg.locator(".muster-karte").count() == 9 and pg.locator(".muster-karte .muster-weg").count() == 27, "Muster: neun Muster mit je drei Wegen")
+        pg.fill("#w-fach", "Pflege")
+        pruefe("Fach: Pflege" in pg.input_value("#a-stolper") and "# Prüfkriterien" in pg.input_value("#a-stolper"), "Muster: Fach steht in jedem Auftrag")
+        pg.click('#muster-filter [data-filter="erarbeitung"]')
+        sichtbar = pg.locator(".muster-karte:not([hidden])").count()
+        pruefe(0 < sichtbar < 9 and "Muster" in pg.inner_text("#muster-anzahl"), f"Muster: Filter nach Phase ({sichtbar})")
+        pg.reload()
+        pruefe(pg.locator(".muster-karte:not([hidden])").count() == sichtbar and pg.input_value("#w-fach") == "", "Muster: Filter bleibt, Freitext nicht")
+        pruefe(pg.locator('.weg-tablet a[href^="beispiel.html#"]').count() >= 5, "Muster: Tablet-Wege verlinken Galerie-Beispiele")
+        pruefe(not pg.konsole, f"Muster: keine Konsolenfehler {pg.konsole}")
+        pg.goto(url("auftraege.html"))
+        pruefe(pg.locator("#auftraege-liste > li").count() == 4 and pg.locator('a[href="digitalisieren.html"]').count() >= 1, "Aufträge: vier Aufträge und Verweis auf Unterricht digitalisieren")
+        pruefe("CC BY-SA 4.0" in pg.inner_text("#ki-grenzen"), "Aufträge: Lizenzhinweis bei übertragenen Aufträgen")
+        pruefe(not pg.konsole, f"Aufträge: keine Konsolenfehler {pg.konsole}")
+        pg.goto(url("ki-fach.html"))
+        pg.click('[data-vorlage="geschichte"]')
+        t = pg.input_value("#fach-text")
+        pruefe("Ich unterrichte Geschichte" in t and "Quelle und Darstellung trennen" in t and "[ungeprüft]" in t, "KI für dein Fach: Beispiel füllt die Anweisung")
+        pg.check('input[name="anrede"][value="Sie"]')
+        pruefe("Anrede »Sie«" in pg.input_value("#fach-text"), "KI für dein Fach: Anrede wählbar")
+        pruefe(pg.evaluate("Object.keys(localStorage).filter(k => k.startsWith('hilde.') && k !== 'hilde.muster').length") == 0, "KI für dein Fach: speichert nichts")
+        pruefe(not pg.konsole, f"KI für dein Fach: keine Konsolenfehler {pg.konsole}")
+        pg.goto(url("sicher.html"))
+        pruefe(pg.locator(".sicher-liste > li").count() == 5, "Sicher arbeiten: fünf Regeln")
+        pg.goto(url("ki.html"))
+        pruefe(all(pg.locator(f'#t-werkstatt ~ .werkzeuge a[href="{z}"]').count() == 1 for z in ["ki-fach.html", "auftraege.html", "muster.html", "sicher.html"]), "KI-Training: vier Wege in die Werkstatt")
+        pg.set_viewport_size({"width": 390, "height": 800})
+        pg.goto(url("muster.html"))
+        breit = pg.evaluate("document.documentElement.scrollWidth")
+        pruefe(breit <= 390, f"Muster: kein waagerechtes Scrollen bei 390 px ({breit})")
         pg.context.close()
 
         # 3. Nur Tastatur (Szenario 10)
