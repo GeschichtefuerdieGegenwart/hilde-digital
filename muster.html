@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+<title>Unterrichtsmuster aus der Praxis – Hilde Digital</title>
+<link rel="stylesheet" href="assets/hilde.css">
+<script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<header class="kopf"><div class="huelle">
+  <a class="marke" href="index.html"><span class="marke-name">Hilde Digital</span><span class="strich" aria-hidden="true"><i></i><i></i><i></i></span><span class="sr-only">, zum Start</span></a>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html">KI-Training</a><a href="unterricht.html" aria-current="true">Digitaler Unterricht</a><a href="galerie.html">Galerie</a></nav>
+  <a class="hefter-link" href="galerie.html#hefter" aria-label="Mein Schnellhefter"><svg viewBox="0 0 30 24" aria-hidden="true"><rect x="1" y="2" width="28" height="21" rx="2" fill="#f2b233" stroke="#a26a1c" stroke-width="2"/><rect x="1" y="2" width="6" height="21" fill="#a26a1c"/><circle cx="4" cy="8" r="1.3" fill="#f0eeeb"/><circle cx="4" cy="17" r="1.3" fill="#f0eeeb"/></svg><span class="hefter-zahl" aria-hidden="true">0</span></a>
+</div></header>
+<main id="inhalt" tabindex="-1">
+<div class="bereich-lernen">
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1 class="h1-frage">Unterrichtsmuster aus der Praxis</h1>
+  <p class="marker">Bereich: Digitaler Unterricht · auch für das KI-Training</p>
+  <p class="detail-kurz">Neun Muster aus dem Unterricht, die in vielen Fächern passen. Zu jedem Muster gibt es drei Wege: auf Papier, mit KI vorbereitet und am Tablet. Kein Weg ist besser als der andere.</p>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-angaben"><div class="huelle stapel-gross">
+  <div class="stapel">
+    <h2 id="t-angaben" class="klein-titel">Deine Angaben für alle Aufträge</h2>
+    <p class="mass">Trag Fach, Thema und Lerngruppe einmal ein. Sie stehen dann in jedem Auftrag auf dieser Seite. Fehlt etwas, fragt die KI zuerst danach.</p>
+    <form class="schnell-felder" id="werkstatt-form" novalidate>
+      <div class="eingabe"><label for="w-fach">Fach</label><input type="text" id="w-fach" autocomplete="off" placeholder="z. B. Pflege"></div>
+      <div class="eingabe"><label for="w-thema">Thema</label><input type="text" id="w-thema" autocomplete="off" placeholder="z. B. Sturzprophylaxe"></div>
+      <div class="eingabe"><label for="w-gruppe">Lerngruppe</label><input type="text" id="w-gruppe" autocomplete="off" placeholder="z. B. 2. Ausbildungsjahr"></div>
+    </form>
+    <p class="datenhinweis leise klein">Keine Namen, Noten oder anderen personenbezogenen Daten eingeben. Deine Angaben werden nicht gespeichert.</p>
+  </div>
+
+  <div class="stapel">
+    <h2 id="t-muster">Die Muster</h2>
+    <div class="muster-filter-zeile">
+      <div class="muster-filter" id="muster-filter" role="group" aria-label="Nach Unterrichtsphase filtern"></div>
+      <p class="leise" id="muster-anzahl" aria-live="polite"></p>
+    </div>
+    <ol class="muster-liste" id="muster-liste"></ol>
+    <noscript><p class="box">Die Muster brauchen JavaScript. Ohne JavaScript findest du Beispiele in der <a href="galerie.html">Galerie</a>.</p></noscript>
+  </div>
+
+  <div class="stapel">
+    <h2 id="t-herkunft" class="klein-titel">Woher die Muster kommen</h2>
+    <p class="mass">Die Muster stammen aus Unterrichtsreihen in der Erzieher*innenausbildung. Bei jedem Muster steht, ob es schon im Unterricht eingesetzt wurde. Das ist eine persönliche Angabe, kein Nachweis der Wirkung.</p>
+    <p class="mass">Die Phase ist ein Vorschlag, wo das Muster gut passt. Die meisten Muster lassen sich auch an anderer Stelle einsetzen.</p>
+    <p class="mass">Bevor du einen Tablet-Weg wählst: <a class="textlink" href="unterricht.html#t-probe">Geht es auf Papier genauso gut? <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></section>
+</div>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/daten/beispiele.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/daten/schnell.js"></script>
+<script src="assets/schnell-anfrage.js"></script>
+<script src="assets/daten/werkstatt.js"></script>
+<script src="assets/werkstatt-anfrage.js"></script>
+<script src="assets/werkstatt.js"></script>
+
+</main>
+<footer class="fuss"><div class="huelle">
+  <p class="fuss-marke" aria-hidden="true">Hilde Digital<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span></p>
+  <nav class="fusslinks" aria-label="Über Hilde Digital"><ul><li><a href="ueber.html">Über Hilde Digital</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>
+  <p class="fuss-einstellung"><button type="button" class="knopf still theme-schalter" id="theme-schalter" data-theme-schalter aria-pressed="false">Beamer-Ansicht</button><span class="leise">Gilt in diesem Browser. Reines Weiß, tiefes Schwarz, kräftigere Farben – für den Beamer im Klassenzimmer.</span></p>
+  <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
+</div></footer>
+<script src="assets/motion.js"></script>
+</body>
+</html>

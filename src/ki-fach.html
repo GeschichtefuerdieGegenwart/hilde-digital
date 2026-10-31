@@ -1,0 +1,70 @@
+<div class="bereich-ki">
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1 class="h1-frage">KI für dein Fach einrichten</h1>
+  <p class="marker">Bereich: KI-Training</p>
+  <p class="detail-kurz">Du schreibst einmal auf, was in deinem Fach gilt. Danach reicht ein kurzer Auftrag – auch ein gesprochener. Die KI kennt dann deine Maßstäbe und muss nicht raten.</p>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-ebenen"><div class="huelle stapel-gross">
+  <div class="stapel">
+    <h2 id="t-ebenen">Was gehört wohin?</h2>
+    <p class="mass">Nicht alles gehört in jeden Auftrag. Eine einfache Regel hilft dir beim Sortieren.</p>
+    <dl class="inhalte-liste">
+      <div class="rand-ki"><dt>Gilt es für alles, was du tust – auch noch in Monaten?</dt><dd>Dann gehört es in die allgemeinen Angaben über dich: Fächer, Bildungsgänge, wie Antworten aussehen sollen. Wenige, feste Angaben.</dd></div>
+      <div class="rand-ki"><dt>Gilt es für ein Fach oder einen Bildungsgang?</dt><dd>Dann gehört es in die feste Anweisung für dieses Fach. Die baust du unten.</dd></div>
+      <div class="rand-ki"><dt>Hat es sich bewährt und passt auch anderswo?</dt><dd>Dann halte es fest und nimm es bewusst in andere Fächer mit, zum Beispiel ein <a class="textlink" href="muster.html">Unterrichtsmuster</a>.</dd></div>
+      <div><dt>Gilt es nur für diese eine Aufgabe?</dt><dd>Dann gehört es in den Auftrag selbst – nirgends sonst.</dd></div>
+    </dl>
+    <details class="mehr">
+      <summary>Warum nicht alles in eine Anweisung?</summary>
+      <p class="mass">Fächer haben unterschiedliche Maßstäbe. Was in der Fallarbeit der Sozialpädagogik gut ist, ist in Gemeinschaftskunde nicht automatisch richtig. Eine Anweisung wird nicht besser, wenn mehr darin steht, sondern wenn das Richtige darin steht.</p>
+    </details>
+  </div>
+
+  <div class="stapel">
+    <h2 id="t-bauen">Deine feste Anweisung</h2>
+    <p class="mass">Fang mit einem Beispiel an oder schreib direkt. Rechts entsteht der Text zum Kopieren.</p>
+    <div class="fach-raster">
+      <form id="fach-form" class="stapel" novalidate>
+        <div class="fach-vorlagen" id="fach-vorlagen" role="group" aria-label="Mit einem Beispiel beginnen"></div>
+        <div class="eingabe"><label for="f-fach">Fach</label><input type="text" id="f-fach" autocomplete="off" placeholder="z. B. Pflege"></div>
+        <div class="eingabe"><label for="f-gruppe">Bildungsgang und Lerngruppen</label><input type="text" id="f-gruppe" autocomplete="off" placeholder="z. B. Pflegefachschule, 1. bis 3. Jahr"></div>
+        <div class="eingabe"><label for="f-massstaebe">Was in deinem Fach gilt – ein Satz pro Zeile</label>
+          <textarea id="f-massstaebe" rows="5" spellcheck="true" aria-describedby="f-massstaebe-hilfe"></textarea>
+          <p class="leise klein" id="f-massstaebe-hilfe">Hilfreiche Fragen: Was macht in deinem Fach eine gute Aufgabe aus? Welche Fachsprache gilt? Welche Vorschriften zählen? Was ist ein typischer Fehler?</p>
+        </div>
+        <fieldset class="anrede-wahl">
+          <legend>Anrede der Lernenden in deinem Material</legend>
+          <label><input type="radio" name="anrede" value="du" checked> du</label>
+          <label><input type="radio" name="anrede" value="Sie"> Sie</label>
+        </fieldset>
+      </form>
+      <div class="stapel">
+        <label for="fach-text"><b>Deine feste Anweisung</b> – du kannst sie ändern</label>
+        <textarea id="fach-text" rows="20" spellcheck="false"></textarea>
+        <div class="kopieren"><button type="button" class="knopf" data-kopieren="fach-text">Anweisung kopieren</button><span class="leise" aria-live="polite"></span></div>
+      </div>
+    </div>
+    <p class="datenhinweis leise klein">Deine Eingaben werden nicht gespeichert. Keine Namen von Lernenden oder Kolleg*innen eintragen.</p>
+    <noscript><p class="box">Die Vorlage braucht JavaScript.</p></noscript>
+  </div>
+
+  <div class="stapel">
+    <h2 id="t-wohin">Wohin mit dem Text?</h2>
+    <ul class="regel-liste punkte-liste">
+      <li>Viele KI-Systeme bieten Projekte, Arbeitsbereiche oder feste Anweisungen an. Dort hinein gehört dieser Text – einmal für jedes Fach.</li>
+      <li>Kennt dein System das nicht, füge den Text am Anfang eines neuen Gesprächs ein.</li>
+      <li>Danach reicht ein kurzer Auftrag. Die KI fasst zuerst zusammen, was sie verstanden hat, und fragt höchstens dreimal nach.</li>
+      <li>Nach ein paar Wochen: Was hat gefehlt? Was hat nie gezählt? Ergänze oder streiche.</li>
+    </ul>
+    <p class="mass">Fertige Aufträge für häufige Aufgaben: <a class="textlink" href="auftraege.html">Aufträge zum Kopieren <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></section>
+</div>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/daten/schnell.js"></script>
+<script src="assets/schnell-anfrage.js"></script>
+<script src="assets/daten/werkstatt.js"></script>
+<script src="assets/werkstatt-anfrage.js"></script>
+<script src="assets/werkstatt.js"></script>
