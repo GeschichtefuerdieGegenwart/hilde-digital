@@ -68,7 +68,10 @@
               return '<li><a class="textlink" href="beispiel.html#' + esc(b.slug) + '">' + esc(b.titel) + "</a></li>";
             }).join("") + "</ul>" : "") +
           "</section>" +
-        "</div></li>";
+        "</div>" +
+        (m.lernende ? '<p class="muster-lernende"><b>Wenn deine Lernenden mit KI arbeiten:</b> ' + esc(m.lernende) +
+          ' <a class="textlink" href="lernende-ki.html">Drei Regeln dazu <span aria-hidden="true">→</span></a></p>' : "") +
+        "</li>";
     }).join("");
 
     filterZiel.innerHTML = '<button type="button" class="chip" data-filter="" aria-pressed="' + (phase === "") + '">Alle</button>' +

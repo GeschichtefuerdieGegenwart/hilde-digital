@@ -49,6 +49,23 @@ test("Muster: Tablet-Wege verweisen nur auf vorhandene, erprobte Galerie-Beispie
   }
 });
 
+test("Muster: der Weg für Lernende mit KI heißt »erst selbst, dann KI« und ist ehrlich gekennzeichnet", () => {
+  const mit = W.muster.filter((m) => m.lernende);
+  assert.ok(mit.length >= 1);
+  for (const m of mit) {
+    assert.match(m.lernende, /Erst .* ohne KI/, m.id);
+    if (m.einsatz !== "eingesetzt") assert.match(m.lernende, /Noch nicht erprobt\.$/, m.id);
+  }
+});
+
+test("Auftrag KI-Regeln: Reihenfolge, Stelle ohne KI und keine Noten durch KI", () => {
+  const a = W.auftraege.find((x) => x.id === "ki-grenzen");
+  const t = JSON.stringify(a);
+  assert.match(t, /erst selbst, dann KI/);
+  assert.match(t, /ohne KI/);
+  assert.match(t, /keine Noten/);
+});
+
 test("keine Namen von KI-Anbietern in den Werkstatt-Texten", () => {
   const text = JSON.stringify(W);
   for (const name of ["ChatGPT", "OpenAI", "Claude", "Anthropic", "Gemini", "Copilot", "Mistral", "telli", "fobizz"]) {

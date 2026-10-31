@@ -29,10 +29,10 @@ from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
 SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "digital-check.html", "selbstcheck.html", "mehrwert.html",
-          "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "galerie.html", "beispiel.html", "showroom.html", "ueber.html", "gestaltung.html"]
+          "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html", "galerie.html", "beispiel.html", "showroom.html", "ueber.html", "gestaltung.html"]
 # Seiten, auf denen Fachbegriffe nur in aufklappbaren Vertiefungen (<details>) stehen dürfen
 MIT_VERTIEFUNG = ["mehrwert.html", "selbstcheck.html", "digital-check.html", "ueber.html"]
-EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "galerie.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html"]
+EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "galerie.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/ist-stand.js",
@@ -189,6 +189,12 @@ def pruefe_daten(fehler):
             v = (b.get("vergleich") or {}).get(teil)
             if v and not (WURZEL / v["bild"]).exists():
                 fehler.append(f"Beispiel {wer}: Vergleichsbild fehlt {v['bild']}")
+        beo = b.get("beobachtung")
+        if beo is not None:
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(beo)):
+                fehler.append(f"Beispiel {wer}: Beobachtung braucht ein Datum JJJJ-MM-TT")
+            if b.get("status") != "im Unterricht erprobt":
+                fehler.append(f"Beispiel {wer}: Beobachtungsbogen nur bei »im Unterricht erprobt«")
         q = b.get("qualitaetscheck")
         if q:
             if not q.get("datum") or not q.get("staerken"):

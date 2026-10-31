@@ -127,3 +127,36 @@ test("Grenzen: offene Rechte und Daten stehen vor den Risiken, höchstens vier",
   assert.match(g[1], /Rechte/);
   assert.match(g[2], /^Rückmeldung/);
 });
+
+/* ab 4.10: Lese-Kriterium und Stelle ohne KI */
+test("Rahmenfragen: »ohne KI« nur beim Lernangebot mit KI, »längerer Text« nicht beim analogen Arbeitsblatt", () => {
+  const ids = (typ) => C.rahmenFragen(typ).map((r) => r.id);
+  assert.ok(ids("ki-angebot").includes("ohneKi"));
+  assert.ok(!ids("html").includes("ohneKi"));
+  assert.ok(ids("html").includes("lesen"));
+  assert.ok(!ids("arbeitsblatt").includes("lesen"));
+  assert.ok(ids("arbeitsblatt").includes("fachlich"));
+});
+
+test("Schritte: fehlt beim KI-Angebot eine Stelle ohne KI, kommt ein Schritt dazu – nach der fachlichen Korrektur", () => {
+  const r = C.bericht({ typ: "ki-angebot", bereiche: ["fach"], werte: { fach: { a: 3 } }, rahmen: { fachlich: "teilweise", ohneKi: "nein" } });
+  assert.deepEqual(r.schritte.map((s) => s.art).slice(0, 2), ["fachlich", "ohneki"]);
+  assert.match(r.schritte[1].text, /ohne KI/);
+  const ok = C.bericht({ typ: "ki-angebot", bereiche: ["fach"], werte: { fach: { a: 3 } }, rahmen: { fachlich: "ja", ohneKi: "ja" } });
+  assert.ok(!ok.schritte.some((s) => s.art === "ohneki"));
+});
+
+test("Schritte: »ohne KI« zählt nicht bei anderen Materialtypen, auch wenn der Wert gesetzt ist", () => {
+  const r = C.bericht({ typ: "html", bereiche: ["fach"], werte: { fach: { a: 3 } }, rahmen: { fachlich: "ja", ohneKi: "nein" } });
+  assert.ok(!r.schritte.some((s) => s.art === "ohneki"));
+});
+
+test("Schritte: längerer Text am Gerät ergibt den Hinweis auf Papier, höchstens drei Schritte bleiben", () => {
+  const r = C.bericht({ typ: "html", bereiche: ["fach"], werte: { fach: { a: 3 } }, rahmen: { fachlich: "ja", lesen: "ja" } });
+  assert.ok(r.schritte.some((s) => s.art === "lesen" && /Papier/.test(s.text)));
+  const voll = C.bericht({ typ: "ki-angebot", bereiche: ["fach", "rueckmeldung", "zugang"],
+    werte: { fach: { a: 1 }, rueckmeldung: { a: 0 }, zugang: { a: 1 } }, rahmen: { fachlich: "nein", ohneKi: "nein", lesen: "ja" } });
+  assert.ok(voll.schritte.length <= 3);
+  assert.equal(voll.schritte[0].art, "fachlich");
+  assert.ok(!voll.schritte.some((s) => /\d+ ?%/.test(s.text)), "keine Prozentwerte");
+});

@@ -154,7 +154,7 @@
   }
 
   function schrittRahmen(s) {
-    return '<fieldset class="frageblock" aria-labelledby="frage">' + kopf(s) + '<div class="rahmen">' + Q.rahmen.map(function (r) {
+    return '<fieldset class="frageblock" aria-labelledby="frage">' + kopf(s) + '<div class="rahmen">' + CHECK.rahmenFragen(z.typ).map(function (r) {
       return '<fieldset class="rahmenfrage"><legend>' + esc(r.frage) + '</legend><div class="optionen klein-optionen">' +
         r.optionen.map(function (o) { return option("r-" + r.id, o.id, o.name, "", z.rahmen[r.id]); }).join("") +
         option("r-" + r.id, "", "weiß nicht", "", z.rahmen[r.id] ? "x" : "") + "</div></fieldset>";

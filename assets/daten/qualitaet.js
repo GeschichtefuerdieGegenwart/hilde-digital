@@ -193,7 +193,13 @@ var QUALITAET = {
     { id: "daten", frage: "Werden personenbezogene Daten verarbeitet?",
       optionen: [{ id: "nein", name: "nein" }, { id: "ja", name: "ja" }, { id: "unklar", name: "unklar" }] },
     { id: "rechte", frage: "Sind die Rechte an Bildern, Texten und Medien geklärt?",
-      optionen: [{ id: "ja", name: "ja" }, { id: "teilweise", name: "teilweise" }, { id: "nein", name: "nein" }] }
+      optionen: [{ id: "ja", name: "ja" }, { id: "teilweise", name: "teilweise" }, { id: "nein", name: "nein" }] },
+    /* ab 4.10: Lese-Kriterium. Längere Sachtexte am Bildschirm sind im Mittel leicht im Nachteil (Delgado u. a. 2018). */
+    { id: "lesen", frage: "Lesen die Lernenden einen längeren Text am Gerät – mehr als eine Bildschirmseite?",
+      optionen: [{ id: "ja", name: "ja" }, { id: "nein", name: "nein" }], nurDigital: true },
+    /* ab 4.10: nur beim Lernangebot mit KI. Leistung mit KI ist kein Lernnachweis (Bastani u. a. 2025). */
+    { id: "ohneKi", frage: "Zeigen die Lernenden irgendwo, was sie ohne KI können?",
+      optionen: [{ id: "ja", name: "ja" }, { id: "nein", name: "nein" }], nurTyp: ["ki-angebot"] }
   ],
 
   /* Stärke-Hinweise (Abschnitt 9), in einfacher Sprache. bMin: nötiger digitaler Beitrag. aMin: nötige Qualität. */

@@ -4,6 +4,13 @@
    Braucht: TAXONOMIEN, BEISPIELE, HILDE. */
 (function () {
   "use strict";
+  /* Ab 4.10: Gibt es zu einem erprobten Beispiel einen ausgefüllten Beobachtungsbogen? Nur Datum, kein Inhalt. */
+  function beobachtung(b) {
+    if (b.status !== "im Unterricht erprobt") return "";
+    var d = /^(\d{4})-(\d{2})-(\d{2})$/.exec(b.beobachtung || "");
+    return '<p class="status">Beobachtungsbogen: <b>' + (d ? "liegt vor (" + Number(d[3]) + "." + Number(d[2]) + "." + d[1] + ")" : "noch offen") + "</b></p>";
+  }
+
   var T = TAXONOMIEN, H = HILDE, esc = H.esc;
   var ziel = document.getElementById("beispiel");
 
@@ -181,7 +188,7 @@
       H.kennzeichen(b) + '<p class="fach">' + esc(b.fach) + "</p>" +
       '<h1 tabindex="-1" id="detail-titel" class="h1-frage">' + esc(b.titel) + "</h1>" +
       '<p class="detail-kurz">' + esc(b.kurz) + "</p>" +
-      '<p class="status">Status: <b>' + esc(b.status) + "</b></p></div></section>" +
+      '<p class="status">Status: <b>' + esc(b.status) + "</b></p>" + beobachtung(b) + "</div></section>" +
       '<section class="abschnitt" style="padding-top:var(--a2)"><div class="huelle detail-raster">' +
         '<div class="detail-haupt">' +
           (b.ansichten && b.ansichten.length ? ansichtenHtml(b) :
