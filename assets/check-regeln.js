@@ -7,7 +7,9 @@
    - Keine Gesamtnote, kein Durchschnitt. Die einzige Zahl über alle Bereiche ist eine Zählung.
    - Stärke-Hinweise nur, wenn der Inhalt fachlich geprüft ist (Mindestbedingung), höchstens drei.
    - Entwicklungsschritte: höchstens drei, in dieser Reihenfolge: fachliche Korrektur,
-     Entwicklungsfeld in einem Kernbereich des Materialtyps, ungenutztes digitales Potenzial.
+     Entwicklungsfeld in einem Kernbereich des Materialtyps, Stelle ohne KI (nur Lernangebot mit KI),
+     längerer Text auf Papier, ungenutztes digitales Potenzial (ab 4.10).
+   - Rahmenfragen mit nurTyp erscheinen nur für diese Materialtypen, mit nurDigital nicht für analoge Typen (rahmenFragen).
    - Ein Selbstcheck einer Person erreicht höchstens »mittlere Sicherheit«.
    Jede Regeländerung braucht einen Test in tests/check-regeln.test.js. */
 (function (wurzel) {
@@ -122,9 +124,21 @@
     return { text: text, zaehlung: zaehlung, klar: klar.length, bewertet: bewertet.length };
   }
 
+  /* Welche Rahmenfragen gelten für diesen Materialtyp? */
+  function rahmenFragen(typId) {
+    var typ = finde(Q.materialtypen, typId);
+    return Q.rahmen.filter(function (r) {
+      if (r.nurTyp) return r.nurTyp.indexOf(typId) >= 0;
+      if (r.nurDigital) return !(typ && typ.digital === false);
+      return true;
+    });
+  }
+
   /* Höchstens drei Entwicklungsschritte, in fester Reihenfolge. */
-  function schritte(p, rahmen) {
+  function schritte(p, rahmen, typId) {
     rahmen = rahmen || {};
+    var gilt = {};
+    rahmenFragen(typId).forEach(function (r) { gilt[r.id] = true; });
     var l = [];
     if (rahmen.fachlich && rahmen.fachlich !== "ja") {
       l.push({ art: "fachlich", bereich: "fach", text: "Lass den Inhalt fachlich prüfen: Quellen, Zahlen und Begriffe. Fachliche Korrekturen gehen immer vor.", aufwand: "mittel" });
@@ -133,6 +147,12 @@
       var naechste = x.bereich.a[Math.min(4, x.a + 1)];
       l.push({ art: "feld", bereich: x.id, text: x.bereich.name + ": Ein nächster Schritt wäre – " + naechste + ".", aufwand: "mittel" });
     });
+    if (gilt.ohneKi && rahmen.ohneKi === "nein") {
+      l.push({ art: "ohneki", bereich: "rueckmeldung", text: "Plane eine Stelle ohne KI ein, an der die Lernenden zeigen, was sie können – zum Beispiel eine kurze Abfrage in der nächsten Stunde. Mit KI wird das Ergebnis oft besser, gelernt ist es damit noch nicht.", aufwand: "klein" });
+    }
+    if (gilt.lesen && rahmen.lesen === "ja") {
+      l.push({ art: "lesen", bereich: "zugang", text: "Gib den längeren Text zusätzlich auf Papier aus. Lange Sachtexte verstehen viele auf Papier etwas besser, besonders unter Zeitdruck.", aufwand: "klein" });
+    }
     p.filter(function (x) { return x.ungenutzt; }).forEach(function (x) {
       l.push({ art: "potenzial", bereich: x.id, text: x.bereich.name + ": Eine einfache digitale Funktion könnte hier helfen – " + x.bereich.b[1] + ".", aufwand: "klein" });
     });
@@ -163,7 +183,7 @@
       staerken: p.filter(function (x) { return x.staerke; }).slice(0, 5),
       hinweise: hinweise(p, r),
       gesamt: gesamt(p),
-      schritte: schritte(p, r),
+      schritte: schritte(p, r, e.typ),
       grenzen: grenzen(p, r),
       sicherheit: sicherheit(p, r),
       fachlichOffen: r.fachlich !== "ja",
@@ -171,7 +191,7 @@
     };
   }
 
-  var CHECK = { begrenzeB: begrenzeB, profil: profil, sicherheit: sicherheit, hinweise: hinweise,
+  var CHECK = { begrenzeB: begrenzeB, profil: profil, sicherheit: sicherheit, hinweise: hinweise, rahmenFragen: rahmenFragen,
     satz: satz, gesamt: gesamt, schritte: schritte, grenzen: grenzen, bericht: bericht };
   if (typeof module !== "undefined") module.exports = CHECK;
   else wurzel.CHECK = CHECK;

@@ -2,6 +2,8 @@
    Drei Teile, alle aus dem Arbeitsgedächtnis des Projekts übertragen:
    - muster:    Unterrichtsmuster aus der Praxis, je mit drei Wegen: auf Papier · mit KI vorbereiten · am Tablet.
                 einsatz: "eingesetzt" (im eigenen Unterricht eingesetzt) · "geplant" (ausgearbeitet, noch nicht eingesetzt) · "offen".
+                lernende (freiwillig, ab 4.10): ein Satz, wie Lernende selbst mit KI an dem Muster arbeiten können –
+                immer »erst selbst, dann KI«. Bis zur Erprobung endet der Satz mit »Noch nicht erprobt.«
                 Das ist eine persönliche Angabe, kein Wirkungsnachweis.
                 tablet.beispiele nennt nur Galerie-Einträge, die dasselbe Muster wirklich zeigen. Gibt es keines, steht das ehrlich da.
    - auftraege: kopierbare Aufträge, Kurzfassungen der ausführlichen Anleitungen (Skills) des Projekts.
@@ -136,6 +138,7 @@ var WERKSTATT = {
       warum: "Wer fremde Antworten an Kriterien misst, sieht klarer, was die eigene noch braucht.",
       papier: "Drei Antworten: Meinung statt Urteil · teilweise · alle Kriterien erfüllt. Eine Rangfolge bilden, die mittlere umschreiben, dann die eigene Antwort mit der Partnerin tauschen.",
       tablet: { text: "Auf Papier gleich gut. Ob das Tablet hier etwas besser kann, ist noch offen.", beispiele: [] },
+      lernende: "Erst schreiben die Lernenden ihre eigene Antwort – ohne KI. Danach holen sie sich eine Antwort der KI zur selben Aufgabe und bewerten sie mit demselben Raster wie die drei Beispielantworten. Die KI-Antwort ist kein Vorbild, sondern ein weiterer Fall zum Prüfen. Noch nicht erprobt.",
       ki: {
         ziel: "Erstelle zu der Aufgabe unten ein Kriterienraster und drei Beispielantworten in unterschiedlicher Qualität.",
         anforderungen: [
@@ -217,10 +220,12 @@ var WERKSTATT = {
         "Faustregel: Ist der Weg das Lernziel (argumentieren, einen Fall deuten, einen Plan entwickeln), schadet KI-Hilfe am meisten. Ist nur das Ergebnis wichtig, ist sie meist harmlos.",
         "Keine Regel darf davon abhängen, KI-Texte zu erkennen. Solche Werkzeuge sind unzuverlässig.",
         "Leg für jeden Rechercheschritt fest, welches Werkzeug passt: KI-System, Schulbuch, Bibliothek oder Suchmaschine.",
-        "Denk an Gerechtigkeit: Für manche Lernende ist KI die einzige Hilfe außerhalb der Schule."
+        "Denk an Gerechtigkeit: Für manche Lernende ist KI die einzige Hilfe außerhalb der Schule.",
+        "Wo KI helfen darf: Leg die Reihenfolge fest – erst selbst, dann KI. Schlag einen Auftrag an die KI vor, der Hinweise gibt statt Lösungen.",
+        "Plane eine Stelle, an der die Lernenden zeigen, was sie ohne KI können – zum Beispiel eine kurze Abfrage oder eine mündliche Erklärung. Mit KI wird das Ergebnis oft besser, das Können danach nicht."
       ],
       format: "Eine Tabelle der Teile mit Einstufung, Begründung und Regel. Dann ein Regeltext für die Lernenden mit Anrede »du«, je Teil ein Satz mit Grund. Zum Schluss drei bis fünf kleine Vorschläge, die Aufgabe nachzuschärfen.",
-      pruef: ["Ist jede Einstufung aus einem Lernziel begründet?", "Versteht eine Schülerin den Regeltext ohne Rückfrage?", "Für bewertete Leistungen gelten zusätzlich die Vorgaben von Schule und Land. Erinnere mich daran."],
+      pruef: ["Ist jede Einstufung aus einem Lernziel begründet?", "Versteht eine Schülerin den Regeltext ohne Rückfrage?", "Gibt es eine Stelle ohne KI?", "Für bewertete Leistungen gelten zusätzlich die Vorgaben von Schule und Land; eine KI vergibt keine Noten. Erinnere mich daran."],
       material: true
     },
     {
@@ -232,7 +237,8 @@ var WERKSTATT = {
         "Nenne die zwei bis drei Fehlerarten, die in meinem Fach am wichtigsten sind: erfundene Quelle, falsch zugeordnete Quelle, Quelle sagt das nicht, Zahl ohne Herkunft, falsches Zitat, scheinbare Einigkeit.",
         "Markiere in der Antwort, was geprüft werden muss. Sag nicht, ob es stimmt – das prüfe ich selbst am Original.",
         "Prüfschritte für die Lernenden: Stopp · Art der Aussage bestimmen · Original finden · Unbelegtes zurückverfolgen.",
-        "Die Übung hat drei Runden: allein markieren, zu zweit zwei bis drei Aussagen prüfen, in der Klasse vergleichen."
+        "Die Übung hat drei Runden: allein markieren, zu zweit zwei bis drei Aussagen prüfen, in der Klasse vergleichen.",
+        "Plane zwei kurze Wiederholungen in späteren Stunden ein, je fünf Minuten mit einer Behauptung. Einmal üben reicht nicht."
       ],
       format: "Ein Arbeitsblatt für die Lernenden mit Anrede »du« und diesen Zeichen zum Markieren: ★ Zahl ohne Beleg · ! falsche Sicherheit · ? fehlende Gegenposition · ~ vage Wörter. Dazu der Ablauf mit Minuten.",
       pruef: ["Behauptet das Material irgendwo, eine Quelle sei echt oder erfunden? Dann streich das – ich prüfe es selbst.", "Passt die Übung in 30 bis 45 Minuten?"],
@@ -248,7 +254,9 @@ var WERKSTATT = {
         "Ich ändere nur eine Sache auf einmal.",
         "Belege aus drei Richtungen, so wenige wie möglich: Arbeiten der Lernenden ohne Namen, meine Beobachtung nach der Stunde, Rückmeldung der Lernenden auf Zetteln ohne Namen.",
         "Keine Noten, Punkte oder Prozentwerte als Ergebnis. Muster in Worten beschreiben, einfache Zählungen sind erlaubt.",
-        "Auch »hat nicht geholfen« oder »zurück zu Papier« ist ein gutes Ergebnis."
+        "Auch »hat nicht geholfen« oder »zurück zu Papier« ist ein gutes Ergebnis.",
+        "Besuche ich eine Kollegin oder einen Kollegen im Unterricht, dann mit einer Beobachtungsfrage und einem kurzen Gespräch danach. Ein Besuch ohne Frage bringt wenig.",
+        "Arbeiten die Lernenden mit KI, sammle ich mindestens einen Beleg ohne KI. Ein besseres Ergebnis mit KI zeigt noch nicht, dass gelernt wurde."
       ],
       format: "Ein Plan mit: Frage · Ausgangslage · Veränderung · Belege (Tabelle mit Aufwand) · Leitfragen für die Auswertung · Entscheidung · wie ich es im Kollegium teile. Dauer sechs bis zehn Wochen, wenn ich nichts anderes sage.",
       pruef: ["Ist der Aufwand im Alltag machbar?", "Sind die Grenzen benannt: Was kann diese Erkundung zeigen, was nicht?"]

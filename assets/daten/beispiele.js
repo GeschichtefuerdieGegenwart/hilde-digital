@@ -17,7 +17,11 @@
      Höchstens drei Stärken, ohne Zahl. Ohne Eintrag zeigt die Detailseite »Qualitätscheck: noch offen«.
    auswahl: »Zum Anfangen« in der Galerie (Entscheidung der Lehrkraft vom 26.10.2026). Genau sechs Einträge,
      zwei je Umfang, alle »im Unterricht erprobt«. Form: { grund: "ein Satz, warum das Beispiel ausgewählt ist" }.
-     Keine Rangfolge: Die sechs sind ein Anfang, keine Bestenliste. tools/pruefen.py prüft die Regel. */
+     Keine Rangfolge: Die sechs sind ein Anfang, keine Bestenliste. tools/pruefen.py prüft die Regel.
+   beobachtung (ab 4.10): Datum eines ausgefüllten Beobachtungsbogens nach der Stunde (»2026-11-20«), nur bei
+     »im Unterricht erprobt«. Nur die Lehrkraft trägt es ein; der Inhalt des Bogens steht nicht hier.
+     Ohne Eintrag zeigt die Detailseite bei erprobten Beispielen »Beobachtungsbogen: noch offen«.
+     Der Status ändert sich dadurch nicht. */
 
 var GH = "https://geschichtefuerdiegegenwart.github.io/";
 

@@ -617,6 +617,7 @@ main p,main li,main dd{max-width:60ch}
 .probe-ergebnis.stufe-klar{border-top-color:var(--lernen)}
 .probe-ergebnis.stufe-anpassung{border-top-color:var(--ki-platte)}
 .probe-ergebnis.stufe-organisatorisch,.probe-ergebnis.stufe-analog{border-top-color:var(--text)}
+.probe-lesen{border-top:2px solid var(--linie);padding-top:.5rem;margin-top:.25rem}
 .probe-name{font-weight:700;font-size:var(--gr-text)}
 .probe-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2) var(--a3)}
 
@@ -1394,6 +1395,16 @@ main .muster-karte,main .werkstatt-karte,main .sicher-liste>li{max-width:none} /
 .werkstatt-auftrag textarea,#fach-text{width:100%;font:inherit;line-height:1.45;padding:.75rem;border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);color:var(--text);margin-top:var(--a1)}
 .werkstatt-karte{background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);display:grid;gap:.75rem;border-left:8px solid var(--ki-platte)}
 .muster-beispiele{list-style:none;margin:0;padding:0;display:grid;gap:.4rem}
+.muster-lernende{max-width:68ch;border-top:2px solid var(--linie);padding-top:var(--a2)}
+/* Belegstand (ab 4.10): ein Wort mit ▲, neutral – das Wort trägt die Aussage, nicht die Farbe (Regel aus Gegenwart, Etikett) */
+.belegstand{display:inline-block;font-size:var(--gr-klein);font-weight:700;padding:0 .5rem;border-radius:var(--rund);border:2px solid var(--stahl);color:var(--text);vertical-align:.1em;white-space:nowrap}
+.belegstand::before{content:"▲ ";color:var(--leise)}
+.beleg-liste{list-style:none;margin:0;padding:0;display:grid;gap:var(--a2)}
+.beleg-liste li{display:grid;gap:.3rem;max-width:68ch}
+.regel-drei{list-style:none;margin:0;padding:0;display:grid;gap:var(--a3);counter-reset:regel}
+.regel-drei>li{background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);display:grid;gap:.6rem;border-left:8px solid var(--ki-platte);counter-increment:regel}
+.regel-drei h3{font:700 var(--gr-h3)/1.15 var(--schrift-titel)}
+.regel-drei h3::before{content:counter(regel) " · ";color:var(--leise)}
 .werkstatt-karte h3{font:700 var(--gr-h3)/1.15 var(--schrift-titel)}
 .werkstatt-karte .werkstatt-auftrag{background:var(--ki-zart)}
 .fach-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:var(--a4);align-items:start}

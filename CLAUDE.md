@@ -10,6 +10,7 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede a
 ## Feste Rahmenbedingungen
 - Arbeite nur auf einem eigenen Branch. Zusammenführen in den Hauptzweig nur auf ausdrückliche Anweisung oder Freigabe zum Umsetzen im Chat (z. B. »führe PR 5 zusammen«). GitHub Pages nicht aktivieren oder ändern.
 - Keine KI-Anbindung, keine simulierten KI-Antworten, keine Namen von KI-Anbietern. Sprich von einem »an deiner Schule freigegebenen KI-System«.
+  Ausnahme (Entscheidung Mario, 31.10.2026): Die landeseigenen Angebote in Baden-Württemberg, **F13** und **AIS.chat**, dürfen auf Erklärseiten ausdrücklich genannt werden – immer mit Stand und dem Hinweis, dass die Schulleitung freischaltet. Prompts und kopierbare Aufträge bleiben anbieterneutral.
 - Verlinkte Lernanwendungen liegen in anderen Repositories. Nur verlinken, nie ändern.
 - Keine Namen von Kolleg*innen, keine Schülerdaten, keine persönlichen Daten.
 

@@ -90,7 +90,13 @@
   <ul class="werkzeuge">
     <li class="werkzeug">
       <a href="fortbildung.html">
-        <span class="werkzeug-text"><b>Fortbildungsbaustein: 45 Minuten</b>Ein Ablauf für Konferenz oder Fachgruppe. Alle arbeiten an eigenem Material.</span>
+        <span class="werkzeug-text"><b>Fortbildungsbaustein: 45 Minuten</b>Der Einstieg für Konferenz oder Fachgruppe. Alle arbeiten an eigenem Material.</span>
+        <span class="werkzeug-los" aria-hidden="true">→</span>
+      </a>
+    </li>
+    <li class="werkzeug">
+      <a href="beratung.html">
+        <span class="werkzeug-text"><b>Beratungsstunde: acht Wochen</b>Der nächste Schritt: zwei bis drei Lehrkräfte, eine eigene Stunde, zweimal ausprobiert.</span>
         <span class="werkzeug-los" aria-hidden="true">→</span>
       </a>
     </li>
@@ -106,7 +112,7 @@
 <section class="band band-flaeche" aria-labelledby="t-probe"><div class="huelle probe">
   <div class="probe-kopf">
     <h2 id="t-probe">Geht es auf Papier genauso gut?</h2>
-    <p>Dann bleib beim Papier. Prüfe eine Aktivität, die du planst, in höchstens drei Fragen.</p>
+    <p>Dann bleib beim Papier. Prüfe eine Aktivität, die du planst, in höchstens drei Fragen. Eine Zusatzfrage gilt dem Lesen.</p>
     <p class="leise klein">Deine Antworten werden nicht gespeichert. Das Ergebnis ist eine Planungshilfe, keine Bewertung.</p>
   </div>
   <form class="probe-form" id="probe">
@@ -132,6 +138,13 @@
         <label><input type="radio" name="ziel" value="ja"><span>Ja</span></label>
         <label><input type="radio" name="ziel" value="nein"><span>Nein</span></label>
         <label><input type="radio" name="ziel" value="offen"><span>Noch nicht sicher</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="probe-frage" data-frage="lesen">
+      <legend>Zusatzfrage: Lesen die Lernenden dabei einen längeren Text – mehr als eine Bildschirmseite?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="lesen" value="ja"><span>Ja</span></label>
+        <label><input type="radio" name="lesen" value="nein"><span>Nein</span></label>
       </div>
     </fieldset>
     <div class="probe-ergebnis" id="probe-ergebnis" aria-live="polite">

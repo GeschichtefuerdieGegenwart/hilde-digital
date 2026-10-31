@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Hilde Digital: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+<title>Wenn deine Lernenden mit KI arbeiten – Hilde Digital</title>
+<link rel="stylesheet" href="assets/hilde.css">
+<script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<header class="kopf"><div class="huelle">
+  <a class="marke" href="index.html"><span class="marke-name">Hilde Digital</span><span class="strich" aria-hidden="true"><i></i><i></i><i></i></span><span class="sr-only">, zum Start</span></a>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html" aria-current="true">KI-Training</a><a href="unterricht.html">Digitaler Unterricht</a><a href="galerie.html">Galerie</a></nav>
+  <a class="hefter-link" href="galerie.html#hefter" aria-label="Mein Schnellhefter"><svg viewBox="0 0 30 24" aria-hidden="true"><rect x="1" y="2" width="28" height="21" rx="2" fill="#f2b233" stroke="#a26a1c" stroke-width="2"/><rect x="1" y="2" width="6" height="21" fill="#a26a1c"/><circle cx="4" cy="8" r="1.3" fill="#f0eeeb"/><circle cx="4" cy="17" r="1.3" fill="#f0eeeb"/></svg><span class="hefter-zahl" aria-hidden="true">0</span></a>
+</div></header>
+<main id="inhalt" tabindex="-1">
+<div class="bereich-ki">
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1 class="h1-frage">Wenn deine Lernenden mit KI arbeiten</h1>
+  <p class="marker">Bereich: KI-Training · auch für den Digitalen Unterricht</p>
+  <p class="detail-kurz">Mit KI wird ein Ergebnis oft schnell besser. Gelernt ist es damit noch nicht. Drei Regeln helfen, dass die KI das Denken nicht übernimmt.</p>
+  <p class="kopfnotiz"><button type="button" class="knopf still" data-drucken>Regeln drucken</button></p>
+</div></section>
+
+<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-regeln"><div class="huelle stapel-gross">
+  <div class="stapel">
+    <h2 id="t-regeln">Drei Regeln</h2>
+    <ol class="regel-drei">
+      <li>
+        <h3>Erst selbst, dann KI</h3>
+        <p>Die Lernenden versuchen es zuerst allein – auf Papier, im Heft oder im Kopf. Erst danach vergleichen sie mit der KI oder holen sich eine Rückmeldung.</p>
+        <p class="leise">Satz für die Tafel: »Erst dein Entwurf. Dann fragst du die KI.«</p>
+      </li>
+      <li>
+        <h3>Hinweise statt Lösungen</h3>
+        <p>Gib den Lernenden einen Auftrag an die KI vor, der keine Lösung verrät. Die KI stellt Fragen und gibt Hinweise. Die Lösung kommt nur, wenn jemand ausdrücklich danach fragt.</p>
+        <div class="werkstatt-auftrag">
+          <label for="lern-auftrag"><b>Auftrag für die Lernenden</b> – du kannst ihn ändern</label>
+          <textarea id="lern-auftrag" rows="6" spellcheck="false">Ich lerne gerade: [Thema]. Ich habe schon versucht: [mein Versuch].
+Hilf mir weiter, aber verrate mir die Lösung nicht.
+Stell mir eine Frage oder gib mir einen Hinweis – immer nur einen Schritt.
+Sag mir, wo mein Fehler liegt, aber nicht, wie die richtige Antwort lautet.
+Gib mir die Lösung erst, wenn ich ausdrücklich darum bitte.</textarea>
+          <div class="kopieren"><button type="button" class="knopf" data-kopieren="lern-auftrag">Auftrag kopieren</button><span class="leise" aria-live="polite"></span></div>
+        </div>
+      </li>
+      <li>
+        <h3>Zeigen, was du ohne KI kannst</h3>
+        <p>Plane eine Stelle ohne KI ein: eine kurze Abfrage am Anfang der nächsten Stunde, eine mündliche Erklärung oder einen Teil der Klassenarbeit. Erst dort siehst du, was gelernt ist.</p>
+      </li>
+    </ol>
+  </div>
+
+  <div class="stapel">
+    <h2 id="t-aufgabe">Was darf die KI bei dieser Aufgabe?</h2>
+    <p class="mass">Pauschal »KI erlaubt« oder »KI verboten« passt selten. Eine Aufgabe hat mehrere Teile. Bei manchen hilft KI, bei manchen nimmt sie genau das ab, was gelernt werden soll. Ein fertiger Auftrag hilft dir, das für jeden Teil festzulegen.</p>
+    <p><a class="textlink" href="auftraege.html#ki-grenzen">Auftrag »KI-Regeln für eine Aufgabe festlegen« <span aria-hidden="true">→</span></a></p>
+  </div>
+
+  <div class="stapel box">
+    <h2 id="t-systeme">Welches KI-System?</h2>
+    <p class="mass">Deine Lernenden nutzen nur ein System, das deine Schule freigegeben hat. In Baden-Württemberg gibt es dafür Angebote des Landes:</p>
+    <dl class="inhalte-liste">
+      <div class="rand-ki"><dt>AIS.chat</dt><dd>Das Chat-Angebot des Landes für Schulen, bis Mai 2026 unter dem Namen »telli«. Die Schulleitung schaltet es für die Schule frei. Lernende bekommen den Zugang über ihre Lehrkraft.</dd></div>
+      <div class="rand-ki"><dt>F13</dt><dd>Ein KI-Assistent des Landes für Lehrkräfte – für deine Vorbereitung, nicht für die Lernenden.</dd></div>
+    </dl>
+    <p class="mass">Ob deine Schule AIS.chat freigeschaltet hat und ab welchem Alter Lernende es nutzen dürfen, klärst du mit der Schulleitung. Das Alter ist in den Hinweisen des Landes, die wir gefunden haben, noch offen.</p>
+    <p class="leise klein">Stand: 31. Oktober 2026. Namen und Regeln ändern sich. Gib auch hier keine Namen, Noten oder anderen personenbezogenen Daten ein.</p>
+  </div>
+
+  <details class="mehr" id="vertiefung-forschung">
+    <summary>Zum Nachlesen: Warum diese Regeln?</summary>
+    <ul class="beleg-liste">
+      <li><span><span class="belegstand">belegt</span></span><span>In einer großen Studie an Schulen übten Lernende Mathematik mit freier KI-Hilfe. Die Übungen gelangen ihnen besser. In der Prüfung ohne KI schnitten sie aber schlechter ab als Lernende ohne KI-Hilfe. (Bastani u. a. 2025)</span></li>
+      <li><span><span class="belegstand">vorläufig</span></span><span>Eine KI, die nur Hinweise gab und keine Lösungen, schadete in derselben Studie nicht. Einen Vorteil in der Prüfung brachte sie aber auch nicht. (Bastani u. a. 2025)</span></li>
+      <li><span><span class="belegstand">offen</span></span><span>Ob KI das Lernen im Durchschnitt verbessert, ist offen. Neuere Übersichten kommen zu unterschiedlichen Ergebnissen. Eine oft zitierte Übersicht mit großen Vorteilen wurde 2026 zurückgezogen.</span></li>
+      <li><span><span class="belegstand">Empfehlung</span></span><span>Die Kultusministerkonferenz empfiehlt Absprachen und Kennzeichnung statt eines allgemeinen Verbots bei Hausaufgaben. Die Bewertung bleibt bei der Lehrkraft. In Baden-Württemberg vergeben KI-Anwendungen keine Noten.</span></li>
+    </ul>
+    <p class="leise klein">»belegt«: mehrere gute Studien kommen zum selben Ergebnis · »vorläufig«: einzelne gute Studien · »offen«: widersprüchliche oder fehlende Befunde · »Empfehlung«: Vorgabe oder Rahmen, kein Nachweis der Wirkung.</p>
+  </details>
+
+  <p class="mass">Weiter: <a class="textlink" href="sicher.html">Sicher arbeiten in fünf Regeln <span aria-hidden="true">→</span></a> <a class="textlink" href="muster.html#m-ranking">Ein Muster mit KI für Lernende <span aria-hidden="true">→</span></a></p>
+</div></section>
+</div>
+<script src="assets/druck.js"></script>
+<script>
+(function () {
+  var k = document.querySelector("[data-kopieren]");
+  if (!k) return;
+  k.addEventListener("click", function () {
+    var feld = document.getElementById(k.getAttribute("data-kopieren"));
+    var status = k.parentNode.querySelector("[aria-live]");
+    function selbst() { feld.focus(); feld.select(); status.textContent = "Der Text ist markiert. Kopiere ihn mit Strg + C (Mac: Cmd + C)."; }
+    try {
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(feld.value).then(function () { status.textContent = "Kopiert. Gib den Auftrag an deine Lernenden weiter."; }, selbst);
+      else selbst();
+    } catch (err) { selbst(); }
+  });
+})();
+</script>
+
+</main>
+<footer class="fuss"><div class="huelle">
+  <p class="fuss-marke" aria-hidden="true">Hilde Digital<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span></p>
+  <nav class="fusslinks" aria-label="Über Hilde Digital"><ul><li><a href="ueber.html">Über Hilde Digital</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>
+  <p class="fuss-einstellung"><button type="button" class="knopf still theme-schalter" id="theme-schalter" data-theme-schalter aria-pressed="false">Beamer-Ansicht</button><span class="leise">Gilt in diesem Browser. Reines Weiß, tiefes Schwarz, kräftigere Farben – für den Beamer im Klassenzimmer.</span></p>
+  <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
+</div></footer>
+<script src="assets/motion.js"></script>
+</body>
+</html>

@@ -290,6 +290,24 @@ test("Papierprobe: Neues mit Lernzielbezug ist klarer Mehrwert, ohne Bezug Anpas
   assert.equal(R.papierprobe({ neu: "ja", ziel: "offen" }).id, "anpassung");
 });
 
+test("Papierprobe: Lese-Kriterium ergänzt bei längerem Text einen Hinweis, ändert aber die Einstufung nicht", () => {
+  const mit = R.papierprobe({ neu: "ja", ziel: "ja", lesen: "ja" });
+  const ohne = R.papierprobe({ neu: "ja", ziel: "ja", lesen: "nein" });
+  assert.equal(mit.id, "klar");
+  assert.equal(ohne.id, "klar");
+  assert.match(mit.lesen, /Papier/);
+  assert.equal(ohne.lesen, undefined);
+  assert.equal(R.papierprobe({ neu: "nein", ablage: "ja", lesen: "ja" }).id, "organisatorisch");
+  assert.ok(R.papierprobe({ neu: "nein", ablage: "ja", lesen: "ja" }).lesen);
+});
+
+test("Papierprobe: ohne Ergebnis gibt es auch keinen Lesehinweis", () => {
+  const e = R.papierprobe({ lesen: "ja" });
+  assert.equal(e.id, null);
+  assert.equal(e.lesen, undefined);
+  assert.ok(!/\d+ ?%/.test(R.papierprobe({ neu: "offen", lesen: "ja" }).lesen), "keine Prozentwerte");
+});
+
 test("Papierprobe: jedes Ergebnis ist eine der vier Einstufungen und hat eine Begründung", () => {
   const ids = T.einstufungen.map((e) => e.id);
   const faelle = [{ neu: "offen" }, { neu: "nein", ablage: "ja" }, { neu: "nein", ablage: "nein" }, { neu: "ja", ziel: "ja" }, { neu: "ja", ziel: "nein" }];

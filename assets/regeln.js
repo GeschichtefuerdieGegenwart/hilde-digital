@@ -347,9 +347,21 @@
           neu = nein, ablage = nein/offen  → analog
           neu = ja,   ziel = ja            → klar
           neu = ja,   ziel = nein/offen    → anpassung
-        Fehlt die Folgefrage, ist das Ergebnis noch offen (null). */
+        Fehlt die Folgefrage, ist das Ergebnis noch offen (null).
+        Zusatzfrage (ab Version 4.10, Lese-Kriterium):
+          lesen:  Lesen die Lernenden dabei einen längeren Text – mehr als eine Bildschirmseite?
+          lesen = ja und ein Ergebnis steht fest → zusätzlicher Hinweis »lesen«: den Text auf Papier ausgeben.
+          Die Einstufung selbst ändert sich nicht. Grund: Längere Sachtexte verstehen Lernende auf Papier im Mittel
+          etwas besser, besonders unter Zeitdruck (Delgado u. a. 2018; Salmerón u. a. 2024 – kleiner Effekt). */
+  var LESEHINWEIS = "Längere Sachtexte verstehen viele auf Papier etwas besser, besonders unter Zeitdruck. " +
+    "Gib den Text gedruckt aus und nutze das Tablet für den Rest.";
   function papierprobe(a) {
     a = a || {};
+    var e = papierprobeKern(a);
+    if (e.id && a.lesen === "ja") e.lesen = LESEHINWEIS;
+    return e;
+  }
+  function papierprobeKern(a) {
     var JA = "ja", NEIN = "nein";
     if (!a.neu) return { id: null, frage: "neu" };
     if (a.neu === "offen") return { id: "analog", grund:
