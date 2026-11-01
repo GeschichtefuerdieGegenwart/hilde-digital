@@ -43,6 +43,8 @@ FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik",
 EINSTIEG_WOERTER = ["Digitalität", "Lernsetting", "HTML-Lernumgebung"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]
 KENNZEICHNUNG = "Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
+URHEBERZEILE = "umgesetzt mit Unterstützung eines KI-Systems"  # Entscheidung 01.11.2026
+LIZENZDATEIEN = ["LICENSE", "LICENSE-TEXTE.md", "ENTSTEHUNG.md"]
 ALTE_NAMEN = ["Showroom", "Mehrwert-Check", "Hilde-Digital", "Über das Modul", "KI für meine Arbeit",
               "mit KI entwickelt", "Mit KI entwickelt"]  # Kategorie gestrichen (Version 4.4)
 ERLAUBTE_HOSTS = ("https://geschichtefuerdiegegenwart.github.io/",)
@@ -63,6 +65,8 @@ def pruefe_seiten(fehler):
             continue
         html = pfad.read_text(encoding="utf-8")
         text = text_ohne_tags(html)
+        if URHEBERZEILE not in text:
+            fehler.append(f"{name}: Urheberzeile fehlt")
         if KENNZEICHNUNG not in text:
             fehler.append(f"{name}: Kennzeichnung fehlt")
         nav = re.search(r'<nav class="nav"[^>]*>([\s\S]*?)</nav>', html)
@@ -268,6 +272,9 @@ def main():
     pruefe_skripte(fehler)
     pruefe_css(fehler)
     pruefe_daten(fehler)
+    for datei in LIZENZDATEIEN:
+        if not (WURZEL / datei).exists():
+            fehler.append(f"{datei}: Lizenz- oder Entstehungsdatei fehlt")
     for zeile in fehler:
         print("✗", zeile)
     print("Geprüft:", ", ".join(SEITEN), "–", "keine Verstöße" if not fehler else f"{len(fehler)} Verstöße")

@@ -44,6 +44,15 @@ Nach Änderungen an den Beispielen: `python3 tools/datenluecken.py` aktualisiert
 
 Die fertigen Seiten (`index.html`, `ki.html`, `unterricht.html`, `digital-check.html`, `selbstcheck.html`, `tablets.html`, `passt.html`, `galerie.html`, `beispiel.html`, `mehrwert.html`, `ueber.html`, `gestaltung.html`; `showroom.html` leitet zur Galerie weiter) lassen sich ohne Server direkt im Browser öffnen.
 
+## Urheberschaft und Lizenz
+
+Konzept, Leitsätze, Kriterien und Texte: Mario Walter. Umgesetzt mit Unterstützung eines KI-Systems. Wer was beigetragen hat, steht in `ENTSTEHUNG.md`.
+
+- Texte und Daten: CC BY-NC-SA 4.0 – frei für Schulen und Fortbildung, nicht kommerziell, mit Namensnennung. Siehe `LICENSE-TEXTE.md`.
+- Programmcode: MIT-Lizenz. Siehe `LICENSE`.
+- Bilder: alle Rechte vorbehalten. Schriften: SIL Open Font License.
+- Der Name ist von keiner Lizenz erfasst. Für eine kommerzielle Nutzung ist eine eigene Vereinbarung nötig.
+
 ## Bilder
 
 Die Bildschirmfotos zeigen eigene Unterrichtsmaterialien. Die Folien der Anleiter*innen-Präsentation sind ohne Kopf- und Fußzeile zugeschnitten (kein Logo, keine Namen).
