@@ -964,28 +964,28 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .galerie-zwischen.galerie-zwischen-erst{margin-top:var(--a8)}
 .galerie-zwischen:focus{outline:none}
 
-/* Start: Collage aus drei echten Ansichten rechts neben dem Titel (ab 1024 px).
-   Zwei Duplex-Drucke und ein Original, versetzt wie verrutschte Druckbogen. Sie rasten beim ersten Aufruf ein.
+/* Start: drei echte Ansichten als Fächer direkt neben der Galerie-Leiste (ab Version 4.15, Variante A; vorher oben rechts neben dem Titel).
+   Zwei Duplex-Drucke und ein Original, leicht gefächert. Bild und Leiste führen beide zur Galerie, damit klar ist, was gemeint ist.
    Die scroll-gesteuerte Parallaxe aus Version 4.2 ist seit Version 4.8 Teil 2 gestrichen (DESIGN.md: kein Parallax). */
 .start-kopf{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--a4);align-items:center}
 .collage{display:none}
-@media (min-width:1024px){
-  .start-kopf{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
-  .collage{display:block;position:relative;height:clamp(10rem,17vw,15rem);text-decoration:none}
-  .collage-karte{position:absolute;width:62%;aspect-ratio:16/10;background:var(--karton);padding:6px;border-radius:2px;
+@media (min-width:720px){
+  .start-galerie{display:flex;align-items:center;gap:var(--a4)}
+  .start-galerie .galerie-zugang{flex:0 1 52%}
+  .collage{display:block;position:relative;flex:0 0 clamp(16rem,30vw,27rem);height:clamp(7rem,9.5vw,9rem);text-decoration:none}
+  .collage-karte{position:absolute;top:0;width:48%;aspect-ratio:16/10;background:var(--karton);padding:5px;border-radius:2px;
     transition:transform var(--dauer-mittel) var(--ease-out)}
   .collage-karte img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:1px}
-  .collage-karte.c1{left:0;top:0;--platte-c:var(--lernen);box-shadow:8px 8px 0 0 var(--platte-c)} /* taste-skill-ignore: versetzte Druckplatte */
-  .collage-karte.c2{right:0;top:12%;--platte-c:var(--ki-platte);box-shadow:8px 8px 0 0 var(--platte-c)} /* taste-skill-ignore: versetzte Druckplatte */
-  .collage-karte.c3{left:22%;bottom:-6%;width:56%;z-index:1;--platte-c:var(--ueberdruck);box-shadow:8px 8px 0 0 var(--platte-c)} /* taste-skill-ignore: versetzte Druckplatte */
-  .collage:active .collage-karte{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+  .collage-karte.c1{left:0;top:8%;transform:rotate(-3deg);--platte-c:var(--lernen);box-shadow:6px 6px 0 0 var(--platte-c)} /* taste-skill-ignore: versetzte Druckplatte */
+  .collage-karte.c2{left:52%;top:10%;transform:rotate(3deg);--platte-c:var(--ki-platte);box-shadow:6px 6px 0 0 var(--platte-c)} /* taste-skill-ignore: versetzte Druckplatte */
+  .collage-karte.c3{left:26%;top:0;z-index:1;--platte-c:var(--ueberdruck);box-shadow:6px 6px 0 0 var(--platte-c)} /* taste-skill-ignore: versetzte Druckplatte */
+  .collage:active .collage-karte{transition-duration:var(--dauer-druck)}
 }
-@media (min-width:1024px) and (hover:hover) and (pointer:fine){
-  .collage:hover .c1{transform:translate(-6px,-4px)}
-  .collage:hover .c2{transform:translate(6px,-4px)}
-  .collage:hover .c3{transform:translateY(4px)}
+@media (min-width:720px) and (hover:hover) and (pointer:fine){
+  .collage:hover .c1,.start-galerie:has(.galerie-zugang:hover) .c1{transform:translate(-8px,-4px) rotate(-6deg)}
+  .collage:hover .c2,.start-galerie:has(.galerie-zugang:hover) .c2{transform:translate(8px,-4px) rotate(6deg)}
+  .collage:hover .c3,.start-galerie:has(.galerie-zugang:hover) .c3{transform:translateY(-6px)}
 }
-@media (max-height:760px) and (min-width:1024px){.collage{height:clamp(9rem,13vw,11rem)}}
 .registrieren .collage-karte.c1{animation:reg-ki var(--dauer-register) var(--ease-register) both}
 .registrieren .collage-karte.c2{animation:reg-lernen var(--dauer-register) var(--ease-register) both}
 
@@ -1532,3 +1532,98 @@ main .muster-karte,main .werkstatt-karte,main .sicher-liste>li{max-width:none} /
 .sicher-liste h2{font:700 var(--gr-h3)/1.2 var(--schrift-titel)}
 @media (max-width:900px){.muster-wege{grid-template-columns:1fr}.fach-raster{grid-template-columns:1fr}}
 @media print{ /* taste-skill-ignore: Druckfassung */ .sicher-liste>li{border:1px solid #bbb}.sicher-liste details{display:none}}
+
+/* Film »Papierprobe in 44 Sekunden« (ab Version 4.15, assets/film.js). Bühne 1920 × 1080, auf den Bildschirm skaliert.
+   Läuft einmal, keine Schleife; Anhalten, Überspringen, Esc. Farben und Schriften nur aus den Variablen oben. */
+main .start .hinweis-stand:has(.film-knopf){max-width:none;display:flex;align-items:center;flex-wrap:wrap;gap:var(--a1) var(--a3)}
+.film-knopf{min-height:44px;padding-block:.35rem}
+html.film-offen,html.film-offen body{overflow:hidden}
+.film{position:fixed;inset:0;z-index:100;background:var(--grund);opacity:0;transition:opacity var(--dauer-mittel) var(--ease-out)}
+.film.da{opacity:1}
+.film-buehne{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:50% 50%;overflow:hidden;background:var(--grund);font-family:var(--schrift);color:var(--text)}
+.film-steuerung{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,32px);display:flex;align-items:center;gap:var(--a2);flex-wrap:wrap;justify-content:flex-end}
+.film-steuerung .knopf.still{background:var(--flaeche)}
+.film-fortschritt{display:block;width:clamp(6rem,14vw,12rem);height:4px;background:var(--linie);border-radius:2px;overflow:hidden}
+.film-fortschritt i{display:block;height:100%;background:var(--text);transform-origin:0 50%;transform:scaleX(0)}
+.fb-bild{position:absolute;inset:0}
+.fb-bild>*{position:absolute}
+.fb-hero{left:140px;top:250px;width:1500px}
+.fb-kicker{display:flex;align-items:center;gap:18px;font-weight:700;font-size:30px;color:var(--leise)}
+.fb-marke{display:inline-flex;height:14px}
+.fb-marke i{width:20px;background:var(--ki-platte)}.fb-marke i:nth-child(2){width:12px;background:var(--ueberdruck)}.fb-marke i:nth-child(3){background:var(--lernen)}
+.fb-hero-titel{font:700 104px/1.04 var(--schrift-titel);letter-spacing:-.02em;margin-top:32px;max-width:1400px;text-wrap:balance}
+.fb-hero-unter{font-size:38px;line-height:1.35;color:var(--leise);margin-top:28px;max-width:1100px}
+.fb-text{left:140px;top:60px;height:1020px;width:700px;display:flex;flex-direction:column;justify-content:center;gap:28px}
+.fb-meta{font-weight:700;font-size:26px;color:var(--leise)}
+.fb-titel{font:700 72px/1.08 var(--schrift-titel);letter-spacing:-.015em;text-wrap:balance}
+.fb-titel.lang{font-size:56px}
+.fb-satz{font-size:32px;line-height:1.4;text-wrap:pretty}
+.fb-punkte{left:140px;top:960px;display:flex;gap:18px}
+.fb-punkt{position:relative;width:22px;height:22px;border-radius:50%;border:3px solid var(--lernen);box-sizing:border-box}
+.fb-punkt.fertig{background:var(--lernen)}
+.fb-punkt i{position:absolute;inset:-3px;border-radius:50%;background:var(--ki-platte);transform:scale(0)}
+.fb-tablet{border-radius:48px;background:var(--text);box-shadow:16px 16px 0 0 var(--karton)} /* taste-skill-ignore: versetzte Platte */
+.fb-schirm{position:absolute;border-radius:18px;overflow:hidden;background:#fff}
+.fb-ansicht,.fb-zoom{position:absolute;inset:0}
+.fb-zoom img{display:block}
+.fb-tipp{position:absolute;pointer-events:none}
+.fb-tipp-ring{position:absolute;left:-60px;top:-60px;width:120px;height:120px;border-radius:50%;border:5px solid var(--text);box-sizing:border-box}
+.fb-tipp-punkt{position:absolute;left:-30px;top:-30px;width:60px;height:60px;border-radius:50%;background:rgba(43,42,36,.38);border:4px solid #fff;box-sizing:border-box}
+.fb-sitze{position:absolute;inset:0;background:#fff;color:#1d1d1d;font-family:var(--schrift)}
+.fb-sitze-kopf{display:flex;align-items:center;justify-content:space-between;padding:18px 26px;border-bottom:1px solid #e6e1d8;font-size:20px}
+.fb-schalter{position:relative;display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700}
+.fb-bahn{position:relative;width:56px;height:30px;border-radius:999px;background:#1d5fa8}
+.fb-bahn.aus{background:#c9c4ba}
+.fb-bahn i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff}
+.fb-wort{width:40px;font-weight:400;color:#6b6b6b}
+.fb-halbrund{position:absolute;left:64px;top:70px;width:472px;height:240px}
+.fb-halbrund img{position:absolute;inset:0;width:472px;height:240px}
+.fb-mehrheit{position:absolute;left:150px;top:322px;width:300px;text-align:center;font-size:17px;color:#444}
+.fb-parteien{position:absolute;left:560px;top:78px;width:260px;display:flex;flex-direction:column;gap:4px}
+.fb-partei{display:flex;align-items:center;gap:10px;font-size:18px;padding:3px 10px;border-radius:999px}
+.fb-partei span:nth-child(2){flex:1}
+.fb-partei b{font-variant-numeric:tabular-nums}
+.fb-farbe{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.fb-hinweis{position:absolute;left:26px;right:26px;bottom:20px;padding:12px 18px;border-radius:8px;background:#e8eef7;border-left:5px solid #1d5fa8;font-size:17px}
+.fb-faecher{inset:0}
+.fb-faecher-text{position:absolute;left:140px;top:170px;width:1400px}
+.fb-faecher-text .fb-hero-titel{margin-top:0}
+.fb-faecher-text .fb-hero-unter{margin-top:18px;max-width:1200px}
+.fb-karte{position:absolute;top:540px;border:8px solid var(--text);border-radius:16px;overflow:hidden;background:#fff;box-sizing:border-box;box-shadow:10px 10px 0 0 var(--karton)} /* taste-skill-ignore: versetzte Platte */
+.fb-karte img{width:100%;height:100%;object-fit:cover;display:block}
+.fb-tafel{left:920px;top:200px;width:860px;box-sizing:border-box;padding:52px;border-radius:var(--rund);background:var(--flaeche);border:3px solid var(--text);display:flex;flex-direction:column;gap:22px;box-shadow:14px 14px 0 0 var(--platte-c,var(--karton))} /* taste-skill-ignore: versetzte Druckplatte */
+.fb-tafel.ki{--platte-c:var(--ki-platte)}
+.fb-tafel.lernen{--platte-c:var(--lernen)}
+.fb-schwach{display:flex;align-items:center;gap:16px}
+.fb-etikett{font-weight:700;font-size:22px;color:var(--leise);padding:6px 16px;border-radius:999px;border:3px solid var(--stahl)}
+.fb-durch{position:relative;font-size:24px;white-space:nowrap}
+.fb-durch i{position:absolute;left:0;right:0;top:52%;height:4px;border-radius:2px;background:var(--ki);transform:scaleX(0);transform-origin:0 50%}
+.fb-tafel-titel{font:700 40px/1.1 var(--schrift-titel);margin-top:10px}
+.fb-tafel-titel.gross{font-size:50px;margin-top:0}
+.fb-prompt{display:flex;flex-direction:column;gap:14px}
+.fb-prompt-zeile{display:grid;grid-template-columns:220px 1fr;align-items:start;gap:18px}
+.fb-teil{font-weight:700;font-size:24px;color:var(--ki-tief);background:var(--ki-zart);border-radius:999px;padding:8px 18px;text-align:center}
+.fb-prompt-zeile span:last-child{font-size:26px;line-height:1.35;padding-top:6px}
+.fb-unten{position:relative;display:flex;align-items:center;gap:20px;margin-top:14px}
+.fb-knopf{font:700 30px/1 var(--schrift-titel);color:var(--aktion-text);background:var(--aktion);border-radius:var(--rund);padding:18px 32px}
+.fb-knopf.kopiert{background:var(--erfolg)}
+.fb-leise{font-size:24px;color:var(--leise)}
+.fb-chips{position:relative;display:flex;gap:14px}
+.fb-chip{font-weight:700;font-size:28px;padding:14px 30px;border-radius:999px;border:3px solid var(--stahl)}
+.fb-chip.an{border-color:var(--lernen);background:var(--lernen);color:var(--aktion-text)}
+.fb-werkzeuge{display:flex;flex-direction:column;gap:14px;margin-top:12px}
+.fb-werkzeug{display:flex;align-items:center;gap:22px;padding:20px 26px;border-radius:var(--rund);background:var(--grund);border:2px solid var(--linie)}
+.fb-werkzeug>div{flex:1;display:flex;flex-direction:column;gap:4px}
+.fb-werkzeug b{font:700 32px/1.1 var(--schrift-titel)}
+.fb-werkzeug span{font-size:24px;color:var(--leise)}
+.fb-pfeil{width:52px;height:52px;border-radius:50%;background:var(--lernen-zart);color:var(--lernen-tief)!important;display:flex;align-items:center;justify-content:center;font-size:30px!important;font-weight:700;flex-shrink:0}
+.fb-wege{left:140px;top:770px;display:flex;gap:20px;transform-origin:0 0}
+.fb-weg{display:flex;align-items:center;gap:14px;padding:18px 34px;border-radius:999px;font:700 36px/1 var(--schrift-titel);background:var(--flaeche);border:3px solid var(--linie);color:var(--text)}
+.fb-nr{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;font:700 26px/1 var(--schrift);background:var(--karton)}
+.fb-weg.galerie .fb-nr{background:var(--karton)}.fb-weg.ki .fb-nr{background:var(--ki-platte)}.fb-weg.lernen .fb-nr{background:var(--lernen);color:var(--aktion-text)}
+.fb-weg.an.galerie{background:var(--text);border-color:var(--text);color:var(--aktion-text)}
+.fb-weg.an.ki{background:var(--ki-platte);border-color:var(--ki)}
+.fb-weg.an.lernen{background:var(--lernen);border-color:var(--lernen);color:var(--aktion-text)}
+.fb-weg.an .fb-nr{background:var(--flaeche);color:var(--text)}
+.fb-weg.ruhe{background:transparent;border-color:var(--stahl);color:var(--leise)}
+@media print{ /* taste-skill-ignore: Druckfassung */ .film,.film-knopf{display:none!important}}

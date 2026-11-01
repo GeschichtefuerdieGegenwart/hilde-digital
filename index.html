@@ -24,11 +24,6 @@
       <p class="unterzeile">Kompass für KI und digitalen Unterricht</p>
       <p class="leit">Hier probierst du KI für deine Arbeit aus, prüfst digitale Unterrichtsideen und siehst, was Kolleg*innen schon gebaut haben.</p>
     </div>
-    <a class="collage" href="galerie.html" aria-label="Drei Ansichten aus der Galerie – zur Galerie">
-      <span class="collage-karte c1"><span class="auszug"><span class="platte p-ki" aria-hidden="true"><img src="assets/galerie/gene-1.webp" alt="" width="1040" height="650"></span><span class="platte p-le" aria-hidden="true"><img src="assets/galerie/gene-1.webp" alt="" width="1040" height="650"></span><img class="auszug-original" src="assets/galerie/gene-1.webp" alt="" width="1040" height="650"></span></span>
-      <span class="collage-karte c2"><span class="auszug"><span class="platte p-ki" aria-hidden="true"><img src="assets/galerie/milieus-1919-1.webp" alt="" width="1040" height="650"></span><span class="platte p-le" aria-hidden="true"><img src="assets/galerie/milieus-1919-1.webp" alt="" width="1040" height="650"></span><img class="auszug-original" src="assets/galerie/milieus-1919-1.webp" alt="" width="1040" height="650"></span></span>
-      <span class="collage-karte c3"><img src="assets/galerie/psycho-ds2-1.webp" alt="" width="1040" height="650"></span>
-    </a>
   </div>
 
   <div class="platten" id="platten">
@@ -44,8 +39,14 @@
       <span class="weiter">Digitalen Unterricht öffnen <span aria-hidden="true">→</span></span>
     </a>
   </div>
-  <p class="start-galerie"><a class="galerie-zugang" href="galerie.html"><span class="galerie-zugang-titel">Galerie</span><span>Echte Lernanwendungen aus dem Kollegium ansehen</span><span aria-hidden="true">→</span></a></p>
-  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung.</p>
+  <div class="start-galerie"><a class="galerie-zugang" href="galerie.html"><span class="galerie-zugang-titel">Galerie</span><span>Echte Lernanwendungen aus dem Kollegium ansehen</span><span aria-hidden="true">→</span></a>
+    <a class="collage" href="galerie.html" aria-label="Drei Ansichten aus der Galerie – zur Galerie">
+    <span class="collage-karte c1"><span class="auszug"><span class="platte p-ki" aria-hidden="true"><img src="assets/galerie/gene-1.webp" alt="" width="1040" height="650"></span><span class="platte p-le" aria-hidden="true"><img src="assets/galerie/gene-1.webp" alt="" width="1040" height="650"></span><img class="auszug-original" src="assets/galerie/gene-1.webp" alt="" width="1040" height="650"></span></span>
+    <span class="collage-karte c2"><span class="auszug"><span class="platte p-ki" aria-hidden="true"><img src="assets/galerie/milieus-1919-1.webp" alt="" width="1040" height="650"></span><span class="platte p-le" aria-hidden="true"><img src="assets/galerie/milieus-1919-1.webp" alt="" width="1040" height="650"></span><img class="auszug-original" src="assets/galerie/milieus-1919-1.webp" alt="" width="1040" height="650"></span></span>
+    <span class="collage-karte c3"><img src="assets/galerie/psycho-ds2-1.webp" alt="" width="1040" height="650"></span>
+  </a>
+  </div>
+  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung. <button type="button" class="knopf still film-knopf" data-film-start>Film ansehen · 44 Sekunden</button></p>
 </div></section>
 
 <section class="band band-dunkel" aria-labelledby="t-galerie"><div class="huelle galerie-teaser">
@@ -76,12 +77,36 @@
     <li>Beides kann zusammenkommen – muss es aber nicht. Ein Lernangebot, das du mit KI gebaut hast, gehört zum Digitalen Unterricht, sobald die Lernenden damit arbeiten.</li>
   </ul>
 </div></section>
+
+<div class="film" id="film" hidden role="region" aria-label="Film: Papierprobe in 44 Sekunden">
+  <div class="film-buehne"></div>
+  <div class="film-steuerung">
+    <span class="film-fortschritt" aria-hidden="true"><i></i></span>
+    <button type="button" class="knopf still" data-film-halt aria-pressed="false">Anhalten</button>
+    <button type="button" class="knopf" data-film-weg>Überspringen <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="sr-only">
+    <p>Der Film zeigt in neun Szenen, was du in Papierprobe findest.</p>
+    <ol>
+      <li>Drei Wege zu deinem digitalen Unterricht: Galerie, KI-Training, Digitaler Unterricht.</li>
+      <li>Galerie: Im Psycho-Labor entdeckst du eine Änderung und tippst auf »Gefunden!«.</li>
+      <li>Politik-Werkstatt: Du schaltest die 5-%-Hürde ab, die Sitze im Bundestag verteilen sich neu.</li>
+      <li>Wie war das möglich: Auf dem Marktplatz prüfst du Streitpaare und bekommst Rückmeldung.</li>
+      <li>Nationalismus und Demokratie: Mit fünf Reglern stellst du Kipp-Punkte ein.</li>
+      <li>Und viele mehr: weitere Lernanwendungen aus dem Kollegium.</li>
+      <li>KI-Training: Aus einem schwachen Prompt wird ein Prompt in fünf Teilen. Die Prüfung bleibt bei dir.</li>
+      <li>Digitaler Unterricht: die Papierfrage »Geht es auf Papier genauso gut?« und drei Werkzeuge.</li>
+      <li>Sieh hin. Probier aus. Bau selbst.</li>
+    </ol>
+  </div>
+</div>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/daten/beispiele.js"></script>
 <script src="assets/daten/galerie.js"></script>
 <script src="assets/hilde.js"></script>
 <script src="assets/faecher.js"></script>
 <script src="assets/start.js"></script>
+<script src="assets/film.js"></script>
 
 </main>
 <footer class="fuss"><div class="huelle">
