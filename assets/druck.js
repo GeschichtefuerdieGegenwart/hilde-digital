@@ -1,4 +1,4 @@
-/* Hilde Digital – Drucken-Knöpfe (ab Version 4.5).
+/* Papierprobe – Drucken-Knöpfe (ab Version 4.5).
    <button data-drucken>            druckt die ganze Seite
    <button data-drucken="nur-karte"> setzt vorher eine Klasse an <html>, damit die Druckfassung nur einen Teil zeigt.
    Nach dem Drucken wird die Klasse wieder entfernt. Es wird nichts gespeichert. */

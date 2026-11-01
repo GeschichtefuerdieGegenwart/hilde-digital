@@ -18,11 +18,11 @@ Ihre Aufgabe: mit wenig Aufwand zu einer didaktisch begründeten, umsetzbaren En
 
 ## Product Purpose
 
-Hilde Digital ist ein Orientierungs- und Werkzeugmodul zum Projekt »Vom digitalen Schnellhefter zum lernwirksamen Tablet-Unterricht«.
+Papierprobe ist ein Orientierungs- und Werkzeugmodul zum Projekt »Vom digitalen Schnellhefter zum lernwirksamen Tablet-Unterricht«.
 
 ### Zwei Grobziele (Entscheidung vom 26.10.2026)
 
-Hilde Digital verfolgt zwei gleichwertige Grobziele. Beide gehören zum Kern; keines ist dem anderen vorgeordnet.
+Papierprobe verfolgt zwei gleichwertige Grobziele. Beide gehören zum Kern; keines ist dem anderen vorgeordnet.
 
 - **Grobziel A – KI-Kompetenz im Kollegium.** Lehrkräfte bauen KI-Kompetenzen auf, die im Schulalltag wirklich nützen – ausdrücklich auch für analog unterrichtete Klassen: Aufgaben für unterschiedliche Lernstände anpassen, Präsentationen umgestalten, neue Aufgabenformate entwickeln, Elternbriefe und Sitzungen vorbereiten. Das Prinzip ist Hilfe zur Selbsthilfe: niederschwellig, für Einsteiger*innen mit Scheu ebenso wie für Fortgeschrittene.
 - **Grobziel B – Kompetenz, digitalen Unterricht zu gestalten.** Lehrkräfte entwickeln vorhandenen analogen Unterricht begründet digital weiter – punktuell, phasenweise oder durchgängig, ohne Rangfolge. Dazu gehört, Material zu prüfen, Tablet-Phasen zu führen und nach der Stunde hinzuschauen, wie es lief.
@@ -42,7 +42,7 @@ Erfolg heißt: Eine Lehrkraft findet nach kurzer Einführung sofort den passende
 
 ## Positioning
 
-Erst das Anliegen, dann das Werkzeug. Hilde Digital empfiehlt digitalen Einsatz nie um seiner selbst willen: Zulässige Ergebnisse sind ausdrücklich auch »analog wahrscheinlich sinnvoller«, »punktueller Einsatz reicht« oder »vor allem organisatorischer Nutzen«. Der Prüfstein lautet: »Geht es auf Papier genauso gut? Dann bleib beim Papier.« Alle Beispiele stammen aus dem eigenen Kollegium; nichts ist erfunden.
+Erst das Anliegen, dann das Werkzeug. Papierprobe empfiehlt digitalen Einsatz nie um seiner selbst willen: Zulässige Ergebnisse sind ausdrücklich auch »analog wahrscheinlich sinnvoller«, »punktueller Einsatz reicht« oder »vor allem organisatorischer Nutzen«. Der Prüfstein lautet: »Geht es auf Papier genauso gut? Dann bleib beim Papier.« Alle Beispiele stammen aus dem eigenen Kollegium; nichts ist erfunden.
 
 ## Operating Context
 
@@ -50,13 +50,13 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 
 ## Capabilities and Constraints
 
-- Hauptnavigation mit drei Punkten: KI-Training · Digitaler Unterricht · Galerie. Die Wortmarke führt zum Start. »Über Hilde Digital«, »Inhalte und Funktionen« und »Hinweise« stehen im Fuß.
+- Hauptnavigation mit drei Punkten: KI-Training · Digitaler Unterricht · Galerie. Die Wortmarke führt zum Start. »Über Papierprobe«, »Inhalte und Funktionen« und »Hinweise« stehen im Fuß.
 - Digital-Check mit zwei Wegen: »Selbst prüfen« und »Mit KI prüfen« (ein Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren; die Lehrkraft gibt ihn mit ihrem Material in ein an der Schule freigegebenes KI-System ein; keine Anbindung, kein Upload auf dieser Seite).
 - Galerie mit echten Ansichten aus den Anwendungen (1–4 je Projekt) und einer Bildansicht für Maus, Tastatur und Finger.
 - Geführte Wege mit einer Entscheidung pro Schritt, Zurück, »Noch nicht sicher«, Ergebnis ohne Sackgasse, »Neu starten« und »Eingaben löschen«.
 - Galerie mit Freitextsuche und Filtern (Bereich, Phase, Anliegen, Umfang, Rolle, Fach), entfernbaren Chips, Ergebniszeile und kontrollierter Lockerung bei zu wenigen Treffern.
 - Umfang der Digitalität ohne Rangfolge: punktuell, phasenweise, durchgängig. Rollen der Lehrkraft ohne Wertung: Anleiten, Erklären, Moderieren, Begleiten, Rückmelden.
-- Digital-Check (Entscheidungskarte), Papierprobe auf der Startseite und Digital-Check, Weg A »Selbst prüfen«: regelbasiert und transparent (`assets/regeln.js`, `assets/check-regeln.js`, jeweils mit Tests), vier qualitative Einstufungen, keine Prozentwerte oder Noten.
+- Digital-Check (Entscheidungskarte), Papierfrage (früher Papierprobe) und Digital-Check, Weg A »Selbst prüfen«: regelbasiert und transparent (`assets/regeln.js`, `assets/check-regeln.js`, jeweils mit Tests), vier qualitative Einstufungen, keine Prozentwerte oder Noten.
 - Keine echte KI-Anbindung, keine simulierten KI-Antworten, keine Nennung konkreter KI-Anbieter (»ein an deiner Schule freigegebenes KI-System«).
 - Keine Anmeldung, kein Server, keine Tracker; Eingaben nur lokal (localStorage in try/catch), Freitexte werden nicht gespeichert.
 - Externe Anwendungen werden verlinkt, nicht eingebettet; das Bildschirmfoto dient als Vorschau und als Ersatz ohne Netz.
@@ -67,8 +67,8 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 
 ## Brand Commitments
 
-- Name in der Oberfläche: **Hilde Digital** (ohne Bindestrich, seit Version 4 vom 18.10.2026; die Schreibweise »Hilde-Digital« aus Version 3 gilt nicht mehr).
-- Jede Seite trägt in der Fußzeile: »Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.« Die Startseite zeigt zusätzlich zurückhaltend: »Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung«.
+- Name in der Oberfläche: **Papierprobe · Kompass für KI und digitalen Unterricht** (seit 1. November 2026; vorher »Hilde Digital«). Das Werkzeug »Geht es auf Papier genauso gut?« heißt seitdem »Papierfrage«.
+- Jede Seite trägt in der Fußzeile: »Papierprobe · Kompass für KI und digitalen Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.« Die Startseite zeigt zusätzlich zurückhaltend: »Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung«.
 - Kein Schullogo, keine Nachahmung des schulischen Erscheinungsbilds, keine Formulierung wie »offizielles Digitalkonzept«, keine Kontaktadresse, kein Kontaktformular.
 - Sprache: »du«, kurze Sätze, eine Aussage pro Satz, Verben statt Substantive; keine Defizitsprache, keine Technikbegeisterung als Selbstzweck, keine Gleichsetzung von Digitalisierung mit Innovation.
 - Leitsätze: »Erst das Anliegen, dann das Werkzeug.« · »KI kann Unterricht vorbereiten. Digitalität kann Lernen gestalten. Beides kann zusammenkommen – muss es aber nicht.« · »Mehr Digitalität bedeutet nicht automatisch besseren Unterricht.«

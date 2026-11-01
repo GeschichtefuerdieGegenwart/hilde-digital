@@ -1,4 +1,4 @@
-/* Hilde Digital – Beobachtungsbogen nach der Stunde (beobachtung.html).
+/* Papierprobe – Beobachtungsbogen nach der Stunde (beobachtung.html).
    Gespeichert werden nur die Auswahlwerte (hilde.beobachtung), nie Freitexte.
    Die Auswertung kommt aus REGELN.beobachtung (assets/regeln.js, mit Tests).
    Braucht: REGELN, HILDE. */

@@ -1,4 +1,4 @@
-/* Hilde Digital – Galerie: redaktionelle Einblicke aus den echten Anwendungen.
+/* Papierprobe – Galerie: redaktionelle Einblicke aus den echten Anwendungen.
    Große Einblicke: Projekte mit drei oder mehr Ansichten. Kleine Einblicke: Projekte mit zwei Ansichten.
    Alle übrigen Beispiele stehen unten in der durchsuchbaren Liste (assets/showroom.js).
    Jedes Bild öffnet die Bildansicht (HILDE.lichtbild) – mit Maus, Finger oder Tastatur.

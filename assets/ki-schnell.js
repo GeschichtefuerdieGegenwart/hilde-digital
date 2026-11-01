@@ -1,4 +1,4 @@
-/* Hilde Digital – KI-Training, Eingang »Schnell-Anfrage«.
+/* Papierprobe – KI-Training, Eingang »Schnell-Anfrage«.
    Anlass wählen, Fach, Thema und Lerngruppe angeben: Der Prompt entsteht sofort und lässt sich kopieren.
    Gespeichert wird nur der gewählte Anlass, nie ein Freitext. Braucht: SCHNELL, SCHNELL_ANFRAGE, HILDE. */
 (function () {

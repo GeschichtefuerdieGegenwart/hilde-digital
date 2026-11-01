@@ -1,6 +1,6 @@
-/* Hilde Digital – Digital-Check, Weg B »Mit KI prüfen«: der Prüf-Prompt zum Kopieren.
+/* Papierprobe – Digital-Check, Weg B »Mit KI prüfen«: der Prüf-Prompt zum Kopieren.
 
-   Hilde Digital ist mit keiner KI verbunden. Diese Datei baut nur einen Text.
+   Papierprobe ist mit keiner KI verbunden. Diese Datei baut nur einen Text.
    Lehrkräfte kopieren ihn und geben ihn zusammen mit ihrem Material
    in ein an ihrer Schule freigegebenes KI-System ein.
 

@@ -1,4 +1,6 @@
-# Hilde Digital (Arbeitstitel)
+# Papierprobe · Kompass für KI und digitalen Unterricht
+
+Bis 1. November 2026 hieß das Modul »Hilde Digital«. Repository und Adresse heißen weiter `hilde-digital`.
 
 Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.
 

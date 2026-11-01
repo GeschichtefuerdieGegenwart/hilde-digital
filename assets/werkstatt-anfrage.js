@@ -1,4 +1,4 @@
-/* Hilde Digital – baut die Texte der Werkstatt-Seiten (ab Version 4.9).
+/* Papierprobe – baut die Texte der Werkstatt-Seiten (ab Version 4.9).
    auftrag(def, eingabe, S):  ein kopierbarer Auftrag aus einem Muster oder einem Werkstatt-Auftrag.
                               Gleiche fünf Teile wie die Schnell-Anfrage; gebaut mit SCHNELL_ANFRAGE.baue.
                               Fehlt Fach, Thema oder Lerngruppe, fragt die KI zuerst danach.

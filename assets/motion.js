@@ -1,4 +1,4 @@
-/* Hilde Digital – Bewegungsmuster aus dem Motion-Musterbuch 2 (ab Version 4.4).
+/* Papierprobe – Bewegungsmuster aus dem Motion-Musterbuch 2 (ab Version 4.4).
    F Passer · G Farbauszug (CSS, hier nur nichts zu tun) · J Stanzloch (CSS) · I Stundenlinie (in tablets-weg.js)
    K Schnellhefter · L Durchschlag · M Zählwerk · N Leporello · O Plattenwechsel · Schalter »Weniger Bewegung« (ab 4.8)
    und »Beamer-Ansicht« (ab 4.8 Teil 2). Alle Dauern kommen aus den Tokens in hilde.css (dauer(), wie HILDE.dauer).

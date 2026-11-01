@@ -1,4 +1,4 @@
-/* Hilde Digital – Fächer: echte Ansichten als Kartenfächer mit Tiefe (ab Version 4.3).
+/* Papierprobe – Fächer: echte Ansichten als Kartenfächer mit Tiefe (ab Version 4.3).
    Die Karte in der Mitte steht gerade, nah und in echten Farben. Nach außen drehen sich die Karten weg,
    werden kleiner und verblassen in die Duplex-Vorschau (Druckfarben des Bereichs).
    Bewegung nur über transform und opacity, berechnet aus der Scrollposition (natives Scrollen und Einrasten).

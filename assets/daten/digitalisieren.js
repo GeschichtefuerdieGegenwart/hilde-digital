@@ -1,4 +1,4 @@
-/* Hilde Digital – Werkzeug »Unterricht digitalisieren«: Auswahl für den Prompt-Baukasten.
+/* Papierprobe – Werkzeug »Unterricht digitalisieren«: Auswahl für den Prompt-Baukasten.
    Wer bestehenden Unterricht hat, wählt Material und Vorhaben. Der Prompt (assets/digitalisieren-prompt.js)
    verbindet das mit dem Qualitätsmodell (assets/daten/qualitaet.js) und der Frage »Was kann das Tablet besser als Papier?«.
    bereiche: Ids aus QUALITAET.bereiche, die für dieses Vorhaben zählen. Keine Namen von KI-Anbietern. */

@@ -1,4 +1,4 @@
-/* Hilde Digital – Galerie: Freitextsuche, kombinierbare Filter, entfernbare Chips, kontrollierte Lockerung.
+/* Papierprobe – Galerie: Freitextsuche, kombinierbare Filter, entfernbare Chips, kontrollierte Lockerung.
    Zwei Zustände: »Stöbern« (Laufband und Einblicke) und »Treffer« (Karten direkt unter der Suche).
    Sobald gesucht oder gefiltert wird – oder »Alle Beispiele zeigen« gewählt ist –, erscheinen die Treffer
    direkt unter dem Suchfeld, und das Stöbern tritt zurück. Leeres Feld und keine Filter: zurück zum Stöbern.

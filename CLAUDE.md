@@ -1,4 +1,6 @@
-# Hilde Digital – Regeln für die Arbeit an diesem Projekt
+# Papierprobe – Regeln für die Arbeit an diesem Projekt
+
+Name seit 01.11.2026 (Entscheidung Mario): »Papierprobe · Kompass für KI und digitalen Unterricht«, vorher »Hilde Digital«. Das Werkzeug »Geht es auf Papier genauso gut?« heißt »Papierfrage«. Repository und GitHub-Pages-Adresse bleiben `hilde-digital`.
 
 Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede andere Bearbeitung.
 
@@ -13,9 +15,9 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede a
   Ausnahme (Entscheidung Mario, 31.10.2026): Die landeseigenen Angebote in Baden-Württemberg, **F13** und **AIS.chat**, dürfen auf Erklärseiten ausdrücklich genannt werden – immer mit Stand und dem Hinweis, dass die Schulleitung freischaltet. Prompts und kopierbare Aufträge bleiben anbieterneutral.
 - Verlinkte Lernanwendungen liegen in anderen Repositories. Nur verlinken, nie ändern.
 - Keine Namen von Kolleg*innen, keine Schülerdaten, keine persönlichen Daten.
-  Ausnahme (Entscheidung Mario, 01.11.2026): Der Name des Urhebers, Mario Walter, steht im Abschnitt »Wie Hilde Digital entstanden ist« auf ueber.html, in der Urheberzeile der Fußzeile, in README.md, ENTSTEHUNG.md, LICENSE und LICENSE-TEXTE.md. Keine Kontaktadresse, keine E-Mail.
+  Ausnahme (Entscheidung Mario, 01.11.2026): Der Name des Urhebers, Mario Walter, steht im Abschnitt »Wie Papierprobe entstanden ist« auf ueber.html, in der Urheberzeile der Fußzeile, in README.md, ENTSTEHUNG.md, LICENSE und LICENSE-TEXTE.md. Keine Kontaktadresse, keine E-Mail.
 - Lizenz: Texte und Daten CC BY-NC-SA 4.0 (LICENSE-TEXTE.md), Code MIT (LICENSE), Bilder alle Rechte vorbehalten. Lizenzen nur auf ausdrückliche Anweisung ändern.
-- Hilde Digital ist ohne Auftrag der Schule entstanden. Die Seiten stellen es nicht als Auftragsarbeit oder Schulkonzept dar.
+- Papierprobe ist ohne Auftrag der Schule entstanden. Die Seiten stellen sie nicht als Auftragsarbeit oder Schulkonzept dar.
 
 ## Inhalt
 - Einfache Sprache: kurze Sätze, eine Aussage pro Satz, Anrede »du«.
@@ -35,7 +37,7 @@ Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede a
 - »Karte zum Zweiten Weltkrieg« und »Politik-Check 1919« bleiben »In Überarbeitung«; der Politik-Check trägt »kein Angebot der bpb«.
 
 ## Kennzeichnung
-- Jede Seite trägt in der Fußzeile: »Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.«
+- Jede Seite trägt in der Fußzeile: »Papierprobe · Kompass für KI und digitalen Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.«
 - Kein Schullogo, keine Nachahmung des schulischen Erscheinungsbilds, keine Kontaktadresse, keine Platzhalter im Quelltext.
 - Interne Notizen gehören nicht in dieses Repository (es ist öffentlich).
 

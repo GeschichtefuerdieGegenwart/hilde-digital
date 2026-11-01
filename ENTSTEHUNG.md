@@ -1,8 +1,8 @@
-# Wie Hilde Digital entstanden ist
+# Wie Papierprobe entstanden ist
 
 Stand: 1. November 2026
 
-Hilde Digital ist ein persönliches Projekt von Mario Walter, Lehrer an einer beruflichen Schule.
+Papierprobe ist ein persönliches Projekt von Mario Walter, Lehrer an einer beruflichen Schule.
 Er hat es in eigener Initiative entwickelt, ohne Auftrag der Schule, und die Kosten selbst getragen.
 Umgesetzt wurde es mit Unterstützung eines KI-Systems.
 

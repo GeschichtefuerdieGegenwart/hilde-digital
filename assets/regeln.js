@@ -1,4 +1,4 @@
-/* Hilde Digital – Regeln der Entscheidungskarte (Unterricht planen), der Papierprobe und der Beispielsuche.
+/* Papierprobe – Regeln der Entscheidungskarte (Unterricht planen), der Papierfrage und der Beispielsuche.
 
    Grundsätze
    - Regelbasiert und deterministisch: gleiche Antworten ergeben immer dieselbe Karte.
@@ -337,7 +337,7 @@
     };
   }
 
-  /* 7. Papierprobe (Startseite) – die Kurzform des Prüfsteins »Geht es auf Papier genauso gut?«.
+  /* 7. Papierfrage (Startseite) – die Kurzform des Prüfsteins »Geht es auf Papier genauso gut?«.
         Drei Ja/Nein-Fragen, jeweils mit »noch nicht sicher«. Ergebnis ist eine der vier Einstufungen
         aus taxonomien.js – dieselben Namen wie auf der Entscheidungskarte. Der Planungsweg prüft genauer.
           neu:    Tun die Lernenden mit dem Tablet etwas, das auf Papier nicht oder nur mühsam ginge?
@@ -456,7 +456,7 @@
           - Nur Ablage (oder Ablage und »selten/weiß nicht« bei neu) → organisatorischer Nutzen,
             ausdrücklich als legitim benannt; das ist keine Vorstufe.
           - Höchstens drei nächste Schritte, in dieser Reihenfolge: gewählter nächster Schritt,
-            Ablenkung (manchmal/oft) oder Unsicherheit → »Tablet-Phasen gut führen«, Papierprobe.
+            Ablenkung (manchmal/oft) oder Unsicherheit → »Tablet-Phasen gut führen«, Papierfrage.
           - »Papier passt« wird bestärkt, nicht umgestimmt. */
   function istStand(a) {
     a = a || {};
@@ -475,13 +475,13 @@
       gemeinsam: { text: "Plane eine Phase, in der die Lernenden an einem gemeinsamen Ergebnis arbeiten.", link: "tablets.html", linktext: "Unterricht planen" },
       lernstand: { text: "Plane zwei bis drei kurze Stellen, an denen du siehst, wo die Klasse steht.", link: "tablets.html", linktext: "Unterricht planen" },
       ablenkung: { text: "Gib jeder Tablet-Phase Auftrag, Zeit und ein Ende im Plenum.", link: "tablet-phasen.html", linktext: "Tablet-Phasen gut führen" },
-      papier: { text: "Papier passt gerade gut zu deinem Unterricht. Das ist ein vollwertiges Ergebnis.", link: "unterricht.html#t-probe", linktext: "Papierprobe ansehen" }
+      papier: { text: "Papier passt gerade gut zu deinem Unterricht. Das ist ein vollwertiges Ergebnis.", link: "unterricht.html#t-probe", linktext: "Papierfrage ansehen" }
     };
     if (ZIEL[a.naechstes]) schritte.push(ZIEL[a.naechstes]);
     if ((a.ablenkung === "oft" || a.ablenkung === "manchmal" || a.sicherheit === "unsicher") && a.naechstes !== "ablenkung")
       schritte.push(ZIEL.ablenkung);
     if (a.naechstes !== "papier" && (nurAblage || a.neu === "weissnicht" || a.neu === "selten"))
-      schritte.push({ text: "Prüf eine geplante Aktivität mit drei Fragen: Geht es auf Papier genauso gut?", link: "unterricht.html#t-probe", linktext: "Zur Papierprobe" });
+      schritte.push({ text: "Prüf eine geplante Aktivität mit drei Fragen: Geht es auf Papier genauso gut?", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
     if (!schritte.length) schritte.push({ text: "Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" });
     return { spiegel: spiegel, schritte: schritte.slice(0, 3),
              satz: "Das ist keine Bewertung. Es ist ein Blick auf deinen Unterricht heute – nur für dich." };

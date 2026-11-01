@@ -1,4 +1,4 @@
-/* Hilde Digital – Digitaler Unterricht: Planungsweg »Unterricht planen«: vier kurze Fragen bis zur Entscheidungskarte.
+/* Papierprobe – Digitaler Unterricht: Planungsweg »Unterricht planen«: vier kurze Fragen bis zur Entscheidungskarte.
    Eine Entscheidung pro Schritt. Zuerst stehen nur die wichtigsten Antworten da, der Rest unter »Weitere anzeigen«.
    Die Angaben zur Klasse (Rahmen) sind freiwillig und stehen aufklappbar unter der Frage nach dem Umfang.
    »Noch nicht sicher« ist überall erlaubt, wo es fachlich sinnvoll ist.

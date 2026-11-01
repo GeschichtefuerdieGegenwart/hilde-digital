@@ -1,4 +1,4 @@
-/* Hilde Digital – KI-Training: Prompt-Generator: fünf Schritte bis zu einer guten Anfrage und ihrer Prüfung.
+/* Papierprobe – KI-Training: Prompt-Generator: fünf Schritte bis zu einer guten Anfrage und ihrer Prüfung.
    Keine KI-Anbindung, keine simulierte Antwort. Die Anfrage wird nur gebaut, angezeigt und kopiert.
    Gespeichert werden nur Auswahlwerte (Ziel, Ergebnisform, Niveau, Prüfliste), nie Freitexte.
    Braucht: KI_TEXTE, KI_ANFRAGE, BEISPIELE, HILDE. */

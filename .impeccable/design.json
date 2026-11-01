@@ -8,12 +8,12 @@
         "textMinSize": "24px",
         "tonalRamp": [
           "#F9F1E2",
-          "#F5E8CF",
-          "#F2B233",
+          "#F1E3C4",
+          "#D9A441",
           "#C88A2A",
-          "#A26A1C",
+          "#7D5A1C",
           "#8A5A17",
-          "#6F4710",
+          "#5C4212",
           "#4A2F0A"
         ]
       },
@@ -21,12 +21,12 @@
         "role": "Bereich Unterricht mit Tablets",
         "tonalRamp": [
           "#EEF5F3",
-          "#DBEAE6",
+          "#E1E8D9",
           "#5CC3C0",
           "#2E8A85",
-          "#1E6B67",
+          "#4A6645",
           "#185A57",
-          "#134A47",
+          "#33482F",
           "#0C302E"
         ]
       },
@@ -38,20 +38,20 @@
           "#5E9157",
           "#2F6B3A",
           "#24581F",
-          "#1C4B15",
+          "#434512",
           "#153A10",
           "#0D260A"
         ]
       },
       "neutral": {
         "tonalRamp": [
-          "#FFFFFD",
-          "#F0EEEB",
-          "#E8E5E0",
-          "#E4DCCF",
-          "#7D7364",
-          "#4F4842",
-          "#2A2622",
+          "#F8F5EE",
+          "#EFEADF",
+          "#E2DCCD",
+          "#DDD6C6",
+          "#6F6853",
+          "#524E3D",
+          "#2B2A24",
           "#17140F"
         ]
       }
@@ -73,10 +73,10 @@
       "platePress": "2px 2px 0 0"
     },
     "focus": {
-      "outer": "3px solid #2A2622",
-      "inner": "2px solid #FFFFFD",
+      "outer": "3px solid #2B2A24",
+      "inner": "2px solid #F8F5EE",
       "minContrast": 6.16,
-      "css": "outline:3px solid #2A2622;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFD"
+      "css": "outline:3px solid #2B2A24;outline-offset:2px;box-shadow:0 0 0 2px #F8F5EE"
     },
     "motion": {
       "durations": {
@@ -124,30 +124,30 @@
         "still-page",
         "no-footage"
       ],
-      "liveThing": "Papierprobe auf der Startseite",
+      "liveThing": "Papierfrage",
       "idea": "Die beiden Druckplatten des Arbeitsbogens – Honig für die eigene Vorbereitung, Petrol für das Lernen der Klasse – überdrucken sich nur dort, wo ein Lernangebot wirklich mit KI entstanden ist."
     }
   },
   "components": {
     "button-primary": {
       "html": "<button class=\"ds-btn ds-btn--primary\">Weg starten</button>",
-      "css": ".ds-btn{font:700 1.125rem/1.2 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:48px;padding:12px 20px;border-radius:4px;border:2px solid #2A2622;cursor:pointer;transition:transform 100ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn--primary{background:#2A2622;color:#FFFFFD}.ds-btn:active{transform:translate(2px,2px)}@media (hover:hover) and (pointer:fine){.ds-btn:hover{box-shadow:4px 4px 0 0 #E4DCCF}}.ds-btn:focus-visible{outline:3px solid #2A2622;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFD}"
+      "css": ".ds-btn{font:700 1.125rem/1.2 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:48px;padding:12px 20px;border-radius:4px;border:2px solid #2B2A24;cursor:pointer;transition:transform 100ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn--primary{background:#2B2A24;color:#F8F5EE}.ds-btn:active{transform:translate(2px,2px)}@media (hover:hover) and (pointer:fine){.ds-btn:hover{box-shadow:4px 4px 0 0 #DDD6C6}}.ds-btn:focus-visible{outline:3px solid #2B2A24;outline-offset:2px;box-shadow:0 0 0 2px #F8F5EE}"
     },
     "chip": {
       "html": "<button class=\"ds-chip\" aria-pressed=\"false\">Einstieg</button>",
-      "css": ".ds-chip{font:400 1rem/1.3 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:44px;padding:8px 14px;border-radius:999px;border:2px solid #7D7364;background:#FFFFFD;color:#2A2622;cursor:pointer}.ds-chip[aria-pressed=true]{background:#2A2622;color:#FFFFFD;border-color:#2A2622}.ds-chip[aria-pressed=true]::before{content:'✓ '}.ds-chip:focus-visible{outline:3px solid #2A2622;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFD}"
+      "css": ".ds-chip{font:400 1rem/1.3 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:44px;padding:8px 14px;border-radius:999px;border:2px solid #6F6853;background:#F8F5EE;color:#2B2A24;cursor:pointer}.ds-chip[aria-pressed=true]{background:#2B2A24;color:#F8F5EE;border-color:#2B2A24}.ds-chip[aria-pressed=true]::before{content:'✓ '}.ds-chip:focus-visible{outline:3px solid #2B2A24;outline-offset:2px;box-shadow:0 0 0 2px #F8F5EE}"
     },
     "card": {
       "html": "<article class=\"ds-card ds-card--lernen\"><p class=\"ds-card__meta\">Tablets · im Unterricht erprobt</p><h3 class=\"ds-card__title\"><a href=\"#\">Titel</a></h3><p>Kurzsatz.</p></article>",
-      "css": ".ds-card{position:relative;background:#FFFFFD;color:#2A2622;border-radius:4px;padding:24px;box-shadow:6px 6px 0 0 var(--plate,#E8E5E0);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1)}.ds-card--ki{--plate:#F2B233}.ds-card--lernen{--plate:#1E6B67}.ds-card--beide{--plate:#1C4B15}.ds-card__meta{font:400 1rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;color:#4F4842;margin:0 0 8px}.ds-card__title{font:650 1.375rem/1.2 'Bricolage Grotesque',system-ui,sans-serif;margin:0 0 8px}.ds-card__title a{color:inherit;text-decoration:none}.ds-card__title a::after{content:'';position:absolute;inset:0}@media (hover:hover) and (pointer:fine){.ds-card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 0 var(--plate,#E8E5E0)}}.ds-card:active{transform:translate(4px,4px);box-shadow:2px 2px 0 0 var(--plate,#E8E5E0)}.ds-card:focus-within{outline:3px solid #2A2622;outline-offset:2px}"
+      "css": ".ds-card{position:relative;background:#F8F5EE;color:#2B2A24;border-radius:4px;padding:24px;box-shadow:6px 6px 0 0 var(--plate,#E2DCCD);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1)}.ds-card--ki{--plate:#D9A441}.ds-card--lernen{--plate:#4A6645}.ds-card--beide{--plate:#434512}.ds-card__meta{font:400 1rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;color:#524E3D;margin:0 0 8px}.ds-card__title{font:650 1.375rem/1.2 'Bricolage Grotesque',system-ui,sans-serif;margin:0 0 8px}.ds-card__title a{color:inherit;text-decoration:none}.ds-card__title a::after{content:'';position:absolute;inset:0}@media (hover:hover) and (pointer:fine){.ds-card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 0 var(--plate,#E2DCCD)}}.ds-card:active{transform:translate(4px,4px);box-shadow:2px 2px 0 0 var(--plate,#E2DCCD)}.ds-card:focus-within{outline:3px solid #2B2A24;outline-offset:2px}"
     },
     "area-tag": {
       "html": "<span class=\"ds-tag ds-tag--beide\">mit KI entwickelt</span>",
-      "css": ".ds-tag{display:inline-block;font:400 1rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;padding:2px 8px;border-radius:4px}.ds-tag--ki{background:#F2B233;color:#2A2622;border:2px solid #A26A1C}.ds-tag--lernen{background:#1E6B67;color:#FFFFFD}.ds-tag--beide{background:#1C4B15;color:#FFFFFD}"
+      "css": ".ds-tag{display:inline-block;font:400 1rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;padding:2px 8px;border-radius:4px}.ds-tag--ki{background:#D9A441;color:#2B2A24;border:2px solid #7D5A1C}.ds-tag--lernen{background:#4A6645;color:#F8F5EE}.ds-tag--beide{background:#434512;color:#F8F5EE}"
     },
     "input": {
       "html": "<label class=\"ds-field\">Suche<input class=\"ds-input\" type=\"search\"></label>",
-      "css": ".ds-field{display:grid;gap:6px;font:700 1rem/1.3 'Atkinson Hyperlegible Next',system-ui,sans-serif;color:#2A2622}.ds-input{font:400 1.125rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:48px;padding:10px 14px;border:2px solid #7D7364;border-radius:4px;background:#FFFFFD;color:#2A2622}.ds-input:focus-visible{outline:3px solid #2A2622;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFD}"
+      "css": ".ds-field{display:grid;gap:6px;font:700 1rem/1.3 'Atkinson Hyperlegible Next',system-ui,sans-serif;color:#2B2A24}.ds-input{font:400 1.125rem/1.4 'Atkinson Hyperlegible Next',system-ui,sans-serif;min-height:48px;padding:10px 14px;border:2px solid #6F6853;border-radius:4px;background:#F8F5EE;color:#2B2A24}.ds-input:focus-visible{outline:3px solid #2B2A24;outline-offset:2px;box-shadow:0 0 0 2px #F8F5EE}"
     }
   },
   "narrative": {
