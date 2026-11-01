@@ -36,11 +36,13 @@ var TAXONOMIEN = {
     { id: "ablaeufe", name: "Konferenzen und Abläufe strukturieren", bereich: "ki" }
   ],
 
-  /* Umfang des Tablet-Einsatzes – ohne Rangfolge. Durchgängig ist keine höhere Stufe. */
+  /* Umfang des Tablet-Einsatzes – ohne Rangfolge. Durchgängig ist keine höhere Stufe.
+     Durchgängig heißt nicht »alles am Gerät« (Entscheidung 1.11.2026, »Labor oder Plenum?«): Das Gerät trägt die Stunde,
+     Deutung und Urteil entstehen im Plenum, lange Texte liegen auf Papier. */
   umfang: [
     { id: "punktuell", name: "Punktuell", hilfe: "eine einzelne Aktivität oder ein kurzer Impuls" },
     { id: "phasenweise", name: "Phasenweise", hilfe: "eine oder mehrere Unterrichtsphasen" },
-    { id: "durchgaengig", name: "Durchgängig", hilfe: "die ganze Stunde am Tablet, z. B. mit einer Lernanwendung im Browser" }
+    { id: "durchgaengig", name: "Durchgängig", hilfe: "das Tablet begleitet die ganze Stunde, z. B. mit einer Lernanwendung im Browser – mit festen Stellen im Plenum" }
   ],
 
   /* Rollen der Lehrkraft – Kombinationen möglich, keine Rolle ist höherwertig. */

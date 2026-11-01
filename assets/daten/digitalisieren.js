@@ -13,7 +13,7 @@ var DIGITALISIEREN = {
 
   vorhaben: [
     { id: "ideen", name: "Ideen in drei Varianten", kurz: "Wie könnte das Tablet hier helfen? Drei Wege zur Auswahl.",
-      auftrag: "Entwickle drei Varianten, wie das Tablet in diesem Unterricht helfen könnte: eine punktuelle (eine einzelne Aktivität), eine phasenweise (eine Unterrichtsphase) und eine durchgängige (die ganze Stunde). Prüfe bei jeder Variante ehrlich, ob Papier genauso gut wäre.",
+      auftrag: "Entwickle drei Varianten, wie das Tablet in diesem Unterricht helfen könnte: eine punktuelle (eine einzelne Aktivität), eine phasenweise (eine Unterrichtsphase) und eine durchgängige (das Tablet begleitet die ganze Stunde, mit festen Stellen im Plenum). Prüfe bei jeder Variante ehrlich, ob Papier genauso gut wäre.",
       bereiche: ["denken", "rueckmeldung", "zusammen", "darstellung", "lernstand"],
       antwort: ["Je Variante: Was tun die Lernenden? Was kann das Tablet hier besser als Papier? Was brauche ich (App, Vorbereitungszeit)? Was ist das Risiko?", "Danach deine Empfehlung mit Begründung – »bleib beim Papier« ist erlaubt."] },
     { id: "arbeitsblatt", name: "Arbeitsblatt digitalisieren", kurz: "Aus Lesen und Schreiben werden Aufgaben mit Rückmeldung.",
@@ -46,7 +46,7 @@ var DIGITALISIEREN = {
     { id: "", name: "Weiß ich noch nicht" },
     { id: "punktuell", name: "Punktuell", hilfe: "eine einzelne Aktivität" },
     { id: "phasenweise", name: "Phasenweise", hilfe: "eine Unterrichtsphase" },
-    { id: "durchgaengig", name: "Durchgängig", hilfe: "die ganze Stunde am Tablet" }
+    { id: "durchgaengig", name: "Durchgängig", hilfe: "das Tablet begleitet die ganze Stunde, mit Plenum" }
   ],
 
   ausgaben: [

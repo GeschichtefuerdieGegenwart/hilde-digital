@@ -397,3 +397,12 @@ test("Ist-Stand: keine Noten, Punkte oder Prozentwerte", () => {
   const e = R.istStand({ nutzung: ["ueben", "gemeinsam"], neu: "oft", ablenkung: "manchmal", sicherheit: "sicher", naechstes: "lernstand" });
   for (const t of [e.satz, ...e.spiegel, ...e.schritte.map((s) => s.text)]) assert.ok(!/\d+ ?(%|Punkte)|Note/.test(t), t);
 });
+
+test("Umfang durchgängig: gewählt bleibt gewählt, aber mit festen Stellen im Plenum und Papier für lange Texte", () => {
+  const k = karte({ anliegen: "ueben", mehrwert: "rueckmeldung", umfang: "durchgaengig" });
+  assert.equal(k.umfang, "durchgaengig");
+  const u = R.umfang({ anliegen: "ueben", mehrwert: "rueckmeldung", umfang: "durchgaengig" }, "klar");
+  assert.match(u.grund, /Plenum/);
+  assert.match(u.grund, /Papier/);
+  assert.match(R.umfang({ umfang: "phasenweise" }, "klar").grund, /Das hast du gewählt/);
+});
