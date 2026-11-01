@@ -21,8 +21,8 @@ from PIL import Image, ImageOps
 WURZEL = Path(__file__).resolve().parent.parent
 ZIEL = WURZEL / "assets" / "galerie" / "duplex"
 FARBEN = {
-    "lernen": ["#134a47", "#fffffd"],
-    "ki": ["#2a2622", "#f2b233", "#fffffd"],
+    "lernen": ["#33482f", "#f8f5ee"],
+    "ki": ["#2b2a24", "#d9a441", "#f8f5ee"],
 }
 
 

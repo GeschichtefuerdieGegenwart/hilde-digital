@@ -2,22 +2,22 @@
 name: Hilde Digital
 description: Orientierungsmodul für Lehrkräfte – zwei Druckfarben, Überdruck nur wo Platten sich überlagern, Werkstattbogen statt Hochglanz.
 colors:
-  grund: "#F0EEEB"
-  flaeche: "#FFFFFD"
-  karton: "#E8E5E0"
-  text: "#2A2622"
-  leise: "#4F4842"
-  linie: "#E4DCCF"
-  stahl: "#7D7364"
-  honig: "#A26A1C"
-  honigplatte: "#F2B233"
-  honig-zart: "#F5E8CF"
-  honig-tief: "#6F4710"
-  petrol: "#1E6B67"
-  petrol-zart: "#DBEAE6"
-  petrol-tief: "#134A47"
-  ueberdruck: "#1C4B15"
-  aktion: "#2A2622"
+  grund: "#EFEADF"
+  flaeche: "#F8F5EE"
+  karton: "#E2DCCD"
+  text: "#2B2A24"
+  leise: "#524E3D"
+  linie: "#DDD6C6"
+  stahl: "#6F6853"
+  honig: "#7D5A1C"
+  honigplatte: "#D9A441"
+  honig-zart: "#F1E3C4"
+  honig-tief: "#5C4212"
+  petrol: "#4A6645"
+  petrol-zart: "#E1E8D9"
+  petrol-tief: "#33482F"
+  ueberdruck: "#434512"
+  aktion: "#2B2A24"
   erfolg: "#2E6B34"
   erfolg-zart: "#E3EEE2"
   warnung: "#8A5300"
@@ -158,6 +158,8 @@ components:
     typography: "{typography.label}"
     height: "64px"
 ---
+> **Farbwelt »Büttenpapier« (ab Version 4.13, Entscheidung Mario 1.11.2026).** Die Werte oben gelten. Die Rollen bleiben gleich, nur ihre Farben ändern sich: Honig heißt jetzt **Ocker** (#D9A441, Kante #7D5A1C), Petrol heißt **Moos** (#4A6645), das Überdruck-Grün heißt **Oliv** (#434512), der Leitakzent ist **Terrakotta** (#9E432A, nur auf der Seite Leitsätze). Grund ist ungebleichtes Papier (#EFEADF) mit dezenter Körnung, aus in Beamer-Ansicht, bei »Weniger Bewegung« und im Druck. Keine Fraunces, keine weichen Schatten, Two-Inks Rule unverändert. Wo unten noch Honig oder Petrol steht, ist die jeweilige Rolle gemeint. Kontrastwerte: siehe Kommentare in `assets/hilde.css`.
+
 
 # Design System: Hilde Digital
 
@@ -165,7 +167,7 @@ components:
 
 **Creative North Star: »Der Werkstattbogen im Überdruck«**
 
-Hilde Digital sieht aus wie ein sauber gedruckter Arbeitsbogen aus einer guten Druckwerkstatt: warmes Naturpapier, zwei Druckfarben, präzise Passermarken. Honig steht für »KI-Training«, Petrol für »Digitaler Unterricht«. Wo beide Platten übereinanderliegen, entsteht von selbst ein dunkles Grün – der Überdruck. Er markiert ausschließlich die Schnittmenge »mit KI entwickelt«. Es gibt keine dritte Farbe, die man sich ausgedacht hat; die Schnittmenge ist physikalisch ableitbar (Multiplikation #F2B233 × #1E6B67 = #1C4B15).
+Hilde Digital sieht aus wie ein sauber gedruckter Arbeitsbogen aus einer guten Druckwerkstatt: warmes Naturpapier, zwei Druckfarben, präzise Passermarken. Honig steht für »KI-Training«, Petrol für »Digitaler Unterricht«. Wo beide Platten übereinanderliegen, entsteht von selbst ein dunkles Grün – der Überdruck. Er markiert ausschließlich die Schnittmenge »mit KI entwickelt«. Es gibt keine dritte Farbe, die man sich ausgedacht hat; die Schnittmenge ist physikalisch ableitbar (Multiplikation #D9A441 × #4A6645 = #434512).
 
 Die Oberfläche ist ruhig, flach und handwerklich. Tiefe entsteht nicht aus weichen Schatten, sondern aus einer versetzten Farbplatte hinter der Karte, wie ein leicht verrutschter Druckgang. Signaturelemente sind die überlappenden Platten selbst, Stanzloch-Fortschrittspunkte, die Stundenlinie für den Umfang und Rasterpunkte als ehrlicher Platzhalter. Werkzeug-Ornamente wie Schnittmarken, Passerkreuze oder Haarlinien werden nicht als Dekoration verwendet (Abgleich mit Taste Skill, 18.10.2026). Bewegung ist knapp und funktional; das einzige größere Motiv ist das »Registrieren« der beiden Platten beim ersten Aufruf; die Galerie darf mit der Bildansicht etwas inszenierter sein.
 
@@ -184,32 +186,32 @@ Das System lehnt ab: Hochglanz-EdTech mit Verläufen und Glas, verspielte Illust
 Zwei Druckfarben auf warmem Papier. Alles andere ist neutral.
 
 ### Primary
-- **Honigplatte** (#F2B233): Fläche des Bereichs »KI-Training«. Text darauf immer #2A2622 (8,00:1). Gegen den Grund nur 1,6:1 – Platten erhalten deshalb eine 2-px-Kante in Honig oder Text.
-- **Honig** (#A26A1C): Kanten, Symbole, Stundenlinie im KI-Bereich. Als Text nur ab 24 px (3,9:1).
-- **Honig zart / tief** (#F5E8CF / #6F4710): Hintergrund von Hinweisen bzw. Text darauf (6,70:1).
+- **Honigplatte** (#D9A441): Fläche des Bereichs »KI-Training«. Text darauf immer #2B2A24 (8,00:1). Gegen den Grund nur 1,6:1 – Platten erhalten deshalb eine 2-px-Kante in Honig oder Text.
+- **Honig** (#7D5A1C): Kanten, Symbole, Stundenlinie im KI-Bereich. Als Text nur ab 24 px (3,9:1).
+- **Honig zart / tief** (#F1E3C4 / #5C4212): Hintergrund von Hinweisen bzw. Text darauf (6,70:1).
 
 ### Secondary
-- **Petrol** (#1E6B67): Bereich »Digitaler Unterricht«. Heller Text darauf 6,2:1, als Text auf Grund 5,4:1.
-- **Petrol zart / tief** (#DBEAE6 / #134A47): Hinweisflächen und Text darauf (8,07:1).
+- **Petrol** (#4A6645): Bereich »Digitaler Unterricht«. Heller Text darauf 6,2:1, als Text auf Grund 5,4:1.
+- **Petrol zart / tief** (#E1E8D9 / #33482F): Hinweisflächen und Text darauf (8,07:1).
 
 ### Tertiary
-- **Überdruck** (#1C4B15): entsteht nur, wo Honig- und Petrolplatte sich überlagern (Wortmarke, Platten der Startseite, Plattenwechsel, Farbauszug). Keine Kategorie, kein Etikett. Heller Text darauf 10,00:1.
+- **Überdruck** (#434512): entsteht nur, wo Honig- und Petrolplatte sich überlagern (Wortmarke, Platten der Startseite, Plattenwechsel, Farbauszug). Keine Kategorie, kein Etikett. Heller Text darauf 10,00:1.
 
 ### Neutral
-- **Grund** (#F0EEEB): Seitenhintergrund, Knochenweiß (HSL-Sättigung < 16 %). Text 12,9:1.
-- **Fläche** (#FFFFFD): Bänder, Karten, Eingabefelder. Text 15,0:1.
-- **Karton** (#E8E5E0): zurückgesetzte Bänder, Passepartout. Text 11,9:1.
-- **Text** (#2A2622): Druckschwarz, auch Hauptaktion.
-- **Leise** (#4F4842): nur Sekundärnotizen, nie Fließtext (7,8:1 auf Grund).
-- **Linie** (#E4DCCF): nur Dekoration und Trennlinien, nie Bedienelementgrenze.
-- **Stahl** (#7D7364): Grenzen von Bedienelementen (4,0:1 auf Grund, erfüllt 3:1 für Nicht-Text).
+- **Grund** (#EFEADF): Seitenhintergrund, Knochenweiß (HSL-Sättigung < 16 %). Text 12,9:1.
+- **Fläche** (#F8F5EE): Bänder, Karten, Eingabefelder. Text 15,0:1.
+- **Karton** (#E2DCCD): zurückgesetzte Bänder, Passepartout. Text 11,9:1.
+- **Text** (#2B2A24): Druckschwarz, auch Hauptaktion.
+- **Leise** (#524E3D): nur Sekundärnotizen, nie Fließtext (7,8:1 auf Grund).
+- **Linie** (#DDD6C6): nur Dekoration und Trennlinien, nie Bedienelementgrenze.
+- **Stahl** (#6F6853): Grenzen von Bedienelementen (4,0:1 auf Grund, erfüllt 3:1 für Nicht-Text).
 
 ### Status
 Erfolg #2E6B34, Warnung #8A5300, Fehler #B0281C, »In Überarbeitung« #7A3324 auf #F3E3DF. Status steht immer als Wort im Etikett.
 Ab Version 4.8 als Variablen in `hilde.css` (`--erfolg`, `--warnung`, `--fehler`) mit je einer zarten Fläche: Erfolg zart #E3EEE2 (Text Erfolg darauf 5,4:1), Warnung zart #F5E6C6 (5,1:1; bewusst etwas kühler als Honig zart, damit Hinweis und Warnung nicht gleich aussehen), Fehler zart #F8E9E2 (Fehler 5,6:1, Fehler tief #5E2410 für den Hinweistext der geführten Wege 10,2:1). Alle erfüllen AA für Fließtext; Druckschwarz auf jeder zarten Fläche über 12:1.
 
 ### Dunkelmodus
-Nacht #17140F, Text #F3EADB, Honig #F2B233 wird Textfarbe, Petrol hell #5CC3C0, Überdruck dunkel #2F6B3A.
+Nacht #17140F, Text #F3EADB, Honig #D9A441 wird Textfarbe, Petrol hell #5CC3C0, Überdruck dunkel #2F6B3A.
 
 ### Beamer-Ansicht (ab Version 4.8, Teil 2)
 Ein zweites Farbset für den Beamer im Klassenzimmer, wo Licht und Wand den Kontrast fressen: reines Weiß, tiefes Schwarz, tiefere Perspektivfarben. Es gilt unter `html[data-theme="beamer"]` und ändert nur Variablen in `hilde.css`; Honigplatte, zarte Flächen, Bilder und Duplex-Vorschauen bleiben, `color-scheme` bleibt `light`. Der Schalter **»Beamer-Ansicht«** steht im Fuß jeder Seite neben »Weniger Bewegung« (Knopf mit `aria-pressed`, Wahl nur im Browser unter `hilde.theme`, Kopfskript setzt das Attribut vor dem ersten Zeichnen; »Eingaben löschen« setzt es mit zurück).
@@ -223,7 +225,7 @@ Ein zweites Farbset für den Beamer im Klassenzimmer, wo Licht und Wand den Kont
 | Honig-Kante | #7A4F12 | 7,1:1 | 6,4:1 | 5,8:1 |
 | Überdruck | #13380E | 13,1:1 | 11,9:1 | 10,7:1 |
 
-Weitere Paare: Text auf Honigplatte #F2B233 11,2:1 · Honig-Kante auf Honigplatte 3,8:1 (Nicht-Text, Plate Edge Rule) · Weiß auf Petrol 9,4:1 und Fläche auf Petrol 8,5:1 (»auf Petrol«) · Weiß auf Überdruck 13,1:1 · Weiß auf Aktion 21,0:1 · Erfolg #1F4F24 auf Erfolg zart 8,0:1 · Warnung #6B4000 auf Warnung zart 7,2:1 · Fehler #8A1E14 auf Fehler zart 7,8:1. Alle Textpaare erfüllen mindestens 4,5:1, Fließtext auf Grund und Fläche mindestens 7:1 (AAA). Die Fläche liegt bewusst eine Tonstufe unter dem Grund (#F6F3EE statt Weiß): Karten haben keine Haarlinie und wären auf Weiß sonst unsichtbar. Linie #C9C1B4 bleibt Dekoration.
+Weitere Paare: Text auf Honigplatte #D9A441 11,2:1 · Honig-Kante auf Honigplatte 3,8:1 (Nicht-Text, Plate Edge Rule) · Weiß auf Petrol 9,4:1 und Fläche auf Petrol 8,5:1 (»auf Petrol«) · Weiß auf Überdruck 13,1:1 · Weiß auf Aktion 21,0:1 · Erfolg #1F4F24 auf Erfolg zart 8,0:1 · Warnung #6B4000 auf Warnung zart 7,2:1 · Fehler #8A1E14 auf Fehler zart 7,8:1. Alle Textpaare erfüllen mindestens 4,5:1, Fließtext auf Grund und Fläche mindestens 7:1 (AAA). Die Fläche liegt bewusst eine Tonstufe unter dem Grund (#F6F3EE statt Weiß): Karten haben keine Haarlinie und wären auf Weiß sonst unsichtbar. Linie #C9C1B4 bleibt Dekoration.
 
 ### Named Rules
 **The Overprint Rule.** Überdruck-Grün erscheint nur, wo sich zwei Platten physisch überlagern. Nie als Kategorie, nie als Akzent, nie als Erfolgsfarbe. Die Kategorie »mit KI entwickelt« ist seit Version 4.4 gestrichen: Ein mit KI gebautes Lernangebot gehört zum Digitalen Unterricht.
@@ -290,7 +292,7 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - **Primär:** Druckschwarz, Text Fläche, 48 px hoch, 4 px Ecken, Label 18 px fett.
 - **Sekundär:** Fläche, 2-px-Kante Stahl, Text Druckschwarz.
 - **Zustände:** Hover (nur feiner Zeiger) Platte erscheint 4 px versetzt; Druck verschiebt um 2 px; Fokus Doppelring.
-- **Fokus:** außen 3 px #2A2622, innen 2 px #FFFDF9 – mindestens 6,16:1 auf jeder Fläche, auch auf Petrol und Honigplatte.
+- **Fokus:** außen 3 px #2B2A24, innen 2 px #FFFDF9 – mindestens 6,16:1 auf jeder Fläche, auch auf Petrol und Honigplatte.
 
 ### Chips
 - Fläche mit 2-px-Kante Stahl, Pill-Form, mindestens 44 px hoch. Aktiv: Druckschwarz mit hellem Text und ✓ als Text. Entfernbar mit sichtbarem ×-Button und zugänglichem Namen.
@@ -374,7 +376,7 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 - **Don't** Ampeln, Prozentwerte, Sterne, Abzeichen oder Ranglisten zeigen.
 - **Don't** Schullogo, Schulfarben oder offizielle Wirkung erzeugen.
 - **Don't** Autoplay, Endlos-Karussells oder Parallax einsetzen. Einzige Ausnahme: der Fächer der Galerie – langsam, linear, anhaltbar, ein Durchlauf, dann steht er; still bei weniger Bewegung.
-- **Don't** Text unter 16 px setzen oder Honig (#A26A1C) als Fließtextfarbe nutzen.
+- **Don't** Text unter 16 px setzen oder Honig (#7D5A1C) als Fließtextfarbe nutzen.
 - **Don't** Beispiele, Zitate, Zahlen oder Links erfinden.
 - **Don't** `ease-in` für Bewegung verwenden oder Tastaturaktionen animieren.
 - **Don't** kleine Etiketten über Überschriften (»Eyebrows«), Pill-Badges, Monospace-Etiketten oder gesperrte Versalien setzen.

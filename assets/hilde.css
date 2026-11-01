@@ -1,6 +1,7 @@
-/* Hilde Digital – Gestaltungssystem »Überdruck«
-   Haltung: ein Arbeitsbogen in zwei Druckfarben. Honig steht für »KI-Training«,
-   Petrol für »Digitaler Unterricht«. Wo beide übereinander drucken, entsteht das Überdruck-Grün –
+/* Hilde Digital – Gestaltungssystem »Überdruck«, Farbwelt »Büttenpapier« (ab Version 4.13)
+   Haltung: ein Arbeitsbogen in zwei Druckfarben auf ungebleichtem Papier. Ocker steht für »KI-Training«,
+   Moos für »Digitaler Unterricht«. Das Papier hat eine dezente Körnung; sie entfällt in der Beamer-Ansicht,
+   bei »Weniger Bewegung« und im Druck. Wo beide übereinander drucken, entsteht das Überdruck-Oliv –
    es ist keine Kategorie und erscheint nur, wo sich Platten wirklich überlagern.
    Flach und ruhig: Ecken 4 px, keine weichen Schatten, Tiefe nur als versetzte Farbplatte.
    Quelle aller Entscheidungen: DESIGN.md. Bewusst hell (Beamer zuerst). */
@@ -13,30 +14,30 @@
 :root{
   color-scheme:light;
   /* Papier und Druckschwarz */
-  --grund:#f0eeeb;        /* Knochenweiß, Seitenhintergrund (Text 12,9:1) */
-  --flaeche:#fffffd;      /* Bänder, Karten, Eingaben (Text 15:1) */
-  --karton:#e8e5e0;       /* zurückgesetzte Flächen, Passepartout */
-  --text:#2a2622;         /* Druckschwarz */
-  --leise:#4f4842;        /* Nebennotizen, 7,8:1 auf --grund */
-  --linie:#e4dccf;        /* nur Dekoration, nie Grenze eines Bedienelements */
-  --stahl:#7d7364;        /* Grenzen von Bedienelementen, 4:1 */
-  /* Erste Druckfarbe: Honig – KI für meine Arbeit */
-  --ki:#a26a1c;           /* Kanten und Symbole; als Text erst ab 24 px */
-  --ki-platte:#f2b233;    /* Fläche; Text darauf immer Druckschwarz (8:1) */
-  --ki-zart:#f5e8cf;
-  --ki-tief:#6f4710;
-  /* Zweite Druckfarbe: Petrol – Unterricht mit Tablets */
-  --lernen:#1e6b67;       /* Fläche mit hellem Text 6,2:1 */
-  --lernen-zart:#dbeae6;
-  --lernen-tief:#134a47;
-  /* Überdruck: Honigplatte × Petrol – nur »mit KI entwickelt« */
-  --ueberdruck:#1c4b15;
-  --leitakzent:#9b402d;   /* Oxid aus »Gegenwart«: nur für den einen Leitsatz einer Seite, höchstens einmal pro Ansicht (6,0:1 auf Grund) */
-  --leitakzent-zart:#f3dfd8;
+  --grund:#efeadf;        /* ungebleichtes Papier, Seitenhintergrund (Text 12,0:1) */
+  --flaeche:#f8f5ee;      /* Bänder, Karten, Eingaben: glattes Blatt auf dem Papier (Text 13,2:1) */
+  --karton:#e2dccd;       /* zurückgesetzte Flächen, Passepartout */
+  --text:#2b2a24;         /* Druckschwarz, leicht warm */
+  --leise:#524e3d;        /* Nebennotizen, 7,0:1 auf --grund */
+  --linie:#ddd6c6;        /* nur Dekoration, nie Grenze eines Bedienelements */
+  --stahl:#6f6853;        /* Grenzen von Bedienelementen, 4,6:1 */
+  /* Erste Druckfarbe: Ocker – KI für meine Arbeit */
+  --ki:#7d5a1c;           /* Kanten und Symbole; als Text 5,2:1 auf Grund */
+  --ki-platte:#d9a441;    /* Ocker als Fläche; Text darauf immer Druckschwarz (6,4:1) */
+  --ki-zart:#f1e3c4;
+  --ki-tief:#5c4212;
+  /* Zweite Druckfarbe: Moos – Unterricht mit Tablets */
+  --lernen:#4a6645;       /* Fläche mit hellem Text 6,1:1; als Text 5,3:1 auf Grund */
+  --lernen-zart:#e1e8d9;
+  --lernen-tief:#33482f;
+  /* Überdruck: Ocker × Moos ergibt dunkles Oliv – nur wo sich beide Platten überlagern */
+  --ueberdruck:#434512;   /* heller Text darauf 9,5:1 */
+  --leitakzent:#9e432a;   /* Terrakotta: nur für den einen Leitsatz auf der Seite Leitsätze (5,3:1 auf Grund) */
+  --leitakzent-zart:#f1ddd2;
   /* Handlung und Status */
-  --aktion:#2a2622;       /* Hauptschaltfläche, neutral für beide Bereiche */
-  --aktion-text:#fffffd;
-  --fokus:#2a2622;        /* Doppelring: außen Druckschwarz, innen Fläche – auf jeder Farbe sichtbar */
+  --aktion:#2b2a24;       /* Hauptschaltfläche, neutral für beide Bereiche */
+  --aktion-text:#fbf9f4;
+  --fokus:#2b2a24;        /* Doppelring: außen Druckschwarz, innen Fläche – auf jeder Farbe sichtbar */
   /* Status (ab Version 4.8 als Variablen; Werte aus DESIGN.md). Status steht immer auch als Wort.
      Text auf der zarten Fläche: Erfolg 5,4:1 · Warnung 5,1:1 · Fehler 5,6:1 · Fehler tief 10,2:1 (alle AA). */
   --erfolg:#2e6b34; --erfolg-zart:#e3eee2;
@@ -97,16 +98,16 @@
    color-scheme bleibt light. */
 html[data-theme="beamer"]{
   --grund:#ffffff;        /* Text 21:1 */
-  --flaeche:#f6f3ee;      /* Karten und Bänder: eine Tonstufe unter dem Grund, damit sie auf Weiß sichtbar bleiben (Text 19,0:1) */
-  --karton:#ece7de;       /* Text 17,1:1 */
+  --flaeche:#f7f4ec;      /* Karten und Bänder: eine Tonstufe unter dem Grund, damit sie auf Weiß sichtbar bleiben (Text 19,1:1) */
+  --karton:#ebe5d8;       /* Text 16,7:1 */
   --text:#000000;
-  --leise:#3a342e;        /* 12,3:1 auf Grund, 11,1:1 auf Fläche */
-  --stahl:#4a433b;        /* 9,7:1 auf Grund, 8,8:1 auf Fläche */
+  --leise:#38352a;        /* 12,3:1 auf Grund, 11,2:1 auf Fläche */
+  --stahl:#4b4636;        /* 9,4:1 auf Grund, 8,6:1 auf Fläche */
   --linie:#c9c1b4;
-  --ki:#7a4f12;           /* Kante der Honigplatte (3,8:1 auf Honig); als Text 7,1:1 auf Grund, 6,4:1 auf Fläche */
-  --lernen:#0f4f4b;       /* Weiß darauf 9,4:1, Fläche darauf 8,5:1; als Text auf Grund 9,4:1 */
-  --ueberdruck:#13380e;   /* Weiß darauf 13,1:1 */
-  --leitakzent:#7a2e1f;   /* 9,0:1 auf Grund */
+  --ki:#5e430f;           /* Kante der Ockerplatte (4,1:1 auf Ocker); als Text 9,2:1 auf Grund, 8,4:1 auf Fläche */
+  --lernen:#2f4a2b;       /* Weiß darauf 9,8:1, Fläche darauf 9,0:1; als Text auf Grund 9,8:1 */
+  --ueberdruck:#2f300b;   /* Weiß darauf 13,6:1 */
+  --leitakzent:#7c3020;   /* 9,1:1 auf Grund */
   --aktion:#000000;
   --aktion-text:#ffffff;
   --fokus:#000000;
@@ -119,6 +120,13 @@ html[data-theme="beamer"]{
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--grund);color:var(--text);font:400 var(--gr-text)/1.55 var(--schrift);-webkit-tap-highlight-color:transparent}
+
+/* Büttenpapier (ab Version 4.13): dezente Körnung im Grund – nur auf dem Seitengrund, nie auf Karten,
+   Text oder Bedienelementen. Feine Körnung und leichte Wolkigkeit wie bei geschöpftem Papier, ein einmal gerastertes Kachelbild (400 px), kein Filter auf Seitenelementen.
+   Entfällt in der Beamer-Ansicht, bei »Weniger Bewegung« (Schalter oder Systemeinstellung) und im Druck. */
+html:not([data-theme="beamer"]):not([data-bewegung="weniger"]) body{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .055 0'/%3E%3C/filter%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.01' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .28 0 0 0 .12 -.03'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23w)'/%3E%3Crect width='100%' height='100%' filter='url(%23k)'/%3E%3C/svg%3E");background-size:400px 400px}
+@media (prefers-reduced-motion:reduce),(prefers-contrast:more),(forced-colors:active){body{background-image:none!important}}
+@media print{ /* taste-skill-ignore: Druckfassung */ body{background-image:none!important}}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--fokus);outline-offset:2px;box-shadow:0 0 0 5px var(--flaeche)} /* taste-skill-ignore: Fokus-Doppelring */
