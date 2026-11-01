@@ -1,8 +1,9 @@
 /* Papierprobe – Film »Papierprobe in 44 Sekunden« auf der Startseite (ab Version 4.16).
    Nachbau des Showreels v2 aus Claude Design (Szenen, Zeiten, Texte) ohne Bibliothek:
    eine Zeitachse T in Sekunden, jedes Bild wird aus T berechnet (nur transform, opacity, clip-path).
-   Läuft beim ersten Besuch einmal ab (nicht bei »Weniger Bewegung«), danach nur über »Film ansehen«.
-   Anhalten, Weiter, Überspringen (auch mit Esc). Keine Schleife. Gemerkt wird nur »gesehen« in diesem Browser. */
+   Läuft bei jedem neuen Besuch einmal ab (nicht bei »Weniger Bewegung«); am Ende wählst du »Film nochmal ansehen« oder
+   »Zur Startseite«. Anhalten, Weiter, Überspringen (auch mit Esc). Keine Schleife. Gemerkt wird nur für diesen Besuch
+   (sessionStorage), dass der Film schon lief – beim Zurückkehren zur Startseite startet er nicht erneut (ab Version 4.17). */
 (function () {
   "use strict";
   var wurzel = document.getElementById("film");
@@ -337,7 +338,8 @@
 
   /* Abspielen */
   var T = 0, laeuft = false, letzte = 0, frame = 0, zuvorFokus = null;
-  var knopfHalt = wurzel.querySelector("[data-film-halt]"), knopfWeg = wurzel.querySelector("[data-film-weg]");
+  var knopfHalt = wurzel.querySelector("[data-film-halt]");
+  var steuerung = wurzel.querySelector(".film-steuerung"), ende = wurzel.querySelector(".film-ende");
   var fortschritt = wurzel.querySelector(".film-fortschritt i");
 
   function skalieren() {
@@ -348,49 +350,65 @@
     if (!laeuft) return;
     if (letzte) T += Math.min(0.1, (jetzt - letzte) / 1000);
     letzte = jetzt;
-    if (T >= ENDE) { T = ENDE; zeichnen(T); beenden(); return; }
+    if (fortschritt) fortschritt.style.transform = "scaleX(" + Math.min(1, T / ENDE) + ")";
+    if (T >= ENDE - 0.75) { T = ENDE - 0.75; zeichnen(T); amEnde(); return; }
     zeichnen(T);
-    if (fortschritt) fortschritt.style.transform = "scaleX(" + T / ENDE + ")";
     frame = requestAnimationFrame(schritt);
   }
   function spielen() { if (laeuft) return; laeuft = true; letzte = 0; frame = requestAnimationFrame(schritt); setzeHaltKnopf(); }
   function halten() { laeuft = false; cancelAnimationFrame(frame); setzeHaltKnopf(); }
   function setzeHaltKnopf() { if (knopfHalt) { knopfHalt.textContent = laeuft ? "Anhalten" : "Weiter"; knopfHalt.setAttribute("aria-pressed", laeuft ? "false" : "true"); } }
-  function merken() { try { localStorage.setItem("papierprobe.film", JSON.stringify({ gesehen: true })); } catch (e) { /* ohne Speicher läuft der Film beim nächsten Besuch wieder */ } }
+  function merken() { try { sessionStorage.setItem("papierprobe.film", "gelaufen"); } catch (e) { /* ohne Speicher läuft er beim nächsten Aufruf wieder */ } }
+  function vonVorn() {
+    T = 0; zeichnen(0);
+    if (ende) ende.hidden = true;
+    if (steuerung) steuerung.hidden = false;
+    var weg = steuerung && steuerung.querySelector("[data-film-weg]"); if (weg) weg.focus();
+    spielen();
+  }
+  function amEnde() {
+    halten(); merken();
+    if (steuerung) steuerung.hidden = true;
+    if (ende) { ende.hidden = false; var b = ende.querySelector("[data-film-weg]"); if (b) b.focus(); }
+  }
   function oeffnen() {
+    /* Nur mit dem passenden Stilblatt: Ohne Filmstile (alte Datei im Zwischenspeicher) bliebe nur Durcheinander. */
+    if (getComputedStyle(wurzel).position !== "fixed") return;
     zuvorFokus = document.activeElement;
-    T = 0; zeichnen(0); skalieren();
+    skalieren();
     wurzel.hidden = false; document.documentElement.classList.add("film-offen");
     requestAnimationFrame(function () { wurzel.classList.add("da"); });
-    if (knopfWeg) knopfWeg.focus();
-    spielen();
+    vonVorn();
   }
   function beenden() {
     halten(); merken();
     wurzel.classList.remove("da");
     setTimeout(function () {
       wurzel.hidden = true; document.documentElement.classList.remove("film-offen");
+      if (ende) ende.hidden = true; if (steuerung) steuerung.hidden = false;
       var ziel = zuvorFokus && zuvorFokus !== document.body ? zuvorFokus : document.getElementById("t-start");
       if (ziel) { if (!ziel.hasAttribute("tabindex") && ziel.id === "t-start") ziel.setAttribute("tabindex", "-1"); ziel.focus({ preventScroll: true }); }
     }, 220);
   }
 
   if (knopfHalt) knopfHalt.addEventListener("click", function () { if (laeuft) halten(); else spielen(); });
-  if (knopfWeg) knopfWeg.addEventListener("click", beenden);
+  Array.prototype.forEach.call(wurzel.querySelectorAll("[data-film-weg]"), function (b) { b.addEventListener("click", beenden); });
+  var nochmal = wurzel.querySelector("[data-film-nochmal]");
+  if (nochmal) nochmal.addEventListener("click", vonVorn);
   wurzel.addEventListener("keydown", function (e) { if (e.key === "Escape") { e.preventDefault(); beenden(); } });
   window.addEventListener("resize", function () { if (!wurzel.hidden) skalieren(); });
   document.addEventListener("visibilitychange", function () { if (document.hidden && laeuft) halten(); });
   var start = document.querySelector("[data-film-start]");
   if (start) start.addEventListener("click", oeffnen);
 
-  /* Beim ersten Besuch einmal von selbst, nie bei weniger Bewegung */
+  /* Bei jedem neuen Besuch einmal von selbst, nie bei weniger Bewegung */
   var weniger = document.documentElement.getAttribute("data-bewegung") === "weniger" ||
     (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  var gesehen = false;
-  try { var g = JSON.parse(localStorage.getItem("papierprobe.film")); gesehen = !!(g && g.gesehen); } catch (e) { gesehen = false; }
+  var gelaufen = false;
+  try { gelaufen = sessionStorage.getItem("papierprobe.film") === "gelaufen"; } catch (e) { gelaufen = false; }
   /* Automatische Browser-Tests (navigator.webdriver) sehen den Film nur mit ?film=1, damit er andere Prüfungen nicht verdeckt. */
   var test = !!navigator.webdriver && !/[?&]film=1\b/.test(location.search);
-  if (!gesehen && !weniger && !test) oeffnen();
+  if (!gelaufen && !weniger && !test) oeffnen();
 
-  window.PapierprobeFilm = { oeffnen: oeffnen, beenden: beenden, zeichnen: zeichnen, ENDE: ENDE, CUE: CUE };
+  window.PapierprobeFilm = { oeffnen: oeffnen, beenden: beenden, zeichnen: zeichnen, springe: function (t) { T = t; }, ENDE: ENDE, CUE: CUE };
 })();

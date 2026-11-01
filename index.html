@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <meta name="description" content="Papierprobe · Kompass für KI und digitalen Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 <title>Papierprobe · Kompass für KI und digitalen Unterricht</title>
-<link rel="stylesheet" href="assets/hilde.css">
+<link rel="stylesheet" href="assets/hilde.css?v=57ad8d6a">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -49,41 +49,18 @@
   <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung. <button type="button" class="knopf still film-knopf" data-film-start>Film ansehen · 44 Sekunden</button></p>
 </div></section>
 
-<section class="band band-dunkel" aria-labelledby="t-galerie"><div class="huelle galerie-teaser">
-  <div class="galerie-teaser-kopf">
-    <h2 id="t-galerie">Was in den Projekten passiert</h2>
-    <p>Keine Startseiten, sondern echte Ansichten: Hier testen Lernende ihre Wahrnehmung, ordnen Quellen zu oder verschieben eine Grenze.</p>
-    <a class="knopf hell" href="galerie.html">Zur Galerie <span aria-hidden="true">→</span></a>
-    <a class="textlink start-anfangen" href="galerie.html#anfangen">Zum Anfangen: sechs Beispiele, zwei je Umfang <span aria-hidden="true">→</span></a>
-  </div>
-  <div class="faecher faecher-start" id="start-faecher"></div>
-</div></section>
-
-<section class="band" aria-labelledby="t-stand"><div class="huelle">
-  <div class="stand-band">
-    <div class="stand-kopf">
-      <h2 id="t-stand">Was bisher entstanden ist</h2>
-    </div>
-    <ul class="kennzahlen" id="kennzahlen" aria-label="Die Galerie in Zahlen"></ul>
-    <p class="klein">Gezählt aus den Beispieldaten.</p>
-  </div>
-</div></section>
-
-<section class="band band-karton" aria-labelledby="t-zusammen"><div class="huelle leitsatz-band">
-  <h2 id="t-zusammen" class="leitsatz">Wie hängen KI-Training und Digitaler Unterricht zusammen?</h2>
-  <ul class="zusammen-liste" id="zusammenhang">
-    <li><b>KI-Training</b> ist dein eigener Übungsraum. KI hilft dir hier bei der Vorbereitung – auch für Unterricht ganz auf Papier.</li>
-    <li><b>Digitaler Unterricht</b> umfasst mehr als KI. Es geht darum, was Lernende am Gerät besser tun können.</li>
-    <li>Beides kann zusammenkommen – muss es aber nicht. Ein Lernangebot, das du mit KI gebaut hast, gehört zum Digitalen Unterricht, sobald die Lernenden damit arbeiten.</li>
-  </ul>
-</div></section>
-
 <div class="film" id="film" hidden role="region" aria-label="Film: Papierprobe in 44 Sekunden">
   <div class="film-buehne"></div>
   <div class="film-steuerung">
     <span class="film-fortschritt" aria-hidden="true"><i></i></span>
     <button type="button" class="knopf still" data-film-halt aria-pressed="false">Anhalten</button>
     <button type="button" class="knopf" data-film-weg>Überspringen <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="film-ende" hidden>
+    <div class="film-ende-knoepfe">
+      <button type="button" class="knopf still" data-film-nochmal><span aria-hidden="true">↻</span> Film nochmal ansehen</button>
+      <button type="button" class="knopf" data-film-weg>Zur Startseite <span aria-hidden="true">→</span></button>
+    </div>
   </div>
   <div class="sr-only">
     <p>Der Film zeigt in neun Szenen, was du in Papierprobe findest.</p>
@@ -100,13 +77,12 @@
     </ol>
   </div>
 </div>
-<script src="assets/daten/taxonomien.js"></script>
-<script src="assets/daten/beispiele.js"></script>
-<script src="assets/daten/galerie.js"></script>
-<script src="assets/hilde.js"></script>
-<script src="assets/faecher.js"></script>
-<script src="assets/start.js"></script>
-<script src="assets/film.js"></script>
+<script src="assets/daten/taxonomien.js?v=e76820f0"></script>
+<script src="assets/daten/beispiele.js?v=e66e3e76"></script>
+<script src="assets/daten/galerie.js?v=39bae038"></script>
+<script src="assets/hilde.js?v=555b8846"></script>
+<script src="assets/start.js?v=ccd05803"></script>
+<script src="assets/film.js?v=d7701856"></script>
 
 </main>
 <footer class="fuss"><div class="huelle">
@@ -118,6 +94,6 @@
   <p class="kennzeichnung">Papierprobe · Kompass für KI und digitalen Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
   <p class="kennzeichnung urheber leise">Entwickelt von Mario Walter, umgesetzt mit Unterstützung eines KI-Systems · Texte CC BY-NC-SA 4.0 · <a href="ueber.html#t-entstehung">Entstehung und Lizenz</a></p>
 </div></footer>
-<script src="assets/motion.js"></script>
+<script src="assets/motion.js?v=c7adc94b"></script>
 </body>
 </html>

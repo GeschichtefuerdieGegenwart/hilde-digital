@@ -106,12 +106,24 @@ def rahmen(titel, aktiv, inhalt, datei):
 """
 
 
+def mit_stand(html):
+    """Hängt an jede eigene CSS- und JS-Datei einen Prüfwert ihres Inhalts (?v=…).
+    So lädt der Browser nach einer Änderung die neue Datei und mischt nie neue Seiten mit alten Stilen (ab Version 4.17)."""
+    import hashlib, re
+    def ersetze(m):
+        pfad = WURZEL / m.group(2)
+        if not pfad.exists():
+            return m.group(0)
+        return f'{m.group(1)}="{m.group(2)}?v={hashlib.md5(pfad.read_bytes()).hexdigest()[:8]}"'
+    return re.sub(r'(src|href)="(assets/[^"?#]+\.(?:css|js))"', ersetze, html)
+
+
 def main():
     for alt in ("lernen.html", "beispiele.html"):  # umbenannt in tablets.html und showroom.html
         (WURZEL / alt).unlink(missing_ok=True)
     for datei, titel, aktiv in SEITEN:
         inhalt = (WURZEL / "src" / datei).read_text(encoding="utf-8")
-        (WURZEL / datei).write_text(rahmen(titel, aktiv, inhalt, datei), encoding="utf-8")
+        (WURZEL / datei).write_text(mit_stand(rahmen(titel, aktiv, inhalt, datei)), encoding="utf-8")
         print("gebaut:", datei)
 
 

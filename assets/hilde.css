@@ -162,7 +162,7 @@ p{margin:0}
 .fuss-marke{flex-basis:100%;margin:0 0 var(--a3);font:700 clamp(3rem,11vw,10rem)/.9 var(--schrift-titel);letter-spacing:-.03em;display:flex;align-items:center}
 .fuss-marke .strich{width:.8em;height:.22em}
 /* Name »Papierprobe · Kompass für KI und digitalen Unterricht« (ab Version 4.15): Wortmarke in Bricolage, Unterzeile in Atkinson, leise */
-.unterzeile{margin:-.35em 0 0;font:700 clamp(1.25rem,1.05rem + .9vw,1.875rem)/1.2 var(--schrift);color:var(--leise);letter-spacing:-.005em}
+.unterzeile{margin:.1em 0 0;font:700 clamp(1.25rem,1.05rem + .9vw,1.875rem)/1.2 var(--schrift);color:var(--leise);letter-spacing:-.005em}
 .fuss-unterzeile{flex-basis:100%;margin:calc(-1 * var(--a2)) 0 var(--a3);font:700 clamp(1.125rem,1rem + .6vw,1.5rem)/1.25 var(--schrift);color:var(--leise)}
 .fussnav{display:none}
 
@@ -1536,6 +1536,7 @@ main .muster-karte,main .werkstatt-karte,main .sicher-liste>li{max-width:none} /
 /* Film »Papierprobe in 44 Sekunden« (ab Version 4.16, assets/film.js). Bühne 1920 × 1080, auf den Bildschirm skaliert.
    Läuft einmal, keine Schleife; Anhalten, Überspringen, Esc. Farben und Schriften nur aus den Variablen oben. */
 main .start .hinweis-stand:has(.film-knopf){max-width:none;display:flex;align-items:center;flex-wrap:wrap;gap:var(--a1) var(--a3)}
+#t-start:focus{outline:none;box-shadow:none} /* Fokus nach dem Film landet hier; die Überschrift ist kein Bedienelement */
 .film-knopf{min-height:44px;padding-block:.35rem}
 html.film-offen,html.film-offen body{overflow:hidden}
 .film{position:fixed;inset:0;z-index:100;background:var(--grund);opacity:0;transition:opacity var(--dauer-mittel) var(--ease-out)}
@@ -1543,6 +1544,10 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:50% 50%;overflow:hidden;background:var(--grund);font-family:var(--schrift);color:var(--text)}
 .film-steuerung{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,32px);display:flex;align-items:center;gap:var(--a2);flex-wrap:wrap;justify-content:flex-end}
 .film-steuerung .knopf.still{background:var(--flaeche)}
+.film-ende{position:absolute;left:0;right:0;bottom:clamp(24px,6vh,64px);display:flex;justify-content:center;padding-inline:16px}
+.film-ende-knoepfe{display:flex;flex-wrap:wrap;gap:var(--a2);justify-content:center}
+.film-ende .knopf{font-size:1.125rem;min-height:56px;padding-inline:1.5rem}
+.film-ende .knopf.still{background:var(--flaeche)}
 .film-fortschritt{display:block;width:clamp(6rem,14vw,12rem);height:4px;background:var(--linie);border-radius:2px;overflow:hidden}
 .film-fortschritt i{display:block;height:100%;background:var(--text);transform-origin:0 50%;transform:scaleX(0)}
 .fb-bild{position:absolute;inset:0}
