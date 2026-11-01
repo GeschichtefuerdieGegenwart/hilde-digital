@@ -8,10 +8,11 @@
   if (form && aus && typeof REGELN !== "undefined") {
     var namen = {};
     TAXONOMIEN.einstufungen.forEach(function (e) { namen[e.id] = e.name; });
-    var FOLGE = { ablage: "Beantworte noch die zweite Frage.", ziel: "Beantworte noch die zweite Frage.", neu: "Beantworte die erste Frage." };
+    var FOLGE = { ablage: "Beantworte noch die zweite Frage.", ziel: "Beantworte noch die zweite Frage.", neu: "Beantworte die erste Frage.",
+      klaeren: "Klär zuerst in einem Satz, was die Lernenden dabei selbst denken oder tun sollen. Dann hilft dir der Planungsweg weiter. Unsicher sein heißt nicht: Papier." };
     var wert = function (n) { var e = form.querySelector('input[name="' + n + '"]:checked'); return e ? e.value : ""; };
     var zeigen = function () {
-      var a = { neu: wert("neu"), ablage: wert("ablage"), ziel: wert("ziel"), lesen: wert("lesen") };
+      var a = { neu: wert("neu"), ablage: wert("ablage"), ziel: wert("ziel"), lesen: wert("lesen"), teilhabe: wert("teilhabe") };
       form.querySelector('[data-frage="ablage"]').hidden = a.neu !== "nein";
       form.querySelector('[data-frage="ziel"]').hidden = a.neu !== "ja";
       if (a.neu !== "nein") a.ablage = "";
@@ -20,6 +21,7 @@
       aus.className = "probe-ergebnis" + (e.id ? " stufe-" + e.id : "");
       aus.innerHTML = e.id
         ? '<p class="probe-name">' + esc(namen[e.id]) + "</p><p>" + esc(e.grund) + "</p>" +
+          (e.teilhabe ? '<p class="probe-lesen"><b>Für alle?</b> ' + esc(e.teilhabe) + "</p>" : "") +
           (e.lesen ? '<p class="probe-lesen"><b>Zum Lesen:</b> ' + esc(e.lesen) + "</p>" : "")
         : '<p class="probe-name">Noch offen</p><p>' + esc(FOLGE[e.frage]) + "</p>";
     };
