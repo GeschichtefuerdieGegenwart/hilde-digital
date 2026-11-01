@@ -97,6 +97,7 @@ def pruefe_seiten(fehler):
         for url in re.findall(r'(?:src|href)="(https?://[^"]+)"', html):
             fehler.append(f"{name}: externe Datei oder Link {url}")
         for ziel in re.findall(r'(?:src|href)="([^"#:]+)(?:#[^"]*)?"', html):
+            ziel = ziel.split("?")[0]  # Prüfwert ?v=… aus tools/bauen.py
             if not (WURZEL / ziel).exists():
                 fehler.append(f"{name}: interner Link ohne Ziel {ziel}")
         if re.search(r"font-size:\s*(0?\.[0-8]\d*rem|1[0-5]px)", html):
