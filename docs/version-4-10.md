@@ -34,3 +34,10 @@ Grundlage: Forschungsbericht »KI und digitale Medien im Unterricht« (31.10.202
 - Daten für `beobachtung` eintragen, sobald Beobachtungsbögen vorliegen (nur Datum).
 - Den Weg für Lernende bei »Antworten vergleichen« erproben.
 - D2 (Vorlagen zur Prüfungskultur) und D3 (»Labor oder Plenum?«) sind nicht Teil dieser Version.
+
+## Nachtrag 1.11.2026 – »Labor oder Plenum?« (D3)
+
+Entscheidung Mario: Empfehlung (b) umsetzen – hybrid als Standard. »Durchgängig« bleibt gleichwertig, heißt aber nicht »alles am Gerät«: Das Tablet begleitet die Stunde, Deutung und Urteil entstehen im Plenum, lange Texte liegen auf Papier.
+
+- `assets/daten/taxonomien.js`, `assets/daten/digitalisieren.js`: Beschreibung von »durchgängig« mit festen Stellen im Plenum.
+- `assets/regeln.js` (mit Test): Wer »durchgängig« wählt, bekommt auf der Entscheidungskarte den Hinweis auf Plenum und Papier. Der gewählte Umfang bleibt.

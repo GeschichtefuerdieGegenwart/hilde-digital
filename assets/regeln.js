@@ -109,6 +109,9 @@
     if (a.umfang === "durchgaengig" && r.geraete === "geteilt") {
       return { id: "phasenweise", grund: "Mit geteilten Geräten ist ein phasenweiser Einsatz leichter zu organisieren." };
     }
+    // Durchgängig heißt nicht »alles am Gerät« (Entscheidung 1.11.2026): feste Stellen im Plenum, lange Texte auf Papier.
+    if (a.umfang === "durchgaengig") return { id: "durchgaengig", grund:
+      "Das hast du gewählt. Plane feste Stellen im Plenum ein: Deutung und Urteil entstehen im Gespräch, lange Texte liegen auf Papier." };
     if (istGesetzt(a.umfang)) return { id: a.umfang, grund: "Das hast du gewählt. Es passt zu deinem Vorhaben." };
     // Noch offen: Vorschlag aus Phase und Mehrwert.
     if (a.phase === "einstieg" || a.phase === "abschluss") return { id: "punktuell", grund: "Für einen Einstieg oder Abschluss reicht meist ein kurzer Impuls." };
