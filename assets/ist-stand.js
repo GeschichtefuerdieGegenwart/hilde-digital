@@ -1,4 +1,4 @@
-/* Hilde Digital – »Mein Ist-Stand« (ist-stand.html).
+/* Papierprobe – »Mein Ist-Stand« (ist-stand.html).
    Fünf Fragen nur für die Lehrkraft. Gespeichert werden nur die Auswahlwerte (hilde.iststand).
    Die Auswertung kommt aus REGELN.istStand (assets/regeln.js, mit Tests). Keine Bewertung, kein Typ.
    Braucht: REGELN, HILDE. */

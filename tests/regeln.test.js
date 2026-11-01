@@ -261,7 +261,7 @@ test("Jede Rahmenfrage ändert mindestens eine Aussage der Karte", () => {
   }
 });
 
-test("Papierprobe: ohne erste Antwort bleibt das Ergebnis offen und nennt die nächste Frage", () => {
+test("Papierfrage: ohne erste Antwort bleibt das Ergebnis offen und nennt die nächste Frage", () => {
   for (const a of [undefined, null, {}]) {
     const e = R.papierprobe(a);
     assert.equal(e.id, null);
@@ -271,26 +271,26 @@ test("Papierprobe: ohne erste Antwort bleibt das Ergebnis offen und nennt die n�
   assert.deepEqual(R.papierprobe({ neu: "ja" }), { id: null, frage: "ziel" });
 });
 
-test("Papierprobe: nichts Neues und nur Ablage ist organisatorischer Nutzen", () => {
+test("Papierfrage: nichts Neues und nur Ablage ist organisatorischer Nutzen", () => {
   assert.equal(R.papierprobe({ neu: "nein", ablage: "ja" }).id, "organisatorisch");
 });
 
-test("Papierprobe: nichts Neues und keine Ablage heißt Papier", () => {
+test("Papierfrage: nichts Neues und keine Ablage heißt Papier", () => {
   assert.equal(R.papierprobe({ neu: "nein", ablage: "nein" }).id, "analog");
   assert.equal(R.papierprobe({ neu: "nein", ablage: "offen" }).id, "analog");
 });
 
-test("Papierprobe: Unsicherheit beim Neuen führt wie im Planungsweg zu analog", () => {
+test("Papierfrage: Unsicherheit beim Neuen führt wie im Planungsweg zu analog", () => {
   assert.equal(R.papierprobe({ neu: "offen" }).id, "analog");
 });
 
-test("Papierprobe: Neues mit Lernzielbezug ist klarer Mehrwert, ohne Bezug Anpassung", () => {
+test("Papierfrage: Neues mit Lernzielbezug ist klarer Mehrwert, ohne Bezug Anpassung", () => {
   assert.equal(R.papierprobe({ neu: "ja", ziel: "ja" }).id, "klar");
   assert.equal(R.papierprobe({ neu: "ja", ziel: "nein" }).id, "anpassung");
   assert.equal(R.papierprobe({ neu: "ja", ziel: "offen" }).id, "anpassung");
 });
 
-test("Papierprobe: Lese-Kriterium ergänzt bei längerem Text einen Hinweis, ändert aber die Einstufung nicht", () => {
+test("Papierfrage: Lese-Kriterium ergänzt bei längerem Text einen Hinweis, ändert aber die Einstufung nicht", () => {
   const mit = R.papierprobe({ neu: "ja", ziel: "ja", lesen: "ja" });
   const ohne = R.papierprobe({ neu: "ja", ziel: "ja", lesen: "nein" });
   assert.equal(mit.id, "klar");
@@ -301,14 +301,14 @@ test("Papierprobe: Lese-Kriterium ergänzt bei längerem Text einen Hinweis, än
   assert.ok(R.papierprobe({ neu: "nein", ablage: "ja", lesen: "ja" }).lesen);
 });
 
-test("Papierprobe: ohne Ergebnis gibt es auch keinen Lesehinweis", () => {
+test("Papierfrage: ohne Ergebnis gibt es auch keinen Lesehinweis", () => {
   const e = R.papierprobe({ lesen: "ja" });
   assert.equal(e.id, null);
   assert.equal(e.lesen, undefined);
   assert.ok(!/\d+ ?%/.test(R.papierprobe({ neu: "offen", lesen: "ja" }).lesen), "keine Prozentwerte");
 });
 
-test("Papierprobe: jedes Ergebnis ist eine der vier Einstufungen und hat eine Begründung", () => {
+test("Papierfrage: jedes Ergebnis ist eine der vier Einstufungen und hat eine Begründung", () => {
   const ids = T.einstufungen.map((e) => e.id);
   const faelle = [{ neu: "offen" }, { neu: "nein", ablage: "ja" }, { neu: "nein", ablage: "nein" }, { neu: "ja", ziel: "ja" }, { neu: "ja", ziel: "nein" }];
   for (const a of faelle) {
@@ -390,7 +390,7 @@ test("Ist-Stand: der gewählte nächste Schritt kommt zuerst, höchstens drei Sc
 test("Ist-Stand: »Papier passt« wird bestärkt, nicht umgestimmt", () => {
   const e = R.istStand({ nutzung: ["kaum"], neu: "selten", naechstes: "papier" });
   assert.match(e.schritte[0].text, /vollwertiges Ergebnis/);
-  assert.ok(!e.schritte.some((s) => /Papierprobe ansehen|Zur Papierprobe/.test(s.linktext) && s !== e.schritte[0]));
+  assert.ok(!e.schritte.some((s) => /Papierfrage ansehen|Zur Papierfrage/.test(s.linktext) && s !== e.schritte[0]));
 });
 
 test("Ist-Stand: keine Noten, Punkte oder Prozentwerte", () => {

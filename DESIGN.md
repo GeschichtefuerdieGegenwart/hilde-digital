@@ -1,5 +1,5 @@
 ---
-name: Hilde Digital
+name: Papierprobe
 description: Orientierungsmodul für Lehrkräfte – zwei Druckfarben, Überdruck nur wo Platten sich überlagern, Werkstattbogen statt Hochglanz.
 colors:
   grund: "#EFEADF"
@@ -161,13 +161,13 @@ components:
 > **Farbwelt »Büttenpapier« (ab Version 4.13, Entscheidung Mario 1.11.2026).** Die Werte oben gelten. Die Rollen bleiben gleich, nur ihre Farben ändern sich: Honig heißt jetzt **Ocker** (#D9A441, Kante #7D5A1C), Petrol heißt **Moos** (#4A6645), das Überdruck-Grün heißt **Oliv** (#434512), der Leitakzent ist **Terrakotta** (#9E432A, nur auf der Seite Leitsätze). Grund ist ungebleichtes Papier (#EFEADF) mit dezenter Körnung, aus in Beamer-Ansicht, bei »Weniger Bewegung« und im Druck. Keine Fraunces, keine weichen Schatten, Two-Inks Rule unverändert. Wo unten noch Honig oder Petrol steht, ist die jeweilige Rolle gemeint. Kontrastwerte: siehe Kommentare in `assets/hilde.css`.
 
 
-# Design System: Hilde Digital
+# Design System: Papierprobe
 
 ## 1. Overview
 
 **Creative North Star: »Der Werkstattbogen im Überdruck«**
 
-Hilde Digital sieht aus wie ein sauber gedruckter Arbeitsbogen aus einer guten Druckwerkstatt: warmes Naturpapier, zwei Druckfarben, präzise Passermarken. Honig steht für »KI-Training«, Petrol für »Digitaler Unterricht«. Wo beide Platten übereinanderliegen, entsteht von selbst ein dunkles Grün – der Überdruck. Er markiert ausschließlich die Schnittmenge »mit KI entwickelt«. Es gibt keine dritte Farbe, die man sich ausgedacht hat; die Schnittmenge ist physikalisch ableitbar (Multiplikation #D9A441 × #4A6645 = #434512).
+Papierprobe sieht aus wie ein sauber gedruckter Arbeitsbogen aus einer guten Druckwerkstatt: warmes Naturpapier, zwei Druckfarben, präzise Passermarken. Honig steht für »KI-Training«, Petrol für »Digitaler Unterricht«. Wo beide Platten übereinanderliegen, entsteht von selbst ein dunkles Grün – der Überdruck. Er markiert ausschließlich die Schnittmenge »mit KI entwickelt«. Es gibt keine dritte Farbe, die man sich ausgedacht hat; die Schnittmenge ist physikalisch ableitbar (Multiplikation #D9A441 × #4A6645 = #434512).
 
 Die Oberfläche ist ruhig, flach und handwerklich. Tiefe entsteht nicht aus weichen Schatten, sondern aus einer versetzten Farbplatte hinter der Karte, wie ein leicht verrutschter Druckgang. Signaturelemente sind die überlappenden Platten selbst, Stanzloch-Fortschrittspunkte, die Stundenlinie für den Umfang und Rasterpunkte als ehrlicher Platzhalter. Werkzeug-Ornamente wie Schnittmarken, Passerkreuze oder Haarlinien werden nicht als Dekoration verwendet (Abgleich mit Taste Skill, 18.10.2026). Bewegung ist knapp und funktional; das einzige größere Motiv ist das »Registrieren« der beiden Platten beim ersten Aufruf; die Galerie darf mit der Bildansicht etwas inszenierter sein.
 
@@ -305,7 +305,7 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - Fläche, 2-px-Kante Stahl, 48 px hoch, Label darüber, Hilfetext darunter. Fehler: Kante Fehlerrot plus Text, nie nur Farbe.
 
 ### Navigation
-- Drei Punkte (KI-Training · Digitaler Unterricht · Galerie), Wortmarke links und als Link zum Start, aktiver Punkt mit 3-px-Unterstrich in Druckschwarz und `aria-current`. Unter 768 px steht die Leiste in einer eigenen Zeile unter der Wortmarke, immer sichtbar. »Über Hilde Digital« und die Hinweise stehen im Fuß.
+- Drei Punkte (KI-Training · Digitaler Unterricht · Galerie), Wortmarke links und als Link zum Start, aktiver Punkt mit 3-px-Unterstrich in Druckschwarz und `aria-current`. Unter 768 px steht die Leiste in einer eigenen Zeile unter der Wortmarke, immer sichtbar. »Über Papierprobe« und die Hinweise stehen im Fuß.
 
 ### Bewegung (ab Version 4)
 - Tokens: `--dauer-druck` 100 ms, `--dauer-schnell` 140 ms (Mikro), `--dauer-mittel` 200 ms (Übergang), `--dauer-aus` 150 ms (Schließen), `--dauer-register` 280 ms. Nie über 300 ms, immer `--ease-out`.
@@ -351,7 +351,7 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 ### Geführter Weg
 - Eine Frage pro Schritt (H3, höchstens zwei Zeilen), Antworten als große Auswahlkarten, Stanzloch-Fortschritt mit Text »Schritt 2 von 5« (funktionale Orientierung, keine dekorative 01/02-Nummerierung), Zurück und »Noch nicht sicher« immer sichtbar.
 
-### Papierprobe (das »live thing«)
+### Papierfrage (das »live thing«)
 - Drei Ja/Nein-Fragen zum Prüfstein »Geht es auf Papier genauso gut?«, Ergebnis sofort in einer von vier qualitativen Einstufungen mit sichtbarer Regel, `aria-live`, »Eingaben löschen«, `<noscript>`-Fassung der Regeln. Als »Entwurf zur Diskussion« gekennzeichnet.
 
 ## 8. Do's and Don'ts

@@ -1,4 +1,4 @@
-/* Hilde Digital – baut den Prompt für »Unterricht digitalisieren«.
+/* Papierprobe – baut den Prompt für »Unterricht digitalisieren«.
    Eingabe: fach, thema, gruppe, phase (Ids aus TAXONOMIEN.phasen), materialien [], vorhaben, umfang, ausgabe.
    Der Prompt enthält: Ausgangslage, Auftrag, die Leitfrage »Was kann das Tablet besser als Papier?«,
    die passenden Bereiche des Qualitätsmodells (Frage, guter digitaler Beitrag, so geht es auf Papier, Risiko),

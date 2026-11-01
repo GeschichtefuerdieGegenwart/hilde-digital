@@ -1,6 +1,6 @@
-/* Hilde Digital – Qualitätsmodell (Fassung 2) als Daten für den Digital-Check, Weg A »Selbst prüfen«.
+/* Papierprobe – Qualitätsmodell (Fassung 2) als Daten für den Digital-Check, Weg A »Selbst prüfen«.
 
-   Quelle: »Hilde Digital – Qualitätsmodell 2: Mehrwert als Ergebnis« (17.10.2026), Abschnitte 5, 7, 9 und 11.
+   Quelle: »Papierprobe – Qualitätsmodell 2: Mehrwert als Ergebnis« (17.10.2026), Abschnitte 5, 7, 9 und 11.
    Die Anker sind ein erster Entwurf und werden in der Erprobung überarbeitet.
    Die Oberfläche zeigt zuerst die alltagssprachliche Frage (frage) und den kurzen Namen (name).
    Fachbegriffe (fachname) stehen nur in aufklappbaren Vertiefungen.

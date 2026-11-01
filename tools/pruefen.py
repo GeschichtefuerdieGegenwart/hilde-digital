@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Prüft die gebauten Seiten und die Daten von Hilde Digital auf die vereinbarten Regeln.
+"""Prüft die gebauten Seiten und die Daten von Papierprobe auf die vereinbarten Regeln.
 
 Aufruf:  python3 tools/pruefen.py      (nach tools/bauen.py)
 Ergebnis: Liste der Verstöße; Rückgabewert 1, wenn etwas gefunden wurde.
 
 Geprüft werden
 - Kennzeichnung in der Fußzeile jeder Seite, Hauptnavigation mit genau drei Bereichen,
-- alte Namen (»Showroom«, »Mehrwert-Check«, »Hilde-Digital«) nur noch auf der Weiterleitung,
+- alte Namen (»Showroom«, »Mehrwert-Check«, »Hilde-Digital«, »Hilde Digital«) nur noch auf der Weiterleitung
+  (»Hilde Digital« als früherer Name auch auf »Über Papierprobe«),
 - verbotene Inhalte (Platzhalter, Logo, Kontaktadresse, »offizielles Digitalkonzept«),
 - Fachbegriffe auf Start- und Bereichsseiten und in den Texten der geführten Wege,
-  auf »Mehrwert« und »Über Hilde Digital« nur in aufklappbaren Vertiefungen,
+  auf »Mehrwert« und »Über Papierprobe« nur in aufklappbaren Vertiefungen,
 - externe Dateien und Links in den Seiten (nicht erlaubt),
 - interne Links (Ziel muss existieren),
 - Schriftgrößen unter 16 Pixel im Seitentext,
@@ -42,10 +43,10 @@ FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik",
 # Wörter, die auf Start- und Bereichsseiten und in den geführten Wegen nicht stehen sollen (Kritik vom 18.10.2026)
 EINSTIEG_WOERTER = ["Digitalität", "Lernsetting", "HTML-Lernumgebung"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]
-KENNZEICHNUNG = "Hilde Digital (Arbeitstitel) · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
+KENNZEICHNUNG = "Papierprobe · Kompass für KI und digitalen Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
 URHEBERZEILE = "umgesetzt mit Unterstützung eines KI-Systems"  # Entscheidung 01.11.2026
 LIZENZDATEIEN = ["LICENSE", "LICENSE-TEXTE.md", "ENTSTEHUNG.md"]
-ALTE_NAMEN = ["Showroom", "Mehrwert-Check", "Hilde-Digital", "Über das Modul", "KI für meine Arbeit",
+ALTE_NAMEN = ["Showroom", "Mehrwert-Check", "Hilde-Digital", "Hilde Digital", "Über das Modul", "KI für meine Arbeit",
               "mit KI entwickelt", "Mit KI entwickelt"]  # Kategorie gestrichen (Version 4.4)
 ERLAUBTE_HOSTS = ("https://geschichtefuerdiegegenwart.github.io/",)
 
@@ -74,6 +75,8 @@ def pruefe_seiten(fehler):
             fehler.append(f"{name}: Hauptnavigation muss genau KI-Training · Digitaler Unterricht · Galerie zeigen")
         if name != "showroom.html":
             for alt in ALTE_NAMEN:
+                if alt == "Hilde Digital" and name == "ueber.html":
+                    continue  # der frühere Name wird nur auf »Über Papierprobe« erklärt (01.11.2026)
                 if alt in text:
                     fehler.append(f"{name}: alter Name »{alt}«")
         for wort in VERBOTEN:

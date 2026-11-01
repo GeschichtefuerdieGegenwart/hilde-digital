@@ -1,4 +1,4 @@
-/* Hilde Digital – KI-Training, Eingang »Schnell-Anfrage«: fertige Anfragen für häufige Anlässe.
+/* Papierprobe – KI-Training, Eingang »Schnell-Anfrage«: fertige Anfragen für häufige Anlässe.
    Jede Anfrage folgt denselben fünf Teilen wie der Weg »Prompten lernen«:
    Ziel · Kontext · Anforderungen · Format · Prüfkriterien (Namen aus KI_TEXTE.bausteine).
    material: true = die Lehrkraft fügt eigenes Material an (ohne personenbezogene Daten).

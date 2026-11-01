@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Browser-Tests für Hilde Digital (Python Playwright, Chromium).
+"""Browser-Tests für Papierprobe (Python Playwright, Chromium).
 
 Aufruf:  python3 tests/e2e.py [Ordner für Bildschirmfotos]
 Barrierefreiheit: Liegt axe.min.js unter tests/vendor/ (oder in der Umgebungsvariable AXE_PFAD),
@@ -67,7 +67,9 @@ def main():
         nav = pg.locator(".kopf .nav a").all_inner_texts()
         pruefe(nav == ["KI-Training", "Digitaler Unterricht", "Galerie"], f"Kopf: drei Bereiche {nav}")
         pruefe(pg.get_attribute(".kopf .marke", "href") == "index.html", "Kopf: Wortmarke führt zum Start")
-        pruefe("Über Hilde Digital" in pg.inner_text(".fuss") and "Über" not in " ".join(nav), "Über Hilde Digital steht im Fuß, nicht in der Navigation")
+        pruefe("Über Papierprobe" in pg.inner_text(".fuss") and "Über" not in " ".join(nav), "Über Papierprobe steht im Fuß, nicht in der Navigation")
+        pruefe(pg.inner_text(".kopf .marke-name") == "Papierprobe" and pg.inner_text("#t-start") == "Papierprobe" and pg.inner_text(".start .unterzeile") == "Kompass für KI und digitalen Unterricht", "Name: Wortmarke »Papierprobe« mit Unterzeile »Kompass für KI und digitalen Unterricht«")
+        pruefe("Hilde Digital" not in pg.inner_text("body") and pg.title().startswith("Papierprobe"), "Name: der alte Name steht nicht mehr auf der Startseite")
         hoehe = pg.locator(".galerie-zugang").bounding_box()
         pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
         pg.click('a.wahlflaeche[href="unterricht.html"]'); pg.wait_for_url("**/unterricht.html")
@@ -374,9 +376,9 @@ def main():
         pg.goto(url("unterricht.html"))
         pg.check('input[name="neu"][value="ja"]')
         pg.check('input[name="ziel"][value="ja"]')
-        pruefe(pg.locator(".probe-lesen").count() == 0, "Papierprobe: ohne längeren Text kein Lesehinweis")
+        pruefe(pg.locator(".probe-lesen").count() == 0, "Papierfrage: ohne längeren Text kein Lesehinweis")
         pg.check('input[name="lesen"][value="ja"]')
-        pruefe(pg.locator(".probe-lesen").count() == 1 and "Papier" in pg.inner_text(".probe-lesen"), "Papierprobe: Lese-Kriterium ergänzt einen Hinweis")
+        pruefe(pg.locator(".probe-lesen").count() == 1 and "Papier" in pg.inner_text(".probe-lesen"), "Papierfrage: Lese-Kriterium ergänzt einen Hinweis")
         pruefe(pg.locator('#t-austausch ~ .werkzeuge a[href="beratung.html"]').count() == 1, "Austausch: Beratungsstunde verlinkt")
         pg.goto(url("muster.html"))
         pruefe(pg.locator("#m-ranking .muster-lernende").count() == 1, "Muster: Weg für Lernende mit KI bei »Antworten vergleichen«")

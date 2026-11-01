@@ -1,4 +1,4 @@
-/* Hilde Digital – baut eine Schnell-Anfrage aus Anlass und drei Angaben (Fach, Thema, Lerngruppe).
+/* Papierprobe – baut eine Schnell-Anfrage aus Anlass und drei Angaben (Fach, Thema, Lerngruppe).
    Gleiche fünf Teile wie im Weg »Prompten lernen«. Fehlt eine Angabe, fragt die KI zuerst danach.
    Keine KI-Anbindung: Es entsteht nur Text zum Kopieren. Tests: tests/schnell.test.js */
 (function (wurzel) {

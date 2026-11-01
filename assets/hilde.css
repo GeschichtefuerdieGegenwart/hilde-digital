@@ -1,4 +1,4 @@
-/* Hilde Digital – Gestaltungssystem »Überdruck«, Farbwelt »Büttenpapier« (ab Version 4.13)
+/* Papierprobe – Gestaltungssystem »Überdruck«, Farbwelt »Büttenpapier« (ab Version 4.13)
    Haltung: ein Arbeitsbogen in zwei Druckfarben auf ungebleichtem Papier. Ocker steht für »KI-Training«,
    Moos für »Digitaler Unterricht«. Das Papier hat eine dezente Körnung; sie entfällt in der Beamer-Ansicht,
    bei »Weniger Bewegung« und im Druck. Wo beide übereinander drucken, entsteht das Überdruck-Oliv –
@@ -161,6 +161,9 @@ p{margin:0}
 .fuss .huelle{display:flex;justify-content:space-between;gap:var(--a2) var(--a4);flex-wrap:wrap;align-items:flex-end}
 .fuss-marke{flex-basis:100%;margin:0 0 var(--a3);font:700 clamp(3rem,11vw,10rem)/.9 var(--schrift-titel);letter-spacing:-.03em;display:flex;align-items:center}
 .fuss-marke .strich{width:.8em;height:.22em}
+/* Name »Papierprobe · Kompass für KI und digitalen Unterricht« (ab Version 4.14): Wortmarke in Bricolage, Unterzeile in Atkinson, leise */
+.unterzeile{margin:-.35em 0 0;font:700 clamp(1.25rem,1.05rem + .9vw,1.875rem)/1.2 var(--schrift);color:var(--leise);letter-spacing:-.005em}
+.fuss-unterzeile{flex-basis:100%;margin:calc(-1 * var(--a2)) 0 var(--a3);font:700 clamp(1.125rem,1rem + .6vw,1.5rem)/1.25 var(--schrift);color:var(--leise)}
 .fussnav{display:none}
 
 /* Abschnitte */
@@ -609,7 +612,7 @@ main p,main li,main dd{max-width:60ch}
 .band-flaeche{background:var(--flaeche)}
 .band-karton{background:var(--karton)}
 
-/* Papierprobe */
+/* Papierfrage */
 .probe{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a4)}
 .probe-kopf{grid-column:1/6;display:grid;gap:var(--a2);align-content:start}
 .probe-kopf h2{font-size:var(--gr-h2);font-weight:700}
@@ -691,7 +694,7 @@ main p,main li,main dd{max-width:60ch}
 }
 @media (max-width:359px){.nav a{padding:0 .3rem}}
 
-/* Fuß: Über Hilde Digital, Inhalte und Funktionen, Hinweise */
+/* Fuß: Über Papierprobe, Inhalte und Funktionen, Hinweise */
 .fusslinks ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 var(--a3)}
 .fusslinks a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-underline-offset:3px}
 .fuss-marke{font-size:clamp(2.5rem,10.5vw,10rem);gap:.1em;flex-wrap:nowrap;white-space:nowrap}
@@ -871,7 +874,7 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
   background-color:var(--grund);background-image:radial-gradient(var(--stahl) 1px,transparent 1.5px);background-size:12px 12px} /* taste-skill-ignore: Rasterpunkte wie im Druck, kein Verlauf */
 .karte .bild.bild-fehlt{position:relative}
 
-/* Über Hilde Digital: Inhalte und Funktionen */
+/* Über Papierprobe: Inhalte und Funktionen */
 .inhalte-liste{margin:0;display:grid;gap:var(--a2)}
 .inhalte-liste>div{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);border-left:8px solid var(--karton)}
 .inhalte-liste>.rand-ki{border-left-color:var(--ki-platte)}
@@ -1316,7 +1319,7 @@ html[data-bewegung="weniger"] .plattenband .pl{transition:none!important}
   .bogen .probe-wahl input:checked+span{background:#000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .bogen textarea,.bogen input[type="text"]{border:1px solid #000;background:#fff}
   .bogen-form{gap:.7rem}
-  body:has(.bogen) .fuss-marke,body:has(.bogen) .fusslinks,body:has(.bogen) .kopf .nav,body:has(.bogen) .hefter-link{display:none}
+  body:has(.bogen) .fuss-marke,body:has(.bogen) .fuss-unterzeile,body:has(.bogen) .fusslinks,body:has(.bogen) .kopf .nav,body:has(.bogen) .hefter-link{display:none}
   body:has(.bogen) .bereichskopf,body:has(.bogen) .abschnitt,body:has(.bogen) .band,body:has(.bogen) .fuss{padding-block:.6rem}
   .bogen .probe-frage legend{margin-bottom:.3rem}
   .bogen .probe-frage{break-inside:avoid}
@@ -1443,7 +1446,7 @@ main .ls-eins-satz{max-width:16ch}
   .leitsaetze-seite{padding-block:0!important}
   body:has(.leitsaetze-seite) .fuss{margin-top:0}
   body:has(.leitsaetze-seite) main{min-height:0}
-  body:has(.leitsaetze-seite) .fuss-marke,body:has(.leitsaetze-seite) .fusslinks,body:has(.leitsaetze-seite) .kopf .nav,body:has(.leitsaetze-seite) .hefter-link{display:none}
+  body:has(.leitsaetze-seite) .fuss-marke,body:has(.leitsaetze-seite) .fuss-unterzeile,body:has(.leitsaetze-seite) .fusslinks,body:has(.leitsaetze-seite) .kopf .nav,body:has(.leitsaetze-seite) .hefter-link{display:none}
   body:has(.leitsaetze-seite) .bereichskopf,body:has(.leitsaetze-seite) .fuss{padding-block:.4rem}
   .leitsatz-liste{gap:.15rem;font-size:1rem;line-height:1.35}
   .ls-farben,.ls-fahrplan,.ls-bild,.ls-leiste,.ls-station-kopf>p,.ls-station-kopf .leise,.ls-eins-strich,.ls-eins-nr{display:none!important}
