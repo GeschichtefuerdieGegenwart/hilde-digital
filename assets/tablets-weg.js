@@ -171,6 +171,9 @@
         "<div><dt>Rolle der Lehrkraft</dt><dd>" + rollen + "</dd></div>" +
         "<div><dt>Nötige Anpassung</dt><dd>" + esc(k.anpassung) + "</dd></div>" +
         "<div><dt>Wichtigster Stolperstein</dt><dd>" + esc(k.stolperstein) + "</dd></div>" +
+        /* Ab Version 4.13: zwei feste Prüffragen vor dem Einsatz – Aufwand und Lernnachweis. */
+        "<div><dt>Vor dem Einsatz prüfen</dt><dd>Lohnt sich der Aufwand – Vorbereitung, Technik, Einführung – für das, was die Lernenden davon haben? " +
+          "Und woran erkennst du nach der Stunde, dass sie es gelernt haben – ohne Gerät und ohne Hilfe?</dd></div>" +
       "</dl>" +
       '<div class="naechster"><h3>Dein nächster Schritt</h3><p>' + esc(k.naechsterSchritt) + "</p></div>" +
       '<h3 class="minis-titel">Passende Beispiele</h3>' + bsp +
