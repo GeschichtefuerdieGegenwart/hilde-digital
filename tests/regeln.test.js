@@ -280,8 +280,21 @@ test("Papierfrage: nichts Neues und keine Ablage heißt Papier", () => {
   assert.equal(R.papierprobe({ neu: "nein", ablage: "offen" }).id, "analog");
 });
 
-test("Papierfrage: Unsicherheit beim Neuen führt wie im Planungsweg zu analog", () => {
-  assert.equal(R.papierprobe({ neu: "offen" }).id, "analog");
+test("Papierfrage: Unsicherheit heißt Lernziel klären, nicht Papier (ab Version 4.13)", () => {
+  assert.deepEqual(R.papierprobe({ neu: "offen" }), { id: null, frage: "klaeren" });
+  assert.deepEqual(R.papierprobe({ neu: "offen", lesen: "ja", teilhabe: "ja" }), { id: null, frage: "klaeren" });
+});
+
+test("Papierfrage: für alle und für dieses Ziel – Teilhabe oder digitales Lernziel ergänzt einen Hinweis", () => {
+  for (const a of [{ neu: "nein", ablage: "nein" }, { neu: "nein", ablage: "ja" }]) {
+    const mit = R.papierprobe({ ...a, teilhabe: "ja" });
+    const ohne = R.papierprobe({ ...a, teilhabe: "nein" });
+    assert.equal(mit.id, ohne.id, "Einstufung bleibt");
+    assert.match(mit.teilhabe, /einzelne Lernende/);
+    assert.equal(ohne.teilhabe, undefined);
+  }
+  assert.equal(R.papierprobe({ neu: "ja", ziel: "ja", teilhabe: "ja" }).teilhabe, undefined, "bei Lernmehrwert nicht nötig");
+  assert.ok(!/\d+ ?%/.test(R.papierprobe({ neu: "nein", ablage: "nein", teilhabe: "ja" }).teilhabe), "keine Prozentwerte");
 });
 
 test("Papierfrage: Neues mit Lernzielbezug ist klarer Mehrwert, ohne Bezug Anpassung", () => {
@@ -305,12 +318,12 @@ test("Papierfrage: ohne Ergebnis gibt es auch keinen Lesehinweis", () => {
   const e = R.papierprobe({ lesen: "ja" });
   assert.equal(e.id, null);
   assert.equal(e.lesen, undefined);
-  assert.ok(!/\d+ ?%/.test(R.papierprobe({ neu: "offen", lesen: "ja" }).lesen), "keine Prozentwerte");
+  assert.ok(!/\d+ ?%/.test(R.papierprobe({ neu: "nein", ablage: "nein", lesen: "ja" }).lesen), "keine Prozentwerte");
 });
 
 test("Papierfrage: jedes Ergebnis ist eine der vier Einstufungen und hat eine Begründung", () => {
   const ids = T.einstufungen.map((e) => e.id);
-  const faelle = [{ neu: "offen" }, { neu: "nein", ablage: "ja" }, { neu: "nein", ablage: "nein" }, { neu: "ja", ziel: "ja" }, { neu: "ja", ziel: "nein" }];
+  const faelle = [{ neu: "nein", ablage: "ja" }, { neu: "nein", ablage: "nein" }, { neu: "ja", ziel: "ja" }, { neu: "ja", ziel: "nein" }];
   for (const a of faelle) {
     const e = R.papierprobe(a);
     assert.ok(ids.includes(e.id), e.id);
@@ -359,6 +372,18 @@ test("Beobachtung: »so lassen« trotz fehlender Lernhandlung wird freundlich be
   assert.equal(R.beobachtung({ entscheidung: "nachschaerfen", lernhandlung: "nein" }).spannung, "");
 });
 
+test("Beobachtung: Lernnachweis ohne Gerät und Hilfe kommt direkt nach der Lernhandlung (ab Version 4.13)", () => {
+  const e = R.beobachtung({ lernhandlung: "ja", nachweis: "nein", mehrwert: "ja", entscheidung: "nachschaerfen" });
+  assert.equal(e.hinweise.length, 1);
+  assert.match(e.hinweise[0], /ohne Gerät und ohne Hilfe/);
+  const zwei = R.beobachtung({ lernhandlung: "nein", nachweis: "teils", mehrwert: "nein", technik: "zuviel", entscheidung: "papier" });
+  assert.match(zwei.hinweise[1], /noch nicht gelernt/, "Lernnachweis an zweiter Stelle");
+  assert.equal(zwei.hinweise.length, 3);
+  assert.match(R.beobachtung({ nachweis: "offen", entscheidung: "lassen" }).hinweise[0], /weißt du noch nicht/);
+  assert.equal(R.beobachtung({ nachweis: "ja", entscheidung: "lassen" }).hinweise.length, 0);
+  assert.ok(R.beobachtung({ entscheidung: "lassen", lernhandlung: "ja", mehrwert: "ja", nachweis: "nein" }).spannung.length > 20);
+});
+
 test("Beobachtung: keine Noten, Punkte oder Prozentwerte in den Texten", () => {
   const e = R.beobachtung({ lernhandlung: "teilweise", mehrwert: "nein", technik: "spuerbar", aufmerksamkeit: "teils", entscheidung: "nachschaerfen" });
   for (const t of [e.text, e.satz, ...e.hinweise]) assert.ok(!/\d+ ?(%|Punkte)|Note/.test(t), t);
@@ -390,7 +415,7 @@ test("Ist-Stand: der gewählte nächste Schritt kommt zuerst, höchstens drei Sc
 test("Ist-Stand: »Papier passt« wird bestärkt, nicht umgestimmt", () => {
   const e = R.istStand({ nutzung: ["kaum"], neu: "selten", naechstes: "papier" });
   assert.match(e.schritte[0].text, /vollwertiges Ergebnis/);
-  assert.ok(!e.schritte.some((s) => /Papierfrage ansehen|Zur Papierfrage/.test(s.linktext) && s !== e.schritte[0]));
+  assert.ok(!e.schritte.some((s) => /Papierprobe ansehen|Zur Papierprobe/.test(s.linktext) && s !== e.schritte[0]));
 });
 
 test("Ist-Stand: keine Noten, Punkte oder Prozentwerte", () => {

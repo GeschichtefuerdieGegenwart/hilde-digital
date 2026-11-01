@@ -345,7 +345,9 @@
           ziel:   Dient das dem, was die Lernenden lernen sollen?                        (nur bei neu = ja)
         Regeln (in dieser Reihenfolge):
           neu fehlt                        → noch offen (null)
-          neu = offen                      → analog   (wie »Mehrwert noch unklar« im Planungsweg)
+          neu = offen                      → noch offen (null, frage »klaeren«): erst das Lernziel klären.
+                                             Ab Version 4.13; vorher »analog«. Grund: Leitsatz 1 »Erst das Anliegen« und
+                                             »ein fehlender Nachweis ist kein Verbot« – Unsicherheit heißt klären, nicht Papier.
           neu = nein, ablage = ja          → organisatorisch
           neu = nein, ablage = nein/offen  → analog
           neu = ja,   ziel = ja            → klar
@@ -355,25 +357,34 @@
           lesen:  Lesen die Lernenden dabei einen längeren Text – mehr als eine Bildschirmseite?
           lesen = ja und ein Ergebnis steht fest → zusätzlicher Hinweis »lesen«: den Text auf Papier ausgeben.
           Die Einstufung selbst ändert sich nicht. Grund: Längere Sachtexte verstehen Lernende auf Papier im Mittel
-          etwas besser, besonders unter Zeitdruck (Delgado u. a. 2018; Salmerón u. a. 2024 – kleiner Effekt). */
+          etwas besser, besonders unter Zeitdruck (Delgado u. a. 2018; Salmerón u. a. 2024 – kleiner Effekt).
+          »Mehr als eine Bildschirmseite« ist eine eigene Faustregel, kein Wert aus den Studien.
+        Zusatzfrage (ab Version 4.13, »für alle und für dieses Ziel«):
+          teilhabe: Brauchen einzelne Lernende das Gerät, um mitzumachen (Vorlesen, Vergrößern, Übersetzen)?
+                    Oder ist der Umgang mit dem Digitalen selbst das Lernziel?
+          teilhabe = ja und Ergebnis analog oder organisatorisch → zusätzlicher Hinweis »teilhabe«: das Gerät ist für
+          diese Lernenden oder dieses Ziel begründet. Die Einstufung beschreibt weiter die Aktivität für die ganze Klasse.
+          Grund: »Geht es auf Papier genauso gut?« gilt nur, wenn es für alle und für dieses Ziel genauso gut geht. */
+  var TEILHABEHINWEIS = "Für die ganze Klasse geht es auf Papier genauso gut – für einzelne Lernende oder für dieses Ziel aber nicht. " +
+    "Dann ist das Gerät dort begründet. Setz es gezielt ein, für die anderen kann es bei Papier bleiben.";
   var LESEHINWEIS = "Längere Sachtexte verstehen viele auf Papier etwas besser, besonders unter Zeitdruck. " +
     "Gib den Text gedruckt aus und nutze das Tablet für den Rest.";
   function papierprobe(a) {
     a = a || {};
     var e = papierprobeKern(a);
     if (e.id && a.lesen === "ja") e.lesen = LESEHINWEIS;
+    if ((e.id === "analog" || e.id === "organisatorisch") && a.teilhabe === "ja") e.teilhabe = TEILHABEHINWEIS;
     return e;
   }
   function papierprobeKern(a) {
     var JA = "ja", NEIN = "nein";
     if (!a.neu) return { id: null, frage: "neu" };
-    if (a.neu === "offen") return { id: "analog", grund:
-      "Noch ist nicht klar, was durch das Tablet besser wird. Dann ist Papier oft die ruhigere Wahl." };
+    if (a.neu === "offen") return { id: null, frage: "klaeren" };
     if (a.neu === NEIN) {
       if (!a.ablage) return { id: null, frage: "ablage" };
       if (a.ablage === JA) return { id: "organisatorisch", grund:
         "Das Tablet ersetzt hier vor allem den Schnellhefter. Das spart Zeit, verändert aber das Lernen noch nicht." };
-      return { id: "analog", grund: "Geht es auf Papier genauso gut, bleib beim Papier." };
+      return { id: "analog", grund: "Geht es auf Papier genauso gut – für alle und für dieses Ziel –, bleib beim Papier." };
     }
     if (!a.ziel) return { id: null, frage: "ziel" };
     if (a.ziel === JA) return { id: "klar", grund:
@@ -386,13 +397,15 @@
   /* 11. Beobachtungsbogen nach der Stunde (beobachtung.html).
         Eingabe (alle Felder dürfen fehlen):
           lernhandlung: ja | teilweise | nein   Haben die Lernenden das Entscheidende selbst getan?
+          nachweis:     ja | teils | nein | offen  Konnten sie es danach ohne Gerät und ohne Hilfe? (ab Version 4.13)
+                        Grund: Wer mit Hilfe besser übt, kann es nicht automatisch allein (Bastani u. a. 2025).
           mehrwert:     ja | nein               Ging mit dem Tablet etwas besser als auf Papier?
           technik:      kaum | spuerbar | zuviel  Zeit, die für Technik verloren ging
           aufmerksamkeit: ja | teils | nein     Waren die Lernenden bei der Sache?
           entscheidung: lassen | nachschaerfen | papier
         Regeln:
           - Ohne Entscheidung gibt es noch keine Auswertung (id null).
-          - Höchstens drei Hinweise, in dieser Reihenfolge: Lernhandlung, Mehrwert, Technik, Aufmerksamkeit.
+          - Höchstens drei Hinweise, in dieser Reihenfolge: Lernhandlung, Lernnachweis, Mehrwert, Technik, Aufmerksamkeit.
             Ein Hinweis entsteht nur aus einer Antwort, die auf ein Problem zeigt.
           - Der nächste Schritt folgt allein der Entscheidung der Lehrkraft. Sie wird nicht überstimmt.
           - Passt die Entscheidung »so lassen« nicht zu einem Hinweis, wird das freundlich benannt (kein Verbot).
@@ -403,6 +416,8 @@
     var hinweise = [];
     if (a.lernhandlung === "nein") hinweise.push("Das Gerät hat den Lernenden den entscheidenden Schritt abgenommen. Lass sie beim nächsten Mal zuerst selbst antworten, ordnen oder begründen. Die Rückmeldung kommt danach.");
     else if (a.lernhandlung === "teilweise") hinweise.push("Die Lernenden haben nur teilweise selbst gedacht. Such eine Stelle, an der sie mehr selbst tun: begründen, ordnen oder erklären.");
+    if (a.nachweis === "nein" || a.nachweis === "teils") hinweise.push("Was mit Hilfe gelingt, ist noch nicht gelernt. Lass die Lernenden zum Schluss eine kurze Aufgabe ohne Gerät und ohne Hilfe lösen.");
+    else if (a.nachweis === "offen") hinweise.push("Ob die Lernenden es allein können, weißt du noch nicht. Plane beim nächsten Mal eine kurze Aufgabe ohne Gerät und ohne Hilfe am Ende.");
     if (a.mehrwert === "nein") hinweise.push("Das Tablet hat nichts Wesentliches beigetragen. Papier ist hier eine gute Wahl.");
     if (a.technik === "zuviel") hinweise.push("Zu viel Zeit ging für Technik verloren. Teste Anmelden und Laden vorher und nutze möglichst nur eine App.");
     else if (a.technik === "spuerbar") hinweise.push("Die Technik hat Zeit gekostet. Plane beim nächsten Mal ein paar Minuten Puffer ein.");
@@ -422,7 +437,7 @@
     };
     var s = schritte[a.entscheidung];
     if (!s) return { id: null, hinweise: hinweise, satz: SATZ };
-    var spannung = a.entscheidung === "lassen" && (a.lernhandlung === "nein" || a.mehrwert === "nein")
+    var spannung = a.entscheidung === "lassen" && (a.lernhandlung === "nein" || a.mehrwert === "nein" || a.nachweis === "nein")
       ? "Du willst es so lassen. Schau dir trotzdem die Hinweise oben an – vielleicht lohnt sich eine kleine Änderung." : "";
     return { id: a.entscheidung, titel: s.titel, text: s.text, link: s.link, linktext: s.linktext,
              hinweise: hinweise, spannung: spannung, satz: SATZ };

@@ -5,7 +5,7 @@
 (function () {
   "use strict";
   var H = HILDE, esc = H.esc, SPEICHER = "beobachtung";
-  var FELDER = ["lernhandlung", "mehrwert", "technik", "aufmerksamkeit", "entscheidung"];
+  var FELDER = ["lernhandlung", "nachweis", "mehrwert", "technik", "aufmerksamkeit", "entscheidung"];
   var formEl = document.getElementById("bogen");
   var ergebnis = document.getElementById("ergebnis");
 
@@ -27,7 +27,7 @@
       ? '<ul class="bogen-hinweise">' + r.hinweise.map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") + "</ul>"
       : '<p class="begruendung">Aus deinen Antworten ergibt sich kein Hinweis zum Nachschärfen.</p>';
     if (!r.id) {
-      ergebnis.innerHTML = '<p class="box" id="bogen-titel" tabindex="-1">Wähle bei Frage 5, wie es weitergeht. Dann siehst du deine Auswertung.</p>';
+      ergebnis.innerHTML = '<p class="box" id="bogen-titel" tabindex="-1">Wähle bei Frage 6, wie es weitergeht. Dann siehst du deine Auswertung.</p>';
       if (fokus) document.getElementById("bogen-titel").focus();
       return;
     }

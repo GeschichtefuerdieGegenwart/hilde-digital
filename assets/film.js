@@ -1,4 +1,4 @@
-/* Papierprobe – Film »Papierprobe in 44 Sekunden« auf der Startseite (ab Version 4.15).
+/* Papierprobe – Film »Papierprobe in 44 Sekunden« auf der Startseite (ab Version 4.16).
    Nachbau des Showreels v2 aus Claude Design (Szenen, Zeiten, Texte) ohne Bibliothek:
    eine Zeitachse T in Sekunden, jedes Bild wird aus T berechnet (nur transform, opacity, clip-path).
    Läuft beim ersten Besuch einmal ab (nicht bei »Weniger Bewegung«), danach nur über »Film ansehen«.

@@ -1,24 +1,25 @@
-# Version 4.15 – Film und Galerie auf der Startseite
+# Version 4.15 – Neuer Name: Papierprobe
 
-Stand: 1. November 2026 · Branch `film-und-startseite` (baut auf `papierprobe`, Version 4.14, auf)
+Stand: 1. November 2026 · Branch `papierprobe` (baut auf `buettenpapier`, Version 4.14, auf)
 
-Grundlage: Showreel v2 aus Claude Design (Projektarchiv »Galerie Showreel Animation«, Szenen, Zeiten und Texte) und Entwurf A4 »Platte wird Raum«, Variante A, auf der Fläche »Hilde Digital – Startseite und Übergänge«. Entscheidung Mario, 1.11.2026: ganzer Film beim ersten Besuch.
+Grundlage: Entscheidung Mario, 1.11.2026 – »Papierprobe · Kompass für KI und digitalen Unterricht« ersetzt »Hilde Digital«, auch vor Abschluss der Markenrecherche. Das Werkzeug »Geht es auf Papier genauso gut?« heißt jetzt »Papierfrage« (Entscheidung vom selben Tag).
 
 ## Geändert
 
-- `assets/film.js` (neu): Film »Papierprobe in 44 Sekunden« in neun Szenen, ohne Bibliothek (das Original nutzt React und JSX). Zeitachse in Sekunden, jedes Bild wird daraus berechnet. Läuft beim ersten Besuch einmal, keine Schleife. Anhalten, Weiter, Überspringen, Esc. Nie von selbst bei »Weniger Bewegung« oder `prefers-reduced-motion`. »Film ansehen« auf der Startseite spielt ihn erneut ab. Gemerkt wird nur `papierprobe.film`.
-- Gegenüber dem Original: Farben, Schriften und Platten aus `assets/hilde.css` statt »organic« (keine fremden Schriften, keine weichen Schatten, keine Versalien, keine Farbblasen im Hintergrund); »Papierprobe« als Werkzeugname → »Papierfrage«.
-- `assets/film/sitze-on.webp`, `sitze-off.webp`: Halbrund des Sitzrechners aus dem Archiv, verkleinert.
-- `src/index.html`: die drei Ansichten stehen als Fächer direkt neben der Galerie-Leiste (ab 720 px), nicht mehr oben rechts; Knopf »Film ansehen · 44 Sekunden«; Filmbereich mit Textfassung der neun Szenen für Hilfstechnik.
-- `assets/hilde.css`: Fächer neben der Galerie, Film (Bühne 1920 × 1080, skaliert), im Druck ausgeblendet.
-- `src/ueber.html`: »Was ist neu?«, Hinweis unter »Deine Daten«.
-- `DESIGN.md`: begründete Ausnahme für das einmalige Abspielen.
-- `tests/e2e.py`: Fächer neben der Galerie; Film beim ersten Besuch, Fokus, Anhalten, Esc, zweiter Besuch, »Film ansehen«, »Überspringen«, keine Konsolenfehler, nichts aus dem Netz, weniger Bewegung. In automatischen Tests startet der Film nur mit `?film=1`.
+- Name auf allen Seiten, in Seitentiteln, Kopf, Fuß und Beschreibung: »Papierprobe«; Startseite und Fuß mit Unterzeile »Kompass für KI und digitalen Unterricht« (`.unterzeile`, `.fuss-unterzeile` in `assets/hilde.css`).
+- Kennzeichnung in der Fußzeile: »Papierprobe · Kompass für KI und digitalen Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.« (»Arbeitstitel« entfällt).
+- Werkzeug »Papierprobe« → »Papierfrage« in Texten, Links und Tests. Code-Namen (`papierprobe()`, `#t-probe`) bleiben.
+- `ueber.html`: früherer Name im Abschnitt »Wie Papierprobe entstanden ist«, Eintrag in »Was ist neu?«.
+- `tools/pruefen.py`: »Hilde Digital« gilt als alter Name, erlaubt nur auf `ueber.html`; neue Kennzeichnung.
+- `tests/e2e.py`: Wortmarke, Unterzeile, kein alter Name auf der Startseite.
+- `CLAUDE.md`, `README.md`, `PRODUCT.md`, `DESIGN.md`, `LICENSE-TEXTE.md`, `ENTSTEHUNG.md`, Kopfkommentare der Skripte.
 
-## Noch nicht
+## Bewusst nicht geändert
 
-Kurzes Vergrößern beim Klick auf die Platten und das neue KI-Training mit drei Einstiegen (Prompt vom 1.11.2026) folgen als eigene Version.
+- Repository und GitHub-Pages-Adresse heißen weiter `hilde-digital` (GitHub Pages wird nicht geändert).
+- Frühere Versionsnotizen in `docs/` behalten den damaligen Namen.
+- Verlinkte Lernanwendungen, Designsystem »Gegenwart« und Plugin-Skills liegen woanders.
 
-## Nicht gelaufen
+## Noch offen
 
-Safari/iPadOS auf einem echten Gerät, echter Beamer.
+Markenrecherche (DPMA, EUIPO), Domain; Gespräch mit der Schulleitung zum Fortbildungsauftrag.

@@ -1,30 +1,38 @@
-# Version 4.13 – Farbwelt Büttenpapier
+# Version 4.13 – Papierprobe geschärft
 
-Stand: 1. November 2026 · Branch `buettenpapier`
+Stand: 1. November 2026 · Branch `papierfrage-schaerfen`
 
-Grundlage: Farbwelt 6 »Naturpapier / handgeschöpftes Büttenpapier« von der Fläche »Hilde Digital – Farbwelten«, Auswahl Mario, 1.11.2026. Umgesetzt nur über die Variablen in `assets/hilde.css`. Name bleibt »Hilde Digital« bis zur Markenrecherche.
+## Anlass
 
-## Geändert
+Abgleich mit einer Recherche zu Wirksamkeit digitaler Medien (Leitfrage: Wann digital, wann analog, wann verbunden?) und Prüfung der Belege an den Originalquellen. Kernbefund: »Geht es auf Papier genauso gut, bleib beim Papier« trägt nur, wenn »genauso gut« für alle Lernenden und für dieses Ziel gilt. Teilhabe und digitale Mündigkeit sind eigene Gründe.
 
-- `assets/hilde.css`: neue Werte für alle Farbrollen. Grund ungebleichtes Papier #efeadf, Fläche #f8f5ee, Ocker für KI (Platte #d9a441, Kante #7d5a1c), Moos für das Tablet #4a6645, Oliv nur in der Überlagerung #434512, Terrakotta als Leitakzent #9e432a nur auf der Seite Leitsätze. Beamer-Ansicht mit tieferen Tönen derselben Farben.
-- `assets/hilde.css`: dezente Körnung und Wolkigkeit im Seitengrund als einmal gerastertes Kachelbild (SVG als data-URL, keine fremde Datei). Aus in der Beamer-Ansicht, bei »Weniger Bewegung« (Schalter oder Systemeinstellung), bei erhöhtem Kontrast und im Druck. Karten, Text und Bedienelemente bleiben glatt.
-- `tools/bauen.py`: Schnellhefter-Symbol in Ocker.
-- `tools/duplex.py` und `assets/galerie/duplex/`: Vorschauen der Galerie neu in Moos und Ocker.
-- `src/gestaltung.html`, `DESIGN.md`, `.impeccable/design.json`: Farbnamen und Werte.
-- `tests/e2e.py`: Körnung an und aus (normal, Beamer, Weniger Bewegung, Druck).
-- Leitsätze: Aufbau aus Variante A (Thesenbogen mit fünf Stationen) unverändert, nur Farben und Papier.
+## Änderungen
 
-## Regeln
+| Stelle | Änderung | Grund |
+| --- | --- | --- |
+| Papierprobe (`unterricht.html#t-probe`, `assets/regeln.js`, `assets/probe.js`) | Zuerst ein freiwilliger Satz zum Lernziel (nicht gespeichert, nicht ausgewertet) | Leitsatz 1 »Erst das Anliegen«; die Probe fragte bisher zuerst nach dem Gerät |
+| | »Noch nicht sicher« bei Frage 1 → »Noch offen: Lernziel klären« statt »Analog« | Ein fehlender Nachweis ist kein Verbot; Leitsatz 10 »ausprobieren, beobachten« |
+| | Zusatzfrage Teilhabe / digitales Lernziel; bei »Analog« oder »organisatorisch« ein Hinweis »Für alle?« – die Einstufung bleibt | Vorlesen, Vergrößern, Übersetzen; Umgang mit dem Digitalen als Lernziel |
+| | Lese-Zusatzfrage: »mehr als eine Bildschirmseite« als Faustregel gekennzeichnet | eigener Wert, nicht aus den Studien |
+| Beobachtungsbogen (`beobachtung.html`) | Neue Frage 2 »Lernnachweis«: Konnten die Lernenden es danach ohne Gerät und ohne Hilfe? Hinweis an zweiter Stelle; »so lassen« trotz »nein« wird freundlich benannt | Bastani u. a. 2025: besser üben mit Hilfe ≠ besser können ohne |
+| Entscheidungskarte (`tablets.html`) | Feld »Vor dem Einsatz prüfen«: Aufwand und Lernnachweis | Aufwand fehlte seit Version 1 |
+| Leitsätze 3 und 9 (`leitsaetze.html`) | 3: »Genauso gut heißt: für alle und für dieses Ziel.« · 9: »Alle können mitmachen, und ihre Daten bleiben geschützt.« | Teilhabe stand bisher nur im Qualitätsmodell |
+| Belege (`mehrwert.html`) | Hillmayr: Trim-and-Fill richtig beschrieben (fehlende Studien hinzugeschätzt, nicht herausgerechnet); nur der Fortbildungs-Unterschied ist gesichert, ergänzend vs. ersetzend nicht (Q_B = 1,16, p = .28). Neu: SAMR-Kritik (Hamilton u. a. 2016), ICAP-Kritik (Thurn u. a. 2023) | Prüfung am Volltext |
 
-Kein Widerspruch zu bestehenden Regeln: keine Fraunces (E4), keine weichen Schatten, keine Büttenränder, Two-Inks Rule unverändert (der Leitakzent ist die bestehende Ausnahme aus Version 4.11).
+## Bewusst nicht
 
-## Gemessen
+- Keine fünfte Einstufung: Der Teilhabe-Hinweis ergänzt, die vier Einstufungen bleiben.
+- ICAP nicht als Raster übernommen: Die Rangfolge widerspräche »keine Entwicklungsstufen« und ist empirisch schwach.
+- Der Planungsweg behält »Mehrwert noch unklar → analog«: Dort ist das Anliegen schon gewählt.
 
-- Kontraste Normal: Text auf Grund 12,0:1 · auf Fläche 13,2:1 · Leise 7,0:1 · Stahl 4,6:1 · Moos als Text 5,3:1 · heller Text auf Moos 6,1:1 · Text auf Ocker 6,4:1 · Ocker tief als Text 5,2:1 · heller Text auf Oliv 9,5:1 · Terrakotta 5,3:1.
-- Kontraste Beamer: alle Textpaare mindestens 8,4:1 (Test in `tests/e2e.py`).
-- Ladezeit iPad-Größe, Prozessor vierfach gedrosselt, Median aus 6 Läufen: Startseite erste Anzeige 210 ms mit, 186 ms ohne Körnung; Leitsätze 248 ms mit, 274 ms ohne. Der Unterschied liegt im Messrauschen.
-- Druck der Leitsätze: genau eine Seite A4, ohne Körnung.
+## Quellen (geprüft am 1. November 2026)
+
+- Hillmayr, D. u. a. (2020). *Computers & Education* 153, 103897 – Volltext, Abschnitt 5.4 und Tabelle 2.
+- Bastani, H. u. a. (2025). Generative AI without guardrails can harm learning. *PNAS* 122(26), e2422633122.
+- Clinton, V. (2019). Reading from paper compared to screens. *Journal of Research in Reading* 42(2).
+- Thurn, C. M. u. a. (2023). Questioning central assumptions of the ICAP framework. *npj Science of Learning* 8, 49.
+- Hamilton, E. R., Rosenberg, J. M. & Akcaoglu, M. (2016). The SAMR model: a critical review. *TechTrends* 60, 433–441.
 
 ## Nicht gelaufen
 
-Safari/iPadOS auf einem echten Gerät, echter Beamer, Druck auf einem echten Drucker.
+Safari/iPadOS, Beamer, VoiceOver.
