@@ -58,6 +58,8 @@ FUSS = [
 ]
 
 KENNZEICHNUNG = "Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
+# Urheberzeile (Entscheidung 01.11.2026): Name des Urhebers, keine Kontaktadresse
+URHEBER = "Entwickelt von Mario Walter, umgesetzt mit Unterstützung eines KI-Systems · Texte CC BY-NC-SA 4.0 ·"
 
 
 def rahmen(titel, aktiv, inhalt, datei):
@@ -95,6 +97,7 @@ def rahmen(titel, aktiv, inhalt, datei):
   <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>
   <p class="fuss-einstellung"><button type="button" class="knopf still theme-schalter" id="theme-schalter" data-theme-schalter aria-pressed="false">Beamer-Ansicht</button><span class="leise">Gilt in diesem Browser. Reines Weiß, tiefes Schwarz, kräftigere Farben – für den Beamer im Klassenzimmer.</span></p>
   <p class="kennzeichnung">Hilde Digital (Arbeitstitel) · {KENNZEICHNUNG}</p>
+  <p class="kennzeichnung urheber leise">{URHEBER} <a href="ueber.html#t-entstehung">Entstehung und Lizenz</a></p>
 </div></footer>
 <script src="assets/motion.js"></script>
 </body>
