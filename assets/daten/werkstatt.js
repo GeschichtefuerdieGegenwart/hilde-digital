@@ -7,6 +7,7 @@
                 Das ist eine persönliche Angabe, kein Wirkungsnachweis.
                 tablet.beispiele nennt nur Galerie-Einträge, die dasselbe Muster wirklich zeigen. Gibt es keines, steht das ehrlich da.
    - auftraege: kopierbare Aufträge, Kurzfassungen der ausführlichen Anleitungen (Skills) des Projekts.
+                Abgeglichen mit den Skills in Version 0.3.0 (01.11.2026).
    - faecher:   Beispiele für Maßstäbe eines Fachs für die Vorlage »KI für dein Fach einrichten«. Nur Fächer, für die es
                 im Projekt erarbeitete Maßstäbe gibt. Andere Fächer bleiben ein leeres Feld – nichts erfinden.
    Jeder Auftrag hat dieselbe Form wie die Schnell-Anfrage (ziel · anforderungen · format · pruef · material)
@@ -202,11 +203,12 @@ var WERKSTATT = {
         "Frag zuerst nach, was die Stelle bewirken soll, wenn es nicht im Material steht. Höchstens drei Fragen.",
         "Schlag zwei bis drei Methoden vor, je mit einem Satz. Ich wähle.",
         "Die Methode lässt die Lernenden selbst abrufen, erklären, ordnen oder begründen. Hilfe ist noch kein Lernen.",
+        "Erst verstehen, dann abrufen. Merkhilfen wie Eselsbrücken nur zusammen mit Abrufen.",
         "Nenne bei jeder Methode, wofür sie weniger geeignet ist. Sinneskanäle sind keine Lerntypen.",
-        "Gib nur dann an, wie gut die Methode belegt ist, wenn du eine Quelle nennen kannst. Sonst schreib »noch offen«.",
+        "Gib nur dann an, wie gut die Methode belegt ist, wenn du eine Quelle nennen kannst: gut belegt · teilweise belegt · wenig erforscht. Sonst schreib »noch offen«.",
         "Plane, wann die Methode zum zweiten und dritten Mal vorkommt. Eine Methode, die nur einmal vorkommt, wird nicht gelernt."
       ],
-      format: "Ein Handout mit diesen Teilen: Kopf (Name, Dauer, Sozialform, wie gut belegt) · Was das ist (drei Sätze) · Gut geeignet / weniger geeignet · So geht's (fünf Schritte) · Beispiel aus meinem Fach mit einem typischen Fehler · Mit Tablet (nur, wenn es etwas kann, was Papier nicht kann; sonst »auf Papier gleich gut«) · Datenschutz. Danach ein Minutenplan für die erste Anwendung im Unterricht.",
+      format: "Ein Handout mit diesen Teilen: Kopf (Name, Dauer, Sozialform, wie gut belegt) · Was das ist (drei Sätze) · Gut geeignet / weniger geeignet · So geht's (fünf Schritte) · Beispiel aus meinem Fach mit einem typischen Fehler · Mit Tablet (nur, wenn es etwas kann, was Papier nicht kann; sonst »auf Papier gleich gut«) · KI-Unterstützung (ein Auftrag mit [Platzhaltern] und Grenzen: erst selbst, dann KI; die Lösung erst auf Bitte; Selbsttest ohne KI) · Datenschutz · Quelle mit Datum. Danach ein Minutenplan für die erste Anwendung im Unterricht.",
       pruef: ["Passt das Handout gedruckt auf eine Seite?", "Ist jede Angabe, wie gut die Methode belegt ist, mit Quelle versehen oder als »noch offen« markiert?"],
       material: true
     },
@@ -219,12 +221,12 @@ var WERKSTATT = {
         "Zerlege die Aufgabe in 4 bis 8 Teile. Stufe jeden Teil ein: KI hilft · KI ist egal · KI ersetzt das Lernen. Begründe mit dem Lernziel.",
         "Faustregel: Ist der Weg das Lernziel (argumentieren, einen Fall deuten, einen Plan entwickeln), schadet KI-Hilfe am meisten. Ist nur das Ergebnis wichtig, ist sie meist harmlos.",
         "Keine Regel darf davon abhängen, KI-Texte zu erkennen. Solche Werkzeuge sind unzuverlässig.",
-        "Leg für jeden Rechercheschritt fest, welches Werkzeug passt: KI-System, Schulbuch, Bibliothek oder Suchmaschine.",
-        "Denk an Gerechtigkeit: Für manche Lernende ist KI die einzige Hilfe außerhalb der Schule.",
+        "Leg für jeden Rechercheschritt fest, welches Werkzeug passt: KI-System, Schulbuch, Bibliothek oder Suchmaschine. Ein KI-System nennt oft keine prüfbare Herkunft. Quellen für Geschichte kommen nur aus dem Material oder aus seriösen Archiven, nie aus einer KI-Antwort.",
+        "Denk an Gerechtigkeit: Für manche Lernende ist KI die einzige Hilfe außerhalb der Schule. Prüfe, wo du großzügiger sein kannst, besonders bei Sprachhilfen.",
         "Wo KI helfen darf: Leg die Reihenfolge fest – erst selbst, dann KI. Schlag einen Auftrag an die KI vor, der Hinweise gibt statt Lösungen.",
         "Plane eine Stelle, an der die Lernenden zeigen, was sie ohne KI können – zum Beispiel eine kurze Abfrage oder eine mündliche Erklärung. Mit KI wird das Ergebnis oft besser, das Können danach nicht."
       ],
-      format: "Eine Tabelle der Teile mit Einstufung, Begründung und Regel. Dann ein Regeltext für die Lernenden mit Anrede »du«, je Teil ein Satz mit Grund. Zum Schluss drei bis fünf kleine Vorschläge, die Aufgabe nachzuschärfen.",
+      format: "Eine Tabelle der Teile mit Einstufung, Begründung und Regel. Dann ein Regeltext für die Lernenden mit Anrede »du«, je Teil ein Satz mit Grund. Dann drei bis fünf kleine Vorschläge, die Aufgabe nachzuschärfen. Zum Schluss die Grenzen deiner Einschätzung.",
       pruef: ["Ist jede Einstufung aus einem Lernziel begründet?", "Versteht eine Schülerin den Regeltext ohne Rückfrage?", "Gibt es eine Stelle ohne KI?", "Für bewertete Leistungen gelten zusätzlich die Vorgaben von Schule und Land; eine KI vergibt keine Noten. Erinnere mich daran."],
       material: true
     },
@@ -233,14 +235,16 @@ var WERKSTATT = {
       kurz: "Deine Lernenden lernen, eine KI-Antwort zu prüfen, statt ihr zu glauben: erfundene Quellen, Zahlen ohne Herkunft, falsche Zitate.",
       ziel: "Bereite eine Übung vor, in der meine Lernenden eine KI-Antwort prüfen, statt ihr zu glauben.",
       anforderungen: [
-        "Ich füge unten eine echte KI-Antwort zu meinem Unterrichtsthema ein, die ich selbst erzeugt habe. Erfinde keine Beispielbefunde.",
+        "Ich füge unten eine echte KI-Antwort zu meinem Unterrichtsthema ein, die ich selbst erzeugt habe – oder einen eigenen Übungstext mit eingebauten Fehlern, als solchen gekennzeichnet. Erfinde keine Beispielbefunde.",
         "Nenne die zwei bis drei Fehlerarten, die in meinem Fach am wichtigsten sind: erfundene Quelle, falsch zugeordnete Quelle, Quelle sagt das nicht, Zahl ohne Herkunft, falsches Zitat, scheinbare Einigkeit.",
         "Markiere in der Antwort, was geprüft werden muss. Sag nicht, ob es stimmt – das prüfe ich selbst am Original.",
         "Prüfschritte für die Lernenden: Stopp · Art der Aussage bestimmen · Original finden · Unbelegtes zurückverfolgen.",
         "Die Übung hat drei Runden: allein markieren, zu zweit zwei bis drei Aussagen prüfen, in der Klasse vergleichen.",
-        "Plane zwei kurze Wiederholungen in späteren Stunden ein, je fünf Minuten mit einer Behauptung. Einmal üben reicht nicht."
+        "Plane zwei kurze Wiederholungen in späteren Stunden ein, je fünf Minuten mit einer Behauptung. Einmal üben reicht nicht.",
+        "Schreib mir ein kurzes Skript, mit dem ich vor der Klasse laut eine Quelle prüfe: einmal mit Treffer, einmal ohne. Ich setze nur Ergebnisse ein, die ich selbst geprüft habe.",
+        "Achte auf mein Fach: Zitate am Original oder in einer Quellenedition prüfen; bei Studien fragen, wer, wie viele und wann untersucht wurde; Paragrafen im aktuellen Gesetzestext nachsehen."
       ],
-      format: "Ein Arbeitsblatt für die Lernenden mit Anrede »du« und diesen Zeichen zum Markieren: ★ Zahl ohne Beleg · ! falsche Sicherheit · ? fehlende Gegenposition · ~ vage Wörter. Dazu der Ablauf mit Minuten.",
+      format: "Ein Arbeitsblatt für die Lernenden mit Anrede »du« und diesen Zeichen zum Markieren: ★ Zahl ohne Beleg · ! falsche Sicherheit · ≡ Aufzählung ohne Begründung · ? fehlende Gegenposition · ~ vage Wörter · »« Zitat oder Zuschreibung, die geprüft werden muss. Dazu der Ablauf mit Minuten.",
       pruef: ["Behauptet das Material irgendwo, eine Quelle sei echt oder erfunden? Dann streich das – ich prüfe es selbst.", "Passt die Übung in 30 bis 45 Minuten?"],
       material: true
     },
@@ -249,13 +253,15 @@ var WERKSTATT = {
       kurz: "Ein kleiner, machbarer Plan: eine Frage, eine Ausgangslage, Belege aus dem Alltag und eine ehrliche Auswertung – auch »zurück zu Papier« ist ein gutes Ergebnis.",
       ziel: "Plane mit mir eine kleine Erkundung: Ich will eine Unterrichtsidee ausprobieren und ehrlich auswerten, ob sie den Lernenden hilft. Die Idee beschreibe ich bei »Thema«.",
       anforderungen: [
-        "Hilf mir, eine Frage zu formulieren, die auf das Lernen zielt und nicht nur auf mein Tun.",
-        "Halte eine Ausgangslage fest, bevor sich etwas ändert.",
+        "Hilf mir, eine Frage zu formulieren, die auf das Lernen zielt und nicht nur auf mein Tun. Die Frage ist echt offen: Wer das Ergebnis schon kennt, erkundet nicht.",
+        "Halte eine Ausgangslage fest, bevor sich etwas ändert, ein bis zwei Wochen lang.",
         "Ich ändere nur eine Sache auf einmal.",
         "Belege aus drei Richtungen, so wenige wie möglich: Arbeiten der Lernenden ohne Namen, meine Beobachtung nach der Stunde, Rückmeldung der Lernenden auf Zetteln ohne Namen.",
         "Keine Noten, Punkte oder Prozentwerte als Ergebnis. Muster in Worten beschreiben, einfache Zählungen sind erlaubt.",
+        "Frag bei der Auswertung auch: Welche andere Erklärung gibt es für die Veränderung, zum Beispiel Thema, Zeitpunkt oder Klasse?",
+        "Zufriedenheit ist kein Maß für Wirkung. Auch Formate ohne Lerngewinn werden oft gut bewertet.",
         "Auch »hat nicht geholfen« oder »zurück zu Papier« ist ein gutes Ergebnis.",
-        "Besuche ich eine Kollegin oder einen Kollegen im Unterricht, dann mit einer Beobachtungsfrage und einem kurzen Gespräch danach. Ein Besuch ohne Frage bringt wenig.",
+        "Besuche ich eine Kollegin oder einen Kollegen im Unterricht, dann mit einer Beobachtungsfrage und einem kurzen Gespräch danach. Die Beobachtung beschreibt, was die Lernenden tun, nicht die Kollegin oder den Kollegen. Ein Besuch ohne Frage bringt wenig.",
         "Arbeiten die Lernenden mit KI, sammle ich mindestens einen Beleg ohne KI. Ein besseres Ergebnis mit KI zeigt noch nicht, dass gelernt wurde."
       ],
       format: "Ein Plan mit: Frage · Ausgangslage · Veränderung · Belege (Tabelle mit Aufwand) · Leitfragen für die Auswertung · Entscheidung · wie ich es im Kollegium teile. Dauer sechs bis zehn Wochen, wenn ich nichts anderes sage.",
