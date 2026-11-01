@@ -87,3 +87,17 @@ test("Fach-Anweisung ohne Maßstäbe: die KI fragt zuerst", () => {
   assert.match(t, /Frag mich zuerst, was in meinem Fach eine gute Aufgabe ausmacht/);
   assert.match(t, /Anrede »du«/);
 });
+
+test("Aufträge: Kurzfassungen enthalten die Kernregeln der Skills 0.3.0", () => {
+  const f = (id) => JSON.stringify(W.auftraege.find((x) => x.id === id));
+  assert.match(f("lernmethode"), /Merkhilfen .* nur zusammen mit Abrufen/);
+  assert.match(f("lernmethode"), /KI-Unterstützung .* erst selbst, dann KI/);
+  assert.match(f("lernmethode"), /Quelle mit Datum/);
+  assert.match(f("ki-grenzen"), /nie aus einer KI-Antwort/);
+  assert.match(f("ki-grenzen"), /Grenzen deiner Einschätzung/);
+  assert.match(f("faktencheck"), /≡ Aufzählung ohne Begründung/);
+  assert.match(f("faktencheck"), /»« Zitat oder Zuschreibung/);
+  assert.match(f("faktencheck"), /einmal mit Treffer, einmal ohne/);
+  assert.match(f("erkunden"), /Zufriedenheit ist kein Maß für Wirkung/);
+  assert.match(f("erkunden"), /andere Erklärung/);
+});
