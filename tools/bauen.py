@@ -59,7 +59,7 @@ FUSS = [
 
 KENNZEICHNUNG = "Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
 # Urheberzeile (Entscheidung 01.11.2026): Name des Urhebers, keine Kontaktadresse
-URHEBER = "Entwickelt von Mario Walter, umgesetzt mit Unterstützung eines KI-Systems · Texte CC BY-NC-SA 4.0 ·"
+URHEBER = "© 2026 Mario Walter · entwickelt mit Unterstützung eines KI-Systems · Texte CC BY-NC-SA 4.0 · Code MIT ·"
 
 
 def rahmen(titel, aktiv, inhalt, datei):

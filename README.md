@@ -54,6 +54,8 @@ Konzept, Leitsätze, Kriterien und Texte: Mario Walter. Umgesetzt mit Unterstüt
 - Programmcode: MIT-Lizenz. Siehe `LICENSE`.
 - Bilder: alle Rechte vorbehalten. Schriften: SIL Open Font License.
 - Der Name ist von keiner Lizenz erfasst. Für eine kommerzielle Nutzung ist eine eigene Vereinbarung nötig.
+- Zitiervorschlag: Walter, Mario (2026): Papierprobe · Kompass für KI und digitalen Unterricht. https://github.com/GeschichtefuerdieGegenwart/hilde-digital – maschinenlesbar in `CITATION.cff`.
+- Stand vor dem Fortbildungsauftrag der Schule (3. November 2026): siehe `docs/stand-2026-11-03.md`.
 
 ## Bilder
 

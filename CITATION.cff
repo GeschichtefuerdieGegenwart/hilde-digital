@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Wenn du dieses Material verwendest oder darüber schreibst, zitiere es bitte so."
+title: "Papierprobe · Kompass für KI und digitalen Unterricht"
+abstract: "Orientierungs- und Fortbildungsmodul für Kollegien: Entscheiden, ob und wie KI oder Tablet den eigenen Unterricht verbessern – mit der Leitfrage »Geht es auf Papier genauso gut?«."
+authors:
+  - family-names: Walter
+    given-names: Mario
+type: software
+version: "Stand 2026-11-03"
+date-released: "2026-11-03"
+repository-code: "https://github.com/GeschichtefuerdieGegenwart/hilde-digital"
+url: "https://geschichtefuerdiegegenwart.github.io/hilde-digital/"
+license: MIT
+keywords:
+  - Lehrkräftefortbildung
+  - KI im Unterricht
+  - Tablet-Unterricht
+  - Baden-Württemberg
+notes: "Code: MIT (LICENSE). Texte und Daten: CC BY-NC-SA 4.0 (LICENSE-TEXTE.md). Bilder: alle Rechte vorbehalten. Entwickelt ohne Auftrag der Schule, mit KI-Unterstützung; Konzept, Auswahl und Überarbeitung durch den Urheber (ENTSTEHUNG.md)."
