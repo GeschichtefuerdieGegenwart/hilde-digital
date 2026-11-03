@@ -44,7 +44,7 @@ FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik",
 EINSTIEG_WOERTER = ["Digitalität", "Lernsetting", "HTML-Lernumgebung"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]
 KENNZEICHNUNG = "Papierprobe · Kompass für KI und digitalen Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
-URHEBERZEILE = "umgesetzt mit Unterstützung eines KI-Systems"  # Entscheidung 01.11.2026
+URHEBERZEILE = "© 2026 Mario Walter · entwickelt mit Unterstützung eines KI-Systems · Texte CC BY-NC-SA 4.0 · Code MIT"
 LIZENZDATEIEN = ["LICENSE", "LICENSE-TEXTE.md", "ENTSTEHUNG.md"]
 ALTE_NAMEN = ["Showroom", "Mehrwert-Check", "Hilde-Digital", "Hilde Digital", "Über das Modul", "KI für meine Arbeit",
               "mit KI entwickelt", "Mit KI entwickelt"]  # Kategorie gestrichen (Version 4.4)
