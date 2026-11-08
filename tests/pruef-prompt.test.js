@@ -70,3 +70,12 @@ test("nennt keine Anbieter und keine Verbindung, nur ein Platz für das Material
   assert.doesNotMatch(t, /ChatGPT|OpenAI|Claude|Gemini|Copilot|Mistral/i);
   assert.ok(t.trim().endsWith("persönliche Daten.)"));
 });
+
+/* ab 4.18: Regeln aus den Erprobungen vom 8.11.2026 */
+test("Prüf-Auftrag fragt nach Ruhe, Festlegung, Klickweg und Zwischenstand", () => {
+  const t = P.baue({ typ: "html" }, Q);
+  assert.ok(t.includes("Erst Ruhe, dann Bewegung"));
+  assert.ok(t.includes("Erst denken, dann zeigen"));
+  assert.ok(/drei Tipps/.test(t) && /Seitenwechsel/.test(t));
+  assert.ok(/Zwischenstand/.test(t) && /außerhalb des Browsers/.test(t));
+});

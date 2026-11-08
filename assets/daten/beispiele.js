@@ -18,6 +18,8 @@
    auswahl: »Zum Anfangen« in der Galerie (Entscheidung der Lehrkraft vom 26.10.2026). Genau sechs Einträge,
      zwei je Umfang, alle »im Unterricht erprobt«. Form: { grund: "ein Satz, warum das Beispiel ausgewählt ist" }.
      Keine Rangfolge: Die sechs sind ein Anfang, keine Bestenliste. tools/pruefen.py prüft die Regel.
+   nachgeschaerft (ab 4.18): { datum, punkte[] } – was nach einer Erprobung am Material geändert wurde. Nur Änderungen,
+     keine Aussagen von Lernenden. Die Detailseite zeigt es als »Nach der Erprobung nachgeschärft«.
    beobachtung (ab 4.10): Datum eines ausgefüllten Beobachtungsbogens nach der Stunde (»2026-11-20«), nur bei
      »im Unterricht erprobt«. Nur die Lehrkraft trägt es ein; der Inhalt des Bogens steht nicht hier.
      Ohne Eintrag zeigt die Detailseite bei erprobten Beispielen »Beobachtungsbogen: noch offen«.
@@ -428,6 +430,14 @@ var BEISPIELE = [
     faecher: ["Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Fünf Stationen vom Art. 21 GG bis zum Sitzrechner: Die Klasse wählt mit dem echten Stimmzettel des Wahlkreises, zählt aus und vergleicht mit dem amtlichen Ergebnis.",
     status: "im Unterricht erprobt", bild: "assets/galerie/politik-werkstatt-1.webp", link: GH + "Gemeinschaftskunde/",
+    beobachtung: "2026-11-08",
+    erfahrung: "Eingesetzt in einer J1-Klasse am 8. November 2026. Persönlicher Eindruck: Die Stunde kam sehr gut an, die Klasse war durchgehend bei der Sache. Der Ablauf wirkte an manchen Stellen unübersichtlich – zu viele Linien, zu wenig Übersicht.",
+    nachgeschaerft: { datum: "2026-11-08", punkte: [
+      "Sortieraufgaben: Zwischenstand prüfen ab fünf gelegten Karten, Knopf »Falsche zurücklegen«, Stand bleibt gespeichert",
+      "Interaktiver Film: ein Satz zur Bedienung vor dem Start (ziehen, zurückspulen, Schritt für Schritt)",
+      "Gestaltung: weniger Linien – nur die äußere Karte mit Rand, innen Flächen",
+      "Klassenwahl: Ergebnis als Datei sichern und wieder laden, nicht nur im Browser",
+      "Erst ohne Gerät erinnern: drei Abruffragen zur vorigen Station, dann aufdecken (noch nicht erprobt)"] },
     lernaktivitaeten: ["Aufgaben und Funktionen von Parteien mit Karten und Selbsttest erarbeiten",
       "zwölf Beispiele Funktionen zuordnen und die begründete Rückmeldung lesen",
       "acht Streitfragen tippen und wörtliche Programmstellen mit Seitenzahl aufdecken",

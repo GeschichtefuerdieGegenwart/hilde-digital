@@ -52,6 +52,10 @@
     z.push("- Motivation allein ist kein Lernmehrwert. Spielelemente zählen nur, wenn sie das Lernen stützen.");
     z.push("- »Analog oder hybrid passt besser« ist ein vollwertiges Ergebnis. Mehr Technik ist nicht automatisch besser.");
     z.push("- Ein punktueller digitaler Einsatz ist keine Vorstufe. Bewerte das Material für den Zweck, für den es gemacht ist.");
+    z.push("- Erst Ruhe, dann Bewegung: Bewegung auf der Seite zählt nur, wenn sie eine Veränderung, einen Ablauf oder einen Zusammenhang zeigt und die Lernenden sie selbst auslösen oder steuern. Bewegung beim bloßen Lesen oder als Belohnung ist ein Mangel.");
+    z.push("- Erst denken, dann zeigen: Prüfe, ob die Lernenden sich festlegen müssen, bevor eine Auflösung, Rückmeldung oder Animation kommt.");
+    z.push("- Zähle den Weg: Wie viele Tipps oder Klicks brauchen die Lernenden bis zur ersten eigenen Antwort, und wie oft wechselt die Seite innerhalb einer Arbeitsphase? Mehr als drei Tipps oder ein Seitenwechsel mitten in der Phase sind ein Hinweis auf Unruhe.");
+    z.push("- Bei Sortier- und Legeaufgaben: Gibt es einen Zwischenstand, kann man Fehler zurücknehmen, bleibt der Stand gespeichert? Überleben die Ergebnisse die Stunde außerhalb des Browsers?");
     z.push("- Sprich von Potenzial, nicht von nachgewiesener Wirkung.");
     z.push("- Prüfe Fachliches vorsichtig: Nenne Stellen, die eine Fachperson prüfen sollte, statt Fehler sicher zu behaupten.");
     z.push("- Erfinde nichts. Ergänze keine fehlenden Informationen. Frage nach, wenn dir etwas fehlt.");

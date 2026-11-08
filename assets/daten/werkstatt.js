@@ -174,6 +174,46 @@ var WERKSTATT = {
       }
     },
     {
+      id: "uebersicht", name: "Übersicht statt Klickstrecke", phase: "erarbeitung", einsatz: "eingesetzt",
+      herkunft: "GGK-Labor, Berufliches Gymnasium – Rückmeldung der Lernenden vom 8. November 2026",
+      tun: "Eine Arbeitsphase hat eine Seite: Alles, was dazugehört, liegt nebeneinander. Hilfen und Details öffnen am selben Ort, nicht auf einer neuen Seite.",
+      warum: "Wer vieles zum ersten Mal sieht, braucht Orientierung. Jeder Seitenwechsel kostet davon etwas. Eine Übersicht lässt in Ruhe umschauen und vergleichen.",
+      papier: "Ein Plakat oder ein Doppelblatt je Phase: Material, Auftrag und Hilfekasten auf einer Fläche. Nichts zum Blättern, bis die Phase vorbei ist.",
+      tablet: { text: "Eine Übersichtsseite je Phase, Karten nebeneinander, Details klappen an Ort und Stelle auf. Höchstens drei Tipps bis zur ersten eigenen Antwort.", beispiele: ["m22-wie-war-das-moeglich"] },
+      ki: {
+        ziel: "Baue eine Arbeitsphase nach dem Muster »Übersicht statt Klickstrecke« um.",
+        anforderungen: [
+          "Die ganze Phase liegt auf einer Fläche: Auftrag, Material, Hilfen, Ergebnisfeld.",
+          "Hilfen und Vertiefungen öffnen am selben Ort, nicht auf einer neuen Seite.",
+          "Bis zur ersten eigenen Antwort brauchen die Lernenden höchstens drei Schritte.",
+          "Wenige Rahmen und Linien: Flächen trennen, Linien nur, wo sie etwas bedeuten.",
+          "Zähle am Ende, wie viele Seitenwechsel und Tipps die Phase verlangt, und nenne die Zahl."
+        ],
+        format: "Eine Skizze der Fläche in Worten (was liegt wo), der Auftrag im Wortlaut, die Hilfen, die Zählung der Schritte.",
+        pruef: ["Liegt wirklich alles auf einer Fläche?", "Gibt es eine Stelle, an der man ohne Nachdenken weiterklicken kann?"]
+      }
+    },
+    {
+      id: "zwischenstand", name: "Sortieren mit Zwischenstand", phase: "erarbeitung", einsatz: "eingesetzt",
+      herkunft: "Politik-Werkstatt, Gemeinschaftskunde J1 – nachgeschärft nach der Erprobung am 8. November 2026",
+      tun: "Die Lernenden ordnen viele Karten. Nach etwa fünf Karten prüfen sie den Zwischenstand, legen Falsche zurück und arbeiten weiter – statt am Ende alles neu zu sortieren.",
+      warum: "Rückmeldung in kleinen Portionen lässt sich verarbeiten. Wer erst am Ende erfährt, dass die Hälfte falsch liegt, beginnt von vorn und lernt dabei wenig.",
+      papier: "Kartensatz mit Kontrollkarte: Nach jeder Fünfergruppe die Kontrollkarte umdrehen, Falsche zurück in den Stapel, weiter.",
+      tablet: { text: "Zwischenstand prüfen ab fünf gelegten Karten, Knopf »Falsche zurücklegen«, gespeicherter Stand zum Weitermachen. Gezählt wird nur der erste Versuch.", beispiele: ["politik-werkstatt"] },
+      ki: {
+        ziel: "Erstelle eine Sortieraufgabe nach dem Muster »Sortieren mit Zwischenstand«.",
+        anforderungen: [
+          "Zwölf bis zwanzig Karten, die drei bis fünf Gruppen zugeordnet werden; jede Karte hat eine kurze Begründung, warum sie dorthin gehört.",
+          "Eine Kontrollkarte je fünf Karten, mit der die Lernenden ihren Zwischenstand prüfen.",
+          "Falsch gelegte Karten gehen zurück in den Stapel, nicht alles wird neu sortiert.",
+          "Die Rückmeldung erklärt, warum eine Karte woanders hingehört – nicht nur richtig oder falsch.",
+          "Keine Punkte oder Ranglisten."
+        ],
+        format: "Kartentexte mit Zuordnung und Begründung, Kontrollkarten, ein Satz zur Durchführung.",
+        pruef: ["Ist jede Zuordnung fachlich eindeutig?", "Trägt die Begründung auf jeder Karte?"]
+      }
+    },
+    {
       id: "fehlvorstellungen", name: "Fehlvorstellungen dreimal nutzen", phase: "uebergreifend", einsatz: "offen",
       herkunft: "Lernfeld »Rechtliche Bedingungen«, Erzieher*innenausbildung, 1. Jahr",
       tun: "Eine typische Fehlvorstellung taucht dreimal auf: als Satz im Fall am Anfang, im Ausgangsticket am Ende und als unterste Stufe im Bewertungsraster.",

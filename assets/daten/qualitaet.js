@@ -83,7 +83,7 @@ var QUALITAET = {
       b: ["Inhaltsverzeichnis", "dauerhaft sichtbare Navigation mit Stand",
           "an jeder Stelle die passende Zusammenfassung zum Aufklappen"],
       analog: "Laufzettel, Lernlandkarte, Inhaltsverzeichnis im Heft",
-      risiko: "Zu viele Menüs verwirren. Ein Fortschrittsbalken zählt Klicks, nicht Verstehen.",
+      risiko: "Zu viele Menüs verwirren. Jeder Seitenwechsel kostet Orientierung. Ein Fortschrittsbalken zählt Klicks, nicht Verstehen.",
       anliegen: "sichern" },
     { id: "selbststeuern", nr: "5.8", name: "Selbst steuern", fachname: "Selbststeuerung und selbstreguliertes Lernen",
       frage: "Planen, überprüfen und verbessern die Lernenden ihr eigenes Lernen – mit so viel Halt wie nötig?",
@@ -102,7 +102,7 @@ var QUALITAET = {
           "zeigt einen Zusammenhang, der sonst schwer zu erschließen wäre; die Lernenden arbeiten damit"],
       b: ["Bild vergrößerbar", "Vorher-nachher oder Überlagerung", "die Darstellung reagiert auf Eingaben der Lernenden"],
       analog: "Folie, Tafelbild, Bildkarte, Wandkarte",
-      risiko: "Dekorative Bilder und Bewegung lenken ab.",
+      risiko: "Dekorative Bilder und Bewegung lenken ab. Bewegung, die ohne eine Handlung der Lernenden läuft, stört beim Lesen.",
       anliegen: "verstehen" },
     { id: "handeln", nr: "5.10", name: "Mit dem Inhalt handeln", fachname: "Interaktion",
       frage: "Können die Lernenden mit dem Inhalt fachlich etwas tun – mehr als blättern?",
@@ -199,7 +199,18 @@ var QUALITAET = {
       optionen: [{ id: "ja", name: "ja" }, { id: "nein", name: "nein" }], nurDigital: true },
     /* ab 4.10: nur beim Lernangebot mit KI. Leistung mit KI ist kein Lernnachweis (Bastani u. a. 2025). */
     { id: "ohneKi", frage: "Zeigen die Lernenden irgendwo, was sie ohne KI können?",
-      optionen: [{ id: "ja", name: "ja" }, { id: "nein", name: "nein" }], nurTyp: ["ki-angebot"] }
+      optionen: [{ id: "ja", name: "ja" }, { id: "nein", name: "nein" }], nurTyp: ["ki-angebot"] },
+    /* ab 4.18: vier Fragen aus den Erprobungen vom 8.11.2026 (Ruhe-Prinzip aus dem GGK-Labor, Politik-Werkstatt).
+       Persönliche Beobachtungen aus dem eigenen Unterricht, kein Wirksamkeitsnachweis. */
+    { id: "bewegung", frage: "Bewegt sich etwas auf der Seite, ohne dass die Lernenden etwas getan haben?",
+      optionen: [{ id: "nein", name: "nein" }, { id: "ja", name: "ja" }, { id: "keine", name: "nichts bewegt sich" }], nurDigital: true },
+    { id: "tipps", frage: "Wie viele Tipps oder Klicks brauchen die Lernenden bis zur ersten eigenen Antwort?",
+      optionen: [{ id: "wenige", name: "höchstens drei" }, { id: "viele", name: "mehr" }], nurDigital: true },
+    { id: "zwischenstand", frage: "Können die Lernenden zwischendurch prüfen, Fehler zurücknehmen und später weitermachen?",
+      optionen: [{ id: "ja", name: "ja" }, { id: "teilweise", name: "teilweise" }, { id: "nein", name: "nein" }],
+      nurTyp: ["quiz", "simulation", "html", "lernpfad", "entscheidung"] },
+    { id: "ergebnis", frage: "Überleben die Ergebnisse die Stunde – als Datei, in der Mappe oder an der Tafel?",
+      optionen: [{ id: "ja", name: "ja" }, { id: "nein", name: "nein" }], nurDigital: true }
   ],
 
   /* Stärke-Hinweise (Abschnitt 9), in einfacher Sprache. bMin: nötiger digitaler Beitrag. aMin: nötige Qualität. */
@@ -226,7 +237,9 @@ var QUALITAET = {
     "Welche Hilfen braucht es?",
     "Wie wird der Fortschritt sichtbar?",
     "Wie werden die Ergebnisse gesichert?",
-    "Wie ist die digitale Phase ins Gespräch und ins Fach eingebettet?"
+    "Wie ist die digitale Phase ins Gespräch und ins Fach eingebettet?",
+    "Was würde fehlen, wenn diese Bewegung still stünde?",
+    "Wie viele Tipps brauchen die Lernenden bis zur ersten eigenen Antwort?"
   ]
 };
 

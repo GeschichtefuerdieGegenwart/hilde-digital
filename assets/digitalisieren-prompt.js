@@ -43,6 +43,10 @@
     z.push("# Aufmerksamkeit und Ablenkung\nPlane so, dass das Tablet nicht ablenkt:\n" + liste(D.ablenkung));
     z.push("# Regeln\n" + liste([
       "Technik rettet keine schwache Aufgabe: Erst muss die Aufgabe gut sein, dann kann das Tablet helfen.",
+      "Erst denken, dann zeigen: Vor jeder Auflösung, Rückmeldung oder Animation legen sich die Lernenden fest. Nenne für jeden Vorschlag die Stelle, an der das geschieht.",
+      "Erst Ruhe, dann Bewegung: Die Seite ist still, bis eine Handlung sie bewegt. Bewegung nur, wenn sie eine Veränderung, einen Ablauf oder einen Zusammenhang zeigt – keine Belohnung, nichts beim bloßen Lesen.",
+      "Ein Arbeitsfenster je Phase: höchstens drei Tipps bis zur ersten eigenen Antwort, kein Seitenwechsel mitten in der Phase.",
+      "Erst das Gerät, dann der Raum: Was am Tablet entsteht, kommt an einer festen Stelle zurück ins Gespräch.",
       "Motivation allein ist kein Lernmehrwert.",
       "»Analog oder hybrid« ist ein vollwertiges Ergebnis.",
       "Erfinde keine Quellen, Zahlen oder App-Funktionen. Kennzeichne, was ich prüfen muss.",

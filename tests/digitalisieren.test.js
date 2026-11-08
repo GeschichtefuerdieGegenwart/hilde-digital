@@ -47,3 +47,10 @@ test("fehlende Angaben werden erfragt; unbekanntes Vorhaben ergibt nichts; keine
   assert.match(t, /Umfang: Phasenweise/);
   assert.doesNotMatch(t, /ChatGPT|OpenAI|Claude|Gemini|Copilot|%/);
 });
+
+/* ab 4.18: die fünf Sätze im Prompt */
+test("Prompt nennt Festlegung vor Auflösung, Ruhe vor Bewegung und die Rückkehr in den Raum", () => {
+  const t = P.baue({ vorhaben: "ideen" }, D, Q);
+  assert.ok(/Erst denken, dann zeigen/.test(t) && /Erst Ruhe, dann Bewegung/.test(t) && /zurück ins Gespräch/.test(t));
+  assert.ok(/drei Tipps/.test(t));
+});

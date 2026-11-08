@@ -69,7 +69,7 @@
   --dauer-register:280ms; /* Startseite: die zwei Platten finden ihr Register (einmalig) */
   --dauer-langsam:300ms;  /* Obergrenze der Regel; was länger dauert, steht unten als begründete Ausnahme */
   --dauer-staffel:30ms;   /* Versatz je Element beim Einflug (höchstens 8 Elemente) */
-  --dauer-einflug:240ms;  /* Einflug beim Scrollen, höchstens 6 px */
+  --dauer-einflug:240ms;  /* Einflug beim Scrollen, höchstens 6 px – seit 4.18 nicht mehr genutzt (Selbstprobe) */
   --dauer-stundenlinie:260ms; /* Balken der Stundenlinie wächst (left und width, begründete Ausnahme) */
   --dauer-stanzloch:160ms;    /* J · der erledigte Schritt gibt kurz nach */
   --dauer-andruck:220ms;      /* K · der Schnellhefter im Kopf drückt kurz an */
@@ -77,6 +77,7 @@
   --verzug-auszug:100ms;      /* G · das Originalbild erscheint erst, wenn die Platten auseinander sind */
   /* Begründete Ausnahmen über 300 ms (DESIGN.md): selten, einmalig oder räumlich, keine blockiert eine Eingabe. */
   --dauer-plattenwechsel:320ms; /* O · Platte über der Galerie */
+  --dauer-uebergang:320ms; /* Q · Ansichtswechsel eines ganzen Ausschnitts (Bühne »Fünf Sätze«); Token »übergang« aus signatur-design v7 */
   --dauer-leporello:380ms; --dauer-leporello-staffel:70ms; /* N · Schritte entfalten sich */
   --dauer-blatt:380ms;    /* P · Vom Blatt zum Tablet, einmaliges Abspielen (assets/digitalisieren.js) */
   --dauer-durchschlag:420ms; /* L · Durchschlag beim Kopieren */
@@ -905,7 +906,9 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
   .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
   .karte:hover,.werkzeug a:hover,.check-weg:hover,[data-bildrahmen]:hover{transform:none!important}
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none}
+  .fs-buehne-marke,.fs-geraet-huelle,.fs-geraet-schirm,.fs-geraet-rueckseite,.fs-buehne-wort{transition-duration:0s!important} /* Reader-Paced: die Bühne wechselt sofort, kein Überblenden */
 }
+html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs-geraet-huelle,html[data-bewegung="weniger"] .fs-geraet-schirm,html[data-bewegung="weniger"] .fs-geraet-rueckseite,html[data-bewegung="weniger"] .fs-buehne-wort{transition-duration:0s!important}
 html[data-bewegung="weniger"] *,html[data-bewegung="weniger"] *::before,html[data-bewegung="weniger"] *::after{transition-property:opacity,color,background-color,border-color!important;transition-duration:var(--dauer-aus)!important;scroll-behavior:auto!important}
 html[data-bewegung="weniger"] .registrieren .wahlflaeche,html[data-bewegung="weniger"] .registrieren .collage-karte{animation:none!important}
 html[data-bewegung="weniger"] dialog.lichtbild[open],html[data-bewegung="weniger"] dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
@@ -989,7 +992,8 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .registrieren .collage-karte.c1{animation:reg-ki var(--dauer-register) var(--ease-register) both}
 .registrieren .collage-karte.c2{animation:reg-lernen var(--dauer-register) var(--ease-register) both}
 
-/* Einflug beim Scrollen: einmal, kurz, höchstens 6 px (bis Version 4.8 Teil 1: 24 px). Nur mit JavaScript und ohne »weniger Bewegung«.
+/* Einflug beim Scrollen – seit Version 4.18 nicht mehr aktiv (hilde.js setzt .einflug-an nicht mehr; Selbstprobe »Erst Ruhe, dann Bewegung«).
+   Früher: einmal, kurz, höchstens 6 px (bis Version 4.8 Teil 1: 24 px). Nur mit JavaScript und ohne »weniger Bewegung«.
    Ab Version 4.3 nur noch als Verschiebung: Die Inhalte sind immer sichtbar (auch im Druck und auf
    ganzseitigen Bildschirmfotos), sie rücken nur beim Hereinscrollen an ihren Platz. */
 @media (prefers-reduced-motion:no-preference){
@@ -1442,7 +1446,7 @@ main .ls-eins-satz{max-width:16ch}
   html.nur-karte .tafelkarte textarea,html.nur-karte .tafelkarte input{border:2px solid #000;min-height:5rem;background:#fff} /* taste-skill-ignore: Druckfassung */
   html.nur-karte .tafelkarte-regeln{font-size:1.6rem}
   .ablauf>li,.stolper-liste>div{break-inside:avoid;background:#fff;border:1px solid #999} /* taste-skill-ignore: Druckfassung */
-  .kopfnotiz .knopf,[data-drucken],.fuss-einstellung{display:none} /* Schalter im Fuß gelten nur im Browser, nicht auf Papier */
+  .kopfnotiz .knopf,.kopfnotiz .textlink,[data-drucken],.fuss-einstellung{display:none} /* Schalter im Fuß gelten nur im Browser, nicht auf Papier */
   .leitsaetze-seite{padding-block:0!important}
   body:has(.leitsaetze-seite) .fuss{margin-top:0}
   body:has(.leitsaetze-seite) main{min-height:0}
@@ -1632,3 +1636,78 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .fb-weg.an .fb-nr{background:var(--flaeche);color:var(--text)}
 .fb-weg.ruhe{background:transparent;border-color:var(--stahl);color:var(--leise)}
 @media print{ /* taste-skill-ignore: Druckfassung */ .film,.film-knopf{display:none!important}}
+
+
+/* ---------- Fünf Sätze (fuenf-saetze.html, ab Version 4.18) ----------
+   Farben wie auf der Leitsätze-Seite: Karton = Papier, Petrol = Tablet, Druckschwarz = Plenum. Keine dritte Farbe.
+   Das Schaubild steht still. Der »Weg durch die Stunde« (Q) ist Scrollytelling nach den Regeln in DESIGN.md:
+   feste Bühne links, fünf Abschnitte rechts; der Rahmen trägt data-satz, die Bühne wechselt per CSS in --dauer-uebergang,
+   nur transform und opacity. Bei »weniger Bewegung« kein Übergang. Ohne JavaScript steht Zustand 1, alles bleibt lesbar. */
+.fs-schaubild{margin:0;display:grid;gap:var(--a3)}
+.fs-linie{position:relative;height:2.6rem;display:grid;grid-template-columns:repeat(5,1fr);align-items:end}
+.fs-linie-spur{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--stahl)}
+.fs-linie-spur::after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left:8px solid var(--stahl);border-right:0}
+.fs-linie-phase{grid-column:calc(var(--von) + 1) / calc(var(--bis) + 1);text-align:center;font-size:var(--gr-klein);color:var(--leise);padding-bottom:.5rem;position:relative}
+.fs-linie-phase::after{content:"";position:absolute;left:0;bottom:-4px;width:2px;height:12px;background:var(--stahl)}
+.fs-karten{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--a2)}
+.fs-karte{position:relative;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);padding:var(--a3);display:grid;gap:.6rem;align-content:start;box-shadow:var(--platte)} /* taste-skill-ignore: versetzte Druckplatte */
+.fs-karte.fs-papier{--platte-farbe:var(--karton)}
+.fs-karte.fs-tablet{border-color:var(--lernen);--platte-farbe:var(--lernen-zart)}
+.fs-karte.fs-plenum{border-color:var(--text);--platte-farbe:var(--karton)}
+.fs-nr{font:700 1.5rem/1 var(--schrift-titel);color:var(--stahl);font-variant-numeric:tabular-nums}
+.fs-karte.fs-tablet .fs-nr{color:var(--lernen)}
+.fs-karte.fs-plenum .fs-nr{color:var(--text)}
+.fs-karte h3{margin:0;font:700 clamp(1.25rem,1.1rem + .6vw,1.5rem)/1.15 var(--schrift-titel);letter-spacing:-.01em}
+.fs-dann{color:var(--lernen)}
+.fs-karte p{margin:0;font-size:var(--gr-klein);line-height:1.45}
+.fs-frage{color:var(--leise);border-top:2px solid var(--linie);padding-top:.6rem;font-style:italic}
+.fs-immer{margin:0;background:var(--karton);border-radius:var(--rund);padding:var(--a2) var(--a3);text-align:center}
+@media (max-width:1100px){.fs-karten{grid-template-columns:repeat(2,minmax(0,1fr))}.fs-linie{display:none}}
+@media (max-width:600px){.fs-karten{grid-template-columns:1fr}}
+
+.fs-weg{scroll-margin-top:var(--a4)}
+.fs-scroll{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--a6);align-items:start;margin-top:var(--a4)}
+.fs-buehne{position:sticky;top:var(--a3);background:var(--flaeche);border-radius:var(--rund);padding:var(--a4);display:grid;gap:var(--a4);box-shadow:var(--platte)} /* taste-skill-ignore: versetzte Druckplatte */
+.fs-buehne-linie{position:relative;height:3.4rem}
+.fs-buehne-spur{position:absolute;left:0;right:0;top:1.1rem;height:2px;background:var(--stahl)}
+.fs-buehne-spur::before,.fs-buehne-spur::after{content:"";position:absolute;top:-8px;width:2px;height:18px;background:var(--stahl)}
+.fs-buehne-spur::before{left:40%}.fs-buehne-spur::after{left:80%}
+/* Die Marke ist ein 100 % breiter, unsichtbarer Läufer mit dem Punkt am linken Ende; translateX in Prozent bezieht sich auf
+   seine eigene Breite, so landet der Punkt bei 10 · 30 · 50 · 70 · 90 % der Spur – nur transform, kein left. */
+.fs-buehne-marke{position:absolute;top:calc(1.1rem - 9px);left:0;width:calc(100% - 20px);height:20px;transform:translateX(10%);transition:transform var(--dauer-uebergang) var(--ease-beidseits)}
+.fs-buehne-marke::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--text)}
+.fs-scroll[data-satz="2"] .fs-buehne-marke{transform:translateX(30%)}
+.fs-scroll[data-satz="3"] .fs-buehne-marke{transform:translateX(50%)}
+.fs-scroll[data-satz="4"] .fs-buehne-marke{transform:translateX(70%)}
+.fs-scroll[data-satz="5"] .fs-buehne-marke{transform:translateX(90%)}
+.fs-buehne-wort{position:absolute;top:2.2rem;left:0;right:0;text-align:center;font-weight:700;font-size:var(--gr-klein);opacity:0;transition:opacity var(--dauer-schnell) var(--ease-out)}
+.fs-scroll[data-satz="1"] [data-fs-wort="1"],.fs-scroll[data-satz="2"] [data-fs-wort="2"],.fs-scroll[data-satz="3"] [data-fs-wort="3"],.fs-scroll[data-satz="4"] [data-fs-wort="4"],.fs-scroll[data-satz="5"] [data-fs-wort="5"]{opacity:1}
+.fs-geraet{position:relative;justify-self:center;width:min(100%,11rem);aspect-ratio:3/4}
+.fs-geraet-rahmen{position:absolute;inset:0;border:8px solid var(--lernen);border-radius:14px;background:var(--flaeche);box-shadow:6px 6px 0 0 var(--lernen-tief)} /* taste-skill-ignore: versetzte Druckplatte */
+.fs-geraet-schirm{position:absolute;inset:8px;display:grid;gap:.7rem;align-content:start;padding:1.1rem .9rem;opacity:0;transition:opacity var(--dauer-uebergang) var(--ease-out)}
+.fs-geraet-schirm i{display:block;height:10px;border-radius:2px;background:var(--lernen);opacity:.75}
+.fs-geraet-schirm i:nth-child(2){width:70%}.fs-geraet-schirm i:nth-child(3){width:85%}
+.fs-geraet-huelle{position:absolute;inset:-4px;border-radius:16px;background:var(--karton);border:2px solid var(--stahl);transform-origin:left center;transition:transform var(--dauer-uebergang) var(--ease-beidseits),opacity var(--dauer-uebergang) var(--ease-out)}
+.fs-geraet-rueckseite{position:absolute;inset:0;border-radius:14px;background:var(--text);color:var(--flaeche);display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font:700 1.0625rem/1.25 var(--schrift-titel);opacity:0;transition:opacity var(--dauer-uebergang) var(--ease-out)}
+/* Zustände: 1–2 Hülle zu (Papierphasen) · 3–4 offen (Arbeit am Gerät) · 5 umgedreht (Plenum). */
+.fs-scroll[data-satz="3"] .fs-geraet-huelle,.fs-scroll[data-satz="4"] .fs-geraet-huelle,.fs-scroll[data-satz="5"] .fs-geraet-huelle{transform:rotateY(-80deg) translateX(-10%);opacity:0}
+.fs-scroll[data-satz="3"] .fs-geraet-schirm,.fs-scroll[data-satz="4"] .fs-geraet-schirm{opacity:1}
+.fs-scroll[data-satz="5"] .fs-geraet-rueckseite{opacity:1}
+.fs-buehne-stand{margin:0;text-align:center;color:var(--leise);font-size:var(--gr-klein);font-variant-numeric:tabular-nums}
+.fs-abschnitte{list-style:none;margin:0;padding:0;display:grid;gap:var(--a8)}
+.fs-abschnitt{display:grid;gap:.8rem;min-height:40vh;align-content:center;padding-block:var(--a4);border-top:2px solid var(--linie);scroll-margin-top:var(--a6)}
+.fs-abschnitt:first-child{border-top:0}
+.fs-abschnitt-nr{margin:0;font-weight:700;color:var(--leise);font-size:var(--gr-klein)}
+.fs-abschnitt h3{margin:0;font:700 clamp(1.625rem,1.25rem + 1.3vw,2.375rem)/1.14 var(--schrift-titel);letter-spacing:-.01em}
+.fs-abschnitt p{margin:0;max-width:52ch}
+.fs-scroll[data-satz="1"] .fs-abschnitt[data-satz="1"] h3,.fs-scroll[data-satz="2"] .fs-abschnitt[data-satz="2"] h3,.fs-scroll[data-satz="3"] .fs-abschnitt[data-satz="3"] h3,.fs-scroll[data-satz="4"] .fs-abschnitt[data-satz="4"] h3,.fs-scroll[data-satz="5"] .fs-abschnitt[data-satz="5"] h3{color:var(--lernen-tief)}
+@media (max-width:900px){
+  .fs-scroll{grid-template-columns:1fr;gap:var(--a3)}
+  .fs-buehne{top:0;grid-template-columns:minmax(0,1fr) 4.5rem;align-items:center;gap:var(--a3);padding:var(--a3);z-index:2}
+  .fs-geraet{width:4.5rem}
+  .fs-buehne-stand{grid-column:1/-1}
+  .fs-abschnitt{min-height:0}
+}
+@media (prefers-reduced-motion:reduce){.fs-buehne-marke,.fs-geraet-huelle,.fs-geraet-schirm,.fs-geraet-rueckseite,.fs-buehne-wort{transition:none}}
+html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs-geraet-huelle,html[data-bewegung="weniger"] .fs-geraet-schirm,html[data-bewegung="weniger"] .fs-geraet-rueckseite,html[data-bewegung="weniger"] .fs-buehne-wort{transition:none}
+@media print{ /* taste-skill-ignore: Druckfassung */ .fs-buehne{position:static;box-shadow:none}.fs-karte,.fs-buehne{box-shadow:none}.fs-abschnitt{min-height:0}}
