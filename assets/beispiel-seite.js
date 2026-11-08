@@ -174,6 +174,12 @@
     if (!nurKI) abschnitt("Was muss am Unterricht angepasst werden?", punkte(b.anpassungen), "nötige Anpassungen");
     abschnitt("Stolpersteine", punkte(b.stolpersteine), "Stolpersteine");
     if (b.erfahrung) abschnitt("Persönliche Beobachtung", "<p>" + esc(b.erfahrung) + '</p><p class="leise klein">Eine persönliche Beobachtung, kein Wirksamkeitsnachweis.</p>');
+    // ab 4.18: Was nach einer Erprobung geändert wurde – Zurück zu Papier oder Nachschärfen ist ein Fortschritt, kein Scheitern.
+    if (b.nachgeschaerft && b.nachgeschaerft.punkte && b.nachgeschaerft.punkte.length) {
+      var nd = /^(\d{4})-(\d{2})-(\d{2})$/.exec(b.nachgeschaerft.datum || "");
+      abschnitt("Nach der Erprobung nachgeschärft" + (nd ? " (" + Number(nd[3]) + "." + Number(nd[2]) + "." + nd[1] + ")" : ""),
+        punkte(b.nachgeschaerft.punkte) + '<p class="leise klein">Aus der Beobachtung nach der Stunde abgeleitet. Was sich bewährt, steht später im Digital-Check und in den <a href="tablet-phasen.html">Regeln für Tablet-Phasen</a>.</p>');
+    }
 
     var oeffnen = b.link
       ? '<a class="knopf" href="' + esc(b.link) + '" target="_blank" rel="noopener">Anwendung öffnen <span aria-hidden="true">↗</span><span class="sr-only"> (öffnet in einem neuen Tab, braucht Internet)</span></a>' +

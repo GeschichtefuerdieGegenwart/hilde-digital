@@ -19,7 +19,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -337,6 +337,36 @@ def main():
         pruefe(seiten == 1, f"Leitsätze: Druck auf genau einer Seite A4 ({seiten})")
         pg.context.close()
 
+        # 2i. Fünf Sätze (ab Version 4.18): Schaubild steht, der Weg folgt dem Scrollen
+        pg = neue_seite(b)
+        pg.goto(url("fuenf-saetze.html"))
+        pruefe(pg.locator(".fs-karte").count() == 5 and "Entwurf" in pg.inner_text("main") and pg.get_attribute("#fs-scroll", "data-satz") == "1", "Fünf Sätze: fünf Karten, als Entwurf gekennzeichnet, Bühne startet bei Satz 1")
+        pg.evaluate("document.getElementById('fs-satz-4').scrollIntoView({block:'center'})"); pg.wait_for_timeout(500)
+        pruefe(pg.get_attribute("#fs-scroll", "data-satz") == "4" and "Satz 4 von 5" in pg.inner_text("#fs-ansage"), "Fünf Sätze: Scrollen setzt Satz 4, der Stand wird angesagt")
+        pruefe(pg.evaluate("getComputedStyle(document.querySelector('.fs-geraet-schirm')).opacity") == "1", "Fünf Sätze: bei Satz 4 ist das Gerät offen")
+        pg.evaluate("document.getElementById('fs-satz-5').scrollIntoView({block:'center'})"); pg.wait_for_timeout(500)
+        pruefe(pg.evaluate("getComputedStyle(document.querySelector('.fs-geraet-rueckseite')).opacity") == "1", "Fünf Sätze: bei Satz 5 ist das Gerät umgedreht")
+        pruefe(pg.locator("[data-autoplay], [autoplay]").count() == 0, "Fünf Sätze: nichts spielt von selbst")
+        pruefe(not pg.konsole, f"Fünf Sätze: keine Konsolenfehler {pg.konsole}")
+        pg.context.close()
+        pg = neue_seite(b, reduced_motion="reduce")
+        pg.goto(url("fuenf-saetze.html"))
+        pruefe(pg.evaluate("getComputedStyle(document.querySelector('.fs-buehne-marke')).transitionDuration") in ("0s", ""), "Fünf Sätze: bei weniger Bewegung kein Übergang auf der Bühne")
+        pg.context.close()
+        pg = neue_seite(b)
+        pg.goto(url("selbstcheck.html"))
+        pruefe("Erst Ruhe, dann Bewegung" in pg.evaluate("PRUEFPROMPT ? PRUEFPROMPT.baue({typ:'html'}) : ''") if pg.evaluate("typeof PRUEFPROMPT") == "object" else True, "Prüf-Auftrag: Regel »Erst Ruhe, dann Bewegung«")
+        pg.goto(url("tablet-phasen.html"))
+        pruefe(pg.locator(".stolper-liste > div").count() == 11 and "noch nicht erprobt" in pg.inner_text("main"), "Tablet-Phasen: elf Stolpersteine, Vorschlag gekennzeichnet")
+        pg.goto(url("beobachtung.html"))
+        pruefe(pg.locator("#b-ueberall").count() == 1 and pg.locator("#b-bruch").count() == 1, "Beobachtung: zwei Fragen zum Voneinander-Lernen")
+        pg.fill("#b-ueberall", "Freitext"); pg.check('input[name="entscheidung"][value="nachschaerfen"]')
+        pruefe(pg.evaluate("Object.keys(localStorage).filter(k => JSON.stringify(localStorage.getItem(k)).includes('Freitext')).length") == 0, "Beobachtung: Freitext wird nicht gespeichert")
+        pg.goto(url("beispiel.html#politik-werkstatt"))
+        pruefe("liegt vor (8.11.2026)" in pg.inner_text("main") and "Nach der Erprobung nachgeschärft" in pg.inner_text("main"), "Galerie: Politik-Werkstatt zeigt Beobachtung und Nachschärfung")
+        pruefe(not pg.konsole, f"4.18: keine Konsolenfehler {pg.konsole}")
+        pg.context.close()
+
         # 2h. Papierfrage und Beobachtungsbogen geschärft (ab Version 4.13)
         pg = neue_seite(b)
         pg.goto(url("unterricht.html#t-probe"))
@@ -360,12 +390,12 @@ def main():
         # 2g. Werkstatt-Seiten (ab Version 4.9): Unterrichtsmuster, Aufträge, KI für dein Fach, Sicher arbeiten
         pg = neue_seite(b)
         pg.goto(url("muster.html"))
-        pruefe(pg.locator(".muster-karte").count() == 9 and pg.locator(".muster-karte .muster-weg").count() == 27, "Muster: neun Muster mit je drei Wegen")
+        pruefe(pg.locator(".muster-karte").count() == 11 and pg.locator(".muster-karte .muster-weg").count() == 33, "Muster: elf Muster mit je drei Wegen")
         pg.fill("#w-fach", "Pflege")
         pruefe("Fach: Pflege" in pg.input_value("#a-stolper") and "# Prüfkriterien" in pg.input_value("#a-stolper"), "Muster: Fach steht in jedem Auftrag")
         pg.click('#muster-filter [data-filter="erarbeitung"]')
         sichtbar = pg.locator(".muster-karte:not([hidden])").count()
-        pruefe(0 < sichtbar < 9 and "Muster" in pg.inner_text("#muster-anzahl"), f"Muster: Filter nach Phase ({sichtbar})")
+        pruefe(0 < sichtbar < 11 and "Muster" in pg.inner_text("#muster-anzahl"), f"Muster: Filter nach Phase ({sichtbar})")
         pg.reload()
         pruefe(pg.locator(".muster-karte:not([hidden])").count() == sichtbar and pg.input_value("#w-fach") == "", "Muster: Filter bleibt, Freitext nicht")
         pruefe(pg.locator('.weg-tablet a[href^="beispiel.html#"]').count() >= 5, "Muster: Tablet-Wege verlinken Galerie-Beispiele")

@@ -248,32 +248,10 @@ var HILDE = (function () {
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wechselZurueck); else setTimeout(wechselZurueck, 0);
 
-  /* Einflug beim Scrollen (ab Version 4.2): Abschnitte außerhalb des Bildschirms gleiten einmal kurz herein.
-     Höchstens 6 px (seit 4.8 Teil 2), --dauer-einflug, gestaffelt zu je --dauer-staffel, höchstens 8 auf einmal. Nicht bei »weniger Bewegung«,
-     nicht ohne IntersectionObserver. Was beim Laden schon zu sehen ist, wird nie versteckt. */
-  var EINFLUG = ".einblick, .einblick-klein, .werkzeug, .check-wege, .kennzahlen > li, " +
-    ".zusammen-liste > li, .bausteine-liste > li, .alle-band-raster, .detail-ansichten, .inhalte-liste > div";
-  function einflug() {
-    if (ruhig() || !("IntersectionObserver" in window)) return;
-    var hoehe = window.innerHeight || 800;
-    var ziele = [].slice.call(document.querySelectorAll(EINFLUG)).filter(function (e) {
-      return e.getBoundingClientRect().top > hoehe; // nur, was noch nicht zu sehen ist
-    });
-    if (!ziele.length) return;
-    ziele.forEach(function (e) { e.classList.add("einflug"); });
-    document.documentElement.classList.add("einflug-an");
-    var io = new IntersectionObserver(function (eintraege) {
-      var n = 0;
-      eintraege.forEach(function (x) {
-        if (!x.isIntersecting) return;
-        x.target.style.setProperty("--einflug-verzug", Math.min(n++, 7) * dauer("staffel") + "ms");
-        x.target.classList.add("da");
-        io.unobserve(x.target);
-      });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    ziele.forEach(function (e) { io.observe(e); });
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", einflug); else setTimeout(einflug, 0);
+  /* Einflug beim Scrollen (Version 4.2 bis 4.17): gestrichen in 4.18 (Selbstprobe, Regel »Erst Ruhe, dann Bewegung«).
+     Abschnitte rückten beim Hereinscrollen 6 px an ihren Platz – eine Bewegung beim bloßen Lesen, ohne Handlung
+     der Lesenden und ohne Bedeutung. Die Seite verlangt von Lernseiten Ruhe beim Lesen; dann gilt das auch hier.
+     Die Klassen .einflug und .einflug-an werden nicht mehr gesetzt; die Stile in hilde.css bleiben als Dokumentation. */
 
   /* Fehlt ein Galeriebild, zeigt der Rahmen Rasterpunkte und »Bild nicht verfügbar« statt eines kaputten Bildes. */
   document.addEventListener("error", function (e) {

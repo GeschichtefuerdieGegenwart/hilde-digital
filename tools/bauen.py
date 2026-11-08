@@ -25,6 +25,7 @@ SEITEN = [
     ("fortbildung.html", "Fortbildungsbaustein: 45 Minuten – Papierprobe", "unterricht"),
     ("beratung.html", "Beratungsstunde: acht Wochen – Papierprobe", "unterricht"),
     ("leitsaetze.html", "Leitsätze zur Diskussion – Papierprobe", ""),
+    ("fuenf-saetze.html", "Guter digitaler Unterricht in fünf Sätzen – Papierprobe", "unterricht"),
     ("digital-check.html", "Digital-Check – Papierprobe", "unterricht"),
     ("selbstcheck.html", "Digital-Check: Selbst prüfen – Papierprobe", "unterricht"),
     ("mehrwert.html", "So arbeitet der Digital-Check – Papierprobe", "unterricht"),

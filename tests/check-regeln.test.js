@@ -160,3 +160,32 @@ test("Schritte: längerer Text am Gerät ergibt den Hinweis auf Papier, höchste
   assert.equal(voll.schritte[0].art, "fachlich");
   assert.ok(!voll.schritte.some((s) => /\d+ ?%/.test(s.text)), "keine Prozentwerte");
 });
+
+/* ab 4.18: vier Rahmenfragen aus den Erprobungen vom 8.11.2026 */
+test("Rahmenfragen 4.18: Bewegung, Tipps und Ergebnis nur digital; Zwischenstand nur bei Lege- und Lernumgebungen", () => {
+  const ids = (typ) => C.rahmenFragen(typ).map((r) => r.id);
+  for (const id of ["bewegung", "tipps", "ergebnis"]) {
+    assert.ok(ids("html").includes(id), id + " bei HTML");
+    assert.ok(!ids("arbeitsblatt").includes(id), id + " nicht beim Arbeitsblatt");
+  }
+  assert.ok(ids("quiz").includes("zwischenstand"));
+  assert.ok(ids("html").includes("zwischenstand"));
+  assert.ok(!ids("video").includes("zwischenstand"));
+});
+
+test("Schritte 4.18: Bewegung ohne Handlung, viele Tipps, kein Zwischenstand, Ergebnis nur im Browser", () => {
+  const r = C.bericht({ typ: "html", bereiche: ["fach"], werte: { fach: { a: 3 } },
+    rahmen: { fachlich: "ja", bewegung: "ja", tipps: "viele", zwischenstand: "nein", ergebnis: "nein" } });
+  assert.deepEqual(r.schritte.map((s) => s.art), ["bewegung", "tipps", "zwischenstand"], "höchstens drei, in fester Reihenfolge");
+  assert.match(r.schritte[0].text, /still/);
+  assert.equal(r.schritte[0].bereich, "darstellung");
+  assert.match(r.schritte[1].text, /drei Tipps/);
+  assert.equal(r.schritte[1].bereich, "orientierung");
+  assert.match(r.schritte[2].text, /zurücklegen/);
+  const e = C.bericht({ typ: "video", bereiche: ["fach"], werte: { fach: { a: 3 } }, rahmen: { fachlich: "ja", ergebnis: "nein", zwischenstand: "nein" } });
+  assert.ok(e.schritte.some((s) => s.art === "ergebnis" && s.bereich === "ablauf"), "Ergebnis zählt beim Video");
+  assert.ok(!e.schritte.some((s) => s.art === "zwischenstand"), "Zwischenstand zählt beim Video nicht");
+  const still = C.bericht({ typ: "html", bereiche: ["fach"], werte: { fach: { a: 3 } }, rahmen: { fachlich: "ja", bewegung: "keine", tipps: "wenige", zwischenstand: "ja", ergebnis: "ja" } });
+  assert.ok(!still.schritte.some((s) => ["bewegung", "tipps", "zwischenstand", "ergebnis"].includes(s.art)), "gute Antworten lösen keinen Schritt aus");
+  assert.ok(!r.schritte.concat(e.schritte).some((s) => /\d+ ?%/.test(s.text)), "keine Prozentwerte");
+});

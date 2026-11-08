@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <meta name="description" content="Papierprobe · Kompass für KI und digitalen Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 <title>Nach der Stunde: Beobachtungsbogen – Papierprobe</title>
-<link rel="stylesheet" href="assets/hilde.css?v=57ad8d6a">
+<link rel="stylesheet" href="assets/hilde.css?v=2bb1edc0">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -96,6 +96,15 @@
         <label for="b-naechstes">Was änderst du beim nächsten Mal? <span class="leise">(freiwillig)</span></label>
         <textarea id="b-naechstes" rows="2"></textarea>
       </div>
+      <div class="eingabe bogen-notiz">
+        <label for="b-ueberall">Gilt das, was du gelernt hast, nur in deinem Fach – oder überall? <span class="leise">(freiwillig)</span></label>
+        <textarea id="b-ueberall" rows="2"></textarea>
+      </div>
+      <div class="eingabe bogen-notiz">
+        <label for="b-bruch">Wo würde es in einem anderen Fach nicht passen? <span class="leise">(freiwillig)</span></label>
+        <textarea id="b-bruch" rows="2"></textarea>
+      </div>
+      <p class="leise klein">Die zwei letzten Fragen helfen, aus einer Stunde eine Regel für alle zu machen – oder zu merken, dass sie nur hier gilt.</p>
     </fieldset>
 
     <div class="weg-steuerung"><button type="submit" class="knopf">Auswertung zeigen →</button><button type="button" class="knopf still" id="drucken">Bogen drucken</button></div>
@@ -117,7 +126,7 @@
 </div>
 <script src="assets/daten/taxonomien.js?v=e76820f0"></script>
 <script src="assets/regeln.js?v=5a952e94"></script>
-<script src="assets/hilde.js?v=555b8846"></script>
+<script src="assets/hilde.js?v=4f48abf9"></script>
 <script src="assets/beobachtung.js?v=a28f6d34"></script>
 
 </main>

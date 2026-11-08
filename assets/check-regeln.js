@@ -153,6 +153,19 @@
     if (gilt.lesen && rahmen.lesen === "ja") {
       l.push({ art: "lesen", bereich: "zugang", text: "Gib den längeren Text zusätzlich auf Papier aus. Lange Sachtexte verstehen viele auf Papier etwas besser, besonders unter Zeitdruck.", aufwand: "klein" });
     }
+    /* ab 4.18: vier Schritte aus den Erprobungen vom 8.11.2026 – Ruhe-Prinzip und Lehren der Politik-Werkstatt. */
+    if (gilt.bewegung && rahmen.bewegung === "ja") {
+      l.push({ art: "bewegung", bereich: "darstellung", text: "Lass die Seite still, bis eine Handlung sie bewegt. Bewegung lohnt sich nur, wenn sie eine Veränderung, einen Ablauf oder einen Zusammenhang zeigt – sonst lenkt sie beim Lesen ab.", aufwand: "klein" });
+    }
+    if (gilt.tipps && rahmen.tipps === "viele") {
+      l.push({ art: "tipps", bereich: "orientierung", text: "Kürze den Weg zur ersten eigenen Antwort: höchstens drei Tipps, kein Seitenwechsel innerhalb einer Arbeitsphase. Eine Übersicht, auf der man sich umschaut, ist ruhiger als viele Seiten nacheinander.", aufwand: "mittel" });
+    }
+    if (gilt.zwischenstand && rahmen.zwischenstand && rahmen.zwischenstand !== "ja") {
+      l.push({ art: "zwischenstand", bereich: "rueckmeldung", text: "Lass einen Zwischenstand prüfen, etwa nach fünf gelegten Karten, und biete »Falsche zurücklegen« an. Ein gespeicherter Stand lässt die Lernenden unterbrechen und weitermachen.", aufwand: "mittel" });
+    }
+    if (gilt.ergebnis && rahmen.ergebnis === "nein") {
+      l.push({ art: "ergebnis", bereich: "ablauf", text: "Sichere die Ergebnisse außerhalb des Browsers: als Datei zum Herunterladen, in der Mappe oder an der Tafel. Was nur im Browser liegt, ist nach einem Geräte- oder Browserwechsel weg.", aufwand: "klein" });
+    }
     p.filter(function (x) { return x.ungenutzt; }).forEach(function (x) {
       l.push({ art: "potenzial", bereich: x.id, text: x.bereich.name + ": Eine einfache digitale Funktion könnte hier helfen – " + x.bereich.b[1] + ".", aufwand: "klein" });
     });
