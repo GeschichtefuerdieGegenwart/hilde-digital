@@ -66,50 +66,180 @@
 <section class="abschnitt" aria-labelledby="t-hebel"><div class="huelle stapel-gross">
   <div class="stapel">
     <h2 id="t-hebel">Die sechs Hebel</h2>
-    <p class="mass">In allen erprobten Lernseiten der Galerie tut das Gerät eines von sechs Dingen. Jedes davon geht auf Papier nicht oder nur mühsam.</p>
+    <p class="mass">In allen erprobten Lernseiten der Galerie tut das Gerät eines von sechs Dingen. Jedes davon geht auf Papier nicht oder nur mühsam. Neben jedem Hebel steht eine kleine Probe: Erst legst du dich fest, dann ändert sich etwas.</p>
   </div>
-  <ol class="sh-hebel-liste">
+  <ol class="sh-hebel-liste" id="sh-hebel-liste">
     <li class="sh-hebel" id="sh-verdecken">
-      <h3>Verdecken</h3>
-      <p>Das Gerät hält die Auflösung zurück, bis du dich festgelegt hast.</p>
-      <p><b>Wofür:</b> selbst denken, bevor man die Lösung kennt. In Geschichte hält es die Zukunft offen.</p>
-      <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#m20-dilemmata">Drei Dilemmata (M20)</a> – was man damals nicht wissen konnte, ist geschwärzt, bis die Klasse abgestimmt hat.</p>
-      <p class="sh-papier"><b>Ohne Gerät:</b> umgeknickte Karte, Umschlag – hält nicht dicht.</p>
+      <div class="sh-hebel-text">
+        <h3>Verdecken</h3>
+        <p>Das Gerät hält die Auflösung zurück, bis du dich festgelegt hast.</p>
+        <p><b>Wofür:</b> selbst denken, bevor man die Lösung kennt. In Geschichte hält es die Zukunft offen.</p>
+        <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#m20-dilemmata">Drei Dilemmata (M20)</a> – was man damals nicht wissen konnte, ist geschwärzt, bis die Klasse abgestimmt hat.</p>
+        <p class="sh-papier"><b>Ohne Gerät:</b> umgeknickte Karte, Umschlag – hält nicht dicht.</p>
+      </div>
+      <div class="sh-kniff" id="sh-s" aria-labelledby="sh-s-frage">
+        <p class="sh-etikett">Probe · so in M20, vereinfacht</p>
+        <p class="sh-kniff-frage" id="sh-s-frage">Mai 1940. Frankreich wankt. Weiterkämpfen oder über Verhandlungen nachdenken?</p>
+        <div class="sh-nur-mit-js sh-schritte">
+          <div class="sh-schritt"><p class="sh-schritt-titel">1 · Deine Entscheidung</p>
+            <div class="sh-wahl" id="sh-s-wahl"><button type="button" class="knopf still" aria-pressed="false" data-w="Weiterkämpfen">Weiterkämpfen</button><button type="button" class="knopf still" aria-pressed="false" data-w="Verhandlungen prüfen">Verhandlungen prüfen</button></div></div>
+          <div class="sh-schritt" id="sh-s-2" aria-disabled="true"><p class="sh-schritt-titel">2 · Wie sicher bist du dir?</p>
+            <div class="sh-wahl" id="sh-s-sicher"><button type="button" class="knopf still" aria-pressed="false" data-s="sicher">sicher</button><button type="button" class="knopf still" aria-pressed="false" data-s="eher sicher">eher sicher</button><button type="button" class="knopf still" aria-pressed="false" data-s="unsicher">unsicher</button></div></div>
+          <div class="sh-s-tafel" id="sh-s-tafel" hidden>
+            <p>Die Lehrkraft schreibt ein Codewort an die Tafel. Erst damit lässt sich auflösen. Hier zum Ausprobieren: Schreib irgendein Wort.</p>
+            <div class="sh-wahl"><label class="sr-only" for="sh-s-code">Codewort von der Tafel</label><input id="sh-s-code" class="sh-eingabe" autocomplete="off" placeholder="Codewort"><button type="button" class="knopf" id="sh-s-auf">Auflösen</button></div>
+          </div>
+        </div>
+        <details class="mehr sh-s-akte" id="sh-s-akte">
+          <summary>Was damals noch niemand wissen konnte</summary>
+          <p class="sh-s-zeile"><span>28. Mai 1940: Das britische Kriegskabinett entscheidet, weiterzukämpfen.</span><span class="sh-s-balken" aria-hidden="true"></span></p>
+          <p class="sh-s-zeile"><span>22. Juni 1940: Frankreich schließt einen Waffenstillstand mit Deutschland.</span><span class="sh-s-balken" aria-hidden="true"></span></p>
+          <p class="sh-s-zeile"><span>Sommer 1940: Großbritannien steht allein gegen Deutschland.</span><span class="sh-s-balken" aria-hidden="true"></span></p>
+        </details>
+        <p class="sh-kniff-stand sh-nur-mit-js" id="sh-s-stand" aria-live="polite">Erst entscheiden – dann siehst du, was geschah.</p>
+        <p class="sh-kniff-rueck" id="sh-s-rueck" hidden><b>Rückblick:</b> Würdest du jetzt anders entscheiden? Und wäre das gerecht gegenüber den Menschen damals, die den Ausgang nicht kannten?</p>
+      </div>
     </li>
     <li class="sh-hebel" id="sh-rueckmelden">
-      <h3>Rückmelden</h3>
-      <p>Das Gerät antwortet sofort und erklärt jede Antwort.</p>
-      <p><b>Wofür:</b> weiterarbeiten, ohne auf die Lehrkraft zu warten.</p>
-      <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#politik-werkstatt">Politik-Werkstatt</a> – »Passt · Vertretbar · Eher nicht«, jeweils mit Begründung, und ein Zwischenstand nach fünf Karten.</p>
-      <p class="sh-papier"><b>Ohne Gerät:</b> Musterlösung, Lehrkraft geht herum – für wenige, mit Verzug.</p>
+      <div class="sh-hebel-text">
+        <h3>Rückmelden</h3>
+        <p>Das Gerät antwortet sofort und erklärt jede Antwort.</p>
+        <p><b>Wofür:</b> weiterarbeiten, ohne auf die Lehrkraft zu warten.</p>
+        <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#politik-werkstatt">Politik-Werkstatt</a> – »Passt · Vertretbar · Eher nicht«, jeweils mit Begründung, und ein Zwischenstand nach fünf Karten.</p>
+        <p class="sh-papier"><b>Ohne Gerät:</b> Musterlösung, Lehrkraft geht herum – für wenige, mit Verzug.</p>
+      </div>
+      <div class="sh-kniff" id="sh-t" aria-labelledby="sh-t-frage">
+        <p class="sh-etikett">Probe · angelehnt an Station 2 der Politik-Werkstatt · Beispielaufgaben</p>
+        <p class="sh-kniff-frage" id="sh-t-frage">Welche Aufgabe erfüllt die Partei?</p>
+        <p class="sh-t-leiste sh-nur-mit-js" id="sh-t-leiste"><span>Zwischenstand:</span><span class="sh-t-punkt" aria-current="true">1</span><span class="sh-t-punkt">2</span><span class="sh-t-punkt">3</span><span class="sh-t-zwischen" id="sh-t-zwischen"></span></p>
+        <div class="sh-t-fall sh-nur-mit-js" id="sh-t-fall"></div>
+        <details class="mehr sh-nur-ohne-js">
+          <summary>Die drei Fälle mit allen Rückmeldungen</summary>
+          <ol class="sh-t-daten" id="sh-t-daten">
+            <li><p class="sh-t-text">Eine Partei stellt Kandidierende für die Bundestagswahl auf.</p><ul>
+              <li data-stufe="passt"><b>Politisches Personal auswählen</b> – Passt: Parteien wählen aus, wer für ein Amt kandidiert. Genau das geschieht hier.</li>
+              <li data-stufe="vertretbar"><b>Interessen bündeln</b> – Vertretbar: Wer kandidiert, steht für ein Programm. Der Kern ist aber die Auswahl von Personen.</li>
+              <li data-stufe="eher"><b>Gesetze beschließen</b> – Eher nicht: Gesetze beschließt das Parlament. Parteien stellen die Leute, die dort sitzen.</li></ul></li>
+            <li><p class="sh-t-text">Eine Partei schreibt aus vielen Forderungen ihrer Mitglieder ein Wahlprogramm.</p><ul>
+              <li data-stufe="eher"><b>Politisches Personal auswählen</b> – Eher nicht: Hier geht es um Inhalte, nicht um Personen.</li>
+              <li data-stufe="passt"><b>Interessen bündeln</b> – Passt: Aus vielen einzelnen Forderungen wird ein gemeinsames Programm.</li>
+              <li data-stufe="vertretbar"><b>Bürgerinnen und Bürger beteiligen</b> – Vertretbar: Mitglieder wirken mit. Im Ergebnis steht aber das gebündelte Programm.</li></ul></li>
+            <li><p class="sh-t-text">Eine Partei lädt alle Menschen der Stadt zu einem offenen Gesprächsabend ein.</p><ul>
+              <li data-stufe="passt"><b>Bürgerinnen und Bürger beteiligen</b> – Passt: Auch Menschen ohne Parteibuch können mitreden.</li>
+              <li data-stufe="eher"><b>Die Regierung kontrollieren</b> – Eher nicht: Kontrolle geschieht vor allem im Parlament.</li>
+              <li data-stufe="vertretbar"><b>Interessen bündeln</b> – Vertretbar: Was dort gesagt wird, kann später ins Programm eingehen.</li></ul></li>
+          </ol>
+        </details>
+        <p class="sh-kniff-stand sh-nur-mit-js" id="sh-t-stand" aria-live="polite">Wähle eine Antwort.</p>
+      </div>
     </li>
     <li class="sh-hebel" id="sh-messen">
-      <h3>Messen</h3>
-      <p>Das Gerät misst Zeit und Treffer, teilt zufällig zu und rechnet aus.</p>
-      <p><b>Wofür:</b> Daten erzeugen statt behaupten. Die Zeit geht ins Deuten, nicht ins Auszählen.</p>
-      <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#psycho-ds2">Psycho-Labor</a> – erst vermuten, dann der Selbstversuch, dann das eigene Ergebnis neben der Originalstudie.</p>
-      <p class="sh-papier"><b>Ohne Gerät:</b> Stoppuhr und Strichliste – die Zeit fehlt dann beim Deuten.</p>
+      <div class="sh-hebel-text">
+        <h3>Messen</h3>
+        <p>Das Gerät misst Zeit und Treffer, teilt zufällig zu und rechnet aus.</p>
+        <p><b>Wofür:</b> Daten erzeugen statt behaupten. Die Zeit geht ins Deuten, nicht ins Auszählen.</p>
+        <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#psycho-ds2">Psycho-Labor</a> – erst vermuten, dann der Selbstversuch, dann das eigene Ergebnis neben der Originalstudie.</p>
+        <p class="sh-papier"><b>Ohne Gerät:</b> Stoppuhr und Strichliste – die Zeit fehlt dann beim Deuten.</p>
+      </div>
+      <div class="sh-kniff" id="sh-u" aria-labelledby="sh-u-frage">
+        <p class="sh-etikett">Probe · ein Selbstversuch in klein</p>
+        <p class="sh-kniff-frage" id="sh-u-frage">Wie gut schätzt du fünf Sekunden?</p>
+        <p class="sh-nur-ohne-js leise">Diese Probe misst mit dem Gerät und braucht dafür JavaScript. Es ist in deinem Browser ausgeschaltet.</p>
+        <div class="sh-nur-mit-js sh-schritte">
+          <div class="sh-schritt"><p class="sh-schritt-titel">1 · Deine Vorhersage</p>
+            <div class="sh-wahl" id="sh-u-tipp"><button type="button" class="knopf still" aria-pressed="false" data-u="frueh">eher zu früh</button><button type="button" class="knopf still" aria-pressed="false" data-u="genau">ziemlich genau</button><button type="button" class="knopf still" aria-pressed="false" data-u="spaet">eher zu spät</button></div></div>
+          <div class="sh-schritt" id="sh-u-2" aria-disabled="true"><p class="sh-schritt-titel">2 · Drei Durchgänge – tippen oder Leertaste</p>
+            <div class="sh-wahl sh-u-zeile"><button type="button" class="knopf" id="sh-u-knopf" aria-disabled="true">Start</button><span class="sh-u-uhr" id="sh-u-uhr" aria-hidden="true">· · ·</span><span class="leise" id="sh-u-durchgang">Durchgang 1 von 3</span><button type="button" class="knopf still" id="sh-u-neu" hidden>Noch einmal</button></div></div>
+          <div class="sh-u-skala" id="sh-u-skala" aria-hidden="true">
+            <span class="sh-u-spur"></span><span class="sh-u-band" id="sh-u-band"></span>
+            <span class="sh-u-tick" style="left:0%"><span>2 s</span></span><span class="sh-u-tick" style="left:50%"><span>5 s</span></span><span class="sh-u-tick" style="left:100%"><span>8 s</span></span>
+            <span class="sh-u-tick sh-u-ziel" style="left:50%"></span>
+            <span class="sh-u-tipp" id="sh-u-tippmarke" hidden></span>
+            <span class="sh-u-punkt"></span><span class="sh-u-punkt"></span><span class="sh-u-punkt"></span>
+          </div>
+          <p class="sh-kniff-stand" id="sh-u-stand" aria-live="polite">Erst vorhersagen – dann misst das Gerät.</p>
+          <p class="leise klein">Die Uhr läuft verdeckt: Sie zeigt erst nach dem Stopp, wie lange es war. Nichts wird gespeichert.</p>
+        </div>
+      </div>
     </li>
     <li class="sh-hebel" id="sh-variieren">
-      <h3>Variieren</h3>
-      <p>Das Gerät lässt einen Wert verschieben und zeigt, was sich ändert – und was nicht.</p>
-      <p><b>Wofür:</b> Zusammenhänge sehen. Modelle als Modelle erkennen.</p>
-      <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#gene">Gene ohne Reisepass</a> – eine Grenze verschieben und sehen, was folgt.</p>
-      <p class="sh-papier"><b>Ohne Gerät:</b> Jede Variante wäre ein neues Blatt.</p>
+      <div class="sh-hebel-text">
+        <h3>Variieren</h3>
+        <p>Das Gerät lässt einen Wert verschieben und zeigt, was sich ändert – und was nicht.</p>
+        <p><b>Wofür:</b> Zusammenhänge sehen. Modelle als Modelle erkennen.</p>
+        <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#gene">Gene ohne Reisepass</a> – eine Grenze verschieben und sehen, was folgt.</p>
+        <p class="sh-papier"><b>Ohne Gerät:</b> Jede Variante wäre ein neues Blatt.</p>
+      </div>
+      <div class="sh-kniff" id="sh-v" aria-labelledby="sh-v-frage">
+        <p class="sh-etikett">Probe · Beispiel: 20 Stimmen, fünf Listen, zehn Sitze, vereinfacht verteilt</p>
+        <p class="sh-kniff-frage" id="sh-v-frage">Wie viele der fünf Listen kommen bei 5 % ins Klassenparlament?</p>
+        <div class="sh-nur-mit-js sh-schritte">
+          <div class="sh-wahl" id="sh-v-wahl"><button type="button" class="knopf still" aria-pressed="false" data-v="3">3</button><button type="button" class="knopf still" aria-pressed="false" data-v="4">4</button><button type="button" class="knopf still" aria-pressed="false" data-v="5">5</button></div>
+          <div class="sh-schritt" id="sh-v-2" aria-disabled="true">
+            <label class="sh-schritt-titel" for="sh-v-regler">Hürde: <span id="sh-v-wert">5</span> %</label>
+            <input type="range" id="sh-v-regler" class="sh-regler" min="0" max="20" step="1" value="5" disabled aria-valuetext="5 Prozent">
+            <div class="sh-wahl" id="sh-v-rast"><button type="button" class="knopf still" data-h="0" aria-disabled="true">0 %</button><button type="button" class="knopf still" data-h="5" aria-disabled="true">5 %</button><button type="button" class="knopf still" data-h="10" aria-disabled="true">10 %</button><button type="button" class="knopf still" data-h="15" aria-disabled="true">15 %</button></div>
+          </div>
+          <div class="sh-v-raster">
+            <div class="sh-v-balken" id="sh-v-balken"></div>
+            <div><svg class="sh-v-sitze" id="sh-v-sitze" viewBox="0 0 220 120" role="img" aria-label="Zehn Sitze im Klassenparlament"></svg><p class="sh-v-unter" id="sh-v-unter"></p></div>
+          </div>
+          <p class="sh-kniff-stand" id="sh-v-stand" aria-live="polite">Erst vermuten – dann gibt der Regler frei.</p>
+        </div>
+        <details class="mehr sh-nur-ohne-js">
+          <summary>Sitze bei drei Hürden (Beispiel)</summary>
+          <table class="sh-v-tabelle"><thead><tr><th scope="col">Liste</th><th scope="col">Stimmen</th><th scope="col">0 %</th><th scope="col">10 %</th><th scope="col">15 %</th></tr></thead>
+            <tbody><tr><th scope="row">A</th><td>8</td><td>4</td><td>4</td><td>5</td></tr><tr><th scope="row">B</th><td>6</td><td>3</td><td>3</td><td>3</td></tr><tr><th scope="row">C</th><td>3</td><td>2</td><td>2</td><td>2</td></tr><tr><th scope="row">D</th><td>2</td><td>1</td><td>1</td><td>raus</td></tr><tr><th scope="row">E</th><td>1</td><td>0</td><td>raus</td><td>raus</td></tr></tbody></table>
+        </details>
+        <p class="sh-kniff-rueck"><b>Was lässt dieses Modell weg?</b> Echte Wahlen haben Wahlkreise, Erst- und Zweitstimmen, Grundmandate und Millionen Stimmen.</p>
+      </div>
     </li>
     <li class="sh-hebel" id="sh-stufen">
-      <h3>Stufen</h3>
-      <p>Das Gerät bietet denselben Inhalt in mehreren Zugängen an.</p>
-      <p><b>Wofür:</b> Jede und jeder findet einen passenden Weg – am selben Inhalt.</p>
-      <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#m22-wie-war-das-moeglich">Wie war das möglich? (M22)</a> – jede Akte in drei Lesestufen: Einstieg, Vertiefung, Kontroverse.</p>
-      <p class="sh-papier"><b>Ohne Gerät:</b> drei Arbeitsblätter – alle sehen, wer welches hat.</p>
+      <div class="sh-hebel-text">
+        <h3>Stufen</h3>
+        <p>Das Gerät bietet denselben Inhalt in mehreren Zugängen an.</p>
+        <p><b>Wofür:</b> Jede und jeder findet einen passenden Weg – am selben Inhalt.</p>
+        <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#m22-wie-war-das-moeglich">Wie war das möglich? (M22)</a> – jede Akte in drei Lesestufen: Einstieg, Vertiefung, Kontroverse.</p>
+        <p class="sh-papier"><b>Ohne Gerät:</b> drei Arbeitsblätter – alle sehen, wer welches hat.</p>
+      </div>
+      <div class="sh-kniff" id="sh-w" aria-labelledby="sh-w-frage">
+        <p class="sh-etikett">Probe · wie die Lesestufen in M22</p>
+        <p class="sh-kniff-frage" id="sh-w-frage">Warum ist es schwer, über frühere Entscheidungen zu urteilen?</p>
+        <div class="sh-wahl sh-nur-mit-js" id="sh-w-wahl"><button type="button" class="knopf still" aria-pressed="true" data-w="1">Einstieg</button><button type="button" class="knopf still" aria-pressed="false" data-w="2">Vertiefung</button><button type="button" class="knopf still" aria-pressed="false" data-w="3">Kontroverse</button></div>
+        <div class="sh-w-text" id="sh-w-text">
+          <p data-w-stufe="1">Wer weiß, wie es ausging, hält das Ende leicht für zwangsläufig.</p>
+          <p data-w-stufe="2">Die Menschen damals kannten den Ausgang nicht. Wer urteilt, trennt deshalb: Was wusste man damals – und was wissen wir erst heute?</p>
+          <p data-w-stufe="3">Umstritten ist, welche Maßstäbe gelten dürfen. Ohne heutige Werte gibt es kein Urteil. Mit ihnen droht der Rückschaufehler. Beides gehört in die Begründung.</p>
+          <p class="sh-w-denk sh-nur-mit-js" id="sh-w-denk">Denkfrage: Nenne ein Ereignis, das dir heute »klar« vorkommt. War es das damals auch?</p>
+        </div>
+        <p class="sh-kniff-stand sh-nur-mit-js" id="sh-w-stand" aria-live="polite">Stufe: Einstieg.</p>
+      </div>
     </li>
     <li class="sh-hebel" id="sh-buendeln">
-      <h3>Bündeln</h3>
-      <p>Das Gerät sammelt die Antworten der Klasse ohne Namen und zeigt sie auf einen Blick.</p>
-      <p><b>Wofür:</b> Die Klasse sieht sich als Ganzes. Ein Anlass zum Gespräch, ohne jemanden bloßzustellen.</p>
-      <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#m20-dilemmata">Drei Dilemmata (M20)</a> – die Stimmen der Klasse formen ein Halbrund am Beamer.</p>
-      <p class="sh-papier"><b>Ohne Gerät:</b> Strichliste an der Tafel.</p>
+      <div class="sh-hebel-text">
+        <h3>Bündeln</h3>
+        <p>Das Gerät sammelt die Antworten der Klasse ohne Namen und zeigt sie auf einen Blick.</p>
+        <p><b>Wofür:</b> Die Klasse sieht sich als Ganzes. Ein Anlass zum Gespräch, ohne jemanden bloßzustellen.</p>
+        <p class="sh-beispiel"><b>Beispiel:</b> <a href="beispiel.html#m20-dilemmata">Drei Dilemmata (M20)</a> – die Stimmen der Klasse formen ein Halbrund am Beamer.</p>
+        <p class="sh-papier"><b>Ohne Gerät:</b> Strichliste an der Tafel.</p>
+      </div>
+      <div class="sh-kniff" id="sh-x" aria-labelledby="sh-x-frage">
+        <p class="sh-etikett">Probe · wie die Sicherheitsfrage in M19 und M20 · die anderen 23 Stimmen sind Beispielwerte</p>
+        <p class="sh-kniff-frage" id="sh-x-frage">Wie sicher bist du dir bei deinem Urteil?</p>
+        <div class="sh-nur-mit-js sh-schritte">
+          <div class="sh-wahl" id="sh-x-wahl"><button type="button" class="knopf still" aria-pressed="false" data-x="0">sicher</button><button type="button" class="knopf still" aria-pressed="false" data-x="1">eher sicher</button><button type="button" class="knopf still" aria-pressed="false" data-x="2">unsicher</button></div>
+          <div class="sh-x-raster">
+            <svg class="sh-x-halb" id="sh-x-halb" viewBox="0 0 320 180" role="img" aria-label="Halbrund der Klasse mit 24 Plätzen"></svg>
+            <div class="sh-x-legende" id="sh-x-legende"><span class="leise">Gib zuerst deine Stimme ab.</span></div>
+          </div>
+          <div class="sh-wahl"><button type="button" class="knopf" id="sh-x-nach" hidden>Nach dem Gespräch (Beispiel)</button></div>
+          <p class="sh-kniff-stand" id="sh-x-stand" aria-live="polite">Gib zuerst deine Stimme ab.</p>
+        </div>
+        <details class="mehr sh-nur-ohne-js">
+          <summary>Die Klasse vor und nach dem Gespräch (Beispiel)</summary>
+          <p>Vor dem Gespräch: 10 sicher, 8 eher sicher, 5 unsicher. Nach dem Gespräch: 6 sicher, 11 eher sicher, 6 unsicher.</p>
+        </details>
+      </div>
     </li>
   </ol>
   <p class="sh-leitsatz">Trifft keiner der sechs Hebel zu, bleibt es Papier. Trifft einer zu, ist der Satz über den Vorteil schon geschrieben: »Das Gerät verdeckt hier …« – das ist die Antwort auf die <a class="textlink" href="unterricht.html#t-probe">Papierfrage</a>.</p>
@@ -199,3 +329,4 @@
 </div>
 <script src="assets/hilde.js"></script>
 <script src="assets/sechs-hebel.js"></script>
+<script src="assets/sechs-hebel-proben.js"></script>
