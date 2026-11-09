@@ -29,17 +29,18 @@ import sys
 from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "digital-check.html", "selbstcheck.html", "mehrwert.html",
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "digital-check.html", "selbstcheck.html", "mehrwert.html",
           "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html", "galerie.html", "beispiel.html", "showroom.html", "ueber.html", "gestaltung.html"]
 # Seiten, auf denen Fachbegriffe nur in aufklappbaren Vertiefungen (<details>) stehen dürfen
 MIT_VERTIEFUNG = ["mehrwert.html", "selbstcheck.html", "digital-check.html", "ueber.html"]
-EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "galerie.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html"]
+EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "galerie.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/ist-stand.js",
-                    "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js", "assets/werkstatt.js", "assets/werkstatt-anfrage.js", "assets/daten/werkstatt.js", "assets/fuenf-saetze.js"]
+                    "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js", "assets/werkstatt.js", "assets/werkstatt-anfrage.js", "assets/daten/werkstatt.js", "assets/fuenf-saetze.js", "assets/sechs-hebel.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
-                "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation"]
+                "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation",
+                "Anforderungsbereich", "Beutelsbacher", "Binnendifferenzierung"]  # ab 4.19: nur in Vertiefungen (<details>)
 # Wörter, die auf Start- und Bereichsseiten und in den geführten Wegen nicht stehen sollen (Kritik vom 18.10.2026)
 EINSTIEG_WOERTER = ["Digitalität", "Lernsetting", "HTML-Lernumgebung"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]
@@ -91,8 +92,11 @@ def pruefe_seiten(fehler):
             for wort in EINSTIEG_WOERTER:
                 if wort.lower() in text.lower():
                     fehler.append(f"{name}: schwieriges Wort auf Einstiegsseite »{wort}«")
+            # ab 4.19 (Entscheidung Mario, 9.11.2026): Fachbegriffe sind auch auf Einstiegsseiten in aufklappbaren
+            # Vertiefungen erlaubt – so wie CLAUDE.md es verlangt. Geprüft wird der Text ohne <details>.
+            ohne_details = text_ohne_tags(re.sub(r"<details[\s\S]*?</details>", " ", html))
             for wort in FACHBEGRIFFE:
-                if wort.lower() in text.lower():
+                if wort.lower() in ohne_details.lower():
                     fehler.append(f"{name}: Fachbegriff auf Einstiegsseite »{wort}«")
         for url in re.findall(r'(?:src|href)="(https?://[^"]+)"', html):
             fehler.append(f"{name}: externe Datei oder Link {url}")

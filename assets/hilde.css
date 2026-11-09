@@ -1711,3 +1711,103 @@ html.film-offen,html.film-offen body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.fs-buehne-marke,.fs-geraet-huelle,.fs-geraet-schirm,.fs-geraet-rueckseite,.fs-buehne-wort{transition:none}}
 html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs-geraet-huelle,html[data-bewegung="weniger"] .fs-geraet-schirm,html[data-bewegung="weniger"] .fs-geraet-rueckseite,html[data-bewegung="weniger"] .fs-buehne-wort{transition:none}
 @media print{ /* taste-skill-ignore: Druckfassung */ .fs-buehne{position:static;box-shadow:none}.fs-karte,.fs-buehne{box-shadow:none}.fs-abschnitt{min-height:0}}
+
+/* ── Seite »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html, ab Version 4.19) ─────────────────────────
+   Präfix sh- (Fallstrick M22: generische Klassennamen kollidieren). Das Modell Gerät – Brücke – Raum steht zweimal:
+   oben in Ruhe (Visible-at-Rest), in der Probe als Muster R1 zum Selbst-Tun (der eine Moment der Seite). Moos trägt
+   das Gerät, Druckschwarz den Raum (Neutral Action Rule: der Raum gehört keinem Bereich). Kein Schatten mit Unschärfe. */
+/* Zugang auf der Bereichsseite: eine schmale Zeile über dem Hauptwerkzeug, damit dieses am Beamer sichtbar bleibt. */
+.werkzeug.sh-werkzeug{grid-column:1/-1}
+.werkzeug.sh-werkzeug a{padding:var(--a2) var(--a3);border:2px solid var(--lernen);background:var(--grund)}
+.werkzeug.sh-werkzeug .werkzeug-text{grid-template-columns:auto 1fr;align-items:baseline;gap:.25rem var(--a2)}
+@media (max-width:720px){.werkzeug.sh-werkzeug .werkzeug-text{grid-template-columns:1fr}}
+.sh-kopf .detail-kurz{max-width:60ch}
+.sh-schaubild{margin:var(--a3) 0 0}
+.sh-modell{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,2fr) minmax(0,5fr);align-items:stretch}
+.sh-feld{display:grid;gap:var(--a1);align-content:start;padding:var(--a2);border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);min-width:0}
+.sh-feld-geraet{border-color:var(--lernen)}
+.sh-feld-raum{border-color:var(--text)}
+.sh-feld-titel{font-family:var(--schrift-titel);font-weight:700;font-size:var(--gr-h3);line-height:1.15;margin:0}
+.sh-woerter{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.sh-woerter li{font-weight:700;font-size:var(--gr-klein);padding:.2rem .6rem;border-radius:var(--rund);background:var(--lernen-zart);color:var(--lernen-tief)}
+.sh-woerter-raum li{background:transparent;color:var(--text);border:2px solid var(--text)}
+.sh-bruecke{position:relative;display:grid;place-items:center;padding:var(--a1)}
+.sh-bruecke::before{content:"";position:absolute;left:0;right:0;top:50%;height:4px;margin-top:-2px;background:var(--text)}
+.sh-bruecke span{position:relative;background:var(--grund);border:2px solid var(--text);border-radius:var(--rund);padding:.3rem .55rem;font-weight:700;font-size:var(--gr-klein);text-align:center;overflow-wrap:anywhere}
+.sh-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2) var(--a3);margin-top:var(--a3)}
+@media (max-width:720px){
+  .sh-modell{grid-template-columns:1fr}
+  .sh-bruecke{min-height:4.5rem}
+  .sh-bruecke::before{left:50%;right:auto;top:0;bottom:0;width:4px;height:auto;margin:0 0 0 -2px}
+}
+
+/* R1 · Über die Brücke tippen */
+.sh-frage{font-family:var(--schrift-titel);font-weight:600;font-size:var(--gr-h3);margin:0}
+.sh-probe{background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);box-shadow:var(--platte)}
+.sh-probe .sh-feld{background:var(--grund);min-height:11rem}
+.sh-kacheln{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+.sh-kachel{font:700 var(--gr-klein)/1.2 var(--schrift);min-height:48px;text-align:left;padding:.5rem .6rem;overflow-wrap:anywhere;min-width:0;border-radius:var(--rund);border:2px solid var(--lernen);background:var(--flaeche);color:var(--text);cursor:pointer;touch-action:manipulation;display:flex;align-items:center;gap:.5rem}
+.sh-kachel::before{content:"";flex:0 0 auto;width:.9rem;height:.9rem;border-radius:50%;border:2px solid var(--lernen)}
+.sh-kachel[aria-pressed="true"]{background:var(--lernen);color:var(--aktion-text)}
+.sh-kachel[aria-pressed="true"]::before{background:var(--aktion-text);border-color:var(--aktion-text)}
+.sh-kachel.sh-unterwegs{opacity:.35}
+.sh-fertig .sh-kachel{cursor:default}
+.sh-tafel{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;min-height:2.3rem}
+.sh-tafel li,.sh-flieger{font-weight:700;font-size:var(--gr-klein);line-height:1.2;padding:.35rem .6rem;border-radius:var(--rund);border:2px solid var(--lernen)}
+.sh-tafel li{background:var(--lernen-zart);color:var(--lernen-tief)}
+.sh-flieger{position:absolute;z-index:3;pointer-events:none;white-space:nowrap;background:var(--lernen);color:var(--aktion-text);transition:transform var(--dauer-uebergang) var(--ease-beidseits)}
+.sh-woerter-raum.sh-an li{background:var(--text);color:var(--aktion-text)}
+.sh-knoepfe{display:flex;flex-wrap:wrap;gap:var(--a2);margin-top:var(--a3)}
+.sh-stand{margin:var(--a2) 0 0;font-weight:700;max-width:62ch}
+
+/* Die sechs Hebel – ruhige Übersicht */
+.sh-hebel-liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3)}
+@media (max-width:1000px){.sh-hebel-liste{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.sh-hebel-liste{grid-template-columns:1fr}}
+.sh-hebel{display:grid;gap:var(--a1);align-content:start;padding:var(--a3);border-radius:var(--rund);background:var(--flaeche);border-top:6px solid var(--lernen);min-width:0}
+.sh-hebel h3{margin:0}
+.sh-hebel p{margin:0}
+.sh-beispiel a{font-weight:700}
+.sh-papier{color:var(--leise)}
+.sh-leitsatz{font-family:var(--schrift-titel);font-weight:600;font-size:var(--gr-h3);line-height:1.3;max-width:48ch;margin:0}
+
+/* Regel 1 – Umfang als drei ruhige Stundenlinien (Schema, keine Zeitmessung) */
+.sh-umfang{margin:0;display:grid;gap:var(--a2)}
+.sh-umfang-liste{list-style:none;margin:0;padding:0;display:grid;gap:var(--a3)}
+.sh-umfang-zeile{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,6fr);gap:var(--a1) var(--a3);align-items:end}
+.sh-umfang-wort{margin:0;display:grid;gap:.15rem}
+.sh-umfang-satz{grid-column:2;margin:0;color:var(--leise)}
+@media (max-width:720px){.sh-umfang-zeile{grid-template-columns:1fr}.sh-umfang-satz{grid-column:1}}
+.sh-linie{position:relative;height:5.8rem}
+.sh-spur{position:absolute;left:0;right:0;bottom:2.3rem;height:4px;margin-bottom:-2px;background:var(--stahl);border-radius:2px}
+.sh-balken{position:absolute;bottom:2.3rem;height:16px;margin-bottom:-8px;left:calc(var(--von) * 1%);width:max(16px,calc((var(--bis) - var(--von)) * 1%));background:var(--lernen);border-radius:8px}
+.sh-marke{position:absolute;bottom:3.4rem;left:calc(var(--bei) * 1%);transform:translateX(-50%);white-space:nowrap;font-weight:700;font-size:var(--gr-klein);padding:.1rem .45rem;border-radius:var(--rund);background:var(--lernen-zart);color:var(--lernen-tief);border:2px solid var(--lernen)}
+.sh-plenum::before{content:"";position:absolute;left:50%;bottom:100%;width:3px;height:1.1rem;margin-left:-1.5px;background:var(--text)}
+.sh-plenum{position:absolute;bottom:0;z-index:1;left:calc(var(--bei) * 1%);transform:translateX(-50%);font-weight:700;font-size:var(--gr-klein);line-height:1;padding:.1rem .4rem;background:var(--text);color:var(--aktion-text);border-radius:var(--rund)}
+@media (max-width:640px){.sh-marke{padding:.05rem .3rem}.sh-linie:has(.sh-marke-hoch){height:7.6rem}.sh-marke-hoch{bottom:5.3rem}}
+
+/* Regel 2 – drei Stufen der Rückmeldung */
+.sh-stufen-liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a2)}
+@media (max-width:760px){.sh-stufen-liste{grid-template-columns:1fr}}
+.sh-stufe{display:grid;gap:var(--a1);align-content:start;padding:var(--a2);border-radius:var(--rund);background:var(--flaeche);border:2px solid var(--lernen);min-width:0}
+.sh-stufe p{margin:0}
+.sh-stufe-raum{border-color:var(--text);background:var(--grund)}
+.sh-stufe-name{font-family:var(--schrift-titel);font-weight:700;font-size:var(--gr-h3)}
+
+/* Regel 3 – Wissen und Können */
+.sh-zwei{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a2)}
+@media (max-width:640px){.sh-zwei{grid-template-columns:1fr}}
+.sh-zwei-feld{display:grid;gap:var(--a1);padding:var(--a2);border-radius:var(--rund);background:var(--flaeche)}
+.sh-zwei-feld p{margin:0}
+
+/* Was Lernende gesagt haben */
+.sh-stimmen{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3)}
+@media (max-width:900px){.sh-stimmen{grid-template-columns:1fr}}
+.sh-stimmen li{display:grid;gap:var(--a1);align-content:start;padding:var(--a3);border-left:6px solid var(--text);background:var(--flaeche);border-radius:var(--rund)}
+.sh-stimmen p{margin:0}
+.sh-stimme-wo{font-weight:700}
+
+/* Weniger Bewegung: die Hebel liegen sofort an der Tafel (das Skript fliegt dann gar nicht); zur Sicherheit kein Übergang. */
+@media (prefers-reduced-motion:reduce){.sh-flieger,.sh-kachel{transition:none}}
+html[data-bewegung="weniger"] .sh-flieger,html[data-bewegung="weniger"] .sh-kachel{transition:none}
+@media print{.sh-probe,.sh-aktionen .knopf{display:none}}
