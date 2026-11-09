@@ -25,6 +25,7 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/daten/digitalisieren.js`, `assets/digitalisieren-prompt.js`, `assets/digitalisieren.js` | Werkzeug »Unterricht digitalisieren« |
 | `assets/faecher.js` | Fächer mit Tiefe (Galerie gleitend, Startseite von Hand) |
 | `assets/fuenf-saetze.js` | Seite »Guter digitaler Unterricht in fünf Sätzen«: der Weg durch die Stunde folgt dem Scrollen (ab 4.18) |
+| `assets/sechs-hebel-proben.js` | Seite »Wann funktioniert digitaler Unterricht?«: Proben S bis X zu den sechs Hebeln – erst festlegen, dann ein Zustandswechsel (ab 4.20) |
 | `assets/sechs-hebel.js` | Seite »Wann funktioniert digitaler Unterricht?«: Muster R1 – gewählte Hebel wandern über die Plenumsstelle an die Tafel (ab 4.19) |
 | `assets/pruef-prompt.js`, `assets/digital-check.js` | Digital-Check Weg B: Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren in ein freigegebenes KI-System (keine Anbindung) |
 | `tests/` | Unit-Tests (`node --test`) und Browser-Tests (`tests/e2e.py`) |

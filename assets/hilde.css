@@ -81,7 +81,8 @@
   --dauer-leporello:380ms; --dauer-leporello-staffel:70ms; /* N · Schritte entfalten sich */
   --dauer-blatt:380ms;    /* P · Vom Blatt zum Tablet, einmaliges Abspielen (assets/digitalisieren.js) */
   --dauer-durchschlag:420ms; /* L · Durchschlag beim Kopieren */
-  --dauer-flug:440ms;     /* K · Flug in den Schnellhefter */
+  --dauer-aufdecken:360ms; /* S–X · Zustandswechsel nach einer Festlegung (Token »reveal« aus signatur-design 4a): Schwärzung, Rückmeldung, Messpunkt */
+  --dauer-flug:440ms;     /* K · Flug in den Schnellhefter; X · die eigene Stimme fliegt ins Halbrund */
   --dauer-reihe:440ms;    /* Ansichtswechsel Karte ↔ Detail (View Transitions, ab Version 4.8 Teil 2) */
   --dauer-passer:620ms;   /* F · Passer der Bereichsüberschrift */
   --dauer-zaehlwerk:720ms; --dauer-zaehlwerk-staffel:60ms; /* M · Ziffern rollen */
@@ -1761,10 +1762,11 @@ html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs
 .sh-stand{margin:var(--a2) 0 0;font-weight:700;max-width:62ch}
 
 /* Die sechs Hebel – ruhige Übersicht */
-.sh-hebel-liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3)}
-@media (max-width:1000px){.sh-hebel-liste{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.sh-hebel-liste{grid-template-columns:1fr}}
-.sh-hebel{display:grid;gap:var(--a1);align-content:start;padding:var(--a3);border-radius:var(--rund);background:var(--flaeche);border-top:6px solid var(--lernen);min-width:0}
+.sh-hebel-liste{list-style:none;margin:0;padding:0;display:grid;gap:var(--a4)}
+/* ab 4.20: je Hebel ein Band – links der Hebel, rechts seine Probe (Muster S bis X) */
+.sh-hebel{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--a3) var(--a4);align-items:start;padding:var(--a3);border-radius:var(--rund);background:var(--flaeche);border-top:6px solid var(--lernen);min-width:0}
+@media (max-width:900px){.sh-hebel{grid-template-columns:1fr}}
+.sh-hebel-text{display:grid;gap:var(--a1);align-content:start;min-width:0}
 .sh-hebel h3{margin:0}
 .sh-hebel p{margin:0}
 .sh-beispiel a{font-weight:700}
@@ -1811,3 +1813,108 @@ html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs
 @media (prefers-reduced-motion:reduce){.sh-flieger,.sh-kachel{transition:none}}
 html[data-bewegung="weniger"] .sh-flieger,html[data-bewegung="weniger"] .sh-kachel{transition:none}
 @media print{.sh-probe,.sh-aktionen .knopf{display:none}}
+
+/* ── Proben zu den sechs Hebeln (Muster S bis X, ab Version 4.20) ───────────────────────────────────────────────
+   Je Probe erst eine Festlegung, dann ein Zustandswechsel (--dauer-aufdecken 360 ms, Flug --dauer-flug 440 ms).
+   Ohne JavaScript (Liste ohne .sh-js): Bedienteile aus, Vertiefungen offen lesbar (Visible-at-Rest).
+   Verdecken ist die begründete Ausnahme: die Auflösung wartet auf die Festlegung – durch den Zustand, nicht durch Bewegung. */
+.sh-hebel-liste:not(.sh-js) .sh-nur-mit-js{display:none}
+.sh-js .sh-nur-ohne-js{display:none}
+.sh-kniff{display:grid;gap:var(--a2);align-content:start;padding:var(--a3);border-radius:var(--rund);background:var(--grund);border:2px solid var(--lernen);min-width:0}
+.sh-etikett{justify-self:start;font-size:var(--gr-klein);font-weight:700;padding:.1rem .5rem;border-radius:var(--rund);background:var(--karton)}
+.sh-kniff-frage{font-family:var(--schrift-titel);font-weight:600;font-size:var(--gr-h3);line-height:1.25}
+.sh-schritte{display:grid;gap:var(--a2)}
+.sh-schritt{display:grid;gap:var(--a1)}
+.sh-schritt[aria-disabled="true"]{opacity:.5}
+.sh-schritt-titel{font-weight:700}
+.sh-wahl{display:flex;flex-wrap:wrap;gap:var(--a1);align-items:center}
+.sh-wahl .knopf.still[aria-pressed="true"]{background:var(--text);color:var(--aktion-text);border-color:var(--text)}
+.sh-kniff-stand{font-weight:700;max-width:62ch}
+.sh-kniff-rueck{color:var(--leise)}
+.sh-eingabe{font:inherit;min-height:48px;padding:.4rem .7rem;border-radius:var(--rund);border:2px solid var(--stahl);background:var(--flaeche);color:var(--text);width:12rem;max-width:100%}
+.sh-sofort,.sh-sofort *{transition:none!important;animation:none!important}
+
+/* S · Verdecken */
+.sh-s-tafel{display:grid;gap:var(--a1);padding:var(--a2);border-radius:var(--rund);background:var(--text);color:var(--aktion-text)}
+.sh-s-tafel .knopf{background:var(--flaeche);color:var(--text);border-color:var(--flaeche)}
+.sh-s-akte p{margin:0}
+.sh-s-akte p+p{margin-top:var(--a1)}
+.sh-s-zeile{position:relative}
+.sh-s-balken{display:none}
+.sh-js .sh-s-balken{display:block;position:absolute;inset:-.15rem -.25rem;background:var(--text);border-radius:2px;transform-origin:right center;transform:scaleX(0);transition:transform var(--dauer-aufdecken) var(--ease-out)}
+.sh-js .sh-s-zu .sh-s-balken{transform:none}
+.sh-js .sh-s-zeile:nth-of-type(2) .sh-s-balken{transition-delay:60ms}
+.sh-js .sh-s-zeile:nth-of-type(3) .sh-s-balken{transition-delay:120ms}
+.sh-js .sh-s-akte summary{pointer-events:none}
+.sh-js .sh-s-akte summary::before{display:none}
+
+/* T · Rückmelden */
+.sh-t-leiste{display:flex;flex-wrap:wrap;gap:var(--a1);align-items:center;font-weight:700;margin:0}
+.sh-t-punkt{width:2rem;height:2rem;border-radius:50%;border:2px solid var(--stahl);display:inline-grid;place-items:center;font-size:var(--gr-klein)}
+.sh-t-punkt[data-s="passt"]{background:var(--lernen);border-color:var(--lernen);color:var(--aktion-text)}
+.sh-t-punkt[data-s="vertretbar"]{background:var(--lernen-zart);border-color:var(--lernen)}
+.sh-t-punkt[data-s="eher"]{background:var(--flaeche);border-color:var(--text);border-style:dashed}
+.sh-t-punkt[aria-current="true"]{outline:3px solid var(--text);outline-offset:2px}
+.sh-t-zwischen{font-weight:400;color:var(--leise)}
+.sh-t-fall{display:grid;gap:var(--a1)}
+.sh-t-optionen{display:grid;gap:var(--a1)}
+.sh-t-opt{font:700 var(--gr-klein)/1.25 var(--schrift);text-align:left;min-height:48px;padding:.55rem .8rem;border-radius:var(--rund);border:2px solid var(--lernen);background:var(--flaeche);color:var(--text);cursor:pointer}
+.sh-t-opt[aria-pressed="true"]{background:var(--text);color:var(--aktion-text);border-color:var(--text)}
+.sh-t-opt[aria-disabled="true"]{cursor:default}
+.sh-t-antwort{display:grid;gap:.2rem;padding:.7rem .9rem;border-radius:var(--rund);background:var(--lernen-zart);border:2px solid var(--lernen);animation:sh-aufdecken var(--dauer-aufdecken) var(--ease-out)}
+@keyframes sh-aufdecken{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sh-t-daten,.sh-t-daten ul{margin:0;padding-left:1.25rem;display:grid;gap:var(--a1)}
+
+/* U · Messen */
+.sh-u-zeile{gap:var(--a2)}
+.sh-u-uhr{font:700 2rem/1 var(--schrift-titel);font-variant-numeric:tabular-nums;min-width:6ch}
+.sh-u-skala{position:relative;height:7rem;margin:0 .75rem}
+.sh-u-spur{position:absolute;left:0;right:0;top:3rem;height:4px;background:var(--stahl);border-radius:2px}
+.sh-u-band{position:absolute;top:2.55rem;height:13px;background:var(--lernen-zart);border:2px solid var(--lernen);border-radius:7px;opacity:0;transition:opacity var(--dauer-aufdecken) var(--ease-out)}
+.sh-u-band.sh-an{opacity:1}
+.sh-u-tick{position:absolute;top:2.4rem;width:2px;height:1.4rem;background:var(--stahl);transform:translateX(-1px)}
+.sh-u-tick span{position:absolute;top:1.7rem;left:50%;transform:translateX(-50%);font-size:var(--gr-klein);white-space:nowrap}
+.sh-u-ziel{background:var(--text);width:3px;height:2rem;top:2.1rem}
+.sh-u-tipp{position:absolute;top:0;transform:translateX(-50%);font-size:var(--gr-klein);font-weight:700;white-space:nowrap;padding:.05rem .45rem;border-radius:var(--rund);border:2px dashed var(--text);background:var(--flaeche)}
+.sh-u-punkt{position:absolute;top:2.45rem;left:0;width:1.1rem;height:1.1rem;margin-left:-.55rem;border-radius:50%;background:var(--lernen);border:2px solid var(--flaeche);opacity:0;transition:transform var(--dauer-flug) var(--ease-out),opacity var(--dauer-aus) var(--ease-out)}
+.sh-u-punkt.sh-an{opacity:1}
+@media (max-width:640px){.sh-u-tipp{white-space:normal;max-width:11rem;text-align:center}}
+
+/* V · Variieren */
+.sh-regler{width:100%;min-height:44px;accent-color:var(--text)}
+.sh-v-raster{display:grid;gap:var(--a2)}
+.sh-v-raster>div:last-child{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a1) var(--a3)}
+.sh-v-balken{display:grid;gap:.45rem}
+.sh-v-zeile{display:grid;grid-template-columns:4.6rem minmax(0,1fr) 8.5rem;gap:.6rem;align-items:center;font-size:var(--gr-klein)}
+.sh-v-spur{position:relative;height:1.1rem;background:var(--karton);border-radius:var(--rund)}
+.sh-v-fuell{position:absolute;inset:0;background:var(--lernen);border-radius:var(--rund);transform-origin:left center;transition:transform var(--dauer-mittel) var(--ease-out)}
+.sh-v-raus .sh-v-fuell{background:var(--stahl)}
+.sh-v-linie{position:absolute;top:-4px;bottom:-4px;width:3px;margin-left:-1.5px;background:var(--text);left:12.5%}
+.sh-v-name::before{content:"";display:inline-block;width:.8rem;height:.8rem;border-radius:50%;margin-right:.4rem;vertical-align:-.05rem;background:var(--ton)}
+.sh-v-zahl{font-weight:700;font-variant-numeric:tabular-nums}
+.sh-v-sitze{width:100%;max-width:14rem;height:auto;display:block}
+.sh-v-unter{font-weight:700;font-variant-numeric:tabular-nums}
+.sh-v-tabelle{border-collapse:collapse;font-variant-numeric:tabular-nums}
+.sh-v-tabelle th,.sh-v-tabelle td{padding:.25rem .7rem;border-bottom:1px solid var(--linie);text-align:left}
+
+/* W · Stufen */
+.sh-w-text{display:grid;gap:var(--a1);padding:var(--a2) var(--a3);border-radius:var(--rund);background:var(--flaeche);border:2px solid var(--lernen);max-width:64ch}
+.sh-w-text p{margin:0}
+.sh-w-text [data-neu]{background:linear-gradient(var(--lernen-zart),var(--lernen-zart)) no-repeat 0 100%/100% 45%}
+.sh-w-denk{border-top:2px solid var(--linie);padding-top:var(--a1);color:var(--leise)}
+::view-transition-group(sh-w-text){animation-duration:var(--dauer-uebergang);animation-timing-function:var(--ease-out)}
+
+/* X · Bündeln */
+.sh-x-raster{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:var(--a3);align-items:center}
+@media (max-width:640px){.sh-x-raster{grid-template-columns:1fr}}
+.sh-x-halb{width:100%;max-width:30rem;height:auto;display:block}
+.sh-x-halb circle{transition:fill var(--dauer-mittel) var(--ease-out)}
+.sh-x-du{transition:transform var(--dauer-flug) var(--ease-beidseits)}
+.sh-x-legende{display:grid;gap:.35rem;font-variant-numeric:tabular-nums}
+.sh-x-legende span::before{content:"";display:inline-block;width:.9rem;height:.9rem;border-radius:50%;margin-right:.45rem;vertical-align:-.1rem;background:var(--f,var(--lernen-zart));border:2px solid var(--r,var(--text))}
+.sh-x-du-legende::before{border-width:4px!important}
+
+@media (prefers-reduced-motion:reduce){.sh-s-balken,.sh-t-antwort,.sh-u-punkt,.sh-u-band,.sh-v-fuell,.sh-x-du,.sh-x-halb circle{transition:none!important;animation:none!important}::view-transition-group(sh-w-text){animation:none}}
+html[data-bewegung="weniger"] .sh-s-balken,html[data-bewegung="weniger"] .sh-t-antwort,html[data-bewegung="weniger"] .sh-u-punkt,html[data-bewegung="weniger"] .sh-u-band,html[data-bewegung="weniger"] .sh-v-fuell,html[data-bewegung="weniger"] .sh-x-du,html[data-bewegung="weniger"] .sh-x-halb circle{transition:none!important;animation:none!important}
+html[data-bewegung="weniger"]::view-transition-group(sh-w-text){animation:none}
+@media print{.sh-kniff .sh-nur-mit-js{display:none}.sh-kniff details{display:block}}
