@@ -1,4 +1,4 @@
-/* Papierprobe – Werkzeug »Unterricht digitalisieren«: Auswahl → Prompt zum Kopieren.
+/* Kidu – Werkzeug »Unterricht digitalisieren«: Auswahl → Prompt zum Kopieren.
    Der Prompt entsteht bei jeder Änderung neu (assets/digitalisieren-prompt.js).
    Gespeichert werden nur Auswahlwerte (Phase, Material, Vorhaben, Umfang, Ausgabe), nie Freitexte.
    Erklär-Bewegung im Kopf: Das Blatt wird einmal zum Tablet (nicht bei »weniger Bewegung«).

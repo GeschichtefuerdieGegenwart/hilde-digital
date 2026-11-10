@@ -1,4 +1,4 @@
-/* Papierprobe – Erklärfilm »Was das Gerät kann« (sechs-hebel-film.html), ab Version 4.21. Muster AW in DESIGN.md.
+/* Kidu – Erklärfilm »Was das Gerät kann« (sechs-hebel-film.html), ab Version 4.21. Muster AW in DESIGN.md.
 
    Sieben Kapitel, rund zwei Minuten, ein Satz oben je Takt, keine Stimme. Vorbild: Erklärfilm M22 (Drehbuch-Tabelle,
    Kapitel und »Du bist hier« immer im Bild) und assets/film.js (Zeitachse T in Sekunden, jedes Bild wird aus T berechnet).
@@ -342,7 +342,7 @@
     var tippen = tipp(probe, 330, 158, s + 2.6);
     var rechts = el("div", "hf-liste", b); stil(rechts, { left: "830px", top: "200px", width: "394px" });
     var r1 = el("p", "", rechts, "Unter dem Film wartet die Seite: jeder Hebel zum Ausprobieren, die drei Regeln und der Umfang deiner Stunde.");
-    var r2 = el("p", "hf-leise", rechts, "Papierprobe · Kompass für KI und digitalen Unterricht · Entwurf · kein Beschluss");
+    var r2 = el("p", "hf-leise", rechts, "Kidu · Künstliche Intelligenz und digitaler Unterricht · Entwurf · kein Beschluss");
     teile.push(function (T) {
       if (T < CUE[6]) return;
       erscheint(probe, rein(s + 0.4, 0.8)(T), 12);
@@ -438,5 +438,5 @@
   skalieren();
   zeichnen(0);
 
-  window.PapierprobeHebelFilm = { zeichnen: zeichnen, springe: springe, zuKapitel: zuKapitel, CUE: CUE, ENDE: ENDE, laeuft: function () { return laeuft; } };
+  window.KiduHebelFilm = { zeichnen: zeichnen, springe: springe, zuKapitel: zuKapitel, CUE: CUE, ENDE: ENDE, laeuft: function () { return laeuft; } };
 })();

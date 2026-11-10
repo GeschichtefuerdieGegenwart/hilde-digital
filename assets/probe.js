@@ -1,4 +1,4 @@
-/* Papierprobe – Papierfrage »Geht es auf Papier genauso gut?« im Bereich Digitaler Unterricht.
+/* Kidu – Papierfrage »Geht es auf Papier genauso gut?« im Bereich Digitaler Unterricht.
    Regeln und Tests in assets/regeln.js (REGELN.papierprobe). Nichts wird gespeichert.
    Braucht: TAXONOMIEN, REGELN, HILDE. */
 (function () {

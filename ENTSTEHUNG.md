@@ -1,8 +1,8 @@
-# Wie Papierprobe entstanden ist
+# Wie Kidu entstanden ist
 
 Stand: 1. November 2026
 
-Papierprobe ist ein persönliches Projekt von Mario Walter, Lehrer an einer beruflichen Schule.
+Kidu ist ein persönliches Projekt von Mario Walter, Lehrer an einer beruflichen Schule.
 Er hat es in eigener Initiative entwickelt, ohne Auftrag der Schule, und die Kosten selbst getragen.
 Umgesetzt wurde es mit Unterstützung eines KI-Systems.
 

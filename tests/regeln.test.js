@@ -415,7 +415,7 @@ test("Ist-Stand: der gewählte nächste Schritt kommt zuerst, höchstens drei Sc
 test("Ist-Stand: »Papier passt« wird bestärkt, nicht umgestimmt", () => {
   const e = R.istStand({ nutzung: ["kaum"], neu: "selten", naechstes: "papier" });
   assert.match(e.schritte[0].text, /vollwertiges Ergebnis/);
-  assert.ok(!e.schritte.some((s) => /Papierprobe ansehen|Zur Papierprobe/.test(s.linktext) && s !== e.schritte[0]));
+  assert.ok(!e.schritte.some((s) => /Kidu ansehen|Zu Kidu/.test(s.linktext) && s !== e.schritte[0]));
 });
 
 test("Ist-Stand: keine Noten, Punkte oder Prozentwerte", () => {

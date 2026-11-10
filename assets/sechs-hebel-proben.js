@@ -1,4 +1,4 @@
-/* Papierprobe – Proben zu den sechs Hebeln auf sechs-hebel.html (Muster S bis X), ab Version 4.20.
+/* Kidu – Proben zu den sechs Hebeln auf sechs-hebel.html (Muster S bis X), ab Version 4.20.
 
    Je Hebel eine kleine Probe zum Selbst-Tun. Jede verlangt zuerst eine eigene Festlegung; erst dann ändert sich etwas.
    Das sind Zustandswechsel auf eine eigene Handlung (signatur-design 4a), kein zweiter großer Moment neben R1

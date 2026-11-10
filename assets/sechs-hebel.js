@@ -1,4 +1,4 @@
-/* Papierprobe – »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html), ab Version 4.19.
+/* Kidu – »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html), ab Version 4.19.
 
    Muster R1 · Über die Brücke tippen (DESIGN.md, Abschnitt Bewegung). Der eine große Moment der Seite (One Moment Rule).
    Erst legen sich die Lesenden fest (Hebel antippen), dann bewegt sich etwas: »Ins Plenum« trägt die gewählten Hebel

@@ -1,4 +1,4 @@
-/* Papierprobe – Gestaltungssystem »Überdruck«, Farbwelt »Büttenpapier« (ab Version 4.14)
+/* Kidu – Gestaltungssystem »Überdruck«, Farbwelt »Büttenpapier« (ab Version 4.14)
    Haltung: ein Arbeitsbogen in zwei Druckfarben auf ungebleichtem Papier. Ocker steht für »KI-Training«,
    Moos für »Digitaler Unterricht«. Das Papier hat eine dezente Körnung; sie entfällt in der Beamer-Ansicht,
    bei »Weniger Bewegung« und im Druck. Wo beide übereinander drucken, entsteht das Überdruck-Oliv –
@@ -146,11 +146,25 @@ p{margin:0}
 .kopf{padding-block:var(--a2)}
 .kopf .huelle{display:flex;align-items:center;justify-content:space-between;gap:var(--a2);flex-wrap:wrap}
 .marke{font:700 1.375rem/1 var(--schrift-titel);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;letter-spacing:-.01em}
-.strich{display:inline-block;position:relative;width:.9em;height:.32em;margin-inline:.08em}
-.strich i{position:absolute;top:0;height:100%;width:.6em}
-.strich i:nth-child(1){left:0;background:var(--ki-platte)}
-.strich i:nth-child(2){right:0;background:var(--lernen)}
-.strich i:nth-child(3){left:.3em;width:.3em;background:var(--ueberdruck)}
+/* Logo Kidu (ab Version 4.23): zwei versetzte Platten – Ocker (KI) oben links, Moos (digitaler Unterricht) unten rechts,
+   Oliv (Überdruck) nur in der Schnittmenge. Bis 4.22 lag hier der Strich ».strich« (drei Balken) neben dem alten Namen. */
+.kidu-zeichen{display:inline-block;position:relative;width:.82em;height:.82em;flex:0 0 auto}
+.kidu-zeichen i{position:absolute;width:.54em;height:.54em}
+.kidu-zeichen i:nth-child(1){left:0;top:0;background:var(--ki-platte)}
+.kidu-zeichen i:nth-child(2){left:.28em;top:.28em;background:var(--lernen)}
+.kidu-zeichen i:nth-child(3){left:.28em;top:.28em;width:.26em;height:.26em;background:var(--ueberdruck)}
+/* Die Buchstaben des Namens in der ausgeschriebenen Zeile: K·I unter Ocker, d·U unter Moos (Unterstrich, kein Text in Farbe) */
+.ini{text-decoration:underline;text-decoration-thickness:.16em;text-underline-offset:.16em;text-decoration-skip-ink:none;color:var(--text)}
+.ini.ki{text-decoration-color:var(--ki-platte)}
+.ini.du{text-decoration-color:var(--lernen)}
+.marke{gap:.4rem}
+.marke .kidu-zeichen{font-size:1.5rem}
+.marke-text{display:grid;gap:.1rem}
+.marke-zeile{font:700 1rem/1.15 var(--schrift);color:var(--leise);letter-spacing:0;white-space:nowrap}
+.marke-zeile .ini{text-decoration-thickness:2px;text-underline-offset:3px}
+@media (max-width:1180px){.marke-zeile{display:none}}
+.start-marke{display:flex;align-items:center;gap:.12em}
+.start-marke .kidu-zeichen{font-size:.82em}
 .menue-link{display:none}
 .nav{display:flex;gap:.25rem;flex-wrap:wrap}
 .nav a{text-decoration:none;color:var(--text);font-weight:700;font-size:1.125rem;display:inline-flex;align-items:center;min-height:44px;padding:0 .75rem;border-bottom:3px solid transparent}
@@ -162,8 +176,8 @@ p{margin:0}
 .fuss{padding-block:var(--a12) var(--a4);color:var(--text);font-size:var(--gr-klein)}
 .fuss .huelle{display:flex;justify-content:space-between;gap:var(--a2) var(--a4);flex-wrap:wrap;align-items:flex-end}
 .fuss-marke{flex-basis:100%;margin:0 0 var(--a3);font:700 clamp(3rem,11vw,10rem)/.9 var(--schrift-titel);letter-spacing:-.03em;display:flex;align-items:center}
-.fuss-marke .strich{width:.8em;height:.22em}
-/* Name »Papierprobe · Kompass für KI und digitalen Unterricht« (ab Version 4.15): Wortmarke in Bricolage, Unterzeile in Atkinson, leise */
+.fuss-marke .kidu-zeichen{font-size:.8em;margin-right:.1em}
+/* Name »Kidu · Künstliche Intelligenz und digitaler Unterricht« (ab Version 4.15): Wortmarke in Bricolage, Unterzeile in Atkinson, leise */
 .unterzeile{margin:.1em 0 0;font:700 clamp(1.25rem,1.05rem + .9vw,1.875rem)/1.2 var(--schrift);color:var(--leise);letter-spacing:-.005em}
 .fuss-unterzeile{flex-basis:100%;margin:calc(-1 * var(--a2)) 0 var(--a3);font:700 clamp(1.125rem,1rem + .6vw,1.5rem)/1.25 var(--schrift);color:var(--leise)}
 .fussnav{display:none}
@@ -684,7 +698,7 @@ main p,main li,main dd{max-width:60ch}
 
 /* ---------- Ab Version 4: KI-Training · Digitaler Unterricht · Galerie ---------- */
 /* Kopfzeile: Wortmarke führt zum Start, drei Bereiche. Auf schmalen Bildschirmen bleibt die Leiste sichtbar. */
-.marke{gap:.15em}
+.marke{gap:.4rem}
 .marke-name{white-space:nowrap}
 .kopf .nav{display:flex}
 .nav a{transition:border-color var(--dauer-schnell) var(--ease-out)}
@@ -696,7 +710,7 @@ main p,main li,main dd{max-width:60ch}
 }
 @media (max-width:359px){.nav a{padding:0 .3rem}}
 
-/* Fuß: Über Papierprobe, Inhalte und Funktionen, Hinweise */
+/* Fuß: Über Kidu, Inhalte und Funktionen, Hinweise */
 .fusslinks ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 var(--a3)}
 .fusslinks a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-underline-offset:3px}
 .fuss-marke{font-size:clamp(2.5rem,10.5vw,10rem);gap:.1em;flex-wrap:nowrap;white-space:nowrap}
@@ -876,7 +890,7 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
   background-color:var(--grund);background-image:radial-gradient(var(--stahl) 1px,transparent 1.5px);background-size:12px 12px} /* taste-skill-ignore: Rasterpunkte wie im Druck, kein Verlauf */
 .karte .bild.bild-fehlt{position:relative}
 
-/* Über Papierprobe: Inhalte und Funktionen */
+/* Über Kidu: Inhalte und Funktionen */
 .inhalte-liste{margin:0;display:grid;gap:var(--a2)}
 .inhalte-liste>div{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);border-left:8px solid var(--karton)}
 .inhalte-liste>.rand-ki{border-left-color:var(--ki-platte)}
@@ -1538,7 +1552,7 @@ main .muster-karte,main .werkstatt-karte,main .sicher-liste>li{max-width:none} /
 @media (max-width:900px){.muster-wege{grid-template-columns:1fr}.fach-raster{grid-template-columns:1fr}}
 @media print{ /* taste-skill-ignore: Druckfassung */ .sicher-liste>li{border:1px solid #bbb}.sicher-liste details{display:none}}
 
-/* Film »Papierprobe in 44 Sekunden« (ab Version 4.16, assets/film.js). Bühne 1920 × 1080, auf den Bildschirm skaliert.
+/* Film »Kidu in 44 Sekunden« (ab Version 4.16, assets/film.js). Bühne 1920 × 1080, auf den Bildschirm skaliert.
    Läuft einmal, keine Schleife; Anhalten, Überspringen, Esc. Farben und Schriften nur aus den Variablen oben. */
 main .start .hinweis-stand:has(.film-knopf){max-width:none;display:flex;align-items:center;flex-wrap:wrap;gap:var(--a1) var(--a3)}
 #t-start:focus{outline:none;box-shadow:none} /* Fokus nach dem Film landet hier; die Überschrift ist kein Bedienelement */
@@ -1559,8 +1573,7 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .fb-bild>*{position:absolute}
 .fb-hero{left:140px;top:250px;width:1500px}
 .fb-kicker{display:flex;align-items:center;gap:18px;font-weight:700;font-size:30px;color:var(--leise)}
-.fb-marke{display:inline-flex;height:14px}
-.fb-marke i{width:20px;background:var(--ki-platte)}.fb-marke i:nth-child(2){width:12px;background:var(--ueberdruck)}.fb-marke i:nth-child(3){background:var(--lernen)}
+.fb-marke.kidu-zeichen{font-size:34px}
 .fb-hero-titel{font:700 104px/1.04 var(--schrift-titel);letter-spacing:-.02em;margin-top:32px;max-width:1400px;text-wrap:balance}
 .fb-hero-unter{font-size:38px;line-height:1.35;color:var(--leise);margin-top:28px;max-width:1100px}
 .fb-text{left:140px;top:60px;height:1020px;width:700px;display:flex;flex-direction:column;justify-content:center;gap:28px}
@@ -2133,3 +2146,5 @@ html[data-bewegung="weniger"] .sh-rad-kachel,html[data-bewegung="weniger"] .sh-r
 @keyframes sh-band-rueck{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
 html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
 @media (prefers-reduced-motion:reduce){.sh-band-vor,.sh-band-rueck{animation:none}}
+/* Auf der Startseite steht die ausgeschriebene Zeile groß unter dem Titel – im Kopf nicht ein zweites Mal */
+.marke[aria-current="page"] .marke-zeile{display:none}

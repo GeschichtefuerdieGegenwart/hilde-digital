@@ -1,4 +1,4 @@
-/* Papierprobe – Werkstatt-Seiten (ab Version 4.9):
+/* Kidu – Werkstatt-Seiten (ab Version 4.9):
    muster.html    Unterrichtsmuster mit drei Wegen (Papier · KI · Tablet) und Filter nach Phase
    auftraege.html kopierbare Aufträge aus den ausführlichen Anleitungen des Projekts
    ki-fach.html   feste Anweisung für das eigene Fach

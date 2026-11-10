@@ -1,4 +1,4 @@
-/* Papierprobe – Ansichten für die Galerie.
+/* Kidu – Ansichten für die Galerie.
 
    Jede Ansicht ist ein Bildschirmfoto aus der echten Anwendung, aufgenommen am 18.10.2026 (Ergänzungen am 26.10.2026)
    aus den öffentlichen Repositories (lokal geöffnet, ohne Änderung am Inhalt).

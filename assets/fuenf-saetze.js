@@ -1,4 +1,4 @@
-/* Papierprobe – »Guter digitaler Unterricht in fünf Sätzen« (fuenf-saetze.html), ab Version 4.18.
+/* Kidu – »Guter digitaler Unterricht in fünf Sätzen« (fuenf-saetze.html), ab Version 4.18.
 
    Der Weg durch die Stunde folgt nur dem Scrollen (Reader-Paced Rule): Kommt ein Abschnitt in die Mitte des
    Bildschirms, bekommt der Rahmen data-satz="n"; die Bühne (Marke auf der Stundenlinie, Zustand des Geräts)
