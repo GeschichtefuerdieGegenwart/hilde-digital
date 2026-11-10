@@ -25,6 +25,7 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/daten/digitalisieren.js`, `assets/digitalisieren-prompt.js`, `assets/digitalisieren.js` | Werkzeug »Unterricht digitalisieren« |
 | `assets/faecher.js` | Fächer mit Tiefe (Galerie gleitend, Startseite von Hand) |
 | `assets/fuenf-saetze.js` | Seite »Guter digitaler Unterricht in fünf Sätzen«: der Weg durch die Stunde folgt dem Scrollen (ab 4.18) |
+| `assets/startpunkt.js` | Seite »Mein Startpunkt«: zwanzig Fragen vor einer Fortbildung, Startpunkt-Karte, drei Schritte, zwei Kniffe, Codeblock für die Leitung, »Als PDF sichern« (ab 4.24) |
 | `assets/sechs-hebel-rad.js` | Seite »Wann funktioniert digitaler Unterricht?«: Hebelrad im Kopf – Hebel antippen, Karte wechselt (Muster Y, ab 4.21); das Rad blättert die Bänder als Register, Weiter/Zurück (Z1, ab 4.22) |
 | `assets/sechs-hebel-film.js` | Seite »Film: Was das Gerät kann« (`sechs-hebel-film.html`): Erklärfilm in sieben Kapiteln auf einer Zeitachse, Start nur auf Knopfdruck (Muster AW, ab 4.21) |
 | `assets/sechs-hebel-proben.js` | Seite »Wann funktioniert digitaler Unterricht?«: Proben S bis X zu den sechs Hebeln – erst festlegen, dann ein Zustandswechsel (ab 4.20) |

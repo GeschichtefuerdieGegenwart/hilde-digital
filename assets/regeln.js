@@ -487,11 +487,117 @@
              satz: "Das ist keine Bewertung. Es ist ein Blick auf deinen Unterricht heute – nur für dich." };
   }
 
+
+  /* Mein Startpunkt (startpunkt.html, ab 4.24): zwanzig Fragen vor einer Fortbildung oder Beratungsstunde.
+     Vier Ausgangslagen ohne Rangfolge – sie beschreiben, womit die erste Stunde beginnt, nicht wie gut jemand ist.
+     Ergebnis: Lage, Stärken zuerst, vier Sicherheitsfelder für die Karte, höchstens drei Schritte, höchstens zwei Kniffe,
+     ein Codeblock für die Leitung (nur Auswahlwerte, keine Texte). Keine Noten, Punkte oder Prozentwerte. */
+  var SP_LAGEN = {
+    anfang: { titel: "Du fängst gerade an",
+      text: "Das ist der häufigste Startpunkt im Kollegium. Für die erste Stunde reicht ein einziger Anlass aus deinem Alltag – und die Sicherheit, dass du nichts falsch machst." },
+    enttaeuscht: { titel: "Du hast es probiert – und es hat noch nicht überzeugt",
+      text: "Meist liegt das nicht am System, sondern an der Anfrage: Eine Anfrage mit Ziel, Klasse, Vorgaben und Format bringt andere Ergebnisse als ein kurzer Satz. Genau das wird der Anfang." },
+    fuersich: { titel: "Du nutzt KI für dich – die Lernenden haben noch nichts davon",
+      text: "Du hast die Vorbereitung im Griff. Der nächste Schritt ist der von der Vorbereitung zur Lernhandlung: Was tun die Lernenden mit dem, was du baust? Das ist die Papierfrage." },
+    weit: { titel: "Du bist schon weit – und vermutlich allein damit",
+      text: "Du brauchst keine Einführung, sondern Rückmeldung: Was haben die Lernenden selbst getan? Was davon kannst du anderen zeigen?" },
+    offen: { titel: "Dein Startpunkt ist noch offen",
+      text: "Du hast wenig angekreuzt. Das ist in Ordnung – die erste Stunde beginnt dann mit deiner Stunde und der Frage, wo die Lernenden hängen bleiben." }
+  };
+  var SP_SICHER = [["s_bedienen", "Bedienen"], ["s_pruefen", "Prüfen"], ["s_duerfen", "Dürfen"], ["s_bauen", "Bauen"]];
+  var SP_ANLASS = {
+    vereinfachen: { text: "Vereinfach ein eigenes Arbeitsblatt mit der Schnell-Anfrage – das ist der Anlass mit dem sichersten ersten Ergebnis.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
+    einstieg: { text: "Lass dir für deine Stunde einen Einstieg mit Vermutung entwerfen und prüf ihn mit den drei Fragen vor dem Kopieren.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
+    uebung: { text: "Mach aus einem Arbeitsblatt eine Übung, deren Rückmeldung erklärt statt nur richtig oder falsch zu zeigen.", link: "digitalisieren.html", linktext: "Unterricht digitalisieren" },
+    erwartung: { text: "Lass dir einen Erwartungshorizont zu einer eigenen Aufgabe entwerfen und streiche, was zu viel ist.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
+    praesentation: { text: "Bau eine Präsentation um: eine Frage je Folie, Vermutung vor der Auflösung.", link: "digitalisieren.html", linktext: "Unterricht digitalisieren" },
+    eltern: { text: "Lass dir eine Elterninformation entwerfen – ohne Namen – und formuliere sie in deinen Ton um.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
+    lernseite: { text: "Sieh dir ein Beispiel aus deinem Fach in der Galerie an, bevor du selbst etwas baust.", link: "galerie.html", linktext: "Zur Galerie" },
+    lernende: { text: "Leg für eine eigene Aufgabe fest, was Lernende mit KI dürfen und was sie selbst tun.", link: "lernende-ki.html", linktext: "Wenn deine Lernenden mit KI arbeiten" },
+    zuschauen: { text: "Zuschauen ist ein guter Anfang. Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" }
+  };
+  var SP_KNIFFE = {
+    sprechen: { titel: "Einsprechen statt eintippen", text: "Sprich die Anfrage ein, als würdest du sie einer Referendarin erklären: Klasse, Ziel, was schon da ist, was fehlt. So wird sie in einer Minute lang genug." },
+    foto: { titel: "Foto statt Abtippen", text: "Fotografier das alte Arbeitsblatt oder häng es an und sag nur, was sich ändern soll. Vorhandenes wird zum Ausgangspunkt." },
+    vorlage: { titel: "Die eine gute Anfrage speichern", text: "Leg die erste gelungene Anfrage als Textbaustein ab und tausch beim nächsten Mal nur Thema und Klasse aus." },
+    rueckfragen: { titel: "Erst fragen lassen", text: "Schreib ans Ende der Anfrage: »Stell mir zuerst drei Rückfragen, bevor du anfängst.« Das System holt sich den Kontext, den du vergessen hast." },
+    haelfte: { titel: "Kürzen statt mehr", text: "Sag »mach die Hälfte«, »nur eine Aufgabe«, »für 15 Minuten«. Der häufigste Fehler am Anfang ist zu viel in einer Stunde." },
+    pruefliste: { titel: "Drei Fragen vor dem Kopieren", text: "Stimmt es fachlich? Passt das Niveau? Was müssen die Lernenden selbst tun? Der Fehler bleibt beim System, nicht auf dem Arbeitsblatt." },
+    papierfrage: { titel: "Die Papierfrage als Stopp", text: "Geht es auf Papier genauso gut? Dann bleibt es Papier. Das erspart den Bau von Dingen, die niemand braucht." },
+    zwei: { titel: "Zwei Fassungen bestellen", text: "Lass dir zwei Varianten des Einstiegs geben und nimm die bessere – wählen ist leichter als korrigieren." }
+  };
+
+  function startpunkt(a) {
+    a = a || {};
+    var hat = function (feld, wert) { return (a[feld] || []).indexOf(wert) > -1; };
+    var h = a.haeufigkeit, oft = h === "mehrmals" || h === "taeglich", selten = h === "nie" || h === "probiert";
+    var schule = ["texte", "arbeitsblatt", "differenzieren", "erwartung", "quiz", "planen"].filter(function (w) { return hat("wofuer", w); }).length;
+    var lernende = hat("wofuer", "gebaut") || hat("wofuer", "lernende");
+    var skeptisch = hat("gedanken", "fach") || hat("hindernis", "zweifel") || a.ziel === "nein";
+    var leer = !h && !(a.wofuer || []).length && !(a.anlass || []).length;
+
+    var id = "offen";
+    if (!leer) {
+      if (lernende && (oft || a.s_bauen === "sicher")) id = "weit";
+      else if (oft || schule >= 2) id = "fuersich";
+      else if ((h === "probiert" || h === "woechentlich") && (a.ergebnis === "selten" || a.ergebnis === "nacharbeit" || hat("hindernis", "allgemein") || hat("hindernis", "dauer") || hat("hindernis", "fehler"))) id = "enttaeuscht";
+      else if (selten || hat("systeme", "keines") || hat("wofuer", "nichts")) id = "anfang";
+      else if (h === "woechentlich") id = "fuersich";
+    }
+    var lage = { id: id, titel: SP_LAGEN[id].titel, text: SP_LAGEN[id].text, skeptisch: skeptisch };
+
+    /* Stärken zuerst – der Bericht beginnt nie mit dem, was fehlt. */
+    var staerken = [];
+    if (hat("systeme", "land")) staerken.push("Du arbeitest schon mit dem Landesangebot – dem sicheren Ort für Schulisches.");
+    if (a.eingabe === "ausfuehrlich" || a.eingabe === "vorlage") staerken.push("Deine Anfragen sind schon ausführlich oder als Vorlage gespeichert. Das ist der halbe Weg.");
+    if (a.eingabe === "sprechen") staerken.push("Du sprichst Anfragen ein – der schnellste Weg zu einer guten Anfrage.");
+    if (a.s_pruefen === "sicher") staerken.push("Du prüfst KI-Ergebnisse fachlich sicher. Das bleibt die wichtigste Fähigkeit.");
+    if (a.s_duerfen === "sicher") staerken.push("Du weißt, was du eingeben darfst.");
+    if (hat("tablet", "ueben") || hat("tablet", "gemeinsam") || hat("tablet", "erstellen")) staerken.push("Deine Klasse tut am Tablet schon Dinge, die auf Papier kaum gingen.");
+    if (schule >= 1) staerken.push("Du hast KI schon für die Schule genutzt.");
+    if (a.ziel === "nein" || hat("gedanken", "fach")) staerken.push("Du fragst, ob dein Unterricht das überhaupt braucht. Diese Frage stellt Kidu auch – »bleibt auf Papier« ist ein vollwertiges Ergebnis.");
+    if (!staerken.length) staerken.push("Du nimmst dir Zeit, hinzusehen, bevor du etwas einsetzt. Das ist die Grundhaltung dieser Seite.");
+
+    var sicherheit = SP_SICHER.map(function (f) { return { id: f[0], titel: f[1], wert: a[f[0]] || "offen" }; });
+
+    /* Schritte: der erste gewählte Anlass zuerst, dann nach Lage, höchstens drei. */
+    var schritte = [], seen = {};
+    function push(s) { if (s && !seen[s.link + s.text]) { seen[s.link + s.text] = 1; schritte.push(s); } }
+    if (skeptisch) push({ text: "Prüf deine mitgebrachte Stunde mit der Papierfrage. »Bleibt auf Papier« ist ein gutes Ergebnis.", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
+    (a.anlass || []).forEach(function (k) { push(SP_ANLASS[k]); });
+    if (id === "anfang" || a.s_duerfen === "unsicher" || hat("hindernis", "datenschutz")) push({ text: "Lies die fünf Regeln zum sicheren Arbeiten – dann weißt du, was in die KI darf und was nicht.", link: "sicher.html", linktext: "Sicher arbeiten" });
+    if (id === "enttaeuscht") push({ text: "Bau deine alte Anfrage nach den fünf Teilen um: Ziel, Kontext, Vorgaben, Format, Prüfkriterien.", link: "ki.html#t-lernen", linktext: "Prompten lernen" });
+    if (id === "fuersich") push({ text: "Prüf eine Stelle deiner Stunde mit der Papierfrage: Was kann das Tablet hier besser?", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
+    if (id === "weit") push({ text: "Prüf dein bestes Material mit dem Digital-Check. Der Bericht beginnt mit den Stärken.", link: "selbstcheck.html", linktext: "Digital-Check" });
+    if (id === "offen") push({ text: "Bring deine Stunde mit und nenn die Stelle, an der die Lernenden hängen bleiben. Mehr braucht die erste Stunde nicht.", link: "beratung.html", linktext: "Beratungsstunde" });
+    push({ text: "Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" });
+
+    /* Kniffe: zwei, passend zur Lage und zur Arbeitsweise. */
+    var kniffe = [];
+    function kniff(k) { if (kniffe.length < 2 && kniffe.indexOf(SP_KNIFFE[k]) < 0) kniffe.push(SP_KNIFFE[k]); }
+    if (a.eingabe !== "sprechen" && (id === "anfang" || id === "enttaeuscht" || id === "offen")) kniff("sprechen");
+    if (hat("material", "schulbuch") || hat("material", "blaetter") || a.vorbereitung === "fundus") kniff("foto");
+    if (id === "enttaeuscht") kniff("rueckfragen");
+    if (a.vorbereitung === "genau") kniff("haelfte");
+    if (a.vorbereitung === "geruest") kniff("zwei");
+    if (id === "fuersich" || id === "weit") kniff("papierfrage");
+    if (hat("hindernis", "fehler") || a.s_pruefen === "unsicher") kniff("pruefliste");
+    kniff("vorlage"); kniff("pruefliste");
+
+    /* Codeblock für die Leitung: nur Auswahlwerte, lesbar und maschinenlesbar. */
+    var code = ["startpunkt v1", "lage=" + id + (skeptisch ? "+skeptisch" : "")];
+    ["haeufigkeit", "eingabe", "ergebnis", "vorbereitung", "zeit", "ziel", "s_bedienen", "s_pruefen", "s_duerfen", "s_bauen"].forEach(function (f) { if (a[f]) code.push(f + "=" + a[f]); });
+    ["systeme", "wofuer", "hindernis", "material", "tablet", "anlass", "gedanken", "lernen"].forEach(function (f) { if ((a[f] || []).length) code.push(f + "=" + a[f].join(",")); });
+
+    return { lage: lage, staerken: staerken.slice(0, 3), sicherheit: sicherheit, schritte: schritte.slice(0, 3), kniffe: kniffe, code: code.join(" · "),
+             satz: "Das ist keine Bewertung. Es ist dein Startpunkt – damit die Fortbildung bei dir anfängt und nicht irgendwo." };
+  }
+
   var REGELN = {
     PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
     stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
     entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung,
-    papierprobe: papierprobe, beobachtung: beobachtung, istStand: istStand
+    papierprobe: papierprobe, beobachtung: beobachtung, istStand: istStand, startpunkt: startpunkt
   };
   if (typeof module !== "undefined") module.exports = REGELN;
   else wurzel.REGELN = REGELN;

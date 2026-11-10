@@ -22,6 +22,7 @@ SEITEN = [
     ("beobachtung.html", "Nach der Stunde: Beobachtungsbogen – Kidu", "unterricht"),
     ("tablet-phasen.html", "Tablet-Phasen gut führen – Kidu", "unterricht"),
     ("ist-stand.html", "Mein Ist-Stand – Kidu", "unterricht"),
+    ("startpunkt.html", "Mein Startpunkt: KI und Tablet – Kidu", "unterricht"),
     ("fortbildung.html", "Fortbildungsbaustein: 45 Minuten – Kidu", "unterricht"),
     ("beratung.html", "Beratungsstunde: acht Wochen – Kidu", "unterricht"),
     ("leitsaetze.html", "Leitsätze zur Diskussion – Kidu", ""),
