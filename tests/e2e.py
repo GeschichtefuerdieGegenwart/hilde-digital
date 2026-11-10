@@ -79,7 +79,8 @@ def main():
         hoehe = pg.locator(".galerie-zugang").bounding_box()
         pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
         pg.click('a.wahlflaeche[href="unterricht.html"]'); pg.wait_for_url("**/unterricht.html")
-        pruefe(pg.locator(".werkzeuge").first.locator(".werkzeug").count() == 8 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt") and "sechs-hebel" in pg.locator(".werkzeuge .werkzeug.leit a").get_attribute("href") and [a.get_attribute("href") for a in pg.locator(".werkzeuge").first.locator(".werkzeug a").all()][4:] == ["ist-stand.html", "passt.html", "tablet-phasen.html", "beobachtung.html"] and "Ideen und Kniffe" in pg.inner_text("main"), "Digitaler Unterricht: acht Werkzeuge, die Frage als Leitkachel oben, »Unterricht digitalisieren« als Hauptwerkzeug, Reihenfolge Ist-Stand · Passt · Tablet-Phasen · Nach der Stunde, Hinweis »Ideen und Kniffe«")
+        reg = [a.get_attribute("href") for a in pg.locator(".register a").all()]
+        pruefe(pg.locator(".werkzeuge.tueren .werkzeug").count() == 2 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt") and "Wann funktioniert" in pg.inner_text(".leitband") and pg.locator('.leitband a[href="sechs-hebel.html"]').count() == 1 and reg == ["#t-probe", "digital-check.html", "tablet-phasen.html", "beobachtung.html", "ist-stand.html", "passt.html", "muster.html", "galerie.html"] and "Ideen und Kniffe" in pg.inner_text("main"), f"Digitaler Unterricht (4.28, U3): Leitband mit der Frage, zwei Türen, Register mit acht Werkzeugen samt Papierfrage und Galerie {reg}")
         pg.click('.werkzeug a[href="tablets.html"]')
         pg.click("#weiter")
         pruefe(pg.is_visible("#hinweis"), "Planungsweg: Hinweis, wenn nichts gewählt ist")
@@ -659,6 +660,9 @@ def main():
         pruefe("# Typische Schwächen" in pg.input_value("#pruef-prompt") and "digital-check" in (pg.text_content("[data-kurzfassung]") or ""), "Digital-Check: typische Schwächen aus dem Skill (4.25)")
         pg.goto(url("ki.html"))
         pruefe(pg.locator('#t-werkstatt ~ .werkzeuge a[href="werkzeugkiste.html"]').count() == 1, "KI-Training: Weg zur Werkzeugkiste")
+        gruppen = pg.eval_on_selector_all(".ki-gruppe", "gs => gs.map(g => [g.querySelector('.gruppe-titel').textContent, g.querySelectorAll('.werkzeug').length])")
+        oben = pg.evaluate("document.getElementById('t-werkstatt').compareDocumentPosition(document.getElementById('schnell')) & Node.DOCUMENT_POSITION_FOLLOWING")
+        pruefe(gruppen == [["Einmal einrichten", 1], ["Fertig zum Kopieren", 2], ["Sicher bleiben", 2]] and bool(oben), f"KI-Training (4.28, K1): drei benannte Gruppen direkt unter den Türen {gruppen}")
         # 2h. Version 4.10: Lernende und KI, Beratungsstunde, Lese-Kriterium, Selbstcheck, Beobachtungsbogen
         pg.goto(url("lernende-ki.html"))
         pruefe(pg.locator(".regel-drei > li").count() == 3, "Lernende und KI: drei Regeln")
