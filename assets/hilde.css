@@ -1735,7 +1735,7 @@ html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs
 .sh-bruecke{position:relative;display:grid;place-items:center;padding:var(--a1)}
 .sh-bruecke::before{content:"";position:absolute;left:0;right:0;top:50%;height:4px;margin-top:-2px;background:var(--text)}
 .sh-bruecke span{position:relative;background:var(--grund);border:2px solid var(--text);border-radius:var(--rund);padding:.3rem .55rem;font-weight:700;font-size:var(--gr-klein);text-align:center;overflow-wrap:anywhere}
-.sh-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2) var(--a3);margin-top:var(--a3)}
+.sh-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2) var(--a3);margin:0}
 @media (max-width:720px){
   .sh-modell{grid-template-columns:1fr}
   .sh-bruecke{min-height:4.5rem}
@@ -1918,3 +1918,194 @@ html[data-bewegung="weniger"] .sh-flieger,html[data-bewegung="weniger"] .sh-kach
 html[data-bewegung="weniger"] .sh-s-balken,html[data-bewegung="weniger"] .sh-t-antwort,html[data-bewegung="weniger"] .sh-u-punkt,html[data-bewegung="weniger"] .sh-u-band,html[data-bewegung="weniger"] .sh-v-fuell,html[data-bewegung="weniger"] .sh-x-du,html[data-bewegung="weniger"] .sh-x-halb circle{transition:none!important;animation:none!important}
 html[data-bewegung="weniger"]::view-transition-group(sh-w-text){animation:none}
 @media print{.sh-kniff .sh-nur-mit-js{display:none}.sh-kniff details{display:block}}
+
+/* ---------- Y · Hebelrad (sechs-hebel.html, ab Version 4.21) ----------
+   Die Überblicksgrafik der sechs Hebel aus Claude Design (Canvas »Sechs Hebel – Überblicksgrafik«, Richtung C):
+   Mitte = Gerät (--lernen), sechs Kacheln ohne Reihenfolge auf einem Ring = Plenumsstelle, außen = Raum (--karton).
+   Maße in Prozent eines Quadrats von 560 px; das Quadrat schrumpft am Beamer, damit Kopf, Rad und erster Knopf in 720 px passen.
+   »Deine Wahl« = --wahl (--lernen-tief, zweite Druckfarbe bleibt), gewählte Kachel hebt sich 2 px auf ihre Platte.
+   Ohne JavaScript: Kacheln sind Sprungmarken, die Karte zeigt alle sechs Sätze. Bewegung nur transform/opacity. */
+.sh-rad-figur{--wahl:var(--lernen-tief)}
+.sh-rad-bund{--rad:clamp(17rem,100svh - 21rem,34rem);display:grid;grid-template-columns:var(--rad) minmax(0,1fr);gap:var(--a3) var(--a4);align-items:start;margin-top:var(--a3)}
+.sh-rad-figur{margin:0}
+.sh-rad-seite{display:grid;gap:var(--a3);align-content:start;min-width:0}
+.sh-rad-seite .detail-kurz{margin:0}
+.sh-rad{position:relative;width:100%;aspect-ratio:1;background:var(--karton);border-radius:var(--rund);font-size:1rem}
+.sh-rad-raum-titel,.sh-rad-raumwort{position:absolute;margin:0;line-height:1.1}
+.sh-rad-raum-titel{left:3%;top:2.5%;font-size:var(--gr-klein);font-weight:700;color:var(--leise)}
+.sh-rad-raumwort{font-family:var(--schrift-titel);font-weight:600;font-size:clamp(1rem,2.2cqi,1.375rem)}
+.sh-rad{container-type:inline-size}
+.sh-rad-raumwort-1{right:3%;top:2.5%}
+.sh-rad-raumwort-2{right:3%;bottom:2.5%}
+.sh-rad-raumwort-3{left:3%;bottom:2.5%}
+.sh-rad-ring{position:absolute;left:5.7%;top:5.7%;width:88.6%;height:88.6%;box-sizing:border-box;border:6.4cqi solid var(--flaeche);border-radius:50%}
+.sh-rad-ring::after{content:"";position:absolute;inset:3.6%;border:2px dashed var(--stahl);border-radius:50%}
+.sh-rad-plenum{position:absolute;left:83.9%;top:46.8%;width:13.6%;margin:0;font-size:clamp(.75rem,2.6cqi,1rem);font-weight:700;line-height:1.15;text-align:center;background:var(--flaeche);hyphens:manual}
+.sh-rad-mitte{position:absolute;left:30.4%;top:30.4%;width:39.3%;height:39.3%;box-sizing:border-box;border-radius:50%;background:var(--lernen);color:var(--aktion-text);display:grid;align-content:center;justify-items:center;text-align:center;padding:9%;gap:.3em}
+.sh-rad-mitte p{margin:0}
+.sh-rad-mitte-leise{font-size:clamp(.75rem,2.6cqi,1rem)}
+.sh-rad-mitte-titel{font-family:var(--schrift-titel);font-weight:600;font-size:clamp(.85rem,3.6cqi,1.375rem);line-height:1.15}
+.sh-rad-hebel{list-style:none;margin:0;padding:0}
+.sh-rad-platz{position:absolute;width:30.4%;height:17.2%}
+.sh-rad-platz-1{left:34.8%;top:.4%}
+.sh-rad-platz-2{left:70.4%;top:20.9%}
+.sh-rad-platz-3{left:70.4%;top:62%}
+.sh-rad-platz-4{left:34.8%;top:82.4%}
+.sh-rad-platz-5{left:-.7%;top:62%}
+.sh-rad-platz-6{left:-.7%;top:20.9%}
+.sh-rad-kachel{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15em;padding:.3em .3em;box-sizing:border-box;background:var(--flaeche);color:var(--text);border:2px solid var(--stahl);border-radius:var(--rund);box-shadow:var(--platte);text-decoration:none;white-space:nowrap;text-align:center;transition:transform var(--dauer-schnell) var(--ease-out),box-shadow var(--dauer-schnell) var(--ease-out)}
+.sh-rad-zeichen{width:clamp(1.25rem,5cqi,1.75rem);height:auto;color:var(--lernen);flex:0 0 auto}
+.sh-rad-verb{font-family:var(--schrift-titel);font-weight:600;font-size:clamp(.8rem,3.4cqi,1.375rem);line-height:1.1}
+.sh-rad-kachel:hover{text-decoration:none}
+@media (hover:hover) and (pointer:fine){.sh-rad-kachel:hover{transform:translate(-1px,-1px);box-shadow:7px 7px 0 0 var(--platte-farbe)}}
+.sh-rad-kachel.sh-rad-an,.sh-rad-kachel[aria-current="true"]{border-color:var(--wahl);box-shadow:8px 8px 0 0 var(--wahl);transform:translate(-2px,-2px)}
+.sh-rad-js .sh-rad-kachel{cursor:pointer}
+.sh-rad-karte{display:grid;gap:var(--a2);align-content:start;padding:var(--a2) var(--a3);background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);box-shadow:var(--platte);min-width:0}
+.sh-rad-karte p{margin:0}
+.sh-rad-karte-kopf{font-size:var(--gr-klein);font-weight:700;color:var(--wahl)}
+.sh-rad-karte-kopf::before{content:"● "}
+.sh-rad-karte-titel{font-family:var(--schrift-titel);font-weight:600;font-size:var(--gr-h3);line-height:1.2}
+.sh-rad-liste{margin:0;padding:0;list-style:none;display:grid;gap:.25rem;font-size:var(--gr-klein)}
+.sh-rad-karte:has(.sh-rad-karte-kopf){border-color:var(--wahl)}
+.sh-rad-neu{animation:sh-rad-neu var(--dauer-aufdecken) var(--ease-out)}
+@keyframes sh-rad-neu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:900px){
+  .sh-rad-bund{grid-template-columns:1fr;justify-items:center}
+  .sh-rad-figur{width:min(100%,34rem)}
+  .sh-rad-seite{justify-self:stretch}
+}
+html[data-bewegung="weniger"] .sh-rad-kachel,html[data-bewegung="weniger"] .sh-rad-neu{transition:none;animation:none}
+@media (prefers-reduced-motion:reduce){.sh-rad-kachel,.sh-rad-neu{transition:none;animation:none}}
+@media print{.sh-rad-kachel{box-shadow:none}.sh-rad-karte{box-shadow:none}}
+
+/* ---------- AW · Erklärfilm »Was das Gerät kann« (sechs-hebel-film.html, ab Version 4.21) ----------
+   Bühne 1280 × 720, per transform auf die Breite des Rahmens skaliert (assets/sechs-hebel-film.js). Satz oben je Takt,
+   Kapitelleiste und Regler unter der Bühne, »Du bist hier« = gefüllter Kapitelknopf (Druckschwarz, keine dritte Farbe).
+   Alle Bewegung in JavaScript aus der Zeit T (nur transform/opacity); CSS hält hier nur Lage, Farbe und Schrift.
+   Ohne JavaScript (Hülle ohne .hf-js): Startkarte mit Hinweis, Bedienteile aus, der Text steht darunter. */
+.hf{display:grid;gap:var(--a2)}
+.hf:not(.hf-js) .hf-nur-mit-js{display:none}
+.hf.hf-js .hf-nur-ohne-js{display:none}
+.hf-rahmen{position:relative;width:100%;overflow:hidden;border-radius:var(--rund);background:var(--grund);border:2px solid var(--stahl);box-sizing:border-box}
+.hf:not(.hf-js) .hf-rahmen{aspect-ratio:16/9}
+.hf-buehne{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;font-family:var(--schrift);color:var(--text);font-size:18px;line-height:1.45;overflow:hidden}
+.hf:not(.hf-js) .hf-buehne{position:static;width:auto;height:100%;transform:none!important}
+.hf-buehne:focus-visible{outline:3px solid var(--fokus);outline-offset:-3px}
+.hf-start{position:absolute;inset:0;z-index:5;display:grid;align-content:center;justify-items:center;gap:var(--a2);padding:var(--a4);text-align:center;background:var(--grund)}
+.hf:not(.hf-js) .hf-start{position:static;height:100%;box-sizing:border-box}
+.hf-start p{margin:0;max-width:40ch}
+.hf-start-frage{font-family:var(--schrift-titel);font-weight:700;font-size:clamp(1.5rem,1.2rem + 2vw,2.75rem);line-height:1.1}
+.hf-js .hf-start-frage{font-size:44px}
+.hf-start-satz{font-size:1.25rem;color:var(--leise)}
+.hf-js .hf-start-satz{font-size:22px}
+.hf-meta{position:absolute;left:56px;top:28px;margin:0;font-size:16px;color:var(--leise)}
+.hf-satz{position:absolute;left:56px;top:54px;width:1168px;min-height:88px;margin:0;font-family:var(--schrift-titel);font-weight:600;font-size:34px;line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
+.hf-bild{position:absolute;inset:0}
+.hf-kap{position:absolute;inset:0}
+.hf-ende{position:absolute;left:0;right:0;bottom:40px;z-index:6;display:grid;justify-items:center;gap:var(--a2);padding:var(--a3);background:var(--flaeche);border-top:2px solid var(--stahl)}
+.hf-ende-satz{margin:0;font-family:var(--schrift-titel);font-weight:600;font-size:28px}
+.hf-ende-knoepfe{display:flex;flex-wrap:wrap;gap:var(--a2);justify-content:center}
+.hf-steuerung{display:flex;align-items:center;gap:var(--a2);flex-wrap:wrap}
+.hf-regler{flex:1 1 12rem;display:flex;align-items:center}
+.hf-regler input{width:100%;accent-color:var(--text);min-height:44px;margin:0}
+.hf-zeit{font-variant-numeric:tabular-nums;color:var(--leise);font-size:var(--gr-klein)}
+.hf-kapitel{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.5rem}
+.hf-kapitel button{width:100%;min-height:44px;text-align:left;padding:.45rem .7rem;font:var(--gr-klein)/1.25 var(--schrift);color:var(--text);background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);cursor:pointer;touch-action:manipulation}
+.hf-kapitel button b{margin-right:.35em}
+.hf-kapitel button[aria-current="true"]{background:var(--text);color:var(--aktion-text);border-color:var(--text);font-weight:700}
+.hf-text{margin:0;padding:0;list-style:none;display:grid;gap:var(--a3)}
+.hf-text li p{margin:0}
+.hf-text-kapitel{font-family:var(--schrift-titel);font-weight:600;font-size:var(--gr-h3);margin-bottom:.25rem!important}
+
+/* Bausteine auf der Bühne (Maße in px, weil die Bühne skaliert) */
+.hf-kap p{margin:0}
+.hf-blatt{position:absolute;box-sizing:border-box;padding:28px 24px;display:flex;flex-direction:column;gap:14px;background:var(--flaeche);border:2px solid var(--stahl);box-shadow:var(--platte)}
+.hf-blatt-stark{border-color:var(--text);box-shadow:8px 8px 0 0 var(--karton)}
+.hf-zeile{flex:0 0 auto}
+.hf-feld{height:36px;width:100%;border:2px dashed var(--stahl);box-sizing:border-box}
+.hf-feld+.hf-feld{margin-top:0}
+.hf-tablet{position:absolute;box-sizing:border-box;padding:20px;background:var(--text);border-radius:22px}
+.hf-pfeil{position:absolute;display:grid;justify-items:center;gap:6px;color:var(--text);font-size:16px}
+.hf-pfeil span{color:var(--leise)}
+.hf-label{position:absolute;font-weight:700;text-align:center}
+.hf-rad{position:absolute}
+.hf-ring{position:absolute;left:8.9%;top:8.9%;width:82.2%;height:82.2%;box-sizing:border-box;border:2px dashed var(--stahl);border-radius:50%}
+.hf-mitte{position:absolute;box-sizing:border-box;border-radius:50%;background:var(--lernen);color:var(--aktion-text);display:grid;align-content:center;justify-items:center;text-align:center;padding:10%;gap:4px}
+.hf-mitte-leise{font-size:16px}
+.hf-mitte-titel{font-family:var(--schrift-titel);font-weight:600;font-size:22px;line-height:1.15}
+.hf-kachel{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-sizing:border-box;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);box-shadow:5px 5px 0 0 var(--karton)}
+.hf-zeichen{display:inline-flex;line-height:0}
+.hf-verb{font-family:var(--schrift-titel);font-weight:600;line-height:1.1}
+.hf-liste{position:absolute;display:grid;gap:10px;font-size:20px}
+.hf-leise{font-size:16px;color:var(--leise)}
+.hf-fett{font-weight:700}
+.hf-gross{font-family:var(--schrift-titel);font-weight:700;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.hf-spalte{position:absolute;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;padding:18px;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);box-shadow:var(--platte);opacity:.55}
+.hf-spalte.hf-aktiv{opacity:1;border-color:var(--lernen-tief);box-shadow:8px 8px 0 0 var(--lernen-tief)}
+.hf-spalte-kopf{display:flex;align-items:center;gap:10px;font-family:var(--schrift-titel);font-weight:600;font-size:24px;line-height:1.1}
+.hf-jetzt{font:700 16px/1 var(--schrift);color:var(--lernen-tief);opacity:0}
+.hf-spalte-innen{flex:1 1 auto;display:flex;flex-direction:column;gap:10px;padding:14px;background:var(--grund);border:2px solid var(--linie);min-height:0}
+.hf-spalte-fuss{font-size:16px;color:var(--leise)}
+.hf-spalte-titel{font-family:var(--schrift-titel);font-weight:600;font-size:24px;line-height:1.2}
+.hf-reihe{display:flex;align-items:center;gap:8px}
+.hf-deck{position:relative;display:flex;align-items:center;height:16px}
+.hf-balken{position:absolute;inset:-2px -3px;background:var(--text);transform-origin:right center}
+.hf-chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.hf-chip{display:inline-flex;align-items:center;min-height:36px;padding:0 10px;border:2px solid var(--stahl);border-radius:var(--rund);font-size:16px;background:var(--flaeche)}
+.hf-chip.voll{background:var(--text);color:var(--aktion-text);border-color:var(--text);font-weight:700}
+.hf-grund{margin-top:auto!important;font-size:16px;padding:10px 12px;background:var(--flaeche);border-left:4px solid var(--lernen);opacity:0}
+.hf-tipp{position:absolute;width:40px;height:40px;pointer-events:none}
+.hf-tipp i{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;box-sizing:border-box}
+.hf-tipp-ring{border:3px solid var(--text)}
+.hf-tipp-punkt{width:18px;height:18px;left:11px;top:11px;background:var(--text)}
+.hf-halbrund{position:relative;width:320px;height:160px;margin:0 auto}
+.hf-punkt{position:absolute;width:14px;height:14px;border-radius:50%;border:2px solid var(--text);box-sizing:border-box;background:transparent;transform:scale(0)}
+.hf-punkt.ja{background:var(--lernen);border-color:var(--lernen)}
+.hf-zahl{font-size:20px;margin-top:auto!important}
+.hf-band{position:relative;height:44px;margin-top:8px}
+.hf-band::before{content:"";position:absolute;left:0;right:0;top:18px;height:2px;background:var(--stahl)}
+.hf-messpunkt{position:absolute;top:11px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--lernen);transform:scale(0)}
+.hf-band-l,.hf-band-r{position:absolute;top:24px;font-size:16px;color:var(--leise)}
+.hf-band-l{left:0}.hf-band-r{right:0}
+.hf-huerde{position:relative;height:56px;margin-top:20px}
+.hf-huerde-spur{position:absolute;left:0;right:0;top:18px;height:4px;background:var(--karton)}
+.hf-huerde-fuell{position:absolute;left:0;right:0;top:18px;height:4px;background:var(--lernen);transform-origin:left center}
+.hf-huerde-griff{position:absolute;top:6px;width:12px;height:28px;margin-left:-6px;background:var(--lernen);border-radius:var(--rund)}
+.hf-huerde-wert{position:absolute;top:-22px;transform:translateX(-50%);font-size:16px;font-weight:700}
+.hf-huerde .hf-band-l,.hf-huerde .hf-band-r{top:28px}
+.hf-balkenliste{display:grid;gap:8px}
+.hf-balkenzeile{display:flex;align-items:center;gap:10px}
+.hf-balkenname{width:24px;font-size:16px}
+.hf-balkenbalken{height:18px;background:var(--lernen);transform-origin:left center;flex:0 0 auto}
+.hf-unter .hf-balkenbalken{background:transparent;border:2px dashed var(--stahl);box-sizing:border-box}
+.hf-unter .hf-balkenname,.hf-unter .hf-balkentext{color:var(--leise)}
+.hf-balkentext{font-size:16px;font-variant-numeric:tabular-nums}
+.hf-textzeilen{display:grid;gap:8px}
+.hf-geraet,.hf-raum{position:absolute;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;padding:20px;border-radius:var(--rund)}
+.hf-geraet{background:var(--flaeche);border:2px solid var(--lernen)}
+.hf-raum{background:var(--karton);border:2px solid var(--text)}
+.hf-feldtitel{font-size:16px;font-weight:700;color:var(--leise)}
+.hf-geraet .hf-feldtitel{color:var(--lernen)}
+.hf-gkachel{display:flex;align-items:center;gap:10px;padding:10px 12px;border:2px solid var(--stahl);border-radius:var(--rund);font-family:var(--schrift-titel);font-weight:600;font-size:20px;background:var(--flaeche)}
+.hf-geraet .hf-gkachel{display:inline-flex}
+.hf-geraet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:start}
+.hf-geraet .hf-feldtitel{grid-column:1 / -1}
+.hf-gkachel-gross{flex-direction:column;justify-content:center;gap:6px;padding:18px;font-size:22px;color:var(--leise)}
+.hf-gitter{position:absolute;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;font-size:20px;color:var(--leise)}
+.hf-bruecke{position:absolute;display:grid;align-content:center;justify-items:center;gap:10px}
+.hf-bruecke-linie{display:block;width:100%;height:4px;background:var(--text)}
+.hf-bruecke-wort{font-size:16px;font-weight:700;background:var(--grund);padding:0 6px}
+.hf-tafel{display:grid;gap:4px;padding:14px 16px;background:var(--text);color:var(--aktion-text);border-radius:var(--rund)}
+.hf-tafel-leise{font-size:16px;color:var(--linie)}
+.hf-tafel-titel{font-family:var(--schrift-titel);font-weight:600;font-size:24px}
+.hf-raumwort{font-family:var(--schrift-titel);font-weight:700;font-size:30px;line-height:1.1}
+.hf-raum .hf-raumwort:first-of-type{margin-top:auto!important}
+.hf-flieger{position:absolute;z-index:3;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 12px;background:var(--flaeche);border:2px solid var(--lernen-tief);border-radius:var(--rund);box-shadow:6px 6px 0 0 var(--lernen-tief);font-family:var(--schrift-titel);font-weight:600;font-size:20px}
+.hf-gut{position:absolute;font-family:var(--schrift-titel);font-weight:600;font-size:24px;text-align:center}
+.hf-probe{position:absolute;box-sizing:border-box;display:grid;gap:14px;padding:24px;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);box-shadow:var(--platte)}
+.hf-probegitter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.hf-probekachel{position:relative;display:flex;align-items:center;gap:.5rem;min-height:48px;padding:10px 12px;border:2px solid var(--lernen);border-radius:var(--rund);font-weight:700;font-size:18px;background:var(--flaeche)}
+.hf-probekachel::before{content:"";width:.9rem;height:.9rem;border-radius:50%;border:2px solid var(--lernen)}
+.hf-probekachel.an{background:var(--lernen);color:var(--aktion-text)}
+.hf-probekachel.an::before{background:var(--aktion-text);border-color:var(--aktion-text)}
+@media print{.hf-steuerung,.hf-kapitel{display:none}}
