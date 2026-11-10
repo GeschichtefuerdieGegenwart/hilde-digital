@@ -2148,3 +2148,46 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
 @media (prefers-reduced-motion:reduce){.sh-band-vor,.sh-band-rueck{animation:none}}
 /* Auf der Startseite steht die ausgeschriebene Zeile groß unter dem Titel – im Kopf nicht ein zweites Mal */
 .marke[aria-current="page"] .marke-zeile{display:none}
+
+/* ---------- Mein Startpunkt (startpunkt.html, ab 4.24) ----------
+   Vier Sicherheitsfelder als Stanzlöcher auf einer Linie (leer · halb · voll), immer mit Wort darunter.
+   Ruhig: keine Bewegung, die Karte steht beim Laden. Druck zeigt nur die Karte (Klasse nur-ergebnis). */
+.sp-schritt{margin:var(--a4) 0 0;font-size:var(--gr-h3);line-height:1.2}
+.sp-schritt:first-of-type{margin-top:0}
+.sp-sicher{display:grid;gap:var(--a2)}
+.sp-sicher-zeile{display:grid;gap:.5rem}
+.sp-sicher-text{font-weight:700}
+@media (min-width:720px){.sp-sicher-zeile{grid-template-columns:minmax(0,18rem) 1fr;align-items:center}}
+.sp-stunde{display:grid;gap:var(--a2);max-width:40rem}
+.sp-stunde .bogen-notiz{margin-top:0}
+.sp-stunde input,.bogen-notiz input{background:var(--grund)}
+.sp-karte{display:block;width:100%;max-width:36rem;height:auto;margin:var(--a2) 0}
+.sp-linie{stroke:var(--text);stroke-width:2}
+.sp-feld circle{fill:var(--flaeche);stroke:var(--text);stroke-width:2.5}
+.sp-voll circle{fill:var(--text)}
+.sp-halb path{fill:var(--text)}
+.sp-feld-titel{font:700 16px var(--schrift);fill:var(--text)}
+.sp-feld-wort{font:400 16px var(--schrift);fill:var(--leise)}
+.sp-code{font:400 1rem/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--grund);border:1px solid var(--linie);border-radius:var(--rund-klein);padding:.6rem .8rem;max-width:62ch;overflow-wrap:anywhere}
+.sp-pdf-hinweis{flex:1 1 20rem;margin:0;align-self:center;max-width:48ch}
+@media print{ /* taste-skill-ignore: Druckfassung */
+  html.nur-ergebnis body>*:not(main),html.nur-ergebnis main>*>*:not(.weg-abschnitt),html.nur-ergebnis .weg-abschnitt .box,html.nur-ergebnis #sp,html.nur-ergebnis #t-fragen{display:none!important}
+  html.nur-ergebnis .weg-abschnitt{padding:0}
+  html.nur-ergebnis body{zoom:.86} /* Druckfassung auf einer A4-Seite; Schriftgrößen auf dem Bildschirm bleiben bei 16 px */
+  html.nur-ergebnis .huelle,html.nur-ergebnis main{max-width:none;padding-inline:0;margin:0}
+  html.nur-ergebnis .sp-ergebnis{padding-inline:0}
+  html.nur-ergebnis{--gr-h3:1rem}
+  @page{size:A4;margin:11mm 13mm}
+  .sp-ergebnis{border-top-width:6px;padding:.5rem 0;line-height:1.3}
+  .sp-ergebnis h2{font-size:1.35rem;margin:.2rem 0 .3rem;line-height:1.15}
+  .sp-ergebnis .begruendung,.sp-ergebnis .bogen-hinweise{max-width:none}
+  .sp-ergebnis .minis-titel{margin-top:.55rem;margin-bottom:.15rem;break-after:avoid}
+  .sp-ergebnis .bogen-hinweises,.sp-ergebnis .bogen-hinweise{gap:.15rem}
+  .sp-ergebnis .begruendung{margin:.3rem 0}
+  .sp-ergebnis .schluss{margin-top:.8rem}
+  .sp-ergebnis .textlink{min-height:0;display:inline;line-height:inherit}
+  .sp-ergebnis .textlink::after{content:" (" attr(href) ")";font-weight:400;color:#555}
+  .sp-karte{max-width:21rem;margin:.2rem 0}
+  .sp-code{border-color:#999;max-width:none;line-height:1.3;padding:.4rem .6rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sp-quelle{margin-top:.6rem}
+}

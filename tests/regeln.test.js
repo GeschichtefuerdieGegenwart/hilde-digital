@@ -431,3 +431,54 @@ test("Umfang durchgängig: gewählt bleibt gewählt, aber mit festen Stellen im 
   assert.match(u.grund, /Papier/);
   assert.match(R.umfang({ umfang: "phasenweise" }, "klar").grund, /Das hast du gewählt/);
 });
+
+test("Startpunkt: leere Eingabe ohne Fehler – Lage »offen«, immer der Satz »keine Bewertung«, vier Felder", () => {
+  for (const a of [undefined, {}]) {
+    const e = R.startpunkt(a);
+    assert.equal(e.lage.id, "offen");
+    assert.match(e.satz, /keine Bewertung/);
+    assert.equal(e.sicherheit.length, 4);
+    assert.ok(e.sicherheit.every((f) => f.wert === "offen"));
+    assert.ok(e.schritte.length >= 1 && e.schritte.length <= 3 && e.kniffe.length === 2 && e.staerken.length >= 1);
+  }
+});
+
+test("Startpunkt: vier Lagen aus Häufigkeit, Nutzung und Ergebnis", () => {
+  assert.equal(R.startpunkt({ haeufigkeit: "nie", systeme: ["keines"] }).lage.id, "anfang");
+  assert.equal(R.startpunkt({ haeufigkeit: "probiert", ergebnis: "selten" }).lage.id, "enttaeuscht");
+  assert.equal(R.startpunkt({ haeufigkeit: "mehrmals", wofuer: ["texte", "arbeitsblatt"] }).lage.id, "fuersich");
+  assert.equal(R.startpunkt({ haeufigkeit: "taeglich", wofuer: ["gebaut", "lernende"], s_bauen: "sicher" }).lage.id, "weit");
+});
+
+test("Startpunkt: keine Rangfolge – Lagen heißen nicht Stufe, Niveau oder Anfänger; keine Noten, Punkte oder Prozentwerte", () => {
+  for (const a of [{ haeufigkeit: "nie" }, { haeufigkeit: "probiert", ergebnis: "selten" }, { haeufigkeit: "mehrmals", wofuer: ["texte", "quiz"] }, { haeufigkeit: "taeglich", wofuer: ["gebaut"] }]) {
+    const e = R.startpunkt(a);
+    for (const t of [e.lage.titel, e.lage.text, e.satz, ...e.staerken, ...e.schritte.map((s) => s.text), ...e.kniffe.map((k) => k.text)])
+      assert.ok(!/Stufe|Niveau \d|Anfänger|\d+ ?(%|Punkte)|Note/.test(t), t);
+  }
+});
+
+test("Startpunkt: der erste gewählte Anlass kommt zuerst, Skepsis führt zur Papierfrage, höchstens drei Schritte", () => {
+  const e = R.startpunkt({ haeufigkeit: "nie", anlass: ["eltern", "uebung"], hindernis: ["datenschutz"] });
+  assert.equal(e.schritte[0].link, "ki.html#t-schnell");
+  assert.ok(e.schritte.some((s) => s.link === "sicher.html"), "Datenschutz-Unsicherheit führt zu »Sicher arbeiten«");
+  assert.ok(e.schritte.length <= 3);
+  const s = R.startpunkt({ haeufigkeit: "woechentlich", gedanken: ["fach"], anlass: ["uebung"] });
+  assert.ok(s.lage.skeptisch && s.schritte[0].link.startsWith("unterricht.html#t-probe"));
+  assert.ok(s.staerken.some((t) => /vollwertiges Ergebnis/.test(t)), "Skepsis wird als Stärke genannt, nicht umgestimmt");
+});
+
+test("Startpunkt: Kniffe passen zur Lage und Arbeitsweise – Einsprechen nur, wenn noch nicht eingesprochen wird", () => {
+  const a = R.startpunkt({ haeufigkeit: "probiert", ergebnis: "selten", vorbereitung: "genau" });
+  assert.ok(a.kniffe.some((k) => /Einsprechen/.test(k.titel)) && a.kniffe.length === 2);
+  const b = R.startpunkt({ haeufigkeit: "probiert", ergebnis: "selten", eingabe: "sprechen", vorbereitung: "genau" });
+  assert.ok(!b.kniffe.some((k) => /Einsprechen/.test(k.titel)));
+  assert.ok(b.kniffe.some((k) => /Kürzen/.test(k.titel)), "genau Planende bekommen »Kürzen statt mehr«");
+});
+
+test("Startpunkt: der Codeblock trägt nur Auswahlwerte, nie Texte", () => {
+  const e = R.startpunkt({ haeufigkeit: "mehrmals", wofuer: ["texte", "quiz"], s_pruefen: "teils", stelle: "Quellenarbeit", kuerzel: "MW" });
+  assert.match(e.code, /^startpunkt v1 · lage=fuersich/);
+  assert.match(e.code, /s_pruefen=teils/);
+  assert.ok(!/Quellenarbeit|MW/.test(e.code));
+});

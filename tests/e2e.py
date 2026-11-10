@@ -19,7 +19,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "sechs-hebel-film.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "startpunkt.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "sechs-hebel-film.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -326,6 +326,29 @@ def main():
         pg.click("#loeschen")
         pruefe(pg.locator("#ist input:checked").count() == 0, "Ist-Stand: Eingaben löschen")
         pruefe(not pg.konsole, f"Ist-Stand: keine Konsolenfehler {pg.konsole}")
+        pg.goto(url("startpunkt.html"))
+        pruefe(pg.locator("#sp .probe-frage").count() == 15 and pg.locator("#sp textarea").count() == 2 and pg.locator("#sp .sp-stunde input").count() == 4, "Startpunkt: zwanzig Fragen – 15 Auswahlfelder (10 bis 13 in einem), zwei Textfelder, vier Felder zur Stunde")
+        pg.check('input[name="haeufigkeit"][value="probiert"]'); pg.check('input[name="ergebnis"][value="selten"]'); pg.check('input[name="hindernis"][value="allgemein"]')
+        pg.check('input[name="anlass"][value="vereinfachen"]'); pg.check('input[name="anlass"][value="einstieg"]'); pg.check('input[name="anlass"][value="uebung"]'); pg.check('input[name="anlass"][value="eltern"]')
+        pruefe(pg.locator('input[name="anlass"]:checked').count() == 3 and not pg.is_checked('input[name="anlass"][value="vereinfachen"]'), "Startpunkt: höchstens drei Anlässe, die älteste Wahl fällt weg")
+        pg.check('input[name="s_pruefen"][value="unsicher"]'); pg.check('input[name="s_duerfen"][value="sicher"]')
+        pg.fill("#sp-stelle", "Quellenarbeit dauert zu lang"); pg.fill("#sp-kuerzel", "MW")
+        pg.click('#sp button[type="submit"]')
+        txt = pg.inner_text("#ergebnis")
+        pruefe("noch nicht überzeugt" in txt and "keine Bewertung" in txt and "Was du schon mitbringst" in txt, "Startpunkt: Lage »enttäuscht«, Stärken zuerst, keine Bewertung")
+        pruefe("lage=enttaeuscht" in txt and "Quellenarbeit dauert zu lang" in txt and "Kürzel: MW" in txt and "s_pruefen=unsicher" in txt, "Startpunkt: Codeblock und Texte stehen auf der Karte")
+        pruefe(pg.locator("#ergebnis .sp-karte .sp-feld").count() == 4 and pg.locator("#ergebnis .sp-karte .sp-voll").count() == 1 and pg.locator("#ergebnis .sp-karte .sp-leer").count() == 3, "Startpunkt: Karte mit vier Feldern, eines voll")
+        pruefe(1 <= pg.locator("#ergebnis .bogen-hinweise").nth(1).locator("li").count() <= 3 and pg.locator("#ergebnis .bogen-hinweise").nth(2).locator("li").count() == 2, "Startpunkt: höchstens drei Schritte, genau zwei Kniffe")
+        pruefe(pg.evaluate("document.activeElement.id") == "sp-titel", "Startpunkt: Fokus auf dem Ergebnis")
+        pruefe(pg.evaluate("JSON.stringify(localStorage.getItem('hilde.startpunkt'))").find("Quellenarbeit") == -1 and pg.evaluate("localStorage.getItem('hilde.startpunkt')").find("probiert") > -1, "Startpunkt: nur Auswahlwerte gespeichert, keine Texte")
+        pg.evaluate("document.documentElement.classList.add('nur-ergebnis')"); pg.emulate_media(media="print")
+        pruefe(pg.is_visible("#ergebnis .sp-ergebnis") and not pg.is_visible("#sp") and not pg.is_visible(".kopf"), "Startpunkt: Druck zeigt nur die Karte")
+        pg.emulate_media(media="screen"); pg.evaluate("document.documentElement.classList.remove('nur-ergebnis')")
+        pg.reload()
+        pruefe(pg.is_checked('input[name="ergebnis"][value="selten"]') and pg.locator("#ergebnis .sp-ergebnis").count() == 1, "Startpunkt: Auswahl bleibt im Browser, Karte steht wieder")
+        pg.click("#loeschen")
+        pruefe(pg.locator("#sp input:checked").count() == 0 and pg.inner_text("#ergebnis") == "", "Startpunkt: Eingaben löschen")
+        pruefe(not pg.konsole, f"Startpunkt: keine Konsolenfehler {pg.konsole}")
         pg.goto(url("fortbildung.html"))
         pruefe(pg.locator(".ablauf > li").count() == 5 and "Noch nicht erprobt" in pg.inner_text("main"), "Fortbildung: fünf Schritte, als nicht erprobt gekennzeichnet")
         pg.goto(url("leitsaetze.html"))
