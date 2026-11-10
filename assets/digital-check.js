@@ -1,4 +1,4 @@
-/* Papierprobe – Digital-Check, Weg B »Mit KI prüfen«.
+/* Kidu – Digital-Check, Weg B »Mit KI prüfen«.
    Baut den Prüf-Auftrag (assets/pruef-prompt.js) und kopiert ihn. Keine KI, keine Übertragung, kein Upload.
    Gespeichert wird nur der gewählte Materialtyp (als Bequemlichkeit), nie ein Text.
    Braucht: QUALITAET, PRUEFPROMPT, HILDE. */

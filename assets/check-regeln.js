@@ -1,4 +1,4 @@
-/* Papierprobe – Regeln des Selbstchecks »Eigenes Material prüfen« (Qualitätsmodell, Fassung 2).
+/* Kidu – Regeln des Selbstchecks »Eigenes Material prüfen« (Qualitätsmodell, Fassung 2).
 
    Grundsätze (Abschnitte 4, 8 und 9 des Modells):
    - Zwei Fragen je Bereich: pädagogische Qualität a (0–4) und digitaler Beitrag b (0–3).

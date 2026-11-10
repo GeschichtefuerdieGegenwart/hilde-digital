@@ -1,4 +1,4 @@
-/* Papierprobe – Galerie: »Zum Anfangen« (ab Version 4.7).
+/* Kidu – Galerie: »Zum Anfangen« (ab Version 4.7).
    Sechs erprobte Beispiele, zwei je Umfang, aus dem Feld »auswahl« in assets/daten/beispiele.js.
    Drei Gruppen in der Reihenfolge von TAXONOMIEN.umfang, jede mit einer Stundenlinie (Muster I) als Kopf.
    Keine Rangfolge: Die drei Linien zeichnen sich gleichzeitig, die Karten stehen ohne Nummer.

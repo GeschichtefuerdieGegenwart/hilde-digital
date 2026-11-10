@@ -1,4 +1,4 @@
-/* Papierprobe – gemeinsame Helfer für alle Seiten:
+/* Kidu – gemeinsame Helfer für alle Seiten:
    sicheres Speichern im Browser, Darstellung von Kennzeichen und Beispielkarten.
    Braucht: assets/daten/taxonomien.js (TAXONOMIEN). */
 var HILDE = (function () {

@@ -1,4 +1,4 @@
-/* Papierprobe – Werkstatt-Wissen für das Kollegium (ab Version 4.9).
+/* Kidu – Werkstatt-Wissen für das Kollegium (ab Version 4.9).
    Drei Teile, alle aus dem Arbeitsgedächtnis des Projekts übertragen:
    - muster:    Unterrichtsmuster aus der Praxis, je mit drei Wegen: auf Papier · mit KI vorbereiten · am Tablet.
                 einsatz: "eingesetzt" (im eigenen Unterricht eingesetzt) · "geplant" (ausgearbeitet, noch nicht eingesetzt) · "offen".

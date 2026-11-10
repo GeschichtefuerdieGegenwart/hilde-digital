@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Baut die Seiten von Papierprobe aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
+"""Baut die Seiten von Kidu aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
 
 Aufruf:  python3 tools/bauen.py
 Ergebnis: alle Seiten aus SEITEN. showroom.html leitet auf galerie.html weiter (alte Links bleiben gültig).
@@ -13,38 +13,42 @@ WURZEL = Path(__file__).resolve().parent.parent
 
 SEITEN = [
     # Datei, Titel, Navigationspunkt ("" = kein Hauptbereich)
-    ("index.html", "Papierprobe · Kompass für KI und digitalen Unterricht", ""),
-    ("ki.html", "KI-Training – Papierprobe", "ki"),
-    ("unterricht.html", "Digitaler Unterricht – Papierprobe", "unterricht"),
-    ("tablets.html", "Unterricht planen – Papierprobe", "unterricht"),
-    ("passt.html", "Was passt gerade zu mir? – Papierprobe", "unterricht"),
-    ("digitalisieren.html", "Unterricht digitalisieren – Papierprobe", "unterricht"),
-    ("beobachtung.html", "Nach der Stunde: Beobachtungsbogen – Papierprobe", "unterricht"),
-    ("tablet-phasen.html", "Tablet-Phasen gut führen – Papierprobe", "unterricht"),
-    ("ist-stand.html", "Mein Ist-Stand – Papierprobe", "unterricht"),
-    ("fortbildung.html", "Fortbildungsbaustein: 45 Minuten – Papierprobe", "unterricht"),
-    ("beratung.html", "Beratungsstunde: acht Wochen – Papierprobe", "unterricht"),
-    ("leitsaetze.html", "Leitsätze zur Diskussion – Papierprobe", ""),
-    ("fuenf-saetze.html", "Guter digitaler Unterricht in fünf Sätzen – Papierprobe", "unterricht"),
-    ("sechs-hebel.html", "Wann digitaler Unterricht funktioniert – Papierprobe", "unterricht"),
-    ("sechs-hebel-film.html", "Film: Was das Gerät kann – Papierprobe", "unterricht"),
-    ("digital-check.html", "Digital-Check – Papierprobe", "unterricht"),
-    ("selbstcheck.html", "Digital-Check: Selbst prüfen – Papierprobe", "unterricht"),
-    ("mehrwert.html", "So arbeitet der Digital-Check – Papierprobe", "unterricht"),
-    ("muster.html", "Unterrichtsmuster aus der Praxis – Papierprobe", "unterricht"),
-    ("auftraege.html", "Aufträge zum Kopieren – Papierprobe", "ki"),
-    ("ki-fach.html", "KI für dein Fach einrichten – Papierprobe", "ki"),
-    ("sicher.html", "Sicher arbeiten in fünf Regeln – Papierprobe", "ki"),
-    ("lernende-ki.html", "Wenn deine Lernenden mit KI arbeiten – Papierprobe", "ki"),
-    ("galerie.html", "Galerie – Papierprobe", "galerie"),
-    ("beispiel.html", "Beispiel – Papierprobe", "galerie"),
-    ("showroom.html", "Galerie – Papierprobe", "galerie"),
-    ("ueber.html", "Über Papierprobe", ""),
-    ("gestaltung.html", "Gestaltungssystem – Papierprobe", ""),
+    ("index.html", "Kidu · Künstliche Intelligenz und digitaler Unterricht", ""),
+    ("ki.html", "KI-Training – Kidu", "ki"),
+    ("unterricht.html", "Digitaler Unterricht – Kidu", "unterricht"),
+    ("tablets.html", "Unterricht planen – Kidu", "unterricht"),
+    ("passt.html", "Was passt gerade zu mir? – Kidu", "unterricht"),
+    ("digitalisieren.html", "Unterricht digitalisieren – Kidu", "unterricht"),
+    ("beobachtung.html", "Nach der Stunde: Beobachtungsbogen – Kidu", "unterricht"),
+    ("tablet-phasen.html", "Tablet-Phasen gut führen – Kidu", "unterricht"),
+    ("ist-stand.html", "Mein Ist-Stand – Kidu", "unterricht"),
+    ("fortbildung.html", "Fortbildungsbaustein: 45 Minuten – Kidu", "unterricht"),
+    ("beratung.html", "Beratungsstunde: acht Wochen – Kidu", "unterricht"),
+    ("leitsaetze.html", "Leitsätze zur Diskussion – Kidu", ""),
+    ("fuenf-saetze.html", "Guter digitaler Unterricht in fünf Sätzen – Kidu", "unterricht"),
+    ("sechs-hebel.html", "Wann digitaler Unterricht funktioniert – Kidu", "unterricht"),
+    ("sechs-hebel-film.html", "Film: Was das Gerät kann – Kidu", "unterricht"),
+    ("digital-check.html", "Digital-Check – Kidu", "unterricht"),
+    ("selbstcheck.html", "Digital-Check: Selbst prüfen – Kidu", "unterricht"),
+    ("mehrwert.html", "So arbeitet der Digital-Check – Kidu", "unterricht"),
+    ("muster.html", "Unterrichtsmuster aus der Praxis – Kidu", "unterricht"),
+    ("auftraege.html", "Aufträge zum Kopieren – Kidu", "ki"),
+    ("ki-fach.html", "KI für dein Fach einrichten – Kidu", "ki"),
+    ("sicher.html", "Sicher arbeiten in fünf Regeln – Kidu", "ki"),
+    ("lernende-ki.html", "Wenn deine Lernenden mit KI arbeiten – Kidu", "ki"),
+    ("galerie.html", "Galerie – Kidu", "galerie"),
+    ("beispiel.html", "Beispiel – Kidu", "galerie"),
+    ("showroom.html", "Galerie – Kidu", "galerie"),
+    ("ueber.html", "Über Kidu", ""),
+    ("gestaltung.html", "Gestaltungssystem – Kidu", ""),
 ]
 
-# Wortmarke: zwei überdruckte Druckplatten (Honig, Petrol, Überdruck) neben dem Namen.
-PLATTEN = '<span class="strich" aria-hidden="true"><i></i><i></i><i></i></span>'
+# Logo Kidu (ab Version 4.23): zwei versetzte Druckplatten – Ocker = KI, Moos = digitaler Unterricht,
+# Oliv (Überdruck) nur in der Schnittmenge – neben der Wortmarke; darunter immer die ausgeschriebene Zeile,
+# in der K·I ocker und d·U moosgrün unterstrichen sind (die Buchstaben des Namens).
+PLATTEN = '<span class="kidu-zeichen" aria-hidden="true"><i></i><i></i><i></i></span>'
+ZEILE = ('<span class="ini ki">K</span>ünstliche <span class="ini ki">I</span>ntelligenz '
+         'und <span class="ini du">d</span>igitaler <span class="ini du">U</span>nterricht')
 
 NAV = [
     # Die drei Kernbereiche. Die Wortmarke führt zum Start.
@@ -54,7 +58,7 @@ NAV = [
 ]
 
 FUSS = [
-    ("ueber.html", "Über Papierprobe"),
+    ("ueber.html", "Über Kidu"),
     ("ueber.html#inhalte", "Inhalte und Funktionen"),
     ("ueber.html#t-daten", "Hinweise zu Daten und KI"),
     ("gestaltung.html", "Gestaltungssystem"),
@@ -79,15 +83,16 @@ def rahmen(titel, aktiv, inhalt, datei):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="Papierprobe · Kompass für KI und digitalen Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+<meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 {weiterleitung}<title>{titel}</title>
+<link rel="icon" href="assets/kidu.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/hilde.css">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}}catch(e){{}}</script>
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 <header class="kopf"><div class="huelle">
-  <a class="marke" href="index.html"{' aria-current="page"' if datei == "index.html" else ""}><span class="marke-name">Papierprobe</span>{PLATTEN}<span class="sr-only">, zum Start</span></a>
+  <a class="marke" href="index.html"{' aria-current="page"' if datei == "index.html" else ""}>{PLATTEN}<span class="marke-text"><span class="marke-name">Kidu</span><span class="marke-zeile" aria-hidden="true">{ZEILE}</span></span><span class="sr-only">, zum Start</span></a>
   <nav class="nav" aria-label="Bereiche">{nav}</nav>
   <a class="hefter-link" href="galerie.html#hefter" aria-label="Mein Schnellhefter"><svg viewBox="0 0 30 24" aria-hidden="true"><rect x="1" y="2" width="28" height="21" rx="2" fill="#d9a441" stroke="#7d5a1c" stroke-width="2"/><rect x="1" y="2" width="6" height="21" fill="#7d5a1c"/><circle cx="4" cy="8" r="1.3" fill="#efeadf"/><circle cx="4" cy="17" r="1.3" fill="#efeadf"/></svg><span class="hefter-zahl" aria-hidden="true">0</span></a>
 </div></header>
@@ -95,12 +100,12 @@ def rahmen(titel, aktiv, inhalt, datei):
 {inhalt}
 </main>
 <footer class="fuss"><div class="huelle">
-  <p class="fuss-marke" aria-hidden="true">Papierprobe{PLATTEN}</p>
-  <p class="fuss-unterzeile">Kompass für KI und digitalen Unterricht</p>
-  <nav class="fusslinks" aria-label="Über Papierprobe"><ul>{fuss}<li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="fuss-marke" aria-hidden="true">{PLATTEN}Kidu</p>
+  <p class="fuss-unterzeile">{ZEILE}</p>
+  <nav class="fusslinks" aria-label="Über Kidu"><ul>{fuss}<li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
   <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>
   <p class="fuss-einstellung"><button type="button" class="knopf still theme-schalter" id="theme-schalter" data-theme-schalter aria-pressed="false">Beamer-Ansicht</button><span class="leise">Gilt in diesem Browser. Reines Weiß, tiefes Schwarz, kräftigere Farben – für den Beamer im Klassenzimmer.</span></p>
-  <p class="kennzeichnung">Papierprobe · Kompass für KI und digitalen Unterricht · {KENNZEICHNUNG}</p>
+  <p class="kennzeichnung">Kidu · Künstliche Intelligenz und digitaler Unterricht · {KENNZEICHNUNG}</p>
   <p class="kennzeichnung urheber leise">{URHEBER} <a href="ueber.html#t-entstehung">Entstehung und Lizenz</a></p>
 </div></footer>
 <script src="assets/motion.js"></script>

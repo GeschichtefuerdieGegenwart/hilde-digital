@@ -1,4 +1,4 @@
-/* Papierprobe – Startseite: Register-Bewegung, Galerie-Ausschnitt und Zahlen aus den Daten.
+/* Kidu – Startseite: Register-Bewegung, Galerie-Ausschnitt und Zahlen aus den Daten.
    Alle Zahlen werden aus assets/daten/beispiele.js gezählt. Nichts wird von Hand eingetragen.
    Konzeptbeispiele (Status »Idee«) zählen nicht als Material.
    Braucht: TAXONOMIEN, BEISPIELE, GALERIE, HILDE. */

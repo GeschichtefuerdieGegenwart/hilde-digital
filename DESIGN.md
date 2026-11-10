@@ -1,5 +1,5 @@
 ---
-name: Papierprobe
+name: Kidu
 description: Orientierungsmodul für Lehrkräfte – zwei Druckfarben, Überdruck nur wo Platten sich überlagern, Werkstattbogen statt Hochglanz.
 colors:
   grund: "#EFEADF"
@@ -158,18 +158,18 @@ components:
     typography: "{typography.label}"
     height: "64px"
 ---
-> **Film auf der Startseite (ab Version 4.16, Entscheidung Mario 1.11.2026).** Ausnahme von »Autoplay nur, wenn Bewegung Lerngegenstand ist«: Der Film »Papierprobe in 44 Sekunden« (`assets/film.js`, Nachbau des Showreels v2 aus Claude Design) läuft bei jedem neuen Besuch einmal ab (ab Version 4.17; gemerkt nur für die Sitzung, `sessionStorage`) und endet mit »Film nochmal ansehen« oder »Zur Startseite« – keine Schleife, anhaltbar, »Überspringen« und Esc, Fokus auf »Überspringen«, nie bei »Weniger Bewegung« oder `prefers-reduced-motion`, danach über »Film ansehen«. Startet nur, wenn das Stilblatt geladen ist; alle eigenen CSS- und JS-Dateien tragen einen Prüfwert (`?v=…`). Inhalt für Hilfstechnik als Liste der neun Szenen. Farben, Schriften und Platten aus diesem System; keine weichen Schatten, keine fremden Schriften.
+> **Film auf der Startseite (ab Version 4.16, Entscheidung Mario 1.11.2026).** Ausnahme von »Autoplay nur, wenn Bewegung Lerngegenstand ist«: Der Film »Kidu in 44 Sekunden« (`assets/film.js`, Nachbau des Showreels v2 aus Claude Design) läuft bei jedem neuen Besuch einmal ab (ab Version 4.17; gemerkt nur für die Sitzung, `sessionStorage`) und endet mit »Film nochmal ansehen« oder »Zur Startseite« – keine Schleife, anhaltbar, »Überspringen« und Esc, Fokus auf »Überspringen«, nie bei »Weniger Bewegung« oder `prefers-reduced-motion`, danach über »Film ansehen«. Startet nur, wenn das Stilblatt geladen ist; alle eigenen CSS- und JS-Dateien tragen einen Prüfwert (`?v=…`). Inhalt für Hilfstechnik als Liste der neun Szenen. Farben, Schriften und Platten aus diesem System; keine weichen Schatten, keine fremden Schriften.
 
 > **Farbwelt »Büttenpapier« (ab Version 4.14, Entscheidung Mario 1.11.2026).** Die Werte oben gelten. Die Rollen bleiben gleich, nur ihre Farben ändern sich: Honig heißt jetzt **Ocker** (#D9A441, Kante #7D5A1C), Petrol heißt **Moos** (#4A6645), das Überdruck-Grün heißt **Oliv** (#434512), der Leitakzent ist **Terrakotta** (#9E432A, nur auf der Seite Leitsätze). Grund ist ungebleichtes Papier (#EFEADF) mit dezenter Körnung, aus in Beamer-Ansicht, bei »Weniger Bewegung« und im Druck. Keine Fraunces, keine weichen Schatten, Two-Inks Rule unverändert. Wo unten noch Honig oder Petrol steht, ist die jeweilige Rolle gemeint. Kontrastwerte: siehe Kommentare in `assets/hilde.css`.
 
 
-# Design System: Papierprobe
+# Design System: Kidu
 
 ## 1. Overview
 
 **Creative North Star: »Der Werkstattbogen im Überdruck«**
 
-Papierprobe sieht aus wie ein sauber gedruckter Arbeitsbogen aus einer guten Druckwerkstatt: warmes Naturpapier, zwei Druckfarben, präzise Passermarken. Honig steht für »KI-Training«, Petrol für »Digitaler Unterricht«. Wo beide Platten übereinanderliegen, entsteht von selbst ein dunkles Grün – der Überdruck. Er markiert ausschließlich die Schnittmenge »mit KI entwickelt«. Es gibt keine dritte Farbe, die man sich ausgedacht hat; die Schnittmenge ist physikalisch ableitbar (Multiplikation #D9A441 × #4A6645 = #434512).
+Kidu sieht aus wie ein sauber gedruckter Arbeitsbogen aus einer guten Druckwerkstatt: warmes Naturpapier, zwei Druckfarben, präzise Passermarken. Honig steht für »KI-Training«, Petrol für »Digitaler Unterricht«. Wo beide Platten übereinanderliegen, entsteht von selbst ein dunkles Grün – der Überdruck. Er markiert ausschließlich die Schnittmenge »mit KI entwickelt«. Es gibt keine dritte Farbe, die man sich ausgedacht hat; die Schnittmenge ist physikalisch ableitbar (Multiplikation #D9A441 × #4A6645 = #434512).
 
 Die Oberfläche ist ruhig, flach und handwerklich. Tiefe entsteht nicht aus weichen Schatten, sondern aus einer versetzten Farbplatte hinter der Karte, wie ein leicht verrutschter Druckgang. Signaturelemente sind die überlappenden Platten selbst, Stanzloch-Fortschrittspunkte, die Stundenlinie für den Umfang und Rasterpunkte als ehrlicher Platzhalter. Werkzeug-Ornamente wie Schnittmarken, Passerkreuze oder Haarlinien werden nicht als Dekoration verwendet (Abgleich mit Taste Skill, 18.10.2026). Bewegung ist knapp und funktional; das einzige größere Motiv ist das »Registrieren« der beiden Platten beim ersten Aufruf; die Galerie darf mit der Bildansicht etwas inszenierter sein.
 
@@ -197,7 +197,7 @@ Zwei Druckfarben auf warmem Papier. Alles andere ist neutral.
 - **Petrol zart / tief** (#E1E8D9 / #33482F): Hinweisflächen und Text darauf (8,07:1).
 
 ### Tertiary
-- **Überdruck** (#434512): entsteht nur, wo Honig- und Petrolplatte sich überlagern (Wortmarke, Platten der Startseite, Plattenwechsel, Farbauszug). Keine Kategorie, kein Etikett. Heller Text darauf 10,00:1.
+- **Überdruck** (#434512): entsteht nur, wo Honig- und Petrolplatte sich überlagern (Logo-Zeichen, Platten der Startseite, Plattenwechsel, Farbauszug). Keine Kategorie, kein Etikett. Heller Text darauf 10,00:1.
 
 ### Neutral
 - **Grund** (#EFEADF): Seitenhintergrund, Knochenweiß (HSL-Sättigung < 16 %). Text 12,9:1.
@@ -307,7 +307,7 @@ Ecken 4 px für Karten, Buttons, Felder und Etiketten; 999 px nur für Filterchi
 - Fläche, 2-px-Kante Stahl, 48 px hoch, Label darüber, Hilfetext darunter. Fehler: Kante Fehlerrot plus Text, nie nur Farbe.
 
 ### Navigation
-- Drei Punkte (KI-Training · Digitaler Unterricht · Galerie), Wortmarke links und als Link zum Start, aktiver Punkt mit 3-px-Unterstrich in Druckschwarz und `aria-current`. Unter 768 px steht die Leiste in einer eigenen Zeile unter der Wortmarke, immer sichtbar. »Über Papierprobe« und die Hinweise stehen im Fuß.
+- Drei Punkte (KI-Training · Digitaler Unterricht · Galerie), Wortmarke links und als Link zum Start, aktiver Punkt mit 3-px-Unterstrich in Druckschwarz und `aria-current`. Unter 768 px steht die Leiste in einer eigenen Zeile unter der Wortmarke, immer sichtbar. »Über Kidu« und die Hinweise stehen im Fuß.
 
 ### Bewegung (ab Version 4)
 - Tokens: `--dauer-druck` 100 ms, `--dauer-schnell` 140 ms (Mikro), `--dauer-mittel` 200 ms (Übergang), `--dauer-aus` 150 ms (Schließen), `--dauer-register` 280 ms. Nie über 300 ms, immer `--ease-out`.
@@ -363,6 +363,13 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 
 ### Fuß
 - Wortmarke in voller Breite als gestalteter Abschluss, darunter der Pflichttext. Keine Linkfarm.
+
+### Logo Kidu (ab Version 4.23, Entscheidung Mario 10.11.2026)
+
+- **Zeichen:** zwei versetzte Druckplatten – Ocker (`--ki-platte`, KI) oben links, Moos (`--lernen`, digitaler Unterricht) unten rechts, Überdruck (`--ueberdruck`) nur in der Schnittmenge (Overprint Rule). Es ist die Startseite im Kleinen: dieselben zwei Platten, dieselbe Überlagerung. In CSS als `.kidu-zeichen` mit drei `<i>` (Größe in em, folgt der Schrift), als Datei `assets/kidu.svg` (feste Farben, Symbol im Browser-Reiter, für Folien und Handouts). Ersetzt den Strich `.strich` (drei Balken) neben dem alten Namen.
+- **Wortmarke:** »Kidu« in Bricolage 700, nie in Versalien. Im Kopf links vom Zeichen begleitet; im Fuß groß als Abschluss; auf der Startseite als Display-Titel.
+- **Ausgeschriebene Zeile (Pflicht):** »Künstliche Intelligenz und digitaler Unterricht« steht immer unter der Wortmarke – im Fuß, auf der Startseite und im Kopf (ab 1180 px; auf der Startseite nicht doppelt). Die vier Buchstaben des Namens tragen einen Unterstrich in Plattenfarbe: K · I ocker, d · U moos (`.ini.ki`, `.ini.du`). Der Text selbst bleibt Druckschwarz bzw. `--leise` – die Farbe ist Unterstrich, kein Text (Kontrast unabhängig). Bedeutungs-Check: Die Farben sagen dasselbe wie überall (Ocker = KI, Moos = Unterricht) und stehen immer neben dem Wort.
+- **Nicht:** kein Schullogo, keine Nachahmung eines Schul-Erscheinungsbilds; Kidu ist nicht an eine Schule gebunden.
 
 ### Bereichsetiketten
 - KI-Training: Honigplatte mit Text. Digitaler Unterricht: Petrol mit hellem Text. Es gibt nur diese zwei Bereiche. Immer mit Wort, nie nur Farbfläche.

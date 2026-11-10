@@ -1,4 +1,4 @@
-/* Papierprobe – Hebelrad und Register auf »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html).
+/* Kidu – Hebelrad und Register auf »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html).
 
    Muster Y · Hebelrad (ab Version 4.21) und Z1 · Rad als Register (ab Version 4.22; Musterbuch Z, Wahl Mario 10.11.2026).
    Das Rad im Kopf ist die Überblicksgrafik der sechs Hebel: Mitte Gerät, rundherum die Hebel ohne Reihenfolge, der Ring

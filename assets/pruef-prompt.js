@@ -1,6 +1,6 @@
-/* Papierprobe – Digital-Check, Weg B »Mit KI prüfen«: der Prüf-Prompt zum Kopieren.
+/* Kidu – Digital-Check, Weg B »Mit KI prüfen«: der Prüf-Prompt zum Kopieren.
 
-   Papierprobe ist mit keiner KI verbunden. Diese Datei baut nur einen Text.
+   Kidu ist mit keiner KI verbunden. Diese Datei baut nur einen Text.
    Lehrkräfte kopieren ihn und geben ihn zusammen mit ihrem Material
    in ein an ihrer Schule freigegebenes KI-System ein.
 

@@ -1,4 +1,4 @@
-/* Papierprobe – gemeinsame Sprache für alle Seiten.
+/* Kidu – gemeinsame Sprache für alle Seiten.
    Phasen, Anliegen, Umfang, Rollen und Mehrwert-Arten werden überall gleich verwendet:
    im Planungsweg, in der Galerie, auf den Detailseiten und in den Regeln (assets/regeln.js).
    Ein Eintrag hier ändert die Auswahl überall. Schlüssel (id) nie umbenennen, nur Texte. */

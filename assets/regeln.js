@@ -1,4 +1,4 @@
-/* Papierprobe – Regeln der Entscheidungskarte (Unterricht planen), der Papierfrage und der Beispielsuche.
+/* Kidu – Regeln der Entscheidungskarte (Unterricht planen), der Papierfrage und der Beispielsuche.
 
    Grundsätze
    - Regelbasiert und deterministisch: gleiche Antworten ergeben immer dieselbe Karte.

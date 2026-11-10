@@ -1,4 +1,4 @@
-/* Papierprobe – Film »Papierprobe in 44 Sekunden« auf der Startseite (ab Version 4.16).
+/* Kidu – Film »Kidu in 44 Sekunden« auf der Startseite (ab Version 4.16).
    Nachbau des Showreels v2 aus Claude Design (Szenen, Zeiten, Texte) ohne Bibliothek:
    eine Zeitachse T in Sekunden, jedes Bild wird aus T berechnet (nur transform, opacity, clip-path).
    Läuft bei jedem neuen Besuch einmal ab (nicht bei »Weniger Bewegung«); am Ende wählst du »Film nochmal ansehen« oder
@@ -59,8 +59,8 @@
   function titelblock(von, bis, titel, unter, groesse) {
     var b = el("div", "fb-hero", bild);
     var k = el("div", "fb-kicker", b);
-    el("span", "fb-marke", k).innerHTML = "<i></i><i></i><i></i>";
-    el("span", "", k, "Papierprobe · Kompass für KI und digitalen Unterricht");
+    el("span", "fb-marke kidu-zeichen", k).innerHTML = "<i></i><i></i><i></i>";
+    el("span", "", k, "Kidu · Künstliche Intelligenz und digitaler Unterricht");
     var t = el("div", "fb-hero-titel", b, titel); t.style.fontSize = groesse + "px";
     var u = el("div", "fb-hero-unter", b, unter);
     return function (T) {
@@ -410,5 +410,5 @@
   var test = !!navigator.webdriver && !/[?&]film=1\b/.test(location.search);
   if (!gelaufen && !weniger && !test) oeffnen();
 
-  window.PapierprobeFilm = { oeffnen: oeffnen, beenden: beenden, zeichnen: zeichnen, springe: function (t) { T = t; }, ENDE: ENDE, CUE: CUE };
+  window.KiduFilm = { oeffnen: oeffnen, beenden: beenden, zeichnen: zeichnen, springe: function (t) { T = t; }, ENDE: ENDE, CUE: CUE };
 })();

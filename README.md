@@ -1,6 +1,6 @@
-# Papierprobe · Kompass für KI und digitalen Unterricht
+# Kidu · Künstliche Intelligenz und digitaler Unterricht
 
-Bis 1. November 2026 hieß das Modul »Hilde Digital«. Repository und Adresse heißen weiter `hilde-digital`.
+Seit 10. November 2026 heißt das Projekt **Kidu** – Künstliche Intelligenz und digitaler Unterricht. Vorher: »Hilde Digital« (bis 1. November 2026), »Papierprobe« (1.–10. November 2026). Kidu ist nicht an eine Schule gebunden. Repository und Adresse heißen `kidu`.
 
 Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.
 
@@ -59,7 +59,7 @@ Konzept, Leitsätze, Kriterien und Texte: Mario Walter. Umgesetzt mit Unterstüt
 - Programmcode: MIT-Lizenz. Siehe `LICENSE`.
 - Bilder: alle Rechte vorbehalten. Schriften: SIL Open Font License.
 - Der Name ist von keiner Lizenz erfasst. Für eine kommerzielle Nutzung ist eine eigene Vereinbarung nötig.
-- Zitiervorschlag: Walter, Mario (2026): Papierprobe · Kompass für KI und digitalen Unterricht. https://github.com/GeschichtefuerdieGegenwart/hilde-digital – maschinenlesbar in `CITATION.cff`.
+- Zitiervorschlag: Walter, Mario (2026): Kidu · Künstliche Intelligenz und digitaler Unterricht. https://github.com/GeschichtefuerdieGegenwart/kidu – maschinenlesbar in `CITATION.cff`.
 - Stand vor dem Fortbildungsauftrag der Schule (3. November 2026): siehe `docs/stand-2026-11-03.md`.
 
 ## Bilder

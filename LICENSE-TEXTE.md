@@ -1,6 +1,6 @@
 # Lizenz für Texte und Daten
 
-Konzept, Leitsätze, Kriterien und Texte von Papierprobe: Mario Walter, 2026.
+Konzept, Leitsätze, Kriterien und Texte von Kidu: Mario Walter, 2026.
 
 ## Was unter CC BY-NC-SA 4.0 steht
 
@@ -14,7 +14,7 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de
 Das heißt kurz:
 
 - Du darfst das Material teilen und bearbeiten, zum Beispiel für deine Schule oder eine Fortbildung.
-- Du nennst dabei den Urheber: »Papierprobe, Mario Walter, CC BY-NC-SA 4.0«.
+- Du nennst dabei den Urheber: »Kidu, Mario Walter, CC BY-NC-SA 4.0«.
 - Du nutzt es nicht kommerziell.
 - Was du daraus machst, gibst du unter derselben Lizenz weiter.
 
@@ -25,7 +25,7 @@ Maßgeblich ist der Lizenztext von Creative Commons.
 - **Bilder:** Die Bildschirmfotos in `assets/bilder/` und `assets/galerie/` – alle Rechte vorbehalten. Ihre Herkunft steht in `docs/galerie-quellen.md`.
 - **Schriften:** `assets/fonts/` – SIL Open Font License, siehe die OFL-Dateien dort.
 - **Programmcode:** MIT-Lizenz, siehe `LICENSE`.
-- **Der Name** »Papierprobe« und künftige Namen des Moduls sind von keiner dieser Lizenzen erfasst.
+- **Der Name** »Kidu« und künftige Namen des Moduls sind von keiner dieser Lizenzen erfasst.
 - **Verlinkte Lernanwendungen** liegen in anderen Repositories und haben dort eigene Bedingungen.
 
 ## Kommerzielle Nutzung
