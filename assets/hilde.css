@@ -1020,7 +1020,7 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .motiv .m-linie{stroke:var(--text);stroke-width:4;stroke-linecap:round;fill:none}
 .motiv .m-linie-dick{stroke:var(--text);stroke-width:3;fill:none}
 .motiv .m-raster{fill:var(--lernen-zart)}
-main .werkzeug,main .faecher-karte{max-width:none}
+main .werkzeug,main .faecher-karte,main .sh-hebel{max-width:none}
 
 /* ---------- Ab Version 4.3: Prompt-Labor, Unterricht digitalisieren, Fächer ---------- */
 /* KI-Training: zwei Eingänge im ersten Bildschirm */
@@ -1718,10 +1718,15 @@ html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs
    oben in Ruhe (Visible-at-Rest), in der Probe als Muster R1 zum Selbst-Tun (der eine Moment der Seite). Moos trägt
    das Gerät, Druckschwarz den Raum (Neutral Action Rule: der Raum gehört keinem Bereich). Kein Schatten mit Unschärfe. */
 /* Zugang auf der Bereichsseite: eine schmale Zeile über dem Hauptwerkzeug, damit dieses am Beamer sichtbar bleibt. */
-.werkzeug.sh-werkzeug{grid-column:1/-1}
-.werkzeug.sh-werkzeug a{padding:var(--a2) var(--a3);border:2px solid var(--lernen);background:var(--grund)}
-.werkzeug.sh-werkzeug .werkzeug-text{grid-template-columns:auto 1fr;align-items:baseline;gap:.25rem var(--a2)}
-@media (max-width:720px){.werkzeug.sh-werkzeug .werkzeug-text{grid-template-columns:1fr}}
+/* Leitkachel »Wann funktioniert digitaler Unterricht?« über dem Hauptwerkzeug (ab Version 4.22; 4.19–4.21 schmale Zeile .sh-werkzeug):
+   die Frage hinter dem Bereich – volle Breite, Rahmen in --lernen, Platte in --lernen-tief, Überzeile und größerer Titel. */
+.werkzeug.leit{grid-column:1/-1}
+@media (min-width:1024px){.werkzeuge:has(.werkzeug.leit) .werkzeug.leit,.werkzeuge:has(.werkzeug.leit) .werkzeug.haupt{grid-column:auto}} /* Leitfrage und Hauptwerkzeug nebeneinander, beide am Beamer ohne Scrollen */
+.werkzeug.leit a{border:3px solid var(--lernen);background:var(--flaeche);box-shadow:6px 6px 0 0 var(--lernen-tief);padding:clamp(1.25rem,2.5vw,2rem) clamp(1.5rem,3vw,2.5rem)}
+.werkzeug.leit .werkzeug-text{max-width:64ch;gap:.5rem}
+.werkzeug.leit .werkzeug-text b{font-size:var(--gr-h2);color:var(--lernen-tief)}
+.leit-ueber{font-size:var(--gr-klein);font-weight:700;color:var(--lernen)}
+@media (hover:hover) and (pointer:fine){.werkzeug.leit a:hover{box-shadow:8px 8px 0 0 var(--lernen-tief)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
 .sh-kopf .detail-kurz{max-width:60ch}
 .sh-schaubild{margin:var(--a3) 0 0}
 .sh-modell{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,2fr) minmax(0,5fr);align-items:stretch}
@@ -2109,3 +2114,22 @@ html[data-bewegung="weniger"] .sh-rad-kachel,html[data-bewegung="weniger"] .sh-r
 .hf-probekachel.an{background:var(--lernen);color:var(--aktion-text)}
 .hf-probekachel.an::before{background:var(--aktion-text);border-color:var(--aktion-text)}
 @media print{.hf-steuerung,.hf-kapitel{display:none}}
+
+/* ---------- Z1 · Rad als Register (sechs-hebel.html, ab Version 4.22; Musterbuch Z, Wahl Mario 10.11.2026) ----------
+   Die sechs Bänder stehen nicht mehr untereinander: Mit JavaScript (Abschnitt .sh-register) steht nur das Band des im Rad
+   gewählten Hebels, »Weiter«/»Zurück« gehen reihum. In Ruhe ist kein Hebel gewählt (das Rad hat keinen Anfang).
+   Das Band kommt in --dauer-uebergang von der Seite, aus der geblättert wurde (nur transform/opacity).
+   Ohne JavaScript stehen alle sechs Bänder untereinander wie bis 4.21. */
+.sh-register .sh-hebel{display:none}
+.sh-register .sh-hebel.sh-aktiv{display:grid}
+.sh-register .sh-hebel.sh-aktiv:target{scroll-margin-top:var(--a3)}
+.sh-register-nav{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2) var(--a3)}
+.sh-register-stand{margin:0;font-weight:700;flex:1 1 16rem}
+.sh-nur-mit-js-satz{display:none}
+.sh-register .sh-nur-mit-js-satz{display:inline}
+.sh-band-vor{animation:sh-band-vor var(--dauer-uebergang) var(--ease-out)}
+.sh-band-rueck{animation:sh-band-rueck var(--dauer-uebergang) var(--ease-out)}
+@keyframes sh-band-vor{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes sh-band-rueck{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
+@media (prefers-reduced-motion:reduce){.sh-band-vor,.sh-band-rueck{animation:none}}
