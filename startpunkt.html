@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 <title>Mein Startpunkt: KI und Tablet – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=bb73e14a">
+<link rel="stylesheet" href="assets/hilde.css?v=87fef0d1">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -22,18 +22,56 @@
 <section class="bereichskopf kompakt"><div class="huelle">
   <h1 class="h1-frage">Mein Startpunkt: KI und Tablet in meinem Unterricht</h1>
   <p class="marker">Bereich: Digitaler Unterricht · vor einer Fortbildung oder Beratungsstunde</p>
-  <p class="kopfnotiz">Zwanzig Fragen in fünf Schritten, etwa zehn Minuten. Du bekommst keine Bewertung, sondern deinen Startpunkt als Karte, drei nächste Schritte und zwei Kniffe. Am Ende sicherst du die Karte als PDF und gibst sie der Leitung der Fortbildung – nur dann sieht sie jemand.</p>
+  <p class="kopfnotiz">Zwanzig Fragen, etwa zehn Minuten. Während du antwortest, füllt sich links deine Startpunkt-Karte. Am Ende sicherst du sie als PDF und gibst sie der Leitung der Fortbildung – erst dann sieht sie jemand.</p>
+</div></section>
+
+<section class="abschnitt sp-sogehts" aria-labelledby="t-sogehts"><div class="huelle">
+  <h2 id="t-sogehts">So geht es</h2>
+  <ol class="sp-schritte-leiste">
+    <li><span class="sp-leiste-nr" aria-hidden="true">1</span><b>Ankreuzen.</b> Zwanzig Fragen in fünf Schritten. Es gibt kein »zu wenig«; die Textfelder sind freiwillig.</li>
+    <li><span class="sp-leiste-nr" aria-hidden="true">2</span><b>Karte ansehen.</b> Links siehst du sofort, wie sich dein Startpunkt abzeichnet – ohne Bewertung.</li>
+    <li><span class="sp-leiste-nr" aria-hidden="true">3</span><b>Als PDF sichern.</b> Ein Knopf, eine Seite. Die Datei schickst du der Leitung. Vorher verlässt nichts dein Gerät.</li>
+  </ol>
+  <p class="sp-vorfuehrung-zeile"><button type="button" class="knopf still" id="sp-vorfuehrung" aria-controls="sp-demo">Vorführung ansehen (20 Sekunden)</button> <span class="leise klein">Zeigt auf der Karte, was du antippst und was dann passiert. Startet nur auf Knopfdruck.</span></p>
 </div></section>
 
 <section class="abschnitt weg-abschnitt" aria-labelledby="t-fragen"><div class="huelle bogen">
   <h2 id="t-fragen" class="sr-only">Die Fragen</h2>
-  <p class="box">Es gibt kein »zu wenig«. Wer KI noch nie benutzt hat, ist hier genauso richtig wie jemand, der täglich damit arbeitet. Ankreuzen reicht; die Textfelder sind freiwillig. Bitte keine Namen von Lernenden, keine Noten, keine Schülerdaten.</p>
-  <form id="sp" class="bogen-form" novalidate>
+  <div class="sp-scroll" id="sp-scroll" data-schritt="1">
+  <aside class="sp-buehne" id="sp-buehne" aria-label="Deine Startpunkt-Karte, füllt sich beim Antworten">
+    <p class="karte-marker">Deine Startpunkt-Karte</p>
+    <div class="sp-buehne-linie" aria-hidden="true">
+      <span class="sp-buehne-spur"></span>
+      <span class="sp-buehne-marke"></span>
+      <span class="sp-buehne-wort" data-sp-wort="1">Wo du stehst</span>
+      <span class="sp-buehne-wort" data-sp-wort="2">Wie du arbeitest</span>
+      <span class="sp-buehne-wort" data-sp-wort="3">Was du dir vorstellst</span>
+      <span class="sp-buehne-wort" data-sp-wort="4">Was du dir wünschst</span>
+      <span class="sp-buehne-wort" data-sp-wort="5">Deine Stunde</span>
+    </div>
+    <div class="sp-buehne-karte" id="sp-buehne-karte"></div>
+    <p class="sp-buehne-stand" id="sp-buehne-stand">Schritt 1 von 5 · 0 von 20 beantwortet</p>
+    <p class="sr-only" aria-live="polite" id="sp-ansage"></p>
+    <div class="sp-demo" id="sp-demo" hidden data-takt="0" aria-live="polite">
+      <p class="sp-demo-text" id="sp-demo-text"></p>
+      <div class="sp-demo-buehne" aria-hidden="true">
+        <span class="sp-demo-option"><i></i>Ein- oder zweimal ausprobiert</span>
+        <span class="sp-demo-finger"></span>
+        <span class="sp-demo-loch"></span>
+        <span class="sp-demo-pdf">Als PDF sichern</span>
+      </div>
+      <div class="sp-demo-steuerung"><button type="button" class="knopf still" id="sp-demo-weiter">Weiter</button><button type="button" class="linkknopf" id="sp-demo-ende">Vorführung beenden</button></div>
+    </div>
+  </aside>
+  <form id="sp" class="bogen-form sp-form" novalidate>
+  <p class="box">Wer KI noch nie benutzt hat, ist hier genauso richtig wie jemand, der täglich damit arbeitet. Bitte keine Namen von Lernenden, keine Noten, keine Schülerdaten.</p>
 
-    <h3 class="sp-schritt"><span class="leise klein">Schritt 1 von 5</span><br>Wo du stehst</h3>
+    <section class="sp-abschnitt" data-schritt="1" id="sp-schritt-1" aria-labelledby="sp-h1">
+    <h3 class="sp-schritt" id="sp-h1"><span class="leise klein">Schritt 1 von 5</span><br>Wo du stehst</h3>
 
     <fieldset class="probe-frage">
       <legend><span class="leise klein">Frage 1 von 20</span><br>Wie oft hast du in den letzten vier Wochen ein KI-System benutzt?</legend>
+      <p class="sp-beispiel">Beispiel: Du hast einmal einen Elternbrief entwerfen lassen und es seitdem nicht wieder geöffnet – das ist »ein- oder zweimal ausprobiert«.</p>
       <div class="probe-wahl">
         <label><input type="radio" name="haeufigkeit" value="nie"><span>Noch nie</span></label>
         <label><input type="radio" name="haeufigkeit" value="probiert"><span>Ein- oder zweimal ausprobiert</span></label>
@@ -56,6 +94,7 @@
 
     <fieldset class="probe-frage">
       <legend><span class="leise klein">Frage 3 von 20</span><br>Wofür hast du KI schon eingesetzt? Mehrere Antworten sind möglich.</legend>
+      <p class="sp-beispiel">Beispiel: Ein Arbeitsblatt in zwei Niveaus umschreiben lassen – das ist »vereinfachen oder in Niveaus anpassen«. Ein Quiz in Moodle, das Lernende bearbeiten – das ist »etwas gebaut, das Lernende am Tablet benutzen«.</p>
       <div class="probe-wahl">
         <label><input type="checkbox" name="wofuer" value="privat"><span>Privat</span></label>
         <label><input type="checkbox" name="wofuer" value="texte"><span>Texte für die Schule (Elternbrief, Protokoll, Formulierungen)</span></label>
@@ -73,6 +112,7 @@
 
     <fieldset class="probe-frage">
       <legend><span class="leise klein">Frage 4 von 20</span><br>Wie gibst du eine Anfrage meistens ein?</legend>
+      <p class="sp-beispiel">Beispiel für kurz: »Arbeitsblatt zur Weimarer Republik«. Beispiel für ausführlich: »Für eine Eingangsklasse am Berufskolleg, 20 Minuten, mit einer Quelle und zwei Aufgaben, die eine Entscheidung verlangen«.</p>
       <div class="probe-wahl">
         <label><input type="radio" name="eingabe" value="kurz"><span>Ich tippe einen kurzen Satz</span></label>
         <label><input type="radio" name="eingabe" value="ausfuehrlich"><span>Ich tippe ausführlich, mit Klasse und Vorgaben</span></label>
@@ -107,10 +147,13 @@
       </div>
     </fieldset>
 
-    <h3 class="sp-schritt"><span class="leise klein">Schritt 2 von 5</span><br>Wie du arbeitest</h3>
+    </section>
+    <section class="sp-abschnitt" data-schritt="2" id="sp-schritt-2" aria-labelledby="sp-h2">
+    <h3 class="sp-schritt" id="sp-h2"><span class="leise klein">Schritt 2 von 5</span><br>Wie du arbeitest</h3>
 
     <fieldset class="probe-frage">
       <legend><span class="leise klein">Frage 7 von 20</span><br>Wie bereitest du eine Stunde meistens vor?</legend>
+      <p class="sp-beispiel">Es gibt keine richtige Antwort. Die Fortbildung schlägt nur vor, was zu deiner Art passt – ein genauer Plan verträgt andere Hilfen als ein Gespräch, das sich entwickelt.</p>
       <div class="probe-wahl">
         <label><input type="radio" name="vorbereitung" value="genau"><span>Genau geplant: Ablauf, Zeiten, Material stehen fest</span></label>
         <label><input type="radio" name="vorbereitung" value="geruest"><span>Ein Gerüst, vieles entscheide ich in der Stunde</span></label>
@@ -145,6 +188,7 @@
 
     <fieldset class="probe-frage">
       <legend><span class="leise klein">Fragen 10 bis 13 von 20</span><br>Wie sicher fühlst du dich dabei?</legend>
+      <p class="sp-beispiel">Diese vier Antworten füllen die vier Felder auf deiner Karte. »Noch unsicher« ist der häufigste Wert im Kollegium – und der nützlichste für die Planung.</p>
       <div class="sp-sicher">
         <div class="sp-sicher-zeile"><span class="sp-sicher-text">… ein KI-System zu bedienen</span>
           <div class="probe-wahl">
@@ -182,10 +226,13 @@
       </div>
     </fieldset>
 
-    <h3 class="sp-schritt"><span class="leise klein">Schritt 3 von 5</span><br>Was du dir vorstellst</h3>
+    </section>
+    <section class="sp-abschnitt" data-schritt="3" id="sp-schritt-3" aria-labelledby="sp-h3">
+    <h3 class="sp-schritt" id="sp-h3"><span class="leise klein">Schritt 3 von 5</span><br>Was du dir vorstellst</h3>
 
     <fieldset class="probe-frage">
       <legend><span class="leise klein">Frage 15 von 20</span><br>Wobei soll dir KI in den nächsten Wochen helfen? Höchstens drei Antworten.</legend>
+      <p class="sp-beispiel">Dein erstes Kreuz wird der erste Vorschlag auf der Karte. Beispiel: »Arbeitsblatt vereinfachen« führt zur Schnell-Anfrage, »Übung mit Rückmeldung« zu »Unterricht digitalisieren«.</p>
       <div class="probe-wahl" data-max="3">
         <label><input type="checkbox" name="anlass" value="vereinfachen"><span>Arbeitsblatt vereinfachen oder in Niveaus anpassen</span></label>
         <label><input type="checkbox" name="anlass" value="einstieg"><span>Einstieg mit Vermutung oder Fall</span></label>
@@ -222,10 +269,13 @@
       <textarea id="sp-stelle" name="stelle" rows="2" maxlength="300"></textarea>
     </div>
 
-    <h3 class="sp-schritt"><span class="leise klein">Schritt 4 von 5</span><br>Was du dir wünschst</h3>
+    </section>
+    <section class="sp-abschnitt" data-schritt="4" id="sp-schritt-4" aria-labelledby="sp-h4">
+    <h3 class="sp-schritt" id="sp-h4"><span class="leise klein">Schritt 4 von 5</span><br>Was du dir wünschst</h3>
 
     <fieldset class="probe-frage">
       <legend><span class="leise klein">Frage 19 von 20</span><br>So lerne ich Neues am liebsten. Höchstens zwei Antworten.</legend>
+      <p class="sp-beispiel">Damit entscheidet die Leitung, wie die erste Stunde anfängt: vormachen, dich probieren lassen, ein Beispiel aus deinem Fach heraussuchen.</p>
       <div class="probe-wahl" data-max="2">
         <label><input type="checkbox" name="lernen" value="zeigen"><span>Jemand zeigt es mir, ich mache es nach</span></label>
         <label><input type="checkbox" name="lernen" value="probieren"><span>Ich probiere selbst und frage, wenn ich hänge</span></label>
@@ -245,7 +295,9 @@
       </div>
     </fieldset>
 
-    <h3 class="sp-schritt"><span class="leise klein">Schritt 5 von 5</span><br>Deine Stunde</h3>
+    </section>
+    <section class="sp-abschnitt" data-schritt="5" id="sp-schritt-5" aria-labelledby="sp-h5">
+    <h3 class="sp-schritt" id="sp-h5"><span class="leise klein">Schritt 5 von 5</span><br>Deine Stunde</h3>
     <p>Für die erste Fortbildungsstunde brauchst du eine echte Stunde oder ein echtes Material aus den nächsten Wochen – ohne Namen, Noten oder Schülerdaten. Fach, Bildungsgang und Thema reichen hier.</p>
     <div class="sp-stunde">
       <div class="bogen-notiz"><label for="sp-fach">Fach</label><input id="sp-fach" name="fach" type="text" maxlength="60" autocomplete="off"></div>
@@ -254,8 +306,10 @@
       <div class="bogen-notiz"><label for="sp-kuerzel">Dein Kürzel (damit die Leitung die Karte zuordnen kann)</label><input id="sp-kuerzel" name="kuerzel" type="text" maxlength="12" autocomplete="off"></div>
     </div>
 
-    <div class="weg-steuerung"><button type="submit" class="knopf">Meinen Startpunkt zeigen →</button></div>
+    </section>
+    <div class="weg-steuerung"><button type="submit" class="knopf">Meine Karte fertigstellen →</button></div>
   </form>
+  </div>
   <div id="ergebnis" aria-live="polite"></div>
   <p class="leise klein speicherhinweis">Deine Kreuze bleiben nur in diesem Browser; die Textfelder werden nicht gespeichert. Niemand sonst sieht etwas – bis du die Karte als PDF weitergibst. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button></p>
   <noscript><p class="box">Der Startpunkt braucht JavaScript. Ohne JavaScript kannst du die Seite drucken und von Hand ausfüllen.</p></noscript>
@@ -265,7 +319,8 @@
 <script src="assets/regeln.js?v=74185762"></script>
 <script src="assets/hilde.js?v=aebd2255"></script>
 <script src="assets/druck.js?v=474b771e"></script>
-<script src="assets/startpunkt.js?v=795ebe65"></script>
+<script src="assets/startpunkt.js?v=0f67b1de"></script>
+<script src="assets/startpunkt-buehne.js?v=4e16caab"></script>
 
 </main>
 <footer class="fuss"><div class="huelle">

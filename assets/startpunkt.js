@@ -1,4 +1,4 @@
-/* Kidu – »Mein Startpunkt« (startpunkt.html, ab Version 4.24).
+/* Kidu – »Mein Startpunkt« (startpunkt.html, ab Version 4.24; Bühne seit 4.27 in assets/startpunkt-buehne.js).
    Zwanzig Fragen vor einer Fortbildung oder Beratungsstunde. Gespeichert werden nur die Auswahlwerte (hilde.startpunkt);
    Textfelder bleiben im Formular und werden nie gespeichert. Die Auswertung kommt aus REGELN.startpunkt (assets/regeln.js, mit Tests).
    Das Ergebnis ist eine Karte: vier Sicherheitsfelder als Stanzlöcher auf einer Linie, Stärken zuerst, drei Schritte, zwei Kniffe,

@@ -2200,3 +2200,78 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
 .laden-liste>li{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);border-left:8px solid var(--karton);display:grid;gap:.4rem;justify-items:start}
 .laden-titel{font-weight:700}
 .laden-einzeln{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
+
+/* ---------- Mein Startpunkt: Bühne und Vorführung (ab 4.27) ----------
+   Die Bühne links ist die Karte, die am Ende als PDF gesichert wird: Linie mit fünf Schritten (Marke folgt dem Scrollen),
+   vier Stanzlöcher (füllen sich mit den Antworten 10–13), Fortschritt und Satz zur Ausgangslage. Nur transform/opacity,
+   Dauer --dauer-uebergang; bei »weniger Bewegung« kein Übergang. */
+.sp-sogehts{padding-block:var(--a4)}
+.sp-schritte-leiste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3)}
+.sp-schritte-leiste li{position:relative;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);padding:var(--a3) var(--a3) var(--a3) 3.6rem;box-shadow:var(--platte)} /* taste-skill-ignore: versetzte Druckplatte */
+.sp-leiste-nr{position:absolute;left:1rem;top:1rem;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--text);color:var(--flaeche);display:grid;place-items:center;font:700 1rem var(--schrift-titel)}
+.sp-vorfuehrung-zeile{margin-top:var(--a3);display:flex;flex-wrap:wrap;gap:var(--a2);align-items:center}
+.sp-scroll{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--a6);align-items:start}
+.sp-buehne{position:sticky;top:var(--a3);background:var(--flaeche);border-radius:var(--rund);padding:var(--a4);display:grid;gap:var(--a3);box-shadow:var(--platte);border-top:10px solid var(--lernen)} /* taste-skill-ignore: versetzte Druckplatte */
+.sp-buehne-linie{position:relative;height:3.6rem}
+.sp-buehne-spur{position:absolute;left:0;right:0;top:1.1rem;height:2px;background:var(--stahl)}
+.sp-buehne-spur::before,.sp-buehne-spur::after{content:"";position:absolute;top:-6px;width:2px;height:14px;background:var(--stahl)}
+.sp-buehne-spur::before{left:40%}.sp-buehne-spur::after{left:80%}
+.sp-buehne-marke{position:absolute;top:calc(1.1rem - 9px);left:0;width:calc(100% - 20px);height:20px;transform:translateX(10%);transition:transform var(--dauer-uebergang) var(--ease-beidseits)}
+.sp-buehne-marke::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--text)}
+.sp-scroll[data-schritt="2"] .sp-buehne-marke{transform:translateX(30%)}
+.sp-scroll[data-schritt="3"] .sp-buehne-marke{transform:translateX(50%)}
+.sp-scroll[data-schritt="4"] .sp-buehne-marke{transform:translateX(70%)}
+.sp-scroll[data-schritt="5"] .sp-buehne-marke{transform:translateX(90%)}
+.sp-buehne-wort{position:absolute;top:2.2rem;left:0;right:0;text-align:center;font-weight:700;font-size:var(--gr-klein);opacity:0;transition:opacity var(--dauer-schnell) var(--ease-out)}
+.sp-scroll[data-schritt="1"] [data-sp-wort="1"],.sp-scroll[data-schritt="2"] [data-sp-wort="2"],.sp-scroll[data-schritt="3"] [data-sp-wort="3"],.sp-scroll[data-schritt="4"] [data-sp-wort="4"],.sp-scroll[data-schritt="5"] [data-sp-wort="5"]{opacity:1}
+.sp-loecher{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem;text-align:center}
+.sp-loch{display:grid;justify-items:center;gap:.2rem}
+.sp-loch i{position:relative;width:34px;height:34px;border-radius:50%;border:3px solid var(--text);background:var(--flaeche);overflow:hidden;transition:background-color var(--dauer-uebergang) var(--ease-out)}
+.sp-loch i::before{content:"";position:absolute;inset:0;width:50%;background:var(--text);transform:translateX(-100%);transition:transform var(--dauer-uebergang) var(--ease-beidseits)}
+.sp-halb i::before{transform:none}
+.sp-voll i{background:var(--text)}
+.sp-loch b{font-size:var(--gr-klein)}
+.sp-loch small{font-size:var(--gr-klein);color:var(--leise);line-height:1.2}
+.sp-buehne-lage{margin:0}
+.sp-buehne-lage b{font:700 1.2rem/1.2 var(--schrift-titel)}
+.sp-buehne-staerke{margin:0;font-size:var(--gr-klein);color:var(--leise)}
+.sp-buehne-fertig{margin:0;font-weight:700}
+.sp-buehne-stand{margin:0;color:var(--leise);font-size:var(--gr-klein);font-variant-numeric:tabular-nums}
+.sp-form{min-width:0}
+.sp-abschnitt{display:grid;gap:var(--a4);padding-top:var(--a4);border-top:2px solid var(--linie);scroll-margin-top:var(--a6)}
+.sp-abschnitt:first-of-type{border-top:0;padding-top:0}
+.sp-scroll[data-schritt="1"] #sp-h1,.sp-scroll[data-schritt="2"] #sp-h2,.sp-scroll[data-schritt="3"] #sp-h3,.sp-scroll[data-schritt="4"] #sp-h4,.sp-scroll[data-schritt="5"] #sp-h5{color:var(--lernen-tief)}
+.sp-beispiel{margin:-.2rem 0 .6rem;max-width:52ch;color:var(--leise);font-size:var(--gr-klein);line-height:1.45;padding-left:.8rem;border-left:3px solid var(--karton)}
+/* Vorführung: vier Takte als Zustände der kleinen Bühne; Finger, Option, Stanzloch, PDF-Knopf. */
+.sp-demo{display:grid;gap:var(--a2)}
+.sp-demo-text{margin:0;font-weight:700;min-height:3.2em}
+.sp-demo-text:focus{outline:none}
+.sp-demo-buehne{position:relative;height:9rem;border:2px dashed var(--stahl);border-radius:var(--rund);overflow:hidden}
+.sp-demo-option{position:absolute;left:1rem;top:1rem;display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);font-weight:700;font-size:var(--gr-klein);transition:background-color var(--dauer-schnell) var(--ease-out),color var(--dauer-schnell) var(--ease-out)}
+.sp-demo-option i{width:.9rem;height:.9rem;border:2px solid currentColor;border-radius:3px}
+.sp-demo-finger{position:absolute;left:1.6rem;top:5rem;width:22px;height:22px;border-radius:50%;background:var(--ki);border:2px solid var(--text);opacity:0;transition:transform var(--dauer-uebergang) var(--ease-beidseits),opacity var(--dauer-schnell) var(--ease-out)}
+.sp-demo-loch{position:absolute;right:1.2rem;top:1rem;width:34px;height:34px;border-radius:50%;border:3px solid var(--text);background:var(--flaeche);overflow:hidden}
+.sp-demo-loch::before{content:"";position:absolute;inset:0;background:var(--text);transform:translateY(100%);transition:transform var(--dauer-uebergang) var(--ease-beidseits)}
+.sp-demo-pdf{position:absolute;left:1rem;bottom:1rem;padding:.4rem .9rem;border-radius:var(--rund);background:var(--aktion);color:var(--aktion-text);font-weight:700;font-size:var(--gr-klein);opacity:.35;transition:opacity var(--dauer-schnell) var(--ease-out),transform var(--dauer-schnell) var(--ease-out)}
+.sp-demo[data-takt="1"] .sp-demo-finger,.sp-demo[data-takt="2"] .sp-demo-finger{opacity:1;transform:translate(0,-3.4rem)}
+.sp-demo[data-takt="1"] .sp-demo-option,.sp-demo[data-takt="2"] .sp-demo-option,.sp-demo[data-takt="3"] .sp-demo-option,.sp-demo[data-takt="4"] .sp-demo-option{background:var(--text);color:var(--flaeche);border-color:var(--text)}
+.sp-demo[data-takt="2"] .sp-demo-loch::before,.sp-demo[data-takt="3"] .sp-demo-loch::before,.sp-demo[data-takt="4"] .sp-demo-loch::before{transform:translateY(50%)}
+.sp-demo[data-takt="3"] .sp-demo-finger{opacity:1;transform:translate(9rem,-1rem)}
+.sp-demo[data-takt="4"] .sp-demo-pdf{opacity:1;transform:translateY(-4px)}
+.sp-demo[data-takt="4"] .sp-demo-finger{opacity:1;transform:translate(1rem,1.6rem)}
+.sp-demo-steuerung{display:flex;gap:var(--a2);align-items:center;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){.sp-buehne-marke,.sp-loch i,.sp-loch i::before,.sp-demo-finger,.sp-demo-loch::before,.sp-demo-option,.sp-demo-pdf{transition:none}}
+html[data-bewegung="weniger"] :is(.sp-buehne-marke,.sp-loch i,.sp-loch i::before,.sp-demo-finger,.sp-demo-loch::before,.sp-demo-option,.sp-demo-pdf){transition:none}
+@media (max-width:900px){
+  .sp-schritte-leiste{grid-template-columns:1fr}
+  .sp-scroll{grid-template-columns:1fr;gap:var(--a3)}
+  .sp-buehne{top:0;z-index:2;padding:var(--a2) var(--a3);gap:.4rem var(--a3);border-top-width:6px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+  .sp-buehne .karte-marker,.sp-buehne-staerke,.sp-buehne-lage,.sp-buehne-fertig{display:none}
+  .sp-buehne-linie{height:3rem}
+  .sp-buehne-stand,.sp-demo{grid-column:1/-1}
+  .sp-loecher{gap:.25rem}
+  .sp-loch i{width:24px;height:24px;border-width:2px}
+  .sp-loch b{font-size:.95em}
+  .sp-loch small{display:none}
+}
+@media print{ /* taste-skill-ignore: Druckfassung */ .sp-sogehts,.sp-buehne{display:none} .sp-scroll{display:block} }

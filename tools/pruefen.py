@@ -36,7 +36,7 @@ MIT_VERTIEFUNG = ["mehrwert.html", "selbstcheck.html", "digital-check.html", "ue
 EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "startpunkt.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "galerie.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
-                    "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/ist-stand.js", "assets/startpunkt.js",
+                    "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/ist-stand.js", "assets/startpunkt.js", "assets/startpunkt-buehne.js",
                     "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js", "assets/werkstatt.js", "assets/werkstatt-anfrage.js", "assets/daten/werkstatt.js", "assets/fuenf-saetze.js", "assets/sechs-hebel.js", "assets/sechs-hebel-proben.js", "assets/sechs-hebel-rad.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation",
