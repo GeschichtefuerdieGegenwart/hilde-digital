@@ -43,47 +43,15 @@
   </div>
 </div></section>
 
-<section class="abschnitt" id="sh-probe" aria-labelledby="t-probe-sh" tabindex="-1"><div class="huelle stapel">
-  <h2 id="t-probe-sh">Probier es an deiner Stunde</h2>
-  <p class="mass">Denk an eine Stunde, die du bald hältst. Tipp an, was dort das Gerät übernehmen soll. Dann bring das Ergebnis ins Plenum. Nichts läuft von selbst, nichts wird gespeichert.</p>
-  <p class="sh-frage">Was passiert mit dem, was am Gerät entsteht?</p>
-  <div class="sh-probe" id="sh-r1">
-    <div class="sh-modell" id="sh-r1-modell">
-      <div class="sh-feld sh-feld-geraet">
-        <p class="sh-feld-titel">Am Gerät</p>
-        <div class="sh-kacheln" role="group" aria-label="Hebel in deiner Stunde">
-          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Verdecken">Verdecken</button>
-          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Rückmelden">Rückmelden</button>
-          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Messen">Messen</button>
-          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Variieren">Variieren</button>
-          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Stufen">Stufen</button>
-          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Bündeln">Bündeln</button>
-        </div>
-      </div>
-      <div class="sh-bruecke"><span>Plenumsstelle</span></div>
-      <div class="sh-feld sh-feld-raum">
-        <p class="sh-feld-titel">Im Raum</p>
-        <p class="leise klein">An der Tafel:</p>
-        <ul class="sh-tafel" id="sh-r1-tafel" aria-label="An der Tafel"></ul>
-        <ul class="sh-woerter sh-woerter-raum" id="sh-r1-raum" aria-label="Was im Raum geschieht">
-          <li>deuten</li><li>streiten</li><li>urteilen</li>
-        </ul>
-      </div>
-    </div>
-    <div class="sh-knoepfe">
-      <button type="button" class="knopf" id="sh-r1-los" aria-disabled="true">Ins Plenum</button>
-      <button type="button" class="knopf still" id="sh-r1-keiner">Keiner davon</button>
-      <button type="button" class="knopf still" id="sh-r1-zurueck" hidden>Neu wählen</button>
-    </div>
-    <p class="sh-stand" id="sh-r1-stand" aria-live="polite">Noch nichts gewählt.</p>
-  </div>
-  <p class="leise klein">Ohne JavaScript steht oben dasselbe Bild in Ruhe. Bei »Weniger Bewegung« liegen die Hebel sofort an der Tafel.</p>
-</div></section>
-
-<section class="abschnitt" aria-labelledby="t-hebel"><div class="huelle stapel-gross">
+<section class="abschnitt sh-register-abschnitt" id="sh-hebel" aria-labelledby="t-hebel" tabindex="-1"><div class="huelle stapel-gross">
   <div class="stapel">
-    <h2 id="t-hebel">Die sechs Hebel</h2>
-    <p class="mass">In allen erprobten Lernseiten der Galerie tut das Gerät eines von sechs Dingen. Jedes davon geht auf Papier nicht oder nur mühsam. Neben jedem Hebel steht eine kleine Probe: Erst legst du dich fest, dann ändert sich etwas.</p>
+    <h2 id="t-hebel">Die sechs Hebel – einer nach dem anderen</h2>
+    <p class="mass">In allen erprobten Lernseiten der Galerie tut das Gerät eines von sechs Dingen. Jedes davon geht auf Papier nicht oder nur mühsam. Zu jedem Hebel gehört eine kleine Probe: Erst legst du dich fest, dann ändert sich etwas. <span class="sh-nur-mit-js-satz">Tipp oben im Rad einen Hebel an oder blättere hier – es gibt keine Reihenfolge.</span></p>
+  </div>
+  <div class="sh-register-nav" id="sh-register-nav" hidden>
+    <button type="button" class="knopf still" id="sh-register-zurueck">← Zurück</button>
+    <button type="button" class="knopf" id="sh-register-weiter">Weiter →</button>
+    <p class="sh-register-stand" id="sh-register-stand" aria-live="polite">Noch kein Hebel gewählt – oben im Rad antippen oder »Weiter«.</p>
   </div>
   <ol class="sh-hebel-liste" id="sh-hebel-liste">
     <li class="sh-hebel" id="sh-verdecken">
@@ -260,6 +228,43 @@
     </li>
   </ol>
   <p class="sh-leitsatz">Trifft keiner der sechs Hebel zu, bleibt es Papier. Trifft einer zu, ist der Satz über den Vorteil schon geschrieben: »Das Gerät verdeckt hier …« – das ist die Antwort auf die <a class="textlink" href="unterricht.html#t-probe">Papierfrage</a>.</p>
+</div></section>
+
+<section class="abschnitt" id="sh-probe" aria-labelledby="t-probe-sh" tabindex="-1"><div class="huelle stapel">
+  <h2 id="t-probe-sh">Probier es an deiner Stunde</h2>
+  <p class="mass">Denk an eine Stunde, die du bald hältst. Tipp an, was dort das Gerät übernehmen soll. Dann bring das Ergebnis ins Plenum. Nichts läuft von selbst, nichts wird gespeichert.</p>
+  <p class="sh-frage">Was passiert mit dem, was am Gerät entsteht?</p>
+  <div class="sh-probe" id="sh-r1">
+    <div class="sh-modell" id="sh-r1-modell">
+      <div class="sh-feld sh-feld-geraet">
+        <p class="sh-feld-titel">Am Gerät</p>
+        <div class="sh-kacheln" role="group" aria-label="Hebel in deiner Stunde">
+          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Verdecken">Verdecken</button>
+          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Rückmelden">Rückmelden</button>
+          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Messen">Messen</button>
+          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Variieren">Variieren</button>
+          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Stufen">Stufen</button>
+          <button type="button" class="sh-kachel" aria-pressed="false" data-hebel="Bündeln">Bündeln</button>
+        </div>
+      </div>
+      <div class="sh-bruecke"><span>Plenumsstelle</span></div>
+      <div class="sh-feld sh-feld-raum">
+        <p class="sh-feld-titel">Im Raum</p>
+        <p class="leise klein">An der Tafel:</p>
+        <ul class="sh-tafel" id="sh-r1-tafel" aria-label="An der Tafel"></ul>
+        <ul class="sh-woerter sh-woerter-raum" id="sh-r1-raum" aria-label="Was im Raum geschieht">
+          <li>deuten</li><li>streiten</li><li>urteilen</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sh-knoepfe">
+      <button type="button" class="knopf" id="sh-r1-los" aria-disabled="true">Ins Plenum</button>
+      <button type="button" class="knopf still" id="sh-r1-keiner">Keiner davon</button>
+      <button type="button" class="knopf still" id="sh-r1-zurueck" hidden>Neu wählen</button>
+    </div>
+    <p class="sh-stand" id="sh-r1-stand" aria-live="polite">Noch nichts gewählt.</p>
+  </div>
+  <p class="leise klein">Ohne JavaScript steht oben dasselbe Bild in Ruhe. Bei »Weniger Bewegung« liegen die Hebel sofort an der Tafel.</p>
 </div></section>
 
 <section class="abschnitt" aria-labelledby="t-regeln"><div class="huelle stapel-gross">
