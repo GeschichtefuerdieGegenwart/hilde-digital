@@ -1,0 +1,54 @@
+<div class="bereich-lernen">
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1 class="h1-frage">Mein Fortbildungsbogen</h1>
+  <p class="marker">Voranalyse vor einer Fortbildung oder Beratungsstunde · Bereich: Digitaler Unterricht</p>
+  <p class="kopfnotiz">Zwanzig kurze Fragen über dich und deinen Unterricht, eine nach der anderen – etwa zehn Minuten. Damit die Leitung der Fortbildung bei dir anfängt und nicht irgendwo. Am Ende sicherst du deinen Bogen als PDF; vorher verlässt nichts dein Gerät.</p>
+</div></section>
+
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle">
+  <h2 id="t-bogen" class="sr-only">Der Bogen</h2>
+
+  <div class="mfb-eroeffnung" id="mfb-eroeffnung" data-takt="0" hidden>
+    <div class="mfb-eroeffnung-bild" aria-hidden="true">
+      <span class="mfb-figur"></span>
+      <span class="mfb-blase">Hey.</span>
+      <span class="mfb-loch"></span>
+      <span class="mfb-blatt"></span>
+    </div>
+    <div class="mfb-eroeffnung-text">
+      <p class="karte-marker">Worum es geht</p>
+      <p class="mfb-satz" id="mfb-satz" tabindex="-1"></p>
+      <ol class="mfb-takte" id="mfb-takte" aria-label="Die vier Sätze der Eröffnung">
+        <li>Hey. Bald sitzt du in einer Fortbildung zu KI und Tablet.</li>
+        <li>Sie soll bei dir anfangen – bei dem, was du schon tust, und bei dem, was dich bremst.</li>
+        <li>Dafür zwanzig kurze Fragen. Kein Richtig, kein Falsch, keine Bewertung.</li>
+        <li>Am Ende eine Seite als PDF. Die gibst du der Leitung. Vorher sieht sie niemand.</li>
+      </ol>
+      <div class="mfb-eroeffnung-steuerung">
+        <button type="button" class="knopf" id="mfb-los">Los geht’s →</button>
+        <button type="button" class="linkknopf" id="mfb-ueberspringen">Eröffnung überspringen</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mfb-weg" id="mfb-weg" hidden>
+    <nav class="schritte-nav" aria-label="Die fünf Schritte"><ol class="schritte" id="mfb-fortschritt"></ol><p class="schritte-stand" id="mfb-stand" aria-hidden="true"></p></nav>
+    <form id="mfb-form" class="weg mfb-form" novalidate></form>
+    <p id="mfb-ansage" class="sr-only" aria-live="polite"></p>
+    <div class="weg-steuerung" id="mfb-steuerung">
+      <button type="button" class="knopf still" id="mfb-zurueck">← Zurück</button>
+      <button type="button" class="knopf still" id="mfb-ueberspringen-frage">Überspringen</button>
+      <button type="button" class="knopf" id="mfb-weiter">Weiter →</button>
+    </div>
+  </div>
+
+  <div id="ergebnis" aria-live="polite"></div>
+  <p class="leise klein speicherhinweis">Deine Kreuze bleiben nur in diesem Browser; die Textfelder werden nicht gespeichert. Niemand sonst sieht etwas – bis du den Bogen als PDF weitergibst. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen und neu beginnen</button></p>
+  <noscript><p class="box">Der Fortbildungsbogen braucht JavaScript.</p></noscript>
+</div></section>
+</div>
+<script src="assets/daten/taxonomien.js"></script>
+<script src="assets/regeln.js"></script>
+<script src="assets/hilde.js"></script>
+<script src="assets/druck.js"></script>
+<script src="assets/fortbildungsbogen.js"></script>
