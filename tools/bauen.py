@@ -45,9 +45,10 @@ SEITEN = [
     ("werkzeugkiste.html", "Werkzeugkiste – Kidu", ""),
 ]
 
-# Logo Kidu (ab Version 4.23): zwei versetzte Druckplatten – Ocker = KI, Moos = digitaler Unterricht,
-# Oliv (Überdruck) nur in der Schnittmenge – neben der Wortmarke; darunter immer die ausgeschriebene Zeile,
-# in der K·I ocker und d·U moosgrün unterstrichen sind (die Buchstaben des Namens).
+# Logo Kidu (ab Version 4.26, Logo 5f aus Claude Design): Wortmarke »Kidu« in IBM Plex Mono (als Umrisse),
+# der i-Punkt sind die zwei versetzten Platten – Ocker = KI, Petrol = digitaler Unterricht, Oliv in der Schnittmenge.
+# Dateien in assets/logo/. Darunter immer die ausgeschriebene Zeile, in der K·I ocker und d·U petrol unterstrichen sind.
+WORTMARKE = '<img class="kidu-wortmarke" src="assets/logo/kidu-logo.svg" alt="" width="224" height="92">'
 PLATTEN = '<span class="kidu-zeichen" aria-hidden="true"><i></i><i></i><i></i></span>'
 ZEILE = ('<span class="ini ki">K</span>ünstliche <span class="ini ki">I</span>ntelligenz '
          'und <span class="ini du">d</span>igitaler <span class="ini du">U</span>nterricht')
@@ -88,22 +89,22 @@ def rahmen(titel, aktiv, inhalt, datei):
 <meta name="robots" content="noindex">
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 {weiterleitung}<title>{titel}</title>
-<link rel="icon" href="assets/kidu.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/hilde.css">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}}catch(e){{}}</script>
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 <header class="kopf"><div class="huelle">
-  <a class="marke" href="index.html"{' aria-current="page"' if datei == "index.html" else ""}>{PLATTEN}<span class="marke-text"><span class="marke-name">Kidu</span><span class="marke-zeile" aria-hidden="true">{ZEILE}</span></span><span class="sr-only">, zum Start</span></a>
+  <a class="marke" href="index.html"{' aria-current="page"' if datei == "index.html" else ""}><span class="marke-text"><span class="marke-name"><span class="sr-only">Kidu</span>{WORTMARKE}</span><span class="marke-zeile" aria-hidden="true">{ZEILE}</span></span><span class="sr-only">, zum Start</span></a>
   <nav class="nav" aria-label="Bereiche">{nav}</nav>
-  <a class="hefter-link" href="galerie.html#hefter" aria-label="Mein Schnellhefter"><svg viewBox="0 0 30 24" aria-hidden="true"><rect x="1" y="2" width="28" height="21" rx="2" fill="#d9a441" stroke="#7d5a1c" stroke-width="2"/><rect x="1" y="2" width="6" height="21" fill="#7d5a1c"/><circle cx="4" cy="8" r="1.3" fill="#efeadf"/><circle cx="4" cy="17" r="1.3" fill="#efeadf"/></svg><span class="hefter-zahl" aria-hidden="true">0</span></a>
+  <a class="hefter-link" href="galerie.html#hefter" aria-label="Mein Schnellhefter"><svg viewBox="0 0 30 24" aria-hidden="true"><rect x="1" y="2" width="28" height="21" rx="2" fill="#b68235" stroke="#7d5a1c" stroke-width="2"/><rect x="1" y="2" width="6" height="21" fill="#7d5a1c"/><circle cx="4" cy="8" r="1.3" fill="#efeadf"/><circle cx="4" cy="17" r="1.3" fill="#efeadf"/></svg><span class="hefter-zahl" aria-hidden="true">0</span></a>
 </div></header>
 <main id="inhalt" tabindex="-1">
 {inhalt}
 </main>
 <footer class="fuss"><div class="huelle">
-  <p class="fuss-marke" aria-hidden="true">{PLATTEN}Kidu</p>
+  <p class="fuss-marke" aria-hidden="true">{WORTMARKE}</p>
   <p class="fuss-unterzeile">{ZEILE}</p>
   <nav class="fusslinks" aria-label="Über Kidu"><ul>{fuss}<li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
   <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>

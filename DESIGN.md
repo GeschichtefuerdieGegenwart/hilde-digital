@@ -5,19 +5,19 @@ colors:
   grund: "#EFEADF"
   flaeche: "#F8F5EE"
   karton: "#E2DCCD"
-  text: "#2B2A24"
+  text: "#201F1D"
   leise: "#524E3D"
   linie: "#DDD6C6"
   stahl: "#6F6853"
   honig: "#7D5A1C"
-  honigplatte: "#D9A441"
+  honigplatte: "#B68235"
   honig-zart: "#F1E3C4"
   honig-tief: "#5C4212"
-  petrol: "#4A6645"
-  petrol-zart: "#E1E8D9"
-  petrol-tief: "#33482F"
-  ueberdruck: "#434512"
-  aktion: "#2B2A24"
+  petrol: "#2F5D62"
+  petrol-zart: "#DBE7E6"
+  petrol-tief: "#1F4246"
+  ueberdruck: "#3F5A44"
+  aktion: "#201F1D"
   erfolg: "#2E6B34"
   erfolg-zart: "#E3EEE2"
   warnung: "#8A5300"
@@ -160,6 +160,8 @@ components:
 ---
 > **Film auf der Startseite (ab Version 4.16, Entscheidung Mario 1.11.2026).** Ausnahme von »Autoplay nur, wenn Bewegung Lerngegenstand ist«: Der Film »Kidu in 44 Sekunden« (`assets/film.js`, Nachbau des Showreels v2 aus Claude Design) läuft bei jedem neuen Besuch einmal ab (ab Version 4.17; gemerkt nur für die Sitzung, `sessionStorage`) und endet mit »Film nochmal ansehen« oder »Zur Startseite« – keine Schleife, anhaltbar, »Überspringen« und Esc, Fokus auf »Überspringen«, nie bei »Weniger Bewegung« oder `prefers-reduced-motion`, danach über »Film ansehen«. Startet nur, wenn das Stilblatt geladen ist; alle eigenen CSS- und JS-Dateien tragen einen Prüfwert (`?v=…`). Inhalt für Hilfstechnik als Liste der neun Szenen. Farben, Schriften und Platten aus diesem System; keine weichen Schatten, keine fremden Schriften.
 
+> **Farben des Logos (ab Version 4.26, Entscheidung Mario 10.11.2026).** Die Seite übernimmt die Farben des Logos 5f: Ocker #B68235, Petrol #2F5D62, Oliv #3F5A44, Tinte #201F1D als Druckschwarz. Moos (#4A6645) entfällt. Auf Ocker steht nur dunkle Schrift (4,9:1). Die Werte in der Liste oben gelten; der folgende Absatz beschreibt den Stand 4.14–4.24.
+
 > **Farbwelt »Büttenpapier« (ab Version 4.14, Entscheidung Mario 1.11.2026).** Die Werte oben gelten. Die Rollen bleiben gleich, nur ihre Farben ändern sich: Honig heißt jetzt **Ocker** (#D9A441, Kante #7D5A1C), Petrol heißt **Moos** (#4A6645), das Überdruck-Grün heißt **Oliv** (#434512), der Leitakzent ist **Terrakotta** (#9E432A, nur auf der Seite Leitsätze). Grund ist ungebleichtes Papier (#EFEADF) mit dezenter Körnung, aus in Beamer-Ansicht, bei »Weniger Bewegung« und im Druck. Keine Fraunces, keine weichen Schatten, Two-Inks Rule unverändert. Wo unten noch Honig oder Petrol steht, ist die jeweilige Rolle gemeint. Kontrastwerte: siehe Kommentare in `assets/hilde.css`.
 
 
@@ -188,16 +190,16 @@ Das System lehnt ab: Hochglanz-EdTech mit Verläufen und Glas, verspielte Illust
 Zwei Druckfarben auf warmem Papier. Alles andere ist neutral.
 
 ### Primary
-- **Honigplatte** (#D9A441): Fläche des Bereichs »KI-Training«. Text darauf immer #2B2A24 (8,00:1). Gegen den Grund nur 1,6:1 – Platten erhalten deshalb eine 2-px-Kante in Honig oder Text.
+- **Honigplatte / Ocker** (#B68235, ab 4.26 das Ocker des Logos): Fläche des Bereichs »KI-Training«. Text darauf immer Druckschwarz #201F1D (4,9:1), nie helle Schrift. Gegen den Grund nur 1,6:1 – Platten erhalten deshalb eine 2-px-Kante in Honig oder Text.
 - **Honig** (#7D5A1C): Kanten, Symbole, Stundenlinie im KI-Bereich. Als Text nur ab 24 px (3,9:1).
 - **Honig zart / tief** (#F1E3C4 / #5C4212): Hintergrund von Hinweisen bzw. Text darauf (6,70:1).
 
 ### Secondary
-- **Petrol** (#4A6645): Bereich »Digitaler Unterricht«. Heller Text darauf 6,2:1, als Text auf Grund 5,4:1.
-- **Petrol zart / tief** (#E1E8D9 / #33482F): Hinweisflächen und Text darauf (8,07:1).
+- **Petrol** (#2F5D62, ab 4.26 das Petrol des Logos; 4.14–4.24 Moos #4A6645): Bereich »Digitaler Unterricht«. Heller Text darauf 7,0:1, als Text auf Grund 6,1:1.
+- **Petrol zart / tief** (#DBE7E6 / #1F4246): Hinweisflächen und Text darauf (heller Text auf tief 10,4:1).
 
 ### Tertiary
-- **Überdruck** (#434512): entsteht nur, wo Honig- und Petrolplatte sich überlagern (Logo-Zeichen, Platten der Startseite, Plattenwechsel, Farbauszug). Keine Kategorie, kein Etikett. Heller Text darauf 10,00:1.
+- **Überdruck / Oliv** (#3F5A44, ab 4.26 das Oliv des Logos): entsteht nur, wo Honig- und Petrolplatte sich überlagern (Logo-Zeichen, Platten der Startseite, Plattenwechsel, Farbauszug). Keine Kategorie, kein Etikett. Heller Text darauf 10,00:1.
 
 ### Neutral
 - **Grund** (#EFEADF): Seitenhintergrund, Knochenweiß (HSL-Sättigung < 16 %). Text 12,9:1.
@@ -364,12 +366,14 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 ### Fuß
 - Wortmarke in voller Breite als gestalteter Abschluss, darunter der Pflichttext. Keine Linkfarm.
 
-### Logo Kidu (ab Version 4.23, Entscheidung Mario 10.11.2026)
+### Logo Kidu (ab Version 4.26: Logo 5f aus Claude Design, Entscheidung Mario 10.11.2026)
 
-- **Zeichen:** zwei versetzte Druckplatten – Ocker (`--ki-platte`, KI) oben links, Moos (`--lernen`, digitaler Unterricht) unten rechts, Überdruck (`--ueberdruck`) nur in der Schnittmenge (Overprint Rule). Es ist die Startseite im Kleinen: dieselben zwei Platten, dieselbe Überlagerung. In CSS als `.kidu-zeichen` mit drei `<i>` (Größe in em, folgt der Schrift), als Datei `assets/kidu.svg` (feste Farben, Symbol im Browser-Reiter, für Folien und Handouts). Ersetzt den Strich `.strich` (drei Balken) neben dem alten Namen.
-- **Wortmarke:** »Kidu« in Bricolage 700, nie in Versalien. Im Kopf links vom Zeichen begleitet; im Fuß groß als Abschluss; auf der Startseite als Display-Titel.
-- **Ausgeschriebene Zeile (Pflicht):** »Künstliche Intelligenz und digitaler Unterricht« steht immer unter der Wortmarke – im Fuß, auf der Startseite und im Kopf (ab 1180 px; auf der Startseite nicht doppelt). Die vier Buchstaben des Namens tragen einen Unterstrich in Plattenfarbe: K · I ocker, d · U moos (`.ini.ki`, `.ini.du`). Der Text selbst bleibt Druckschwarz bzw. `--leise` – die Farbe ist Unterstrich, kein Text (Kontrast unabhängig). Bedeutungs-Check: Die Farben sagen dasselbe wie überall (Ocker = KI, Moos = Unterricht) und stehen immer neben dem Wort.
-- **Nicht:** kein Schullogo, keine Nachahmung eines Schul-Erscheinungsbilds; Kidu ist nicht an eine Schule gebunden.
+- **Wortmarke:** »Kidu« in IBM Plex Mono, der i-Punkt sind zwei versetzte Platten – Ocker (KI) oben links, Petrol (digitaler Unterricht) unten rechts, Oliv nur in der Schnittmenge. Raster der Platten 2 : 1 : 2 (Platte 20, Versatz 10, Überlagerung 10); i-Punkt 0,2 em breit, Mitte bei 56 % der i-Breite. Schutzraum ringsum eine Überlagerung. Mindesthöhe 24 px, darunter nur das Zeichen.
+- **Dateien** (`assets/logo/`): `kidu-logo.svg` (Standard, heller Grund), `kidu-logo-negativ.svg` (dunkler Grund), `kidu-logo-grau.svg` (einfarbig für Druck und Kopierer), `kidu-zeichen.svg` (nur die Platten, Profilbild), `favicon.svg` (Browser-Reiter). Die drei Wortmarken sind Umrisse – sie brauchen keine Schrift und sehen überall gleich aus. Umrisse aus IBM Plex Mono **Regular**: Der Entwurf ist in Plex Mono 500 gesetzt, diese Datei lag beim Bau nicht vor. IBM Plex steht unter der SIL Open Font License (© IBM Corp., Reserved Font Name »Plex«); ausgeliefert wird keine Schriftdatei.
+- **Logofarben** (eigene Werte, nur im Logo und in der Zeile darunter): Tinte #201f1d · Ocker #b68235 · Petrol #2f5d62 · Oliv #3f5a44; negativ Papier #f3f2f2 · Ocker hell #e2b86c · Petrol hell #5fa3aa. In CSS `--logo-tinte`, `--logo-ocker`, `--logo-petrol`, `--logo-oliv`. Seit 4.26 gelten sie für die ganze Seite (Entscheidung Mario: »Farben auf Ocker und Petrol«).
+- **Orte:** Kopf (40 px hoch, ab 1180 px mit Zeile darunter; auf der Startseite ohne Zeile, weil sie dort groß steht), Startseite als Titel, Fuß als großer Abschluss, Browser-Reiter. Der Startseiten-Film nutzt das Zeichen (`.kidu-zeichen`) in den Logofarben.
+- **Ausgeschriebene Zeile (Pflicht):** »Künstliche Intelligenz und digitaler Unterricht« steht immer unter der Wortmarke. K · I tragen einen Unterstrich in Logo-Ocker, d · U in Logo-Petrol (`.ini.ki`, `.ini.du`); der Text bleibt Druckschwarz bzw. `--leise`.
+- **Nicht:** kein Schullogo, keine Nachahmung eines Schul-Erscheinungsbilds; Kidu ist nicht an eine Schule gebunden. Bis 4.24: Zeichen aus zwei Platten neben der Wortmarke in Bricolage (Version 4.23).
 
 ### Bereichsetiketten
 - KI-Training: Honigplatte mit Text. Digitaler Unterricht: Petrol mit hellem Text. Es gibt nur diese zwei Bereiche. Immer mit Wort, nie nur Farbfläche.

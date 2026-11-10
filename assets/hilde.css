@@ -17,21 +17,21 @@
   --grund:#efeadf;        /* ungebleichtes Papier, Seitenhintergrund (Text 12,0:1) */
   --flaeche:#f8f5ee;      /* Bänder, Karten, Eingaben: glattes Blatt auf dem Papier (Text 13,2:1) */
   --karton:#e2dccd;       /* zurückgesetzte Flächen, Passepartout */
-  --text:#2b2a24;         /* Druckschwarz, leicht warm */
+  --text:#201f1d;         /* Druckschwarz = Tinte des Logos (ab 4.26; vorher #2b2a24); auf Ocker 4,9:1, auf Grund 14,2:1 */
   --leise:#524e3d;        /* Nebennotizen, 7,0:1 auf --grund */
   --linie:#ddd6c6;        /* nur Dekoration, nie Grenze eines Bedienelements */
   --stahl:#6f6853;        /* Grenzen von Bedienelementen, 4,6:1 */
   /* Erste Druckfarbe: Ocker – KI für meine Arbeit */
   --ki:#7d5a1c;           /* Kanten und Symbole; als Text 5,2:1 auf Grund */
-  --ki-platte:#d9a441;    /* Ocker als Fläche; Text darauf immer Druckschwarz (6,4:1) */
+  --ki-platte:#b68235;    /* Ocker des Logos als Fläche (ab 4.26; vorher #d9a441); Text darauf immer Druckschwarz (4,9:1), nie helle Schrift */
   --ki-zart:#f1e3c4;
   --ki-tief:#5c4212;
   /* Zweite Druckfarbe: Moos – Unterricht mit Tablets */
-  --lernen:#4a6645;       /* Fläche mit hellem Text 6,1:1; als Text 5,3:1 auf Grund */
-  --lernen-zart:#e1e8d9;
-  --lernen-tief:#33482f;
+  --lernen:#2f5d62;       /* Petrol des Logos (ab 4.26; vorher Moos #4a6645): Fläche mit hellem Text 7,0:1; als Text 6,1:1 auf Grund */
+  --lernen-zart:#dbe7e6;  /* Petrol darauf 5,8:1, Text 11,4:1 */
+  --lernen-tief:#1f4246;  /* heller Text darauf 10,4:1 */
   /* Überdruck: Ocker × Moos ergibt dunkles Oliv – nur wo sich beide Platten überlagern */
-  --ueberdruck:#434512;   /* heller Text darauf 9,5:1 */
+  --ueberdruck:#3f5a44;   /* Oliv des Logos (ab 4.26; vorher #434512): heller Text darauf 7,2:1 */
   --leitakzent:#9e432a;   /* Terrakotta: nur für den einen Leitsatz auf der Seite Leitsätze (5,3:1 auf Grund) */
   --leitakzent-zart:#f1ddd2;
   /* Handlung und Status */
@@ -107,8 +107,8 @@ html[data-theme="beamer"]{
   --stahl:#4b4636;        /* 9,4:1 auf Grund, 8,6:1 auf Fläche */
   --linie:#c9c1b4;
   --ki:#5e430f;           /* Kante der Ockerplatte (4,1:1 auf Ocker); als Text 9,2:1 auf Grund, 8,4:1 auf Fläche */
-  --lernen:#2f4a2b;       /* Weiß darauf 9,8:1, Fläche darauf 9,0:1; als Text auf Grund 9,8:1 */
-  --ueberdruck:#2f300b;   /* Weiß darauf 13,6:1 */
+  --lernen:#1f4a4f;       /* Petrol tief: Weiß darauf 9,8:1; als Text auf Grund 9,8:1 */
+  --ueberdruck:#2c4231;   /* Weiß darauf 10,9:1 */
   --leitakzent:#7c3020;   /* 9,1:1 auf Grund */
   --aktion:#000000;
   --aktion-text:#ffffff;
@@ -146,25 +146,29 @@ p{margin:0}
 .kopf{padding-block:var(--a2)}
 .kopf .huelle{display:flex;align-items:center;justify-content:space-between;gap:var(--a2);flex-wrap:wrap}
 .marke{font:700 1.375rem/1 var(--schrift-titel);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;letter-spacing:-.01em}
-/* Logo Kidu (ab Version 4.23): zwei versetzte Platten – Ocker (KI) oben links, Moos (digitaler Unterricht) unten rechts,
-   Oliv (Überdruck) nur in der Schnittmenge. Bis 4.22 lag hier der Strich ».strich« (drei Balken) neben dem alten Namen. */
+/* Logo Kidu (ab Version 4.26, Logo 5f aus Claude Design, Entscheidung Mario 10.11.2026):
+   Wortmarke »Kidu« in IBM Plex Mono als Umrisse (assets/logo/kidu-logo.svg), der i-Punkt sind zwei versetzte Platten.
+   Die Logofarben sind eigene Werte und gelten nur im Logo und in der Zeile darunter (Ocker = KI, Petrol = digitaler Unterricht,
+   Oliv = Schnittmenge). Raster der Platten 2 : 1 : 2; Mindesthöhe der Wortmarke 24 px, darunter nur das Zeichen. */
+:root{--logo-tinte:#201f1d;--logo-ocker:#b68235;--logo-petrol:#2f5d62;--logo-oliv:#3f5a44} /* seit 4.26 dieselben Werte wie --text, --ki-platte, --lernen, --ueberdruck im hellen Thema */
+.kidu-wortmarke{display:block;width:auto;height:1em;max-width:none}
 .kidu-zeichen{display:inline-block;position:relative;width:.82em;height:.82em;flex:0 0 auto}
-.kidu-zeichen i{position:absolute;width:.54em;height:.54em}
-.kidu-zeichen i:nth-child(1){left:0;top:0;background:var(--ki-platte)}
-.kidu-zeichen i:nth-child(2){left:.28em;top:.28em;background:var(--lernen)}
-.kidu-zeichen i:nth-child(3){left:.28em;top:.28em;width:.26em;height:.26em;background:var(--ueberdruck)}
-/* Die Buchstaben des Namens in der ausgeschriebenen Zeile: K·I unter Ocker, d·U unter Moos (Unterstrich, kein Text in Farbe) */
+.kidu-zeichen i{position:absolute;width:.546em;height:.546em}
+.kidu-zeichen i:nth-child(1){left:0;top:0;background:var(--logo-ocker)}
+.kidu-zeichen i:nth-child(2){left:.273em;top:.273em;background:var(--logo-petrol)}
+.kidu-zeichen i:nth-child(3){left:.273em;top:.273em;width:.273em;height:.273em;background:var(--logo-oliv)}
+/* Die Buchstaben des Namens in der ausgeschriebenen Zeile: K·I unter Ocker, d·U unter Petrol (Unterstrich, kein Text in Farbe) */
 .ini{text-decoration:underline;text-decoration-thickness:.16em;text-underline-offset:.16em;text-decoration-skip-ink:none;color:var(--text)}
-.ini.ki{text-decoration-color:var(--ki-platte)}
-.ini.du{text-decoration-color:var(--lernen)}
+.ini.ki{text-decoration-color:var(--logo-ocker)}
+.ini.du{text-decoration-color:var(--logo-petrol)}
 .marke{gap:.4rem}
-.marke .kidu-zeichen{font-size:1.5rem}
-.marke-text{display:grid;gap:.1rem}
+.marke .kidu-wortmarke{height:40px}
+.marke-text{display:grid;gap:.2rem;justify-items:start}
 .marke-zeile{font:700 1rem/1.15 var(--schrift);color:var(--leise);letter-spacing:0;white-space:nowrap}
 .marke-zeile .ini{text-decoration-thickness:2px;text-underline-offset:3px}
 @media (max-width:1180px){.marke-zeile{display:none}}
-.start-marke{display:flex;align-items:center;gap:.12em}
-.start-marke .kidu-zeichen{font-size:.82em}
+.start-marke{display:block}
+.start-marke .kidu-wortmarke{height:clamp(5.5rem,4rem + 7vw,10.5rem)}
 .menue-link{display:none}
 .nav{display:flex;gap:.25rem;flex-wrap:wrap}
 .nav a{text-decoration:none;color:var(--text);font-weight:700;font-size:1.125rem;display:inline-flex;align-items:center;min-height:44px;padding:0 .75rem;border-bottom:3px solid transparent}
@@ -176,7 +180,7 @@ p{margin:0}
 .fuss{padding-block:var(--a12) var(--a4);color:var(--text);font-size:var(--gr-klein)}
 .fuss .huelle{display:flex;justify-content:space-between;gap:var(--a2) var(--a4);flex-wrap:wrap;align-items:flex-end}
 .fuss-marke{flex-basis:100%;margin:0 0 var(--a3);font:700 clamp(3rem,11vw,10rem)/.9 var(--schrift-titel);letter-spacing:-.03em;display:flex;align-items:center}
-.fuss-marke .kidu-zeichen{font-size:.8em;margin-right:.1em}
+.fuss-marke .kidu-wortmarke{height:clamp(4.5rem,3rem + 10vw,12rem)}
 /* Name »Kidu · Künstliche Intelligenz und digitaler Unterricht« (ab Version 4.15): Wortmarke in Bricolage, Unterzeile in Atkinson, leise */
 .unterzeile{margin:.1em 0 0;font:700 clamp(1.25rem,1.05rem + .9vw,1.875rem)/1.2 var(--schrift);color:var(--leise);letter-spacing:-.005em}
 .fuss-unterzeile{flex-basis:100%;margin:calc(-1 * var(--a2)) 0 var(--a3);font:700 clamp(1.125rem,1rem + .6vw,1.5rem)/1.25 var(--schrift);color:var(--leise)}
