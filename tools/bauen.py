@@ -2,7 +2,7 @@
 """Baut die Seiten von Kidu aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
 
 Aufruf:  python3 tools/bauen.py
-Ergebnis: alle Seiten aus SEITEN. showroom.html leitet auf galerie.html weiter (alte Links bleiben gültig).
+Ergebnis: alle Seiten aus SEITEN. showroom.html leitet auf galerie.html weiter, startpunkt.html auf fortbildungsbogen.html (alte Links bleiben gültig).
 Kopfzeile, Statuszeile und Fußzeile stehen nur hier – so bleiben sie auf allen Seiten gleich.
 Im Fuß stehen die Schalter »Weniger Bewegung« (ab Version 4.8) und »Beamer-Ansicht« (ab 4.8 Teil 2); ein kleines Skript im Kopf
 setzt die gemerkten Wahlen (hilde.bewegung, hilde.theme) vor dem ersten Zeichnen.
@@ -22,7 +22,8 @@ SEITEN = [
     ("beobachtung.html", "Nach der Stunde: Beobachtungsbogen – Kidu", "unterricht"),
     ("tablet-phasen.html", "Tablet-Phasen gut führen – Kidu", "unterricht"),
     ("ist-stand.html", "Mein Ist-Stand – Kidu", "unterricht"),
-    ("startpunkt.html", "Mein Startpunkt: KI und Tablet – Kidu", "unterricht"),
+    ("fortbildungsbogen.html", "Mein Fortbildungsbogen – Kidu", "unterricht"),
+    ("startpunkt.html", "Mein Fortbildungsbogen – Kidu", "unterricht"),
     ("fortbildung.html", "Fortbildungsbaustein: 45 Minuten – Kidu", "unterricht"),
     ("beratung.html", "Beratungsstunde: acht Wochen – Kidu", "unterricht"),
     ("leitsaetze.html", "Leitsätze zur Diskussion – Kidu", ""),
@@ -53,6 +54,9 @@ PLATTEN = '<span class="kidu-zeichen" aria-hidden="true"><i></i><i></i><i></i></
 ZEILE = ('<span class="ini ki">K</span>ünstliche <span class="ini ki">I</span>ntelligenz '
          'und <span class="ini du">d</span>igitaler <span class="ini du">U</span>nterricht')
 
+# Alte Adressen leiten weiter (alte Links bleiben gültig).
+WEITERLEITUNGEN = {"showroom.html": "galerie.html", "startpunkt.html": "fortbildungsbogen.html"}
+
 NAV = [
     # Die drei Kernbereiche. Die Wortmarke führt zum Start.
     ("ki", "ki.html", "KI-Training"),
@@ -79,8 +83,8 @@ def rahmen(titel, aktiv, inhalt, datei):
         for key, href, text in NAV
     )
     fuss = "".join(f'<li><a href="{href}">{text}</a></li>' for href, text in FUSS)
-    weiterleitung = ('<meta http-equiv="refresh" content="0; url=galerie.html">\n<script>location.replace("galerie.html" + location.hash)</script>\n'
-                     if datei == "showroom.html" else "")
+    ziel = WEITERLEITUNGEN.get(datei)
+    weiterleitung = (f'<meta http-equiv="refresh" content="0; url={ziel}">\n<script>location.replace("{ziel}" + location.hash)</script>\n' if ziel else "")
     return f"""<!doctype html>
 <html lang="de">
 <head>

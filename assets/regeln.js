@@ -488,7 +488,7 @@
   }
 
 
-  /* Mein Startpunkt (startpunkt.html, ab 4.24): zwanzig Fragen vor einer Fortbildung oder Beratungsstunde.
+  /* Mein Fortbildungsbogen (fortbildungsbogen.html, ab 4.29; Fragen seit 4.24): zwanzig Fragen vor einer Fortbildung oder Beratungsstunde.
      Vier Ausgangslagen ohne Rangfolge – sie beschreiben, womit die erste Stunde beginnt, nicht wie gut jemand ist.
      Ergebnis: Lage, Stärken zuerst, vier Sicherheitsfelder für die Karte, höchstens drei Schritte, höchstens zwei Kniffe,
      ein Codeblock für die Leitung (nur Auswahlwerte, keine Texte). Keine Noten, Punkte oder Prozentwerte. */
@@ -585,7 +585,7 @@
     kniff("vorlage"); kniff("pruefliste");
 
     /* Codeblock für die Leitung: nur Auswahlwerte, lesbar und maschinenlesbar. */
-    var code = ["startpunkt v1", "lage=" + id + (skeptisch ? "+skeptisch" : "")];
+    var code = ["fortbildungsbogen v1", "lage=" + id + (skeptisch ? "+skeptisch" : "")];
     ["haeufigkeit", "eingabe", "ergebnis", "vorbereitung", "zeit", "ziel", "s_bedienen", "s_pruefen", "s_duerfen", "s_bauen"].forEach(function (f) { if (a[f]) code.push(f + "=" + a[f]); });
     ["systeme", "wofuer", "hindernis", "material", "tablet", "anlass", "gedanken", "lernen"].forEach(function (f) { if ((a[f] || []).length) code.push(f + "=" + a[f].join(",")); });
 

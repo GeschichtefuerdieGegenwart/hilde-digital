@@ -478,7 +478,7 @@ test("Startpunkt: Kniffe passen zur Lage und Arbeitsweise – Einsprechen nur, w
 
 test("Startpunkt: der Codeblock trägt nur Auswahlwerte, nie Texte", () => {
   const e = R.startpunkt({ haeufigkeit: "mehrmals", wofuer: ["texte", "quiz"], s_pruefen: "teils", stelle: "Quellenarbeit", kuerzel: "MW" });
-  assert.match(e.code, /^startpunkt v1 · lage=fuersich/);
+  assert.match(e.code, /^fortbildungsbogen v1 · lage=fuersich/);
   assert.match(e.code, /s_pruefen=teils/);
   assert.ok(!/Quellenarbeit|MW/.test(e.code));
 });
