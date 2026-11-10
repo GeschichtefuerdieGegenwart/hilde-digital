@@ -2275,3 +2275,51 @@ html[data-bewegung="weniger"] :is(.sp-buehne-marke,.sp-loch i,.sp-loch i::before
   .sp-loch small{display:none}
 }
 @media print{ /* taste-skill-ignore: Druckfassung */ .sp-sogehts,.sp-buehne{display:none} .sp-scroll{display:block} }
+
+/* Version 4.28 – Bereichsseiten neu geordnet (Claude Design, Richtungen U3 und K1, Entscheidung Mario 10.11.2026) */
+/* U3 · Digitaler Unterricht: Leitband mit der Frage, zwei Türen, alle Werkzeuge als Register */
+.leitband{padding-block:var(--a3) 0}
+.leitband-innen{display:grid;grid-template-columns:minmax(0,1fr) minmax(16rem,22rem);gap:var(--a3) var(--a6);align-items:end;background:var(--lernen);color:var(--flaeche);border-radius:var(--rund);padding-block:clamp(1.5rem,3vw,2.5rem)}
+.leitband-text{display:grid;gap:var(--a1);min-width:0}
+.leitband-bereich{font-size:var(--gr-text);font-family:var(--schrift);letter-spacing:0;color:var(--lernen-zart)}
+.leitband-frage{font:700 var(--gr-h1)/1.02 var(--schrift-titel);letter-spacing:-.02em;text-wrap:balance;max-width:18ch}
+.leitband-text p{max-width:48ch}
+.leitband-wege{display:grid;gap:var(--a2)}
+.leitband-wege a{display:block;padding:var(--a2) var(--a3);border-radius:var(--rund);font-weight:700;text-decoration:none;transition:transform var(--dauer-schnell) var(--ease-out)}
+.leitband-los{background:var(--flaeche);color:var(--lernen-tief);box-shadow:6px 6px 0 0 var(--ki-platte);font-size:var(--gr-h3)} /* taste-skill-ignore: versetzte Ocker-Platte = Weg zur Frage */
+.leitband-film{color:var(--flaeche);border:2px solid var(--lernen-zart)}
+.leitband-wege a:active{transform:scale(var(--druck-gross));transition-duration:var(--dauer-druck)}
+@media (hover:hover) and (pointer:fine){.leitband-wege a:hover{transform:translate(-2px,-2px)}}
+.leitband-wege a:focus-visible{outline:3px solid var(--flaeche);outline-offset:3px}
+@media (max-width:860px){.leitband-innen{grid-template-columns:1fr;align-items:start}}
+.werkzeuge.tueren .werkzeug.haupt{grid-column:auto}
+.werkzeug.tuer a{background:var(--flaeche);color:var(--text);border:3px solid var(--text);padding:clamp(1.25rem,2.5vw,1.75rem)}
+.werkzeug.tuer .werkzeug-text b{font-size:var(--gr-h2)}
+.tuer-ueber{font-size:var(--gr-klein);font-weight:700;color:var(--lernen)}
+@media (hover:hover) and (pointer:fine){.werkzeug.tuer a:hover{box-shadow:6px 6px 0 0 var(--lernen)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
+.register-titel{font-size:var(--gr-h3);margin-top:var(--a6)}
+.register{list-style:none;margin:var(--a2) 0 0;padding:0;border-top:2px solid var(--text)}
+.register li{border-bottom:1px solid var(--linie);max-width:none}
+.register a{display:grid;grid-template-columns:minmax(12rem,17rem) minmax(0,1fr) 9rem;gap:var(--a1) var(--a3);align-items:baseline;padding:.85rem .5rem;color:var(--text);text-decoration:none;transition:background-color var(--dauer-schnell) var(--ease-out)}
+.register a b{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+.register-wann{font-size:var(--gr-klein);color:var(--leise)}
+@media (hover:hover) and (pointer:fine){.register a:hover{background:var(--lernen-zart)}}
+@media (max-width:760px){.register a{grid-template-columns:1fr}.register-wann{order:-1}}
+.werkzeuge.kompakt{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a2)}
+.werkzeuge.kompakt .werkzeug a{padding:var(--a2)}
+.werkzeuge.kompakt .werkzeug-text b{font-size:var(--gr-text)}
+@media (max-width:1023px){.werkzeuge.kompakt{grid-template-columns:1fr}}
+/* K1 · KI-Training: die sechs Wege in drei benannten Gruppen, direkt unter den zwei Türen */
+.ki-werkstatt{padding-top:var(--a4)}
+.werkzeuge.ki-gruppen{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+.ki-gruppe{display:grid;gap:var(--a2);padding-top:var(--a2);border-top:4px solid var(--ki-platte);max-width:none}
+.ki-gruppe.sicher{border-top-color:var(--text)}
+.gruppe-titel{font-size:var(--gr-klein);font-weight:700;color:var(--ki-tief)}
+.ki-gruppe.sicher .gruppe-titel{color:var(--text)}
+.gruppe-liste{list-style:none;margin:0;padding:0;display:grid;gap:var(--a2)}
+.gruppe-liste .werkzeug a{padding:var(--a2) var(--a3)}
+.gruppe-liste .werkzeug-text b{font-size:var(--gr-text)}
+.werkzeuge.ki-extra{grid-template-columns:1fr;margin-top:var(--a3)}
+.ki-extra .werkzeug a{border:2px dashed var(--stahl);padding:var(--a2) var(--a3)}
+.ki-extra .werkzeug-text b{font-size:var(--gr-text)}
+@media (max-width:1023px){.werkzeuge.ki-gruppen{grid-template-columns:1fr}}

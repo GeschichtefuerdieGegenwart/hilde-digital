@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
 <title>Digitaler Unterricht – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=87fef0d1">
+<link rel="stylesheet" href="assets/hilde.css?v=d4a43ff2">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -19,82 +19,52 @@
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt mit-motiv"><div class="huelle kopf-mit-motiv">
-  <div class="kopf-text">
-  <h1 class="passer" data-passer="Digitaler Unterricht">Digitaler Unterricht</h1>
-  <p class="marker">Bereich: Digitaler Unterricht</p>
-  <p class="detail-kurz">Digitale Unterrichtsideen finden, Material prüfen und passende Werkzeuge auswählen. Am Anfang steht immer die Frage, was die Lernenden lernen sollen.</p>
+<section class="leitband" aria-labelledby="t-leitfrage"><div class="huelle leitband-innen">
+  <div class="leitband-text">
+    <h1 class="leitband-bereich">Digitaler Unterricht</h1>
+    <h2 id="t-leitfrage" class="leitband-frage">Wann funktioniert digitaler Unterricht?</h2>
+    <p>Sechs Dinge kann das Gerät besser als Papier. Schau sie dir zuerst an. Dann findest du leichter das passende Werkzeug.</p>
   </div>
-  <svg class="motiv" viewBox="0 0 360 200" aria-hidden="true" focusable="false">
-    <!-- Stundenlinie: Punkt = punktuell, Abschnitt = phasenweise, ganze Linie = durchgängig. Keine Rangfolge. -->
-    <g class="m-linie-dick"><path d="M30 46h300M30 100h300M30 154h300"/></g>
-    <g class="m-schwarz"><circle cx="30" cy="46" r="6"/><circle cx="105" cy="46" r="6"/><circle cx="180" cy="46" r="6"/><circle cx="255" cy="46" r="6"/><circle cx="330" cy="46" r="6"/>
-      <circle cx="30" cy="100" r="6"/><circle cx="105" cy="100" r="6"/><circle cx="180" cy="100" r="6"/><circle cx="255" cy="100" r="6"/><circle cx="330" cy="100" r="6"/>
-      <circle cx="30" cy="154" r="6"/><circle cx="105" cy="154" r="6"/><circle cx="180" cy="154" r="6"/><circle cx="255" cy="154" r="6"/><circle cx="330" cy="154" r="6"/></g>
-    <g class="m-petrol"><circle cx="142" cy="46" r="14"/><rect x="105" y="90" width="150" height="20" rx="3"/><rect x="30" y="144" width="300" height="20" rx="3"/></g>
-  </svg>
+  <div class="leitband-wege">
+    <a class="leitband-los" href="sechs-hebel.html">Die sechs Hebel ansehen <span aria-hidden="true">→</span></a>
+    <a class="leitband-film" href="sechs-hebel-film.html">Film · zwei Minuten</a>
+  </div>
 </div></section>
 
 <section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-werkzeuge"><div class="huelle">
-  <h2 id="t-werkzeuge" class="sr-only">Was du hier tun kannst</h2>
-  <ul class="werkzeuge">
-    <li class="werkzeug leit">
-      <a href="sechs-hebel.html">
-        <span class="werkzeug-text"><span class="leit-ueber">Die Frage dahinter</span><b>Wann funktioniert digitaler Unterricht?</b>Sechs Dinge, die das Gerät besser kann als Papier – als Rad zum Antippen, mit einer Probe je Hebel und einem Film von zwei Minuten. Was dabei entsteht, gehört zurück in den Raum.</span>
-        <span class="werkzeug-los" aria-hidden="true">→</span>
-      </a>
-    </li>
-    <li class="werkzeug haupt">
+  <h2 id="t-werkzeuge" class="sr-only">Womit du anfängst</h2>
+  <ul class="werkzeuge tueren">
+    <li class="werkzeug haupt tuer">
       <a href="digitalisieren.html">
-        <span class="werkzeug-text"><b>Unterricht digitalisieren</b>Du hast schon Unterricht – ein Arbeitsblatt, eine Präsentation, einen Verlaufsplan. Wähle, was entstehen soll, und hol dir einen Prompt mit Ideen, die mehr können als Papier.</span>
+        <span class="werkzeug-text"><span class="tuer-ueber">Ich habe schon Material</span><b>Unterricht digitalisieren</b>Ein Arbeitsblatt, eine Präsentation, ein Verlaufsplan? Wähle, was entstehen soll, und hol dir einen Prompt mit Ideen, die mehr können als Papier.</span>
         <span class="werkzeug-los" aria-hidden="true">→</span>
       </a>
     </li>
-    <li class="werkzeug">
+    <li class="werkzeug tuer">
       <a href="tablets.html">
-        <span class="werkzeug-text"><b>Unterricht planen</b>Vier kurze Fragen, dann deine Entscheidungskarte: Lohnt sich das Tablet – oder bleibst du beim Papier?</span>
-        <span class="werkzeug-los" aria-hidden="true">→</span>
-      </a>
-    </li>
-    <li class="werkzeug">
-      <a href="digital-check.html">
-        <span class="werkzeug-text"><b>Digital-Check</b>Prüfe ein fertiges Material: selbst oder mit einem Prüf-Auftrag für ein freigegebenes KI-System.</span>
-        <span class="werkzeug-los" aria-hidden="true">→</span>
-      </a>
-    </li>
-    <li class="werkzeug">
-      <a href="ist-stand.html">
-        <span class="werkzeug-text"><b>Mein Ist-Stand</b>Fünf Fragen nur für dich: Wie nutzt du Tablets heute? Ohne Bewertung.</span>
-        <span class="werkzeug-los" aria-hidden="true">→</span>
-      </a>
-    </li>
-    <li class="werkzeug">
-      <a href="passt.html">
-        <span class="werkzeug-text"><b>Was passt gerade zu mir?</b>Ein paar kurze Fragen. Du bekommst einen passenden Einstieg – ohne Bewertung.</span>
-        <span class="werkzeug-los" aria-hidden="true">→</span>
-      </a>
-    </li>
-    <li class="werkzeug">
-      <a href="tablet-phasen.html">
-        <span class="werkzeug-text"><b>Tablet-Phasen gut führen</b>Sechs Regeln gegen Ablenkung und eine Karte für die Tafel zum Ausdrucken.</span>
-        <span class="werkzeug-los" aria-hidden="true">→</span>
-      </a>
-    </li>
-    <li class="werkzeug">
-      <a href="beobachtung.html">
-        <span class="werkzeug-text"><b>Nach der Stunde</b>Sechs Fragen in zwei Minuten: Wie lief es mit dem Tablet? Dann entscheidest du – so lassen, nachschärfen oder zurück zu Papier.</span>
+        <span class="werkzeug-text"><span class="tuer-ueber">Ich fange neu an</span><b>Unterricht planen</b>Vier kurze Fragen, dann deine Entscheidungskarte: Lohnt sich das Tablet – oder bleibst du beim Papier?</span>
         <span class="werkzeug-los" aria-hidden="true">→</span>
       </a>
     </li>
   </ul>
-  <p class="galerie-hinweis">Beispiele findest du in der Galerie: echte Lernanwendungen aus dem Kollegium zum Ansehen und Ausprobieren. <a class="textlink" href="galerie.html">Zur Galerie <span aria-hidden="true">→</span></a></p>
-  <p class="galerie-hinweis"><b>Ideen und Kniffe für digitalen Unterricht:</b> eine Sammlung zum Stöbern, kein Weg – Muster, die hinter vielen Beispielen stecken, je auf Papier, mit KI vorbereitet und am Tablet. Wenn du nach einem Einstieg suchst, fang bei der Frage oben an. <a class="textlink" href="muster.html">Zu den Ideen und Kniffen <span aria-hidden="true">→</span></a></p>
+
+  <h2 id="t-alle" class="register-titel">Alle Werkzeuge</h2>
+  <ul class="register" aria-labelledby="t-alle">
+    <li><a href="#t-probe"><b>Papierfrage</b><span>Geht es auf Papier genauso gut? Höchstens drei Fragen, hier auf der Seite.</span><span class="register-wann">vor der Stunde</span></a></li>
+    <li><a href="digital-check.html"><b>Digital-Check</b><span>Prüfe ein fertiges Material – selbst oder mit einem Prüf-Auftrag.</span><span class="register-wann">vor der Stunde</span></a></li>
+    <li><a href="tablet-phasen.html"><b>Tablet-Phasen gut führen</b><span>Sechs Regeln gegen Ablenkung und eine Karte für die Tafel.</span><span class="register-wann">in der Stunde</span></a></li>
+    <li><a href="beobachtung.html"><b>Nach der Stunde</b><span>Sechs Fragen in zwei Minuten: so lassen, nachschärfen oder zurück zu Papier.</span><span class="register-wann">nach der Stunde</span></a></li>
+    <li><a href="ist-stand.html"><b>Mein Ist-Stand</b><span>Fünf Fragen nur für dich: Wie nutzt du Tablets heute? Ohne Bewertung.</span><span class="register-wann">für dich</span></a></li>
+    <li><a href="passt.html"><b>Was passt gerade zu mir?</b><span>Ein paar kurze Fragen. Du bekommst einen passenden Einstieg.</span><span class="register-wann">für dich</span></a></li>
+    <li><a href="muster.html"><b>Ideen und Kniffe</b><span>Eine Sammlung zum Stöbern: Muster, je auf Papier, mit KI vorbereitet und am Tablet.</span><span class="register-wann">zum Stöbern</span></a></li>
+    <li><a href="galerie.html"><b>Galerie</b><span>Echte Lernanwendungen aus dem Kollegium zum Ansehen und Ausprobieren.</span><span class="register-wann">zum Stöbern</span></a></li>
+  </ul>
   <p class="bezug-ki">KI kann Teil digitalen Unterrichts sein – muss es aber nicht. Wenn du KI für deine Vorbereitung nutzen willst: <a class="textlink" href="ki.html">Zum KI-Training <span aria-hidden="true">→</span></a></p>
 </div></section>
 
 <section class="abschnitt" aria-labelledby="t-austausch"><div class="huelle stapel">
   <h2 id="t-austausch">Für den Austausch im Kollegium</h2>
-  <ul class="werkzeuge">
+  <ul class="werkzeuge kompakt">
     <li class="werkzeug">
       <a href="fortbildung.html">
         <span class="werkzeug-text"><b>Fortbildungsbaustein: 45 Minuten</b>Der Einstieg für Konferenz oder Fachgruppe. Alle arbeiten an eigenem Material.</span>
