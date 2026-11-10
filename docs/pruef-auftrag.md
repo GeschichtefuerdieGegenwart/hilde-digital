@@ -1,6 +1,6 @@
 # Digital-Check, Weg B: der Prüf-Auftrag
 
-So steht der Auftrag auf der Seite, wenn kein Materialtyp gewählt ist. Er wird aus `assets/daten/qualitaet.js` erzeugt (`assets/pruef-prompt.js`). Diese Datei ist nur zum Lesen; sie wird mit `node -e` aus den Daten erstellt und bei Änderungen am Qualitätsmodell neu erzeugt.
+So steht der Auftrag auf der Seite, wenn kein Materialtyp gewählt ist. Er wird aus `assets/daten/qualitaet.js` und der Kurzfassung des Skills `digital-check` erzeugt (`assets/pruef-prompt.js`). Diese Datei ist nur zum Lesen; `tools/werkzeugkiste.py` schreibt sie bei jedem Bauen neu.
 
 ```text
 # Rolle
@@ -27,6 +27,10 @@ Nenne dann die zwei bis vier Bereiche, die für diesen Typ besonders wichtig sin
 - Motivation allein ist kein Lernmehrwert. Spielelemente zählen nur, wenn sie das Lernen stützen.
 - »Analog oder hybrid passt besser« ist ein vollwertiges Ergebnis. Mehr Technik ist nicht automatisch besser.
 - Ein punktueller digitaler Einsatz ist keine Vorstufe. Bewerte das Material für den Zweck, für den es gemacht ist.
+- Erst Ruhe, dann Bewegung: Bewegung auf der Seite zählt nur, wenn sie eine Veränderung, einen Ablauf oder einen Zusammenhang zeigt und die Lernenden sie selbst auslösen oder steuern. Bewegung beim bloßen Lesen oder als Belohnung ist ein Mangel.
+- Erst denken, dann zeigen: Prüfe, ob die Lernenden sich festlegen müssen, bevor eine Auflösung, Rückmeldung oder Animation kommt.
+- Zähle den Weg: Wie viele Tipps oder Klicks brauchen die Lernenden bis zur ersten eigenen Antwort, und wie oft wechselt die Seite innerhalb einer Arbeitsphase? Mehr als drei Tipps oder ein Seitenwechsel mitten in der Phase sind ein Hinweis auf Unruhe.
+- Bei Sortier- und Legeaufgaben: Gibt es einen Zwischenstand, kann man Fehler zurücknehmen, bleibt der Stand gespeichert? Überleben die Ergebnisse die Stunde außerhalb des Browsers?
 - Sprich von Potenzial, nicht von nachgewiesener Wirkung.
 - Prüfe Fachliches vorsichtig: Nenne Stellen, die eine Fachperson prüfen sollte, statt Fehler sicher zu behaupten.
 - Erfinde nichts. Ergänze keine fehlenden Informationen. Frage nach, wenn dir etwas fehlt.
@@ -81,7 +85,7 @@ Frage: Wissen die Lernenden jederzeit, worum es geht, wo sie stehen und was als 
 Qualität: 0 Ziel und Ablauf unklar | 1 Ziel nur in der Überschrift | 2 Ziel, Ablauf und Auftrag klar | 3 Stand sichtbar; Wissen jederzeit erreichbar | 4 auch in offenen Phasen; der nächste Schritt ist immer klar
 Digitaler Beitrag: 1 Inhaltsverzeichnis | 2 dauerhaft sichtbare Navigation mit Stand | 3 an jeder Stelle die passende Zusammenfassung zum Aufklappen
 So geht es auf Papier: Laufzettel, Lernlandkarte, Inhaltsverzeichnis im Heft
-Risiko: Zu viele Menüs verwirren. Ein Fortschrittsbalken zählt Klicks, nicht Verstehen.
+Risiko: Zu viele Menüs verwirren. Jeder Seitenwechsel kostet Orientierung. Ein Fortschrittsbalken zählt Klicks, nicht Verstehen.
 
 ## Selbst steuern (Selbststeuerung und selbstreguliertes Lernen)
 Frage: Planen, überprüfen und verbessern die Lernenden ihr eigenes Lernen – mit so viel Halt wie nötig?
@@ -95,7 +99,7 @@ Frage: Helfen Bilder, Karten, Grafiken, Ton oder Video beim Verstehen – statt 
 Qualität: 0 keine oder störende Darstellung | 1 dekorativ | 2 unterstützt eine Kernaussage | 3 gezielt, hervorgehoben, in Abschnitte geteilt; Alternative vorhanden | 4 zeigt einen Zusammenhang, der sonst schwer zu erschließen wäre; die Lernenden arbeiten damit
 Digitaler Beitrag: 1 Bild vergrößerbar | 2 Vorher-nachher oder Überlagerung | 3 die Darstellung reagiert auf Eingaben der Lernenden
 So geht es auf Papier: Folie, Tafelbild, Bildkarte, Wandkarte
-Risiko: Dekorative Bilder und Bewegung lenken ab.
+Risiko: Dekorative Bilder und Bewegung lenken ab. Bewegung, die ohne eine Handlung der Lernenden läuft, stört beim Lesen.
 
 ## Mit dem Inhalt handeln (Interaktion)
 Frage: Können die Lernenden mit dem Inhalt fachlich etwas tun – mehr als blättern?
@@ -131,6 +135,19 @@ Qualität: 0 läuft nicht zuverlässig oder kein Ablauf erkennbar | 1 Ablauf ers
 Digitaler Beitrag: 1 Material an einem Ort | 2 Verteilen, Einsammeln und Stand ohne Zeitverlust | 3 Überblick über alle Bearbeitungsstände während der Stunde
 So geht es auf Papier: Mappe, Ablaufplan an der Tafel
 Risiko: Anmelde- und Ladezeiten kosten Lernzeit. Andere Apps lenken ab.
+
+# Typische Schwächen – prüfe gezielt
+Diese Schwächen kommen in Unterrichtsmaterial immer wieder vor. Sieh bei jeder nach, ob sie hier vorkommt, und nenne die Fundstelle.
+- Erfundenes: Zitate ohne Nachweis, Wirkungszahlen ohne Herkunft, KI-Bilder ohne Kennzeichnung, Reste aus KI-Antworten im Text.
+- Rechen- und Sachfehler: Angaben nachrechnen, Begriffe auf ihre Zeit prüfen.
+- Verratene Lösungen: ein Hinweis in Klammern, die richtige Antwort immer an derselben Stelle, die Lösung sichtbar im Text.
+- Zu viel auf einmal: mehr als fünf bis sechs neue Begriffe, kaum unterscheidbare Antworten, mehrere Auflösungen direkt hintereinander.
+- Lesen ohne Tun: Texte ohne Eingabe und Rückmeldung, ein Quiz nur mit richtig oder falsch, Notizen gehen beim Weiterklicken verloren.
+- Ohne Plenum: Die Tablet-Phase endet ohne ein Ergebnis, das im Gespräch aufgegriffen wird.
+- Lange Sachtexte am Gerät, besonders unter Zeitdruck: eine Papierfassung vorschlagen.
+- Mit KI erstelltes Material bleibt oft beim Wiedergeben: Wo müssen die Lernenden selbst deuten, urteilen und Gegenpositionen prüfen?
+- Arbeiten Lernende mit KI: Gibt es eine Stelle, an der sie zeigen, was sie ohne KI können? Stellt die KI Rückfragen, oder gibt sie Lösungen aus?
+- Abhängig vom Netz: Schriften, Skripte, Videos oder Dienste von fremden Seiten; die Seite läuft nicht ohne Internet.
 
 # Form deiner Antwort
 Schreib in einfacher Sprache, in kurzen Sätzen und sprich mich mit »du« an. Halte genau diese Gliederung ein:

@@ -408,3 +408,21 @@ Alle in `assets/motion.js` und `assets/hilde.css`. Jedes Muster startet durch di
 - **Don't** kleine Etiketten über Überschriften (»Eyebrows«), Pill-Badges, Monospace-Etiketten oder gesperrte Versalien setzen.
 - **Don't** Haarlinien, 1-px-Rahmen, Schnittmarken oder Passerkreuze als Schmuck verwenden (Formularfelder und echte Tabellen ausgenommen).
 - **Don't** Platzhalterbilder (Stockfotos, picsum o. Ä.) oder »realistisch wirkende« Beispieldaten einsetzen – Rasterpunkte und »noch offen« sind ehrlicher.
+
+## Kurzfassung für Kidu
+
+Aus diesem Abschnitt baut `tools/werkzeugkiste.py` die Gestaltungsregeln, die der Auftrag »Lernseite als eine HTML-Datei« (Werkzeug: Unterricht digitalisieren) an die KI weitergibt. Sie übertragen das Erscheinungsbild von Kidu auf Lernseiten, die Kolleg*innen mit einem freigegebenen KI-System bauen lassen – ohne fremde Schriften, ohne Bauwerkzeuge. Änderst du oben eine Regel, prüf, ob die Kurzfassung noch stimmt.
+
+- **Stand:** 10.11.2026
+
+**Anforderungen**
+
+- Ruhig und flach wie ein gut gedrucktes Arbeitsblatt: heller, warmer Grund (#F8F5EE), Text in fast schwarzem Druckschwarz (#2B2A24).
+- Höchstens zwei Farben für Bereiche oder Kategorien, zum Beispiel Ocker (#7D5A1C) und Moosgrün (#4A6645). Keine dritte Akzentfarbe, keine Verläufe, kein Glas, kein Neon. Ocker nie für Fließtext.
+- Hauptknöpfe in Druckschwarz, mindestens 48 Pixel hoch. Ecken 4 Pixel, auch bei Karten und Feldern.
+- Keine weichen Schatten. Tiefe, wenn nötig, durch eine harte, um 6 Pixel versetzte Farbfläche hinter der Karte.
+- Systemschrift, keine Schriften aus dem Netz. Überschriften kräftig und höchstens zwei Zeilen lang. Kein Text unter 16 Pixel.
+- Erst Ruhe, dann Bewegung: Bewegung nur als Antwort auf eine Handlung der Lernenden, höchstens 300 Millisekunden, nur Lage und Deckkraft. Ist im System »Bewegung reduzieren« eingestellt, bewegt sich nichts.
+- Status und Rückmeldung immer auch als Wort, nie nur als Farbe. Keine Ampeln, Punkte, Sterne, Abzeichen oder Konfetti.
+- Fehlende Bilder nicht erfinden: ein ruhiges Punktraster mit »noch kein Bild«. Keine Stockfotos, keine KI-Bilder als Fotos.
+- Lesbar am Beamer: Das Wichtigste jedes Abschnitts passt in 1280 × 720 Pixel.

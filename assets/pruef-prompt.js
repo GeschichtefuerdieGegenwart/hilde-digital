@@ -10,13 +10,24 @@
    - den Vergleich mit Papier (Analogskala),
    - die Regel »Technik rettet keine schwache Aufgabe« (wie in assets/check-regeln.js, begrenzeB),
    - die Kernbereiche des gewählten Materialtyps,
-   - eine feste Gliederung der Antwort: Stärke zuerst, keine Noten, keine Prozente.
+   - eine feste Gliederung der Antwort: Stärke zuerst, keine Noten, keine Prozente,
+   - ab Version 4.25 die »Typischen Schwächen« aus dem Skill digital-check (Abschnitt »Kurzfassung für Kidu«,
+     über assets/daten/kurzfassungen.js – gepflegt wird nur im Skill).
+   docs/pruef-auftrag.md und die Kopie im Skill erzeugt tools/werkzeugkiste.py aus dieser Datei.
    Tests: tests/pruef-prompt.test.js */
 (function (wurzel) {
   "use strict";
 
-  function baue(optionen, Q) {
+  function kurzfassungen(K) {
+    if (K) return K;
+    if (wurzel.KURZFASSUNGEN) return wurzel.KURZFASSUNGEN;
+    return typeof require !== "undefined" ? require("./daten/kurzfassungen.js") : null;
+  }
+
+  function baue(optionen, Q, K) {
     Q = Q || wurzel.QUALITAET;
+    K = kurzfassungen(K);
+    var schwaechen = K && K.skills["digital-check"] ? K.skills["digital-check"].anforderungen : [];
     optionen = optionen || {};
     var typ = Q.materialtypen.filter(function (t) { return t.id === optionen.typ; })[0] || null;
     var name = function (id) { return Q.bereiche.filter(function (b) { return b.id === id; })[0].name; };
@@ -72,6 +83,12 @@
       if (b.analog) z.push("So geht es auf Papier: " + b.analog);
       if (b.risiko) z.push("Risiko: " + b.risiko);
     });
+    if (schwaechen.length) {
+      z.push("");
+      z.push("# Typische Schwächen – prüfe gezielt");
+      z.push("Diese Schwächen kommen in Unterrichtsmaterial immer wieder vor. Sieh bei jeder nach, ob sie hier vorkommt, und nenne die Fundstelle.");
+      schwaechen.forEach(function (w) { z.push("- " + w); });
+    }
     z.push("");
     z.push("# Form deiner Antwort");
     z.push("Schreib in einfacher Sprache, in kurzen Sätzen und sprich mich mit »du« an. Halte genau diese Gliederung ein:");

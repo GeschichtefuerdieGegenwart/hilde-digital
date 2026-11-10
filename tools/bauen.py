@@ -42,6 +42,7 @@ SEITEN = [
     ("showroom.html", "Galerie – Kidu", "galerie"),
     ("ueber.html", "Über Kidu", ""),
     ("gestaltung.html", "Gestaltungssystem – Kidu", ""),
+    ("werkzeugkiste.html", "Werkzeugkiste – Kidu", ""),
 ]
 
 # Logo Kidu (ab Version 4.23): zwei versetzte Druckplatten – Ocker = KI, Moos = digitaler Unterricht,
@@ -63,6 +64,7 @@ FUSS = [
     ("ueber.html#inhalte", "Inhalte und Funktionen"),
     ("ueber.html#t-daten", "Hinweise zu Daten und KI"),
     ("gestaltung.html", "Gestaltungssystem"),
+    ("werkzeugkiste.html", "Werkzeugkiste"),
 ]
 
 KENNZEICHNUNG = "Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."
@@ -128,6 +130,10 @@ def mit_stand(html):
 
 
 def main():
+    # ab Version 4.25: zuerst die Kurzfassungen und Downloads aus den Skills (eine Quelle für alles)
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("werkzeugkiste", WURZEL / "tools" / "werkzeugkiste.py")
+    wk = importlib.util.module_from_spec(spec); spec.loader.exec_module(wk); wk.main()
     for alt in ("lernen.html", "beispiele.html"):  # umbenannt in tablets.html und showroom.html
         (WURZEL / alt).unlink(missing_ok=True)
     for datei, titel, aktiv in SEITEN:

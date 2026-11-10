@@ -27,6 +27,7 @@ Maßgeblich ist der Lizenztext von Creative Commons.
 - **Programmcode:** MIT-Lizenz, siehe `LICENSE`.
 - **Der Name** »Kidu« und künftige Namen des Moduls sind von keiner dieser Lizenzen erfasst.
 - **Verlinkte Lernanwendungen** liegen in anderen Repositories und haben dort eigene Bedingungen.
+- **Skills in `werkzeugkiste/kidu/`:** Die Lizenz je Skill steht in `werkzeugkiste/kidu/LIZENZ.md`. Drei Skills stehen dort, wie schon ihre Aufträge auf der Website, unter CC BY-SA 4.0, weil sie auf einer Vorlage unter dieser Lizenz beruhen.
 
 ## Kommerzielle Nutzung
 
