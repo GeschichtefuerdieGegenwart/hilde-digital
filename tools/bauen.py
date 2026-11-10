@@ -27,6 +27,7 @@ SEITEN = [
     ("leitsaetze.html", "Leitsätze zur Diskussion – Papierprobe", ""),
     ("fuenf-saetze.html", "Guter digitaler Unterricht in fünf Sätzen – Papierprobe", "unterricht"),
     ("sechs-hebel.html", "Wann digitaler Unterricht funktioniert – Papierprobe", "unterricht"),
+    ("sechs-hebel-film.html", "Film: Was das Gerät kann – Papierprobe", "unterricht"),
     ("digital-check.html", "Digital-Check – Papierprobe", "unterricht"),
     ("selbstcheck.html", "Digital-Check: Selbst prüfen – Papierprobe", "unterricht"),
     ("mehrwert.html", "So arbeitet der Digital-Check – Papierprobe", "unterricht"),
