@@ -52,7 +52,10 @@ var DIGITALISIEREN = {
   ausgaben: [
     { id: "ideen", name: "Ideen zum Auswählen", satz: "Gib mir zuerst nur Ideen und Varianten zum Auswählen. Arbeite danach nur die Variante aus, die ich wähle." },
     { id: "fertig", name: "Fertige Fassung", satz: "Gib mir eine fertige, sofort einsetzbare Fassung." },
-    { id: "plattform", name: "Bauanleitung für unsere Lernplattform", satz: "Gib mir eine Schritt-für-Schritt-Bauanleitung für unsere Lernplattform (z. B. als Test oder interaktiver Inhalt). Nenne nur Funktionen, die es dort üblicherweise gibt, und kennzeichne, was ich prüfen muss." }
+    { id: "plattform", name: "Bauanleitung für unsere Lernplattform", satz: "Gib mir eine Schritt-für-Schritt-Bauanleitung für unsere Lernplattform (z. B. als Test oder interaktiver Inhalt). Nenne nur Funktionen, die es dort üblicherweise gibt, und kennzeichne, was ich prüfen muss." },
+    /* ab Version 4.25: Der Satz unten gilt nur, wenn kurzfassungen.js fehlt. Sonst nimmt digitalisieren-prompt.js das Feld
+       »Format« aus der Kurzfassung des Skills lernseite-bauen und hängt dessen Regeln und die Gestaltungsregeln an. */
+    { id: "lernseite", name: "Lernseite als eine HTML-Datei", satz: "Gib mir die Lernseite als eine einzige HTML-Datei. Davor: deine Antworten auf die vier Fragen und den Ablauf mit Minuten. Danach: die Listen »Vor dem Kopieren prüfen« und »Nur du kannst das«." }
   ],
 
   /* Gilt für jeden Prompt: Aufmerksamkeit schützen und Ablenkung begrenzen. */

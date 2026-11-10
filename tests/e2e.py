@@ -11,6 +11,7 @@ reduzierte Bewegung, Digital-Check (Weg B: Prüf-Auftrag), Galerie mit Bildansic
 Ab Version 4.7: »Zum Anfangen«, Stundenlinie auf Karten und Detailseite, Umfang-Chips mit Vorschau, 390 px.
 Ab Version 4.8: Schalter »Weniger Bewegung«, Beamer-Prüfung für Digitaler Unterricht und Galerie, Fächer nur ein Durchlauf,
 Regler »Vom Blatt zum Tablet«, Wort der Stufe, »Schritt n von m«, Tafelkarte in Bricolage, Status-Variablen.
+Ab Version 4.25: Werkzeugkiste, Kurzfassungen aus den Skills in den Aufträgen, im Prompt und im Prüf-Auftrag.
 """
 import re
 import os
@@ -19,7 +20,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "startpunkt.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "sechs-hebel-film.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "startpunkt.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "sechs-hebel-film.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "werkzeugkiste.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -609,7 +610,9 @@ def main():
         pruefe(pg.locator('.weg-tablet a[href^="beispiel.html#"]').count() >= 5, "Muster: Tablet-Wege verlinken Galerie-Beispiele")
         pruefe(not pg.konsole, f"Muster: keine Konsolenfehler {pg.konsole}")
         pg.goto(url("auftraege.html"))
-        pruefe(pg.locator("#auftraege-liste > li").count() == 4 and pg.locator('a[href="digitalisieren.html"]').count() >= 1, "Aufträge: vier Aufträge und Verweis auf Unterricht digitalisieren")
+        pruefe(pg.locator("#auftraege-liste > li").count() == 5 and pg.locator('a[href="digitalisieren.html"]').count() >= 1, "Aufträge: fünf Aufträge und Verweis auf Unterricht digitalisieren")
+        pruefe("Fassung" in pg.inner_text("#fortbildung") and "ki-kompetenz-kollegium" in pg.inner_text("#fortbildung"), "Aufträge: neuer Auftrag aus dem Skill mit Fassung (4.25)")
+        pruefe(pg.locator('#auftraege-liste a[href="werkzeugkiste.html#t-laden"]').count() == 5, "Aufträge: jeder Auftrag verweist auf die Werkzeugkiste (4.25)")
         pruefe("CC BY-SA 4.0" in pg.inner_text("#ki-grenzen"), "Aufträge: Lizenzhinweis bei übertragenen Aufträgen")
         pruefe(not pg.konsole, f"Aufträge: keine Konsolenfehler {pg.konsole}")
         pg.goto(url("ki-fach.html"))
@@ -626,6 +629,27 @@ def main():
         pruefe(all(pg.locator(f'#t-werkstatt ~ .werkzeuge a[href="{z}"]').count() == 1 for z in ["ki-fach.html", "auftraege.html", "muster.html", "sicher.html"]), "KI-Training: vier Wege in die Werkstatt")
         pruefe(pg.locator('#t-werkstatt ~ .werkzeuge a[href="lernende-ki.html"]').count() == 1, "KI-Training: Weg zu »Wenn deine Lernenden mit KI arbeiten«")
         pruefe("F13" in pg.inner_text(".ki-regeln") and "AIS.chat" in pg.inner_text(".ki-regeln"), "KI-Training: Landesangebote genannt (Entscheidung 31.10.2026)")
+        # 2i. Version 4.25: Werkzeugkiste und eine Quelle für alles
+        pg.goto(url("werkzeugkiste.html"))
+        pruefe(pg.locator("#kf-liste > li").count() == 8, "Werkzeugkiste: acht Kurzfassungen mit Werkzeug")
+        hrefs = pg.eval_on_selector_all("#laden-liste a[download]", "as => as.map(a => a.getAttribute('href'))")
+        pruefe(len(hrefs) == 10 and all((W / h).exists() for h in hrefs), f"Werkzeugkiste: zehn Downloads, alle vorhanden ({len(hrefs)})")
+        pruefe("lernseite-bauen" not in " ".join(hrefs), "Werkzeugkiste: Bau-Skill wird nicht angeboten")
+        pruefe(not pg.konsole and not pg.extern, f"Werkzeugkiste: keine Konsolenfehler, nichts aus dem Netz {pg.konsole} {pg.extern}")
+        pg.goto(url("digitalisieren.html"))
+        vorher = (pg.eval_on_selector('input[name="vorhaben"]:checked', "e => e.value"), pg.input_value("#d-ausgabe"))
+        pg.check('input[name="vorhaben"][value="arbeitsblatt"]', force=True)
+        pg.click(".bk-mehr summary")
+        pg.select_option("#d-ausgabe", "lernseite")
+        t = pg.input_value("#d-prompt")
+        pruefe("# Vorgehen" in t and "# Lernseite bauen" in t and "# So soll die Lernseite aussehen" in t and "eine einzige HTML-Datei" in t, "Digitalisieren: Kurzfassungen und Gestaltungsregeln bei »Lernseite« (4.25)")
+        pruefe("unterricht-digitalisieren" in pg.inner_text("[data-kurzfassung]"), "Digitalisieren: Fassung der Anleitung steht unter dem Prompt")
+        pg.check(f'input[name="vorhaben"][value="{vorher[0]}"]', force=True)
+        pg.select_option("#d-ausgabe", vorher[1])  # gemerkte Wahl zurücksetzen, damit spätere Tests den alten Stand sehen
+        pg.goto(url("digital-check.html"))
+        pruefe("# Typische Schwächen" in pg.input_value("#pruef-prompt") and "digital-check" in (pg.text_content("[data-kurzfassung]") or ""), "Digital-Check: typische Schwächen aus dem Skill (4.25)")
+        pg.goto(url("ki.html"))
+        pruefe(pg.locator('#t-werkstatt ~ .werkzeuge a[href="werkzeugkiste.html"]').count() == 1, "KI-Training: Weg zur Werkzeugkiste")
         # 2h. Version 4.10: Lernende und KI, Beratungsstunde, Lese-Kriterium, Selbstcheck, Beobachtungsbogen
         pg.goto(url("lernende-ki.html"))
         pruefe(pg.locator(".regel-drei > li").count() == 3, "Lernende und KI: drei Regeln")

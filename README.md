@@ -11,6 +11,8 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `src/*.html` | Inhalt der Seiten (ohne Kopf- und Fußzeile) |
 | `tools/bauen.py` | setzt Kopfzeile, Inhalt und Fußzeile zu fertigen Seiten zusammen |
 | `tools/pruefen.py` | prüft Kennzeichnung, Fachbegriffe, Platzhalter, externe Dateien |
+| `tools/werkzeugkiste.py` | eine Quelle für alles (ab 4.25): überträgt die »Kurzfassung für Kidu« jedes Skills nach `assets/daten/kurzfassungen.js`, schreibt `docs/pruef-auftrag.md` und packt die Downloads der Werkzeugkiste; läuft in `tools/bauen.py` mit |
+| `werkzeugkiste/kidu/` | das Plugin »kidu« für das Kollegium – hier werden die Skills gepflegt |
 | `assets/hilde.css` | Gestaltungssystem (Farben, Schrift, Bausteine) |
 | `assets/daten/beispiele.js` | alle Beispiele an einem Ort |
 | `assets/daten/taxonomien.js` | Phasen, Anliegen, Umfang, Rollen, Mehrwert-Arten, Status |

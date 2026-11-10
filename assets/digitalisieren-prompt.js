@@ -3,6 +3,9 @@
    Der Prompt enthält: Ausgangslage, Auftrag, die Leitfrage »Was kann das Tablet besser als Papier?«,
    die passenden Bereiche des Qualitätsmodells (Frage, guter digitaler Beitrag, so geht es auf Papier, Risiko),
    Regeln gegen Ablenkung, Regeln des Projekts und die Form der Antwort.
+   Ab Version 4.25 kommen zwei Teile aus den Skills (assets/daten/kurzfassungen.js, gepflegt nur im Skill):
+   »Vorgehen« aus unterricht-digitalisieren und – bei der Ausgabe »lernseite« – die Regeln aus lernseite-bauen
+   und die Gestaltungsregeln aus DESIGN.md.
    Keine KI-Anbindung. Tests: tests/digitalisieren.test.js */
 (function (wurzel) {
   "use strict";
@@ -10,8 +13,16 @@
   function finde(liste, id) { return (liste || []).filter(function (x) { return x.id === id; })[0] || null; }
   function liste(l) { return l.map(function (x) { return "- " + x; }).join("\n"); }
 
-  function baue(e, D, Q, T) {
+  function kurzfassungen(K) {
+    if (K) return K;
+    if (wurzel.KURZFASSUNGEN) return wurzel.KURZFASSUNGEN;
+    return typeof require !== "undefined" ? require("./daten/kurzfassungen.js") : null;
+  }
+
+  function baue(e, D, Q, T, K) {
     D = D || wurzel.DIGITALISIEREN; Q = Q || wurzel.QUALITAET; T = T || wurzel.TAXONOMIEN;
+    K = kurzfassungen(K);
+    var skill = function (id) { return K && K.skills[id] ? K.skills[id].anforderungen : []; };
     e = e || {};
     var v = finde(D.vorhaben, e.vorhaben);
     if (!v) return "";
@@ -40,6 +51,15 @@
     z.push("# Worauf es ankommt\n" + bereiche.map(function (b) {
       return "## " + b.name + "\nFrage: " + b.frage + "\nEchter digitaler Beitrag: " + b.b.slice(1).join("; ") + "\nSo geht es auf Papier: " + b.analog + "\nRisiko: " + b.risiko;
     }).join("\n\n"));
+    var lernseite = K && K.skills["lernseite-bauen"];
+    var ausgabeSatz = (ausgabe.id === "lernseite" && lernseite && lernseite.format) || ausgabe.satz;
+    var vorgehen = skill("unterricht-digitalisieren");
+    if (vorgehen.length && v.id !== "analog") z.push("# Vorgehen\n" + liste(vorgehen));
+    if (ausgabe.id === "lernseite") {
+      var bau = skill("lernseite-bauen");
+      if (bau.length) z.push("# Lernseite bauen\n" + liste(bau));
+      if (K && K.gestaltung) z.push("# So soll die Lernseite aussehen\n" + liste(K.gestaltung.anforderungen));
+    }
     z.push("# Aufmerksamkeit und Ablenkung\nPlane so, dass das Tablet nicht ablenkt:\n" + liste(D.ablenkung));
     z.push("# Regeln\n" + liste([
       "Technik rettet keine schwache Aufgabe: Erst muss die Aufgabe gut sein, dann kann das Tablet helfen.",
@@ -52,7 +72,7 @@
       "Erfinde keine Quellen, Zahlen oder App-Funktionen. Kennzeichne, was ich prüfen muss.",
       "Keine Noten, keine Prozentwerte."
     ]));
-    z.push("# Form deiner Antwort\n" + liste(v.antwort.concat([ausgabe.satz, "Schreib in einfacher Sprache und sprich mich mit »du« an."])));
+    z.push("# Form deiner Antwort\n" + liste(v.antwort.concat([ausgabeSatz, "Schreib in einfacher Sprache und sprich mich mit »du« an."])));
     z.push("# Material\n(" + (mats.length ? "Hier " + mats.map(function (m) { return m.akk; }).join(" und ") + " anhängen oder einfügen" : "Hier deinen Unterricht kurz beschreiben") + " – ohne Namen, Noten oder andere personenbezogene Daten.)");
     return z.join("\n\n");
   }

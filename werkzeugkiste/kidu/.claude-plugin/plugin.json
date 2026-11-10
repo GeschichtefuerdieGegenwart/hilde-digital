@@ -1,0 +1,16 @@
+{
+  "name": "kidu",
+  "version": "0.4.0",
+  "description": "Kidu · Künstliche Intelligenz und digitaler Unterricht – für Lehrkräfte: Unterricht digitalisieren, fertiges Material prüfen, Lernmethoden einführen, KI-Regeln für Aufgaben, KI-Antworten prüfen, KI-Fortbildung und Praxisforschung. Lernseiten selbst bauen: Zusatz-Plugin »kidu-bau«.",
+  "author": {
+    "name": "Mario Walter"
+  },
+  "keywords": [
+    "kidu",
+    "unterricht",
+    "tablet",
+    "didaktik",
+    "ki-im-unterricht",
+    "lernseite"
+  ]
+}

@@ -2191,3 +2191,8 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
   .sp-code{border-color:#999;max-width:none;line-height:1.3;padding:.4rem .6rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .sp-quelle{margin-top:.6rem}
 }
+/* Werkzeugkiste (ab Version 4.25): Downloads als ruhige Liste, wie die Inhaltsliste auf »Über Kidu«. */
+.laden-liste{margin:0;padding:0;list-style:none;display:grid;gap:var(--a2)}
+.laden-liste>li{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);border-left:8px solid var(--karton);display:grid;gap:.4rem;justify-items:start}
+.laden-titel{font-weight:700}
+.laden-einzeln{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
