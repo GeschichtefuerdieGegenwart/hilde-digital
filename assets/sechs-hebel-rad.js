@@ -1,13 +1,13 @@
-/* Kidu – Hebelrad und Register auf »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html).
+/* Kidu – Prinzipienrad und Register auf »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html).
 
-   Muster Y · Hebelrad (ab Version 4.21) und Z1 · Rad als Register (ab Version 4.22; Musterbuch Z, Wahl Mario 10.11.2026).
-   Das Rad im Kopf ist die Überblicksgrafik der sechs Hebel: Mitte Gerät, rundherum die Hebel ohne Reihenfolge, der Ring
-   ist die Plenumsstelle, außen der Raum. Tippt man einen Hebel an, hebt er sich auf seine Platte (Rückmeldung,
+   Muster Y · Prinzipienrad (ab Version 4.21) und Z1 · Rad als Register (ab Version 4.22; Musterbuch Z, Wahl Mario 10.11.2026).
+   Das Rad im Kopf ist die Überblicksgrafik der sechs Prinzipien: Mitte Gerät, rundherum die Prinzipien ohne Reihenfolge, der Ring
+   ist die Plenumsstelle, außen der Raum. Tippt man ein Prinzip an, hebt es sich auf seine Platte (Rückmeldung,
    --dauer-schnell), die Karte daneben wechselt ihren Text (Zustandswechsel, --dauer-aufdecken) – und seit 4.22 steht
-   darunter nur noch das Band dieses Hebels mit seiner Probe (Register): Die sechs Bänder stehen nicht mehr untereinander,
+   darunter nur noch das Band dieses Prinzips mit seiner Probe (Register): Die sechs Bänder stehen nicht mehr untereinander,
    »Weiter« und »Zurück« gehen reihum, der Stand steht als Satz (aria-live). Das Band wechselt in --dauer-uebergang;
    die Richtung trägt Bedeutung (weiter kommt von rechts, zurück von links). Das Rad hat keinen Anfang – darum ist in Ruhe
-   kein Hebel gewählt. Der Text der Karte kommt aus dem Band, nichts steht doppelt im Quelltext.
+   kein Prinzip gewählt. Der Text der Karte kommt aus dem Band, nichts steht doppelt im Quelltext.
    Kein großer Moment: Der eine große Moment der Seite bleibt R1 (One Moment Rule).
    Ohne JavaScript: Kacheln sind Sprungmarken, die Karte zeigt alle sechs Sätze, alle Bänder stehen untereinander
    (Visible-at-Rest Rule). Bei »Weniger Bewegung« oder Tastatur (event.detail === 0) wechseln Karte und Band ohne Übergang.
@@ -36,7 +36,7 @@
     return !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
   }
 
-  /* Band eines Hebels: das <li> mit der ID aus der Sprungmarke */
+  /* Band eines Prinzips: das <li> mit der ID aus der Sprungmarke */
   function bandVon(k) {
     var ziel = k.getAttribute("href");
     return ziel && ziel.charAt(0) === "#" ? document.getElementById(ziel.slice(1)) : null;
@@ -50,7 +50,7 @@
     var h3 = text.querySelector("h3"), abs = [].slice.call(text.querySelectorAll("p"));
     karte.innerHTML = "";
     var kopf = document.createElement("p"); kopf.className = "sh-rad-karte-kopf";
-    kopf.textContent = "Dein Hebel · " + (h3 ? h3.textContent : "");
+    kopf.textContent = "Dein Prinzip · " + (h3 ? h3.textContent : "");
     karte.appendChild(kopf);
     abs.forEach(function (p, i) {
       var q = p.cloneNode(true);
@@ -58,7 +58,7 @@
       karte.appendChild(q);
     });
     var hin = document.createElement("a"); hin.className = "textlink"; hin.href = k.getAttribute("href");
-    hin.innerHTML = (register ? "Zur Probe dieses Hebels" : "Zum Hebel mit seiner Probe") + " <span aria-hidden=\"true\">↓</span>";
+    hin.innerHTML = (register ? "Zur Probe dieses Prinzips" : "Zum Prinzip mit seiner Probe") + " <span aria-hidden=\"true\">↓</span>";
     karte.appendChild(hin);
     return true;
   }
@@ -69,7 +69,7 @@
     karte.classList.add("sh-rad-neu");
   }
 
-  /* Register: nur das Band des gewählten Hebels steht da */
+  /* Register: nur das Band des gewählten Prinzips steht da */
   function zeigeBand(k, richtung, sofort) {
     if (!register) return;
     var baender = [].slice.call(abschnitt.querySelectorAll(".sh-hebel"));
@@ -82,8 +82,8 @@
       }
     });
     var i = k ? kacheln.indexOf(k) : -1;
-    stand.textContent = k ? "Hebel " + (i + 1) + " von 6: " + nameVon(k) + ". Keine Reihenfolge – das Rad hat keinen Anfang."
-      : "Noch kein Hebel gewählt – oben im Rad antippen oder »Weiter«.";
+    stand.textContent = k ? "Prinzip " + (i + 1) + " von 6: " + nameVon(k) + ". Keine Reihenfolge – das Rad hat keinen Anfang."
+      : "Noch kein Prinzip gewählt – oben im Rad antippen oder »Weiter«.";
   }
 
   function waehle(k, richtung, sofort) {
@@ -114,7 +114,7 @@
   if (register) {
     weiter.addEventListener("click", function (e) { blaettere(1, e.detail === 0); });
     zurueck.addEventListener("click", function (e) { blaettere(-1, e.detail === 0); });
-    /* Sprungmarke in der Adresse (#sh-messen): den Hebel gleich zeigen, sonst wäre das Ziel leer */
+    /* Sprungmarke in der Adresse (#sh-messen): das Prinzip gleich zeigen, sonst wäre das Ziel leer */
     var treffer = kacheln.filter(function (k) { return k.getAttribute("href") === location.hash; });
     if (treffer.length) waehle(treffer[0], 1, true);
     else zeigeBand(null, 0, true);

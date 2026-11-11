@@ -1783,9 +1783,9 @@ html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs
 .sh-knoepfe{display:flex;flex-wrap:wrap;gap:var(--a2);margin-top:var(--a3)}
 .sh-stand{margin:var(--a2) 0 0;font-weight:700;max-width:62ch}
 
-/* Die sechs Hebel – ruhige Übersicht */
+/* Die sechs Prinzipien – ruhige Übersicht */
 .sh-hebel-liste{list-style:none;margin:0;padding:0;display:grid;gap:var(--a4)}
-/* ab 4.20: je Hebel ein Band – links der Hebel, rechts seine Probe (Muster S bis X) */
+/* ab 4.20: je Prinzip ein Band – links das Prinzip, rechts seine Probe (Muster S bis X) */
 .sh-hebel{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--a3) var(--a4);align-items:start;padding:var(--a3);border-radius:var(--rund);background:var(--flaeche);border-top:6px solid var(--lernen);min-width:0}
 @media (max-width:900px){.sh-hebel{grid-template-columns:1fr}}
 .sh-hebel-text{display:grid;gap:var(--a1);align-content:start;min-width:0}
@@ -1831,12 +1831,12 @@ html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs
 .sh-stimmen p{margin:0}
 .sh-stimme-wo{font-weight:700}
 
-/* Weniger Bewegung: die Hebel liegen sofort an der Tafel (das Skript fliegt dann gar nicht); zur Sicherheit kein Übergang. */
+/* Weniger Bewegung: die Prinzipien liegen sofort an der Tafel (das Skript fliegt dann gar nicht); zur Sicherheit kein Übergang. */
 @media (prefers-reduced-motion:reduce){.sh-flieger,.sh-kachel{transition:none}}
 html[data-bewegung="weniger"] .sh-flieger,html[data-bewegung="weniger"] .sh-kachel{transition:none}
 @media print{.sh-probe,.sh-aktionen .knopf{display:none}}
 
-/* ── Proben zu den sechs Hebeln (Muster S bis X, ab Version 4.20) ───────────────────────────────────────────────
+/* ── Proben zu den sechs Prinzipien (Muster S bis X, ab Version 4.20) ───────────────────────────────────────────────
    Je Probe erst eine Festlegung, dann ein Zustandswechsel (--dauer-aufdecken 360 ms, Flug --dauer-flug 440 ms).
    Ohne JavaScript (Liste ohne .sh-js): Bedienteile aus, Vertiefungen offen lesbar (Visible-at-Rest).
    Verdecken ist die begründete Ausnahme: die Auflösung wartet auf die Festlegung – durch den Zustand, nicht durch Bewegung. */
@@ -1941,8 +1941,8 @@ html[data-bewegung="weniger"] .sh-s-balken,html[data-bewegung="weniger"] .sh-t-a
 html[data-bewegung="weniger"]::view-transition-group(sh-w-text){animation:none}
 @media print{.sh-kniff .sh-nur-mit-js{display:none}.sh-kniff details{display:block}}
 
-/* ---------- Y · Hebelrad (sechs-hebel.html, ab Version 4.21) ----------
-   Die Überblicksgrafik der sechs Hebel aus Claude Design (Canvas »Sechs Hebel – Überblicksgrafik«, Richtung C):
+/* ---------- Y · Prinzipienrad (sechs-hebel.html, ab Version 4.21) ----------
+   Die Überblicksgrafik der sechs Prinzipien aus Claude Design (Canvas »Sechs Prinzipien – Überblicksgrafik«, Richtung C):
    Mitte = Gerät (--lernen), sechs Kacheln ohne Reihenfolge auf einem Ring = Plenumsstelle, außen = Raum (--karton).
    Maße in Prozent eines Quadrats von 560 px; das Quadrat schrumpft am Beamer, damit Kopf, Rad und erster Knopf in 720 px passen.
    »Deine Wahl« = --wahl (--lernen-tief, zweite Druckfarbe bleibt), gewählte Kachel hebt sich 2 px auf ihre Platte.
@@ -2134,7 +2134,7 @@ html[data-bewegung="weniger"] .sh-rad-kachel,html[data-bewegung="weniger"] .sh-r
 
 /* ---------- Z1 · Rad als Register (sechs-hebel.html, ab Version 4.22; Musterbuch Z, Wahl Mario 10.11.2026) ----------
    Die sechs Bänder stehen nicht mehr untereinander: Mit JavaScript (Abschnitt .sh-register) steht nur das Band des im Rad
-   gewählten Hebels, »Weiter«/»Zurück« gehen reihum. In Ruhe ist kein Hebel gewählt (das Rad hat keinen Anfang).
+   gewählten Prinzips, »Weiter«/»Zurück« gehen reihum. In Ruhe ist kein Prinzip gewählt (das Rad hat keinen Anfang).
    Das Band kommt in --dauer-uebergang von der Seite, aus der geblättert wurde (nur transform/opacity).
    Ohne JavaScript stehen alle sechs Bänder untereinander wie bis 4.21. */
 .sh-register .sh-hebel{display:none}
@@ -2195,7 +2195,7 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
   .sp-code{border-color:#999;max-width:none;line-height:1.3;padding:.4rem .6rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .sp-quelle{margin-top:.6rem}
 }
-/* Werkzeugkiste (ab Version 4.25): Downloads als ruhige Liste, wie die Inhaltsliste auf »Über Kidu«. */
+/* Methodenkoffer (ab Version 4.25): Downloads als ruhige Liste, wie die Inhaltsliste auf »Über Kidu«. */
 .laden-liste{margin:0;padding:0;list-style:none;display:grid;gap:var(--a2)}
 .laden-liste>li{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);border-left:8px solid var(--karton);display:grid;gap:.4rem;justify-items:start}
 .laden-titel{font-weight:700}
@@ -2344,3 +2344,39 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
 .ki-extra .werkzeug a{border:2px dashed var(--stahl);padding:var(--a2) var(--a3)}
 .ki-extra .werkzeug-text b{font-size:var(--gr-text)}
 @media (max-width:1023px){.werkzeuge.ki-gruppen{grid-template-columns:1fr}}
+
+/* Version 4.32 – Aufgabenkoffer und aufgeräumter Methodenkoffer */
+.koffer-liste,.koffer-karten{list-style:none;margin:0;padding:0}
+.koffer-liste{display:grid;gap:var(--a6)}
+.koffer-gruppe{max-width:none;display:grid;gap:var(--a1)}
+.koffer-gruppe h3{font-size:var(--gr-h3)}
+.koffer-karten{display:grid;gap:0;margin-top:var(--a2);border-top:2px solid var(--text)}
+.koffer-karte{max-width:none;border-bottom:1px solid var(--linie)}
+.koffer-details summary{display:grid;grid-template-columns:minmax(12rem,17rem) minmax(0,1fr) 11rem;gap:var(--a1) var(--a3);align-items:baseline;padding:.85rem .5rem;cursor:pointer;list-style:none;min-height:44px}
+.koffer-details summary::-webkit-details-marker{display:none}
+.koffer-name{display:grid;gap:.1rem}
+.koffer-name b{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+.koffer-name .leise{font-size:var(--gr-klein)}
+.koffer-ort{justify-self:start;font-size:var(--gr-klein);font-weight:700;padding:.15rem .6rem;border-radius:var(--rund);border:2px solid var(--stahl);white-space:nowrap}
+.koffer-ort.ort-geraet{background:var(--lernen);border-color:var(--lernen);color:var(--flaeche)}
+.koffer-ort.ort-hybrid{background:var(--lernen-zart);border-color:var(--lernen)}
+.koffer-ort.ort-papier{background:var(--flaeche)}
+.koffer-legende .koffer-ort{display:inline-block;margin-inline:.15rem}
+@media (hover:hover) and (pointer:fine){.koffer-details summary:hover{background:var(--lernen-zart)}}
+.koffer-details[open] summary{background:var(--lernen-zart)}
+.koffer-innen{display:grid;gap:var(--a3);padding:var(--a3) .5rem var(--a4)}
+.koffer-innen p{max-width:70ch}
+.koffer-zwei{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a3)}
+.koffer-zwei>div{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);display:grid;gap:var(--a1);align-content:start}
+.koffer-zwei h4{font:700 var(--gr-text)/1.2 var(--schrift)}
+.koffer-zwei ul{margin:0;padding-left:1.1rem;display:grid;gap:.25rem}
+.koffer-sinn{border-left:6px solid var(--lernen)}
+.koffer-wenig{border-left:6px solid var(--stahl)}
+.koffer-regel{background:var(--ki-zart);border-radius:var(--rund);padding:var(--a2) var(--a3)}
+@media (max-width:760px){.koffer-details summary{grid-template-columns:1fr}.koffer-zwei{grid-template-columns:1fr}}
+.kf-liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3);align-items:start}
+.kf-werkzeug{max-width:none;background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);display:grid;gap:var(--a1)}
+.kf-werkzeug h3{font-size:var(--gr-h3)}
+.kf-werkzeug h3 a{color:var(--text);text-decoration-thickness:2px;text-underline-offset:.2em}
+.kf-teile{margin:var(--a1) 0 0;padding-left:1.1rem;display:grid;gap:.4rem}
+@media (max-width:1023px){.kf-liste{grid-template-columns:1fr}}

@@ -34,6 +34,7 @@ SEITEN = [
     ("selbstcheck.html", "Digital-Check: Selbst prüfen – Kidu", "unterricht"),
     ("mehrwert.html", "So arbeitet der Digital-Check – Kidu", "unterricht"),
     ("muster.html", "Unterrichtsmuster aus der Praxis – Kidu", "unterricht"),
+    ("aufgabenkoffer.html", "Aufgabenkoffer – Kidu", "unterricht"),
     ("auftraege.html", "Aufträge zum Kopieren – Kidu", "ki"),
     ("ki-fach.html", "KI für dein Fach einrichten – Kidu", "ki"),
     ("sicher.html", "Sicher arbeiten in fünf Regeln – Kidu", "ki"),
@@ -43,7 +44,7 @@ SEITEN = [
     ("showroom.html", "Galerie – Kidu", "galerie"),
     ("ueber.html", "Über Kidu", ""),
     ("gestaltung.html", "Gestaltungssystem – Kidu", ""),
-    ("werkzeugkiste.html", "Werkzeugkiste – Kidu", ""),
+    ("werkzeugkiste.html", "Methodenkoffer – Kidu", ""),
 ]
 
 # Logo Kidu (ab Version 4.26, Logo 5f aus Claude Design): Wortmarke »Kidu« in IBM Plex Mono (als Umrisse),
@@ -69,7 +70,7 @@ FUSS = [
     ("ueber.html#inhalte", "Inhalte und Funktionen"),
     ("ueber.html#t-daten", "Hinweise zu Daten und KI"),
     ("gestaltung.html", "Gestaltungssystem"),
-    ("werkzeugkiste.html", "Werkzeugkiste"),
+    ("werkzeugkiste.html", "Methodenkoffer"),
     ("fortbildungsbogen.html", "Mein Fortbildungsbogen"),
 ]
 

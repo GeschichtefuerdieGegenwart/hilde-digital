@@ -1,4 +1,4 @@
-/* Kidu – Werkzeugkiste und Fassungsangaben (ab Version 4.25).
+/* Kidu – Methodenkoffer und Fassungsangaben (ab Version 4.25).
    1. Jedes Element mit data-kurzfassung="skill-a skill-b" bekommt einen Satz, aus welcher Fassung der Auftrag stammt.
    2. Auf werkzeugkiste.html: die Liste »Was in den Werkzeugen steckt« und die Downloads.
    Daten: KURZFASSUNGEN (assets/daten/kurzfassungen.js, erzeugt von tools/werkzeugkiste.py), WERKSTATT für die Aufträge.
@@ -15,30 +15,31 @@
     var teile = el.getAttribute("data-kurzfassung").split(/\s+/).filter(function (id) { return K.skills[id]; }).map(fassung);
     if (!teile.length) return;
     el.innerHTML = "Dieser Auftrag enthält die Kurzfassung der Anleitung " + esc(teile.join(" und ")) +
-      '. Mehr dazu in der <a href="werkzeugkiste.html">Werkzeugkiste</a>.';
+      '. Mehr dazu im <a href="werkzeugkiste.html">Methodenkoffer</a>.';
   });
 
-  /* 2. Werkzeugkiste */
+  /* 2. Methodenkoffer */
   var liste = document.getElementById("kf-liste");
   if (liste) {
     var W = typeof WERKSTATT !== "undefined" ? WERKSTATT : { auftraege: [] };
-    var orte = {
-      "unterricht-digitalisieren": { href: "digitalisieren.html", werkzeug: "Unterricht digitalisieren", teil: "der Abschnitt »Vorgehen« im Prompt" },
-      "lernseite-bauen": { href: "digitalisieren.html", werkzeug: "Unterricht digitalisieren", teil: "die Ausgabe »Lernseite als eine HTML-Datei«, mit den Gestaltungsregeln" },
-      "digital-check": { href: "digital-check.html#mit-ki", werkzeug: "Digital-Check: Mit KI prüfen", teil: "der Abschnitt »Typische Schwächen« im Prüf-Auftrag" }
+    /* Ein Eintrag je Werkzeug (ab 4.32) – vorher stand jedes Werkzeug so oft da, wie es Anleitungen nutzt. */
+    var standVon = function (id) { var k = K.skills[id]; return k ? "Fassung " + k.fassung + " vom " + k.datum : ""; };
+    var teil = function (href, name, wozu, id) {
+      return K.skills[id] ? '<li><a class="textlink" href="' + href + '">' + esc(name) + "</a>" + (wozu ? " – " + esc(wozu) : "") +
+        ' <span class="leise klein">· ' + esc(standVon(id)) + "</span></li>" : "";
     };
-    W.auftraege.forEach(function (a) {
-      orte[a.quelle] = { href: "auftraege.html#" + a.id, werkzeug: "Aufträge zum Kopieren", teil: "der Auftrag »" + a.name + "«" };
-    });
-    var reihe = ["unterricht-digitalisieren", "lernseite-bauen", "digital-check"];
-    var ids = reihe.filter(function (id) { return K.skills[id]; })
-      .concat(W.auftraege.map(function (a) { return a.quelle; }).filter(function (id) { return K.skills[id] && reihe.indexOf(id) < 0; }));
-    liste.innerHTML = ids.map(function (id) {
-      var o = orte[id]; var k = K.skills[id];
-      if (!o) return "";
-      return '<li class="werkzeug"><a href="' + o.href + '"><span class="werkzeug-text"><b>' + esc(o.werkzeug) + "</b>" +
-        esc("Darin steckt " + o.teil + ". Anleitung »" + id + "«, Fassung " + k.fassung + " vom " + k.datum + ".") +
-        '</span><span class="werkzeug-los" aria-hidden="true">→</span></a></li>';
+    var gruppen = [
+      { href: "digitalisieren.html", name: "Unterricht digitalisieren", satz: "Der Prompt folgt zwei Anleitungen.",
+        teile: teil("digitalisieren.html", "Unterricht digitalisieren", "so geht das KI-System vor", "unterricht-digitalisieren") +
+               teil("digitalisieren.html", "Lernseite bauen", "nur wenn du als Ausgabe eine Lernseite wählst", "lernseite-bauen") },
+      { href: "digital-check.html#mit-ki", name: "Digital-Check: Mit KI prüfen", satz: "Der Prüf-Auftrag folgt einer Anleitung.",
+        teile: teil("digital-check.html#mit-ki", "Digital-Check", "die typischen Schwächen, nach denen das KI-System sucht", "digital-check") },
+      { href: "auftraege.html", name: "Aufträge zum Kopieren", satz: "Jeder Auftrag folgt einer eigenen Anleitung.",
+        teile: W.auftraege.map(function (a) { return teil("auftraege.html#" + a.id, a.name, "", a.quelle); }).join("") }
+    ];
+    liste.innerHTML = gruppen.filter(function (g) { return g.teile; }).map(function (g) {
+      return '<li class="kf-werkzeug"><h3><a href="' + g.href + '">' + esc(g.name) + ' <span aria-hidden="true">→</span></a></h3>' +
+        "<p>" + esc(g.satz) + '</p><ul class="kf-teile">' + g.teile + "</ul></li>";
     }).join("");
   }
 

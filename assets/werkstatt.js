@@ -103,7 +103,7 @@
       return '<li class="werkstatt-karte" id="' + a.id + '">' +
         "<h3>" + esc(a.name) + "</h3><p>" + esc(a.kurz) + "</p>" +
         auftragsfeld(a.id, "Auftrag ansehen und kopieren") +
-        (a.stand ? '<p class="leise klein">Kurzfassung der Anleitung »' + esc(a.stand.skill) + '« (Fassung ' + esc(a.stand.fassung) + ", " + esc(a.stand.datum) + '). Die ganze Anleitung gibt es in der <a href="werkzeugkiste.html#t-laden">Werkzeugkiste</a>.</p>' : "") +
+        (a.stand ? '<p class="leise klein">Kurzfassung der Anleitung »' + esc(a.stand.skill) + '« (Fassung ' + esc(a.stand.fassung) + ", " + esc(a.stand.datum) + '). Die ganze Anleitung gibt es im <a href="werkzeugkiste.html#t-laden">Methodenkoffer</a>.</p>' : "") +
         (a.lizenz ? '<p class="leise klein">Übertragen und verändert nach der »Education Agent Skills Library« von Gareth Manning, Lizenz CC BY-SA 4.0. Diese Fassung steht ebenfalls unter CC BY-SA 4.0.</p>' : "") +
         "</li>";
     }).join("");

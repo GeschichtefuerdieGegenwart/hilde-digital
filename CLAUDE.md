@@ -1,6 +1,6 @@
 # Kidu – Regeln für die Arbeit an diesem Projekt
 
-Name seit 10.11.2026 (Entscheidung Mario): »Kidu · Künstliche Intelligenz und digitaler Unterricht«. Unter der Wortmarke steht immer die ausgeschriebene Zeile. Kidu ist nicht an eine Schule gebunden. Frühere Namen: »Hilde Digital« (bis 01.11.2026), »Papierprobe · Kompass für KI und digitalen Unterricht« (01.–10.11.2026). Das Werkzeug »Geht es auf Papier genauso gut?« heißt »Papierfrage«. Repository und GitHub-Pages-Adresse heißen seit 10.11.2026 `kidu` (Entscheidung Mario; vorher `hilde-digital`, die alte Seiten-Adresse wird nicht weitergeleitet).
+Name seit 10.11.2026 (Entscheidung Mario): »Kidu · Künstliche Intelligenz und digitaler Unterricht«. Unter der Wortmarke steht immer die ausgeschriebene Zeile. Kidu ist nicht an eine Schule gebunden. Frühere Namen: »Hilde Digital« (bis 01.11.2026), »Papierprobe · Kompass für KI und digitalen Unterricht« (01.–10.11.2026). Das Werkzeug »Geht es auf Papier genauso gut?« heißt »Papierfrage«. Seit 11.11.2026 (Entscheidung Mario): Die »sechs Hebel« heißen »sechs Prinzipien«, die »Werkzeugkiste« heißt »Methodenkoffer«; Adressen und Ordner (`sechs-hebel.html`, `werkzeugkiste.html`, `werkzeugkiste/`) bleiben. Repository und GitHub-Pages-Adresse heißen seit 10.11.2026 `kidu` (Entscheidung Mario; vorher `hilde-digital`, die alte Seiten-Adresse wird nicht weitergeleitet).
 
 Diese Datei liest Claude Code zu Beginn jeder Sitzung. Sie gilt auch für jede andere Bearbeitung.
 

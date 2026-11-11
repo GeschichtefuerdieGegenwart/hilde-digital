@@ -30,10 +30,10 @@ from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
 SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildungsbogen.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "sechs-hebel-film.html", "digital-check.html", "selbstcheck.html", "mehrwert.html",
-          "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html", "galerie.html", "beispiel.html", "showroom.html", "ueber.html", "gestaltung.html", "werkzeugkiste.html"]
+          "muster.html", "aufgabenkoffer.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html", "galerie.html", "beispiel.html", "showroom.html", "ueber.html", "gestaltung.html", "werkzeugkiste.html"]
 # Seiten, auf denen Fachbegriffe nur in aufklappbaren Vertiefungen (<details>) stehen dürfen
 MIT_VERTIEFUNG = ["mehrwert.html", "selbstcheck.html", "digital-check.html", "ueber.html"]
-EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildungsbogen.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "galerie.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html"]
+EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildungsbogen.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "galerie.html", "muster.html", "aufgabenkoffer.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/ist-stand.js", "assets/fortbildungsbogen.js",
@@ -290,11 +290,11 @@ def pruefe_werkzeugkiste(fehler):
     sk = wk.sammle()["skills"]
     for name in ("unterricht-digitalisieren", "digital-check", "lernseite-bauen"):
         if name not in sk or not sk[name]["anforderungen"]:
-            fehler.append(f"Werkzeugkiste: Kurzfassung »{name}« fehlt oder ist leer")
+            fehler.append(f"Methodenkoffer: Kurzfassung »{name}« fehlt oder ist leer")
     for name, k in sk.items():
         for z in [k.get("ziel", ""), k.get("format", ""), k.get("kurz", "")] + k["anforderungen"] + k["pruef"]:
             if re.search(r"ChatGPT|OpenAI|Claude|Anthropic|Gemini|Copilot|Mistral|%|@", z or ""):
-                fehler.append(f"Werkzeugkiste: Kurzfassung »{name}« nennt einen Anbieter, ein Prozentzeichen oder ein @")
+                fehler.append(f"Methodenkoffer: Kurzfassung »{name}« nennt einen Anbieter, ein Prozentzeichen oder ein @")
 
 
 def main():

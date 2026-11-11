@@ -37,7 +37,7 @@ Jeder Skill hat einen Abschnitt **»Kurzfassung für Kidu«**. Aus ihm baut `too
 | `digital-check` | Digital-Check, Weg »Mit KI prüfen« (Abschnitt »Typische Schwächen«) |
 | `lernmethode-einfuehren` · `ki-grenzen-einer-aufgabe` · `ki-faktencheck` · `praxisforschung-im-kollegium` · `ki-kompetenz-kollegium` | Aufträge zum Kopieren |
 
-Gepflegt wird nur im Skill. Die Website zeigt bei jedem Auftrag, aus welcher Fassung er stammt. Plugin und einzelne Skills liegen zum Herunterladen auf der Seite »Werkzeugkiste«.
+Gepflegt wird nur im Skill. Die Website zeigt bei jedem Auftrag, aus welcher Fassung er stammt. Plugin und einzelne Skills liegen zum Herunterladen auf der Seite »Methodenkoffer«.
 
 ## Stufenplan
 
@@ -58,6 +58,7 @@ Eine Quelle: Die Skills werden im Plugin gepflegt und versioniert (Abschnitt »V
 
 ## Versionen
 
+- **0.5.1, 11.11.2026:** Die Seite »Werkzeugkiste« von Kidu heißt jetzt »Methodenkoffer« (`kidu-start` v3.1).
 - **0.5.0, 11.11.2026:** Lesen und Strukturlegen: neue Referenz `lernmethode-einfuehren/references/lesen-und-strukturlegen.md` mit recherchierten Quellen und Belegstand; `lernmethode-einfuehren` v1.2, `unterricht-digitalisieren` v4.4, `digital-check` v1.3.
 - **0.4.0, 10.11.2026:** Umbenannt in **»kidu«** (vorher »hilde-digital«), Einstieg `kidu-start` (vorher `hilde-digital-start`), Zusatz-Plugin »kidu-bau«; nicht mehr an eine Schule gebunden. Neu: Abschnitt »Kurzfassung für Kidu« in sieben Skills als einzige Quelle der Website-Aufträge; neuer Auftrag aus `ki-kompetenz-kollegium`. Gepflegt im Repository `kidu` unter `werkzeugkiste/kidu/`. Die Papierprobe in `unterricht-digitalisieren` heißt weiter so.
 - **0.3.0, 31.10.2026:** Befunde aus dem Forschungsbericht »KI und digitale Medien im Unterricht« eingearbeitet: `ki-kompetenz-kollegium` v2 (KMK-KI-Kompetenzrahmen 16.10.2026, Art. 4 nach VO (EU) 2026/1744, »Was Fortbildung wirksam macht«, Beratungsstunde über acht Wochen, kein Zeitversprechen); `ki-grenzen-einer-aufgabe` (Regel 8 »Leistung mit KI ist kein Lernnachweis«, erst selbst dann KI, Abruf ohne KI, Rechtslage BW); `unterricht-digitalisieren` v4.2 (Lese-Kriterium, Belege zu KI); `digital-check` v1.1 (vier neue typische Schwächen); `ki-faktencheck` (Wiederholen, Wineburg 2022); `praxisforschung-im-kollegium` (Fokus und Rückmeldung bei Besuchen, Bausteine nach Sims). Die zurückgezogene Metaanalyse Wang & Fan 2025 wird nirgends als Beleg genutzt.
