@@ -20,7 +20,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 W = Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildungsbogen.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "sechs-hebel-film.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "auftraege.html", "ki-fach.html", "sicher.html", "werkzeugkiste.html"]
+SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "tablets.html", "galerie.html", "beispiel.html#psycho-ds2", "beispiel.html#quest", "beispiel.html#anleitertreffen", "beispiel.html#kfz-fehlersuche", "beispiel.html#teacch", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildungsbogen.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "sechs-hebel-film.html", "mehrwert.html", "selbstcheck.html", "ueber.html", "gestaltung.html", "muster.html", "aufgabenkoffer.html", "auftraege.html", "ki-fach.html", "sicher.html", "werkzeugkiste.html"]
 AXE = Path(os.environ.get("AXE_PFAD", W / "tests" / "vendor" / "axe.min.js"))
 fehler = []
 
@@ -80,7 +80,7 @@ def main():
         pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
         pg.click('a.wahlflaeche[href="unterricht.html"]'); pg.wait_for_url("**/unterricht.html")
         reg = [a.get_attribute("href") for a in pg.locator(".register a").all()]
-        pruefe(pg.locator(".werkzeuge.tueren .werkzeug").count() == 2 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt") and "Wann funktioniert" in pg.inner_text(".leitband") and pg.locator('.leitband a[href="sechs-hebel.html"]').count() == 1 and reg == ["#t-probe", "digital-check.html", "tablet-phasen.html", "beobachtung.html", "ist-stand.html", "passt.html", "muster.html", "galerie.html"] and "Ideen und Kniffe" in pg.inner_text("main"), f"Digitaler Unterricht (4.28, U3): Leitband mit der Frage, zwei Türen, Register mit acht Werkzeugen samt Papierfrage und Galerie {reg}")
+        pruefe(pg.locator(".werkzeuge.tueren .werkzeug").count() == 2 and "Unterricht digitalisieren" in pg.inner_text(".werkzeug.haupt") and "Wann funktioniert" in pg.inner_text(".leitband") and pg.locator('.leitband a[href="sechs-hebel.html"]').count() == 1 and reg == ["aufgabenkoffer.html", "#t-probe", "digital-check.html", "tablet-phasen.html", "beobachtung.html", "ist-stand.html", "passt.html", "muster.html", "galerie.html"] and "Ideen und Kniffe" in pg.inner_text("main"), f"Digitaler Unterricht (4.28, U3): Leitband mit der Frage, zwei Türen, Register mit neun Werkzeugen samt Aufgabenkoffer, Papierfrage und Galerie {reg}")
         pg.click('.werkzeug a[href="tablets.html"]')
         pg.click("#weiter")
         pruefe(pg.is_visible("#hinweis"), "Planungsweg: Hinweis, wenn nichts gewählt ist")
@@ -662,8 +662,19 @@ def main():
         pruefe(pg.locator('#t-werkstatt ~ .werkzeuge a[href="lernende-ki.html"]').count() == 1, "KI-Training: Weg zu »Wenn deine Lernenden mit KI arbeiten«")
         pruefe("F13" in pg.inner_text(".ki-regeln") and "AIS.chat" in pg.inner_text(".ki-regeln"), "KI-Training: Landesangebote genannt (Entscheidung 31.10.2026)")
         # 2i. Version 4.25: Werkzeugkiste und eine Quelle für alles
+        # Aufgabenkoffer (ab 4.32)
+        pg.goto(url("aufgabenkoffer.html"))
+        vorher = pg.evaluate("Object.keys(localStorage).length")
+        pruefe(pg.locator(".koffer-karte").count() == 18 and pg.locator(".koffer-gruppe").count() == 7 and "18 Aufgaben" in pg.inner_text("#koffer-anzahl"), "Aufgabenkoffer: 18 Aufgaben in sieben Zielen")
+        pg.click('#koffer-filter [data-zweck="wissen"]')
+        pruefe(pg.locator(".koffer-gruppe:not([hidden]) .koffer-karte").count() == 3 and "3 Aufgaben" in pg.inner_text("#koffer-anzahl"), "Aufgabenkoffer: Filter »Wissen festigen« zeigt drei Aufgaben")
+        pg.click("#k-auswahl summary")
+        innen = pg.inner_text("#k-auswahl .koffer-innen")
+        pruefe(all(w in innen for w in ["Sinnvoll", "Wenig sinnvoll", "Auf Papier", "Am Gerät", "Faustregel", "Aus dem Unterricht", "Belegstand"]) and pg.locator('#k-auswahl a[href="sechs-hebel.html#sh-rueckmelden"]').count() == 1, "Aufgabenkoffer: Karte mit sinnvoll, wenig sinnvoll, Papier, Gerät, Hebel, Erfahrung, Beleg")
+        pruefe(pg.evaluate("Object.keys(localStorage).length") == vorher, "Aufgabenkoffer: speichert nichts")
         pg.goto(url("werkzeugkiste.html"))
-        pruefe(pg.locator("#kf-liste > li").count() == 8, "Werkzeugkiste: acht Kurzfassungen mit Werkzeug")
+        namen = [h.inner_text().replace("→", "").strip() for h in pg.locator("#kf-liste > li h3").all()]
+        pruefe(namen == ["Unterricht digitalisieren", "Digital-Check: Mit KI prüfen", "Aufträge zum Kopieren"] and pg.locator("#kf-liste .kf-teile > li").count() == 8, f"Werkzeugkiste (4.32): drei Werkzeuge, jedes einmal, mit acht Anleitungen {namen}")
         hrefs = pg.eval_on_selector_all("#laden-liste a[download]", "as => as.map(a => a.getAttribute('href'))")
         pruefe(len(hrefs) == 10 and all((W / h).exists() for h in hrefs), f"Werkzeugkiste: zehn Downloads, alle vorhanden ({len(hrefs)})")
         pruefe("lernseite-bauen" not in " ".join(hrefs), "Werkzeugkiste: Bau-Skill wird nicht angeboten")

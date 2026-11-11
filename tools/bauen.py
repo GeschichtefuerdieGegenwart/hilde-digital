@@ -34,6 +34,7 @@ SEITEN = [
     ("selbstcheck.html", "Digital-Check: Selbst prüfen – Kidu", "unterricht"),
     ("mehrwert.html", "So arbeitet der Digital-Check – Kidu", "unterricht"),
     ("muster.html", "Unterrichtsmuster aus der Praxis – Kidu", "unterricht"),
+    ("aufgabenkoffer.html", "Aufgabenkoffer – Kidu", "unterricht"),
     ("auftraege.html", "Aufträge zum Kopieren – Kidu", "ki"),
     ("ki-fach.html", "KI für dein Fach einrichten – Kidu", "ki"),
     ("sicher.html", "Sicher arbeiten in fünf Regeln – Kidu", "ki"),

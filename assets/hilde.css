@@ -2344,3 +2344,39 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
 .ki-extra .werkzeug a{border:2px dashed var(--stahl);padding:var(--a2) var(--a3)}
 .ki-extra .werkzeug-text b{font-size:var(--gr-text)}
 @media (max-width:1023px){.werkzeuge.ki-gruppen{grid-template-columns:1fr}}
+
+/* Version 4.32 – Aufgabenkoffer und aufgeräumte Werkzeugkiste */
+.koffer-liste,.koffer-karten{list-style:none;margin:0;padding:0}
+.koffer-liste{display:grid;gap:var(--a6)}
+.koffer-gruppe{max-width:none;display:grid;gap:var(--a1)}
+.koffer-gruppe h3{font-size:var(--gr-h3)}
+.koffer-karten{display:grid;gap:0;margin-top:var(--a2);border-top:2px solid var(--text)}
+.koffer-karte{max-width:none;border-bottom:1px solid var(--linie)}
+.koffer-details summary{display:grid;grid-template-columns:minmax(12rem,17rem) minmax(0,1fr) 11rem;gap:var(--a1) var(--a3);align-items:baseline;padding:.85rem .5rem;cursor:pointer;list-style:none;min-height:44px}
+.koffer-details summary::-webkit-details-marker{display:none}
+.koffer-name{display:grid;gap:.1rem}
+.koffer-name b{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+.koffer-name .leise{font-size:var(--gr-klein)}
+.koffer-ort{justify-self:start;font-size:var(--gr-klein);font-weight:700;padding:.15rem .6rem;border-radius:var(--rund);border:2px solid var(--stahl);white-space:nowrap}
+.koffer-ort.ort-geraet{background:var(--lernen);border-color:var(--lernen);color:var(--flaeche)}
+.koffer-ort.ort-hybrid{background:var(--lernen-zart);border-color:var(--lernen)}
+.koffer-ort.ort-papier{background:var(--flaeche)}
+.koffer-legende .koffer-ort{display:inline-block;margin-inline:.15rem}
+@media (hover:hover) and (pointer:fine){.koffer-details summary:hover{background:var(--lernen-zart)}}
+.koffer-details[open] summary{background:var(--lernen-zart)}
+.koffer-innen{display:grid;gap:var(--a3);padding:var(--a3) .5rem var(--a4)}
+.koffer-innen p{max-width:70ch}
+.koffer-zwei{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a3)}
+.koffer-zwei>div{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);display:grid;gap:var(--a1);align-content:start}
+.koffer-zwei h4{font:700 var(--gr-text)/1.2 var(--schrift)}
+.koffer-zwei ul{margin:0;padding-left:1.1rem;display:grid;gap:.25rem}
+.koffer-sinn{border-left:6px solid var(--lernen)}
+.koffer-wenig{border-left:6px solid var(--stahl)}
+.koffer-regel{background:var(--ki-zart);border-radius:var(--rund);padding:var(--a2) var(--a3)}
+@media (max-width:760px){.koffer-details summary{grid-template-columns:1fr}.koffer-zwei{grid-template-columns:1fr}}
+.kf-liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3);align-items:start}
+.kf-werkzeug{max-width:none;background:var(--flaeche);border-radius:var(--rund);padding:var(--a3);display:grid;gap:var(--a1)}
+.kf-werkzeug h3{font-size:var(--gr-h3)}
+.kf-werkzeug h3 a{color:var(--text);text-decoration-thickness:2px;text-underline-offset:.2em}
+.kf-teile{margin:var(--a1) 0 0;padding-left:1.1rem;display:grid;gap:.4rem}
+@media (max-width:1023px){.kf-liste{grid-template-columns:1fr}}
