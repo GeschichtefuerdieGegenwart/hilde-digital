@@ -5,7 +5,7 @@ description: "Eine Lernmethode oder Lernstrategie für Lernende auswählen und a
 
 # Lernmethode einführen
 
-Ziel: Für eine konkrete Stelle im Unterricht die passende Lernmethode wählen und sie so einführen, dass Lernende sie selbst anwenden – mit ehrlicher Angabe, wie gut sie belegt ist. Grundlage sind die Lernbuddy-Handouts der Zukunftswerkstatt (52 Methodenkarten). **Liegen sie im Projekt, sind sie die einzige Quelle für Wirksamkeit und Vorgehen. Liegen sie nicht vor, heißt die Wirksamkeit »noch offen« – nichts aus dem Gedächtnis ergänzen.**
+Ziel: Für eine konkrete Stelle im Unterricht die passende Lernmethode wählen und sie so einführen, dass Lernende sie selbst anwenden – mit ehrlicher Angabe, wie gut sie belegt ist. Grundlage sind die Lernbuddy-Handouts der Zukunftswerkstatt (52 Methodenkarten). **Liegen sie im Projekt, sind sie die einzige Quelle für Wirksamkeit und Vorgehen. Liegen sie nicht vor, heißt die Wirksamkeit »noch offen« – nichts aus dem Gedächtnis ergänzen.** Für **Lesen und Strukturlegen** gilt zusätzlich `references/lesen-und-strukturlegen.md` (recherchiert am 11.11.2026, mit Quellen und Belegstand) – lies sie, sobald es um Texte erschließen, Markieren, Lesestrategien oder Begriffsnetze geht.
 
 Grundregeln wie in `unterricht-digitalisieren`: nichts erfinden, einfache Sprache mit »du«, Datenschutz, keine Anbieternamen.
 
@@ -16,6 +16,8 @@ Grundregeln wie in `unterricht-digitalisieren`: nichts erfinden, einfache Sprach
 - Viele Methoden sind auf Papier gleich gut. Ein Tablet-Beitrag ist nur dann einer, wenn er etwas kann, was Papier nicht kann: Abstände planen (Karteikarten-App), die eigene Erklärung aufnehmen und anhören, ein geteiltes Board, sofortige Rückmeldung mit Erklärung.
 - Sinneskanäle sind keine Lerntypen. Jede Methode hat ein »Weniger geeignet« – das wird genannt.
 - Wirksamkeit in drei Stufen, nur aus der Quelle: **gut belegt** · teilweise belegt · *wenig erforscht*.
+- **Lesen:** Erst klären, ob die Lernenden den Text überhaupt flüssig lesen können – sonst helfen Strategien wenig. Strategien gebündelt üben (vorher – während – nachher), von der Lehrkraft vorgemacht. Markieren nur mit Regel und Übung, und danach folgt eine Tat (Stichwort, Frage, Struktur). Längere Sachtexte auf Papier.
+- **Strukturlegen:** selbst legen statt fertiges Netz ansehen, wenige Beziehungsarten mit Wort am Pfeil, jede Lage begründen, über mehrere Stunden weiterlegen, Expertenstruktur erst nach der eigenen.
 
 ## Vorgehen
 
@@ -30,9 +32,9 @@ Grundregeln wie in `unterricht-digitalisieren`: nichts erfinden, einfache Sprach
 | Die Stelle soll … | Methoden |
 | --- | --- |
 | festigen, üben | **Abrufübungen**, **Brain Dump**, **Leitner-Karteikasten**, **Partnerabfrage**, **Verteiltes Wiederholen**, Interleaving |
-| Verständnis aufbauen | Feynman-Technik, Elaborationsfragen, Concept Map, **Lernen mit Lösungsbeispielen**, Lernen durch Lehren, Vergleichstabelle |
+| Verständnis aufbauen | Feynman-Technik, Elaborationsfragen, **Begriffsnetz selbst legen (Concept Map)**, Struktur-Lege-Technik, **Lernen mit Lösungsbeispielen**, Lernen durch Lehren, Vergleichstabelle |
 | einsteigen | Advance Organizer, Mindmap, Think-Pair-Share, *Placemat* |
-| Texte erschließen | SQ3R, Cornell-Notizen, *Zusammenfassen* |
+| Texte erschließen | **Lesestrategien gebündelt: vorher – während – nachher**, **Reziprokes Lesen** (vorhersagen, fragen, klären, zusammenfassen), Fünf-Schritt-Lesemethode (SQ3R), Markieren mit Regel, Deeper Reading (mehrfach lesen), Cornell-Notizen, *Zusammenfassen* |
 | Lernstand zeigen | Ampel-Selbsteinschätzung, Selbsttest-Checkliste, Zwei Fragen nach dem Lernen |
 | Zusammenarbeit | Think-Pair-Share, Gruppenpuzzle, Lerntandem |
 | Fehler bearbeiten | Systematische Fehleranalyse, Überschlag & Einheitencheck |
@@ -40,7 +42,7 @@ Grundregeln wie in `unterricht-digitalisieren`: nichts erfinden, einfache Sprach
 | Zeit schützen | Ablenkungen reduzieren, Bibliotheksstille, Arbeitsplan mit Pausen, *Pomodoro*, *Fünf-Minuten-Start* |
 | Listen merken | Loci, Akronyme, Schlüsselwort – nur zusammen mit Abrufen |
 
-Fett = in den Handouts als gut belegt geführt, kursiv = wenig erforscht (Stand der Handouts; ohne Handouts »noch offen«).
+Fett = in den Handouts als gut belegt geführt, kursiv = wenig erforscht (Stand der Handouts; ohne Handouts »noch offen«). In den Zeilen »Texte erschließen« und »Begriffsnetz« gilt der Belegstand aus `references/lesen-und-strukturlegen.md`: SQ3R, Struktur-Lege-Technik und Markieren mit Regel sind dort *teilweise belegt*, Deeper Reading ist ein Praxisbuch ohne Wirksamkeitsnachweis.
 
 **Bewährte Bausteine aus der Praxis**, die zu Methoden passen: Abrufstart mit drei Fragen ohne Heft zu Stundenbeginn · Selbstdiagnose vor dem Üben (»Ich kann«-Schnelltest, Lösungsstreifen erst danach, dann Stationswahl) · Stolperkarten (Fehlvorstellungen zwischen richtigen Karten, begründet aussortieren) · Antwort-Ranking mit Kriterienraster · Hilfe- und Expertenkarten (grün Hilfe mit Satzanfängen, orange Vertiefung).
 
@@ -78,6 +80,8 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 - Frag zuerst nach, was die Stelle bewirken soll, wenn es nicht im Material steht. Höchstens drei Fragen.
 - Schlag zwei bis drei Methoden vor, je mit einem Satz. Ich wähle.
 - Die Methode lässt die Lernenden selbst abrufen, erklären, ordnen oder begründen. Hilfe ist noch kein Lernen.
+- Geht es um Texte: Prüf zuerst, ob die Lernenden den Text flüssig lesen können. Gib der Leseaufgabe ein Vorher, ein Während und ein Nachher und eine Frage, mit der man liest. Markieren nur mit Regel (wenig, Hauptsache von Nebensache trennen), danach ein Stichwort oder eine Frage an den Rand. Längere Sachtexte auf Papier.
+- Geht es um Strukturen: Die Lernenden legen selbst, mit drei bis fünf Arten von Beziehungen und einem Wort an jedem Pfeil, und begründen jede Lage. Eine Expertenstruktur erst nach der eigenen.
 - Erst verstehen, dann abrufen. Merkhilfen wie Eselsbrücken nur zusammen mit Abrufen.
 - Nenne bei jeder Methode, wofür sie weniger geeignet ist. Sinneskanäle sind keine Lerntypen.
 - Gib nur dann an, wie gut die Methode belegt ist, wenn du eine Quelle nennen kannst: gut belegt · teilweise belegt · wenig erforscht. Sonst schreib »noch offen«.
@@ -90,5 +94,6 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 
 ## Versionen
 
+- **v1.2, 11.11.2026:** Lesen und Strukturlegen: neue Referenz `references/lesen-und-strukturlegen.md` (Lesekompetenz in drei Ebenen, Strategietrainings, Markieren, Papier oder Bildschirm, Begriffsnetze und Struktur-Lege-Technik, Faustregeln, was das Gerät wirklich besser kann – mit Quellen und Belegstand); Tabelle »Texte erschließen« und »Verständnis aufbauen« erweitert; Haltung und Kurzfassung um Regeln zu Lesen und Strukturlegen ergänzt.
 - **v1.1, 10.11.2026:** Name Kidu (vorher »Hilde Digital«); Abschnitt »Kurzfassung für Kidu« als einzige Quelle für den kopierbaren Auftrag auf der Website.
 - **v1, 25.10.2026:** Aus `unterricht-digitalisieren` v3 und `website-design-workflow` v4 ausgegliedert. Neu: Vorgehen mit Einführungsplanung und Wiederholung, bewährte Bausteine aus dem Tresor, Handout-Teil »Mit Tablet« ehrlich, Regel für fehlende Handouts.

@@ -45,6 +45,8 @@ Aus der Analyse von 26 Lernseiten eines Kollegiums – sie kommen immer wieder:
 - **Inkonsistenz Dokument gegen Seite:** Anrede (du/Sie), Schulname, Nummern, Werte in der Doku, die im Produkt anders sind.
 - **Ohne Plenum:** die Tablet-Phase endet ohne Produkt, das im Gespräch aufgegriffen wird.
 - **Lange Sachtexte am Gerät,** besonders unter Zeitdruck oder vor einer Prüfung: Papierfassung vorschlagen (Lesen am Bildschirm im Mittel leicht im Nachteil).
+- **Leseaufgabe ohne Weg:** nur »Lies den Text« oder »Markiere das Wichtige« – ohne Frage, mit der man liest, ohne Regel fürs Markieren, ohne etwas, das danach mit den Markierungen geschieht. Markieren ohne Regel und Übung bringt wenig (Ponce, Mayer & Méndez 2022).
+- **Legeaufgabe ohne Beziehungen:** Karten werden nur in Gruppen geschoben, ohne benannte Beziehung und ohne Begründung; die fertige Struktur der Lehrkraft ist vorher sichtbar; bei vielen Karten gibt es keinen Zwischenstand und kein Zurücklegen einzelner Karten.
 - **Mit KI erstelltes Material auf Reproduktionsniveau:** viele Aufgaben zum Erinnern und Wiedergeben, kaum Analyse, Urteil oder Gegenpositionen. In einer Untersuchung von 310 KI-Stundenplanungen für Politikunterricht zielten nur 10 % der Aktivitäten auf höheres Denken (Trust et al. 2025). Prüfe gezielt: Wo müssen Lernende selbst denken?
 - **Lernangebot mit KI ohne Abruf ohne KI:** Lernende arbeiten mit einem Chatbot, aber nirgends zeigen sie, was sie ohne ihn können. Leistung mit KI ist kein Lernnachweis (Bastani et al. 2025). Prüfe auch: Gibt der Chatbot Lösungen aus, oder stellt er Rückfragen? Ist die Reihenfolge »erst selbst, dann KI« eingebaut?
 - **Veraltete oder zurückgezogene Belege:** Wirkungsangaben in Material und Doku auf zurückgezogene Studien prüfen (z. B. Wang & Fan 2025 zu einem KI-Chatbot, 2026 zurückgezogen).
@@ -87,12 +89,15 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 - Lesen ohne Tun: Texte ohne Eingabe und Rückmeldung, ein Quiz nur mit richtig oder falsch, Notizen gehen beim Weiterklicken verloren.
 - Ohne Plenum: Die Tablet-Phase endet ohne ein Ergebnis, das im Gespräch aufgegriffen wird.
 - Lange Sachtexte am Gerät, besonders unter Zeitdruck: eine Papierfassung vorschlagen.
+- Leseaufgabe ohne Weg: Fehlt eine Frage, mit der man liest, eine Regel fürs Markieren oder ein Schritt danach?
+- Legeaufgabe ohne Beziehungen: Werden Karten nur sortiert, ohne benannte Beziehung und Begründung? Ist die fertige Lösung vorher zu sehen? Gibt es bei vielen Karten einen Zwischenstand?
 - Mit KI erstelltes Material bleibt oft beim Wiedergeben: Wo müssen die Lernenden selbst deuten, urteilen und Gegenpositionen prüfen?
 - Arbeiten Lernende mit KI: Gibt es eine Stelle, an der sie zeigen, was sie ohne KI können? Stellt die KI Rückfragen, oder gibt sie Lösungen aus?
 - Abhängig vom Netz: Schriften, Skripte, Videos oder Dienste von fremden Seiten; die Seite läuft nicht ohne Internet.
 
 ## Versionen
 
+- **v1.3, 11.11.2026:** Zwei typische Schwächen ergänzt: Leseaufgabe ohne Weg, Legeaufgabe ohne Beziehungen (nach der Recherche zu Lesen und Strukturlegen, `lernmethode-einfuehren/references/lesen-und-strukturlegen.md`).
 - **v1.2, 10.11.2026:** Name Kidu (vorher »Hilde Digital«); Abschnitt »Kurzfassung für Kidu« als einzige Quelle für den kopierbaren Auftrag auf der Website.
 - **v1.1, 31.10.2026:** Vier typische Schwächen ergänzt: lange Sachtexte am Gerät, KI-Material auf Reproduktionsniveau, KI-Angebot ohne Abruf ohne KI, zurückgezogene Belege.
 - **v1, 25.10.2026:** Aus `unterricht-digitalisieren` v3 ausgegliedert. Neu: Liste typischer Schwächen aus der Lernseiten-Analyse, Zeitdiagnose, Prüfung aus Schülersicht, Dokument-gegen-Seite, Abschnitt »Nur du kannst das«, Weg B als Referenzdatei, Qualitätsmodell vollständig als Referenz.
