@@ -18,6 +18,45 @@
   </svg>
 </div></section>
 
+<section class="abschnitt erste-minuten" aria-labelledby="t-erste"><div class="huelle stapel">
+  <h2 id="t-erste">Deine ersten zehn Minuten</h2>
+  <p class="mass">Noch nie mit KI gearbeitet? Dann geh diese vier Schritte einmal durch. Mehr brauchst du für den Anfang nicht.</p>
+  <ol class="erste-schritte">
+    <li><b>KI-System öffnen</b><span>Nimm ein an deiner Schule freigegebenes KI-System. In Baden-Württemberg sind das zum Beispiel F13 für Lehrkräfte und AIS.chat, wenn die Schulleitung es freigeschaltet hat. Stand: November 2026.</span></li>
+    <li><b>Prompt holen und einfügen</b><span>Wähl gleich hier unten einen Anlass. Kopier den Prompt. Füg ihn im KI-System ein und schick ihn ab.</span></li>
+    <li><b>Ergebnis prüfen</b><span>Drei Fragen: Stimmt das fachlich? Passt es zu meiner Lerngruppe? Steht etwas da, das ich nicht belegen kann? KI kann Fakten und Quellen erfinden.</span></li>
+    <li><b>Einmal nachfragen</b><span>Schreib eine zweite Nachricht, zum Beispiel: »Kürzer.« · »Einfacher, für das erste Ausbildungsjahr.« · »Was davon sollte ich nachprüfen?« · »Zeig mir zwei andere Fassungen.«</span></li>
+  </ol>
+  <p class="leise klein">Gib keine Namen, Noten oder anderen personenbezogenen Daten ein. Das Ergebnis darf ganz analog bleiben, zum Beispiel als Arbeitsblatt auf Papier.</p>
+</div></section>
+
+<section class="band band-flaeche schnell" id="schnell" aria-labelledby="t-schnell" tabindex="-1"><div class="huelle schnell-raster">
+  <div class="schnell-kopf">
+    <h2 id="t-schnell">Schnell-Anfrage</h2>
+    <p>Wähle einen Anlass und gib Fach, Thema und Lerngruppe an. Der Prompt entsteht sofort rechts. Kopiere ihn in ein an deiner Schule freigegebenes KI-System.</p>
+    <p class="datenhinweis">Keine Namen, Noten oder anderen personenbezogenen Daten eingeben. Deine Angaben werden nicht gespeichert.</p>
+  </div>
+  <form class="schnell-form" id="schnell-form" novalidate>
+    <fieldset class="schnell-anlaesse">
+      <legend>Wofür brauchst du einen Prompt?</legend>
+      <div class="anlass-raster" id="anlaesse"></div>
+    </fieldset>
+    <div class="schnell-felder">
+      <div class="eingabe"><label for="s-fach">Fach</label><input type="text" id="s-fach" autocomplete="off" placeholder="z. B. Kfz-Technik"></div>
+      <div class="eingabe"><label for="s-thema">Thema</label><input type="text" id="s-thema" autocomplete="off" placeholder="z. B. Bremsanlage"></div>
+      <div class="eingabe"><label for="s-gruppe">Lerngruppe</label><input type="text" id="s-gruppe" autocomplete="off" placeholder="z. B. 1. Ausbildungsjahr"></div>
+    </div>
+  </form>
+  <div class="schnell-ergebnis">
+    <label for="schnell-prompt"><b>Dein Prompt</b> – du kannst ihn ändern</label>
+    <textarea id="schnell-prompt" rows="16" spellcheck="false"></textarea>
+    <div class="kopieren"><button type="button" class="knopf" id="schnell-kopieren">Prompt kopieren</button><span id="schnell-status" class="leise" aria-live="polite"></span></div>
+    <p class="klein">Die fünf Überschriften im Prompt – Ziel, Kontext, Anforderungen, Format, Prüfkriterien – lernst du unten bei <a href="#lernen-weg">Prompten lernen</a> kennen.</p>
+  </div>
+  <noscript><p class="box">Die Schnell-Anfrage braucht JavaScript.</p></noscript>
+</div></section>
+
+
 <section class="abschnitt ki-werkstatt" aria-labelledby="t-werkstatt"><div class="huelle stapel">
   <h2 id="t-werkstatt">Weiter im KI-Training</h2>
   <ul class="werkzeuge ki-gruppen">
@@ -75,32 +114,6 @@
       </a>
     </li>
   </ul>
-</div></section>
-
-<section class="band band-flaeche schnell" id="schnell" aria-labelledby="t-schnell" tabindex="-1"><div class="huelle schnell-raster">
-  <div class="schnell-kopf">
-    <h2 id="t-schnell">Schnell-Anfrage</h2>
-    <p>Wähle einen Anlass und gib Fach, Thema und Lerngruppe an. Der Prompt entsteht sofort rechts. Kopiere ihn in ein an deiner Schule freigegebenes KI-System.</p>
-    <p class="datenhinweis">Keine Namen, Noten oder anderen personenbezogenen Daten eingeben. Deine Angaben werden nicht gespeichert.</p>
-  </div>
-  <form class="schnell-form" id="schnell-form" novalidate>
-    <fieldset class="schnell-anlaesse">
-      <legend>Wofür brauchst du einen Prompt?</legend>
-      <div class="anlass-raster" id="anlaesse"></div>
-    </fieldset>
-    <div class="schnell-felder">
-      <div class="eingabe"><label for="s-fach">Fach</label><input type="text" id="s-fach" autocomplete="off" placeholder="z. B. Kfz-Technik"></div>
-      <div class="eingabe"><label for="s-thema">Thema</label><input type="text" id="s-thema" autocomplete="off" placeholder="z. B. Bremsanlage"></div>
-      <div class="eingabe"><label for="s-gruppe">Lerngruppe</label><input type="text" id="s-gruppe" autocomplete="off" placeholder="z. B. 1. Ausbildungsjahr"></div>
-    </div>
-  </form>
-  <div class="schnell-ergebnis">
-    <label for="schnell-prompt"><b>Dein Prompt</b> – du kannst ihn ändern</label>
-    <textarea id="schnell-prompt" rows="16" spellcheck="false"></textarea>
-    <div class="kopieren"><button type="button" class="knopf" id="schnell-kopieren">Prompt kopieren</button><span id="schnell-status" class="leise" aria-live="polite"></span></div>
-    <p class="klein">Die fünf Überschriften im Prompt – Ziel, Kontext, Anforderungen, Format, Prüfkriterien – lernst du unten bei <a href="#lernen-weg">Prompten lernen</a> kennen.</p>
-  </div>
-  <noscript><p class="box">Die Schnell-Anfrage braucht JavaScript.</p></noscript>
 </div></section>
 
 <section class="abschnitt lernen-auftakt" id="lernen-weg" aria-labelledby="t-lernen" tabindex="-1"><div class="huelle ki-raster">

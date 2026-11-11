@@ -39,6 +39,17 @@ var TAXONOMIEN = {
   /* Umfang des Tablet-Einsatzes – ohne Rangfolge. Durchgängig ist keine höhere Stufe.
      Durchgängig heißt nicht »alles am Gerät« (Entscheidung 1.11.2026, »Labor oder Plenum?«): Das Gerät trägt die Stunde,
      Deutung und Urteil entstehen im Plenum, lange Texte liegen auf Papier. */
+  /* Die sechs Prinzipien (bis 11.11.2026 »Hebel«): was das Gerät kann. Keine Reihenfolge, kein Rang.
+     Schlüssel wie die Sprungmarken auf sechs-hebel.html (#sh-<id>). */
+  prinzipien: [
+    { id: "verdecken", name: "Verdecken", hilfe: "hält die Auflösung zurück" },
+    { id: "rueckmelden", name: "Rückmelden", hilfe: "antwortet sofort, mit Grund" },
+    { id: "messen", name: "Messen", hilfe: "misst, teilt zu, rechnet aus" },
+    { id: "variieren", name: "Variieren", hilfe: "verschiebt einen Wert, zeigt die Folge" },
+    { id: "stufen", name: "Stufen", hilfe: "ein Inhalt, mehrere Zugänge" },
+    { id: "buendeln", name: "Bündeln", hilfe: "sammelt die Klasse ohne Namen" }
+  ],
+
   umfang: [
     { id: "punktuell", name: "Punktuell", hilfe: "eine einzelne Aktivität oder ein kurzer Impuls" },
     { id: "phasenweise", name: "Phasenweise", hilfe: "eine oder mehrere Unterrichtsphasen" },

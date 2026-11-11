@@ -40,3 +40,18 @@ test("wer einen Beleg »belegt« nennt, nennt eine Quelle aus der Liste", () => 
 test("keine Punkte, Ranglisten oder Belohnungen als Empfehlung", () => {
   for (const a of A.aufgaben) for (const s of a.sinn) assert.ok(!/Punkte|Rangliste|Belohnung/.test(s), a.id);
 });
+
+test("Prinzipien heißen in Taxonomie und Aufgabenkoffer gleich; Verbindungen der Galerie zeigen auf vorhandene Aufgaben", () => {
+  const vm = require("vm"); const c = {}; vm.createContext(c);
+  vm.runInContext(fs.readFileSync(__dirname + "/../assets/daten/taxonomien.js", "utf8") + ";" + beispiele + ";this.T=TAXONOMIEN;this.B=BEISPIELE;", c);
+  for (const p of c.T.prinzipien) assert.strictEqual(A.hebel[p.id], p.name, p.id);
+  assert.strictEqual(c.T.prinzipien.length, Object.keys(A.hebel).length);
+  const ids = A.aufgaben.map((a) => a.id);
+  for (const b of c.B) {
+    for (const p of b.prinzipien || []) assert.ok(A.hebel[p], b.id + ": Prinzip " + p);
+    for (const a of b.aufgaben || []) assert.ok(ids.includes(a), b.id + ": Aufgabe " + a);
+    if (b.geraet) assert.ok(/^Das Gerät /.test(b.geraet) && b.prinzipien && b.prinzipien.length, b.id + ": Geräte-Satz nur mit Prinzip");
+    if (b.prinzipien && b.prinzipien.length) assert.ok(b.vorschlag && b.vorschlag.prinzipien, b.id + ": Prinzip ist als Vorschlag gekennzeichnet");
+  }
+  for (const p of c.T.prinzipien) assert.ok(c.B.some((b) => b.geraet && b.prinzipien.includes(p.id)), "Beispiel mit Satz für " + p.id);
+});

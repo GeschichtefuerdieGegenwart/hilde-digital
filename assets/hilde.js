@@ -64,6 +64,17 @@ var HILDE = (function () {
     return m.length ? '<p class="merkmale">' + m.map(esc).join(" · ") + "</p>" : "";
   }
 
+  /* Ab 4.33: Was das Gerät in diesem Beispiel kann – ein Satz und die Marken der Prinzipien.
+     Nur, wo es in den Daten steht (Felder »geraet« und »prinzipien«); sonst nichts. */
+  function prinzipMarken(b) {
+    var p = b.prinzipien || [];
+    if (!p.length) return "";
+    return '<p class="prinzip-marken"><span class="sr-only">Prinzip: </span>' + p.map(function (id) {
+      return '<a class="prinzip-marke" href="sechs-hebel.html#sh-' + esc(id) + '">' + esc(name("prinzipien", id)) + "</a>";
+    }).join("") + "</p>";
+  }
+  function geraetSatz(b) { return b.geraet ? '<p class="geraet-satz">' + esc(b.geraet) + "</p>" : ""; }
+
   /* Stärken aus einem freigegebenen Qualitätscheck: höchstens drei, ohne Zahl. */
   function staerken(b) {
     var q = b.qualitaetscheck;
@@ -111,7 +122,7 @@ var HILDE = (function () {
   function karte(b) {
     return '<article class="karte' + (b.bild ? "" : " kompakt") + '" data-wechsel="' + esc(b.id) + '">' + bildHtml(b) +
       '<div class="koerper">' + kennzeichen(b) +
-      '<p class="fach">' + esc(b.fach) + "</p><h3 data-wechsel-titel>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + merkmale(b) + umfangZeile(b) + staerken(b) + "</div>" +
+      '<p class="fach">' + esc(b.fach) + "</p><h3 data-wechsel-titel>" + esc(b.titel) + "</h3><p>" + esc(b.kurz) + "</p>" + geraetSatz(b) + prinzipMarken(b) + merkmale(b) + umfangZeile(b) + staerken(b) + "</div>" +
       '<div class="fussleiste"><span class="status">Status: <b>' + esc(b.status) + "</b></span>" +
       '<span class="fuss-knoepfe">' + merkKnopf(b) + '<a class="knopf" href="' + detailLink(b) + '">Beispiel ansehen <span class="sr-only">: ' + esc(b.titel) + "</span></a></span></div></article>";
   }
@@ -261,7 +272,7 @@ var HILDE = (function () {
 
   return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name, ruhig: ruhig, dauer: dauer,
            wechselId: wechselId, wechselMerken: wechselMerken, wechselBenennen: benenne, wechselMoeglich: wechselMoeglich,
-           kennzeichen: kennzeichen, merkmale: merkmale, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf,
+           kennzeichen: kennzeichen, merkmale: merkmale, prinzipMarken: prinzipMarken, geraetSatz: geraetSatz, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf,
            stundenlinie: stundenlinie, umfangZeile: umfangZeile, stundenlinieZeichnen: stundenlinieZeichnen,
            lichtbild: oeffne };
 })();

@@ -230,7 +230,7 @@
     var b = el("div", "fb-faecher", bild);
     var txt = el("div", "fb-faecher-text", b);
     var h = el("div", "fb-hero-titel", txt, "Und viele mehr."); h.style.fontSize = "84px";
-    var u = el("div", "fb-hero-unter", txt, "Echte Lernanwendungen aus dem Kollegium – zum Ansehen, Ausprobieren und Nachbauen.");
+    var u = el("div", "fb-hero-unter", txt, "Echte Lernanwendungen aus dem Unterricht – zum Ansehen, Ausprobieren und Nachbauen.");
     var w = 380, hh = 238, nn = FAECHER.length;
     var karten = FAECHER.map(function (f) {
       var k = el("div", "fb-karte", b); stil(k, { left: (960 - w / 2) + "px", width: w + "px", height: hh + "px", transformOrigin: (w / 2) + "px " + (hh + 900) + "px" });

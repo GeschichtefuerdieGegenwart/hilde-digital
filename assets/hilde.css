@@ -2380,3 +2380,33 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
 .kf-werkzeug h3 a{color:var(--text);text-decoration-thickness:2px;text-underline-offset:.2em}
 .kf-teile{margin:var(--a1) 0 0;padding-left:1.1rem;display:grid;gap:.4rem}
 @media (max-width:1023px){.kf-liste{grid-template-columns:1fr}}
+
+/* Version 4.33 – erste zehn Minuten, Galerie nach Prinzip, Verbindungen */
+.erste-minuten{padding-top:var(--a4);padding-bottom:var(--a4)}
+.erste-schritte{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--a2);counter-reset:erste}
+.erste-schritte li{counter-increment:erste;max-width:none;background:var(--flaeche);border-radius:var(--rund);border-top:6px solid var(--ki-platte);padding:var(--a2) var(--a3) var(--a3);display:grid;gap:var(--a1);align-content:start}
+.erste-schritte li::before{content:counter(erste);font:700 var(--gr-h3)/1 var(--schrift-titel);color:var(--ki-tief)}
+.erste-schritte li span{font-size:var(--gr-klein)}
+@media (max-width:1023px){.erste-schritte{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.erste-schritte{grid-template-columns:1fr}}
+.geraet-satz{font-weight:700;border-left:6px solid var(--lernen);padding-left:var(--a2)}
+.geraet-satz.gross{font-size:var(--gr-h3);line-height:1.3;max-width:34ch}
+.prinzip-marken{display:flex;flex-wrap:wrap;gap:.4rem}
+.prinzip-marke{font-size:var(--gr-klein);font-weight:700;padding:.1rem .55rem;border-radius:var(--rund);border:2px solid var(--lernen);color:var(--lernen-tief);background:var(--lernen-zart);text-decoration:none}
+@media (hover:hover) and (pointer:fine){.prinzip-marke:hover{background:var(--lernen);color:var(--flaeche)}}
+.stimme{background:var(--karton);border-radius:var(--rund);padding:var(--a2) var(--a3)}
+.bauen{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2)}
+.prinzip-buehne{padding-block:var(--a4) var(--a6)}
+.prinzip-karten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3)}
+.prinzip-karte{background:var(--flaeche);border-radius:var(--rund);display:flex;flex-direction:column;border-top:6px solid var(--lernen)}
+.pk-bild{display:block;background:var(--karton);padding:var(--a1)}
+.pk-bild img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.pk-text{padding:var(--a3);display:grid;gap:.6rem;align-content:start;flex:1}
+.pk-prinzip{font-size:var(--gr-klein)}
+.pk-prinzip a{font-weight:700;color:var(--lernen-tief)}
+.pk-text h3{font-size:var(--gr-h3);line-height:1.15}
+.pk-wege{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a2);margin-top:auto}
+@media (max-width:1023px){.prinzip-karten{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.prinzip-karten{grid-template-columns:1fr}}
+.sh-beispiele{font-size:var(--gr-klein)}
+.koffer-prompt textarea{width:100%;font:400 var(--gr-klein)/1.5 ui-monospace,monospace;padding:var(--a2);border:2px solid var(--stahl);border-radius:var(--rund);background:var(--grund);color:var(--text)}

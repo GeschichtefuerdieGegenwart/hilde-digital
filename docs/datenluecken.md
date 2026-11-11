@@ -29,6 +29,10 @@ Die Anliegen sind aus den bisherigen Kategorien übernommen und deshalb nicht al
 ### Siehst du, was sich verändert? (`psycho-ds2`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: messen, verdecken
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Psycho-Labor als Beispiel zu Messen.
+- [ ] aufgaben: versuch
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Psycho-Labor als Beispiel zu Messen.
 - [ ] lernaktivitaeten: eine Vorhersage abgeben, in sieben Bildpaaren die Änderung finden und antippen, das eigene Ergebnis mit dem Kurs und der Forschung vergleichen, Aussagen als Beobachtung oder Deutung zuordnen, zu zweit besprechen, was das Kursergebnis zeigt und was nicht
 - [ ] technik: iPad (quer halten), Ergebnisse bleiben auf dem Gerät, QR-Code, den die Lehrkraft mit der Kamera scannt, Kursdiagramm am Beamer, Zusammenfassung als PDF speichern
 - [ ] dauer: etwa 15 Minuten
@@ -39,6 +43,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### Die fünf Säulen der NS-Ideologie (`ns-ideologie`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: rueckmelden
+  - Begründung: Tresor »Muster aus der Praxis«: Zuordnen mit Begründung, Rückmeldung zur Zuordnung.
+- [ ] aufgaben: zuordnen
+  - Begründung: Tresor »Muster aus der Praxis«: Zuordnen mit Begründung, Rückmeldung zur Zuordnung.
 - [ ] lernaktivitaeten: sechs Zeugnisse lesen und Denkmustern zuordnen, die Zuordnung mit einem Wort aus dem Zeugnis begründen, in der Expertengruppe eine Quelle genau untersuchen, in gemischten Gruppen alle fünf Säulen vorstellen, Maßnahmen aus M17 den Säulen zuordnen und begründen
 - [ ] technik: iPad, Eingaben bleiben auf dem Gerät, QR-Code für das Kursbild, Kursbild am Beamer, Lernmappe als PDF für GoodNotes
 - [ ] dauer: 90 Minuten
@@ -76,6 +84,8 @@ Noch offen: Was wird benötigt?, Stolpersteine, Dauer, Vorbereitungsaufwand, Lin
 ### Landkarte der Einheit »Spiel« (`bef1`)
 
 Vorschläge zum Prüfen:
+- [ ] aufgaben: einschaetzen
+  - Begründung: Kurzbeschreibung des Beispiels: Selbsteinschätzung zu drei Zeitpunkten.
 - [ ] lernaktivitaeten: den Ablauf der Einheit auf einer Landkarte überblicken, am Ende jeder Doppelstunde 2–3 Sätze ins Logbuch schreiben, sich im Ich-kann-Check selbst einschätzen, zu einer Streitfrage ein begründetes Urteil bilden, am Ende die Frage der Mutter im Elterngespräch beantworten
 - [ ] technik: drucken oder als PDF speichern, Einschätzungen antippen oder von Hand eintragen
 - [ ] dauer: 12 Doppelstunden (Einheit)
@@ -85,6 +95,8 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### Übungsplattform Lebenswelten (`lf3`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: rueckmelden
+  - Begründung: Kurzbeschreibung des Beispiels: »Wiederholen mit sofortiger Rückmeldung«.
 - [ ] lernaktivitaeten: Merkmale und Begriffe den richtigen Konzepten zuordnen, Multiple-Choice-Fragen beantworten und mit der Begründung vergleichen, Fallbeispiele analysieren (z. B. Ali, Emma und Sarah), pädagogische Maßnahmen für einen Fall planen, eine Übungsklausur mit Musterlösungen bearbeiten
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
@@ -92,6 +104,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassu
 ### Fachbegriffe-Trainer (`fachbegriffe`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: rueckmelden, verdecken
+  - Begründung: Lernaktivitäten des Beispiels: selbst erklären, mit der Musterlösung vergleichen, Karteikarten.
+- [ ] aufgaben: kartei, auswahl
+  - Begründung: Lernaktivitäten des Beispiels: selbst erklären, mit der Musterlösung vergleichen, Karteikarten.
 - [ ] lernaktivitaeten: einen Fachbegriff mit eigenen Worten erklären, die eigene Erklärung mit der Musterlösung vergleichen, Multiple-Choice-Fragen beantworten, mit Karteikarten wiederholen, Begriffe nach Lernfeld filtern
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
@@ -99,6 +115,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassu
 ### Nation im Kopf (`nation`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: variieren
+  - Begründung: Tresor »Lernlabor Nation im Kopf«, Station 6: Regler setzen, mit Vorschlag vergleichen.
+- [ ] aufgaben: einordnen
+  - Begründung: Tresor »Lernlabor Nation im Kopf«, Station 6: Regler setzen, mit Vorschlag vergleichen.
 - [ ] lernaktivitaeten: eine erste Vermutung zur Leitfrage notieren, vier Erklärungen von Nation kennenlernen, einen von fünf Länderfällen wählen und gründlich untersuchen, den Fall zwischen Willensnation und Abstammung einordnen, am Ende ein begründetes Urteil formulieren
 
 Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
@@ -106,6 +126,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassu
 ### Gene ohne Reisepass (`gene`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: variieren
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Variieren.
+- [ ] aufgaben: regler
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Variieren.
 - [ ] lernaktivitaeten: Aussagen als richtig, falsch oder „kommt darauf an“ einschätzen, mit Reglern Grenzen verschieben und beobachten, den scheinbaren Widerspruch mit Andersons Begriff erklären, Merkmale einer Ebene (biologisch, rechtlich, kulturell) zuordnen, eine Aussage zur Abstammung beurteilen
 - [ ] technik: Zusammenfassung als PDF herunterladen
 
@@ -131,6 +155,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### Planspiel Umverteilung (`planspiel`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: variieren
+  - Begründung: Tresor »Muster aus der Praxis«: Regler, die eine Folge sichtbar machen.
+- [ ] aufgaben: regler
+  - Begründung: Tresor »Muster aus der Praxis«: Regler, die eine Folge sichtbar machen.
 - [ ] lernaktivitaeten: Daten zur Verteilung von Vermögen und Einkommen ansehen, Diskussionsfragen in Kleingruppen bearbeiten und Antworten festhalten, Pro- und Contra-Argumente lesen und mit dem Regler zustimmen, eigene Stellschrauben einstellen und Auswirkungen ansehen, die Entscheidung der Gruppe im Plenum präsentieren
 - [ ] dauer: ca. 10–15 Minuten für die Diskussionsfragen
 - [ ] sozialformen: Gruppenarbeit, Plenum
@@ -166,6 +194,8 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### Historische Kategorisierung im Nationalsozialismus (`hilberg`)
 
 Vorschläge zum Prüfen:
+- [ ] aufgaben: zuordnen
+  - Begründung: Kurzbeschreibung des Beispiels: Akteur*innen Kategorien zuordnen.
 - [ ] technik: Zuordnung über Checkboxen oder Ziehen der Karten
 
 Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.
@@ -215,6 +245,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassu
 ### Appeasement-Politik – der Weg zum Frieden oder in den Zweiten Weltkrieg? (`m19-appeasement`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: verdecken, buendeln
+  - Begründung: Probe »Bündeln«: »wie die Sicherheitsfrage in M19 und M20«; Tresor: Entscheidungsstunde, Rückmeldung zu M18/M19 (08.11.2026).
+- [ ] aufgaben: entscheiden, klassenbild
+  - Begründung: Probe »Bündeln«: »wie die Sicherheitsfrage in M19 und M20«; Tresor: Entscheidungsstunde, Rückmeldung zu M18/M19 (08.11.2026).
 - [ ] lernaktivitaeten: fünf Bausteine von 1933 bis 1939 mit dem Wissen der Zeit durcharbeiten, bei drei Entscheidungen in sieben Schritten Lage, Handlungsspielraum, Optionen und Folgen abwägen, die eigene Haltung festhalten und mit der Stimmkarte auf dem iPad in der Klasse abstimmen, das Codewort von der Tafel eingeben und die Auswertung freischalten, Ergebnis und Argumente aus dem Tafelbild ins Protokoll übertragen
   - Begründung: Kopf der Seite: »Drei Entscheidungen in je sieben Schritten: Lage · Handlungsspielraum · Optionen · Folgen · Nachdenken · Abstimmung · Auswertung.«
 - [ ] technik: iPad, Eingaben bleiben auf dem Gerät, Tafel für Abstimmung und Codewörter, Lehrkraftbereich verschlüsselt, nur mit Passwort, Faktensicherung als PDF (2 Seiten)
@@ -237,6 +271,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### Großbritannien im Zweiten Weltkrieg – drei Dilemmata (`m20-dilemmata`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: verdecken, buendeln
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Verdecken und Bündeln.
+- [ ] aufgaben: entscheiden, klassenbild
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Verdecken und Bündeln.
 - [ ] lernaktivitaeten: drei Dilemmata in je sieben Schritten bearbeiten: Lage, Optionen, Folgen, Nachdenken, Diskussion, Abstimmung, Auswertung, geprüfte Quellen mit Fundstelle lesen (Hansard, National Archives u. a.), vor der Abstimmung in zwei kurzen Runden diskutieren, abstimmen und das Klassenergebnis als Halbrund am Beamer sehen, in der Auswertung die Schwärzung aufdecken und mit fünf Ereignissen abgleichen, eine Zusammenfassung auf zwei Seiten A4 sichern
   - Begründung: README: »Ablauf je Dilemma: selbst ein Bild machen → kurz diskutieren → abstimmen → mit den Ereignissen abgleichen; am Ende eine Zusammenfassung auf zwei Seiten A4.«
 - [ ] technik: iPad, Eingaben bleiben auf dem Gerät, Beamer-Ansicht »Ergebnis der Klasse« und Tafelansicht für die Diskussion, Lehrkraftbereich verschlüsselt, nur mit Passwort, Bilder nur im Moodle-Paket; ohne sie fehlt nichts
@@ -259,6 +297,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### „Große Verbrechen brauchen keine Monster!“ – Wie war das möglich? (`m22-wie-war-das-moeglich`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: stufen
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Stufen.
+- [ ] aufgaben: stufen
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Stufen.
 - [ ] lernaktivitaeten: eine erste Antwort versiegeln und am Ende wieder öffnen, im Faktencheck drei Floskeln schätzen und mit der Forschung vergleichen, den Fall Józefów 1942 als Kartenstapel durchgehen, mindestens zwei von sechs Forschungsakten in einer von drei Lesestufen lesen und je Ebene gewichten, mit Rückmeldung, auf dem Marktplatz drei Streitpaare bearbeiten und am Tisch ein Erklärungsmodell bauen, in der geführten Diskussion am Beamer die Gewichtungen begründen, eine Erklärung in zehn Sätzen schreiben und mit der Abrufübung wiederholen
   - Begründung: README: »versiegelte erste Antwort, Faktencheck zu drei Floskeln, der Fall Józefów 1942 als Kartenstapel, sechs Forschungsakten … in drei Lesestufen, Marktplatz, Erklärungsmodell mit fünf Ebenen, Beamer-Ansicht der Tischmodelle, Rückblick und Zusammenfassung«.
 - [ ] technik: iPad, Eingaben bleiben im Browser, Beamer für Józefów-Karten, Tischmodelle und Moderation, Lehrkraftbereich mit Ablauf, Kürzungen und Beamer-Werkzeugen (nicht geschützt), Zusammenfassung auf zwei Seiten A4
@@ -281,6 +323,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### Politik-Werkstatt – Parteien und Wahlen (`politik-werkstatt`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: rueckmelden
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Rückmelden; Nach der Stunde vom 08.11.2026.
+- [ ] aufgaben: auswahl, zuordnen, reihe, markieren, film, abruf
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Rückmelden; Nach der Stunde vom 08.11.2026.
 - [ ] lernaktivitaeten: Aufgaben und Funktionen von Parteien mit Karten und Selbsttest erarbeiten, zwölf Beispiele Funktionen zuordnen und die begründete Rückmeldung lesen, acht Streitfragen tippen und wörtliche Programmstellen mit Seitenzahl aufdecken, mit dem Stimmzettel des Wahlkreises 260 wählen und das Klassenergebnis auszählen, im Sitzrechner die 5-%-Hürde an- und ausschalten und Koalitionen prüfen, Wahlverhalten nach Alter vermuten und mit der amtlichen Wahlstatistik aufdecken, die 5-%-Hürde mit einem Raster beurteilen
   - Begründung: Bericht des Repositories, Tabelle »Seiten«: Station 1 bis 5 mit Art. 21 GG, zwölf Beispielen, acht Streitfragen, Stimmzettel und Sitzrechner, Wahlstatistik und Beurteilungsraster.
 - [ ] technik: iPad oder Browser, läuft auch offline und in Moodle, Lehrkraftgerät als Wahllokal, Beamer-Ansichten 1280 × 720, Eingaben nur im Browser des Geräts, keine Namen, Zusammenfassung zum Drucken (2 Seiten A4)
@@ -303,6 +349,10 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### Psycho-Labor: Gestalt, Erwartung, Konformität, Anspruchsniveau (`psycho-ds3-6`)
 
 Vorschläge zum Prüfen:
+- [ ] prinzipien: messen, verdecken
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Psycho-Labor als Beispiel zu Messen.
+- [ ] aufgaben: versuch
+  - Begründung: Seite »Wann funktioniert digitaler Unterricht?«: Psycho-Labor als Beispiel zu Messen.
 - [ ] lernaktivitaeten: vor jedem Versuch eine Vermutung festhalten, zu zweit sieben Entdeckungen zu den Gestaltgesetzen machen und die Regel finden, Trickkarten und eine Wortliste sehen und beobachten, was Erwartungen bewirken, Punkte schätzen und Linien vergleichen – ein Teil des Kurses sieht erfundene Antworten anderer, in vier Runden ein Ziel setzen und beobachten, wie es sich nach Erfolg und Misserfolg verändert, das eigene Ergebnis per QR-Code anonym zum Kursbild beitragen und die Auflösung notieren, die Lernmappe mit den eigenen Daten als PDF sichern
   - Begründung: Modulseiten: DS 3 »Teil A · zu zweit: Sieben Entdeckungen«, DS 4 »Versuch 1: Spielkarten«, DS 5 »Punkte schätzen … Linien vergleichen«, DS 6 »Vier Runden mit Ziel«; überall »Vermutung festhalten«, »Zeig diesen QR-Code deiner Lehrkraft«, »Lernmappe als PDF«.
 - [ ] technik: iPad, Ergebnisse bleiben auf dem Gerät, QR-Code, den die Lehrkraft mit der Kamera scannt, Kursauswertung am Beamer, Lernmappe als PDF (4 Seiten) für GoodNotes
@@ -325,6 +375,8 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 ### Erfundene Traditionen (`erfundene-traditionen`)
 
 Vorschläge zum Prüfen:
+- [ ] aufgaben: urteil
+  - Begründung: Tresor »Operatoren und Aufgabenformate«: Urteilsaufgaben mit Erwartungshorizont.
 - [ ] lernaktivitaeten: schätzen, seit wann es Nationalfeiertage, Hymnen und Trachten gibt, und die Auflösung auf der Zeitachse sehen, Hobsbawms Werkzeugkasten einer erfundenen Tradition kennenlernen, Sedantag, Nationaldenkmäler und das Lied der Deutschen untersuchen, Frankreich und Schottland vergleichen und sehen, wo die These umstritten ist, Fälle im Theorie-Duell Hobsbawm gegen Smith positionieren und mit einem Vorschlag vergleichen, ein heutiges Ritual auf Merkmale einer erfundenen Tradition prüfen, Aufgaben nach Anforderungsbereichen schriftlich bearbeiten und mit dem Erwartungshorizont abgleichen
   - Begründung: Abschnitte des Moduls: »Schätze: Seit wann gibt es das?«, »Hobsbawms These«, »Fall Kaiserreich«, »Vergleich«, »Theorie-Duell«, »Ritual-Analyse«, »Operatorengerechte Aufgaben« mit Erwartungshorizont.
 - [ ] technik: Browser, keine Daten werden gespeichert oder gesendet, Zusammenfassung als PDF

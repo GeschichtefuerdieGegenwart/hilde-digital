@@ -151,6 +151,22 @@
 
     // Die Kurzbeschreibung steht schon oben. Ein eigener Abschnitt nur, wenn es mehr zu sagen gibt.
     if (b.beschreibung) abschnitt("Worum geht es?", "<p>" + esc(b.beschreibung) + "</p>");
+    // Ab 4.33: Was kann das Gerät hier? Satz, Prinzipien, Aufgaben aus dem Aufgabenkoffer, Stimme der Lernenden, Weg zum Bauen.
+    if (!nurKI && ((b.prinzipien && b.prinzipien.length) || (b.aufgaben && b.aufgaben.length) || b.geraet)) {
+      var A = typeof AUFGABEN !== "undefined" ? AUFGABEN : { aufgaben: [] };
+      var aufg = (b.aufgaben || []).map(function (id) { return A.aufgaben.filter(function (x) { return x.id === id; })[0]; }).filter(Boolean);
+      var g = "";
+      if (b.geraet) g += '<p class="geraet-satz gross">' + esc(b.geraet) + "</p>";
+      if (b.prinzipien && b.prinzipien.length) g += "<p>Prinzip: " + b.prinzipien.map(function (id) {
+        return '<a class="textlink" href="sechs-hebel.html#sh-' + esc(id) + '">' + esc(T.name("prinzipien", id)) + "</a>";
+      }).join(" · ") + vorschlag(b, "prinzipien") + "</p>";
+      if (aufg.length) g += "<p>Aufgaben im Aufgabenkoffer: " + aufg.map(function (x) {
+        return '<a class="textlink" href="aufgabenkoffer.html#k-' + esc(x.id) + '">' + esc(x.name) + "</a>";
+      }).join(" · ") + vorschlag(b, "aufgaben") + "</p>";
+      if (b.stimme) g += '<p class="stimme"><b>Rückmeldung der Lernenden, zusammengefasst:</b> ' + esc(b.stimme) + ' <span class="leise klein">Persönliche Beobachtung, kein Nachweis der Wirkung.</span></p>';
+      if (aufg.length) g += '<p class="bauen"><b>So etwas bauen:</b> <a class="knopf still" href="aufgabenkoffer.html#k-' + esc(aufg[0].id) + '">»' + esc(aufg[0].name) + '« als Prompt holen</a> <a class="textlink" href="digitalisieren.html">oder vorhandenes Material digitalisieren <span aria-hidden="true">→</span></a></p>';
+      abschnitt("Was kann das Gerät hier?", g);
+    }
     if (!nurKI) abschnitt("Was tun die Lernenden?", punkte(b.lernaktivitaeten) +
       (b.lernaktivitaeten.length && b.vorschlag && b.vorschlag.lernaktivitaeten ? '<p class="leise klein">Aus dem Material abgeleitet.' + vorschlag(b, "lernaktivitaeten") + "</p>" : ""), "was die Lernenden tun");
     // Was tut die Lehrkraft? Die Rollen mit ihrer Erklärung – keine Rolle ist höherwertig.
