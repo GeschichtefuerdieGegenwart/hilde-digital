@@ -20,7 +20,7 @@
   function karte(a) {
     var hebel = a.hebel.length
       ? a.hebel.map(function (h) { return '<a href="sechs-hebel.html#sh-' + h + '">' + esc(A.hebel[h]) + "</a>"; }).join(" · ")
-      : "keiner der sechs";
+      : "keines der sechs";
     var bsp = a.beispiel ? ' <a class="textlink" href="beispiel.html#' + esc(a.beispiel) + '">Beispiel ansehen <span aria-hidden="true">→</span></a>' : "";
     return '<li class="koffer-karte" id="k-' + a.id + '" data-zweck="' + a.zweck + '">' +
       '<details class="koffer-details"><summary>' +
@@ -36,7 +36,7 @@
         "</div>" +
         '<div class="koffer-zwei">' +
           "<div><h4>Auf Papier</h4><p>" + esc(a.papier) + "</p></div>" +
-          "<div><h4>Am Gerät</h4><p>" + esc(a.geraet) + '</p><p class="leise klein">Hebel: ' + hebel + "</p></div>" +
+          "<div><h4>Am Gerät</h4><p>" + esc(a.geraet) + '</p><p class="leise klein">Prinzip: ' + hebel + "</p></div>" +
         "</div>" +
         '<p class="koffer-regel"><b>Faustregel:</b> ' + esc(a.regel) + "</p>" +
         '<p class="koffer-erfahrung"><b>Aus dem Unterricht:</b> ' + esc(a.erfahrung) + bsp +

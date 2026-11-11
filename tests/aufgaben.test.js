@@ -5,7 +5,7 @@ const fs = require("fs");
 const A = require("../assets/daten/aufgaben.js");
 const beispiele = fs.readFileSync(__dirname + "/../assets/daten/beispiele.js", "utf8");
 
-test("jede Aufgabe hat alle Felder, gültigen Zweck, Ort und Hebel", () => {
+test("jede Aufgabe hat alle Felder, gültigen Zweck, Ort und Prinzip", () => {
   const zwecke = A.zwecke.map((z) => z.id);
   const ids = new Set();
   for (const a of A.aufgaben) {
@@ -14,7 +14,7 @@ test("jede Aufgabe hat alle Felder, gültigen Zweck, Ort und Hebel", () => {
     assert.ok(zwecke.includes(a.zweck), a.id + ": Zweck");
     assert.ok(A.orte[a.ort], a.id + ": Ort");
     assert.ok(a.sinn.length === 3 && a.wenig.length === 3, a.id + ": je drei Punkte");
-    for (const h of a.hebel) assert.ok(A.hebel[h], a.id + ": Hebel " + h);
+    for (const h of a.hebel) assert.ok(A.hebel[h], a.id + ": Prinzip " + h);
     assert.ok(["belegt", "teilweise belegt", "wenig erforscht", "noch offen"].includes(a.stand), a.id + ": Belegstand");
     assert.ok(["eingesetzt", "geplant", "offen"].includes(a.einsatz), a.id + ": Einsatz");
   }

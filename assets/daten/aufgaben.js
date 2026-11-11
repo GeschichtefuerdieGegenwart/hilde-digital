@@ -1,7 +1,7 @@
 /* Kidu – Aufgabenkoffer (ab Version 4.32).
    Welche Aufgabe kann ich wie stellen – und was fördert sie?
    Jede Aufgabe: was die Lernenden tun · was sie fördert · wann sie sinnvoll ist und wann wenig ·
-   wie sie auf Papier geht · was das Gerät beiträgt (einer der sechs Hebel oder keiner) ·
+   wie sie auf Papier geht · was das Gerät beiträgt (eines der sechs Prinzipien oder keines) ·
    eine Faustregel · Erfahrung aus dem eigenen Unterricht · Belegstand.
    Regeln: Nichts erfinden. Erfahrungen sind persönliche Beobachtungen, kein Wirksamkeitsnachweis.
    Unbekanntes heißt »noch offen«. »ort« ist kein Rang: Papier ist ein vollwertiges Ergebnis.
@@ -110,7 +110,7 @@ var AUFGABEN = {
       sinn: ["am Ende eines Themas oder vor der Klassenarbeit", "wenn selbst gelegt wird – nicht ein fertiges Bild angeschaut", "wenn über mehrere Stunden weitergelegt wird"],
       wenig: ["bevor die Begriffe einzeln geklärt sind", "mit mehr als fünf Arten von Verbindungen", "wenn die Lösung der Lehrkraft schon sichtbar ist"],
       papier: "Kartensatz, Pfeile mit Wort. Erst sortieren: kann ich erklären oder noch nicht. Dann legen.",
-      geraet: "Am Gerät lässt sich umbauen, speichern und später weiterlegen. Eine Struktur kommt nach vorne. Ein eigener Hebel ist das nicht.",
+      geraet: "Am Gerät lässt sich umbauen, speichern und später weiterlegen. Eine Struktur kommt nach vorne. Ein eigenes Prinzip ist das nicht.",
       regel: "Selbst legen. Wenige Arten von Verbindungen. Die Lösung der Lehrkraft erst danach.",
       erfahrung: "Noch nicht erprobt. Eine digitale Legefläche ist noch nicht gebaut.",
       einsatz: "offen", beispiel: null,
@@ -232,9 +232,9 @@ var AUFGABEN = {
       papier: "Heft oder Blatt, Erwartungshorizont zur Selbstkontrolle, Gespräch.",
       geraet: "Beim Urteilen schweigt das Gerät. Es kann vorher Material bereitstellen und nachher sammeln.",
       regel: "Deuten, streiten und urteilen geschieht im Raum.",
-      erfahrung: "In den Modulen zu Nation und Zugehörigkeit stehen Urteilsaufgaben mit Erwartungshorizont zur Selbstkontrolle. Die Regel »Beim Urteilen schweigt das Gerät« steht auf der Seite zu den sechs Hebeln.",
+      erfahrung: "In den Modulen zu Nation und Zugehörigkeit stehen Urteilsaufgaben mit Erwartungshorizont zur Selbstkontrolle. Die Regel »Beim Urteilen schweigt das Gerät« steht auf der Seite zu den sechs Prinzipien.",
       einsatz: "eingesetzt", beispiel: "erfundene-traditionen",
-      beleg: "Eigene Beobachtung und Regel aus den sechs Hebeln. Studien dazu: noch offen.", stand: "noch offen"
+      beleg: "Eigene Beobachtung und Regel aus den sechs Prinzipien. Studien dazu: noch offen.", stand: "noch offen"
     },
     {
       id: "video", zweck: "zeigen", ort: "hybrid", hebel: [],
@@ -245,7 +245,7 @@ var AUFGABEN = {
       sinn: ["wenn Erklären das Lernziel ist", "wenn der Plan vor der Aufnahme steht und geprüft ist", "wenn die Videos danach angesehen und besprochen werden"],
       wenig: ["wenn Schnitt und Technik die meiste Zeit brauchen", "wenn der Text abgelesen wird", "ohne Regeln zu Bildrechten und zu Gesichtern und Stimmen im Bild"],
       papier: "Plakat, kurzer Vortrag, Erklären zu zweit. Das Erklären selbst braucht kein Gerät.",
-      geraet: "Das Gerät nimmt auf, lässt wiederholen und zeigt das Ergebnis vorne. Einer der sechs Hebel ist das nicht – ob hier einer fehlt, ist noch offen.",
+      geraet: "Das Gerät nimmt auf, lässt wiederholen und zeigt das Ergebnis vorne. Eines der sechs Prinzipien ist das nicht – ob hier eines fehlt, ist noch offen.",
       regel: "Erst der Plan auf Papier. Höchstens zwei Minuten. Die Aufnahme ist der kleinste Teil.",
       erfahrung: "Noch nicht erprobt.",
       einsatz: "offen", beispiel: null,

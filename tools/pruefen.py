@@ -290,11 +290,11 @@ def pruefe_werkzeugkiste(fehler):
     sk = wk.sammle()["skills"]
     for name in ("unterricht-digitalisieren", "digital-check", "lernseite-bauen"):
         if name not in sk or not sk[name]["anforderungen"]:
-            fehler.append(f"Werkzeugkiste: Kurzfassung »{name}« fehlt oder ist leer")
+            fehler.append(f"Methodenkoffer: Kurzfassung »{name}« fehlt oder ist leer")
     for name, k in sk.items():
         for z in [k.get("ziel", ""), k.get("format", ""), k.get("kurz", "")] + k["anforderungen"] + k["pruef"]:
             if re.search(r"ChatGPT|OpenAI|Claude|Anthropic|Gemini|Copilot|Mistral|%|@", z or ""):
-                fehler.append(f"Werkzeugkiste: Kurzfassung »{name}« nennt einen Anbieter, ein Prozentzeichen oder ein @")
+                fehler.append(f"Methodenkoffer: Kurzfassung »{name}« nennt einen Anbieter, ein Prozentzeichen oder ein @")
 
 
 def main():

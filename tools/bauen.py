@@ -44,7 +44,7 @@ SEITEN = [
     ("showroom.html", "Galerie – Kidu", "galerie"),
     ("ueber.html", "Über Kidu", ""),
     ("gestaltung.html", "Gestaltungssystem – Kidu", ""),
-    ("werkzeugkiste.html", "Werkzeugkiste – Kidu", ""),
+    ("werkzeugkiste.html", "Methodenkoffer – Kidu", ""),
 ]
 
 # Logo Kidu (ab Version 4.26, Logo 5f aus Claude Design): Wortmarke »Kidu« in IBM Plex Mono (als Umrisse),
@@ -70,7 +70,7 @@ FUSS = [
     ("ueber.html#inhalte", "Inhalte und Funktionen"),
     ("ueber.html#t-daten", "Hinweise zu Daten und KI"),
     ("gestaltung.html", "Gestaltungssystem"),
-    ("werkzeugkiste.html", "Werkzeugkiste"),
+    ("werkzeugkiste.html", "Methodenkoffer"),
     ("fortbildungsbogen.html", "Mein Fortbildungsbogen"),
 ]
 

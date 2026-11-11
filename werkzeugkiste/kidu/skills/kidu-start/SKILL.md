@@ -23,7 +23,7 @@ Weitere Wege auf Zuruf: Lernstrategie als Handout (`lernmethode-einfuehren`), KI
 
 ## Kidu ohne Plugin
 
-Jeder Skill dieses Plugins hat einen Abschnitt **»Kurzfassung für Kidu«**. Daraus entstehen die kopierbaren Aufträge auf der Website Kidu (»Unterricht digitalisieren«, »Digital-Check«, »Aufträge zum Kopieren«). Wer kein Plugin installieren kann, nutzt diese Aufträge – das Ergebnis folgt denselben Regeln, nur kürzer. Fragt eine Lehrkraft danach, verweise auf die Seite »Werkzeugkiste« von Kidu.
+Jeder Skill dieses Plugins hat einen Abschnitt **»Kurzfassung für Kidu«**. Daraus entstehen die kopierbaren Aufträge auf der Website Kidu (»Unterricht digitalisieren«, »Digital-Check«, »Aufträge zum Kopieren«). Wer kein Plugin installieren kann, nutzt diese Aufträge – das Ergebnis folgt denselben Regeln, nur kürzer. Fragt eine Lehrkraft danach, verweise auf die Seite »Methodenkoffer« von Kidu.
 
 ## So gehst du vor
 
@@ -46,6 +46,7 @@ Lösungen vor der eigenen Festlegung zeigen · Ranglisten, Punkte, Konfetti · I
 
 ## Versionen
 
+- **v3.1, 11.11.2026:** Die Seite »Werkzeugkiste« von Kidu heißt jetzt »Methodenkoffer«.
 - **v3, 10.11.2026:** Umbenannt von `hilde-digital-start` in `kidu-start`, Plugin »kidu« (vorher »hilde-digital«); nicht mehr an eine Schule gebunden; Abschnitt »Kidu ohne Plugin«.
 - **v2, 31.10.2026:** Plugin geteilt. Dieses Plugin ist das Kollegium-Plugin mit zwei Einstiegen (Unterricht digitalisieren, Material prüfen) und fünf weiteren Wegen; Lernseite bauen, Erscheinungsbild, Prüfkette und Schaubilder liegen im Zusatz-Plugin »hilde-digital-bau«. Ohne Bau-Plugin endet der Weg mit dem Übergabeblock als Bauauftrag.
 - **v1, 26.10.2026:** Neu, als Einstieg für das Plugin »hilde-digital« (Stufe 1: Pilot mit zwei bis drei Kolleginnen).

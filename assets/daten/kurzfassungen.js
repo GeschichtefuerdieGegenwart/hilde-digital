@@ -5,7 +5,7 @@
 var KURZFASSUNGEN = {
   "plugin": {
     "name": "kidu",
-    "version": "0.5.0"
+    "version": "0.5.1"
   },
   "skills": {
     "digital-check": {

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Eine Quelle für alles (ab Version 4.25): baut aus den Skills die Aufträge der Website und die Downloads der Werkzeugkiste.
+"""Eine Quelle für alles (ab Version 4.25): baut aus den Skills die Aufträge der Website und die Downloads des Methodenkoffers.
 
 Aufruf:  python3 tools/werkzeugkiste.py          (schreibt alles neu; tools/bauen.py ruft das selbst auf)
          python3 tools/werkzeugkiste.py --pruefen (meldet nur, ob etwas veraltet ist; nutzt tools/pruefen.py)
@@ -188,7 +188,7 @@ def veraltet():
 def main():
     if "--pruefen" in sys.argv:
         f = veraltet()
-        print("\n".join(f) or "Werkzeugkiste: alles aktuell")
+        print("\n".join(f) or "Methodenkoffer: alles aktuell")
         sys.exit(1 if f else 0)
     for teil in (texte, downloads):  # erst die Texte, dann die Zip-Dateien, die sie enthalten
         ziele = teil()
@@ -202,7 +202,7 @@ def main():
                 pfad.write_bytes(inhalt)
                 print("geschrieben:", pfad.relative_to(WURZEL).as_posix())
     d = sammle()
-    print(f"Werkzeugkiste: Plugin {d['plugin']['name']} {d['plugin']['version']}, {len(d['skills'])} Kurzfassungen")
+    print(f"Methodenkoffer: Plugin {d['plugin']['name']} {d['plugin']['version']}, {len(d['skills'])} Kurzfassungen")
 
 
 if __name__ == "__main__":

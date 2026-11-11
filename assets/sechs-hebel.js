@@ -1,10 +1,10 @@
 /* Kidu – »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html), ab Version 4.19.
 
    Muster R1 · Über die Brücke tippen (DESIGN.md, Abschnitt Bewegung). Der eine große Moment der Seite (One Moment Rule).
-   Erst legen sich die Lesenden fest (Hebel antippen), dann bewegt sich etwas: »Ins Plenum« trägt die gewählten Hebel
+   Erst legen sich die Lesenden fest (Prinzip antippen), dann bewegt sich etwas: »Ins Plenum« trägt die gewählten Prinzipien
    über die Plenumsstelle an die Tafel im Raum. Kein Autoplay, keine Uhr (Reader-Paced Rule). Höchstens sechs Kacheln,
    nur transform, Dauer = Token --dauer-uebergang (320 ms), alle gleichzeitig – eine Staffelung läse sich wie eine Rangfolge.
-   Ohne Bewegung (»Weniger Bewegung«, Systemeinstellung oder Tastatur, event.detail === 0) liegen die Hebel sofort an der Tafel.
+   Ohne Bewegung (»Weniger Bewegung«, Systemeinstellung oder Tastatur, event.detail === 0) liegen die Prinzipien sofort an der Tafel.
    Ohne JavaScript steht das ruhige Schaubild oben auf der Seite (Visible-at-Rest Rule). Nichts wird gespeichert.
    Braucht: HILDE (ruhig, dauer) aus hilde.js – fällt ohne HILDE auf die Systemeinstellung und 320 ms zurück. */
 (function () {
@@ -74,7 +74,7 @@
   los.addEventListener("click", function (e) {
     if (fertig) return;
     var sel = gewaehlt();
-    if (!sel.length) { stand.textContent = "Tipp zuerst mindestens einen Hebel an – oder »Keiner davon«."; return; }
+    if (!sel.length) { stand.textContent = "Tipp zuerst mindestens ein Prinzip an – oder »Keines davon«."; return; }
     var namen = sel.map(function (k) { return k.getAttribute("data-hebel"); });
     if (ruhig() || e.detail === 0 || !modell.getBoundingClientRect) { ablegen(namen); return; }
     var basis = modell.getBoundingClientRect();

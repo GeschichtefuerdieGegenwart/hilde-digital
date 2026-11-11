@@ -1783,9 +1783,9 @@ html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs
 .sh-knoepfe{display:flex;flex-wrap:wrap;gap:var(--a2);margin-top:var(--a3)}
 .sh-stand{margin:var(--a2) 0 0;font-weight:700;max-width:62ch}
 
-/* Die sechs Hebel – ruhige Übersicht */
+/* Die sechs Prinzipien – ruhige Übersicht */
 .sh-hebel-liste{list-style:none;margin:0;padding:0;display:grid;gap:var(--a4)}
-/* ab 4.20: je Hebel ein Band – links der Hebel, rechts seine Probe (Muster S bis X) */
+/* ab 4.20: je Prinzip ein Band – links das Prinzip, rechts seine Probe (Muster S bis X) */
 .sh-hebel{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--a3) var(--a4);align-items:start;padding:var(--a3);border-radius:var(--rund);background:var(--flaeche);border-top:6px solid var(--lernen);min-width:0}
 @media (max-width:900px){.sh-hebel{grid-template-columns:1fr}}
 .sh-hebel-text{display:grid;gap:var(--a1);align-content:start;min-width:0}
@@ -1831,12 +1831,12 @@ html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs
 .sh-stimmen p{margin:0}
 .sh-stimme-wo{font-weight:700}
 
-/* Weniger Bewegung: die Hebel liegen sofort an der Tafel (das Skript fliegt dann gar nicht); zur Sicherheit kein Übergang. */
+/* Weniger Bewegung: die Prinzipien liegen sofort an der Tafel (das Skript fliegt dann gar nicht); zur Sicherheit kein Übergang. */
 @media (prefers-reduced-motion:reduce){.sh-flieger,.sh-kachel{transition:none}}
 html[data-bewegung="weniger"] .sh-flieger,html[data-bewegung="weniger"] .sh-kachel{transition:none}
 @media print{.sh-probe,.sh-aktionen .knopf{display:none}}
 
-/* ── Proben zu den sechs Hebeln (Muster S bis X, ab Version 4.20) ───────────────────────────────────────────────
+/* ── Proben zu den sechs Prinzipien (Muster S bis X, ab Version 4.20) ───────────────────────────────────────────────
    Je Probe erst eine Festlegung, dann ein Zustandswechsel (--dauer-aufdecken 360 ms, Flug --dauer-flug 440 ms).
    Ohne JavaScript (Liste ohne .sh-js): Bedienteile aus, Vertiefungen offen lesbar (Visible-at-Rest).
    Verdecken ist die begründete Ausnahme: die Auflösung wartet auf die Festlegung – durch den Zustand, nicht durch Bewegung. */
@@ -1941,8 +1941,8 @@ html[data-bewegung="weniger"] .sh-s-balken,html[data-bewegung="weniger"] .sh-t-a
 html[data-bewegung="weniger"]::view-transition-group(sh-w-text){animation:none}
 @media print{.sh-kniff .sh-nur-mit-js{display:none}.sh-kniff details{display:block}}
 
-/* ---------- Y · Hebelrad (sechs-hebel.html, ab Version 4.21) ----------
-   Die Überblicksgrafik der sechs Hebel aus Claude Design (Canvas »Sechs Hebel – Überblicksgrafik«, Richtung C):
+/* ---------- Y · Prinzipienrad (sechs-hebel.html, ab Version 4.21) ----------
+   Die Überblicksgrafik der sechs Prinzipien aus Claude Design (Canvas »Sechs Prinzipien – Überblicksgrafik«, Richtung C):
    Mitte = Gerät (--lernen), sechs Kacheln ohne Reihenfolge auf einem Ring = Plenumsstelle, außen = Raum (--karton).
    Maße in Prozent eines Quadrats von 560 px; das Quadrat schrumpft am Beamer, damit Kopf, Rad und erster Knopf in 720 px passen.
    »Deine Wahl« = --wahl (--lernen-tief, zweite Druckfarbe bleibt), gewählte Kachel hebt sich 2 px auf ihre Platte.
@@ -2134,7 +2134,7 @@ html[data-bewegung="weniger"] .sh-rad-kachel,html[data-bewegung="weniger"] .sh-r
 
 /* ---------- Z1 · Rad als Register (sechs-hebel.html, ab Version 4.22; Musterbuch Z, Wahl Mario 10.11.2026) ----------
    Die sechs Bänder stehen nicht mehr untereinander: Mit JavaScript (Abschnitt .sh-register) steht nur das Band des im Rad
-   gewählten Hebels, »Weiter«/»Zurück« gehen reihum. In Ruhe ist kein Hebel gewählt (das Rad hat keinen Anfang).
+   gewählten Prinzips, »Weiter«/»Zurück« gehen reihum. In Ruhe ist kein Prinzip gewählt (das Rad hat keinen Anfang).
    Das Band kommt in --dauer-uebergang von der Seite, aus der geblättert wurde (nur transform/opacity).
    Ohne JavaScript stehen alle sechs Bänder untereinander wie bis 4.21. */
 .sh-register .sh-hebel{display:none}
@@ -2195,7 +2195,7 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
   .sp-code{border-color:#999;max-width:none;line-height:1.3;padding:.4rem .6rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .sp-quelle{margin-top:.6rem}
 }
-/* Werkzeugkiste (ab Version 4.25): Downloads als ruhige Liste, wie die Inhaltsliste auf »Über Kidu«. */
+/* Methodenkoffer (ab Version 4.25): Downloads als ruhige Liste, wie die Inhaltsliste auf »Über Kidu«. */
 .laden-liste{margin:0;padding:0;list-style:none;display:grid;gap:var(--a2)}
 .laden-liste>li{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);border-left:8px solid var(--karton);display:grid;gap:.4rem;justify-items:start}
 .laden-titel{font-weight:700}
@@ -2345,7 +2345,7 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
 .ki-extra .werkzeug-text b{font-size:var(--gr-text)}
 @media (max-width:1023px){.werkzeuge.ki-gruppen{grid-template-columns:1fr}}
 
-/* Version 4.32 – Aufgabenkoffer und aufgeräumte Werkzeugkiste */
+/* Version 4.32 – Aufgabenkoffer und aufgeräumter Methodenkoffer */
 .koffer-liste,.koffer-karten{list-style:none;margin:0;padding:0}
 .koffer-liste{display:grid;gap:var(--a6)}
 .koffer-gruppe{max-width:none;display:grid;gap:var(--a1)}

@@ -11,7 +11,7 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `src/*.html` | Inhalt der Seiten (ohne Kopf- und Fußzeile) |
 | `tools/bauen.py` | setzt Kopfzeile, Inhalt und Fußzeile zu fertigen Seiten zusammen |
 | `tools/pruefen.py` | prüft Kennzeichnung, Fachbegriffe, Platzhalter, externe Dateien |
-| `tools/werkzeugkiste.py` | eine Quelle für alles (ab 4.25): überträgt die »Kurzfassung für Kidu« jedes Skills nach `assets/daten/kurzfassungen.js`, schreibt `docs/pruef-auftrag.md` und packt die Downloads der Werkzeugkiste; läuft in `tools/bauen.py` mit |
+| `tools/werkzeugkiste.py` | eine Quelle für alles (ab 4.25): überträgt die »Kurzfassung für Kidu« jedes Skills nach `assets/daten/kurzfassungen.js`, schreibt `docs/pruef-auftrag.md` und packt die Downloads des Methodenkoffers; läuft in `tools/bauen.py` mit |
 | `werkzeugkiste/kidu/` | das Plugin »kidu« für das Kollegium – hier werden die Skills gepflegt |
 | `assets/hilde.css` | Gestaltungssystem (Farben, Schrift, Bausteine) |
 | `assets/daten/beispiele.js` | alle Beispiele an einem Ort |
@@ -28,10 +28,10 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/faecher.js` | Fächer mit Tiefe (Galerie gleitend, Startseite von Hand) |
 | `assets/fuenf-saetze.js` | Seite »Guter digitaler Unterricht in fünf Sätzen«: der Weg durch die Stunde folgt dem Scrollen (ab 4.18) |
 | `assets/fortbildungsbogen.js` | Seite »Mein Fortbildungsbogen«: Eröffnung in vier Sätzen (einmal je Sitzung), eine Frage je Bild auf einer Fragekarte, Fragen zu KI und zum Unterricht mit Tablets (bedingt), fertiger Bogen mit Karte, Schritten, Kniffen, Codeblock und »Als PDF sichern« (ab 4.29; Fragekarte und Tablet-Fragen seit 4.30) |
-| `assets/sechs-hebel-rad.js` | Seite »Wann funktioniert digitaler Unterricht?«: Hebelrad im Kopf – Hebel antippen, Karte wechselt (Muster Y, ab 4.21); das Rad blättert die Bänder als Register, Weiter/Zurück (Z1, ab 4.22) |
+| `assets/sechs-hebel-rad.js` | Seite »Wann funktioniert digitaler Unterricht?«: Prinzipienrad im Kopf – Prinzip antippen, Karte wechselt (Muster Y, ab 4.21); das Rad blättert die Bänder als Register, Weiter/Zurück (Z1, ab 4.22) |
 | `assets/sechs-hebel-film.js` | Seite »Film: Was das Gerät kann« (`sechs-hebel-film.html`): Erklärfilm in sieben Kapiteln auf einer Zeitachse, Start nur auf Knopfdruck (Muster AW, ab 4.21) |
-| `assets/sechs-hebel-proben.js` | Seite »Wann funktioniert digitaler Unterricht?«: Proben S bis X zu den sechs Hebeln – erst festlegen, dann ein Zustandswechsel (ab 4.20) |
-| `assets/sechs-hebel.js` | Seite »Wann funktioniert digitaler Unterricht?«: Muster R1 – gewählte Hebel wandern über die Plenumsstelle an die Tafel (ab 4.19) |
+| `assets/sechs-hebel-proben.js` | Seite »Wann funktioniert digitaler Unterricht?«: Proben S bis X zu den sechs Prinzipien – erst festlegen, dann ein Zustandswechsel (ab 4.20) |
+| `assets/sechs-hebel.js` | Seite »Wann funktioniert digitaler Unterricht?«: Muster R1 – gewählte Prinzipien wandern über die Plenumsstelle an die Tafel (ab 4.19) |
 | `assets/pruef-prompt.js`, `assets/digital-check.js` | Digital-Check Weg B: Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren in ein freigegebenes KI-System (keine Anbindung) |
 | `tests/` | Unit-Tests (`node --test`) und Browser-Tests (`tests/e2e.py`) |
 | `docs/` | Versionen 1 bis 4 im Überblick, Herkunft der Galeriebilder, Annahmen, Datenschutz, Datenlücken zur Prüfung |

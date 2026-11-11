@@ -1,4 +1,4 @@
-/* Kidu – Werkzeugkiste und Fassungsangaben (ab Version 4.25).
+/* Kidu – Methodenkoffer und Fassungsangaben (ab Version 4.25).
    1. Jedes Element mit data-kurzfassung="skill-a skill-b" bekommt einen Satz, aus welcher Fassung der Auftrag stammt.
    2. Auf werkzeugkiste.html: die Liste »Was in den Werkzeugen steckt« und die Downloads.
    Daten: KURZFASSUNGEN (assets/daten/kurzfassungen.js, erzeugt von tools/werkzeugkiste.py), WERKSTATT für die Aufträge.
@@ -15,10 +15,10 @@
     var teile = el.getAttribute("data-kurzfassung").split(/\s+/).filter(function (id) { return K.skills[id]; }).map(fassung);
     if (!teile.length) return;
     el.innerHTML = "Dieser Auftrag enthält die Kurzfassung der Anleitung " + esc(teile.join(" und ")) +
-      '. Mehr dazu in der <a href="werkzeugkiste.html">Werkzeugkiste</a>.';
+      '. Mehr dazu im <a href="werkzeugkiste.html">Methodenkoffer</a>.';
   });
 
-  /* 2. Werkzeugkiste */
+  /* 2. Methodenkoffer */
   var liste = document.getElementById("kf-liste");
   if (liste) {
     var W = typeof WERKSTATT !== "undefined" ? WERKSTATT : { auftraege: [] };

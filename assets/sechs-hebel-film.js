@@ -22,7 +22,7 @@
   var halt = document.getElementById("hf-halt"), regler = document.getElementById("hf-regler"), zeitEl = document.getElementById("hf-zeit");
   var kapKnoepfe = [].slice.call(hf.querySelectorAll("#hf-kapitel button"));
 
-  var KAPITEL = ["Der Schnellhefter", "Sechs Hebel", "Drei Beispiele", "Die anderen drei", "Zurück in den Raum", "Keiner? Dann Papier.", "Jetzt du"];
+  var KAPITEL = ["Der Schnellhefter", "Sechs Prinzipien", "Drei Beispiele", "Die anderen drei", "Zurück in den Raum", "Keiner? Dann Papier.", "Jetzt du"];
   var CUE = [0, 15, 30, 58, 78, 98, 110], ENDE = 120;
   var SAETZE = [
     [0, "Ein Arbeitsblatt auf dem Tablet ist immer noch ein Arbeitsblatt."], [7.5, "Wann lohnt sich das Gerät wirklich?"],
@@ -30,7 +30,7 @@
     [30, "Verdecken: Erst entscheiden, dann sehen, was geschah."], [39.6, "Rückmelden: Die Antwort kommt sofort – und sagt, warum."], [48.9, "Bündeln: Die Klasse sieht sich als Ganzes – ohne Namen."],
     [58, "Messen: Die Zeit geht ins Deuten, nicht ins Auszählen."], [65, "Variieren: Eine Grenze verschieben – und sehen, was folgt."], [71.7, "Stufen: Ein Inhalt, drei Zugänge – ohne dass es jemand sieht."],
     [78, "Was am Gerät entsteht, gehört zurück in den Raum."], [86.5, "Dort wird gedeutet, gestritten, geurteilt – ohne Gerät."],
-    [98, "Greift kein Hebel, bleibt es Papier. Das ist ein gutes Ergebnis."],
+    [98, "Greift kein Prinzip, bleibt es Papier. Das ist ein gutes Ergebnis."],
     [110, "Probier es an deiner Stunde. Erst festlegen, dann bewegt sich etwas."]
   ];
 
@@ -107,12 +107,12 @@
     stil(k, { width: Math.round(groesse * 1.75) + "px", height: groesse + "px" });
     return k;
   }
-  /* Das Hebelrad in Filmgröße */
+  /* Das Prinzipienrad in Filmgröße */
   function rad(eltern, x, y, groesse) {
     var r = el("div", "hf-rad", eltern); stil(r, { left: x + "px", top: y + "px", width: groesse + "px", height: groesse + "px" });
     var ring = el("div", "hf-ring", r);
     var mitte = el("div", "hf-mitte", r); stil(mitte, { left: "30.4%", top: "30.4%", width: "39.3%", height: "39.3%" });
-    el("span", "hf-mitte-leise", mitte, "Im Gerät"); el("span", "hf-mitte-titel", mitte, "Sechs Hebel");
+    el("span", "hf-mitte-leise", mitte, "Im Gerät"); el("span", "hf-mitte-titel", mitte, "Sechs Prinzipien");
     var kh = groesse * 0.172;
     var kacheln = HEBEL.map(function (h, i) {
       var k = kachel(r, i, kh);
@@ -164,13 +164,13 @@
     });
   })();
 
-  /* Kapitel 2 · Sechs Hebel: das Rad baut sich auf */
+  /* Kapitel 2 · Sechs Prinzipien: das Rad baut sich auf */
   (function () {
     var b = kapitel(1);
     var R = rad(b, 120, 150, 440);
     var liste = el("div", "hf-liste", b); stil(liste, { left: "640px", top: "190px", width: "560px" });
     var zeilen = HEBEL.map(function (h) { var p = el("p", "", liste); el("b", "", p, h[0]); p.appendChild(document.createTextNode(" – " + h[2])); return p; });
-    var hinweis = el("p", "hf-leise", liste, "Keine Reihenfolge: Jeder Hebel ist gleich wichtig. Eine Stunde braucht meist einen.");
+    var hinweis = el("p", "hf-leise", liste, "Keine Reihenfolge: Jedes Prinzip ist gleich wichtig. Eine Stunde braucht meist einen.");
     teile.push(function (T) {
       if (T < CUE[1] || T >= CUE[2]) return;
       var s = CUE[1];
@@ -300,7 +300,7 @@
     var tafel = el("div", "hf-tafel", raum); el("span", "hf-tafel-leise", tafel, "Tafel"); var tz = el("span", "hf-tafel-titel", tafel, "Dilemma 2: 15 Ja · 9 Nein"); var tf = el("span", "hf-tafel-leise", tafel, "Warum habt ihr so entschieden?");
     var woerter = ["Deuten", "Streiten", "Urteilen"].map(function (w) { return el("p", "hf-raumwort", raum, w); });
     var schweigt = el("p", "hf-leise", raum, "Beim Urteilen schweigt das Gerät.");
-    /* der fliegende Hebel: von der Kachel »Bündeln« im Gerät zur Tafel */
+    /* das fliegende Prinzip: von der Kachel »Bündeln« im Gerät zur Tafel */
     var flieger = el("div", "hf-flieger", b); flieger.appendChild(svg(HEBEL[5][1], 26)); el("span", "", flieger, "15 Ja · 9 Nein");
     teile.push(function (T) {
       if (T < CUE[4] || T >= CUE[5]) return;
@@ -335,13 +335,13 @@
     var b = kapitel(6), s = CUE[6];
     var probe = el("div", "hf-probe", b); stil(probe, { left: "56px", top: "160px", width: "720px" });
     el("p", "hf-leise", probe, "Probe · Über die Brücke tippen");
-    el("p", "hf-spalte-titel", probe, "Denk an deine nächste Stunde. Welche Hebel greifen?");
+    el("p", "hf-spalte-titel", probe, "Denk an deine nächste Stunde. Welche Prinzipien greifen?");
     var gitter = el("div", "hf-probegitter", probe);
     var kacheln = HEBEL.map(function (h) { return el("span", "hf-probekachel", gitter, h[0]); });
-    var reihe = el("div", "hf-chips", probe); var los7 = chip(reihe, "Ins Plenum", true); chip(reihe, "Keiner davon"); var stand = el("span", "hf-leise", reihe, "1 Hebel gewählt");
+    var reihe = el("div", "hf-chips", probe); var los7 = chip(reihe, "Ins Plenum", true); chip(reihe, "Keines davon"); var stand = el("span", "hf-leise", reihe, "1 Prinzip gewählt");
     var tippen = tipp(probe, 330, 158, s + 2.6);
     var rechts = el("div", "hf-liste", b); stil(rechts, { left: "830px", top: "200px", width: "394px" });
-    var r1 = el("p", "", rechts, "Unter dem Film wartet die Seite: jeder Hebel zum Ausprobieren, die drei Regeln und der Umfang deiner Stunde.");
+    var r1 = el("p", "", rechts, "Unter dem Film wartet die Seite: jedes Prinzip zum Ausprobieren, die drei Regeln und der Umfang deiner Stunde.");
     var r2 = el("p", "hf-leise", rechts, "Kidu · Künstliche Intelligenz und digitaler Unterricht · Entwurf · kein Beschluss");
     teile.push(function (T) {
       if (T < CUE[6]) return;
