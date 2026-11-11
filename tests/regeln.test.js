@@ -432,12 +432,13 @@ test("Umfang durchgängig: gewählt bleibt gewählt, aber mit festen Stellen im 
   assert.match(R.umfang({ umfang: "phasenweise" }, "klar").grund, /Das hast du gewählt/);
 });
 
-test("Startpunkt: leere Eingabe ohne Fehler – Lage »offen«, immer der Satz »keine Bewertung«, vier Felder", () => {
+test("Startpunkt: leere Eingabe ohne Fehler – Lage »offen«, immer der Satz »keine Bewertung«, fünf Felder", () => {
   for (const a of [undefined, {}]) {
     const e = R.startpunkt(a);
     assert.equal(e.lage.id, "offen");
     assert.match(e.satz, /keine Bewertung/);
-    assert.equal(e.sicherheit.length, 4);
+    assert.equal(e.sicherheit.length, 5);
+    assert.equal(e.tablet.id, "offen");
     assert.ok(e.sicherheit.every((f) => f.wert === "offen"));
     assert.ok(e.schritte.length >= 1 && e.schritte.length <= 3 && e.kniffe.length === 2 && e.staerken.length >= 1);
   }
@@ -476,9 +477,49 @@ test("Startpunkt: Kniffe passen zur Lage und Arbeitsweise – Einsprechen nur, w
   assert.ok(b.kniffe.some((k) => /Kürzen/.test(k.titel)), "genau Planende bekommen »Kürzen statt mehr«");
 });
 
+test("Startpunkt: Unterricht mit Tablets – keine Tablet-Klasse, vor allem Ablage, einzelne Phasen; ohne Rangfolge", () => {
+  assert.equal(R.startpunkt({ d_klassen: "keine", tablet: ["ueben"] }).tablet.id, "keine");
+  assert.equal(R.startpunkt({ d_klassen: "einige", tablet: ["ablage", "recherche"], d_mehrwert: "selten" }).tablet.id, "ablage");
+  assert.equal(R.startpunkt({ d_klassen: "alle", tablet: ["ablage"], d_mehrwert: "manchmal" }).tablet.id, "phasen");
+  assert.equal(R.startpunkt({ tablet: ["ablage", "gemeinsam"] }).tablet.id, "phasen");
+  assert.equal(R.startpunkt({ d_klassen: "alle" }).tablet.id, "offen");
+  for (const a of [{ d_klassen: "keine" }, { tablet: ["ablage"] }, { d_mehrwert: "oft" }, {}]) {
+    const t = R.startpunkt(a).tablet;
+    assert.ok(!/Stufe|Niveau|Anfänger|nur |erst |noch nicht|\d+ ?(%|Punkte)|Note/.test(t.titel + " " + t.text), t.titel);
+  }
+});
+
+test("Startpunkt: Ablenkung, fehlender Überblick oder Unsicherheit führen zu den Regeln für Tablet-Phasen – direkt nach dem ersten Anlass", () => {
+  const e = R.startpunkt({ haeufigkeit: "woechentlich", anlass: ["eltern", "uebung", "einstieg"], d_klassen: "alle", tablet: ["ablage"], d_schwer: ["ablenkung"] });
+  assert.equal(e.schritte.length, 3);
+  assert.equal(e.schritte[0].link, "ki.html#t-schnell");
+  assert.equal(e.schritte[1].link, "tablet-phasen.html#t-regeln");
+  for (const a of [{ s_fuehren: "unsicher" }, { d_regeln: ["keine"] }, { d_schwer: ["ueberblick"] }, { d_wunsch: "ruhe" }])
+    assert.ok(R.startpunkt(a).schritte.some((s) => s.link === "tablet-phasen.html#t-regeln"), JSON.stringify(a));
+  assert.ok(!R.startpunkt({ d_klassen: "keine", d_schwer: ["ablenkung"] }).schritte.some((s) => /tablet-phasen/.test(s.link)), "ohne Tablet-Klasse kein Tablet-Schritt");
+});
+
+test("Startpunkt: »vor allem Ablage«, fehlende Ideen oder der Wunsch nach Papier führen zur Papierfrage – höchstens einmal", () => {
+  for (const a of [{ tablet: ["ablage"] }, { d_schwer: ["ideen"], d_mehrwert: "oft" }, { d_wunsch: "mehrwert", d_mehrwert: "oft" }, { d_wunsch: "papier", d_mehrwert: "oft" },
+                   { haeufigkeit: "mehrmals", wofuer: ["texte", "quiz"], tablet: ["ablage"] }, { gedanken: ["fach"], tablet: ["ablage"], d_wunsch: "papier" }]) {
+    const n = R.startpunkt(a).schritte.filter((s) => s.link === "unterricht.html#t-probe").length;
+    assert.equal(n, 1, JSON.stringify(a));
+  }
+  assert.match(R.startpunkt({ d_wunsch: "papier", d_mehrwert: "oft" }).schritte.find((s) => /t-probe/.test(s.link)).text, /vollwertiges Ergebnis/);
+});
+
+test("Startpunkt: Stärken aus dem Unterricht mit Tablets – Absprachen und ausprobierte Formen; fünftes Feld »Tablet-Phase«", () => {
+  const e = R.startpunkt({ d_klassen: "alle", d_regeln: ["zeit", "runde"], d_formen: ["quiz", "gemeinsam"], d_mehrwert: "oft", s_fuehren: "sicher" });
+  assert.ok(e.staerken.some((t) => /Absprachen/.test(t)) && e.staerken.some((t) => /auf Papier kaum/.test(t)) && e.staerken.length <= 3);
+  assert.ok(!R.startpunkt({ d_regeln: ["keine"] }).staerken.some((t) => /Absprachen/.test(t)));
+  assert.ok(!R.startpunkt({ d_formen: ["nichts"] }).staerken.some((t) => /Formen/.test(t)));
+  assert.deepEqual(e.sicherheit[4], { id: "s_fuehren", titel: "Tablet-Phase", wert: "sicher" });
+  assert.match(e.code, /tablet=phasen/); assert.match(e.code, /d_regeln=zeit,runde/); assert.match(e.code, /s_fuehren=sicher/);
+});
+
 test("Startpunkt: der Codeblock trägt nur Auswahlwerte, nie Texte", () => {
   const e = R.startpunkt({ haeufigkeit: "mehrmals", wofuer: ["texte", "quiz"], s_pruefen: "teils", stelle: "Quellenarbeit", kuerzel: "MW" });
-  assert.match(e.code, /^fortbildungsbogen v1 · lage=fuersich/);
+  assert.match(e.code, /^fortbildungsbogen v2 · lage=fuersich · tablet=offen/);
   assert.match(e.code, /s_pruefen=teils/);
   assert.ok(!/Quellenarbeit|MW/.test(e.code));
 });

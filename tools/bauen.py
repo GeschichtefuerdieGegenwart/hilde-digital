@@ -70,6 +70,7 @@ FUSS = [
     ("ueber.html#t-daten", "Hinweise zu Daten und KI"),
     ("gestaltung.html", "Gestaltungssystem"),
     ("werkzeugkiste.html", "Werkzeugkiste"),
+    ("fortbildungsbogen.html", "Mein Fortbildungsbogen"),
 ]
 
 KENNZEICHNUNG = "Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept."

@@ -2165,7 +2165,7 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
 .sp-stunde{display:grid;gap:var(--a2);max-width:40rem}
 .sp-stunde .bogen-notiz{margin-top:0}
 .sp-stunde input,.bogen-notiz input{background:var(--grund)}
-.sp-karte{display:block;width:100%;max-width:36rem;height:auto;margin:var(--a2) 0}
+.sp-karte{display:block;width:100%;max-width:42.5rem;height:auto;margin:var(--a2) 0}
 .sp-linie{stroke:var(--text);stroke-width:2}
 .sp-feld circle{fill:var(--flaeche);stroke:var(--text);stroke-width:2.5}
 .sp-voll circle{fill:var(--text)}
@@ -2177,7 +2177,7 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
 @media print{ /* taste-skill-ignore: Druckfassung */
   html.nur-ergebnis body>*:not(main),html.nur-ergebnis main>*>*:not(.weg-abschnitt),html.nur-ergebnis .weg-abschnitt .box,html.nur-ergebnis #mfb-weg,html.nur-ergebnis #mfb-eroeffnung,html.nur-ergebnis #t-bogen,html.nur-ergebnis .speicherhinweis{display:none!important}
   html.nur-ergebnis .weg-abschnitt{padding:0}
-  html.nur-ergebnis body{zoom:.86} /* Druckfassung auf einer A4-Seite; Schriftgrößen auf dem Bildschirm bleiben bei 16 px */
+  html.nur-ergebnis body{zoom:.8} /* Druckfassung auf einer A4-Seite; Schriftgrößen auf dem Bildschirm bleiben bei 16 px */
   html.nur-ergebnis .huelle,html.nur-ergebnis main{max-width:none;padding-inline:0;margin:0}
   html.nur-ergebnis .sp-ergebnis{padding-inline:0}
   html.nur-ergebnis{--gr-h3:1rem}
@@ -2191,7 +2191,7 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
   .sp-ergebnis .schluss{margin-top:.8rem}
   .sp-ergebnis .textlink{min-height:0;display:inline;line-height:inherit}
   .sp-ergebnis .textlink::after{content:" (" attr(href) ")";font-weight:400;color:#555}
-  .sp-karte{max-width:21rem;margin:.2rem 0}
+  .sp-karte{max-width:30rem;margin:.2rem 0}
   .sp-code{border-color:#999;max-width:none;line-height:1.3;padding:.4rem .6rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .sp-quelle{margin-top:.6rem}
 }
@@ -2230,19 +2230,65 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
 .mfb-eroeffnung[data-takt="alle"] .mfb-takte{display:grid}
 .mfb-eroeffnung[data-takt="alle"] .mfb-satz{display:none}
 .mfb-eroeffnung-steuerung{display:flex;flex-wrap:wrap;gap:var(--a2);align-items:center}
-.mfb-nr{margin:0 0 .4rem;font-weight:700;color:var(--leise);font-size:var(--gr-klein)}
+/* Fragekarte (seit 4.30): ein Blatt auf versetzter Platte. Oben Zähler und Laufleiste, links Frage mit Hilfe und Beispiel,
+   rechts die Antworten, unten die Steuerung. Was die Person gewählt hat, trägt die Farbe des Bereichs. */
+.mfb-karte{margin-top:var(--a3);background:var(--flaeche);border-radius:var(--rund);border-top:10px solid var(--lernen);box-shadow:var(--platte);--mfb-rand:clamp(1.25rem,3vw,2.5rem)} /* taste-skill-ignore: versetzte Druckplatte */
+.mfb-kopf{display:flex;align-items:center;gap:var(--a2);padding:var(--a2) var(--mfb-rand) 0}
+.mfb-nr{margin:0;font-weight:700;color:var(--leise);font-size:var(--gr-klein);white-space:nowrap}
 .mfb-nr span{color:var(--lernen-tief)}
-.mfb-form{min-height:16rem}
-.mfb-optionen{grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr))}
+.mfb-lauf{flex:1;min-width:3rem;height:6px;border-radius:3px;background:var(--linie);overflow:hidden}
+.mfb-lauf span{display:block;height:100%;background:var(--lernen);transform-origin:left center;transform:scaleX(.02);transition:transform var(--dauer-mittel) var(--ease-out)}
+.mfb-form{margin:0;padding:var(--a3) var(--mfb-rand);min-height:19rem}
+.mfb-spalten{display:grid;gap:var(--a3) var(--a6);align-items:start}
+.mfb-form .frage{margin:0;font:700 clamp(1.5rem,1.15rem + 1.3vw,2.125rem)/1.14 var(--schrift-titel);letter-spacing:-.015em;text-wrap:balance}
+.mfb-form .hilfe{margin-top:var(--a2);max-width:46ch}
+.mfb-beispiel{margin:var(--a2) 0 0;padding:.1rem 0 .1rem var(--a2);border-left:4px solid var(--lernen);max-width:46ch}
+.mfb-beispiel b{display:block;font-size:var(--gr-klein);color:var(--lernen-tief)}
+.mfb-art{display:flex;justify-content:space-between;gap:var(--a2);margin:0 0 .6rem;font-size:var(--gr-klein);font-weight:700;color:var(--leise)}
+.mfb-art span+span{color:var(--lernen-tief);white-space:nowrap}
+.mfb-art{max-width:none}
+@media (max-width:600px){.mfb-weg .schritte{flex-wrap:nowrap;gap:.1rem}.mfb-weg .schritte li.aktuell>.ohne>span:not(.nr){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.mfb-weg .schritte li.aktuell>.ohne{padding-right:.4rem}}
+.mfb-optionen{grid-template-columns:1fr;gap:.5rem;margin-top:0}
+.mfb-form .option{align-items:center;min-height:52px;padding:.6rem .9rem;border-radius:var(--rund);transition:border-color var(--dauer-schnell) var(--ease-out),background-color var(--dauer-schnell) var(--ease-out),transform var(--dauer-druck) var(--ease-out)}
+.mfb-form .option:active{transform:scale(var(--druck-gross))}
+.mfb-form .option input{margin:0}
+.mfb-form .option-text b{line-height:1.3}
+.mfb-viele .option-text b{font-size:var(--gr-klein)}
+.mfb-form .option input:checked{border-color:var(--lernen-tief)}
+.mfb-form .option input::before{background:var(--lernen-tief)}
+.mfb-form .option:has(input:checked){border-color:var(--lernen-tief);background:var(--lernen-zart);box-shadow:4px 4px 0 0 var(--lernen)} /* taste-skill-ignore: versetzte Druckplatte, steht still */
 .mfb-form .option input[type="checkbox"]{border-radius:5px}
 .mfb-form .option input[type="checkbox"]::before{border-radius:1px;width:11px;height:11px}
+.mfb-form .bogen-notiz{margin-top:0;max-width:none}
+.mfb-form .sp-stunde{max-width:none}
+@media (min-width:640px){
+  .mfb-viele{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mfb-skala{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .mfb-form .sp-stunde{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:900px){
+  .mfb-spalten{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+  .mfb-spalten.mfb-breit{grid-template-columns:1fr;gap:var(--a2)}
+  .mfb-breit .mfb-fragetext{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:0 var(--a6);align-items:start}
+  .mfb-breit .mfb-fragetext .frage{grid-row:span 2}
+  .mfb-breit .mfb-fragetext :is(.hilfe,.mfb-beispiel){margin-top:0;max-width:none}
+  .mfb-breit .mfb-viele{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+/* Solange der Bogen läuft, tritt der Seitenkopf zurück: Die Frage steht ohne Scrollen im Bild. */
+.mfb-laeuft .bereichskopf :is(.marker,.kopfnotiz){display:none}
+.mfb-laeuft .bereichskopf .h1-frage{font-size:var(--gr-h3)}
+.mfb-laeuft .weg-abschnitt{padding-top:var(--a1)}
+.mfb-laeuft .mfb-karte{margin-top:var(--a2);scroll-margin-top:var(--a1)}
 @keyframes mfb-vor{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
 @keyframes mfb-rueck{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
-.mfb-form.mfb-vor{animation:mfb-vor var(--dauer-mittel) var(--ease-out)}
-.mfb-form.mfb-rueck{animation:mfb-rueck var(--dauer-mittel) var(--ease-out)}
-#mfb-steuerung #mfb-weiter{margin-left:auto}
-@media (prefers-reduced-motion:reduce){.mfb-form.mfb-vor,.mfb-form.mfb-rueck{animation:none}.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::before,.mfb-blatt{transition:none}}
-html[data-bewegung="weniger"] :is(.mfb-form.mfb-vor,.mfb-form.mfb-rueck){animation:none}
+.mfb-form.mfb-vor .mfb-spalten{animation:mfb-vor var(--dauer-mittel) var(--ease-out)}
+.mfb-form.mfb-rueck .mfb-spalten{animation:mfb-rueck var(--dauer-mittel) var(--ease-out)}
+#mfb-steuerung{margin:0;padding:.75rem var(--mfb-rand);border-top:2px solid var(--linie);align-items:center;justify-content:flex-start}
+#mfb-steuerung #mfb-ueberspringen-frage{margin-left:auto;border-color:transparent}
+#mfb-steuerung #mfb-zurueck[hidden]+#mfb-ueberspringen-frage{margin-left:auto}
+@media (prefers-reduced-motion:reduce){.mfb-form .mfb-spalten{animation:none}.mfb-lauf span,.mfb-form .option{transition:none}.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::before,.mfb-blatt{transition:none}}
+html[data-bewegung="weniger"] .mfb-form .mfb-spalten{animation:none}
+html[data-bewegung="weniger"] :is(.mfb-lauf span,.mfb-form .option){transition:none}
 html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::before,.mfb-blatt){transition:none}
 @media (max-width:760px){
   .mfb-eroeffnung{grid-template-columns:1fr;padding:var(--a3);gap:var(--a3)}
