@@ -2,7 +2,7 @@
 <section class="bereichskopf kompakt"><div class="huelle">
   <h1 class="h1-frage">Mein Fortbildungsbogen</h1>
   <p class="marker">Voranalyse vor einer Fortbildung oder Beratungsstunde · Bereich: Digitaler Unterricht</p>
-  <p class="kopfnotiz">Zwanzig kurze Fragen über dich und deinen Unterricht, eine nach der anderen – etwa zehn Minuten. Damit die Leitung der Fortbildung bei dir anfängt und nicht irgendwo. Am Ende sicherst du deinen Bogen als PDF; vorher verlässt nichts dein Gerät.</p>
+  <p class="kopfnotiz">Kurze Fragen über dich, KI und deinen Unterricht mit Tablets, eine nach der anderen – etwa zwölf Minuten. Damit die Leitung der Fortbildung bei dir anfängt und nicht irgendwo. Am Ende sicherst du deinen Bogen als PDF; vorher verlässt nichts dein Gerät.</p>
 </div></section>
 
 <section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle">
@@ -21,8 +21,8 @@
       <ol class="mfb-takte" id="mfb-takte" aria-label="Die vier Sätze der Eröffnung">
         <li>Hey. Bald sitzt du in einer Fortbildung zu KI und Tablet.</li>
         <li>Sie soll bei dir anfangen – bei dem, was du schon tust, und bei dem, was dich bremst.</li>
-        <li>Dafür zwanzig kurze Fragen. Kein Richtig, kein Falsch, keine Bewertung.</li>
-        <li>Am Ende eine Seite als PDF. Die gibst du der Leitung. Vorher sieht sie niemand.</li>
+        <li>Dafür kurze Fragen zu KI und zum Tablet. Kein Richtig, kein Falsch, keine Bewertung.</li>
+        <li>Am Ende dein Bogen als PDF. Den gibst du der Leitung. Vorher sieht ihn niemand.</li>
       </ol>
       <div class="mfb-eroeffnung-steuerung">
         <button type="button" class="knopf" id="mfb-los">Los geht’s →</button>
@@ -32,14 +32,17 @@
   </div>
 
   <div class="mfb-weg" id="mfb-weg" hidden>
-    <nav class="schritte-nav" aria-label="Die fünf Schritte"><ol class="schritte" id="mfb-fortschritt"></ol><p class="schritte-stand" id="mfb-stand" aria-hidden="true"></p></nav>
-    <form id="mfb-form" class="weg mfb-form" novalidate></form>
-    <p id="mfb-ansage" class="sr-only" aria-live="polite"></p>
-    <div class="weg-steuerung" id="mfb-steuerung">
-      <button type="button" class="knopf still" id="mfb-zurueck">← Zurück</button>
-      <button type="button" class="knopf still" id="mfb-ueberspringen-frage">Überspringen</button>
-      <button type="button" class="knopf" id="mfb-weiter">Weiter →</button>
+    <nav class="schritte-nav" aria-label="Die sechs Schritte"><ol class="schritte" id="mfb-fortschritt"></ol><p class="schritte-stand" id="mfb-stand" aria-hidden="true"></p></nav>
+    <div class="mfb-karte" id="mfb-karte">
+      <div class="mfb-kopf"><p class="mfb-nr" id="mfb-nr"></p><div class="mfb-lauf" aria-hidden="true"><span id="mfb-lauf"></span></div></div>
+      <form id="mfb-form" class="mfb-form" novalidate></form>
+      <div class="weg-steuerung" id="mfb-steuerung">
+        <button type="button" class="knopf still" id="mfb-zurueck">← Zurück</button>
+        <button type="button" class="knopf still" id="mfb-ueberspringen-frage">Überspringen</button>
+        <button type="button" class="knopf" id="mfb-weiter">Weiter →</button>
+      </div>
     </div>
+    <p id="mfb-ansage" class="sr-only" aria-live="polite"></p>
   </div>
 
   <div id="ergebnis" aria-live="polite"></div>

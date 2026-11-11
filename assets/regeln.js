@@ -488,10 +488,13 @@
   }
 
 
-  /* Mein Fortbildungsbogen (fortbildungsbogen.html, ab 4.29; Fragen seit 4.24): zwanzig Fragen vor einer Fortbildung oder Beratungsstunde.
+  /* Mein Fortbildungsbogen (fortbildungsbogen.html, ab 4.29; Fragen seit 4.24, Fragen zum Unterricht mit Tablets seit 4.30):
+     Fragen vor einer Fortbildung oder Beratungsstunde.
      Vier Ausgangslagen ohne Rangfolge – sie beschreiben, womit die erste Stunde beginnt, nicht wie gut jemand ist.
      Ergebnis: Lage, Stärken zuerst, vier Sicherheitsfelder für die Karte, höchstens drei Schritte, höchstens zwei Kniffe,
-     ein Codeblock für die Leitung (nur Auswahlwerte, keine Texte). Keine Noten, Punkte oder Prozentwerte. */
+     ein Codeblock für die Leitung (nur Auswahlwerte, keine Texte). Keine Noten, Punkte oder Prozentwerte.
+     Seit 4.30 dazu `tablet`: eine Beschreibung des Unterrichts mit Tablets (keine · ablage · phasen · offen) – ebenfalls ohne
+     Rangfolge: »vor allem Mappe« ist ein Ausgangspunkt, kein Mangel, und »bleibt auf Papier« bleibt ein vollwertiges Ergebnis. */
   var SP_LAGEN = {
     anfang: { titel: "Du fängst gerade an",
       text: "Das ist der häufigste Startpunkt im Kollegium. Für die erste Stunde reicht ein einziger Anlass aus deinem Alltag – und die Sicherheit, dass du nichts falsch machst." },
@@ -504,7 +507,17 @@
     offen: { titel: "Dein Startpunkt ist noch offen",
       text: "Du hast wenig angekreuzt. Das ist in Ordnung – die erste Stunde beginnt dann mit deiner Stunde und der Frage, wo die Lernenden hängen bleiben." }
   };
-  var SP_SICHER = [["s_bedienen", "Bedienen"], ["s_pruefen", "Prüfen"], ["s_duerfen", "Dürfen"], ["s_bauen", "Bauen"]];
+  var SP_TABLET = {
+    keine: { titel: "Du unterrichtest zurzeit nicht in Tablet-Klassen",
+      text: "Dann beginnt die Fortbildung bei deiner Vorbereitung – und bei der Frage, was auf Papier bleibt." },
+    ablage: { titel: "Das Tablet ist bei dir vor allem Mappe und Nachschlagewerk",
+      text: "So wird das Tablet häufig genutzt. Die erste Frage ist dann nicht »mehr Tablet«, sondern: An welcher einen Stelle könnte es mehr als Papier?" },
+    phasen: { titel: "In einzelnen Phasen kann das Tablet bei dir mehr als Papier",
+      text: "Du hast schon Stellen, an denen das Gerät etwas beiträgt. Die Fortbildung fragt: Was tun die Lernenden dort selbst – und woran merkst du, dass es hilft?" },
+    offen: { titel: "Dein Unterricht mit Tablets ist noch offen",
+      text: "Du hast dazu wenig angekreuzt. Dann reicht für den Anfang die Stunde, die du mitbringst." }
+  };
+  var SP_SICHER = [["s_bedienen", "Bedienen"], ["s_pruefen", "Prüfen"], ["s_duerfen", "Dürfen"], ["s_bauen", "Bauen"], ["s_fuehren", "Tablet-Phase"]];
   var SP_ANLASS = {
     vereinfachen: { text: "Vereinfach ein eigenes Arbeitsblatt mit der Schnell-Anfrage – das ist der Anlass mit dem sichersten ersten Ergebnis.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
     einstieg: { text: "Lass dir für deine Stunde einen Einstieg mit Vermutung entwerfen und prüf ihn mit den drei Fragen vor dem Kopieren.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
@@ -546,6 +559,16 @@
     }
     var lage = { id: id, titel: SP_LAGEN[id].titel, text: SP_LAGEN[id].text, skeptisch: skeptisch };
 
+    /* Unterricht mit Tablets (seit 4.30): beschreibt, was die Lernenden heute am Gerät tun. Reihenfolge der Prüfung:
+       keine Tablet-Klasse → mehr als Papier (oft/manchmal oder üben, gemeinsam, erstellen) → vor allem Ablage → offen. */
+    var mehr = a.d_mehrwert === "oft" || a.d_mehrwert === "manchmal" || hat("tablet", "ueben") || hat("tablet", "gemeinsam") || hat("tablet", "erstellen");
+    var tid = "offen";
+    if (a.d_klassen === "keine" || hat("tablet", "keine")) tid = "keine";
+    else if (mehr) tid = "phasen";
+    else if ((a.tablet || []).length || a.d_mehrwert === "selten") tid = "ablage";
+    var tablet = { id: tid, titel: SP_TABLET[tid].titel, text: SP_TABLET[tid].text };
+    var unruhe = hat("d_schwer", "ablenkung") || hat("d_schwer", "ueberblick") || hat("d_regeln", "keine") || a.s_fuehren === "unsicher" || a.d_wunsch === "ruhe";
+
     /* Stärken zuerst – der Bericht beginnt nie mit dem, was fehlt. */
     var staerken = [];
     if (hat("systeme", "land")) staerken.push("Du arbeitest schon mit dem Landesangebot – dem sicheren Ort für Schulisches.");
@@ -553,7 +576,9 @@
     if (a.eingabe === "sprechen") staerken.push("Du sprichst Anfragen ein – der schnellste Weg zu einer guten Anfrage.");
     if (a.s_pruefen === "sicher") staerken.push("Du prüfst KI-Ergebnisse fachlich sicher. Das bleibt die wichtigste Fähigkeit.");
     if (a.s_duerfen === "sicher") staerken.push("Du weißt, was du eingeben darfst.");
-    if (hat("tablet", "ueben") || hat("tablet", "gemeinsam") || hat("tablet", "erstellen")) staerken.push("Deine Klasse tut am Tablet schon Dinge, die auf Papier kaum gingen.");
+    if (tid === "phasen") staerken.push("Deine Klasse tut am Tablet schon Dinge, die auf Papier kaum gingen.");
+    if (tid !== "keine" && (a.d_regeln || []).length && !hat("d_regeln", "keine")) staerken.push("Du führst Tablet-Phasen schon mit festen Absprachen.");
+    if ((a.d_formen || []).filter(function (w) { return w !== "nichts"; }).length >= 2) staerken.push("Du hast schon mehrere digitale Formen im Unterricht ausprobiert.");
     if (schule >= 1) staerken.push("Du hast KI schon für die Schule genutzt.");
     if (a.ziel === "nein" || hat("gedanken", "fach")) staerken.push("Du fragst, ob dein Unterricht das überhaupt braucht. Diese Frage stellt Kidu auch – »bleibt auf Papier« ist ein vollwertiges Ergebnis.");
     if (!staerken.length) staerken.push("Du nimmst dir Zeit, hinzusehen, bevor du etwas einsetzt. Das ist die Grundhaltung dieser Seite.");
@@ -564,10 +589,18 @@
     var schritte = [], seen = {};
     function push(s) { if (s && !seen[s.link + s.text]) { seen[s.link + s.text] = 1; schritte.push(s); } }
     if (skeptisch) push({ text: "Prüf deine mitgebrachte Stunde mit der Papierfrage. »Bleibt auf Papier« ist ein gutes Ergebnis.", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
-    (a.anlass || []).forEach(function (k) { push(SP_ANLASS[k]); });
+    /* Der erste Anlass, dann höchstens ein Schritt zum Unterricht mit Tablets, dann die übrigen Anlässe. */
+    push(SP_ANLASS[(a.anlass || [])[0]]);
+    var papier = skeptisch;
+    if (tid !== "keine") {
+      if (unruhe) push({ text: "Lies die sechs Regeln für Tablet-Phasen und nimm eine davon in deine nächste Stunde mit.", link: "tablet-phasen.html#t-regeln", linktext: "Tablet-Phasen gut führen" });
+      else if (!papier && a.d_wunsch === "papier") { papier = true; push({ text: "Prüf eine Tablet-Phase mit der Papierfrage. »Zurück auf Papier« ist ein vollwertiges Ergebnis.", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" }); }
+      else if (!papier && (tid === "ablage" || hat("d_schwer", "ideen") || a.d_wunsch === "mehrwert")) { papier = true; push({ text: "Such in deiner mitgebrachten Stunde die eine Stelle, an der das Tablet mehr kann als Papier.", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" }); }
+    }
+    (a.anlass || []).slice(1).forEach(function (k) { push(SP_ANLASS[k]); });
     if (id === "anfang" || a.s_duerfen === "unsicher" || hat("hindernis", "datenschutz")) push({ text: "Lies die fünf Regeln zum sicheren Arbeiten – dann weißt du, was in die KI darf und was nicht.", link: "sicher.html", linktext: "Sicher arbeiten" });
     if (id === "enttaeuscht") push({ text: "Bau deine alte Anfrage nach den fünf Teilen um: Ziel, Kontext, Vorgaben, Format, Prüfkriterien.", link: "ki.html#t-lernen", linktext: "Prompten lernen" });
-    if (id === "fuersich") push({ text: "Prüf eine Stelle deiner Stunde mit der Papierfrage: Was kann das Tablet hier besser?", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
+    if (id === "fuersich" && !papier) push({ text: "Prüf eine Stelle deiner Stunde mit der Papierfrage: Was kann das Tablet hier besser?", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
     if (id === "weit") push({ text: "Prüf dein bestes Material mit dem Digital-Check. Der Bericht beginnt mit den Stärken.", link: "selbstcheck.html", linktext: "Digital-Check" });
     if (id === "offen") push({ text: "Bring deine Stunde mit und nenn die Stelle, an der die Lernenden hängen bleiben. Mehr braucht die erste Stunde nicht.", link: "beratung.html", linktext: "Beratungsstunde" });
     push({ text: "Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" });
@@ -585,11 +618,11 @@
     kniff("vorlage"); kniff("pruefliste");
 
     /* Codeblock für die Leitung: nur Auswahlwerte, lesbar und maschinenlesbar. */
-    var code = ["fortbildungsbogen v1", "lage=" + id + (skeptisch ? "+skeptisch" : "")];
-    ["haeufigkeit", "eingabe", "ergebnis", "vorbereitung", "zeit", "ziel", "s_bedienen", "s_pruefen", "s_duerfen", "s_bauen"].forEach(function (f) { if (a[f]) code.push(f + "=" + a[f]); });
-    ["systeme", "wofuer", "hindernis", "material", "tablet", "anlass", "gedanken", "lernen"].forEach(function (f) { if ((a[f] || []).length) code.push(f + "=" + a[f].join(",")); });
+    var code = ["fortbildungsbogen v2", "lage=" + id + (skeptisch ? "+skeptisch" : ""), "tablet=" + tid];
+    ["haeufigkeit", "eingabe", "ergebnis", "d_klassen", "d_dauer", "d_mehrwert", "d_wunsch", "vorbereitung", "zeit", "ziel", "s_bedienen", "s_pruefen", "s_duerfen", "s_bauen", "s_fuehren"].forEach(function (f) { if (a[f]) code.push(f + "=" + a[f]); });
+    ["systeme", "wofuer", "hindernis", "tablet", "d_formen", "d_gut", "d_schwer", "d_regeln", "material", "anlass", "gedanken", "lernen"].forEach(function (f) { if ((a[f] || []).length) code.push(f + "=" + a[f].join(",")); });
 
-    return { lage: lage, staerken: staerken.slice(0, 3), sicherheit: sicherheit, schritte: schritte.slice(0, 3), kniffe: kniffe, code: code.join(" · "),
+    return { lage: lage, tablet: tablet, staerken: staerken.slice(0, 3), sicherheit: sicherheit, schritte: schritte.slice(0, 3), kniffe: kniffe, code: code.join(" · "),
              satz: "Das ist keine Bewertung. Es ist dein Startpunkt – damit die Fortbildung bei dir anfängt und nicht irgendwo." };
   }
 
