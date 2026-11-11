@@ -20,9 +20,12 @@ Grundlage: Auftrag Mario, 11.11.2026 – »ersetze den Einstiegstrailer mit dem 
 - »29 Beispiele, im eigenen Unterricht erprobt«: Galerie-Einträge mit Status »im Unterricht erprobt«, Stand 11.11.2026. Die Zahl steht fest im Film und muss bei Änderungen der Galerie neu erzeugt werden.
 - Die Sätze zu den drei Beispielen stammen aus den Feldern der Galerie und von der Seite der sechs Prinzipien.
 
+## Start nur auf Knopfdruck (Entscheidung Mario, 11.11.2026)
+
+- Der Film läuft nicht mehr von selbst an. Er startet über »Film ansehen · 2 Minuten« oder über die Adresse mit `?film=1`.
+
 ## Offen
 
-- Der Film läuft weiter bei jedem neuen Besuch einmal von selbst. Zwei Minuten sind dafür lang; ob er künftig nur noch auf Knopfdruck startet, ist eine Entscheidung.
 - Auf dem iPad und in Safari noch nicht angesehen.
 
 ## Geprüft

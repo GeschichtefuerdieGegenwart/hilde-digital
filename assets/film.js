@@ -2,7 +2,7 @@
    Die Bühne (neun Kapitel, 120 Sekunden) steht in assets/film-buehne.js und stammt aus dem Drehbuch des Pitch-Films.
    Jede Bewegung ist eine CSS-Animation mit fester Verzögerung calc(Xs + var(--o)); --o verschiebt die Zeit.
    Dieses Skript baut die Bühne ein, zählt die Zeit und steuert Start, Halt und Ende.
-   Läuft bei jedem neuen Besuch einmal ab (nicht bei »Weniger Bewegung«); am Ende »Film nochmal ansehen« oder »Zur Startseite«.
+   Startet nur auf Knopfdruck (»Film ansehen«) oder über die Adresse mit ?film=1; am Ende »Film nochmal ansehen« oder »Zur Startseite«.
    Anhalten, Weiter, Überspringen (auch mit Esc). Keine Schleife. Gemerkt wird nur für diesen Besuch (sessionStorage).
    Bei »Weniger Bewegung« zeigt der Film neun Standbilder; »Nächstes Bild« blättert weiter. */
 (function () {
@@ -104,12 +104,11 @@
   var start = document.querySelector("[data-film-start]");
   if (start) start.addEventListener("click", oeffnen);
 
-  /* Bei jedem neuen Besuch einmal von selbst, nie bei weniger Bewegung */
+  /* Nur auf Knopfdruck (Entscheidung Mario, 11.11.2026: zwei Minuten sind zu lang für einen Start von selbst).
+     Ausnahme: die Adresse mit ?film=1 öffnet ihn gleich – einmal je Besuch, nie bei weniger Bewegung. So lässt sich der Film verlinken. */
   var gelaufen = false;
   try { gelaufen = sessionStorage.getItem("papierprobe.film") === "gelaufen"; } catch (e) { gelaufen = false; }
-  /* Automatische Browser-Tests (navigator.webdriver) sehen den Film nur mit ?film=1, damit er andere Prüfungen nicht verdeckt. */
-  var test = !!navigator.webdriver && !/[?&]film=1\b/.test(location.search);
-  if (!gelaufen && !weniger && !test) oeffnen();
+  if (/[?&]film=1\b/.test(location.search) && !gelaufen && !weniger) oeffnen();
 
   window.KiduFilm = { oeffnen: oeffnen, beenden: beenden, ENDE: ENDE, kapitel: D.kapitel,
     springe: function (t) { var lief = laeuft; laeuft = false; clearInterval(takt); aufbauen(t); if (lief) spielen(); },
