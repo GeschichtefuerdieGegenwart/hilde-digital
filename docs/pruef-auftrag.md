@@ -145,6 +145,8 @@ Diese Schwächen kommen in Unterrichtsmaterial immer wieder vor. Sieh bei jeder 
 - Lesen ohne Tun: Texte ohne Eingabe und Rückmeldung, ein Quiz nur mit richtig oder falsch, Notizen gehen beim Weiterklicken verloren.
 - Ohne Plenum: Die Tablet-Phase endet ohne ein Ergebnis, das im Gespräch aufgegriffen wird.
 - Lange Sachtexte am Gerät, besonders unter Zeitdruck: eine Papierfassung vorschlagen.
+- Leseaufgabe ohne Weg: Fehlt eine Frage, mit der man liest, eine Regel fürs Markieren oder ein Schritt danach?
+- Legeaufgabe ohne Beziehungen: Werden Karten nur sortiert, ohne benannte Beziehung und Begründung? Ist die fertige Lösung vorher zu sehen? Gibt es bei vielen Karten einen Zwischenstand?
 - Mit KI erstelltes Material bleibt oft beim Wiedergeben: Wo müssen die Lernenden selbst deuten, urteilen und Gegenpositionen prüfen?
 - Arbeiten Lernende mit KI: Gibt es eine Stelle, an der sie zeigen, was sie ohne KI können? Stellt die KI Rückfragen, oder gibt sie Lösungen aus?
 - Abhängig vom Netz: Schriften, Skripte, Videos oder Dienste von fremden Seiten; die Seite läuft nicht ohne Internet.

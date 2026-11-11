@@ -5,7 +5,7 @@
 var KURZFASSUNGEN = {
   "plugin": {
     "name": "kidu",
-    "version": "0.4.0"
+    "version": "0.5.0"
   },
   "skills": {
     "digital-check": {
@@ -17,14 +17,16 @@ var KURZFASSUNGEN = {
         "Lesen ohne Tun: Texte ohne Eingabe und Rückmeldung, ein Quiz nur mit richtig oder falsch, Notizen gehen beim Weiterklicken verloren.",
         "Ohne Plenum: Die Tablet-Phase endet ohne ein Ergebnis, das im Gespräch aufgegriffen wird.",
         "Lange Sachtexte am Gerät, besonders unter Zeitdruck: eine Papierfassung vorschlagen.",
+        "Leseaufgabe ohne Weg: Fehlt eine Frage, mit der man liest, eine Regel fürs Markieren oder ein Schritt danach?",
+        "Legeaufgabe ohne Beziehungen: Werden Karten nur sortiert, ohne benannte Beziehung und Begründung? Ist die fertige Lösung vorher zu sehen? Gibt es bei vielen Karten einen Zwischenstand?",
         "Mit KI erstelltes Material bleibt oft beim Wiedergeben: Wo müssen die Lernenden selbst deuten, urteilen und Gegenpositionen prüfen?",
         "Arbeiten Lernende mit KI: Gibt es eine Stelle, an der sie zeigen, was sie ohne KI können? Stellt die KI Rückfragen, oder gibt sie Lösungen aus?",
         "Abhängig vom Netz: Schriften, Skripte, Videos oder Dienste von fremden Seiten; die Seite läuft nicht ohne Internet."
       ],
       "pruef": [],
       "wo": "Digital-Check · Weg »Mit KI prüfen«, Abschnitt »Typische Schwächen«",
-      "fassung": "v1.2",
-      "datum": "10.11.2026",
+      "fassung": "v1.3",
+      "datum": "11.11.2026",
       "lizenz": false,
       "herunterladen": true
     },
@@ -112,6 +114,8 @@ var KURZFASSUNGEN = {
         "Frag zuerst nach, was die Stelle bewirken soll, wenn es nicht im Material steht. Höchstens drei Fragen.",
         "Schlag zwei bis drei Methoden vor, je mit einem Satz. Ich wähle.",
         "Die Methode lässt die Lernenden selbst abrufen, erklären, ordnen oder begründen. Hilfe ist noch kein Lernen.",
+        "Geht es um Texte: Prüf zuerst, ob die Lernenden den Text flüssig lesen können. Gib der Leseaufgabe ein Vorher, ein Während und ein Nachher und eine Frage, mit der man liest. Markieren nur mit Regel (wenig, Hauptsache von Nebensache trennen), danach ein Stichwort oder eine Frage an den Rand. Längere Sachtexte auf Papier.",
+        "Geht es um Strukturen: Die Lernenden legen selbst, mit drei bis fünf Arten von Beziehungen und einem Wort an jedem Pfeil, und begründen jede Lage. Eine Expertenstruktur erst nach der eigenen.",
         "Erst verstehen, dann abrufen. Merkhilfen wie Eselsbrücken nur zusammen mit Abrufen.",
         "Nenne bei jeder Methode, wofür sie weniger geeignet ist. Sinneskanäle sind keine Lerntypen.",
         "Gib nur dann an, wie gut die Methode belegt ist, wenn du eine Quelle nennen kannst: gut belegt · teilweise belegt · wenig erforscht. Sonst schreib »noch offen«.",
@@ -126,8 +130,8 @@ var KURZFASSUNGEN = {
       "ziel": "Wähle für die Stelle im Unterricht, die ich unten beschreibe, eine passende Lernmethode und schreib ein Handout für die Lernenden auf einer Seite.",
       "format": "Ein Handout mit diesen Teilen: Kopf (Name, Dauer, Sozialform, wie gut belegt) · Was das ist (drei Sätze) · Gut geeignet / weniger geeignet · So geht's (fünf Schritte) · Beispiel aus meinem Fach mit einem typischen Fehler · Mit Tablet (nur, wenn es etwas kann, was Papier nicht kann; sonst »auf Papier gleich gut«) · KI-Unterstützung (ein Auftrag mit [Platzhaltern] und Grenzen: erst selbst, dann KI; die Lösung erst auf Bitte; Selbsttest ohne KI) · Datenschutz · Quelle mit Datum. Danach ein Minutenplan für die erste Anwendung im Unterricht.",
       "wo": "Aufträge zum Kopieren · »Eine Lernmethode einführen«",
-      "fassung": "v1.1",
-      "datum": "10.11.2026",
+      "fassung": "v1.2",
+      "datum": "11.11.2026",
       "lizenz": false,
       "herunterladen": true
     },
@@ -165,6 +169,8 @@ var KURZFASSUNGEN = {
         "Wähl eine Stelle, nicht die ganze Stunde: wo Lernende hängen, wo Rückmeldung fehlt, wo geraten statt begründet wird.",
         "Was das Tablet wirklich besser kann: messen, zufällig zuteilen, sofort auswerten, Ergebnisse bündeln, simulieren, Rückmeldung geben, verdecken und aufdecken, fotografieren. Alles andere ist meist Verteilen.",
         "Keine Mischform: Das Gerät trägt einen Moment, eine Phase oder die ganze Stunde – nicht dieselbe Aufgabe halb am Gerät und halb auf Papier.",
+        "Längere Sachtexte lesen und markieren die Lernenden auf Papier. Am Gerät nur kurze Texte, und dann mit einer Aufgabe beim Lesen: ein Stichwort je Abschnitt oder eine Frage an den Text. Markieren nur mit Regel, danach folgt ein Stichwort, eine Frage oder eine Struktur.",
+        "Sollen Lernende Begriffe ordnen, legen sie die Struktur selbst – mit wenigen Arten von Beziehungen, einem Wort an jedem Pfeil und einer Begründung. Die Vorlage der Lehrkraft kommt erst danach.",
         "Bleib bei der Dramaturgie meiner Stunde. Was auf Papier gut funktioniert – Erwartungsstellen, Plenum, Tafel –, bleibt erkennbar.",
         "Rechne die Zeit ehrlich: Lesetext mit etwa 150 Wörtern pro Minute für langsame Lesende, dazu Eingaben und Wechsel zwischen Gerät und Plenum. Kennzeichne Schätzungen als Schätzung.",
         "Behaupte keine Funktionen von Geräten oder Lernplattformen aus dem Gedächtnis. Was du voraussetzt, kommt auf die Liste zum Prüfen.",
@@ -173,8 +179,8 @@ var KURZFASSUNGEN = {
       ],
       "pruef": [],
       "wo": "Unterricht digitalisieren · Abschnitt »Vorgehen« im Prompt",
-      "fassung": "v4.3",
-      "datum": "10.11.2026",
+      "fassung": "v4.4",
+      "datum": "11.11.2026",
       "lizenz": false,
       "herunterladen": true
     },

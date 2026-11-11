@@ -65,7 +65,7 @@ Für jede Zeile des Verlaufsplans (nicht nur die vier Grobphasen – ein echter 
 
 Was das Tablet wirklich kann, was Papier nicht kann: messen, zufällig zuteilen, sofort auswerten, Daten bündeln, simulieren, Rückmeldung geben, verdecken und aufdecken, fotografieren. Alles andere ist meist Verteilen.
 
-**Lese-Kriterium:** Ein längerer Sachtext, der unter Zeitdruck oder für eine Prüfung gelesen wird, gehört auf Papier. Am Bildschirm verstehen Lernende solche Texte im Mittel etwas schlechter, schwache Lesende besonders (Delgado et al. 2018; Salmerón et al. 2024). Kurze oder interaktive Texte mit Hilfen dürfen ans Gerät.
+**Lese-Kriterium:** Ein längerer Sachtext, der unter Zeitdruck oder für eine Prüfung gelesen wird, gehört auf Papier. Am Bildschirm verstehen Lernende solche Texte im Mittel etwas schlechter, schwache Lesende besonders (Delgado et al. 2018; Salmerón et al. 2024); sie überschätzen dort auch häufiger ihr Verstehen. Kurze oder interaktive Texte mit Hilfen dürfen ans Gerät – dann mit einer Tiefenaufgabe beim Lesen (Stichwort je Abschnitt, Frage an den Text), die den Nachteil verringern kann (Delgado et al. 2018).
 
 **Ist das Material schon digital, frage rückwärts:** Welche Phase wäre auf Papier besser – Ruhe, Schreiben von Hand, lange Texte lesen und markieren, Deutungsgespräch, weniger Technik?
 
@@ -95,6 +95,7 @@ Lege immer drei Varianten nebeneinander, je ein Absatz: Was tun die Lernenden? W
 
 Nur die gewählte Variante. Jeder Vorschlag hat einen didaktischen Kern: entweder ein **Unterrichtsmuster, das die Lehrkraft schon nutzt** (im Tresor unter `Bausteine/Unterrichtsmuster/`, z. B. »Zusatzinformation kippt das Urteil«, »Stolperkarten«, »Selbstdiagnose vor dem Üben«) oder eine **Lernmethode** (→ `lernmethode-einfuehren`, »gut belegte« bevorzugen). Ein vorhandenes Muster geht vor – nichts überstülpen, was die Stunde schon besser macht. Dazu die Bausteine, die sich bewährt haben:
 
+- **Lesen und Strukturlegen** (Belege und Faustregeln: `lernmethode-einfuehren/references/lesen-und-strukturlegen.md`): Der Regelfall ist hybrid – lesen und markieren auf Papier, am Gerät Markierungen vergleichen, Strukturen umbauen, speichern, vorne zeigen. Leseaufgaben haben ein Vorher, ein Während und ein Nachher; Markieren nur mit Regel und mit einer Tat danach. Strukturen legen die Lernenden selbst, mit wenigen benannten Beziehungen und Begründung; die Expertenstruktur kommt erst danach. Beim Legen am Gerät: Zwischenstand ab etwa fünf Karten, falsche Karten einzeln zurücklegen, Stand speichern, wenige Linien.
 - **Erst festlegen, dann auflösen.** Vermutung, Zuordnung oder Entscheidung vor jeder Auflösung; Begründung in einem Satz. Keine Interaktion, die man durch Raten erledigt; kein Zusatz, der die Lösung verrät.
 - **Rückmeldung, die erklärt** – je Antwortoption, nie nur richtig/falsch.
 - **Hilfe zum Ausklappen** nach dem eigenen Versuch; Aufgabe für Schnelle.
@@ -182,6 +183,8 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 - Wähl eine Stelle, nicht die ganze Stunde: wo Lernende hängen, wo Rückmeldung fehlt, wo geraten statt begründet wird.
 - Was das Tablet wirklich besser kann: messen, zufällig zuteilen, sofort auswerten, Ergebnisse bündeln, simulieren, Rückmeldung geben, verdecken und aufdecken, fotografieren. Alles andere ist meist Verteilen.
 - Keine Mischform: Das Gerät trägt einen Moment, eine Phase oder die ganze Stunde – nicht dieselbe Aufgabe halb am Gerät und halb auf Papier.
+- Längere Sachtexte lesen und markieren die Lernenden auf Papier. Am Gerät nur kurze Texte, und dann mit einer Aufgabe beim Lesen: ein Stichwort je Abschnitt oder eine Frage an den Text. Markieren nur mit Regel, danach folgt ein Stichwort, eine Frage oder eine Struktur.
+- Sollen Lernende Begriffe ordnen, legen sie die Struktur selbst – mit wenigen Arten von Beziehungen, einem Wort an jedem Pfeil und einer Begründung. Die Vorlage der Lehrkraft kommt erst danach.
 - Bleib bei der Dramaturgie meiner Stunde. Was auf Papier gut funktioniert – Erwartungsstellen, Plenum, Tafel –, bleibt erkennbar.
 - Rechne die Zeit ehrlich: Lesetext mit etwa 150 Wörtern pro Minute für langsame Lesende, dazu Eingaben und Wechsel zwischen Gerät und Plenum. Kennzeichne Schätzungen als Schätzung.
 - Behaupte keine Funktionen von Geräten oder Lernplattformen aus dem Gedächtnis. Was du voraussetzt, kommt auf die Liste zum Prüfen.
@@ -190,6 +193,7 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 
 ## Versionen
 
+- **v4.4, 11.11.2026:** Lesen und Strukturlegen: Lese-Kriterium um Selbstüberschätzung am Bildschirm und Tiefenaufgabe ergänzt; neuer Punkt in Schritt 5 (hybrid als Regelfall, Vorher – Während – Nachher, Markieren mit Regel, selbst legen mit benannten Beziehungen, Lehren zum digitalen Legen); Kurzfassung um zwei Regeln ergänzt; Belege in `lernmethode-einfuehren/references/lesen-und-strukturlegen.md`.
 - **v4.3, 10.11.2026:** Name Kidu (vorher »Hilde Digital«); Abschnitt »Kurzfassung für Kidu« als einzige Quelle für den kopierbaren Auftrag auf der Website.
 - **v4.2, 31.10.2026:** Lese-Kriterium in der Papierprobe; »Leistung mit KI ist nicht Lernen« mit Belegen im Abschnitt »Nur wenn Lernende mit KI arbeiten«; Warnung vor der zurückgezogenen Metaanalyse (nach dem Forschungsbericht »KI und digitale Medien im Unterricht«).
 - **v4.1, 31.10.2026:** Plugin geteilt – Bau-Skills liegen im Zusatz-Plugin »hilde-digital-bau«; ohne es endet der Weg mit dem Übergabeblock als Bauauftrag.
