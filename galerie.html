@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Kollegium.">
+<meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Unterricht.">
 <title>Galerie – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=3397cf1c">
+<link rel="stylesheet" href="assets/hilde.css?v=65ce7a90">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -21,8 +21,8 @@
 <section class="galerie-kopf" aria-labelledby="t-galerie"><div class="huelle"><div class="plattenband" id="plattenband" data-wahl="alle" aria-hidden="true"><span class="pl pl-ki"></span><span class="pl pl-le"></span></div></div><div class="huelle galerie-kopf-raster">
   <div class="galerie-kopf-text">
     <h1 id="t-galerie" class="passer" data-passer="Galerie">Galerie</h1>
-    <p class="detail-kurz">Echte Ansichten aus Lernanwendungen des Kollegiums. Sieh dir an, was Lernende dort tun – und probier es selbst aus.</p>
-    <p class="klein galerie-hinweis">Persönliche Erprobungen, keine Musterlösungen. Alle Bilder sind Bildschirmfotos aus den Anwendungen selbst.</p>
+    <p class="detail-kurz">Echte Ansichten aus Lernanwendungen, die im Unterricht eingesetzt wurden. Sieh dir an, was Lernende dort tun – und probier es selbst aus.</p>
+    <p class="klein galerie-hinweis">Persönliche Erprobungen, keine Musterlösungen. Alle Bilder sind Bildschirmfotos aus den Anwendungen selbst. Bisher stammen alle Beispiele aus dem Unterricht des Urhebers von Kidu.</p>
   </div>
 
   <form class="filter galerie-suche" id="filter" role="search" aria-label="Beispiele suchen und filtern">
@@ -71,6 +71,16 @@
 </div></section>
 
 <div class="stoebern" id="stoebern">
+<section class="prinzip-buehne" id="prinzip-buehne" aria-labelledby="t-prinzip"><div class="huelle stapel">
+  <div class="prinzip-kopf">
+    <h2 id="t-prinzip">Was das Gerät hier kann</h2>
+    <p class="mass">Sechs Dinge kann das Gerät besser als Papier. Wähl eines aus und sieh, in welchen Beispielen es steckt.</p>
+  </div>
+  <div class="muster-filter" id="prinzip-filter" role="group" aria-label="Nach Prinzip wählen"></div>
+  <p class="leise" id="prinzip-stand" aria-live="polite"></p>
+  <div class="prinzip-karten" id="prinzip-karten"></div>
+  <p class="leise klein">Die Zuordnung ist ein Vorschlag. Sie stammt aus der Seite <a href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> und aus Notizen zum Unterricht. Beispiele ohne Zuordnung stehen weiter unten.</p>
+</div></section>
 <section class="anfangen" id="anfangen" aria-labelledby="t-anfangen"><div class="huelle">
   <div class="anfangen-kopf">
     <h2 id="t-anfangen">Zum Anfangen</h2>
@@ -110,15 +120,16 @@
   <ul class="minis" id="hefter-liste"></ul>
   <p class="leise klein" id="hefter-meldung" aria-live="polite"></p>
 </div></section>
-<script src="assets/daten/taxonomien.js?v=91a81072"></script>
-<script src="assets/daten/beispiele.js?v=45229a26"></script>
+<script src="assets/daten/taxonomien.js?v=4a84d796"></script>
+<script src="assets/daten/beispiele.js?v=193ef2fb"></script>
 <script src="assets/daten/galerie.js?v=fcb2c4cd"></script>
-<script src="assets/hilde.js?v=aebd2255"></script>
+<script src="assets/hilde.js?v=5ee0d0a8"></script>
 <script src="assets/suche.js?v=1e9df4c6"></script>
 <script src="assets/showroom.js?v=c5b8dc08"></script>
 <script src="assets/anfangen.js?v=12dd97b8"></script>
 <script src="assets/faecher.js?v=e1c30618"></script>
 <script src="assets/galerie-buehne.js?v=2606f2c6"></script>
+<script src="assets/galerie-prinzipien.js?v=06ac4f93"></script>
 
 </main>
 <footer class="fuss"><div class="huelle">

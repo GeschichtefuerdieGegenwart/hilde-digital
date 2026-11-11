@@ -17,6 +17,33 @@
   function zweck(id) { return A.zwecke.filter(function (z) { return z.id === id; })[0]; }
   function punkte(xs) { return "<ul>" + xs.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>"; }
 
+  /* Ab 4.33: Jede Aufgabe als Prompt mit den fünf Teilen – anbieterneutral, aus den Feldern der Aufgabe gebaut. */
+  function prompt(a) {
+    return ["# Ziel",
+      "Erstelle für meinen Unterricht eine Aufgabe der Form »" + a.name + "«. " + a.tun,
+      "Sie soll fördern: " + a.foerdert,
+      "",
+      "# Kontext",
+      "Frage mich zuerst nach: Fach, Thema, Lerngruppe. Frage auch, ob die Aufgabe auf Papier oder am Gerät laufen soll. Beginne erst danach.",
+      "",
+      "# Anforderungen",
+      "- Faustregel: " + a.regel,
+      "- Sinnvoll ist sie: " + a.sinn.join("; ") + ".",
+      "- Vermeide: " + a.wenig.join("; ") + ".",
+      "- Kurze Sätze, eine Aussage pro Satz.",
+      "- Gib keine erfundenen Quellen, Zahlen oder Zitate an. Wenn du etwas nicht sicher weißt, kennzeichne es.",
+      "- Verwende keine personenbezogenen Daten.",
+      "",
+      "# Format",
+      "Zuerst die Fassung auf Papier. " + a.papier,
+      "Danach, nur wenn ich es wünsche, die Fassung am Gerät. " + a.geraet,
+      "Dazu ein Erwartungshorizont für mich.",
+      "",
+      "# Prüfkriterien",
+      "Prüfe am Ende: Müssen die Lernenden selbst denken, bevor eine Lösung erscheint? Passt die Aufgabe zum Ziel? Geht es auf Papier genauso gut? Dann sag es.",
+      "Markiere, was ich fachlich nachprüfen sollte."].join("\n");
+  }
+
   function karte(a) {
     var hebel = a.hebel.length
       ? a.hebel.map(function (h) { return '<a href="sechs-hebel.html#sh-' + h + '">' + esc(A.hebel[h]) + "</a>"; }).join(" · ")
@@ -41,6 +68,12 @@
         '<p class="koffer-regel"><b>Faustregel:</b> ' + esc(a.regel) + "</p>" +
         '<p class="koffer-erfahrung"><b>Aus dem Unterricht:</b> ' + esc(a.erfahrung) + bsp +
           ' <span class="leise klein">· ' + esc(EINSATZ[a.einsatz]) + "</span></p>" +
+        '<details class="mehr koffer-prompt"><summary>Als Prompt holen</summary>' +
+          '<p class="leise klein">Kopier den Prompt in ein an deiner Schule freigegebenes KI-System. Gib keine Namen, Noten oder anderen personenbezogenen Daten ein.</p>' +
+          '<label class="sr-only" for="p-' + a.id + '">Prompt – du kannst ihn ändern</label>' +
+          '<textarea id="p-' + a.id + '" rows="14" spellcheck="false">' + esc(prompt(a)) + "</textarea>" +
+          '<div class="kopieren"><button type="button" class="knopf" data-prompt-kopieren="p-' + a.id + '">Prompt kopieren</button> <span class="leise" aria-live="polite"></span></div>' +
+        "</details>" +
         '<p class="koffer-beleg leise klein"><b>Belegstand: ' + esc(a.stand) + ".</b> " + esc(a.beleg) + "</p>" +
       "</div></details></li>";
   }
@@ -77,6 +110,17 @@
     });
   }
   setze("");
+
+  document.addEventListener("click", function (e) {
+    var k = e.target.closest("[data-prompt-kopieren]"); if (!k) return;
+    var feld = document.getElementById(k.getAttribute("data-prompt-kopieren"));
+    var status = k.parentNode.querySelector("[aria-live]");
+    function selbst() { feld.focus(); feld.select(); status.textContent = "Der Text ist markiert. Kopiere ihn mit Strg + C (Mac: Cmd + C)."; }
+    try {
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(feld.value).then(function () { status.textContent = "Kopiert. Füge ihn in dein KI-System ein."; }, selbst);
+      else selbst();
+    } catch (err) { selbst(); }
+  });
 
   /* Sprungmarke auf eine Aufgabe (#k-…): aufklappen. */
   function oeffne() {

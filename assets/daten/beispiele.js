@@ -28,7 +28,8 @@
 var GH = "https://geschichtefuerdiegegenwart.github.io/";
 
 var BEISPIELE = [
-  { id: "psycho-ds2", titel: "Siehst du, was sich verändert?", fach: "Psychologie · Psycho-Labor",
+  { id: "psycho-ds2",
+    prinzipien: ["messen", "verdecken"], aufgaben: ["versuch"], geraet: "Das Gerät misst und rechnet aus. Die Auflösung bleibt zu, bis alle vermutet haben.", titel: "Siehst du, was sich verändert?", fach: "Psychologie · Psycho-Labor",
     auswahl: { grund: "Erst vermuten, dann erleben, dann aufdecken; das Kursbild entsteht ohne Server per QR-Code." },
     faecher: ["Psychologie"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Klasse testet ihre eigene Wahrnehmung und vergleicht die Ergebnisse mit einer echten Studie.",
@@ -41,9 +42,11 @@ var BEISPIELE = [
     technik: ["iPad (quer halten)", "Ergebnisse bleiben auf dem Gerät", "QR-Code, den die Lehrkraft mit der Kamera scannt", "Kursdiagramm am Beamer", "Zusammenfassung als PDF speichern"],
     dauer: "etwa 15 Minuten",
     sozialformen: ["Einzelarbeit", "Partnerarbeit"],
-    vorschlag: { lernaktivitaeten: true, technik: true, dauer: true, sozialformen: true } },
+    vorschlag: {
+      prinzipien: "Seite »Wann funktioniert digitaler Unterricht?«: Psycho-Labor als Beispiel zu Messen.", aufgaben: "Seite »Wann funktioniert digitaler Unterricht?«: Psycho-Labor als Beispiel zu Messen.", lernaktivitaeten: true, technik: true, dauer: true, sozialformen: true } },
 
-  { id: "ns-ideologie", titel: "Die fünf Säulen der NS-Ideologie", fach: "Geschichte · GGK-Labor",
+  { id: "ns-ideologie",
+    prinzipien: ["rueckmelden"], aufgaben: ["zuordnen"], geraet: "Das Gerät meldet zu jeder Zuordnung zurück, mit Begründung.", titel: "Die fünf Säulen der NS-Ideologie", fach: "Geschichte · GGK-Labor",
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Klasse ordnet Zeugnisse der Täter Denkmustern zu und entdeckt so die Ideen hinter der Ausgrenzung.",
     status: "im Unterricht erprobt", bild: "assets/bilder/ns-ideologie.jpg",
@@ -56,7 +59,8 @@ var BEISPIELE = [
     technik: ["iPad", "Eingaben bleiben auf dem Gerät", "QR-Code für das Kursbild", "Kursbild am Beamer", "Lernmappe als PDF für GoodNotes"],
     dauer: "90 Minuten",
     sozialformen: ["Einzelarbeit", "Plenum", "Gruppenarbeit", "Partnerarbeit"],
-    vorschlag: { lernaktivitaeten: true, technik: true, dauer: true, sozialformen: true } },
+    vorschlag: {
+      prinzipien: "Tresor »Muster aus der Praxis«: Zuordnen mit Begründung, Rückmeldung zur Zuordnung.", aufgaben: "Tresor »Muster aus der Praxis«: Zuordnen mit Begründung, Rückmeldung zur Zuordnung.", lernaktivitaeten: true, technik: true, dauer: true, sozialformen: true } },
 
   { id: "quest", titel: "Gruppenpädagogik-Quest", fach: "Sozialpädagogik",
     faecher: ["Sozialpädagogik"], bereich: "lernen",
@@ -97,7 +101,8 @@ var BEISPIELE = [
       nachher: { bild: "assets/bilder/anleiter-2026.jpg", alt: "Folie 2026: Zeitstrahl des Praxisjahres mit Blöcken, Praxisbesuchen und Fristen", text: "das ganze Jahr auf einem Zeitstrahl" }
     } },
 
-  { id: "bef1", titel: "Landkarte der Einheit »Spiel«", fach: "Sozialpädagogik · BEF I",
+  { id: "bef1",
+    prinzipien: [], aufgaben: ["einschaetzen"], titel: "Landkarte der Einheit »Spiel«", fach: "Sozialpädagogik · BEF I",
     faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "vorbereitung-lehrkraft",
     kurz: "Eine Übersicht zeigt den roten Faden der Einheit; die Lernenden schätzen sich zu drei Zeitpunkten selbst ein.",
     status: "im Unterricht erprobt", bild: "assets/bilder/bef1.jpg", link: GH + "sozpaed-psychologie/landkarte-spiel/",
@@ -107,9 +112,11 @@ var BEISPIELE = [
     lernaktivitaeten: ["den Ablauf der Einheit auf einer Landkarte überblicken", "am Ende jeder Doppelstunde 2–3 Sätze ins Logbuch schreiben", "sich im Ich-kann-Check selbst einschätzen", "zu einer Streitfrage ein begründetes Urteil bilden", "am Ende die Frage der Mutter im Elterngespräch beantworten"],
     technik: ["drucken oder als PDF speichern", "Einschätzungen antippen oder von Hand eintragen"],
     dauer: "12 Doppelstunden (Einheit)",
-    vorschlag: { lernaktivitaeten: true, technik: true, dauer: true } },
+    vorschlag: {
+      aufgaben: "Kurzbeschreibung des Beispiels: Selbsteinschätzung zu drei Zeitpunkten.", lernaktivitaeten: true, technik: true, dauer: true } },
 
-  { id: "lf3", titel: "Übungsplattform Lebenswelten", fach: "Sozialpädagogik · LF 3",
+  { id: "lf3",
+    prinzipien: ["rueckmelden"], aufgaben: [], geraet: "Das Gerät meldet beim Wiederholen sofort zurück.", titel: "Übungsplattform Lebenswelten", fach: "Sozialpädagogik · LF 3",
     faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Wiederholen mit sofortiger Rückmeldung und eine Übungsklausur mit Musterlösung.",
     status: "im Unterricht erprobt", bild: "assets/bilder/lf3.jpg", link: GH + "sozpaed-psychologie/uebungsplattform-lf3/",
@@ -117,9 +124,11 @@ var BEISPIELE = [
     phasen: ["sicherung"], umfang: "phasenweise", rollen: ["begleiten"],
     mehrwerte: ["rueckmeldung", "individuell"],
     lernaktivitaeten: ["Merkmale und Begriffe den richtigen Konzepten zuordnen", "Multiple-Choice-Fragen beantworten und mit der Begründung vergleichen", "Fallbeispiele analysieren (z. B. Ali, Emma und Sarah)", "pädagogische Maßnahmen für einen Fall planen", "eine Übungsklausur mit Musterlösungen bearbeiten"],
-    vorschlag: { lernaktivitaeten: true } },
+    vorschlag: {
+      prinzipien: "Kurzbeschreibung des Beispiels: »Wiederholen mit sofortiger Rückmeldung«.", lernaktivitaeten: true } },
 
-  { id: "fachbegriffe", titel: "Fachbegriffe-Trainer", fach: "Sozialpädagogik · EBG",
+  { id: "fachbegriffe",
+    prinzipien: ["rueckmelden", "verdecken"], aufgaben: ["kartei", "auswahl"], geraet: "Das Gerät zeigt die Musterlösung erst nach der eigenen Erklärung und meldet sofort zurück.", titel: "Fachbegriffe-Trainer", fach: "Sozialpädagogik · EBG",
     auswahl: { grund: "Üben mit sofortiger Rückmeldung – das Muster passt in jedes Fach." },
     faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "74 Fachbegriffe aus sechs Lernfeldern: selbst erklären, vergleichen, mit Karteikarten üben.",
@@ -128,9 +137,11 @@ var BEISPIELE = [
     phasen: ["sicherung"], umfang: "punktuell", rollen: ["begleiten"],
     mehrwerte: ["individuell"],
     lernaktivitaeten: ["einen Fachbegriff mit eigenen Worten erklären", "die eigene Erklärung mit der Musterlösung vergleichen", "Multiple-Choice-Fragen beantworten", "mit Karteikarten wiederholen", "Begriffe nach Lernfeld filtern"],
-    vorschlag: { lernaktivitaeten: true } },
+    vorschlag: {
+      prinzipien: "Lernaktivitäten des Beispiels: selbst erklären, mit der Musterlösung vergleichen, Karteikarten.", aufgaben: "Lernaktivitäten des Beispiels: selbst erklären, mit der Musterlösung vergleichen, Karteikarten.", lernaktivitaeten: true } },
 
-  { id: "nation", titel: "Nation im Kopf", fach: "Geschichte · Gemeinschaftskunde",
+  { id: "nation",
+    prinzipien: ["variieren"], aufgaben: ["einordnen"], geraet: "Das Gerät zeigt den begründeten Vorschlag erst, wenn der eigene Regler gesetzt ist.", titel: "Nation im Kopf", fach: "Geschichte · Gemeinschaftskunde",
     faecher: ["Geschichte", "Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden wählen einen Länderfall und begründen ein Urteil mit Kriterien.",
     status: "im Unterricht erprobt", link: GH + "nation-im-kopf-gene/",
@@ -139,9 +150,11 @@ var BEISPIELE = [
     phasen: ["erarbeitung"], umfang: "phasenweise", rollen: ["begleiten", "moderieren"],
     mehrwerte: ["zugaenge"],
     lernaktivitaeten: ["eine erste Vermutung zur Leitfrage notieren", "vier Erklärungen von Nation kennenlernen", "einen von fünf Länderfällen wählen und gründlich untersuchen", "den Fall zwischen Willensnation und Abstammung einordnen", "am Ende ein begründetes Urteil formulieren"],
-    vorschlag: { lernaktivitaeten: true } },
+    vorschlag: {
+      prinzipien: "Tresor »Lernlabor Nation im Kopf«, Station 6: Regler setzen, mit Vorschlag vergleichen.", aufgaben: "Tresor »Lernlabor Nation im Kopf«, Station 6: Regler setzen, mit Vorschlag vergleichen.", lernaktivitaeten: true } },
 
-  { id: "gene", titel: "Gene ohne Reisepass", fach: "Demokratiebildung",
+  { id: "gene",
+    prinzipien: ["variieren"], aufgaben: ["regler"], geraet: "Das Gerät lässt eine Grenze verschieben und zeigt sofort, was folgt – und was nicht.", titel: "Gene ohne Reisepass", fach: "Demokratiebildung",
     faecher: ["Demokratiebildung"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Mit Reglern prüfen die Lernenden, ob Nationalität in den Genen steht.",
     status: "im Unterricht erprobt", link: GH + "nation-im-kopf-gene/gene-ohne-reisepass.html",
@@ -150,7 +163,8 @@ var BEISPIELE = [
     mehrwerte: ["experimentieren"],
     lernaktivitaeten: ["Aussagen als richtig, falsch oder „kommt darauf an“ einschätzen", "mit Reglern Grenzen verschieben und beobachten", "den scheinbaren Widerspruch mit Andersons Begriff erklären", "Merkmale einer Ebene (biologisch, rechtlich, kulturell) zuordnen", "eine Aussage zur Abstammung beurteilen"],
     technik: ["Zusammenfassung als PDF herunterladen"],
-    vorschlag: { lernaktivitaeten: true, technik: true } },
+    vorschlag: {
+      prinzipien: "Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Variieren.", aufgaben: "Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Variieren.", lernaktivitaeten: true, technik: true } },
 
   { id: "landkarte", titel: "Kognitive Landkarte", fach: "Geschichte",
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
@@ -175,7 +189,8 @@ var BEISPIELE = [
     technik: ["Browser", "Beamer-Ansicht", "Druckfassung schwarz-weiß", "Fortschritt wird gespeichert"],
     vorschlag: { lernaktivitaeten: true, technik: true } },
 
-  { id: "planspiel", titel: "Planspiel Umverteilung", fach: "Gemeinschaftskunde",
+  { id: "planspiel",
+    prinzipien: ["variieren"], aufgaben: ["regler"], geraet: "Das Gerät rechnet jede Einstellung sofort neu: Ein Steuersatz verschiebt sich, die Folge wird sichtbar.", titel: "Planspiel Umverteilung", fach: "Gemeinschaftskunde",
     faecher: ["Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden verändern Stellschrauben der Umverteilung und sehen die Folgen.",
     status: "im Unterricht erprobt", link: GH + "soziale-Gerechtigkeit/",
@@ -185,7 +200,8 @@ var BEISPIELE = [
     lernaktivitaeten: ["Daten zur Verteilung von Vermögen und Einkommen ansehen", "Diskussionsfragen in Kleingruppen bearbeiten und Antworten festhalten", "Pro- und Contra-Argumente lesen und mit dem Regler zustimmen", "eigene Stellschrauben einstellen und Auswirkungen ansehen", "die Entscheidung der Gruppe im Plenum präsentieren"],
     dauer: "ca. 10–15 Minuten für die Diskussionsfragen",
     sozialformen: ["Gruppenarbeit", "Plenum"],
-    vorschlag: { lernaktivitaeten: true, dauer: true, sozialformen: true } },
+    vorschlag: {
+      prinzipien: "Tresor »Muster aus der Praxis«: Regler, die eine Folge sichtbar machen.", aufgaben: "Tresor »Muster aus der Praxis«: Regler, die eine Folge sichtbar machen.", lernaktivitaeten: true, dauer: true, sozialformen: true } },
 
   { id: "one-step", titel: "One Step Forward", fach: "Gemeinschaftskunde",
     auswahl: { grund: "Ein Impuls fürs Plenum: Positionen werden sichtbar, ohne dass jemand bloßgestellt wird." },
@@ -234,7 +250,8 @@ var BEISPIELE = [
     mehrwerte: ["sichtbar", "dokumentieren"],
     suchbegriffe: ["Raumgestaltung", "Kita", "induktiv", "Erzieher", "Lerntagebuch"] },
 
-  { id: "hilberg", aufgenommen: "2026-10", titel: "Historische Kategorisierung im Nationalsozialismus", fach: "Geschichte",
+  { id: "hilberg",
+    prinzipien: [], aufgaben: ["zuordnen"], aufgenommen: "2026-10", titel: "Historische Kategorisierung im Nationalsozialismus", fach: "Geschichte",
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die Lernenden ordnen historische Akteur*innen nach dem Modell von Raul Hilberg fünf Kategorien zu – auch mehreren zugleich.",
     status: "im Unterricht erprobt", bild: "assets/bilder/hilberg.jpg", link: GH + "T-ter-innen-Opfer-Zuschauer-innen.../",
@@ -246,7 +263,8 @@ var BEISPIELE = [
     mehrwerte: ["sichtbar"],
     suchbegriffe: ["Täter", "Opfer", "Zuschauer", "Hilberg", "Holocaust"],
     technik: ["Zuordnung über Checkboxen oder Ziehen der Karten"],
-    vorschlag: { technik: true } },
+    vorschlag: {
+      aufgaben: "Kurzbeschreibung des Beispiels: Akteur*innen Kategorien zuordnen.", technik: true } },
 
   { id: "widerstandsmodelle", aufgenommen: "2026-10", titel: "Widerstandsmodelle im NS", fach: "Geschichte",
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
@@ -339,7 +357,8 @@ var BEISPIELE = [
      Titel und Kurzbeschreibung folgen dem Material. Status »im Unterricht erprobt«, KI-Einsatz und Dauer hat die Lehrkraft am 26.10.2026 bestätigt. Alle didaktischen Zuordnungen und die aus dem Material abgeleiteten
      Angaben stehen in »vorschlag«, jeweils mit dem Satz aus der Quelle, der die Zuordnung stützt.
      Bildschirmfotos vom 26.10.2026 aus lokalen Kopien der Repositories (Herkunft: docs/galerie-quellen.md). ---------- */
-  { id: "m19-appeasement", aufgenommen: "2026-10", titel: "Appeasement-Politik – der Weg zum Frieden oder in den Zweiten Weltkrieg?", fach: "Geschichte · GGK-Labor",
+  { id: "m19-appeasement",
+    prinzipien: ["verdecken", "buendeln"], aufgaben: ["entscheiden", "klassenbild"], geraet: "Das Gerät sammelt ohne Namen, wie sicher sich die Klasse bei ihrem Urteil ist.", stimme: "Einzelne Lernende fanden es zu viel Klicken: zu viele neue Seiten nacheinander.", aufgenommen: "2026-10", titel: "Appeasement-Politik – der Weg zum Frieden oder in den Zweiten Weltkrieg?", fach: "Geschichte · GGK-Labor",
     auswahl: { grund: "Die Lernenden arbeiten am Gerät, die Abstimmung läuft mit Stimmkarte und Tafel im Plenum – so sieht hybrid aus." },
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Als Abgeordnete im Unterhaus erfahren die Lernenden in fünf Bausteinen, was London von 1933 bis 1939 wusste – und stimmen dreimal ab. Gesichert wird an der Tafel.",
@@ -358,6 +377,7 @@ var BEISPIELE = [
     verwandt: ["ns-ideologie", "m20-dilemmata"],
     suchbegriffe: ["Appeasement", "Chamberlain", "München 1938", "Außenpolitik", "Entscheidung", "hybrid", "Tafelbild"],
     vorschlag: {
+      prinzipien: "Probe »Bündeln«: »wie die Sicherheitsfrage in M19 und M20«; Tresor: Entscheidungsstunde, Rückmeldung zu M18/M19 (08.11.2026).", aufgaben: "Probe »Bündeln«: »wie die Sicherheitsfrage in M19 und M20«; Tresor: Entscheidungsstunde, Rückmeldung zu M18/M19 (08.11.2026).",
       lernaktivitaeten: "Kopf der Seite: »Drei Entscheidungen in je sieben Schritten: Lage · Handlungsspielraum · Optionen · Folgen · Nachdenken · Abstimmung · Auswertung.«",
       technik: "README: »iPad-Fassung nach der Print-Stunde; ?ansicht=lehrkraft öffnet den verschlüsselten Lehrkraftbereich«; Faktensicherung M19 als PDF, 2 Seiten.",
       anliegen: "Einstieg: »In fünf Bausteinen erfahren Sie, was von 1933 bis 1939 geschieht – immer nur so viel, wie man in London zum jeweiligen Zeitpunkt wusste.«",
@@ -367,7 +387,8 @@ var BEISPIELE = [
       mehrwerte: "Vier Textsorten (Quelle, Darstellung, Lagebericht, Rückblick) und ein Perspektivschalter bieten gestufte Zugänge; die Stimmkarte macht die Haltung der Klasse sichtbar.",
       sozialformen: "Die Bausteine bearbeitet jede Person auf dem eigenen iPad; Abstimmung und Tafelbild finden in der Klasse statt (»Die Klasse stimmt ab. Das Ergebnis sichern wir an der Tafel.«)." } },
 
-  { id: "m20-dilemmata", aufgenommen: "2026-10", titel: "Großbritannien im Zweiten Weltkrieg – drei Dilemmata", fach: "Geschichte · GGK-Labor",
+  { id: "m20-dilemmata",
+    prinzipien: ["verdecken", "buendeln"], aufgaben: ["entscheiden", "klassenbild"], geraet: "Das Gerät hält die Auflösung zurück, bis die Klasse abgestimmt hat. Dann zeigt es die Stimmen ohne Namen als Halbrund.", aufgenommen: "2026-10", titel: "Großbritannien im Zweiten Weltkrieg – drei Dilemmata", fach: "Geschichte · GGK-Labor",
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Mai 1940, Juli 1941, Februar 1944: Die Lernenden machen sich ein Bild, diskutieren kurz, stimmen ab und gleichen ihre Entscheidung mit den Ereignissen ab.",
     status: "im Unterricht erprobt", bild: "assets/galerie/dilemmata-1.webp", link: GH + "GGK-Einheit-Nationalsozialismus/m20-dilemmata.html",
@@ -386,6 +407,7 @@ var BEISPIELE = [
     verwandt: ["m19-appeasement", "karte-ww2"],
     suchbegriffe: ["Churchill", "Dilemma", "Zweiter Weltkrieg", "Luftkrieg", "Sowjetunion", "Entscheidung", "Abstimmung"],
     vorschlag: {
+      prinzipien: "Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Verdecken und Bündeln.", aufgaben: "Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Verdecken und Bündeln.",
       lernaktivitaeten: "README: »Ablauf je Dilemma: selbst ein Bild machen → kurz diskutieren → abstimmen → mit den Ereignissen abgleichen; am Ende eine Zusammenfassung auf zwei Seiten A4.«",
       technik: "README: »Nach jeder Abstimmung gibt es die Beamer-Ansicht ›Ergebnis der Klasse‹«; »?ansicht=lehrkraft öffnet den verschlüsselten Lehrkraftbereich«; »Bilder M20 … liegen nur im Moodle-Paket«.",
       anliegen: "Jedes Dilemma endet mit der Auswertung: Schwärzung aufgedeckt, fünf Ereignisse, eine Besprechungsfrage – die eigene Entscheidung wird am Verlauf geprüft.",
@@ -395,7 +417,8 @@ var BEISPIELE = [
       mehrwerte: "README: »Alle Zitate mit Fundstelle (Hansard, National Archives, Avalon u. a.)«; das Halbrund zeigt das Ergebnis der Klasse am Beamer.",
       sozialformen: "Lage, Optionen und Nachdenken laufen auf dem eigenen Gerät; Diskussion und Abstimmung in der Klasse (»Dilemma 2 … Schritt 2 gemeinsam am Beamer«)." } },
 
-  { id: "m22-wie-war-das-moeglich", aufgenommen: "2026-10", titel: "„Große Verbrechen brauchen keine Monster!“ – Wie war das möglich?", fach: "Geschichte · GGK-Labor",
+  { id: "m22-wie-war-das-moeglich",
+    prinzipien: ["stufen"], aufgaben: ["stufen"], geraet: "Das Gerät bietet jede Akte in drei Lesestufen an: Einstieg, Vertiefung, Kontroverse.", aufgenommen: "2026-10", titel: "„Große Verbrechen brauchen keine Monster!“ – Wie war das möglich?", fach: "Geschichte · GGK-Labor",
     auswahl: { grund: "Versiegelte erste Antwort, Lesestufen, Marktplatz: eine ganze Doppelstunde, die ins Gespräch zurückführt." },
     faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Täterforschung in 90 Minuten: eine versiegelte erste Antwort, ein Faktencheck, der Fall Józefów 1942, sechs Forschungsakten in drei Lesestufen und ein Marktplatz.",
@@ -416,6 +439,7 @@ var BEISPIELE = [
     verwandt: ["hilberg", "ns-ideologie"],
     suchbegriffe: ["Täterforschung", "Browning", "Arendt", "Milgram", "Józefów", "Holocaust", "Marktplatz", "Abrufübung"],
     vorschlag: {
+      prinzipien: "Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Stufen.", aufgaben: "Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Stufen.",
       lernaktivitaeten: "README: »versiegelte erste Antwort, Faktencheck zu drei Floskeln, der Fall Józefów 1942 als Kartenstapel, sechs Forschungsakten … in drei Lesestufen, Marktplatz, Erklärungsmodell mit fünf Ebenen, Beamer-Ansicht der Tischmodelle, Rückblick und Zusammenfassung«.",
       technik: "Lehrkraftseite im Modul: »Die Lernenden arbeiten mit dem iPad. Gespeichert wird nur in ihrem Browser. Hier trägst du die Modelle der Tischgruppen ein und startest die Moderation.«",
       anliegen: "Akten mit Gewichtungs-Check, Marktplatz mit Streitpaaren am Tisch, Rückblick »Person oder Umstände?« – verstehen, gemeinsam aushandeln, übertragen.",
@@ -425,7 +449,8 @@ var BEISPIELE = [
       mehrwerte: "README: Akten »in drei Lesestufen«, »Gewichtungs-Check mit Rückmeldung je Ebene«, »Beamer-Ansicht der Tischmodelle«.",
       sozialformen: "Ablauf der Lehrkraftseite, Spalte »Form«: »Plenum, allein« · »allein oder zu zweit« · »Marktplatz, Tischgruppe« · »Plenum«." } },
 
-  { id: "politik-werkstatt", aufgenommen: "2026-10", titel: "Politik-Werkstatt – Parteien und Wahlen", fach: "Gemeinschaftskunde · Politik-Werkstatt",
+  { id: "politik-werkstatt",
+    prinzipien: ["rueckmelden"], aufgaben: ["auswahl", "zuordnen", "reihe", "markieren", "film", "abruf"], geraet: "Das Gerät erklärt jede Antwort sofort – »Passt · Vertretbar · Eher nicht«. Nach fünf Karten zeigt es einen Zwischenstand.", stimme: "Die Lernenden waren voll dabei. Gewünscht haben sie sich einen Zwischenstand beim Sortieren, einen Knopf zum Zurücklegen und weniger Linien.", aufgenommen: "2026-10", titel: "Politik-Werkstatt – Parteien und Wahlen", fach: "Gemeinschaftskunde · Politik-Werkstatt",
     auswahl: { grund: "Fünf Stationen mit echtem Stimmzettel und Sitzrechner – und die einzige Lernseite mit dokumentierter Prüfkette." },
     faecher: ["Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Fünf Stationen vom Art. 21 GG bis zum Sitzrechner: Die Klasse wählt mit dem echten Stimmzettel des Wahlkreises, zählt aus und vergleicht mit dem amtlichen Ergebnis.",
@@ -454,6 +479,7 @@ var BEISPIELE = [
     verwandt: ["politik-check", "milieus-1919"],
     suchbegriffe: ["Parteien", "Bundestagswahl 2025", "Stimmzettel", "Sitzrechner", "5-%-Hürde", "Koalition", "Wahlstatistik", "Beutelsbacher Konsens"],
     vorschlag: {
+      prinzipien: "Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Rückmelden; Nach der Stunde vom 08.11.2026.", aufgaben: "Seite »Wann funktioniert digitaler Unterricht?«: Beispiel zu Rückmelden; Nach der Stunde vom 08.11.2026.",
       lernaktivitaeten: "Bericht des Repositories, Tabelle »Seiten«: Station 1 bis 5 mit Art. 21 GG, zwölf Beispielen, acht Streitfragen, Stimmzettel und Sitzrechner, Wahlstatistik und Beurteilungsraster.",
       technik: "Lehrkraft-Modus: »Wahllokal am Lehrkraftgerät«, »Beamer-Ansichten (1280 × 720)«, »Läuft offline über Datei-Doppelklick, über GitHub Pages und als Datei in Moodle«.",
       anliegen: "Startseite: »Aufgaben und Funktionen von Parteien kennen«, »Die Stimme abgeben und Ergebnisse auswerten«, »Beurteilen, welche Rolle das Alter bei einer Wahl spielt«.",
@@ -463,7 +489,8 @@ var BEISPIELE = [
       mehrwerte: "README: »Stimmzettel des Wahlkreises 260 Böblingen, Positionen wörtlich aus den Wahlprogrammen 2025, Repräsentative Wahlstatistik 2025«; Sitzrechner mit Schalter für die 5-%-Hürde; Rückmeldung »Passt / Vertretbar / Eher nicht« mit Begründung.",
       sozialformen: "Verlaufsplan, Spalte »Sozialform«: Plenum, Einzel/Partner, Partner, Einzel." } },
 
-  { id: "psycho-ds3-6", aufgenommen: "2026-10", titel: "Psycho-Labor: Gestalt, Erwartung, Konformität, Anspruchsniveau", fach: "Psychologie · Psycho-Labor",
+  { id: "psycho-ds3-6",
+    prinzipien: ["messen", "verdecken"], aufgaben: ["versuch"], geraet: "Das Gerät misst, teilt zufällig zu und stellt das eigene Ergebnis neben die Originalstudie.", aufgenommen: "2026-10", titel: "Psycho-Labor: Gestalt, Erwartung, Konformität, Anspruchsniveau", fach: "Psychologie · Psycho-Labor",
     faecher: ["Psychologie"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Vier weitere Selbstversuche: Wie baut mein Gehirn Bilder? Sehe ich, was ich erwarte? Wie sehr beeinflussen mich andere? Was treibt mich an?",
     status: "im Unterricht erprobt", bild: "assets/galerie/psycho-ds3-6-1.webp", link: GH + "psycho-labor/",
@@ -483,6 +510,7 @@ var BEISPIELE = [
     verwandt: ["psycho-ds2"],
     suchbegriffe: ["Wahrnehmung", "Gestaltgesetze", "Erwartung", "Konformität", "Asch", "Motivation", "Anspruchsniveau", "Selbstversuch"],
     vorschlag: {
+      prinzipien: "Seite »Wann funktioniert digitaler Unterricht?«: Psycho-Labor als Beispiel zu Messen.", aufgaben: "Seite »Wann funktioniert digitaler Unterricht?«: Psycho-Labor als Beispiel zu Messen.",
       lernaktivitaeten: "Modulseiten: DS 3 »Teil A · zu zweit: Sieben Entdeckungen«, DS 4 »Versuch 1: Spielkarten«, DS 5 »Punkte schätzen … Linien vergleichen«, DS 6 »Vier Runden mit Ziel«; überall »Vermutung festhalten«, »Zeig diesen QR-Code deiner Lehrkraft«, »Lernmappe als PDF«.",
       technik: "README: »Ergebnisse werden nur im Browser des jeweiligen iPads gespeichert«; »jede Schülerin zeigt einen QR-Code. Die Lehrkraft scannt ihn mit der Kamera-App«; Modulseiten: »Lernmappe mit vier Seiten … Damit arbeitest du in GoodNotes weiter.«",
       anliegen: "Startseite: »Hier probierst du selbst aus … Jeder Versuch beginnt mit deiner Vermutung«; die Auflösung zeigt das Kursdiagramm am Beamer.",
@@ -492,7 +520,8 @@ var BEISPIELE = [
       mehrwerte: "Produktbeschreibung: Das Tablet leistet »verdeckte Zuteilung von Bedingungen, genaue Zeiten, sofortige anonyme Kursdaten, Lernmappe mit eigenen Daten«.",
       sozialformen: "Modulseiten: DS 3 »Teil A · zu zweit«, »Teil B · allein«; DS 4 bis 6 »allein«, Auflösung »gemeinsam, dann allein schreiben«." } },
 
-  { id: "erfundene-traditionen", aufgenommen: "2026-10", titel: "Erfundene Traditionen", fach: "Geschichte · Demokratiebildung",
+  { id: "erfundene-traditionen",
+    prinzipien: [], aufgaben: ["urteil"], aufgenommen: "2026-10", titel: "Erfundene Traditionen", fach: "Geschichte · Demokratiebildung",
     faecher: ["Geschichte", "Demokratiebildung"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Wie alt ist das Alte? Die Lernenden prüfen Hobsbawms These an Sedantag, Denkmälern und Hymne des Kaiserreichs, an Frankreich und Schottland.",
     status: "im Unterricht erprobt", bild: "assets/galerie/erfundene-traditionen-1.webp", link: GH + "nation-im-kopf-gene/erfundene-traditionen.html",
@@ -512,6 +541,7 @@ var BEISPIELE = [
     verwandt: ["nation", "gene", "nationalismus-demokratie"],
     suchbegriffe: ["Hobsbawm", "Smith", "Kaiserreich", "Sedantag", "Nationalhymne", "Tradition", "Nation"],
     vorschlag: {
+      aufgaben: "Tresor »Operatoren und Aufgabenformate«: Urteilsaufgaben mit Erwartungshorizont.",
       lernaktivitaeten: "Abschnitte des Moduls: »Schätze: Seit wann gibt es das?«, »Hobsbawms These«, »Fall Kaiserreich«, »Vergleich«, »Theorie-Duell«, »Ritual-Analyse«, »Operatorengerechte Aufgaben« mit Erwartungshorizont.",
       technik: "README: »Die Seiten speichern keine Daten. Alle Eingaben bleiben im Browser der Nutzenden«; PDF-Zusammenfassung im Ordner pdf/.",
       anliegen: "Einleitung: »Du prüfst diese These an Fällen« – erst schätzen, dann untersuchen, dann vergleichen.",

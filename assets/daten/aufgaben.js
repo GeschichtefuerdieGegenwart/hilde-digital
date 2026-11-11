@@ -54,7 +54,7 @@ var AUFGABEN = {
       regel: "Die Rückmeldung ist der erklärende Text. Zu jeder Antwort einer.",
       erfahrung: "Politik-Werkstatt, Station 2: zwölf Beispiele mit »Passt · Vertretbar · Eher nicht«, jeweils mit Begründung. Die Stunde kam sehr gut an (persönliche Beobachtung, 08.11.2026).",
       einsatz: "eingesetzt", beispiel: "politik-werkstatt",
-      beleg: "Sich selbst prüfen hat hohen Nutzen (Dunlosky u. a. 2013). Wie viel die erklärende Rückmeldung dazu beiträgt: hier noch offen.", stand: "teilweise belegt"
+      beleg: "Rückmeldung wirkt im Mittel deutlich (d = 0,48). Rückmeldung mit viel Information wirkt am stärksten (d = 0,99), bloßes Loben oder Tadeln am schwächsten (d = 0,24) (Wisniewski, Zierer & Hattie 2020). Sich selbst prüfen hat hohen Nutzen (Dunlosky u. a. 2013).", stand: "belegt"
     },
     {
       id: "kartei", zweck: "wissen", ort: "hybrid", hebel: ["verdecken"],
@@ -174,7 +174,7 @@ var AUFGABEN = {
       regel: "Erst vermuten, dann gibt der Regler frei. Jedes Modell heißt Modell.",
       erfahrung: "»Gene ohne Reisepass« und das Planspiel Umverteilung sind im Unterricht erprobt. Eine ausgewertete Rückmeldung der Lernenden: noch offen.",
       einsatz: "eingesetzt", beispiel: "gene",
-      beleg: "Eigene Beobachtung. Studien zu genau dieser Aufgabenform: noch offen.", stand: "noch offen"
+      beleg: "Simulationen bringen gegenüber Unterricht ohne sie einen deutlichen Lerngewinn (g = 0,62); mit eingebauten Hilfen noch mehr (g = 0,49 gegenüber Simulationen ohne Hilfen). Fast alle Studien stammen aus den Naturwissenschaften (D'Angelo u. a. 2014). Für Geschichte und Politik: noch offen.", stand: "teilweise belegt"
     },
     {
       id: "klassenbild", zweck: "untersuchen", ort: "geraet", hebel: ["buendeln"],
@@ -189,7 +189,7 @@ var AUFGABEN = {
       regel: "Ein Gerät vorne ist einfacher als viele Geräte zusammenzuführen.",
       erfahrung: "Drei Dilemmata (M20): Die Stimmen der Klasse formen ein Halbrund am Beamer. Politik-Werkstatt: Klassenwahl am Gerät der Lehrkraft. Psycho-Labor: Der Kursvergleich über viele Geräte per QR-Code hat nicht geklappt – die Ergebnisse ließen sich nicht sammeln.",
       einsatz: "eingesetzt", beispiel: "m20-dilemmata",
-      beleg: "Eigene Beobachtung. Studien zu genau dieser Aufgabenform: noch offen.", stand: "noch offen"
+      beleg: "Abstimmungssysteme haben kleine, aber gesicherte Effekte auf das Lernen. Es kommt auf die Fragen an (Hunsu, Adesope & Bayly 2016).", stand: "teilweise belegt"
     },
     {
       id: "entscheiden", zweck: "urteilen", ort: "geraet", hebel: ["verdecken", "buendeln"],
@@ -301,8 +301,11 @@ var AUFGABEN = {
     { kurz: "Delgado u. a. 2018", text: "Delgado, Vargas, Ackerman & Salmerón (2018): Don't throw away your printed books. Educational Research Review, 25, 23–38.", ort: "DOI 10.1016/j.edurev.2018.09.003" },
     { kurz: "Dunlosky u. a. 2013", text: "Dunlosky, Rawson, Marsh, Nathan & Willingham (2013): Improving students' learning with effective learning techniques. Psychological Science in the Public Interest, 14(1), 4–58.", ort: "DOI 10.1177/1529100612453266" },
     { kurz: "Fiorella & Mayer 2016", text: "Fiorella & Mayer (2016): Eight ways to promote generative learning. Educational Psychology Review, 28, 717–741.", ort: "DOI 10.1007/s10648-015-9348-9" },
+    { kurz: "D'Angelo u. a. 2014", text: "D'Angelo, Rutstein, Harris, Haertel, Bernard & Borokhovski (2014): Simulations for STEM Learning. Systematic Review and Meta-Analysis. SRI International.", ort: "" },
+    { kurz: "Hunsu, Adesope & Bayly 2016", text: "Hunsu, Adesope & Bayly (2016): A meta-analysis of the effects of audience response systems on cognition and affect. Computers & Education, 94, 102–119. Nur die Zusammenfassung gelesen.", ort: "" },
     { kurz: "Mayer & Marks 2019", text: "Mayer & Marks (2019): Förderung des Textverständnisses durch die Vermittlung von Verstehensstrategien – eine Metaanalyse. Forschung Sprache, 1/2019.", ort: "" },
     { kurz: "Ponce, Mayer & Méndez 2022", text: "Ponce, Mayer & Méndez (2022): Effects of learner-generated highlighting and instructor-provided highlighting on learning from text. Educational Psychology Review, 34(2), 989–1024. Zahlen nach Marzouk & Winne (2025), Frontiers in Education, 10.", ort: "DOI 10.3389/feduc.2025.1510007 (Marzouk & Winne)" },
+    { kurz: "Wisniewski, Zierer & Hattie 2020", text: "Wisniewski, Zierer & Hattie (2020): The Power of Feedback Revisited. A Meta-Analysis of Educational Feedback Research. Frontiers in Psychology, 10, 3087.", ort: "DOI 10.3389/fpsyg.2019.03087" },
     { kurz: "Schroeder u. a. 2018", text: "Schroeder, Nesbit, Anguiano & Adesope (2018): Studying and constructing concept maps: a meta-analysis. Educational Psychology Review, 30.", ort: "DOI 10.1007/s10648-017-9403-9" }
   ]
 };

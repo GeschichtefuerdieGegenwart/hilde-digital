@@ -429,7 +429,7 @@
 
     var schritte = {
       lassen: { titel: "So lassen", text: "Notiere dir, was gut lief, damit du es beim nächsten Mal wieder so machst. Passt es, stell es im Kollegium vor.",
-                link: "galerie.html", linktext: "Beispiele aus dem Kollegium ansehen" },
+                link: "galerie.html", linktext: "Beispiele aus dem Unterricht ansehen" },
       nachschaerfen: { titel: "Nachschärfen", text: "Nimm dir genau die Stelle vor, die gehakt hat. Der Digital-Check hilft dir, sie gezielt zu prüfen.",
                 link: "digital-check.html", linktext: "Zum Digital-Check" },
       papier: { titel: "Zurück zu Papier", text: "Das ist ein Fortschritt. Du weißt jetzt, wo das Tablet nichts beiträgt. Plane die nächste Stunde in Ruhe.",
@@ -482,7 +482,7 @@
       schritte.push(ZIEL.ablenkung);
     if (a.naechstes !== "papier" && (nurAblage || a.neu === "weissnicht" || a.neu === "selten"))
       schritte.push({ text: "Prüf eine geplante Aktivität mit drei Fragen: Geht es auf Papier genauso gut?", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
-    if (!schritte.length) schritte.push({ text: "Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" });
+    if (!schritte.length) schritte.push({ text: "Sieh dir an, was im Unterricht schon ausprobiert wurde.", link: "galerie.html", linktext: "Zur Galerie" });
     return { spiegel: spiegel, schritte: schritte.slice(0, 3),
              satz: "Das ist keine Bewertung. Es ist ein Blick auf deinen Unterricht heute – nur für dich." };
   }
@@ -497,7 +497,7 @@
      Rangfolge: »vor allem Mappe« ist ein Ausgangspunkt, kein Mangel, und »bleibt auf Papier« bleibt ein vollwertiges Ergebnis. */
   var SP_LAGEN = {
     anfang: { titel: "Du fängst gerade an",
-      text: "Das ist der häufigste Startpunkt im Kollegium. Für die erste Stunde reicht ein einziger Anlass aus deinem Alltag – und die Sicherheit, dass du nichts falsch machst." },
+      text: "Das ist ein häufiger Startpunkt. Für die erste Stunde reicht ein einziger Anlass aus deinem Alltag – und die Sicherheit, dass du nichts falsch machst." },
     enttaeuscht: { titel: "Du hast es probiert – und es hat noch nicht überzeugt",
       text: "Meist liegt das nicht am System, sondern an der Anfrage: Eine Anfrage mit Ziel, Klasse, Vorgaben und Format bringt andere Ergebnisse als ein kurzer Satz. Genau das wird der Anfang." },
     fuersich: { titel: "Du nutzt KI für dich – die Lernenden haben noch nichts davon",
@@ -527,7 +527,7 @@
     eltern: { text: "Lass dir eine Elterninformation entwerfen – ohne Namen – und formuliere sie in deinen Ton um.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
     lernseite: { text: "Sieh dir ein Beispiel aus deinem Fach in der Galerie an, bevor du selbst etwas baust.", link: "galerie.html", linktext: "Zur Galerie" },
     lernende: { text: "Leg für eine eigene Aufgabe fest, was Lernende mit KI dürfen und was sie selbst tun.", link: "lernende-ki.html", linktext: "Wenn deine Lernenden mit KI arbeiten" },
-    zuschauen: { text: "Zuschauen ist ein guter Anfang. Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" }
+    zuschauen: { text: "Zuschauen ist ein guter Anfang. Sieh dir an, was im Unterricht schon ausprobiert wurde.", link: "galerie.html", linktext: "Zur Galerie" }
   };
   var SP_KNIFFE = {
     sprechen: { titel: "Einsprechen statt eintippen", text: "Sprich die Anfrage ein, als würdest du sie einer Referendarin erklären: Klasse, Ziel, was schon da ist, was fehlt. So wird sie in einer Minute lang genug." },
@@ -603,7 +603,7 @@
     if (id === "fuersich" && !papier) push({ text: "Prüf eine Stelle deiner Stunde mit der Papierfrage: Was kann das Tablet hier besser?", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
     if (id === "weit") push({ text: "Prüf dein bestes Material mit dem Digital-Check. Der Bericht beginnt mit den Stärken.", link: "selbstcheck.html", linktext: "Digital-Check" });
     if (id === "offen") push({ text: "Bring deine Stunde mit und nenn die Stelle, an der die Lernenden hängen bleiben. Mehr braucht die erste Stunde nicht.", link: "beratung.html", linktext: "Beratungsstunde" });
-    push({ text: "Sieh dir an, was Kolleg*innen schon ausprobiert haben.", link: "galerie.html", linktext: "Zur Galerie" });
+    push({ text: "Sieh dir an, was im Unterricht schon ausprobiert wurde.", link: "galerie.html", linktext: "Zur Galerie" });
 
     /* Kniffe: zwei, passend zur Lage und zur Arbeitsweise. */
     var kniffe = [];
