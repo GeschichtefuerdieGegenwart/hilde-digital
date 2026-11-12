@@ -1602,12 +1602,12 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne .s1{animation-duration:15s;animation-delay:calc(0s + var(--o,0s))}
 .film-buehne .s2{animation-duration:15s;animation-delay:calc(12s + var(--o,0s))}
 .film-buehne .s3{animation-duration:15s;animation-delay:calc(19s + var(--o,0s))}
-.film-buehne .s4{animation-duration:15s;animation-delay:calc(32s + var(--o,0s))}
-.film-buehne .s5{animation-duration:15s;animation-delay:calc(48s + var(--o,0s))}
-.film-buehne .s6{animation-duration:15s;animation-delay:calc(60s + var(--o,0s))}
-.film-buehne .s7{animation-duration:15s;animation-delay:calc(74s + var(--o,0s))}
-.film-buehne .s8{animation-duration:15s;animation-delay:calc(82s + var(--o,0s))}
-.film-buehne .s9{animation-duration:15s;animation-delay:calc(113s + var(--o,0s))}
+.film-buehne .s4{animation-duration:15s;animation-delay:calc(36s + var(--o,0s))}
+.film-buehne .s5{animation-duration:15s;animation-delay:calc(52s + var(--o,0s))}
+.film-buehne .s6{animation-duration:15s;animation-delay:calc(69s + var(--o,0s))}
+.film-buehne .s7{animation-duration:15s;animation-delay:calc(83s + var(--o,0s))}
+.film-buehne .s8{animation-duration:15s;animation-delay:calc(95s + var(--o,0s))}
+.film-buehne .s9{animation-duration:15s;animation-delay:calc(163s + var(--o,0s))}
 .film-buehne .d2{animation-delay:calc(0.2s + var(--o,0s))}
 .film-buehne .d3{animation-delay:calc(0.3s + var(--o,0s))}
 .film-buehne .d4{animation-delay:calc(0.4s + var(--o,0s))}
@@ -1643,94 +1643,118 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne .d266{animation-delay:calc(26.6s + var(--o,0s))}
 .film-buehne .d274{animation-delay:calc(27.4s + var(--o,0s))}
 .film-buehne .d275{animation-delay:calc(27.5s + var(--o,0s))}
-.film-buehne .d294{animation-delay:calc(29.4s + var(--o,0s))}
-.film-buehne .d298{animation-delay:calc(29.8s + var(--o,0s))}
-.film-buehne .d324{animation-delay:calc(32.4s + var(--o,0s))}
-.film-buehne .d360{animation-delay:calc(36.0s + var(--o,0s))}
-.film-buehne .d366{animation-delay:calc(36.6s + var(--o,0s))}
-.film-buehne .d372{animation-delay:calc(37.2s + var(--o,0s))}
-.film-buehne .d384{animation-delay:calc(38.4s + var(--o,0s))}
-.film-buehne .d395{animation-delay:calc(39.5s + var(--o,0s))}
-.film-buehne .d407{animation-delay:calc(40.7s + var(--o,0s))}
-.film-buehne .d418{animation-delay:calc(41.8s + var(--o,0s))}
-.film-buehne .d430{animation-delay:calc(43.0s + var(--o,0s))}
-.film-buehne .d442{animation-delay:calc(44.2s + var(--o,0s))}
-.film-buehne .d444{animation-delay:calc(44.4s + var(--o,0s))}
-.film-buehne .d446{animation-delay:calc(44.6s + var(--o,0s))}
-.film-buehne .d450{animation-delay:calc(45.0s + var(--o,0s))}
-.film-buehne .d454{animation-delay:calc(45.4s + var(--o,0s))}
-.film-buehne .d457{animation-delay:calc(45.7s + var(--o,0s))}
+.film-buehne .d296{animation-delay:calc(29.6s + var(--o,0s))}
+.film-buehne .d300{animation-delay:calc(30.0s + var(--o,0s))}
+.film-buehne .d325{animation-delay:calc(32.5s + var(--o,0s))}
+.film-buehne .d329{animation-delay:calc(32.9s + var(--o,0s))}
+.film-buehne .d364{animation-delay:calc(36.4s + var(--o,0s))}
+.film-buehne .d400{animation-delay:calc(40.0s + var(--o,0s))}
+.film-buehne .d406{animation-delay:calc(40.6s + var(--o,0s))}
+.film-buehne .d412{animation-delay:calc(41.2s + var(--o,0s))}
+.film-buehne .d424{animation-delay:calc(42.4s + var(--o,0s))}
+.film-buehne .d435{animation-delay:calc(43.5s + var(--o,0s))}
+.film-buehne .d447{animation-delay:calc(44.7s + var(--o,0s))}
 .film-buehne .d458{animation-delay:calc(45.8s + var(--o,0s))}
-.film-buehne .d483{animation-delay:calc(48.3s + var(--o,0s))}
-.film-buehne .d488{animation-delay:calc(48.8s + var(--o,0s))}
-.film-buehne .d493{animation-delay:calc(49.3s + var(--o,0s))}
-.film-buehne .d495{animation-delay:calc(49.5s + var(--o,0s))}
-.film-buehne .d496{animation-delay:calc(49.6s + var(--o,0s))}
+.film-buehne .d470{animation-delay:calc(47.0s + var(--o,0s))}
+.film-buehne .d482{animation-delay:calc(48.2s + var(--o,0s))}
+.film-buehne .d484{animation-delay:calc(48.4s + var(--o,0s))}
+.film-buehne .d486{animation-delay:calc(48.6s + var(--o,0s))}
+.film-buehne .d490{animation-delay:calc(49.0s + var(--o,0s))}
+.film-buehne .d494{animation-delay:calc(49.4s + var(--o,0s))}
+.film-buehne .d497{animation-delay:calc(49.7s + var(--o,0s))}
 .film-buehne .d498{animation-delay:calc(49.8s + var(--o,0s))}
-.film-buehne .d501{animation-delay:calc(50.1s + var(--o,0s))}
-.film-buehne .d502{animation-delay:calc(50.2s + var(--o,0s))}
-.film-buehne .d511{animation-delay:calc(51.1s + var(--o,0s))}
-.film-buehne .d523{animation-delay:calc(52.3s + var(--o,0s))}
-.film-buehne .d537{animation-delay:calc(53.7s + var(--o,0s))}
+.film-buehne .d524{animation-delay:calc(52.4s + var(--o,0s))}
+.film-buehne .d532{animation-delay:calc(53.2s + var(--o,0s))}
+.film-buehne .d540{animation-delay:calc(54.0s + var(--o,0s))}
+.film-buehne .d543{animation-delay:calc(54.3s + var(--o,0s))}
+.film-buehne .d544{animation-delay:calc(54.4s + var(--o,0s))}
 .film-buehne .d545{animation-delay:calc(54.5s + var(--o,0s))}
-.film-buehne .d568{animation-delay:calc(56.8s + var(--o,0s))}
-.film-buehne .d577{animation-delay:calc(57.7s + var(--o,0s))}
-.film-buehne .d603{animation-delay:calc(60.3s + var(--o,0s))}
-.film-buehne .d617{animation-delay:calc(61.7s + var(--o,0s))}
-.film-buehne .d637{animation-delay:calc(63.7s + var(--o,0s))}
-.film-buehne .d642{animation-delay:calc(64.2s + var(--o,0s))}
-.film-buehne .d654{animation-delay:calc(65.4s + var(--o,0s))}
-.film-buehne .d667{animation-delay:calc(66.7s + var(--o,0s))}
-.film-buehne .d680{animation-delay:calc(68.0s + var(--o,0s))}
-.film-buehne .d697{animation-delay:calc(69.7s + var(--o,0s))}
-.film-buehne .d703{animation-delay:calc(70.3s + var(--o,0s))}
-.film-buehne .d715{animation-delay:calc(71.5s + var(--o,0s))}
-.film-buehne .d743{animation-delay:calc(74.3s + var(--o,0s))}
-.film-buehne .d749{animation-delay:calc(74.9s + var(--o,0s))}
-.film-buehne .d751{animation-delay:calc(75.1s + var(--o,0s))}
-.film-buehne .d754{animation-delay:calc(75.4s + var(--o,0s))}
+.film-buehne .d547{animation-delay:calc(54.7s + var(--o,0s))}
+.film-buehne .d554{animation-delay:calc(55.4s + var(--o,0s))}
+.film-buehne .d555{animation-delay:calc(55.5s + var(--o,0s))}
+.film-buehne .d573{animation-delay:calc(57.3s + var(--o,0s))}
+.film-buehne .d593{animation-delay:calc(59.3s + var(--o,0s))}
+.film-buehne .d614{animation-delay:calc(61.4s + var(--o,0s))}
+.film-buehne .d626{animation-delay:calc(62.6s + var(--o,0s))}
+.film-buehne .d652{animation-delay:calc(65.2s + var(--o,0s))}
+.film-buehne .d664{animation-delay:calc(66.4s + var(--o,0s))}
+.film-buehne .d693{animation-delay:calc(69.3s + var(--o,0s))}
+.film-buehne .d707{animation-delay:calc(70.7s + var(--o,0s))}
+.film-buehne .d727{animation-delay:calc(72.7s + var(--o,0s))}
+.film-buehne .d732{animation-delay:calc(73.2s + var(--o,0s))}
+.film-buehne .d744{animation-delay:calc(74.4s + var(--o,0s))}
 .film-buehne .d757{animation-delay:calc(75.7s + var(--o,0s))}
-.film-buehne .d766{animation-delay:calc(76.6s + var(--o,0s))}
-.film-buehne .d774{animation-delay:calc(77.4s + var(--o,0s))}
-.film-buehne .d782{animation-delay:calc(78.2s + var(--o,0s))}
-.film-buehne .d792{animation-delay:calc(79.2s + var(--o,0s))}
-.film-buehne .d799{animation-delay:calc(79.9s + var(--o,0s))}
-.film-buehne .d820{animation-delay:calc(82.0s + var(--o,0s))}
-.film-buehne .d827{animation-delay:calc(82.7s + var(--o,0s))}
-.film-buehne .d870{animation-delay:calc(87.0s + var(--o,0s))}
-.film-buehne .d875{animation-delay:calc(87.5s + var(--o,0s))}
-.film-buehne .d892{animation-delay:calc(89.2s + var(--o,0s))}
-.film-buehne .d903{animation-delay:calc(90.3s + var(--o,0s))}
-.film-buehne .d904{animation-delay:calc(90.4s + var(--o,0s))}
-.film-buehne .d921{animation-delay:calc(92.1s + var(--o,0s))}
-.film-buehne .d928{animation-delay:calc(92.8s + var(--o,0s))}
-.film-buehne .d931{animation-delay:calc(93.1s + var(--o,0s))}
-.film-buehne .d957{animation-delay:calc(95.7s + var(--o,0s))}
-.film-buehne .d966{animation-delay:calc(96.6s + var(--o,0s))}
-.film-buehne .d967{animation-delay:calc(96.7s + var(--o,0s))}
-.film-buehne .d969{animation-delay:calc(96.9s + var(--o,0s))}
-.film-buehne .d971{animation-delay:calc(97.1s + var(--o,0s))}
-.film-buehne .d1005{animation-delay:calc(100.5s + var(--o,0s))}
-.film-buehne .d1008{animation-delay:calc(100.8s + var(--o,0s))}
-.film-buehne .d1022{animation-delay:calc(102.2s + var(--o,0s))}
-.film-buehne .d1026{animation-delay:calc(102.6s + var(--o,0s))}
+.film-buehne .d770{animation-delay:calc(77.0s + var(--o,0s))}
+.film-buehne .d787{animation-delay:calc(78.7s + var(--o,0s))}
+.film-buehne .d793{animation-delay:calc(79.3s + var(--o,0s))}
+.film-buehne .d805{animation-delay:calc(80.5s + var(--o,0s))}
+.film-buehne .d833{animation-delay:calc(83.3s + var(--o,0s))}
+.film-buehne .d840{animation-delay:calc(84.0s + var(--o,0s))}
+.film-buehne .d844{animation-delay:calc(84.4s + var(--o,0s))}
+.film-buehne .d846{animation-delay:calc(84.6s + var(--o,0s))}
+.film-buehne .d849{animation-delay:calc(84.9s + var(--o,0s))}
+.film-buehne .d850{animation-delay:calc(85.0s + var(--o,0s))}
+.film-buehne .d853{animation-delay:calc(85.3s + var(--o,0s))}
+.film-buehne .d865{animation-delay:calc(86.5s + var(--o,0s))}
+.film-buehne .d877{animation-delay:calc(87.7s + var(--o,0s))}
+.film-buehne .d889{animation-delay:calc(88.9s + var(--o,0s))}
+.film-buehne .d905{animation-delay:calc(90.5s + var(--o,0s))}
+.film-buehne .d914{animation-delay:calc(91.4s + var(--o,0s))}
+.film-buehne .d954{animation-delay:calc(95.4s + var(--o,0s))}
+.film-buehne .d960{animation-delay:calc(96.0s + var(--o,0s))}
+.film-buehne .d978{animation-delay:calc(97.8s + var(--o,0s))}
+.film-buehne .d986{animation-delay:calc(98.6s + var(--o,0s))}
 .film-buehne .d1027{animation-delay:calc(102.7s + var(--o,0s))}
-.film-buehne .d1046{animation-delay:calc(104.6s + var(--o,0s))}
-.film-buehne .d1049{animation-delay:calc(104.9s + var(--o,0s))}
-.film-buehne .d1065{animation-delay:calc(106.5s + var(--o,0s))}
+.film-buehne .d1033{animation-delay:calc(103.3s + var(--o,0s))}
+.film-buehne .d1058{animation-delay:calc(105.8s + var(--o,0s))}
+.film-buehne .d1062{animation-delay:calc(106.2s + var(--o,0s))}
 .film-buehne .d1068{animation-delay:calc(106.8s + var(--o,0s))}
-.film-buehne .d1080{animation-delay:calc(108.0s + var(--o,0s))}
-.film-buehne .d1086{animation-delay:calc(108.6s + var(--o,0s))}
-.film-buehne .d1098{animation-delay:calc(109.8s + var(--o,0s))}
-.film-buehne .d1119{animation-delay:calc(111.9s + var(--o,0s))}
-.film-buehne .d1122{animation-delay:calc(112.2s + var(--o,0s))}
-.film-buehne .d1133{animation-delay:calc(113.3s + var(--o,0s))}
-.film-buehne .d1140{animation-delay:calc(114.0s + var(--o,0s))}
-.film-buehne .d1148{animation-delay:calc(114.8s + var(--o,0s))}
-.film-buehne .d1154{animation-delay:calc(115.4s + var(--o,0s))}
-.film-buehne .d1159{animation-delay:calc(115.9s + var(--o,0s))}
-.film-buehne .d1165{animation-delay:calc(116.5s + var(--o,0s))}
-.film-buehne .d1169{animation-delay:calc(116.9s + var(--o,0s))}
+.film-buehne .d1108{animation-delay:calc(110.8s + var(--o,0s))}
+.film-buehne .d1111{animation-delay:calc(111.1s + var(--o,0s))}
+.film-buehne .d1132{animation-delay:calc(113.2s + var(--o,0s))}
+.film-buehne .d1136{animation-delay:calc(113.6s + var(--o,0s))}
+.film-buehne .d1144{animation-delay:calc(114.4s + var(--o,0s))}
+.film-buehne .d1168{animation-delay:calc(116.8s + var(--o,0s))}
+.film-buehne .d1177{animation-delay:calc(117.7s + var(--o,0s))}
+.film-buehne .d1182{animation-delay:calc(118.2s + var(--o,0s))}
+.film-buehne .d1208{animation-delay:calc(120.8s + var(--o,0s))}
+.film-buehne .d1213{animation-delay:calc(121.3s + var(--o,0s))}
+.film-buehne .d1226{animation-delay:calc(122.6s + var(--o,0s))}
+.film-buehne .d1262{animation-delay:calc(126.2s + var(--o,0s))}
+.film-buehne .d1266{animation-delay:calc(126.6s + var(--o,0s))}
+.film-buehne .d1273{animation-delay:calc(127.3s + var(--o,0s))}
+.film-buehne .d1283{animation-delay:calc(128.3s + var(--o,0s))}
+.film-buehne .d1292{animation-delay:calc(129.2s + var(--o,0s))}
+.film-buehne .d1301{animation-delay:calc(130.1s + var(--o,0s))}
+.film-buehne .d1320{animation-delay:calc(132.0s + var(--o,0s))}
+.film-buehne .d1327{animation-delay:calc(132.7s + var(--o,0s))}
+.film-buehne .d1370{animation-delay:calc(137.0s + var(--o,0s))}
+.film-buehne .d1375{animation-delay:calc(137.5s + var(--o,0s))}
+.film-buehne .d1376{animation-delay:calc(137.6s + var(--o,0s))}
+.film-buehne .d1390{animation-delay:calc(139.0s + var(--o,0s))}
+.film-buehne .d1392{animation-delay:calc(139.2s + var(--o,0s))}
+.film-buehne .d1426{animation-delay:calc(142.6s + var(--o,0s))}
+.film-buehne .d1430{animation-delay:calc(143.0s + var(--o,0s))}
+.film-buehne .d1460{animation-delay:calc(146.0s + var(--o,0s))}
+.film-buehne .d1464{animation-delay:calc(146.4s + var(--o,0s))}
+.film-buehne .d1465{animation-delay:calc(146.5s + var(--o,0s))}
+.film-buehne .d1495{animation-delay:calc(149.5s + var(--o,0s))}
+.film-buehne .d1499{animation-delay:calc(149.9s + var(--o,0s))}
+.film-buehne .d1524{animation-delay:calc(152.4s + var(--o,0s))}
+.film-buehne .d1527{animation-delay:calc(152.7s + var(--o,0s))}
+.film-buehne .d1543{animation-delay:calc(154.3s + var(--o,0s))}
+.film-buehne .d1549{animation-delay:calc(154.9s + var(--o,0s))}
+.film-buehne .d1572{animation-delay:calc(157.2s + var(--o,0s))}
+.film-buehne .d1602{animation-delay:calc(160.2s + var(--o,0s))}
+.film-buehne .d1607{animation-delay:calc(160.7s + var(--o,0s))}
+.film-buehne .d1614{animation-delay:calc(161.4s + var(--o,0s))}
+.film-buehne .d1633{animation-delay:calc(163.3s + var(--o,0s))}
+.film-buehne .d1640{animation-delay:calc(164.0s + var(--o,0s))}
+.film-buehne .d1648{animation-delay:calc(164.8s + var(--o,0s))}
+.film-buehne .d1654{animation-delay:calc(165.4s + var(--o,0s))}
+.film-buehne .d1659{animation-delay:calc(165.9s + var(--o,0s))}
+.film-buehne .d1665{animation-delay:calc(166.5s + var(--o,0s))}
+.film-buehne .d1669{animation-delay:calc(166.9s + var(--o,0s))}
 .film-buehne .d2.x80{animation-delay:calc(0.2s + var(--o,0s)),calc(8.0s + var(--o,0s))}
 .film-buehne .d36.x70{animation-delay:calc(3.6s + var(--o,0s)),calc(7.0s + var(--o,0s))}
 .film-buehne .d124.x160{animation-delay:calc(12.4s + var(--o,0s)),calc(16.0s + var(--o,0s))}
@@ -1746,33 +1770,48 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne .d259.x289{animation-delay:calc(25.9s + var(--o,0s)),calc(28.9s + var(--o,0s))}
 .film-buehne .d266.x289{animation-delay:calc(26.6s + var(--o,0s)),calc(28.9s + var(--o,0s))}
 .film-buehne .d274.x289{animation-delay:calc(27.4s + var(--o,0s)),calc(28.9s + var(--o,0s))}
-.film-buehne .d298.x314{animation-delay:calc(29.8s + var(--o,0s)),calc(31.4s + var(--o,0s))}
-.film-buehne .d324.x355{animation-delay:calc(32.4s + var(--o,0s)),calc(35.5s + var(--o,0s))}
-.film-buehne .d603.x633{animation-delay:calc(60.3s + var(--o,0s)),calc(63.3s + var(--o,0s))}
-.film-buehne .d617.x633{animation-delay:calc(61.7s + var(--o,0s)),calc(63.3s + var(--o,0s))}
-.film-buehne .d754.x793{animation-delay:calc(75.4s + var(--o,0s)),calc(79.3s + var(--o,0s))}
-.film-buehne .d820.x872{animation-delay:calc(82.0s + var(--o,0s)),calc(87.2s + var(--o,0s))}
-.film-buehne .d827.x869{animation-delay:calc(82.7s + var(--o,0s)),calc(86.9s + var(--o,0s))}
-.film-buehne .d870.x895{animation-delay:calc(87.0s + var(--o,0s)),calc(89.5s + var(--o,0s))}
-.film-buehne .d875.x893{animation-delay:calc(87.5s + var(--o,0s)),calc(89.3s + var(--o,0s))}
-.film-buehne .d892.x966{animation-delay:calc(89.2s + var(--o,0s)),calc(96.6s + var(--o,0s))}
-.film-buehne .d903.x960{animation-delay:calc(90.3s + var(--o,0s)),calc(96.0s + var(--o,0s))}
-.film-buehne .d904.x927{animation-delay:calc(90.4s + var(--o,0s)),calc(92.7s + var(--o,0s))}
-.film-buehne .d931.x960{animation-delay:calc(93.1s + var(--o,0s)),calc(96.0s + var(--o,0s))}
-.film-buehne .d957.x1025{animation-delay:calc(95.7s + var(--o,0s)),calc(102.5s + var(--o,0s))}
-.film-buehne .d966.x1023{animation-delay:calc(96.6s + var(--o,0s)),calc(102.3s + var(--o,0s))}
-.film-buehne .d967.x1005{animation-delay:calc(96.7s + var(--o,0s)),calc(100.5s + var(--o,0s))}
-.film-buehne .d971.x1023{animation-delay:calc(97.1s + var(--o,0s)),calc(102.3s + var(--o,0s))}
-.film-buehne .d1008.x1023{animation-delay:calc(100.8s + var(--o,0s)),calc(102.3s + var(--o,0s))}
-.film-buehne .d1022.x1048{animation-delay:calc(102.2s + var(--o,0s)),calc(104.8s + var(--o,0s))}
-.film-buehne .d1026.x1099{animation-delay:calc(102.6s + var(--o,0s)),calc(109.9s + var(--o,0s))}
-.film-buehne .d1027.x1045{animation-delay:calc(102.7s + var(--o,0s)),calc(104.5s + var(--o,0s))}
-.film-buehne .d1046.x1067{animation-delay:calc(104.6s + var(--o,0s)),calc(106.7s + var(--o,0s))}
-.film-buehne .d1049.x1064{animation-delay:calc(104.9s + var(--o,0s)),calc(106.4s + var(--o,0s))}
-.film-buehne .d1065.x1100{animation-delay:calc(106.5s + var(--o,0s)),calc(110.0s + var(--o,0s))}
-.film-buehne .d1068.x1083{animation-delay:calc(106.8s + var(--o,0s)),calc(108.3s + var(--o,0s))}
-.film-buehne .d1086.x1099{animation-delay:calc(108.6s + var(--o,0s)),calc(109.9s + var(--o,0s))}
-.film-buehne .d1098.x1115{animation-delay:calc(109.8s + var(--o,0s)),calc(111.5s + var(--o,0s))}
+.film-buehne .d300.x352{animation-delay:calc(30.0s + var(--o,0s)),calc(35.2s + var(--o,0s))}
+.film-buehne .d329.x352{animation-delay:calc(32.9s + var(--o,0s)),calc(35.2s + var(--o,0s))}
+.film-buehne .d364.x395{animation-delay:calc(36.4s + var(--o,0s)),calc(39.5s + var(--o,0s))}
+.film-buehne .d693.x723{animation-delay:calc(69.3s + var(--o,0s)),calc(72.3s + var(--o,0s))}
+.film-buehne .d707.x723{animation-delay:calc(70.7s + var(--o,0s)),calc(72.3s + var(--o,0s))}
+.film-buehne .d849.x904{animation-delay:calc(84.9s + var(--o,0s)),calc(90.4s + var(--o,0s))}
+.film-buehne .d954.x979{animation-delay:calc(95.4s + var(--o,0s)),calc(97.9s + var(--o,0s))}
+.film-buehne .d960.x979{animation-delay:calc(96.0s + var(--o,0s)),calc(97.9s + var(--o,0s))}
+.film-buehne .d978.x1029{animation-delay:calc(97.8s + var(--o,0s)),calc(102.9s + var(--o,0s))}
+.film-buehne .d986.x1026{animation-delay:calc(98.6s + var(--o,0s)),calc(102.6s + var(--o,0s))}
+.film-buehne .d1027.x1059{animation-delay:calc(102.7s + var(--o,0s)),calc(105.9s + var(--o,0s))}
+.film-buehne .d1033.x1057{animation-delay:calc(103.3s + var(--o,0s)),calc(105.7s + var(--o,0s))}
+.film-buehne .d1058.x1141{animation-delay:calc(105.8s + var(--o,0s)),calc(114.1s + var(--o,0s))}
+.film-buehne .d1062.x1136{animation-delay:calc(106.2s + var(--o,0s)),calc(113.6s + var(--o,0s))}
+.film-buehne .d1062.x1371{animation-delay:calc(106.2s + var(--o,0s)),calc(137.1s + var(--o,0s))}
+.film-buehne .d1068.x1103{animation-delay:calc(106.8s + var(--o,0s)),calc(110.3s + var(--o,0s))}
+.film-buehne .d1111.x1133{animation-delay:calc(111.1s + var(--o,0s)),calc(113.3s + var(--o,0s))}
+.film-buehne .d1132.x1271{animation-delay:calc(113.2s + var(--o,0s)),calc(127.1s + var(--o,0s))}
+.film-buehne .d1136.x1208{animation-delay:calc(113.6s + var(--o,0s)),calc(120.8s + var(--o,0s))}
+.film-buehne .d1144.x1174{animation-delay:calc(114.4s + var(--o,0s)),calc(117.4s + var(--o,0s))}
+.film-buehne .d1182.x1204{animation-delay:calc(118.2s + var(--o,0s)),calc(120.4s + var(--o,0s))}
+.film-buehne .d1208.x1266{animation-delay:calc(120.8s + var(--o,0s)),calc(126.6s + var(--o,0s))}
+.film-buehne .d1213.x1260{animation-delay:calc(121.3s + var(--o,0s)),calc(126.0s + var(--o,0s))}
+.film-buehne .d1262.x1324{animation-delay:calc(126.2s + var(--o,0s)),calc(132.4s + var(--o,0s))}
+.film-buehne .d1266.x1371{animation-delay:calc(126.6s + var(--o,0s)),calc(137.1s + var(--o,0s))}
+.film-buehne .d1273.x1320{animation-delay:calc(127.3s + var(--o,0s)),calc(132.0s + var(--o,0s))}
+.film-buehne .d1320.x1373{animation-delay:calc(132.0s + var(--o,0s)),calc(137.3s + var(--o,0s))}
+.film-buehne .d1327.x1370{animation-delay:calc(132.7s + var(--o,0s)),calc(137.0s + var(--o,0s))}
+.film-buehne .d1370.x1463{animation-delay:calc(137.0s + var(--o,0s)),calc(146.3s + var(--o,0s))}
+.film-buehne .d1375.x1460{animation-delay:calc(137.5s + var(--o,0s)),calc(146.0s + var(--o,0s))}
+.film-buehne .d1376.x1426{animation-delay:calc(137.6s + var(--o,0s)),calc(142.6s + var(--o,0s))}
+.film-buehne .d1392.x1460{animation-delay:calc(139.2s + var(--o,0s)),calc(146.0s + var(--o,0s))}
+.film-buehne .d1430.x1460{animation-delay:calc(143.0s + var(--o,0s)),calc(146.0s + var(--o,0s))}
+.film-buehne .d1460.x1497{animation-delay:calc(146.0s + var(--o,0s)),calc(149.7s + var(--o,0s))}
+.film-buehne .d1464.x1573{animation-delay:calc(146.4s + var(--o,0s)),calc(157.3s + var(--o,0s))}
+.film-buehne .d1465.x1494{animation-delay:calc(146.5s + var(--o,0s)),calc(149.4s + var(--o,0s))}
+.film-buehne .d1495.x1526{animation-delay:calc(149.5s + var(--o,0s)),calc(152.6s + var(--o,0s))}
+.film-buehne .d1499.x1523{animation-delay:calc(149.9s + var(--o,0s)),calc(152.3s + var(--o,0s))}
+.film-buehne .d1524.x1575{animation-delay:calc(152.4s + var(--o,0s)),calc(157.5s + var(--o,0s))}
+.film-buehne .d1527.x1545{animation-delay:calc(152.7s + var(--o,0s)),calc(154.5s + var(--o,0s))}
+.film-buehne .d1549.x1573{animation-delay:calc(154.9s + var(--o,0s)),calc(157.3s + var(--o,0s))}
+.film-buehne .d1572.x1598{animation-delay:calc(157.2s + var(--o,0s)),calc(159.8s + var(--o,0s))}
 .film-buehne .a1{animation:ff-squash 0.8s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(7.9s + var(--o,0s))}
 .film-buehne .a2{animation:ff-squash 0.8s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(7.96s + var(--o,0s))}
 .film-buehne .a3{animation:ff-gy 0.5s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(6.3s + var(--o,0s))}
@@ -1783,35 +1822,35 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne .a8{animation:ff-slR 0.9s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(16.4s + var(--o,0s))}
 .film-buehne .a9{animation:ff-gy 3.0s cubic-bezier(.3,.1,.3,1) both;animation-delay:calc(19.5s + var(--o,0s))}
 .film-buehne .a10{animation:ff-gy 3.0s cubic-bezier(.3,.1,.3,1) both;animation-delay:calc(25.0s + var(--o,0s))}
-.film-buehne .a11{animation:ff-sx 0.7s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(37.5s + var(--o,0s))}
-.film-buehne .a12{animation:ff-pop 0.4s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(38.550000000000004s + var(--o,0s))}
-.film-buehne .a13{animation:ff-gx 0.5s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(38.85s + var(--o,0s))}
-.film-buehne .a14{animation:ff-spin 1.0s linear both;animation-delay:calc(39.7s + var(--o,0s))}
-.film-buehne .a15{animation:ff-knob 0.8s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(40.85000000000001s + var(--o,0s))}
-.film-buehne .a16{animation:ff-gy 0.4s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(42.00000000000001s + var(--o,0s))}
-.film-buehne .a17{animation:ff-gy 0.4s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(42.20000000000001s + var(--o,0s))}
-.film-buehne .a18{animation:ff-gy 0.4s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(42.400000000000006s + var(--o,0s))}
-.film-buehne .a19{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(43.1s + var(--o,0s))}
-.film-buehne .a20{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(43.22s + var(--o,0s))}
-.film-buehne .a21{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(43.34s + var(--o,0s))}
-.film-buehne .a22{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(43.46s + var(--o,0s))}
-.film-buehne .a23{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(43.58s + var(--o,0s))}
-.film-buehne .a24{animation:ff-knob3 3.4s ease-in-out both;animation-delay:calc(49.9s + var(--o,0s))}
-.film-buehne .a25{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(54.2s + var(--o,0s))}
-.film-buehne .a26{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(54.34s + var(--o,0s))}
-.film-buehne .a27{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(54.480000000000004s + var(--o,0s))}
-.film-buehne .a28{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(54.620000000000005s + var(--o,0s))}
-.film-buehne .a29{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(54.760000000000005s + var(--o,0s))}
-.film-buehne .a30{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(54.900000000000006s + var(--o,0s))}
-.film-buehne .a31{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(55.040000000000006s + var(--o,0s))}
-.film-buehne .a32{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(55.18s + var(--o,0s))}
-.film-buehne .a33{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(55.32s + var(--o,0s))}
-.film-buehne .a34{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(55.46s + var(--o,0s))}
-.film-buehne .a35{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(55.6s + var(--o,0s))}
-.film-buehne .a36{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(55.74s + var(--o,0s))}
-.film-buehne .a37{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(55.88s + var(--o,0s))}
-.film-buehne .a38{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(56.02s + var(--o,0s))}
-.film-buehne .a39{animation:ff-gx 0.5s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(61.2s + var(--o,0s))}
+.film-buehne .a11{animation:ff-sx 0.7s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(41.5s + var(--o,0s))}
+.film-buehne .a12{animation:ff-pop 0.4s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(42.550000000000004s + var(--o,0s))}
+.film-buehne .a13{animation:ff-gx 0.5s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(42.85s + var(--o,0s))}
+.film-buehne .a14{animation:ff-spin 1.0s linear both;animation-delay:calc(43.7s + var(--o,0s))}
+.film-buehne .a15{animation:ff-knob 0.8s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(44.85000000000001s + var(--o,0s))}
+.film-buehne .a16{animation:ff-gy 0.4s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(46.00000000000001s + var(--o,0s))}
+.film-buehne .a17{animation:ff-gy 0.4s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(46.20000000000001s + var(--o,0s))}
+.film-buehne .a18{animation:ff-gy 0.4s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(46.400000000000006s + var(--o,0s))}
+.film-buehne .a19{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(47.1s + var(--o,0s))}
+.film-buehne .a20{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(47.22s + var(--o,0s))}
+.film-buehne .a21{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(47.34s + var(--o,0s))}
+.film-buehne .a22{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(47.46s + var(--o,0s))}
+.film-buehne .a23{animation:ff-pop 0.3s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(47.58s + var(--o,0s))}
+.film-buehne .a24{animation:ff-knob3 5.2s ease-in-out both;animation-delay:calc(55.2s + var(--o,0s))}
+.film-buehne .a25{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(62.0s + var(--o,0s))}
+.film-buehne .a26{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(62.18s + var(--o,0s))}
+.film-buehne .a27{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(62.36s + var(--o,0s))}
+.film-buehne .a28{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(62.54s + var(--o,0s))}
+.film-buehne .a29{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(62.72s + var(--o,0s))}
+.film-buehne .a30{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(62.9s + var(--o,0s))}
+.film-buehne .a31{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(63.08s + var(--o,0s))}
+.film-buehne .a32{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(63.26s + var(--o,0s))}
+.film-buehne .a33{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(63.44s + var(--o,0s))}
+.film-buehne .a34{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(63.62s + var(--o,0s))}
+.film-buehne .a35{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(63.8s + var(--o,0s))}
+.film-buehne .a36{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(63.98s + var(--o,0s))}
+.film-buehne .a37{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(64.16s + var(--o,0s))}
+.film-buehne .a38{animation:ff-pop 0.35s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(64.34s + var(--o,0s))}
+.film-buehne .a39{animation:ff-gx 0.5s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(70.2s + var(--o,0s))}
 @keyframes ff-q1{0%{transform:translateX(-90px) skewX(-18deg)}100%{transform:translateX(250px) skewX(-18deg)}}
 .film-buehne .q1{animation:ff-q1 1.500s ease-in-out 1 both;animation-delay:calc(0.300s + var(--o,0s))}
 @keyframes ff-q2{0%{opacity:1}100%{opacity:0}}
@@ -1860,66 +1899,90 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne .q23{animation:ff-q23 0.400s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(9.300s + var(--o,0s))}
 @keyframes ff-q24{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}34.286%{transform:translate(-25.6px,-10.2px) scale(1.04);animation-timing-function:cubic-bezier(.16,1,.3,1)}37.857%{transform:translate(-64.0px,-25.0px) scale(1.1);animation-timing-function:ease-out}57.143%{transform:translate(-51.2px,-18.0px) scale(1.08);animation-timing-function:cubic-bezier(.65,0,.35,1)}65.714%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}100.000%{transform:translate(-25.6px,-6.1px) scale(1.04);animation-timing-function:linear}}
 .film-buehne .q24{animation:ff-q24 7.000s linear 1 both;animation-delay:calc(12.000s + var(--o,0s))}
-@keyframes ff-q25{0%{opacity:0;transform:translateY(-190px)}30%{opacity:1}100%{opacity:1;transform:none}}
-.film-buehne .q25{animation:ff-q25 0.800s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(29.000s + var(--o,0s))}
-@keyframes ff-q26{0.000%{transform:translate(-548.0px,-2038.0px) scale(2.2);animation-timing-function:linear}12.308%{transform:translate(-548.0px,-1994.0px) scale(2.2);animation-timing-function:cubic-bezier(.45,0,.3,1)}38.462%{transform:translate(-548.0px,-674.0px) scale(2.2);animation-timing-function:linear}42.308%{transform:translate(-548.0px,-630.0px) scale(2.2);animation-timing-function:cubic-bezier(.7,0,.25,1)}48.462%{transform:translate(-1472.0px,-2016.0px) scale(2.2);animation-timing-function:cubic-bezier(.45,0,.3,1)}71.538%{transform:translate(-1472.0px,-674.0px) scale(2.2);animation-timing-function:cubic-bezier(.16,1,.3,1)}81.538%{transform:translate(467.6px,-123.7px) scale(0.66);animation-timing-function:linear}94.615%{transform:translate(454.8px,-138.6px) scale(0.68);animation-timing-function:cubic-bezier(.55,0,.9,.4)}99.615%{transform:translate(1112.6px,-13.5px) scale(0.0865);animation-timing-function:linear}100.000%{transform:translate(1112.6px,-13.5px) scale(0.0865);animation-timing-function:linear}}
-.film-buehne .q26{animation:ff-q26 13.000s linear 1 both;animation-delay:calc(19.000s + var(--o,0s))}
+@keyframes ff-q25{0%{opacity:0;transform:translateY(-250px)}14%{opacity:1}100%{opacity:1;transform:none}}
+.film-buehne .q25{animation:ff-q25 1.900s cubic-bezier(.3,.5,.25,1) 1 both;animation-delay:calc(30.700s + var(--o,0s))}
+@keyframes ff-q26{0.000%{transform:translate(-548.0px,-2038.0px) scale(2.2);animation-timing-function:linear}9.412%{transform:translate(-548.0px,-1994.0px) scale(2.2);animation-timing-function:cubic-bezier(.45,0,.3,1)}29.412%{transform:translate(-548.0px,-674.0px) scale(2.2);animation-timing-function:linear}32.353%{transform:translate(-548.0px,-630.0px) scale(2.2);animation-timing-function:cubic-bezier(.7,0,.25,1)}37.059%{transform:translate(-1472.0px,-2016.0px) scale(2.2);animation-timing-function:cubic-bezier(.45,0,.3,1)}54.706%{transform:translate(-1472.0px,-674.0px) scale(2.2);animation-timing-function:cubic-bezier(.16,1,.3,1)}63.529%{transform:translate(480.4px,-108.9px) scale(0.64);animation-timing-function:linear}78.824%{transform:translate(474.0px,-115.0px) scale(0.65);animation-timing-function:ease-in-out}95.294%{transform:translate(461.2px,-125.8px) scale(0.67);animation-timing-function:cubic-bezier(.55,0,.9,.4)}99.706%{transform:translate(1112.6px,-13.5px) scale(0.0865);animation-timing-function:linear}100.000%{transform:translate(1112.6px,-13.5px) scale(0.0865);animation-timing-function:linear}}
+.film-buehne .q26{animation:ff-q26 17.000s linear 1 both;animation-delay:calc(19.000s + var(--o,0s))}
 @keyframes ff-q27{0.000%{transform:translate(10.0px,45.0px) scale(1.05);animation-timing-function:linear}21.250%{transform:translate(-32.0px,24.0px) scale(1.12);animation-timing-function:cubic-bezier(.65,0,.35,1)}26.875%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}34.688%{transform:translate(-25.6px,12.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}41.875%{transform:translate(-48.7px,4.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}49.063%{transform:translate(-48.7px,-12.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}56.250%{transform:translate(-25.6px,-20.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}63.438%{transform:translate(-2.5px,-12.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}70.625%{transform:translate(-2.5px,4.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}77.500%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}85.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:ease-in-out}100.000%{transform:translate(-22.4px,-18.8px) scale(1.035);animation-timing-function:linear}}
-.film-buehne .q27{animation:ff-q27 16.000s linear 1 both;animation-delay:calc(32.000s + var(--o,0s))}
-@keyframes ff-q28{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}12.500%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}16.667%{transform:translate(24.4px,-2.5px) scale(1.14);animation-timing-function:ease-in-out}43.333%{transform:translate(-226.4px,-2.5px) scale(1.14);animation-timing-function:cubic-bezier(.65,0,.35,1)}49.167%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}73.333%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:ease-in-out}100.000%{transform:translate(-25.6px,-35.2px) scale(1.04);animation-timing-function:linear}}
-.film-buehne .q28{animation:ff-q28 12.000s linear 1 both;animation-delay:calc(48.000s + var(--o,0s))}
+.film-buehne .q27{animation:ff-q27 16.000s linear 1 both;animation-delay:calc(36.000s + var(--o,0s))}
+@keyframes ff-q28{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}14.118%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}18.824%{transform:translate(24.4px,-2.5px) scale(1.14);animation-timing-function:ease-in-out}48.235%{transform:translate(-226.4px,-2.5px) scale(1.14);animation-timing-function:cubic-bezier(.65,0,.35,1)}54.118%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}76.471%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:ease-in-out}100.000%{transform:translate(-25.6px,-35.2px) scale(1.04);animation-timing-function:linear}}
+.film-buehne .q28{animation:ff-q28 17.000s linear 1 both;animation-delay:calc(52.000s + var(--o,0s))}
 @keyframes ff-q29{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}12.143%{transform:translate(-11.0px,-30.6px) scale(1.05);animation-timing-function:linear}24.286%{transform:translate(-12.7px,-46.6px) scale(1.07);animation-timing-function:cubic-bezier(.65,0,.35,1)}30.714%{transform:translate(310.0px,-280.2px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}39.643%{transform:translate(-46.4px,-250.5px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}48.571%{transform:translate(-402.8px,-220.8px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}57.500%{transform:translate(-759.2px,-191.1px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}65.714%{transform:translate(-759.2px,-191.8px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}72.143%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}100.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}}
-.film-buehne .q29{animation:ff-q29 14.000s linear 1 both;animation-delay:calc(60.000s + var(--o,0s))}
+.film-buehne .q29{animation:ff-q29 14.000s linear 1 both;animation-delay:calc(69.000s + var(--o,0s))}
 @keyframes ff-q30{0%,8%{transform:translateX(0)}22%,34%{transform:translateX(290px)}48%,60%{transform:translateX(580px)}74%,100%{transform:translateX(870px)}}
-.film-buehne .q30{animation:ff-q30 3.400s ease-in-out 1 both;animation-delay:calc(75.500s + var(--o,0s))}
-@keyframes ff-q31{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}12.500%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}20.000%{transform:translate(348.6px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}30.625%{transform:translate(38.6px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}41.250%{transform:translate(-321.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}51.875%{transform:translate(-631.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}61.250%{transform:translate(-631.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}71.250%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}100.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}}
-.film-buehne .q31{animation:ff-q31 8.000s linear 1 both;animation-delay:calc(74.000s + var(--o,0s))}
-@keyframes ff-q32{0.000%{transform:translate(422.4px,237.6px) scale(0.34);animation-timing-function:cubic-bezier(.16,1,.3,1)}33.333%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}40.741%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}53.704%{transform:translate(-5.0px,-318.0px) scale(1.5);animation-timing-function:cubic-bezier(.65,0,.35,1)}66.667%{transform:translate(-635.0px,-348.0px) scale(1.5);animation-timing-function:cubic-bezier(.65,0,.35,1)}81.481%{transform:translate(-48.0px,-432.0px) scale(1.6);animation-timing-function:linear}87.037%{transform:translate(-48.0px,-432.0px) scale(1.6);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-905.6px,-2294.4px) scale(4.2);animation-timing-function:linear}}
-.film-buehne .q32{animation:ff-q32 5.400s linear 1 both;animation-delay:calc(82.000s + var(--o,0s))}
+.film-buehne .q30{animation:ff-q30 4.600s ease-in-out 1 both;animation-delay:calc(85.000s + var(--o,0s))}
+@keyframes ff-q31{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}13.333%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}18.333%{transform:translate(348.6px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}28.333%{transform:translate(38.6px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}38.333%{transform:translate(-321.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}48.333%{transform:translate(-631.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}58.333%{transform:translate(-631.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}65.833%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}100.000%{transform:translate(-19.2px,-17.0px) scale(1.03);animation-timing-function:linear}}
+.film-buehne .q31{animation:ff-q31 12.000s linear 1 both;animation-delay:calc(83.000s + var(--o,0s))}
+@keyframes ff-q32{0.000%{transform:translate(422.4px,237.6px) scale(0.34);animation-timing-function:cubic-bezier(.16,1,.3,1)}30.769%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}38.462%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}51.923%{transform:translate(-5.0px,-318.0px) scale(1.5);animation-timing-function:cubic-bezier(.65,0,.35,1)}65.385%{transform:translate(-635.0px,-348.0px) scale(1.5);animation-timing-function:cubic-bezier(.65,0,.35,1)}80.769%{transform:translate(-48.0px,-432.0px) scale(1.6);animation-timing-function:linear}86.538%{transform:translate(-48.0px,-432.0px) scale(1.6);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-905.6px,-2294.4px) scale(4.2);animation-timing-function:linear}}
+.film-buehne .q32{animation:ff-q32 5.200s linear 1 both;animation-delay:calc(97.800s + var(--o,0s))}
 @keyframes ff-q33{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
-.film-buehne .q33{animation:ff-q33 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(86.550s + var(--o,0s))}
-@keyframes ff-q34{0.000%{transform:translateY(0.0px);animation-timing-function:linear}42.105%{transform:translateY(0.0px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translateY(-520.0px);animation-timing-function:linear}}
-.film-buehne .q34{animation:ff-q34 1.900s linear 1 both;animation-delay:calc(87.000s + var(--o,0s))}
-@keyframes ff-q35{0.000%{transform:translate(-192.0px,-108.0px) scale(1.3);animation-timing-function:cubic-bezier(.23,1,.32,1)}29.630%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}77.778%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-1536.0px,-1068.0px) scale(3.4);animation-timing-function:linear}}
-.film-buehne .q35{animation:ff-q35 2.700s linear 1 both;animation-delay:calc(87.000s + var(--o,0s))}
-@keyframes ff-q36{0.000%{transform:translateY(0.0px);animation-timing-function:linear}86.420%{transform:translateY(0.0px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translateY(-440.0px);animation-timing-function:linear}}
-.film-buehne .q36{animation:ff-q36 4.050s linear 1 both;animation-delay:calc(89.000s + var(--o,0s))}
-@keyframes ff-q37{0%{background-position:0 0}100%{background-position:0 -425.22px}}
-.film-buehne .q37{animation:ff-q37 0.320s steps(8, jump-none) 1 both;animation-delay:calc(92.100s + var(--o,0s))}
-@keyframes ff-q38{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
-.film-buehne .q38{animation:ff-q38 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(92.000s + var(--o,0s))}
-@keyframes ff-q39{0.000%{transform:translate(371.2px,208.8px) scale(0.42);animation-timing-function:cubic-bezier(.16,1,.3,1)}12.500%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}13.889%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.4,0,.2,1)}36.111%{transform:translate(-22.4px,-126.6px) scale(2.4);animation-timing-function:linear}45.833%{transform:translate(-39.0px,-138.8px) scale(2.46);animation-timing-function:cubic-bezier(.65,0,.35,1)}53.472%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}90.278%{transform:translate(-51.2px,-20.2px) scale(1.08);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translate(128.0px,72.0px) scale(0.8);animation-timing-function:linear}}
-.film-buehne .q39{animation:ff-q39 7.200s linear 1 both;animation-delay:calc(89.200s + var(--o,0s))}
-@keyframes ff-q40{0%{transform:translateX(0)}100%{transform:translateX(-1560px)}}
-.film-buehne .q40{animation:ff-q40 0.800s cubic-bezier(.65,0,.35,1) 1 both;animation-delay:calc(95.700s + var(--o,0s))}
-@keyframes ff-q41{0%{opacity:0}50%{opacity:1}87.5%{opacity:0}100%{opacity:0}}
-.film-buehne .q41{animation:ff-q41 0.640s step-end 5 both;animation-delay:calc(96.900s + var(--o,0s))}
-@keyframes ff-q42{0%{opacity:0}37.5%{opacity:1}50%{opacity:0}87.5%{opacity:1}100%{opacity:0}}
-.film-buehne .q42{animation:ff-q42 0.640s step-end 5 both;animation-delay:calc(96.900s + var(--o,0s))}
-@keyframes ff-q43{0%{background-position:0 0}100%{background-position:0 -1190.000px}}
-.film-buehne .q43{animation:ff-q43 3.600s steps(36, jump-none) 1 both;animation-delay:calc(96.900s + var(--o,0s))}
-@keyframes ff-q44{0%{background-position:0 0}100%{background-position:0 -2142.000px}}
-.film-buehne .q44{animation:ff-q44 3.600s steps(36, jump-none) 1 both;animation-delay:calc(96.900s + var(--o,0s))}
-@keyframes ff-q45{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
-.film-buehne .q45{animation:ff-q45 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(96.750s + var(--o,0s))}
-@keyframes ff-q46{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
-.film-buehne .q46{animation:ff-q46 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(100.400s + var(--o,0s))}
-@keyframes ff-q47{0.000%{transform:translate(128.0px,72.0px) scale(0.8);animation-timing-function:cubic-bezier(.65,0,.35,1)}11.594%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}17.391%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.3,0,.5,1)}59.420%{transform:translate(-702.8px,-356.4px) scale(1.75);animation-timing-function:cubic-bezier(.65,0,.35,1)}67.391%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}100.000%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}}
-.film-buehne .q47{animation:ff-q47 6.900s linear 1 both;animation-delay:calc(95.700s + var(--o,0s))}
-@keyframes ff-q48{0%{transform:translateX(1560px)}100%{transform:translateX(0)}}
-.film-buehne .q48{animation:ff-q48 0.800s cubic-bezier(.65,0,.35,1) 1 both;animation-delay:calc(95.700s + var(--o,0s))}
-@keyframes ff-q49{0.000%{transform:translateY(0.0px);animation-timing-function:linear}38.889%{transform:translateY(0.0px);animation-timing-function:cubic-bezier(.7,0,.2,1)}100.000%{transform:translateY(-1122.1px);animation-timing-function:linear}}
-.film-buehne .q49{animation:ff-q49 1.800s linear 1 both;animation-delay:calc(102.200s + var(--o,0s))}
-@keyframes ff-q50{0.000%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}74.074%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-906.4px,-1487.2px) scale(3.2);animation-timing-function:linear}}
-.film-buehne .q50{animation:ff-q50 2.700s linear 1 both;animation-delay:calc(102.200s + var(--o,0s))}
-@keyframes ff-q51{0.000%{transform:translate(-76.8px,-32.0px) scale(1.12);animation-timing-function:ease-in-out}100.000%{transform:translate(-76.8px,-531.5px) scale(1.12);animation-timing-function:linear}}
-.film-buehne .q51{animation:ff-q51 2.000s linear 1 both;animation-delay:calc(104.600s + var(--o,0s))}
-@keyframes ff-q52{0.000%{transform:translate(0.0px,20.0px) scale(1.0);animation-timing-function:linear}100.000%{transform:translate(-38.4px,-11.0px) scale(1.06);animation-timing-function:linear}}
-.film-buehne .q52{animation:ff-q52 3.500s linear 1 both;animation-delay:calc(106.500s + var(--o,0s))}
-@keyframes ff-q53{0.000%{transform:translate(-878.0px,-652.0px) scale(2.3);animation-timing-function:cubic-bezier(.23,1,.32,1)}21.875%{transform:translate(-768.0px,-608.0px) scale(2.2);animation-timing-function:cubic-bezier(.65,0,.35,1)}32.812%{transform:translate(-1736.0px,-608.0px) scale(2.2);animation-timing-function:linear}51.563%{transform:translate(-1725.0px,-586.0px) scale(2.15);animation-timing-function:cubic-bezier(.6,0,.2,1)}68.750%{transform:translate(158.4px,59.6px) scale(0.56);animation-timing-function:linear}100.000%{transform:translate(158.4px,59.6px) scale(0.56);animation-timing-function:linear}}
-.film-buehne .q53{animation:ff-q53 3.200s linear 1 both;animation-delay:calc(109.800s + var(--o,0s))}
-@keyframes ff-q54{0.000%{transform:translate(665.6px,22.0px) scale(0.44);animation-timing-function:linear}22.857%{transform:translate(656.8px,22.0px) scale(0.44);animation-timing-function:ease-in-out}100.000%{transform:translate(550.0px,-20.0px) scale(0.5);animation-timing-function:linear}}
-.film-buehne .q54{animation:ff-q54 7.000s linear 1 both;animation-delay:calc(113.000s + var(--o,0s))}
+.film-buehne .q33{animation:ff-q33 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(102.150s + var(--o,0s))}
+@keyframes ff-q34{0.000%{transform:translateY(0.0px);animation-timing-function:linear}42.857%{transform:translateY(0.0px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translateY(-520.0px);animation-timing-function:linear}}
+.film-buehne .q34{animation:ff-q34 2.100s linear 1 both;animation-delay:calc(102.700s + var(--o,0s))}
+@keyframes ff-q35{0.000%{transform:translate(-192.0px,-108.0px) scale(1.3);animation-timing-function:cubic-bezier(.23,1,.32,1)}24.242%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}81.818%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-1536.0px,-1068.0px) scale(3.4);animation-timing-function:linear}}
+.film-buehne .q35{animation:ff-q35 3.300s linear 1 both;animation-delay:calc(102.700s + var(--o,0s))}
+@keyframes ff-q36{0.000%{transform:translateY(0.0px);animation-timing-function:linear}31.250%{transform:translateY(0.0px);animation-timing-function:ease-in-out}87.500%{transform:translateY(-600.0px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translateY(-1021.6px);animation-timing-function:linear}}
+.film-buehne .q36{animation:ff-q36 4.800s linear 1 both;animation-delay:calc(105.800s + var(--o,0s))}
+@keyframes ff-q37{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.film-buehne .q37{animation:ff-q37 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(110.700s + var(--o,0s))}
+@keyframes ff-q38{0.000%{transform:translate(371.2px,208.8px) scale(0.42);animation-timing-function:cubic-bezier(.16,1,.3,1)}10.976%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}51.220%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}58.537%{transform:translate(-2.4px,-71.2px) scale(1.1);animation-timing-function:linear}90.244%{transform:translate(-14.1px,-79.0px) scale(1.12);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translate(128.0px,72.0px) scale(0.8);animation-timing-function:linear}}
+.film-buehne .q38{animation:ff-q38 8.200s linear 1 both;animation-delay:calc(105.800s + var(--o,0s))}
+@keyframes ff-q39{0%{transform:translateX(0)}100%{transform:translateX(-1560px)}}
+.film-buehne .q39{animation:ff-q39 0.800s cubic-bezier(.65,0,.35,1) 1 both;animation-delay:calc(113.200s + var(--o,0s))}
+@keyframes ff-q40{0.000%{transform:translateY(0.0px);animation-timing-function:linear}47.619%{transform:translateY(0.0px);animation-timing-function:cubic-bezier(.65,0,.35,1)}55.952%{transform:translateY(-440.0px);animation-timing-function:linear}88.095%{transform:translateY(-440.0px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translateY(-832.4px);animation-timing-function:linear}}
+.film-buehne .q40{animation:ff-q40 8.400s linear 1 both;animation-delay:calc(113.200s + var(--o,0s))}
+@keyframes ff-q41{0%{background-position:0 0}100%{background-position:0 -425.22px}}
+.film-buehne .q41{animation:ff-q41 0.320s steps(8, jump-none) 1 both;animation-delay:calc(116.800s + var(--o,0s))}
+@keyframes ff-q42{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.film-buehne .q42{animation:ff-q42 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(116.700s + var(--o,0s))}
+@keyframes ff-q43{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.film-buehne .q43{animation:ff-q43 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(122.400s + var(--o,0s))}
+@keyframes ff-q44{0.000%{transform:translate(128.0px,72.0px) scale(0.8);animation-timing-function:cubic-bezier(.65,0,.35,1)}5.797%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.4,0,.2,1)}23.188%{transform:translate(-22.4px,-126.6px) scale(2.4);animation-timing-function:linear}28.986%{transform:translate(-39.0px,-138.8px) scale(2.46);animation-timing-function:cubic-bezier(.65,0,.35,1)}34.058%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}53.623%{transform:translate(-44.8px,-20.9px) scale(1.07);animation-timing-function:cubic-bezier(.65,0,.35,1)}60.870%{transform:translate(-51.2px,-56.9px) scale(1.08);animation-timing-function:linear}94.203%{transform:translate(-57.6px,-62.9px) scale(1.09);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translate(128.0px,72.0px) scale(0.8);animation-timing-function:linear}}
+.film-buehne .q44{animation:ff-q44 13.800s linear 1 both;animation-delay:calc(113.200s + var(--o,0s))}
+@keyframes ff-q45{0%{transform:translateX(1560px)}100%{transform:translateX(0)}}
+.film-buehne .q45{animation:ff-q45 0.800s cubic-bezier(.65,0,.35,1) 1 both;animation-delay:calc(113.200s + var(--o,0s))}
+@keyframes ff-q46{0%{transform:translateX(0)}100%{transform:translateX(-1560px)}}
+.film-buehne .q46{animation:ff-q46 0.800s cubic-bezier(.65,0,.35,1) 1 both;animation-delay:calc(126.200s + var(--o,0s))}
+@keyframes ff-q47{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.film-buehne .q47{animation:ff-q47 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(128.200s + var(--o,0s))}
+@keyframes ff-q48{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.film-buehne .q48{animation:ff-q48 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(129.100s + var(--o,0s))}
+@keyframes ff-q49{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.film-buehne .q49{animation:ff-q49 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(130.000s + var(--o,0s))}
+@keyframes ff-q50{0.000%{transform:translate(128.0px,72.0px) scale(0.8);animation-timing-function:cubic-bezier(.65,0,.35,1)}12.903%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}29.032%{transform:translate(0.0px,-140.0px) scale(1.25);animation-timing-function:linear}100.000%{transform:translate(-15.4px,-157.1px) scale(1.28);animation-timing-function:linear}}
+.film-buehne .q50{animation:ff-q50 6.200s linear 1 both;animation-delay:calc(126.200s + var(--o,0s))}
+@keyframes ff-q51{0%{transform:translateX(1560px)}100%{transform:translateX(0)}}
+.film-buehne .q51{animation:ff-q51 0.800s cubic-bezier(.65,0,.35,1) 1 both;animation-delay:calc(126.200s + var(--o,0s))}
+@keyframes ff-q52{0.000%{transform:translateY(0.0px);animation-timing-function:linear}23.077%{transform:translateY(0.0px);animation-timing-function:ease-in-out}100.000%{transform:translateY(-254.3px);animation-timing-function:linear}}
+.film-buehne .q52{animation:ff-q52 5.200s linear 1 both;animation-delay:calc(132.000s + var(--o,0s))}
+@keyframes ff-q53{0.000%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}100.000%{transform:translate(-51.2px,-28.8px) scale(1.08);animation-timing-function:linear}}
+.film-buehne .q53{animation:ff-q53 5.400s linear 1 both;animation-delay:calc(132.000s + var(--o,0s))}
+@keyframes ff-q54{0%{opacity:0}50%{opacity:1}87.5%{opacity:0}100%{opacity:0}}
+.film-buehne .q54{animation:ff-q54 0.640s step-end 5 both;animation-delay:calc(139.000s + var(--o,0s))}
+@keyframes ff-q55{0%{opacity:0}37.5%{opacity:1}50%{opacity:0}87.5%{opacity:1}100%{opacity:0}}
+.film-buehne .q55{animation:ff-q55 0.640s step-end 5 both;animation-delay:calc(139.000s + var(--o,0s))}
+@keyframes ff-q56{0%{background-position:0 0}100%{background-position:0 -1190.000px}}
+.film-buehne .q56{animation:ff-q56 3.600s steps(36, jump-none) 1 both;animation-delay:calc(139.000s + var(--o,0s))}
+@keyframes ff-q57{0%{background-position:0 0}100%{background-position:0 -2142.000px}}
+.film-buehne .q57{animation:ff-q57 3.600s steps(36, jump-none) 1 both;animation-delay:calc(139.000s + var(--o,0s))}
+@keyframes ff-q58{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.film-buehne .q58{animation:ff-q58 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(138.850s + var(--o,0s))}
+@keyframes ff-q59{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.film-buehne .q59{animation:ff-q59 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(142.500s + var(--o,0s))}
+@keyframes ff-q60{0.000%{transform:translate(-76.8px,-43.2px) scale(1.12);animation-timing-function:cubic-bezier(.23,1,.32,1)}9.574%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}21.277%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.3,0,.5,1)}52.128%{transform:translate(-702.8px,-356.4px) scale(1.75);animation-timing-function:cubic-bezier(.65,0,.35,1)}57.979%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}100.000%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}}
+.film-buehne .q60{animation:ff-q60 9.400s linear 1 both;animation-delay:calc(137.000s + var(--o,0s))}
+@keyframes ff-q61{0.000%{transform:translateY(0.0px);animation-timing-function:linear}42.857%{transform:translateY(0.0px);animation-timing-function:cubic-bezier(.7,0,.2,1)}100.000%{transform:translateY(-1122.1px);animation-timing-function:linear}}
+.film-buehne .q61{animation:ff-q61 2.100s linear 1 both;animation-delay:calc(146.000s + var(--o,0s))}
+@keyframes ff-q62{0.000%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}81.579%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-906.4px,-1487.2px) scale(3.2);animation-timing-function:linear}}
+.film-buehne .q62{animation:ff-q62 3.800s linear 1 both;animation-delay:calc(146.000s + var(--o,0s))}
+@keyframes ff-q63{0.000%{transform:translate(-76.8px,-32.0px) scale(1.12);animation-timing-function:ease-in-out}100.000%{transform:translate(-76.8px,-531.5px) scale(1.12);animation-timing-function:linear}}
+.film-buehne .q63{animation:ff-q63 2.900s linear 1 both;animation-delay:calc(149.500s + var(--o,0s))}
+@keyframes ff-q64{0.000%{transform:translate(0.0px,20.0px) scale(1.0);animation-timing-function:linear}100.000%{transform:translate(-44.8px,-14.5px) scale(1.07);animation-timing-function:linear}}
+.film-buehne .q64{animation:ff-q64 5.100s linear 1 both;animation-delay:calc(152.400s + var(--o,0s))}
+@keyframes ff-q65{0.000%{transform:translate(-878.0px,-652.0px) scale(2.3);animation-timing-function:cubic-bezier(.23,1,.32,1)}18.966%{transform:translate(-768.0px,-608.0px) scale(2.2);animation-timing-function:cubic-bezier(.65,0,.35,1)}25.862%{transform:translate(-1736.0px,-608.0px) scale(2.2);animation-timing-function:linear}43.103%{transform:translate(-1725.0px,-586.0px) scale(2.15);animation-timing-function:cubic-bezier(.6,0,.2,1)}55.172%{transform:translate(158.4px,59.6px) scale(0.56);animation-timing-function:linear}100.000%{transform:translate(158.4px,59.6px) scale(0.56);animation-timing-function:linear}}
+.film-buehne .q65{animation:ff-q65 5.800s linear 1 both;animation-delay:calc(157.200s + var(--o,0s))}
+@keyframes ff-q66{0.000%{transform:translate(665.6px,22.0px) scale(0.44);animation-timing-function:linear}22.857%{transform:translate(656.8px,22.0px) scale(0.44);animation-timing-function:ease-in-out}100.000%{transform:translate(550.0px,-20.0px) scale(0.5);animation-timing-function:linear}}
+.film-buehne .q66{animation:ff-q66 7.000s linear 1 both;animation-delay:calc(163.000s + var(--o,0s))}
 @media print{ /* taste-skill-ignore: Druckfassung */ .film,.film-knopf{display:none!important}}
 
 

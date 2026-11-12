@@ -1,5 +1,5 @@
-/* Kidu – Film »Kidu in zwei Minuten« auf der Startseite (ab Version 4.34; löst »Kidu in 44 Sekunden« aus 4.16 ab).
-   Die Bühne (neun Kapitel, 120 Sekunden) steht in assets/film-buehne.js und stammt aus dem Drehbuch des Pitch-Films.
+/* Kidu – Film auf der Startseite (ab Version 4.34 »Kidu in zwei Minuten«; löst »Kidu in 44 Sekunden« aus 4.16 ab; ab 4.35 knapp drei Minuten).
+   Die Bühne (neun Kapitel, Dauer in KIDU_FILM.dauer) steht in assets/film-buehne.js und stammt aus dem Drehbuch des Pitch-Films.
    Jede Bewegung ist eine CSS-Animation mit fester Verzögerung calc(Xs + var(--o)); --o verschiebt die Zeit.
    Dieses Skript baut die Bühne ein, zählt die Zeit und steuert Start, Halt und Ende.
    Startet nur auf Knopfdruck (»Film ansehen«) oder über die Adresse mit ?film=1; am Ende »Film nochmal ansehen« oder »Zur Startseite«.
