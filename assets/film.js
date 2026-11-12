@@ -47,14 +47,13 @@
     if (weniger) { knopfHalt.textContent = "Nächstes Bild"; knopfHalt.removeAttribute("aria-pressed"); return; }
     knopfHalt.textContent = laeuft ? "Anhalten" : "Weiter"; knopfHalt.setAttribute("aria-pressed", laeuft ? "false" : "true");
   }
-  /* Standbild: das Ende eines Kapitels, angehalten */
+  /* Standbild: das Ende eines Kapitels, angehalten. Ab 4.35 nennt die Bühne die Zeit selbst (kapitel[n].bild), weil die Kamera am Kapitelende schon weiterfährt. */
   function standbild(n) {
     bild = n;
     var k = D.kapitel[n], naechstes = D.kapitel[n + 1];
     buehne.classList.add("halt");
-    aufbauen((naechstes ? naechstes.start : ENDE + 4) - 0.2);
+    aufbauen(typeof k.bild === "number" ? k.bild : (naechstes ? naechstes.start : ENDE + 4) - 0.2);
     if (!naechstes) amEnde();
-    void k;
   }
   function merken() { try { sessionStorage.setItem("papierprobe.film", "gelaufen"); } catch (e) { /* ohne Speicher läuft er beim nächsten Aufruf wieder */ } }
   function vonVorn() {
