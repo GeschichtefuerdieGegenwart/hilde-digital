@@ -7,6 +7,20 @@ description: "Nutze diesen Skill, wenn KI-Kompetenz im Kollegium gefördert werd
 
 Dieser Skill plant, wie ein Kollegium sicherer und kritischer mit KI arbeitet. Er geht von echten Aufgaben im Schulalltag aus, nicht von einzelnen Werkzeugen. Er verbindet drei anerkannte Rahmen mit den Werkzeugen von Kidu. Er bewertet keine Lehrkraft und erstellt kein Kompetenzprofil einzelner Personen.
 
+## Kidu als Fortbildungsplattform
+
+Kidu ist eine Fortbildungsplattform für Lehrkräfte – zum Selbermachen und für Fortbildungen. Eine Fortbildung kann ihrem Weg folgen:
+
+| Schritt | Werkzeug in Kidu | Wofür in der Fortbildung |
+| --- | --- | --- |
+| Vorher | **Mein Fortbildungsbogen** (etwa zwölf Minuten, »Mein Ist-Stand« ist ein Teil davon) | Ausgangslage, ohne Personen zu erfassen: Jede Person füllt ihn für sich aus und sichert ihn als PDF. Vorher verlässt nichts das Gerät. Sie gibt ihn selbst der Leitung – freiwillig. |
+| Grundlagen | Wann funktioniert digitaler Unterricht? · Was passt gerade zu mir? · KI-Training | Einsicht: wann das Gerät oder die KI etwas beiträgt – und wann Papier genauso gut ist |
+| Erstellen | Unterricht neu planen · Bisherigen Unterricht digitalisieren · Aufgabenkoffer · Methodenkoffer · Digital-Check | Üben am eigenen Material: eine Stunde oder ein Blatt, das die Person ohnehin unterrichtet |
+| Unterrichten | Tablet-Phasen gut führen | eine Stelle im eigenen Unterricht erproben |
+| Nach der Stunde | Beobachtungsbogen · Fortbildungsbaustein (45 Minuten) · Beratungsstunde (acht Wochen) · Leitsätze zur Diskussion · **Mein Rückmeldebogen** | auswerten, nachschärfen, im Kollegium zeigen. Der Rückmeldebogen sammelt, was gelungen ist, wo es hakt und was die Person braucht; sie schickt ihn selbst an die Leitung und entscheidet, ob er ohne Namen weitergegeben werden darf. |
+
+Kidu ist ohne Auftrag einer Schule entstanden und kein beschlossenes Schulkonzept; eine Fortbildung nutzt die Werkzeuge, ohne sie als Schulregel auszugeben.
+
 ## Gemeinsame Grundregeln (wortgleich in allen Skills von Kidu)
 
 1. **Erst das Anliegen, dann das Werkzeug.**
@@ -69,13 +83,13 @@ Für KI-Fortbildung selbst gibt es bis Oktober 2026 keine kontrollierte Studie m
    - Welches KI-System ist an der Schule freigegeben? Welche Regeln gelten (Schule, Land)?
    - Wer ist die Zielgruppe: ganzes Kollegium, Fachgruppe, neue Kolleg*innen?
    - Wie viel Zeit gibt es: 45 Minuten, ein pädagogischer Tag, eine Reihe?
-2. **Ausgangslage erkunden – ohne Personen zu erfassen.** Vorschlag: Alle füllen für sich »Mein Ist-Stand« in Kidu aus und nennen danach freiwillig einen Satz: »Wofür würde ich KI gern nutzen? Wo bin ich unsicher?« Wenn die Schule eine Umfrage will: anonym, ohne Freitext mit Namen, Ergebnisse nur gesammelt.
+2. **Ausgangslage erkunden – ohne Personen zu erfassen.** Vorschlag: Alle füllen vorher für sich »Mein Fortbildungsbogen« in Kidu aus und geben das PDF freiwillig der Leitung; in der Fortbildung nennt jede Person freiwillig einen Satz: »Wofür würde ich KI gern nutzen? Wo bin ich unsicher?« Die Leitung liest nur, was ihr gegeben wird, und bewertet nicht. Wenn die Schule eine Umfrage will: anonym, ohne Freitext mit Namen, Ergebnisse nur gesammelt.
 3. **Echte Anlässe sammeln.** Wofür braucht das Kollegium KI wirklich? Bewährte Anlässe aus dem KI-Training von Kidu: Arbeitsblatt vereinfachen, in drei Niveaus differenzieren, Erwartungshorizont, Exit-Ticket, Einstieg mit Vermutung, Übungsquiz mit Rückmeldung, Elterninformation, Sitzung vorbereiten.
 4. **Bausteine wählen** (Tabelle unten). Nicht alle auf einmal. Für eine erste Fortbildung reichen zwei.
 5. **Format wählen:** Baustein von 45 Minuten (siehe »Fortbildungsbaustein« in Kidu) als Einstieg · Tandem aus zwei Lehrkräften · offene KI-Sprechstunde · Viertelstunde in der Konferenz (»Was ich probiert habe«) · Fachgruppe mit eigenem Material.
    **Vorzug: Beratungsstunde über acht Wochen.** Zwei bis drei Lehrkräfte, eine feste Stunde pro Woche, jede bringt eine echte Stunde oder ein Material mit. Ablauf: Anlass und Ziel setzen → mit KI entwerfen → prüfen → im Unterricht erproben → mit dem Beobachtungsbogen auswerten → nachschärfen → zweite Erprobung → Ergebnisse im Kollegium zeigen. Ein einzelner Baustein allein verändert nach der Forschungslage wenig.
 6. **Regeln gemeinsam festhalten.** Höchstens eine Seite: Was darf in die KI, was nicht? Wie kennzeichnen wir KI-Hilfe in Material für Lernende? Wie gehen wir mit KI bei Leistungen der Lernenden um? Offene Punkte bleiben als »noch offen« stehen.
-7. **Erproben und auswerten.** Jede Person probiert einen Anlass im Alltag aus. Auswertung mit dem Beobachtungsbogen oder dem Skill `praxisforschung-im-kollegium`. Nach einigen Wochen: Was hat geholfen, was nicht, was lassen wir?
+7. **Erproben und auswerten.** Jede Person probiert einen Anlass im Alltag aus. Auswertung mit dem Beobachtungsbogen oder dem Skill `praxisforschung-im-kollegium`. Danach schickt jede Person, wenn sie will, »Mein Rückmeldebogen« an die Leitung – so kommen Erfahrungen, Hindernisse und Wünsche für die nächste Runde zusammen, ohne Namen von Lernenden oder Kolleg*innen. Nach einigen Wochen: Was hat geholfen, was nicht, was lassen wir?
 
 ## Bausteine (je etwa 45 Minuten)
 
@@ -134,6 +148,7 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 - Versprich keine Zeitersparnis. Sag stattdessen: Der Entwurf geht schneller, die Prüfung bleibt bei dir.
 - Zufriedenheit ist kein Maß für Wirkung. Plane, dass jede Person einen Anlass im Unterricht erprobt und mit einem kurzen Beobachtungsbogen auswertet.
 - Halte am Ende gemeinsame Regeln auf höchstens einer Seite fest. Was noch nicht geklärt ist, bleibt als »noch offen« stehen.
+- Plane einen kurzen Bogen vor der Fortbildung (Ausgangslage, nur für die Person selbst und freiwillig für die Leitung) und einen Rückmeldebogen danach: Was ist gelungen? Wo hakt es? Was würde jetzt helfen? Ohne Namen, und jede Person entscheidet, ob ihre Rückmeldung weitergegeben werden darf.
 
 **Prüfen**
 
@@ -143,6 +158,7 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 
 ## Versionen
 
+- **v2.2, 13.11.2026:** Neuer Abschnitt »Kidu als Fortbildungsplattform«: die vier Phasen von Kidu als Weg einer Fortbildung, »Mein Fortbildungsbogen« vorher (enthält »Mein Ist-Stand«), »Mein Rückmeldebogen« danach; Ablauf Schritte 2 und 7 angepasst; Kurzfassung um eine Regel ergänzt (Bogen vorher, Rückmeldebogen danach).
 - **v2.1, 10.11.2026:** Name Kidu (vorher »Hilde Digital«); Abschnitt »Kurzfassung für Kidu« als einzige Quelle für den kopierbaren Auftrag auf der Website.
 - **v2, 31.10.2026:** Nach dem Forschungsbericht »KI und digitale Medien im Unterricht«: KMK-KI-Kompetenzrahmen (16.10.2026) und EU/OECD-Rahmen ergänzt, Art. 4 nach VO (EU) 2026/1744; neuer Abschnitt »Was Fortbildung wirksam macht« mit Belegtabelle; Beratungsstunde über acht Wochen als bevorzugtes Format; kein Zeitversprechen; Baustein »Lernende begleiten« um Abruf ohne KI ergänzt.
 - **v1, 25.10.2026:** Erste Fassung auf Grundlage von AI Fluency (4D), UNESCO-Kompetenzrahmen, KMK-Empfehlung 2024 und Art. 4 der KI-Verordnung; Anschluss an Hilde Digital und die Skills `ki-grenzen-einer-aufgabe`, `ki-faktencheck`, `praxisforschung-im-kollegium`.

@@ -14,10 +14,10 @@
 :root{
   color-scheme:light;
   /* Papier und Druckschwarz */
-  --grund:#efeadf;        /* ungebleichtes Papier, Seitenhintergrund (Text 12,0:1) */
-  --flaeche:#f8f5ee;      /* Bänder, Karten, Eingaben: glattes Blatt auf dem Papier (Text 13,2:1) */
+  --grund:#efeadf;        /* ungebleichtes Papier, Seitenhintergrund (Text 13,7:1; Aktion #2b2a24 12,0:1) */
+  --flaeche:#f8f5ee;      /* Bänder, Karten, Eingaben: glattes Blatt auf dem Papier (Text 15,1:1) */
   --karton:#e2dccd;       /* zurückgesetzte Flächen, Passepartout */
-  --text:#201f1d;         /* Druckschwarz = Tinte des Logos (ab 4.26; vorher #2b2a24); auf Ocker 4,9:1, auf Grund 14,2:1 */
+  --text:#201f1d;         /* Druckschwarz = Tinte des Logos (ab 4.26; vorher #2b2a24); auf Ocker 4,9:1, auf Grund 13,7:1 */
   --leise:#524e3d;        /* Nebennotizen, 7,0:1 auf --grund */
   --linie:#ddd6c6;        /* nur Dekoration, nie Grenze eines Bedienelements */
   --stahl:#6f6853;        /* Grenzen von Bedienelementen, 4,6:1 */

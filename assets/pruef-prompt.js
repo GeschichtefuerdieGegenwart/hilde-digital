@@ -12,7 +12,9 @@
    - die Kernbereiche des gewählten Materialtyps,
    - eine feste Gliederung der Antwort: Stärke zuerst, keine Noten, keine Prozente,
    - ab Version 4.25 die »Typischen Schwächen« aus dem Skill digital-check (Abschnitt »Kurzfassung für Kidu«,
-     über assets/daten/kurzfassungen.js – gepflegt wird nur im Skill).
+     über assets/daten/kurzfassungen.js – gepflegt wird nur im Skill),
+   - ab Version 4.38 die Gestaltung als eigenen Prüfblock (Liste »Gestaltung« derselben Kurzfassung). Die Regeln zu
+     Ruhe, Klickweg und Zwischenstand stehen seitdem dort und nicht mehr unter »Regeln«: Gestaltung ändert keine Stufe.
    docs/pruef-auftrag.md und die Kopie im Skill erzeugt tools/werkzeugkiste.py aus dieser Datei.
    Tests: tests/pruef-prompt.test.js */
 (function (wurzel) {
@@ -27,10 +29,13 @@
   function baue(optionen, Q, K) {
     Q = Q || wurzel.QUALITAET;
     K = kurzfassungen(K);
-    var schwaechen = K && K.skills["digital-check"] ? K.skills["digital-check"].anforderungen : [];
+    var dc = K && K.skills["digital-check"];
+    var schwaechen = dc ? dc.anforderungen : [];
+    var gestaltung = dc && dc.gestaltung ? dc.gestaltung : [];
     optionen = optionen || {};
     var typ = Q.materialtypen.filter(function (t) { return t.id === optionen.typ; })[0] || null;
     var name = function (id) { return Q.bereiche.filter(function (b) { return b.id === id; })[0].name; };
+    if (typ && typ.digital === false) gestaltung = []; // Material auf Papier: Block 2 entfällt (Skill digital-check v1.4)
 
     var z = [];
     z.push("# Rolle");
@@ -63,10 +68,7 @@
     z.push("- Motivation allein ist kein Lernmehrwert. Spielelemente zählen nur, wenn sie das Lernen stützen.");
     z.push("- »Analog oder hybrid passt besser« ist ein vollwertiges Ergebnis. Mehr Technik ist nicht automatisch besser.");
     z.push("- Ein punktueller digitaler Einsatz ist keine Vorstufe. Bewerte das Material für den Zweck, für den es gemacht ist.");
-    z.push("- Erst Ruhe, dann Bewegung: Bewegung auf der Seite zählt nur, wenn sie eine Veränderung, einen Ablauf oder einen Zusammenhang zeigt und die Lernenden sie selbst auslösen oder steuern. Bewegung beim bloßen Lesen oder als Belohnung ist ein Mangel.");
     z.push("- Erst denken, dann zeigen: Prüfe, ob die Lernenden sich festlegen müssen, bevor eine Auflösung, Rückmeldung oder Animation kommt.");
-    z.push("- Zähle den Weg: Wie viele Tipps oder Klicks brauchen die Lernenden bis zur ersten eigenen Antwort, und wie oft wechselt die Seite innerhalb einer Arbeitsphase? Mehr als drei Tipps oder ein Seitenwechsel mitten in der Phase sind ein Hinweis auf Unruhe.");
-    z.push("- Bei Sortier- und Legeaufgaben: Gibt es einen Zwischenstand, kann man Fehler zurücknehmen, bleibt der Stand gespeichert? Überleben die Ergebnisse die Stunde außerhalb des Browsers?");
     z.push("- Sprich von Potenzial, nicht von nachgewiesener Wirkung.");
     z.push("- Prüfe Fachliches vorsichtig: Nenne Stellen, die eine Fachperson prüfen sollte, statt Fehler sicher zu behaupten.");
     z.push("- Erfinde nichts. Ergänze keine fehlenden Informationen. Frage nach, wenn dir etwas fehlt.");
@@ -89,12 +91,18 @@
       z.push("Diese Schwächen kommen in Unterrichtsmaterial immer wieder vor. Sieh bei jeder nach, ob sie hier vorkommt, und nenne die Fundstelle.");
       schwaechen.forEach(function (w) { z.push("- " + w); });
     }
+    if (gestaltung.length) {
+      z.push("");
+      z.push("# Gestaltung – ein eigener Prüfblock");
+      z.push("Prüfe danach, wie die Seite aussieht und sich bedient – getrennt von der Didaktik. Die Gestaltung ändert keine Stufe im Qualitätsmodell. Nenne nur, was auffällt, jeweils mit Fundstelle. Was es im Material nicht gibt, etwa einen Film oder einen Lehrkraftbereich, lässt du weg.");
+      gestaltung.forEach(function (g) { z.push("- " + g); });
+    }
     z.push("");
     z.push("# Form deiner Antwort");
     z.push("Schreib in einfacher Sprache, in kurzen Sätzen und sprich mich mit »du« an. Halte genau diese Gliederung ein:");
     z.push("1. Besondere Stärke – der stärkste Bereich, mit Fundstellen. Beginne immer damit.");
     z.push("2. Abgedeckte Bereiche – je Zeile: Bereich · Qualität in Worten · digitaler Beitrag in Worten.");
-    z.push("3. Beobachtungen am Material – was du gesehen hast, jeweils mit Fundstelle.");
+    z.push("3. Beobachtungen am Material – was du gesehen hast, jeweils mit Fundstelle." + (gestaltung.length ? " Zuerst die Didaktik, dann in einem eigenen Absatz »Gestaltung«." : ""));
     z.push("4. Tablet oder Papier? – Wo trägt die digitale Form wirklich etwas bei, und wo ginge es auf Papier genauso gut? Nutze die Sätze aus Schritt 3 des Vorgehens.");
     z.push("5. Mögliche Weiterentwicklung – höchstens drei konkrete Schritte" + (typ ? ", zuerst in den wichtigen Bereichen" : "") + ". Fachliche Korrekturen zuerst.");
     z.push("6. Grenzen deiner Einschätzung – was du nicht beurteilen konntest, zum Beispiel Bedienung, Ton, Einsatz im Unterricht.");

@@ -8,8 +8,8 @@ Seit Version 0.2.0 ist das Plugin geteilt: **»kidu«** (dieses Plugin) ist für
 
 | Du willst … | Sag einfach … | Skill |
 | --- | --- | --- |
-| eine Stunde oder ein Arbeitsblatt weiterentwickeln, wissen, ob sich das Tablet lohnt, drei Varianten sehen | »Mach aus dieser Stunde etwas fürs Tablet« · »Lohnt sich hier das Tablet?« | `unterricht-digitalisieren` |
-| fertiges Material prüfen lassen | »Schau mal drüber« · »Taugt das?« | `digital-check` |
+| Unterricht neu planen oder bisherigen Unterricht digitalisieren – eine Stunde, ein Arbeitsblatt oder mehrere Stunden als Einheit; wissen, ob sich das Tablet lohnt; drei Varianten sehen | »Mach aus dieser Stunde etwas fürs Tablet« · »Lohnt sich hier das Tablet?« · »Plan mit mir die Einheit« | `unterricht-digitalisieren` |
+| fertiges Material prüfen lassen – Didaktik und Gestaltung getrennt | »Schau mal drüber« · »Taugt das?« | `digital-check` |
 
 Wer nicht weiß, wo anfangen: »Kidu, was kannst du?« → `kidu-start`.
 
@@ -33,8 +33,8 @@ Jeder Skill hat einen Abschnitt **»Kurzfassung für Kidu«**. Aus ihm baut `too
 
 | Skill | Werkzeug auf der Website |
 | --- | --- |
-| `unterricht-digitalisieren` | Unterricht digitalisieren (Abschnitt »Vorgehen«) |
-| `digital-check` | Digital-Check, Weg »Mit KI prüfen« (Abschnitt »Typische Schwächen«) |
+| `unterricht-digitalisieren` | Bisherigen Unterricht digitalisieren (Abschnitt »Vorgehen«) |
+| `digital-check` | Digital-Check, Weg »Mit KI prüfen« (Abschnitte »Typische Schwächen« und »Gestaltung«) |
 | `lernmethode-einfuehren` · `ki-grenzen-einer-aufgabe` · `ki-faktencheck` · `praxisforschung-im-kollegium` · `ki-kompetenz-kollegium` | Aufträge zum Kopieren |
 
 Gepflegt wird nur im Skill. Die Website zeigt bei jedem Auftrag, aus welcher Fassung er stammt. Plugin und einzelne Skills liegen zum Herunterladen auf der Seite »Methodenkoffer«.
@@ -42,7 +42,7 @@ Gepflegt wird nur im Skill. Die Website zeigt bei jedem Auftrag, aus welcher Fas
 ## Stufenplan
 
 - **Stufe 1 – Pilot (jetzt):** zwei bis drei Kolleginnen, je eine echte Stunde über einen der zwei Einstiege. Erkundungsfrage nach `praxisforschung-im-kollegium`: »Hilft das Plugin bei der Entscheidung, ohne den Mehrwert-Check zu überspringen?« Belege: die Vorhaben und Materialien, der Beobachtungsbogen nach der Stunde, drei Sätze Rückmeldung je Kollegin.
-- **Stufe 2 – Fachschaften:** nach Auswertung des Pilots; Fachbausteine je Fach ergänzen (bisher: GGK); Galerie-Einträge aus den Pilotstunden.
+- **Stufe 2 – Fachschaften:** nach Auswertung des Pilots; Fachbausteine je Fach ergänzen (bisher: GGK); Einträge in den Unterrichtsbeispielen aus den Pilotstunden.
 - **Stufe 3 – Schulweit:** als Baustein des Medienbildungskonzepts; Fortbildung über `ki-kompetenz-kollegium`.
 
 ## Voraussetzungen und Grenzen
@@ -58,6 +58,7 @@ Eine Quelle: Die Skills werden im Plugin gepflegt und versioniert (Abschnitt »V
 
 ## Versionen
 
+- **0.6.0, 13.11.2026:** Nach der Sichtung und Didaktikanalyse vom 13.11.2026 (Kidu 4.36–4.38): `unterricht-digitalisieren` v4.5 (ganze Einheit mit Schritt E »Landkarte der Einheit«, zwei Wege »Unterricht neu planen« und »Bisherigen Unterricht digitalisieren«, Prüfraster »Lehrfunktion je Phase« mit neuer Referenz `references/lehrfunktionen.md`, Gestaltung getrennt) · `digital-check` v1.4 (zwei Prüfblöcke Didaktik und Gestaltung, Prüffragen je Lehrfunktion, typische Schwächen aus der Sichtung; Kurzfassung mit Liste »Gestaltung«) · `kidu-start` v3.2 (neue Wege und Namen, die vier Phasen der Website) · `lernmethode-einfuehren` v1.3 (Sichern und üben mit Methode) · `ki-kompetenz-kollegium` v2.2 (Kidu als Fortbildungsplattform, Fortbildungsbogen und Rückmeldebogen).
 - **0.5.1, 11.11.2026:** Die Seite »Werkzeugkiste« von Kidu heißt jetzt »Methodenkoffer« (`kidu-start` v3.1).
 - **0.5.0, 11.11.2026:** Lesen und Strukturlegen: neue Referenz `lernmethode-einfuehren/references/lesen-und-strukturlegen.md` mit recherchierten Quellen und Belegstand; `lernmethode-einfuehren` v1.2, `unterricht-digitalisieren` v4.4, `digital-check` v1.3.
 - **0.4.0, 10.11.2026:** Umbenannt in **»kidu«** (vorher »hilde-digital«), Einstieg `kidu-start` (vorher `hilde-digital-start`), Zusatz-Plugin »kidu-bau«; nicht mehr an eine Schule gebunden. Neu: Abschnitt »Kurzfassung für Kidu« in sieben Skills als einzige Quelle der Website-Aufträge; neuer Auftrag aus `ki-kompetenz-kollegium`. Gepflegt im Repository `kidu` unter `werkzeugkiste/kidu/`. Die Papierprobe in `unterricht-digitalisieren` heißt weiter so.
