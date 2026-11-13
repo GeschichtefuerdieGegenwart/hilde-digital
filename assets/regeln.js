@@ -114,7 +114,10 @@
       "Das hast du gewählt. Plane feste Stellen im Plenum ein: Deutung und Urteil entstehen im Gespräch, lange Texte liegen auf Papier." };
     if (istGesetzt(a.umfang)) return { id: a.umfang, grund: "Das hast du gewählt. Es passt zu deinem Vorhaben." };
     // Noch offen: Vorschlag aus Phase und Mehrwert.
-    if (a.phase === "einstieg" || a.phase === "abschluss") return { id: "punktuell", grund: "Für einen Einstieg oder Abschluss reicht meist ein kurzer Impuls." };
+    /* Kurzer Impuls nur für Einstieg und Ausblick (ab 4.37): Wer am Ende auf einen neuen Fall überträgt
+       (Anliegen »Reflektieren & übertragen«), braucht Zeit – dann kein kurzer Umfang. */
+    if (a.phase === "abschluss" && a.anliegen === "reflektieren") return { id: "phasenweise", grund: "Übertragen auf einen neuen Fall braucht Zeit. Eine ganze Phase passt meist gut." };
+    if (a.phase === "einstieg" || a.phase === "abschluss") return { id: "punktuell", grund: "Für einen Einstieg oder einen Ausblick reicht meist ein kurzer Impuls." };
     if (a.mehrwert === "gemeinsam" || a.mehrwert === "experimentieren" || a.phase === "erarbeitung") {
       return { id: "phasenweise", grund: "Untersuchen und gemeinsames Arbeiten brauchen Zeit. Eine ganze Phase passt meist gut." };
     }
@@ -649,11 +652,41 @@
              satz: "Das ist keine Bewertung. Es ist deine Erfahrung – sie hilft, die Fortbildung und Kidu besser zu machen." };
   }
 
+  /* 14. Ganze Einheit (ab 4.37, Fassung B) – eine eigene Ebene über mehreren Stunden, keine vierte Stufe.
+        Eingabe: da – Liste der Merkmale, die es schon gibt (Ids aus TAXONOMIEN.einheit.merkmale).
+        Regeln:
+          - Der Rahmen kommt zuerst: Für jedes fehlende Merkmal ein Schritt aus »Landkarte der Einheit«, in der Reihenfolge
+            Leitfrage · Stundenfolge · Landkarte und Bausteine · Sicherung.
+          - Die Papierprobe je Stunde steht immer da: Keine Stunde bekommt ein Gerät, nur weil die Nachbarstunde eins hat.
+          - Danach je Stunde der Weg wie bisher (Phase, Ziel, Mehrwert, Umfang). umfang() bleibt unverändert.
+          - Keine Bewertung, keine Punkte: Fehlendes heißt »als Nächstes«, nicht »zu wenig«. */
+  function einheit(a, T) {
+    a = a || {};
+    T = T || (typeof TAXONOMIEN !== "undefined" ? TAXONOMIEN : (typeof require !== "undefined" ? require("./daten/taxonomien.js") : null));
+    var E = T.einheit, s = E.schritte, da = (a.da || []).filter(function (id) { return E.merkmale.some(function (m) { return m.id === id; }); });
+    var hat = function (id) { return da.indexOf(id) > -1; };
+    var naechstes = [];
+    if (!hat("leitfrage")) naechstes.push(s[0]);
+    if (!hat("stundenfolge")) naechstes.push(s[1]);
+    if (!hat("landkarte") || !hat("bausteine")) naechstes.push(s[2]);
+    if (!hat("sicherung")) naechstes.push(s[3]);
+    return {
+      satz: E.satz,
+      da: E.merkmale.filter(function (m) { return hat(m.id); }).map(function (m) { return m.name; }),
+      naechstes: naechstes,
+      papierprobe: s[4],
+      weiter: naechstes.length
+        ? "Wenn der Rahmen steht: Wähl die Stunde, mit der es weitergeht. Für sie gehst du den Weg wie bisher."
+        : "Der Rahmen steht. Wähl die Stunde, mit der es weitergeht. Für sie gehst du den Weg wie bisher.",
+      satzEnde: "Das ist keine Bewertung. Eine Einheit ist nicht besser als eine einzelne Stunde – sie ist ein anderer Rahmen."
+    };
+  }
+
   var REGELN = {
     PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
     stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
     entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung,
-    papierprobe: papierprobe, beobachtung: beobachtung, startpunkt: startpunkt, rueckmeldebogen: rueckmeldebogen
+    papierprobe: papierprobe, beobachtung: beobachtung, startpunkt: startpunkt, rueckmeldebogen: rueckmeldebogen, einheit: einheit
   };
   if (typeof module !== "undefined") module.exports = REGELN;
   else wurzel.REGELN = REGELN;

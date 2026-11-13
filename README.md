@@ -25,6 +25,8 @@ Kidu ist eine Fortbildungsplattform für Lehrkräfte: KI-Training, Digitaler Unt
 | `assets/anfangen.js` | Unterrichtsbeispiele: »Zum Anfangen« – sechs erprobte Beispiele, zwei je Umfang (Feld `auswahl` in `beispiele.js`) |
 | `assets/daten/schnell.js`, `assets/schnell-anfrage.js`, `assets/ki-schnell.js` | KI-Training: Schnell-Anfrage für häufige Anlässe |
 | `assets/daten/digitalisieren.js`, `assets/digitalisieren-prompt.js`, `assets/digitalisieren.js` | Werkzeug »Bisherigen Unterricht digitalisieren« |
+| `assets/einheit.js` | »Unterricht neu planen«: eine Stunde oder eine ganze Einheit – bei einer Einheit zuerst Schritt E »Landkarte der Einheit« (ab 4.37, Regel `REGELN.einheit`) |
+| `assets/phasen-bild.js` | Schaubild »Wo in der Stunde das Gerät hilft« auf `sechs-hebel.html`: Namen und Aufgaben der Phasen aus `taxonomien.js` (ab 4.37) |
 | `assets/rueckmeldebogen.js` | Seite »Mein Rückmeldebogen« (ab 4.36): Rückmeldung nach der Stunde als Text zum Kopieren oder als PDF, für die Leitung der Fortbildung; Kidu verschickt nichts |
 | `assets/fortbildungsbogen.js` | Seite »Mein Fortbildungsbogen« (seit 4.36 mit dem früheren »Mein Ist-Stand«): Eröffnung in vier Sätzen (einmal je Sitzung), eine Frage je Bild auf einer Fragekarte, Fragen zu KI und zum Unterricht mit Tablets (bedingt), fertiger Bogen mit Karte, Schritten, Kniffen, Codeblock und »Als PDF sichern« (ab 4.29; Fragekarte und Tablet-Fragen seit 4.30) |
 | `assets/sechs-hebel-rad.js` | Seite »Wann funktioniert digitaler Unterricht?«: Prinzipienrad im Kopf – Prinzip antippen, Karte wechselt (Muster Y, ab 4.21); das Rad blättert die Bänder als Register, Weiter/Zurück (Z1, ab 4.22) |

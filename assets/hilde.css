@@ -1183,7 +1183,7 @@ main .werkzeug,main .sh-hebel{max-width:none}
 .stundenlinie[data-umfang="durchgaengig"] .sl-balken{opacity:1;left:0;width:100%}
 .stundenlinie.klein{height:32px;max-width:14rem;margin-top:.4rem}
 .stundenlinie.klein .sl-spur{top:15px}.stundenlinie.klein .sl-balken{top:8px;height:16px}
-.stundenlinie-namen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:32rem;font-size:var(--gr-klein);color:var(--leise)}
+.stundenlinie-namen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:32rem;font-size:var(--gr-klein);line-height:1.25;color:var(--leise)} /* Wörter aus taxonomien.js (kurz) */
 /* Begründete Ausnahme von »nur transform und opacity«: Der Balken bewegt left und width (260 ms). Ein mit scaleX
    gestreckter Balken verlöre seine runden Enden – der Punkt würde zum Strich. Das Element liegt absolut auf seiner
    eigenen Spur und verschiebt nichts um sich herum. Bei »weniger Bewegung« entfällt die Bewegung (siehe unten). Dauer: --dauer-stundenlinie. */
@@ -2604,6 +2604,42 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
 .register-phase{font-size:var(--gr-text);font-weight:700;margin-top:var(--a4);color:var(--lernen-tief)}
 .register-phase + .werkzeuge{margin-top:var(--a2)}
 @media (max-width:860px){.phasen-weg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Schaubild »Wo in der Stunde das Gerät hilft« (sechs-hebel.html, ab 4.37): vier Spalten, Petrol heißt »am Gerät« – auch als Wort. */
+.ph-bild{margin:0;display:grid;gap:var(--a2)}
+.ph-spalten{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--a2)}
+.ph-spalte{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);display:grid;gap:var(--a1);align-content:start;max-width:none;min-width:0}
+.ph-name{margin:0;font:700 var(--gr-h3)/1.15 var(--schrift-titel);text-wrap:balance}
+.ph-aufgabe{margin:0}
+.ph-geraet,.ph-papier{margin:0;padding-left:var(--a1);font-size:var(--gr-klein)}
+.ph-geraet{border-left:6px solid var(--lernen)}
+.ph-papier{border-left:6px solid var(--karton)}
+.ph-etikett{display:block;font-weight:700;color:var(--leise)}
+.ph-geraet a{color:var(--lernen-tief);font-weight:700}
+.ph-dazu{display:block;color:var(--leise)}
+.ph-leer{color:var(--leise)}
+.ph-immer{margin:0;background:var(--karton);border-radius:var(--rund);padding:var(--a2) var(--a3)}
+@media (max-width:900px){.ph-spalten{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.ph-spalten{grid-template-columns:1fr}}
+/* Ganze Einheit auf Karten und Detailseiten (ab 4.37): eine Reihe kleiner Stundenlinien, eine je Teil. */
+.einheit-linien{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;min-width:0;max-width:100%}
+.einheit-linien .stundenlinie.zeile{width:3.25rem} /* kleiner als eine einzelne Zeile: mehrere Teile nebeneinander */
+.anfangen-einheit,.anfangen-einheit .koerper{min-width:0}
+.teil-einheit{font-size:var(--gr-klein);color:var(--leise)}
+.teil-einheit::before{content:"· "}
+.einheit-teile{display:grid;gap:.6rem;padding-left:1.25rem}
+.einheit-teile .umfang-zeile{margin:.2rem 0 0}
+.anfangen-einheiten{grid-column:1/-1;display:grid;gap:var(--a3);align-content:start;min-width:0;grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr))}
+.anfangen-einheiten .anfangen-gruppe-kopf{grid-column:1/-1}
+/* Ganze Einheit im Planungsweg (tablets.html, ab 4.37): eine Frage vor dem Weg, bei »Einheit« die Landkarte der Einheit. */
+.einheit-abschnitt{padding-block:var(--a2) 0}
+.einheit-wahl{border:0;margin:0;padding:0;display:grid;gap:var(--a1)}
+.einheit-wahl legend{font-weight:700;padding:0;margin-bottom:var(--a1)}
+.einheit-karte{margin-top:var(--a3);background:var(--flaeche);border-radius:var(--rund);border-top:6px solid var(--lernen);padding:var(--a3);display:grid;gap:var(--a1)}
+.einheit-karte > *{margin:0}
+.einheit-merkmale{border:0;margin:var(--a2) 0 0;padding:0}
+.einheit-merkmale legend{font-weight:700;padding:0;margin-bottom:var(--a1)}
+.einheit-merkmale .probe-wahl{display:grid;gap:.5rem}
+.einheit-merkmale .einheit-hilfe{font-weight:400}
 /* Mein Rückmeldebogen (rueckmeldebogen.html, ab 4.36): der Bogen als Liste, darunter derselbe Text zum Kopieren. Im Druck nur die Liste. */
 .rb-zeilen{margin:var(--a2) 0 0;display:grid;gap:.5rem}
 .rb-zeilen div{display:grid;grid-template-columns:minmax(9rem,14rem) minmax(0,1fr);gap:.25rem var(--a2);border-top:2px solid var(--linie);padding-top:.5rem}

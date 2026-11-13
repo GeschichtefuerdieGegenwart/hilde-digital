@@ -99,12 +99,32 @@ var HILDE = (function () {
       '<span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></span>';
   }
 
+  /* Die vier Wörter unter der Stundenlinie kommen aus taxonomien.js (ab 4.37), nicht aus dem Code. */
+  function stundenlinieNamen() {
+    return '<p class="stundenlinie-namen" aria-hidden="true">' + ["einstieg", "erarbeitung", "sicherung", "abschluss"].map(function (id) {
+      var ph = TAXONOMIEN.phasen.filter(function (x) { return x.id === id; })[0];
+      return "<span>" + esc(ph.kurz || ph.name) + "</span>";
+    }).join("") + "</p>";
+  }
+
   /* I2 · Umfang auf Galerie-Karten (ab Version 4.7): kleine Stundenlinie und das Wort daneben – nie nur die Grafik.
      Ohne Umfang keine Linie, nur »noch offen«. Für KI-Training gibt es keinen Umfang; dann bleibt die Zeile weg. */
   function umfangZeile(b) {
     if (b.bereich === "ki") return "";
-    if (!b.umfang) return '<p class="umfang-zeile"><span>Umfang: <b class="offen">noch offen</b></span></p>';
-    return '<p class="umfang-zeile">' + stundenlinie(b.umfang, "zeile") + "<span>Umfang: <b>" + esc(name("umfang", b.umfang)) + "</b></span></p>";
+    if (b.art === "einheit") return einheitZeile(b);
+    var teil = b.einheit ? '<span class="teil-einheit">Teil einer Einheit</span>' : "";
+    if (!b.umfang) return '<p class="umfang-zeile"><span>Umfang: <b class="offen">noch offen</b></span>' + teil + "</p>";
+    return '<p class="umfang-zeile">' + stundenlinie(b.umfang, "zeile") + "<span>Umfang: <b>" + esc(name("umfang", b.umfang)) + "</b></span>" + teil + "</p>";
+  }
+
+  /* Ganze Einheit (ab 4.37): kein eigener Umfang, sondern eine Reihe kleiner Stundenlinien – eine je Teil, mit dessen Umfang. */
+  function teileDerEinheit(e) {
+    return (e.stunden || []).map(function (id) { return BEISPIELE.filter(function (x) { return x.id === id; })[0]; }).filter(Boolean);
+  }
+  function einheitZeile(e) {
+    var teile = teileDerEinheit(e);
+    return '<p class="umfang-zeile einheit-zeile"><span class="einheit-linien">' + teile.map(function (s) { return stundenlinie(s.umfang, "zeile"); }).join("") +
+      "</span><span>Umfang: <b>je Stunde</b> · ganze Einheit mit " + teile.length + " Teilen</span></p>";
   }
 
   /* I2 · Die Stundenlinie zeichnet sich einmal beim Erscheinen: Der Balken wächst von 0 auf seinen Umfang (260 ms).
@@ -273,6 +293,6 @@ var HILDE = (function () {
   return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name, ruhig: ruhig, dauer: dauer,
            wechselId: wechselId, wechselMerken: wechselMerken, wechselBenennen: benenne, wechselMoeglich: wechselMoeglich,
            kennzeichen: kennzeichen, merkmale: merkmale, prinzipMarken: prinzipMarken, geraetSatz: geraetSatz, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf,
-           stundenlinie: stundenlinie, umfangZeile: umfangZeile, stundenlinieZeichnen: stundenlinieZeichnen,
+           stundenlinie: stundenlinie, stundenlinieNamen: stundenlinieNamen, umfangZeile: umfangZeile, teileDerEinheit: teileDerEinheit, stundenlinieZeichnen: stundenlinieZeichnen,
            lichtbild: oeffne };
 })();

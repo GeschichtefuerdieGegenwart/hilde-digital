@@ -1,5 +1,6 @@
 /* Kidu – baut den Prompt für »Unterricht digitalisieren«.
-   Eingabe: fach, thema, gruppe, phase (Ids aus TAXONOMIEN.phasen), materialien [], vorhaben, umfang, ausgabe.
+   Eingabe: fach, thema, gruppe, phase (Ids aus TAXONOMIEN.phasen), materialien [], vorhaben, umfang, ausgabe,
+   einheit (ab 4.37: true = mehrere Stunden als Einheit – zuerst Schritt E »Landkarte der Einheit«, der Umfang je Stunde).
    Der Prompt enthält: Ausgangslage, Auftrag, die Leitfrage »Was kann das Tablet besser als Papier?«,
    die passenden Bereiche des Qualitätsmodells (Frage, guter digitaler Beitrag, so geht es auf Papier, Risiko),
    Regeln gegen Ablenkung, Regeln des Projekts und die Form der Antwort.
@@ -45,7 +46,11 @@
     var z = [];
     z.push("# Rolle\nDu bist eine erfahrene Fachdidaktikerin für digitalen Unterricht und berätst eine Lehrkraft kollegial. Mein Unterricht funktioniert schon. Hilf mir, ihn dort zu verbessern, wo das Tablet wirklich etwas beiträgt.");
     z.push("# Ausgangslage\n" + lage.join("\n"));
-    z.push("# Auftrag\n" + v.auftrag + (umfang && umfang.id && v.id !== "ideen" ? "\nUmfang: " + umfang.name + " (" + umfang.hilfe + ")." : ""));
+    var umfangSatz = e.einheit ? "\nUmfang: je Stunde neu entscheiden – auch »ohne Gerät« ist für eine Stunde ein vollwertiges Ergebnis."
+      : (umfang && umfang.id && v.id !== "ideen" ? "\nUmfang: " + umfang.name + " (" + umfang.hilfe + ")." : "");
+    z.push("# Auftrag\n" + v.auftrag + umfangSatz);
+    if (e.einheit && T && T.einheit) z.push("# Ganze Einheit\nEs geht um mehrere Stunden. " + T.einheit.satz + "\nBeginne mit der Landkarte der Einheit (Schritt E), bevor du einzelne Stunden bearbeitest:\n" +
+      T.einheit.schritte.map(function (s, i) { return (i + 1) + ". " + s; }).join("\n") + "\n" + (T.einheit.schritte.length + 1) + ". Halte an. Ich gebe die Landkarte frei und wähle die Stunde, mit der es weitergeht. Danach arbeitest du je Stunde an einer Stelle.");
     z.push("# Leitfrage\nWas kann das Tablet hier besser als Papier? Beantworte das für jeden Vorschlag in einem Satz. Wählen kannst du zwischen: " +
       Q.analogvergleich.map(function (a) { return "»" + a.satz + "«"; }).join(" ") + " Wenn Papier gleich gut ist, sag das und empfiehl analog oder hybrid.");
     z.push("# Worauf es ankommt\n" + bereiche.map(function (b) {

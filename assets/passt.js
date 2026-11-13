@@ -81,6 +81,7 @@
       '<ul class="minis">' + r.beispiele.map(H.miniKarte).join("") + "</ul>" +
       '<div class="naechster"><h3>Risikoarme Alternative</h3><p>' + esc(r.alternative) + "</p></div>" +
       '<p class="schluss">' + esc(r.schluss) + "</p>" +
+      '<p class="begruendung"><b>Mehrere Stunden?</b> ' + H.esc(TAXONOMIEN.einheit.satz) + ' Der Planungsweg fragt zuerst danach.</p>' +
       '<div class="ergebnis-aktionen"><a class="knopf" href="tablets.html">Zum Planungsweg »Unterricht neu planen«</a><a class="knopf still" href="galerie.html">Zu den Unterrichtsbeispielen</a></div>' +
       "</section>";
     if (fokus) document.getElementById("selbst-titel").focus();

@@ -35,6 +35,16 @@
       liste.map(karte).join("") + "</section>";
   }).join("");
 
+  /* Ab 4.37: dazu die ganzen Einheiten – eigene Gruppe, nicht Teil der sechs (die bleiben zwei je Umfang).
+     Eine Einheit hat keinen eigenen Umfang; ihre Karte zeigt die Teile als Reihe kleiner Stundenlinien. */
+  var einheiten = BEISPIELE.filter(function (b) { return b.art === "einheit"; });
+  if (einheiten.length) ort.insertAdjacentHTML("beforeend", '<section class="anfangen-einheiten" aria-labelledby="t-anf-einheit">' +
+    '<div class="anfangen-gruppe-kopf"><h3 id="t-anf-einheit">' + esc(T.einheit.name) + '</h3><p class="klein leise">' + esc(T.einheit.abgrenzung) + "</p></div>" +
+    einheiten.map(function (e) {
+      return '<article class="karte kompakt anfangen-einheit" data-wechsel="' + esc(e.id) + '"><div class="koerper"><p class="fach">' + esc(e.fach) + "</p><h4 data-wechsel-titel>" + esc(e.titel) + "</h4>" +
+        "<p>" + esc(e.kurz) + "</p>" + H.umfangZeile(e) + '</div><div class="fussleiste"><span class="status">Status: <b>' + esc(e.status) + '</b></span><span class="fuss-knoepfe"><a class="knopf" href="' + H.detailLink(e) + '">Mehr dazu<span class="sr-only">: ' + esc(e.titel) + "</span></a></span></div></article>";
+    }).join("") + "</section>");
+
   // Die drei Kopflinien zeichnen sich einmal beim Erscheinen – gleichzeitig, ohne Staffelung (keine Rangfolge).
   H.stundenlinieZeichnen(ort.querySelectorAll(".anfangen-gruppe-kopf .stundenlinie"));
 })();

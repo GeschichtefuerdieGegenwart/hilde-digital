@@ -111,7 +111,7 @@
         '<p class="hilfe">' + esc(s.hilfe) + '</p><div class="optionen">' +
         sichtbar.map(function (o) { return option(s.id, o, gewaehlt); }).join("") + "</div>" +
         (mehr > 0 ? '<button type="button" class="knopf still weitere" id="weitere">Weitere anzeigen (' + mehr + ")</button>" : "") +
-        (s.id === "umfang" ? H.stundenlinie(gewaehlt) + '<p class="stundenlinie-namen" aria-hidden="true"><span>Einstieg</span><span>Erarbeitung</span><span>Sicherung</span><span>Abschluss</span></p>' : "") +
+        (s.id === "umfang" ? H.stundenlinie(gewaehlt) + H.stundenlinieNamen() : "") +
         "</fieldset>";
       if (s.id === "umfang") html += rahmenHtml();
     }

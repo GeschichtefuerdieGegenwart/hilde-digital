@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Unterricht neu planen – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=2fd80b7f">
+<link rel="stylesheet" href="assets/hilde.css?v=6900bfa9">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -26,6 +26,17 @@
   <p class="kopfnotiz">Du hast schon ein Material? <a class="textlink" href="digital-check.html">Zum Digital-Check</a></p>
 </div></section>
 
+<section class="abschnitt einheit-abschnitt" aria-labelledby="t-ebene"><div class="huelle">
+  <fieldset class="einheit-wahl" id="einheit-wahl">
+    <legend id="t-ebene">Planst du eine Stunde – oder mehrere Stunden als ganze Einheit?</legend>
+    <div class="probe-wahl">
+      <label><input type="radio" name="ebene" value="stunde" checked><span>Eine Stunde</span></label>
+      <label><input type="radio" name="ebene" value="einheit"><span>Mehrere Stunden als ganze Einheit</span></label>
+    </div>
+  </fieldset>
+  <div class="einheit-karte" id="einheit-karte" aria-live="polite" hidden></div>
+</div></section>
+
 <section class="abschnitt weg-abschnitt"><div class="huelle">
   <nav class="schritte-nav" aria-label="Schritte des Wegs"><ol class="schritte" id="fortschritt"></ol><p class="schritte-stand" id="schritte-stand" aria-hidden="true"></p></nav>
   <form id="weg" class="weg" novalidate></form>
@@ -39,12 +50,13 @@
   <noscript><p class="box">Der Weg braucht JavaScript. Die Beispiele findest du auch bei den <a href="galerie.html">Unterrichtsbeispielen</a>.</p></noscript>
 </div></section>
 </div>
-<script src="assets/daten/taxonomien.js?v=1b20e922"></script>
-<script src="assets/daten/beispiele.js?v=f0d5136b"></script>
+<script src="assets/daten/taxonomien.js?v=eb73b10b"></script>
+<script src="assets/daten/beispiele.js?v=859fc8ba"></script>
 <script src="assets/daten/galerie.js?v=0f292602"></script>
-<script src="assets/regeln.js?v=141013ac"></script>
-<script src="assets/hilde.js?v=eee045bc"></script>
-<script src="assets/tablets-weg.js?v=802a581f"></script>
+<script src="assets/regeln.js?v=fb711ed9"></script>
+<script src="assets/hilde.js?v=01f2d897"></script>
+<script src="assets/tablets-weg.js?v=ab5f5681"></script>
+<script src="assets/einheit.js?v=cc571932"></script>
 
 </main>
 <footer class="fuss"><div class="huelle">

@@ -92,11 +92,12 @@ var BEISPIELE = [
 
   /* Ab 4.36 (Entscheidung Mario, 13.11.2026): Eintrag ohne App. Die App enthält fremden Wortlaut (GinA-Merkmale,
      Raster der Praxishandreichung) und wird deshalb nicht veröffentlicht – nur Bildschirmfotos der leeren App, kein Link.
-     Status: noch offen (nicht beantwortet, ob sie schon bei Besuchen im Einsatz war). */
+     Status und Erfahrung ab 4.37: Angabe Mario vom 13.11.2026. */
   { id: "praxisbesuch", aufgenommen: "2026-11", titel: "Praxisbesuch 1BKSP · Begleiter", fach: "Praxisbesuch · 1BKSP",
     faecher: ["Praxisbesuch"], bereich: "ki", kiEinsatz: "entwicklung-anwendung",
     kurz: "Die besuchende Lehrkraft führt einen Praxisbesuch von der Vorbereitung bis zum Bericht in einer App, die ohne Netz läuft.",
-    status: "noch offen", bild: "assets/bilder/praxisbesuch.jpg", link: null,
+    status: "in der Praxis erprobt", bild: "assets/bilder/praxisbesuch.jpg", link: null,
+    erfahrung: "Bei Praxisbesuchen im Einsatz. Persönlicher Eindruck: Sie läuft sehr gut. Auch Praxisanleitungen und Auszubildende haben sehr gut zurückgemeldet.",
     suchbegriffe: ["Praxisbesuch", "Praxisstelle", "Reflexionsgespräch", "Bericht", "Sozialpädagogik"] },
 
   { id: "anleitertreffen", titel: "Präsentation für das Anleiter*innentreffen", fach: "Praxisanleitung · 1BKSP",
@@ -613,7 +614,57 @@ var BEISPIELE = [
     status: "Idee", link: null, suchbegriffe: ["Abfrage", "Exit-Ticket", "Lernstand", "Diagnose"],
     anliegen: ["lernstand", "rueckmeldung"],
     phasen: ["abschluss"], umfang: "punktuell", rollen: ["rueckmelden"],
-    mehrwerte: ["rueckmeldung", "sichtbar"] }
+    mehrwerte: ["rueckmeldung", "sichtbar"] },
+
+  /* ---------- Ganze Einheiten (ab 4.37, Fassung B, Entscheidung Mario 13.11.2026) ----------
+     Eine Einheit ist ein Rahmen über mehrere Stunden, keine vierte Stufe: Sie hat keinen eigenen Umfang.
+     art: "einheit", stunden: Ids der Stunden in Kidu (die Stunden behalten ihren Umfang und bekommen das Feld
+     einheit automatisch, siehe unten). rahmen: die fünf Merkmale aus TAXONOMIEN.einheit, je ein Satz oder null (»noch offen«).
+     Zuordnung und Rahmen sind Vorschläge aus der Sichtung vom 13.11.2026 (Repository, Tresor) – bitte prüfen. */
+  { id: "ns-einheit", art: "einheit", aufgenommen: "2026-11", titel: "GGK-Labor: Einheit Nationalsozialismus", fach: "Geschichte",
+    faecher: ["Geschichte"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
+    kurz: "Mehrere Module über den Nationalsozialismus mit einer Landkarte über alle Stunden. Jede Stunde hat ihren eigenen Umfang.",
+    status: "noch offen", link: null,
+    stunden: ["ns-ideologie", "m19-appeasement", "m20-dilemmata", "m22-wie-war-das-moeglich"],
+    rahmen: {
+      landkarte: "Eine Landkarte über die Module, mit einem Landkarten-Moment je Stunde. In M19, M20 und M23 fehlt er noch.",
+      leitfrage: "Je Modul eine Leitfrage. Eine Leitfrage über alle Module ist noch offen.",
+      bausteine: "Festlegung vor der Auflösung, Codewort nach der Abstimmung, Stimmkarte und Tafel am Beamer, Abrufübung.",
+      sicherung: "Je Stunde Merkseiten und die eigenen Ergebnisse als PDF. Die Klassenarbeit prüft die Begriffe der Landkarte.",
+      stundenfolge: "M18 und M19 phasenweise, ab M20 durchgängig – mit Plenumsphasen bei geschlossenem Gerät."
+    },
+    vorschlag: { stunden: "Zuordnung aus der Sichtung vom 13.11.2026: alle vier Module gehören zur Einheit im Repository GGK-Einheit-Nationalsozialismus (M18–M23; M21 und M23 stehen nicht in Kidu).",
+                 rahmen: "Aus der Sichtung vom 13.11.2026 (Repository und Tresor M18–M23)." } },
+
+  { id: "nationalismus-einheit", art: "einheit", aufgenommen: "2026-11", titel: "Wahlfach Demokratiebildung: Einheit Nationalismus", fach: "Gemeinschaftskunde · Demokratiebildung",
+    faecher: ["Gemeinschaftskunde"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
+    kurz: "Vier Module mit einer Leitfrage, abgeschlossen mit einer Klassenarbeit. Eine Grobplanung mit Stundenfolge und eine Startseite fehlen noch.",
+    status: "noch offen", link: null,
+    stunden: ["nation", "gene", "erfundene-traditionen", "nationalismus-demokratie"],
+    rahmen: {
+      landkarte: null,
+      leitfrage: "Eine Leitfrage über die Module.",
+      bausteine: null,
+      sicherung: "Die Einheit schließt mit der Klassenarbeit ab.",
+      stundenfolge: "»Gene ohne Reisepass« punktuell, die anderen Module phasenweise. Eine Grobplanung mit Stundenfolge fehlt noch."
+    },
+    vorschlag: { stunden: "Zuordnung aus der Sichtung vom 13.11.2026 (Tresor »Wahlfach Demokratiebildung«, Zeile »Exkurs«).",
+                 rahmen: "Aus der Sichtung vom 13.11.2026; Abschluss mit der Klassenarbeit laut Entscheidung vom 11.11.2026." } },
+
+  { id: "psycho-einheit", art: "einheit", aufgenommen: "2026-11", titel: "Psycho-Labor: Reihe im Wahlfach Psychologie", fach: "Psychologie",
+    faecher: ["Psychologie"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
+    kurz: "Labore als Einstieg, die Theorie auf Arbeitsblättern. Für jede Stunde wird neu entschieden, ob das Gerät hilft.",
+    status: "noch offen", link: GH + "psycho-labor/",
+    stunden: ["psycho-ds2", "psycho-ds3-6"],
+    rahmen: {
+      landkarte: "Eine Lernübersicht über die Reihe.",
+      leitfrage: null,
+      bausteine: "Das Labor als Einstieg, danach die Theorie auf Arbeitsblättern.",
+      sicherung: "Eine Lernmappe über die Reihe.",
+      stundenfolge: "Für jede weitere Stunde wird je nach Lernziel entschieden und begründet; seit der fünften Doppelstunde das Gerät nur bei echtem Mehrwert."
+    },
+    vorschlag: { stunden: "Zuordnung aus der Sichtung vom 13.11.2026 (Tresor »Leitlinien der Reihe«, 18.10.2026).",
+                 rahmen: "Aus den Leitlinien der Reihe (Tresor, 08. und 18.10.2026)." } }
 ];
 
 /* Fehlende Felder mit »leer« auffüllen, damit alle Seiten dasselbe Modell sehen.
@@ -629,7 +680,9 @@ var BEISPIELE = [
     aufgenommen: null, qualitaetscheck: null, auswahl: null,
     /* Getrennte Dimensionen (Master-Prompt, Abschnitt 5): Lernaktivität steht in »lernaktivitaeten«.
        Methode, digitales Format und konkretes Werkzeug bleiben eigene Felder – auch wenn sie noch leer sind. */
-    methoden: [], format: null, werkzeuge: []
+    methoden: [], format: null, werkzeuge: [],
+    /* Ganze Einheit (ab 4.37): art »einheit« mit stunden und rahmen; an jeder Stunde das Feld einheit (wird unten gesetzt). */
+    art: null, stunden: [], rahmen: null, einheit: null
   };
   BEISPIELE.forEach(function (b) {
     Object.keys(LEER).forEach(function (k) {
@@ -637,6 +690,11 @@ var BEISPIELE = [
     });
     if (!b.slug) b.slug = b.id;
     if (b.status === "Idee") b.vorschauArt = "konzept";
+  });
+  /* Jede Stunde einer Einheit erfährt, zu welcher Einheit sie gehört – die Zuordnung steht nur einmal, an der Einheit. */
+  BEISPIELE.forEach(function (e) {
+    if (e.art !== "einheit") return;
+    e.stunden.forEach(function (id) { BEISPIELE.forEach(function (b) { if (b.id === id) b.einheit = e.id; }); });
   });
 })();
 

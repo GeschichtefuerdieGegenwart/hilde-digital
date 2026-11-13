@@ -453,6 +453,45 @@ test("Rückmeldebogen: unbekannte Werte fallen weg, keine Noten, Punkte oder Pro
   for (const s of [e.text, e.satz, ...e.hilfen.map((h) => h.text)]) assert.ok(!/\d+ ?(%|Punkte)|Note/.test(s), s);
 });
 
+test("Umfang (4.37): kurzer Impuls nur für Einstieg und Ausblick – wer am Ende überträgt, bekommt eine ganze Phase", () => {
+  const u = R.umfang({ phase: "abschluss", anliegen: "reflektieren" }, "klar");
+  assert.equal(u.id, "phasenweise");
+  assert.match(u.grund, /Übertragen/);
+  for (const a of [{ phase: "abschluss", anliegen: "interesse" }, { phase: "einstieg", anliegen: "reflektieren" }, { phase: "einstieg" }]) {
+    const v = R.umfang(a, "klar");
+    assert.equal(v.id, "punktuell", JSON.stringify(a));
+    assert.match(v.grund, /kurzer Impuls/);
+  }
+  assert.equal(R.umfang({ phase: "abschluss", anliegen: "reflektieren", umfang: "punktuell" }, "klar").id, "punktuell", "die eigene Wahl bleibt");
+});
+
+/* ---------- Ganze Einheit (ab Version 4.37, Fassung B) ---------- */
+test("Einheit: ohne Angaben kommen die vier Schritte des Rahmens in fester Reihenfolge, die Papierprobe steht immer da", () => {
+  for (const a of [undefined, {}, { da: ["gibt-es-nicht"] }]) {
+    const e = R.einheit(a, T);
+    assert.deepEqual(e.naechstes, T.einheit.schritte.slice(0, 4));
+    assert.match(e.papierprobe, /nur weil die Nachbarstunde eins hat/);
+    assert.match(e.satzEnde, /keine Bewertung/);
+    assert.deepEqual(e.da, []);
+  }
+});
+
+test("Einheit: was es schon gibt, fällt aus den nächsten Schritten – Landkarte und Bausteine teilen sich einen Schritt", () => {
+  const e = R.einheit({ da: ["leitfrage", "landkarte"] }, T);
+  assert.deepEqual(e.da, ["Landkarte", "Leitfrage"]);
+  assert.deepEqual(e.naechstes, [T.einheit.schritte[1], T.einheit.schritte[2], T.einheit.schritte[3]]);
+  const voll = R.einheit({ da: ["landkarte", "leitfrage", "bausteine", "sicherung", "stundenfolge"] }, T);
+  assert.equal(voll.naechstes.length, 0);
+  assert.match(voll.weiter, /Der Rahmen steht/);
+});
+
+test("Einheit: keine vierte Stufe – der Umfang bleibt bei drei Werten, die Einheit sagt nichts über die Menge an Gerät", () => {
+  assert.deepEqual(T.umfang.map((u) => u.id).filter((id) => id !== "offen"), ["punktuell", "phasenweise", "durchgaengig"]);
+  assert.equal(T.einheit.merkmale.length, 5);
+  assert.match(T.einheit.satz, /auch keins/);
+  for (const s of [...T.einheit.schritte, R.einheit({}, T).weiter]) assert.ok(!/Stufe|besser als|\d+ ?(%|Punkte)|Note/.test(s), s);
+});
+
 test("Umfang durchgängig: gewählt bleibt gewählt, aber mit festen Stellen im Plenum und Papier für lange Texte", () => {
   const k = karte({ anliegen: "ueben", mehrwert: "rueckmeldung", umfang: "durchgaengig" });
   assert.equal(k.umfang, "durchgaengig");

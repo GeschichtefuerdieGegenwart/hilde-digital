@@ -136,10 +136,14 @@
       zeile("Phase", liste(b.phasen, "phasen"), "phasen", "Phase");
     }
     zeile("Anliegen", liste(b.anliegen, "anliegen"), "anliegen", "Anliegen");
-    if (!nurKI) zeile("Umfang", b.umfang ? esc(T.name("umfang", b.umfang)) : "", "umfang", "Umfang");
+    if (!nurKI && b.art !== "einheit") zeile("Umfang", b.umfang ? esc(T.name("umfang", b.umfang)) : "", "umfang", "Umfang");
+    if (b.art === "einheit") zeile("Umfang", "je Stunde – siehe die Teile der Einheit", "");
     zeile("Rolle der Lehrkraft", liste(b.rollen, "rollen"), "rollen", "Rolle der Lehrkraft");
     zeile("KI-Einsatz", b.kiEinsatz ? esc(T.name("kiEinsatz", b.kiEinsatz)) : "", "kiEinsatz", "KI-Einsatz");
     zeile("Fach", esc(b.fach), "faecher");
+
+    // Eine ganze Einheit (ab 4.37) hat keine eigene Phase, kein Anliegen und keine Rolle – das steht an ihren Teilen.
+    if (b.art === "einheit") offen = offen.filter(function (x) { return ["Phase", "Anliegen", "Rolle der Lehrkraft"].indexOf(x) < 0; });
 
     // Fragen der Detailansicht
     var abschnitte = [];
@@ -149,6 +153,22 @@
     }
     function punkte(werte) { return werte.length ? "<ul>" + werte.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul>" : ""; }
 
+    // Ganze Einheit (ab 4.37, Fassung B): die Teile mit ihrem eigenen Umfang und der Rahmen mit den fünf Merkmalen.
+    if (b.art === "einheit") {
+      var teile = H.teileDerEinheit(b);
+      abschnitt("Die Teile der Einheit" + vorschlag(b, "stunden"), '<p class="leise">' + esc(T.einheit.abgrenzung) + '</p><ol class="einheit-teile">' + teile.map(function (s) {
+        return '<li><a class="textlink" href="' + H.detailLink(s) + '">' + esc(s.titel) + "</a>" + H.umfangZeile(s).replace(/<span class="teil-einheit">[^<]*<\/span>/, "") + "</li>";
+      }).join("") + "</ol>");
+      abschnitt("Was die Einheit trägt" + vorschlag(b, "rahmen"), '<dl class="felder">' + T.einheit.merkmale.map(function (m) {
+        var w = (b.rahmen || {})[m.id];
+        return "<div><dt>" + esc(m.name) + "</dt><dd>" + (w ? esc(w) : '<b class="offen">noch offen</b>') + "</dd></div>";
+      }).join("") + "</dl>");
+    }
+    if (b.einheit) {
+      var e = BEISPIELE.filter(function (x) { return x.id === b.einheit; })[0];
+      if (e) abschnitt("Teil einer Einheit", '<p>Dieses Beispiel gehört zur Einheit <a class="textlink" href="' + H.detailLink(e) + '">' + esc(e.titel) + "</a>" + vorschlag(e, "stunden") +
+        ". Es behält seinen eigenen Umfang.</p>");
+    }
     // Die Kurzbeschreibung steht schon oben. Ein eigener Abschnitt nur, wenn es mehr zu sagen gibt.
     if (b.beschreibung) abschnitt("Worum geht es?", "<p>" + esc(b.beschreibung) + "</p>");
     // Ab 4.33: Was kann das Gerät hier? Satz, Prinzipien, Aufgaben aus dem Aufgabenkoffer, Stimme der Lernenden, Weg zum Bauen.
@@ -167,7 +187,7 @@
       if (aufg.length) g += '<p class="bauen"><b>So etwas bauen:</b> <a class="knopf still" href="aufgabenkoffer.html#k-' + esc(aufg[0].id) + '">»' + esc(aufg[0].name) + '« als Prompt holen</a> <a class="textlink" href="digitalisieren.html">oder vorhandenes Material digitalisieren <span aria-hidden="true">→</span></a></p>';
       abschnitt("Was kann das Gerät hier?", g);
     }
-    if (!nurKI) abschnitt("Was tun die Lernenden?", punkte(b.lernaktivitaeten) +
+    if (!nurKI && b.art !== "einheit") abschnitt("Was tun die Lernenden?", punkte(b.lernaktivitaeten) +
       (b.lernaktivitaeten.length && b.vorschlag && b.vorschlag.lernaktivitaeten ? '<p class="leise klein">Aus dem Material abgeleitet.' + vorschlag(b, "lernaktivitaeten") + "</p>" : ""), "was die Lernenden tun");
     // Was tut die Lehrkraft? Die Rollen mit ihrer Erklärung – keine Rolle ist höherwertig.
     if (b.rollen.length) abschnitt("Was tut die Lehrkraft?", "<ul>" + b.rollen.map(function (r) {
@@ -177,17 +197,17 @@
     var mw = "";
     if (b.lernmehrwert) mw += "<p>" + esc(b.lernmehrwert) + "</p>";
     if (b.mehrwerte.length) mw += "<p>Das Tablet soll helfen: " + liste(b.mehrwerte, "mehrwerte") + vorschlag(b, "mehrwerte") + "</p>";
-    if (!nurKI) abschnitt("Worin liegt der Lernmehrwert?", mw, "Lernmehrwert");
+    if (!nurKI && b.art !== "einheit") abschnitt("Worin liegt der Lernmehrwert?", mw, "Lernmehrwert");
     // Wie umfangreich ist der digitale Einsatz? Ohne Rangfolge: punktuell ist keine Vorstufe.
     if (!nurKI && b.umfang) {
       var u = T.umfang.filter(function (y) { return y.id === b.umfang; })[0];
       // I2 · Stundenlinie: Der Umfang als Form auf der Linie der Stunde; zeichnet sich einmal beim Erscheinen (siehe unten).
       abschnitt("Wie umfangreich ist der digitale Einsatz?", "<p><b>" + esc(u.name) + "</b> – " + esc(u.hilfe) + vorschlag(b, "umfang") + "</p>" +
-        H.stundenlinie(b.umfang) + '<p class="stundenlinie-namen" aria-hidden="true"><span>Einstieg</span><span>Erarbeitung</span><span>Sicherung</span><span>Abschluss</span></p>' +
+        H.stundenlinie(b.umfang) + H.stundenlinieNamen() +
         '<p class="leise klein">Mehr Tablet ist nicht besser. Ein punktueller Einsatz ist keine Vorstufe.</p>');
     }
     abschnitt("Was wird benötigt?", punkte(b.technik), "was benötigt wird");
-    if (!nurKI) abschnitt("Was muss am Unterricht angepasst werden?", punkte(b.anpassungen), "nötige Anpassungen");
+    if (!nurKI && b.art !== "einheit") abschnitt("Was muss am Unterricht angepasst werden?", punkte(b.anpassungen), "nötige Anpassungen");
     abschnitt("Stolpersteine", punkte(b.stolpersteine), "Stolpersteine");
     if (b.erfahrung) abschnitt("Persönliche Beobachtung", "<p>" + esc(b.erfahrung) + '</p><p class="leise klein">Eine persönliche Beobachtung, kein Wirksamkeitsnachweis.</p>');
     // ab 4.18: Was nach einer Erprobung geändert wurde – Zurück zu Papier oder Nachschärfen ist ein Fortschritt, kein Scheitern.
@@ -202,7 +222,9 @@
         '<p class="leise klein">Externe Seite. Sie braucht eine Internetverbindung. Öffnet sie sich nicht, ist sie gerade nicht erreichbar – die Bilder hier zeigen trotzdem, was dort passiert.</p>'
       : b.vorschauArt === "konzept"
         ? '<p class="konzept-hinweis"><b>Konzeptbeispiel – noch nicht erprobt.</b> Eine Idee für eine Lücke im Bestand. Es gibt noch keine Anwendung.</p>'
-        : '<span class="knopf" aria-disabled="true">noch nicht online</span>';
+        : b.art === "einheit"
+          ? '<p class="leise">Die Teile der Einheit sind einzeln verlinkt – siehe »Die Teile der Einheit«.</p>'
+          : '<span class="knopf" aria-disabled="true">noch nicht online</span>';
     var quellcode = b.quellcode ? ' <a class="textlink klein" href="' + esc(b.quellcode) + '" target="_blank" rel="noopener">Quellcode ansehen <span aria-hidden="true">↗</span></a>' : "";
 
     var bereichKlasse = nurKI ? "bereich-ki" : "bereich-lernen";

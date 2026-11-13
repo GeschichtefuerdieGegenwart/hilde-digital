@@ -9,8 +9,8 @@
   "use strict";
   var T = typeof module !== "undefined" ? require("./daten/taxonomien.js") : wurzel.TAXONOMIEN;
 
-  var GEWICHT = { anliegen: 3, phase: 2, bereich: 2, umfang: 1, rolle: 1, fach: 1, ki: 1 };
-  var REIHENFOLGE = ["bereich", "phase", "anliegen", "umfang", "rolle", "fach", "ki"];
+  var GEWICHT = { anliegen: 3, phase: 2, bereich: 2, umfang: 1, rolle: 1, fach: 1, ki: 1, einheit: 3 };  /* einheit ab 4.37 */
+  var REIHENFOLGE = ["bereich", "phase", "anliegen", "umfang", "rolle", "fach", "ki", "einheit"];
 
   function gesetzt(w) { return w !== undefined && w !== null && w !== "" && w !== "alle"; }
 
@@ -24,6 +24,7 @@
       case "rolle": return b.rollen.indexOf(wert) > -1;
       case "fach": return b.faecher.indexOf(wert) > -1;
       case "ki": return b.kiEinsatz === wert;
+      case "einheit": return b.id === wert || b.einheit === wert;
     }
     return true;
   }
