@@ -58,7 +58,7 @@ Noch offen: Lernmehrwert in eigenen Worten, Nötige Anpassungen, Stolpersteine, 
 
 Keine offenen Vorschläge.
 
-Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
 
 ### Sexualpädagogische Dialoge (`dialoge`)
 
@@ -74,6 +74,12 @@ Noch offen: Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassu
 Keine offenen Vorschläge.
 
 Noch offen: Was wird benötigt?, Stolpersteine, Dauer, Vorbereitungsaufwand.
+
+### Praxisbesuch 1BKSP · Begleiter (`praxisbesuch`)
+
+Keine offenen Vorschläge.
+
+Noch offen: Was wird benötigt?, Stolpersteine, Dauer, Vorbereitungsaufwand, Link.
 
 ### Präsentation für das Anleiter*innentreffen (`anleitertreffen`)
 

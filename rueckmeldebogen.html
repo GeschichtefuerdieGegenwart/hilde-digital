@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
+<title>Mein Rückmeldebogen – Kidu</title>
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/hilde.css?v=2fd80b7f">
+<script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
+</head>
+<body>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+<header class="kopf"><div class="huelle">
+  <a class="marke" href="index.html"><span class="marke-text"><span class="marke-name"><span class="sr-only">Kidu</span><img class="kidu-wortmarke" src="assets/logo/kidu-logo.svg" alt="" width="224" height="92"></span><span class="marke-zeile" aria-hidden="true"><span class="ini ki">K</span>ünstliche <span class="ini ki">I</span>ntelligenz und <span class="ini du">d</span>igitaler <span class="ini du">U</span>nterricht</span></span><span class="sr-only">, zum Start</span></a>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html">KI-Training</a><a href="unterricht.html" aria-current="true">Digitaler Unterricht</a><a href="galerie.html">Unterrichts&shy;beispiele</a></nav>
+  <a class="hefter-link" href="galerie.html#hefter" aria-label="Mein Schnellhefter"><svg viewBox="0 0 30 24" aria-hidden="true"><rect x="1" y="2" width="28" height="21" rx="2" fill="#b68235" stroke="#7d5a1c" stroke-width="2"/><rect x="1" y="2" width="6" height="21" fill="#7d5a1c"/><circle cx="4" cy="8" r="1.3" fill="#efeadf"/><circle cx="4" cy="17" r="1.3" fill="#efeadf"/></svg><span class="hefter-zahl" aria-hidden="true">0</span></a>
+</div></header>
+<main id="inhalt" tabindex="-1">
+<div class="bereich-lernen">
+<section class="bereichskopf kompakt"><div class="huelle">
+  <h1 class="h1-frage">Mein Rückmeldebogen</h1>
+  <p class="marker">Phase 4 · Nach der Stunde · Bereich: Digitaler Unterricht</p>
+  <p class="kopfnotiz">Du hast etwas ausprobiert. Hier hältst du fest, was gelungen ist und wo es noch hakt. Am Ende steht ein Bogen. Den schickst du selbst an die Person, die deine Fortbildung leitet. So wird aus deiner Erfahrung etwas für alle.</p>
+</div></section>
+
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-rueckmeldung"><div class="huelle bogen">
+  <h2 id="t-rueckmeldung" class="sr-only">Rückmeldebogen</h2>
+  <form id="rb-form" class="bogen-form" novalidate>
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 1 von 5 · Worum es geht</span><br>Was möchtest du weitergeben?</legend>
+      <div class="probe-wahl">
+        <label><input type="checkbox" name="art" value="erfahrung"><span>Eine Erfahrung aus meinem Unterricht</span></label>
+        <label><input type="checkbox" name="art" value="herausforderung"><span>Eine Herausforderung, bei der ich nicht weiterkomme</span></label>
+        <label><input type="checkbox" name="art" value="kidu"><span>Eine Rückmeldung zu Kidu</span></label>
+        <label><input type="checkbox" name="art" value="wunsch"><span>Einen Wunsch für die nächste Fortbildung</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 2 von 5 · Was du ausprobiert hast</span><br>Womit hast du gearbeitet?</legend>
+      <div class="probe-wahl">
+        <label><input type="checkbox" name="womit" value="planen"><span>Unterricht neu planen</span></label>
+        <label><input type="checkbox" name="womit" value="digitalisieren"><span>Bisherigen Unterricht digitalisieren</span></label>
+        <label><input type="checkbox" name="womit" value="koffer"><span>Aufgabenkoffer oder Methodenkoffer</span></label>
+        <label><input type="checkbox" name="womit" value="check"><span>Papierfrage oder Digital-Check</span></label>
+        <label><input type="checkbox" name="womit" value="phasen"><span>Tablet-Phasen gut führen</span></label>
+        <label><input type="checkbox" name="womit" value="beispiel"><span>Eines der Unterrichtsbeispiele</span></label>
+        <label><input type="checkbox" name="womit" value="ki"><span>KI-Training</span></label>
+        <label><input type="checkbox" name="womit" value="anderes"><span>Etwas anderes</span></label>
+      </div>
+      <div class="eingabe bogen-notiz">
+        <label for="rb-was">Was genau? Fach, Klasse, Thema <span class="leise">(freiwillig, ohne Namen)</span></label>
+        <input type="text" id="rb-was" autocomplete="off" placeholder="z. B. Gemeinschaftskunde, Einstieg mit Abstimmung">
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 3 von 5 · Was gelungen ist</span><br>Was hat gut geklappt?</legend>
+      <div class="eingabe bogen-notiz">
+        <label for="rb-gut">In ein, zwei Sätzen <span class="leise">(freiwillig)</span></label>
+        <textarea id="rb-gut" rows="3"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 4 von 5 · Wo es hakt</span><br>Wo hat es gehakt?</legend>
+      <div class="probe-wahl">
+        <label><input type="checkbox" name="hakt" value="technik"><span>Technik: Anmelden, Netz, Akku</span></label>
+        <label><input type="checkbox" name="hakt" value="zeit"><span>Die Zeit hat nicht gereicht</span></label>
+        <label><input type="checkbox" name="hakt" value="ablenkung"><span>Ablenkung am Gerät</span></label>
+        <label><input type="checkbox" name="hakt" value="auftrag"><span>Der Auftrag war nicht klar</span></label>
+        <label><input type="checkbox" name="hakt" value="niveau"><span>Für manche zu schwer oder zu leicht</span></label>
+        <label><input type="checkbox" name="hakt" value="plenum"><span>Das Ergebnis kam nicht zurück ins Gespräch</span></label>
+        <label><input type="checkbox" name="hakt" value="anderes"><span>Woanders</span></label>
+        <label><input type="checkbox" name="hakt" value="nichts"><span>Nirgends</span></label>
+      </div>
+      <div class="eingabe bogen-notiz">
+        <label for="rb-stelle">Beschreib die Stelle kurz <span class="leise">(freiwillig, ohne Namen)</span></label>
+        <textarea id="rb-stelle" rows="3"></textarea>
+      </div>
+      <div class="eingabe bogen-notiz">
+        <label for="rb-geaendert">Was hast du geändert – oder würdest du ändern? <span class="leise">(freiwillig)</span></label>
+        <textarea id="rb-geaendert" rows="2"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Frage 5 von 5 · Was du brauchst</span><br>Was würde dir jetzt helfen?</legend>
+      <div class="probe-wahl">
+        <label><input type="checkbox" name="brauche" value="beispiel"><span>Ein Beispiel aus meinem Fach</span></label>
+        <label><input type="checkbox" name="brauche" value="gespraech"><span>Ein kurzes Gespräch</span></label>
+        <label><input type="checkbox" name="brauche" value="planung"><span>Hilfe beim Planen der nächsten Stunde</span></label>
+        <label><input type="checkbox" name="brauche" value="technik"><span>Hilfe bei der Technik</span></label>
+        <label><input type="checkbox" name="brauche" value="nichts"><span>Nichts – ich möchte nur berichten</span></label>
+      </div>
+      <div class="eingabe bogen-notiz">
+        <label for="rb-frage">Deine Frage an die Leitung <span class="leise">(freiwillig)</span></label>
+        <textarea id="rb-frage" rows="2"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset class="probe-frage">
+      <legend><span class="leise klein">Zum Schluss</span><br>Darf die Leitung deine Rückmeldung ohne deinen Namen weitergeben – zum Beispiel in einer Fortbildung oder bei Kidu?</legend>
+      <div class="probe-wahl">
+        <label><input type="radio" name="weitergabe" value="ja"><span>Ja, ohne meinen Namen</span></label>
+        <label><input type="radio" name="weitergabe" value="fragen"><span>Erst mich fragen</span></label>
+        <label><input type="radio" name="weitergabe" value="nein"><span>Nein, nur für die Leitung</span></label>
+      </div>
+      <div class="eingabe bogen-notiz">
+        <label for="rb-kuerzel">Dein Kürzel <span class="leise">(freiwillig – damit die Leitung deinen Bogen zuordnen kann)</span></label>
+        <input type="text" id="rb-kuerzel" autocomplete="off" maxlength="12">
+      </div>
+    </fieldset>
+
+    <div class="weg-steuerung"><button type="submit" class="knopf">Bogen fertigstellen →</button></div>
+  </form>
+  <div id="ergebnis" aria-live="polite"></div>
+  <p class="leise klein speicherhinweis">Deine Kreuze bleiben nur in diesem Browser. Die Textfelder werden nicht gespeichert. Kidu verschickt nichts: Erst wenn du den Bogen selbst weitergibst, verlässt etwas dieses Gerät. Schreib keine Namen von Lernenden oder Kolleg*innen auf. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button></p>
+  <noscript><p class="box">Ohne JavaScript kannst du die Seite ausdrucken und die Fragen von Hand beantworten.</p></noscript>
+</div></section>
+</div>
+<script src="assets/daten/taxonomien.js?v=1b20e922"></script>
+<script src="assets/regeln.js?v=141013ac"></script>
+<script src="assets/hilde.js?v=eee045bc"></script>
+<script src="assets/druck.js?v=474b771e"></script>
+<script src="assets/rueckmeldebogen.js?v=1e3d4d81"></script>
+
+</main>
+<footer class="fuss"><div class="huelle">
+  <p class="fuss-marke" aria-hidden="true"><img class="kidu-wortmarke" src="assets/logo/kidu-logo.svg" alt="" width="224" height="92"></p>
+  <p class="fuss-unterzeile"><span class="ini ki">K</span>ünstliche <span class="ini ki">I</span>ntelligenz und <span class="ini du">d</span>igitaler <span class="ini du">U</span>nterricht</p>
+  <nav class="fusslinks" aria-label="Über Kidu"><ul><li><a href="ueber.html">Über Kidu</a></li><li><a href="ueber.html#inhalte">Inhalte und Funktionen</a></li><li><a href="ueber.html#t-daten">Hinweise zu Daten und KI</a></li><li><a href="gestaltung.html">Gestaltungssystem</a></li><li><a href="werkzeugkiste.html">Methodenkoffer</a></li><li><a href="fortbildungsbogen.html">Mein Fortbildungsbogen</a></li><li><a href="ueber.html#t-daten">Eingaben löschen</a></li></ul></nav>
+  <p class="fuss-einstellung"><button type="button" class="knopf still bewegung-schalter" id="bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button><span class="leise">Gilt in diesem Browser. Nichts gleitet, nichts fliegt, alles steht sofort da.</span></p>
+  <p class="fuss-einstellung"><button type="button" class="knopf still theme-schalter" id="theme-schalter" data-theme-schalter aria-pressed="false">Beamer-Ansicht</button><span class="leise">Gilt in diesem Browser. Reines Weiß, tiefes Schwarz, kräftigere Farben – für den Beamer im Klassenzimmer.</span></p>
+  <p class="kennzeichnung">Kidu · Künstliche Intelligenz und digitaler Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
+  <p class="kennzeichnung urheber leise">© 2026 Mario Walter · entwickelt mit Unterstützung eines KI-Systems · Texte CC BY-NC-SA 4.0 · Code MIT · <a href="ueber.html#t-entstehung">Entstehung und Lizenz</a></p>
+</div></footer>
+<script src="assets/motion.js?v=30e2bad3"></script>
+</body>
+</html>

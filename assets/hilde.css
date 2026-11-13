@@ -60,6 +60,7 @@
   --platte-farbe:var(--karton);
   --platte:6px 6px 0 0 var(--platte-farbe);
   --breite:76rem;
+  --breite-weit:112rem;   /* ab 4.36: Übersichten auf Startbildschirmen nutzen die Bildschirmbreite (Entscheidung Mario, 13.11.2026) */
   /* Bewegung (Emil Kowalski): kurz und auslaufend (ease-out), nie langsam beginnend.
      Mikro 100–180 ms, Übergänge 150–250 ms, nie über 300 ms. Nur transform und opacity bewegen. */
   --dauer-druck:100ms;    /* Drücken */
@@ -807,7 +808,9 @@ main p,main li,main dd{max-width:60ch}
 
 /* Galerie: Kopf, redaktionelle Einblicke, Liste */
 .galerie-kopf{padding-block:var(--a4) var(--a4)}
-.galerie-kopf h1{font-size:var(--gr-display);line-height:1;letter-spacing:-.025em}
+.galerie-kopf h1{font-size:clamp(2rem,1.2rem + 2.9vw,4.25rem);line-height:1.05;letter-spacing:-.025em;text-wrap:balance} /* ab 4.36 kleiner: »Unterrichtsbeispiele: analog und digital« ist länger als »Galerie« */
+.galerie-titel{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem var(--a3)} /* ab 4.36: die Überschrift steht über beiden Spalten, so bleibt sie am Beamer einzeilig */
+.galerie-unterzeile{margin:0;font:600 var(--gr-h3)/1.2 var(--schrift-titel);color:var(--lernen-tief)}
 .galerie-kopf .detail-kurz{font-size:clamp(1.25rem,1.1rem + .5vw,1.6rem);max-width:44ch}
 .galerie-hinweis{margin-top:var(--a2);color:var(--leise)}
 .galerie-buehne{padding-bottom:var(--a8)}
@@ -925,9 +928,7 @@ dialog.lichtbild.zu::backdrop{animation:lb-schleier-zu var(--dauer-aus) var(--ea
   .knopf:active,.wahlflaeche:active,.galerie-zugang:active,.werkzeug a:active,.check-weg:active,[data-bildrahmen]:active{transform:none}
   .karte:hover,.werkzeug a:hover,.check-weg:hover,[data-bildrahmen]:hover{transform:none!important}
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none}
-  .fs-buehne-marke,.fs-geraet-huelle,.fs-geraet-schirm,.fs-geraet-rueckseite,.fs-buehne-wort{transition-duration:0s!important} /* Reader-Paced: die Bühne wechselt sofort, kein Überblenden */
 }
-html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs-geraet-huelle,html[data-bewegung="weniger"] .fs-geraet-schirm,html[data-bewegung="weniger"] .fs-geraet-rueckseite,html[data-bewegung="weniger"] .fs-buehne-wort{transition-duration:0s!important}
 html[data-bewegung="weniger"] *,html[data-bewegung="weniger"] *::before,html[data-bewegung="weniger"] *::after{transition-property:opacity,color,background-color,border-color!important;transition-duration:var(--dauer-aus)!important;scroll-behavior:auto!important}
 html[data-bewegung="weniger"] .registrieren .wahlflaeche,html[data-bewegung="weniger"] .registrieren .collage-karte{animation:none!important}
 html[data-bewegung="weniger"] dialog.lichtbild[open],html[data-bewegung="weniger"] dialog.lichtbild::backdrop{animation:lb-schleier var(--dauer-aus) linear both}
@@ -949,8 +950,8 @@ html[data-bewegung="weniger"]::view-transition-group(*),html[data-bewegung="weni
 .galerie-suche input[type="search"]{font-size:1.25rem;min-height:56px}
 .galerie-suche .filterzeile{gap:.4rem}
 .galerie-suche .chip{min-height:44px;padding:.4rem .8rem}
-.galerie-kopf{padding-block:var(--a2) var(--a4)}
-.galerie-kopf .galerie-kopf-text{padding-top:var(--a2)}
+.galerie-kopf{padding-block:var(--a2) var(--a2)} /* ab 4.36 unten knapper: die Überschrift steht jetzt eine Zeile höher über beiden Spalten */
+.galerie-kopf .galerie-kopf-text{padding-top:0} /* ab 4.36 steht die Überschrift darüber (.galerie-titel) */
 details.mehr.mehr-filter{padding:0;background:transparent}
 .mehr-filter[open] summary{margin-bottom:var(--a1)}
 .mehr-filter .filterraster{grid-template-columns:repeat(auto-fill,minmax(min(100%,11rem),1fr));gap:var(--a1) var(--a2);margin-bottom:var(--a1)}
@@ -960,15 +961,7 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .ergebnis-oben{align-items:baseline}
 .ergebnis-zurueck{margin-top:var(--a4)}
 .ergebnisse .karten{margin-top:var(--a3)}
-.sprung-intern{position:absolute;left:-999px;background:var(--aktion);color:var(--aktion-text);padding:.7rem 1rem;border-radius:var(--rund);font-weight:700;z-index:5}
-.sprung-intern:focus{left:clamp(16px,4vw,40px)}
 .stoebern{position:relative}
-
-/* Laufband-Bereich der Galerie (ab 4.3 mit dem Fächer) */
-.laufband{background:var(--text);color:var(--flaeche);padding-block:var(--a4) var(--a6);overflow:hidden}
-.laufband-kopf{display:grid;gap:.5rem;margin-bottom:var(--a2)}
-.laufband-titel{font-size:var(--gr-h2);font-weight:700}
-.laufband-hilfe{max-width:62ch;color:var(--flaeche)}
 
 /* Ende der Stöber-Ansicht: alle Beispiele als Karten */
 .alle-band-raster{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--a2) var(--a4);align-items:end}
@@ -984,6 +977,8 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .lb-offen{font-size:var(--gr-klein)}
 .lichtbild .knopf.hell{background:var(--flaeche);color:var(--text);border-color:var(--flaeche)}
 .galerie-zwischen.galerie-zwischen-erst{margin-top:var(--a8)}
+.galerie-zwischen-erst:has(+ .galerie-einblicke-satz){margin-bottom:var(--a1)}
+.galerie-einblicke-satz{margin:0 0 var(--a4);color:var(--leise)}
 .galerie-zwischen:focus{outline:none}
 
 /* Start: drei echte Ansichten als Fächer direkt neben der Galerie-Leiste (ab Version 4.16, Variante A; vorher oben rechts neben dem Titel).
@@ -1038,7 +1033,7 @@ details.mehr.mehr-filter{padding:0;background:transparent}
 .motiv .m-linie{stroke:var(--text);stroke-width:4;stroke-linecap:round;fill:none}
 .motiv .m-linie-dick{stroke:var(--text);stroke-width:3;fill:none}
 .motiv .m-raster{fill:var(--lernen-zart)}
-main .werkzeug,main .faecher-karte,main .sh-hebel{max-width:none}
+main .werkzeug,main .sh-hebel{max-width:none}
 
 /* ---------- Ab Version 4.3: Prompt-Labor, Unterricht digitalisieren, Fächer ---------- */
 /* KI-Training: zwei Eingänge im ersten Bildschirm */
@@ -1145,38 +1140,6 @@ main .werkzeug,main .faecher-karte,main .sh-hebel{max-width:none}
 .geraet-enden span:last-child::before{content:"rechts: "}
 .geraet-enden .ist{color:var(--text);font-weight:700}
 
-/* Fächer: echte Ansichten mit Tiefe (assets/faecher.js). Mitte gerade und farbig, Ränder gedreht und verblasst.
-   Nur transform und opacity; bei weniger Bewegung flach. Auf dunklem Grund (Galerie, Startseite). */
-.faecher{color:var(--flaeche)}
-.faecher-buehne{perspective:1300px}
-.faecher-spur{list-style:none;margin:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
-  padding:var(--a3) calc(50% - var(--faecher-b) / 2) var(--a2);--faecher-b:clamp(15rem,30vw,24rem);overscroll-behavior-x:contain}
-.faecher-spur::-webkit-scrollbar{display:none}
-.faecher-spur.gleitend{scroll-snap-type:none}
-.faecher-spur:focus-visible{outline:3px solid var(--flaeche);outline-offset:-3px;box-shadow:none}
-.faecher-karte{flex:0 0 var(--faecher-b);scroll-snap-align:center;display:grid;gap:.6rem;transform-origin:50% 50%;will-change:transform,opacity}
-.faecher-bild{position:relative;display:block;width:100%;padding:0;border:0;border-radius:2px;overflow:hidden;background:var(--leise);cursor:pointer;touch-action:pan-x pan-y;box-shadow:0 0 0 5px var(--karton)} /* taste-skill-ignore: Passepartout als harte Kante */
-.faecher-bild img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
-.faecher-duplex{position:absolute;inset:0;height:100%;opacity:var(--duplex,0)}
-.faecher-karte.ist-mitte .faecher-bild{cursor:zoom-in;box-shadow:0 0 0 5px var(--karton),8px 8px 0 5px var(--ki-platte)} /* taste-skill-ignore: versetzte Platte für die Karte in der Mitte */
-.faecher-name{font-weight:700;font-size:1rem;color:var(--flaeche);opacity:.85}
-.faecher-unten{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--a2) var(--a3);align-items:end;padding:var(--a2) max(clamp(16px,4vw,40px),calc((100% - var(--breite)) / 2 + clamp(16px,4vw,40px))) 0}
-.faecher-start .faecher-unten{padding-inline:0}
-@media (max-width:640px){.faecher-unten{grid-template-columns:1fr}}
-.faecher-text{display:grid;gap:.3rem;min-height:9.5rem;align-content:start;max-width:46rem}
-.faecher-titel{font:700 var(--gr-h3)/1.15 var(--schrift-titel)}
-.faecher-kurz{max-width:58ch}
-.faecher-wege{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.4rem}
-.faecher-offen{align-self:center;font-size:var(--gr-klein)}
-.faecher-steuerung{display:flex;gap:.5rem;flex-wrap:wrap}
-.faecher .knopf.still{color:var(--flaeche);border-color:var(--flaeche);background:transparent}
-.faecher .knopf:not(.still){background:var(--flaeche);color:var(--text);border-color:var(--flaeche)}
-.faecher :focus-visible{outline-color:var(--flaeche);box-shadow:0 0 0 5px var(--text)} /* taste-skill-ignore: Fokus-Doppelring auf dunklem Grund */
-@media (hover:hover) and (pointer:fine){.faecher .knopf:hover{box-shadow:4px 4px 0 0 var(--ki-platte)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
-.faecher-start{grid-column:5/13;min-width:0}
-.faecher-start .faecher-spur{--faecher-b:clamp(14rem,24vw,20rem)}
-@media (max-width:1023px){.faecher-start{grid-column:1/-1}}
-.faecher-karte:not(.ist-mitte) .faecher-name{visibility:hidden} /* Titel steht unter dem Fächer; verblasste Namen wären schlecht lesbar */
 
 
 /* ---------- Ab Version 4.4: Bewegungsmuster F, G, I, J, K, L, M, N, O (Motion-Musterbuch 2) ----------
@@ -1986,11 +1949,10 @@ html.film-offen,html.film-offen body{overflow:hidden}
 @media print{ /* taste-skill-ignore: Druckfassung */ .film,.film-knopf{display:none!important}}
 
 
-/* ---------- Fünf Sätze (fuenf-saetze.html, ab Version 4.18) ----------
+/* ---------- Fünf Sätze (ab Version 4.18; seit 4.36 als Abschnitt auf sechs-hebel.html#fuenf-saetze) ----------
    Farben wie auf der Leitsätze-Seite: Karton = Papier, Petrol = Tablet, Druckschwarz = Plenum. Keine dritte Farbe.
-   Das Schaubild steht still. Der »Weg durch die Stunde« (Q) ist Scrollytelling nach den Regeln in DESIGN.md:
-   feste Bühne links, fünf Abschnitte rechts; der Rahmen trägt data-satz, die Bühne wechselt per CSS in --dauer-uebergang,
-   nur transform und opacity. Bei »weniger Bewegung« kein Übergang. Ohne JavaScript steht Zustand 1, alles bleibt lesbar. */
+   Das Schaubild steht still. Das Scrollytelling »Der Weg durch die Stunde« ist mit 4.36 entfallen (Entscheidung Mario,
+   13.11.2026): Die Seite der Prinzipien hat schon ihren einen bewegten Moment (One Moment Rule). */
 .fs-schaubild{margin:0;display:grid;gap:var(--a3)}
 .fs-linie{position:relative;height:2.6rem;display:grid;grid-template-columns:repeat(5,1fr);align-items:end}
 .fs-linie-spur{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--stahl)}
@@ -2007,58 +1969,12 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .fs-karte.fs-plenum .fs-nr{color:var(--text)}
 .fs-karte h3{margin:0;font:700 clamp(1.25rem,1.1rem + .6vw,1.5rem)/1.15 var(--schrift-titel);letter-spacing:-.01em}
 .fs-dann{color:var(--lernen)}
+.fs-karte .fs-etikett{font-weight:700;color:var(--leise);text-transform:none} /* Satz 4: Gestaltung, nicht Didaktik (Entscheidung Mario, 13.11.2026) */
 .fs-karte p{margin:0;font-size:var(--gr-klein);line-height:1.45}
 .fs-frage{color:var(--leise);border-top:2px solid var(--linie);padding-top:.6rem;font-style:italic}
 .fs-immer{margin:0;background:var(--karton);border-radius:var(--rund);padding:var(--a2) var(--a3);text-align:center}
 @media (max-width:1100px){.fs-karten{grid-template-columns:repeat(2,minmax(0,1fr))}.fs-linie{display:none}}
 @media (max-width:600px){.fs-karten{grid-template-columns:1fr}}
-
-.fs-weg{scroll-margin-top:var(--a4)}
-.fs-scroll{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--a6);align-items:start;margin-top:var(--a4)}
-.fs-buehne{position:sticky;top:var(--a3);background:var(--flaeche);border-radius:var(--rund);padding:var(--a4);display:grid;gap:var(--a4);box-shadow:var(--platte)} /* taste-skill-ignore: versetzte Druckplatte */
-.fs-buehne-linie{position:relative;height:3.4rem}
-.fs-buehne-spur{position:absolute;left:0;right:0;top:1.1rem;height:2px;background:var(--stahl)}
-.fs-buehne-spur::before,.fs-buehne-spur::after{content:"";position:absolute;top:-8px;width:2px;height:18px;background:var(--stahl)}
-.fs-buehne-spur::before{left:40%}.fs-buehne-spur::after{left:80%}
-/* Die Marke ist ein 100 % breiter, unsichtbarer Läufer mit dem Punkt am linken Ende; translateX in Prozent bezieht sich auf
-   seine eigene Breite, so landet der Punkt bei 10 · 30 · 50 · 70 · 90 % der Spur – nur transform, kein left. */
-.fs-buehne-marke{position:absolute;top:calc(1.1rem - 9px);left:0;width:calc(100% - 20px);height:20px;transform:translateX(10%);transition:transform var(--dauer-uebergang) var(--ease-beidseits)}
-.fs-buehne-marke::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--text)}
-.fs-scroll[data-satz="2"] .fs-buehne-marke{transform:translateX(30%)}
-.fs-scroll[data-satz="3"] .fs-buehne-marke{transform:translateX(50%)}
-.fs-scroll[data-satz="4"] .fs-buehne-marke{transform:translateX(70%)}
-.fs-scroll[data-satz="5"] .fs-buehne-marke{transform:translateX(90%)}
-.fs-buehne-wort{position:absolute;top:2.2rem;left:0;right:0;text-align:center;font-weight:700;font-size:var(--gr-klein);opacity:0;transition:opacity var(--dauer-schnell) var(--ease-out)}
-.fs-scroll[data-satz="1"] [data-fs-wort="1"],.fs-scroll[data-satz="2"] [data-fs-wort="2"],.fs-scroll[data-satz="3"] [data-fs-wort="3"],.fs-scroll[data-satz="4"] [data-fs-wort="4"],.fs-scroll[data-satz="5"] [data-fs-wort="5"]{opacity:1}
-.fs-geraet{position:relative;justify-self:center;width:min(100%,11rem);aspect-ratio:3/4}
-.fs-geraet-rahmen{position:absolute;inset:0;border:8px solid var(--lernen);border-radius:14px;background:var(--flaeche);box-shadow:6px 6px 0 0 var(--lernen-tief)} /* taste-skill-ignore: versetzte Druckplatte */
-.fs-geraet-schirm{position:absolute;inset:8px;display:grid;gap:.7rem;align-content:start;padding:1.1rem .9rem;opacity:0;transition:opacity var(--dauer-uebergang) var(--ease-out)}
-.fs-geraet-schirm i{display:block;height:10px;border-radius:2px;background:var(--lernen);opacity:.75}
-.fs-geraet-schirm i:nth-child(2){width:70%}.fs-geraet-schirm i:nth-child(3){width:85%}
-.fs-geraet-huelle{position:absolute;inset:-4px;border-radius:16px;background:var(--karton);border:2px solid var(--stahl);transform-origin:left center;transition:transform var(--dauer-uebergang) var(--ease-beidseits),opacity var(--dauer-uebergang) var(--ease-out)}
-.fs-geraet-rueckseite{position:absolute;inset:0;border-radius:14px;background:var(--text);color:var(--flaeche);display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font:700 1.0625rem/1.25 var(--schrift-titel);opacity:0;transition:opacity var(--dauer-uebergang) var(--ease-out)}
-/* Zustände: 1–2 Hülle zu (Papierphasen) · 3–4 offen (Arbeit am Gerät) · 5 umgedreht (Plenum). */
-.fs-scroll[data-satz="3"] .fs-geraet-huelle,.fs-scroll[data-satz="4"] .fs-geraet-huelle,.fs-scroll[data-satz="5"] .fs-geraet-huelle{transform:rotateY(-80deg) translateX(-10%);opacity:0}
-.fs-scroll[data-satz="3"] .fs-geraet-schirm,.fs-scroll[data-satz="4"] .fs-geraet-schirm{opacity:1}
-.fs-scroll[data-satz="5"] .fs-geraet-rueckseite{opacity:1}
-.fs-buehne-stand{margin:0;text-align:center;color:var(--leise);font-size:var(--gr-klein);font-variant-numeric:tabular-nums}
-.fs-abschnitte{list-style:none;margin:0;padding:0;display:grid;gap:var(--a8)}
-.fs-abschnitt{display:grid;gap:.8rem;min-height:40vh;align-content:center;padding-block:var(--a4);border-top:2px solid var(--linie);scroll-margin-top:var(--a6)}
-.fs-abschnitt:first-child{border-top:0}
-.fs-abschnitt-nr{margin:0;font-weight:700;color:var(--leise);font-size:var(--gr-klein)}
-.fs-abschnitt h3{margin:0;font:700 clamp(1.625rem,1.25rem + 1.3vw,2.375rem)/1.14 var(--schrift-titel);letter-spacing:-.01em}
-.fs-abschnitt p{margin:0;max-width:52ch}
-.fs-scroll[data-satz="1"] .fs-abschnitt[data-satz="1"] h3,.fs-scroll[data-satz="2"] .fs-abschnitt[data-satz="2"] h3,.fs-scroll[data-satz="3"] .fs-abschnitt[data-satz="3"] h3,.fs-scroll[data-satz="4"] .fs-abschnitt[data-satz="4"] h3,.fs-scroll[data-satz="5"] .fs-abschnitt[data-satz="5"] h3{color:var(--lernen-tief)}
-@media (max-width:900px){
-  .fs-scroll{grid-template-columns:1fr;gap:var(--a3)}
-  .fs-buehne{top:0;grid-template-columns:minmax(0,1fr) 4.5rem;align-items:center;gap:var(--a3);padding:var(--a3);z-index:2}
-  .fs-geraet{width:4.5rem}
-  .fs-buehne-stand{grid-column:1/-1}
-  .fs-abschnitt{min-height:0}
-}
-@media (prefers-reduced-motion:reduce){.fs-buehne-marke,.fs-geraet-huelle,.fs-geraet-schirm,.fs-geraet-rueckseite,.fs-buehne-wort{transition:none}}
-html[data-bewegung="weniger"] .fs-buehne-marke,html[data-bewegung="weniger"] .fs-geraet-huelle,html[data-bewegung="weniger"] .fs-geraet-schirm,html[data-bewegung="weniger"] .fs-geraet-rueckseite,html[data-bewegung="weniger"] .fs-buehne-wort{transition:none}
-@media print{ /* taste-skill-ignore: Druckfassung */ .fs-buehne{position:static;box-shadow:none}.fs-karte,.fs-buehne{box-shadow:none}.fs-abschnitt{min-height:0}}
 
 /* ── Seite »Wann funktioniert digitaler Unterricht?« (sechs-hebel.html, ab Version 4.19) ─────────────────────────
    Präfix sh- (Fallstrick M22: generische Klassennamen kollidieren). Das Modell Gerät – Brücke – Raum steht zweimal:
@@ -2505,7 +2421,7 @@ html[data-bewegung="weniger"] :is(.sh-band-vor,.sh-band-rueck){animation:none}
 .sp-code{font:400 1rem/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--grund);border:1px solid var(--linie);border-radius:var(--rund-klein);padding:.6rem .8rem;max-width:62ch;overflow-wrap:anywhere}
 .sp-pdf-hinweis{flex:1 1 20rem;margin:0;align-self:center;max-width:48ch}
 @media print{ /* taste-skill-ignore: Druckfassung */
-  html.nur-ergebnis body>*:not(main),html.nur-ergebnis main>*>*:not(.weg-abschnitt),html.nur-ergebnis .weg-abschnitt .box,html.nur-ergebnis #mfb-weg,html.nur-ergebnis #mfb-eroeffnung,html.nur-ergebnis #t-bogen,html.nur-ergebnis .speicherhinweis{display:none!important}
+  html.nur-ergebnis body>*:not(main),html.nur-ergebnis main>*>*:not(.weg-abschnitt),html.nur-ergebnis .weg-abschnitt .box,html.nur-ergebnis #mfb-weg,html.nur-ergebnis #mfb-eroeffnung,html.nur-ergebnis #rb-form,html.nur-ergebnis #t-bogen,html.nur-ergebnis .speicherhinweis{display:none!important}
   html.nur-ergebnis .weg-abschnitt{padding:0}
   html.nur-ergebnis body{zoom:.8} /* Druckfassung auf einer A4-Seite; Schriftgrößen auf dem Bildschirm bleiben bei 16 px */
   html.nur-ergebnis .huelle,html.nur-ergebnis main{max-width:none;padding-inline:0;margin:0}
@@ -2649,6 +2565,7 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
 .tuer-ueber{font-size:var(--gr-klein);font-weight:700;color:var(--lernen)}
 @media (hover:hover) and (pointer:fine){.werkzeug.tuer a:hover{box-shadow:6px 6px 0 0 var(--lernen)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
 .register-titel{font-size:var(--gr-h3);margin-top:var(--a6)}
+.register-titel:first-child{margin-top:0} /* ab 4.36 steht das Register in einem eigenen Abschnitt */
 .register{list-style:none;margin:var(--a2) 0 0;padding:0;border-top:2px solid var(--text)}
 .register li{border-bottom:1px solid var(--linie);max-width:none}
 .register a{display:grid;grid-template-columns:minmax(12rem,17rem) minmax(0,1fr) 9rem;gap:var(--a1) var(--a3);align-items:baseline;padding:.85rem .5rem;color:var(--text);text-decoration:none;transition:background-color var(--dauer-schnell) var(--ease-out)}
@@ -2660,6 +2577,43 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
 .werkzeuge.kompakt .werkzeug a{padding:var(--a2)}
 .werkzeuge.kompakt .werkzeug-text b{font-size:var(--gr-text)}
 @media (max-width:1023px){.werkzeuge.kompakt{grid-template-columns:1fr}}
+/* Ab 4.36 · Bereichsseite »Digitaler Unterricht« in vier Phasen (Entscheidung Mario, 13.11.2026):
+   Grundlagen · Digitalen Unterricht erstellen · Unterrichten · Nach der Stunde. Die Übersicht nutzt die Bildschirmbreite
+   (breitere Hülle als der Lesetext); vier Phasen je Zeile ab 861 px, zwei darunter, eine auf dem Telefon. Nichts bewegt sich. */
+.huelle-weit{max-width:var(--breite-weit)}
+.leitband-weg .leitband-innen{grid-template-columns:minmax(0,1fr) minmax(15rem,21rem);align-items:center;padding-block:var(--a3)}
+.leitband-weg .leitband-frage{max-width:none;font-size:var(--gr-h2)}
+.leitband-weg .leitband-text p{max-width:64ch}
+.leitband-beispiele{margin:0}
+.leitband-beispiele a{display:grid;gap:.25rem;background:var(--flaeche);color:var(--lernen-tief);border-radius:var(--rund);padding:var(--a2) var(--a3);text-decoration:none;box-shadow:6px 6px 0 0 var(--ki-platte)} /* taste-skill-ignore: versetzte Ocker-Platte = Weg zu den Unterrichtsbeispielen */
+.leitband-beispiele b{font:700 1.375rem/1.15 var(--schrift-titel)}
+.leitband-beispiele span{color:var(--text)}
+.leitband-beispiele a:focus-visible{outline:3px solid var(--flaeche);outline-offset:3px}
+@media (max-width:860px){.leitband-weg .leitband-innen{grid-template-columns:1fr}}
+.phasen-abschnitt{padding-top:var(--a3);padding-bottom:var(--a3)} /* das Register darunter gehört dazu: kein großer Abstand */
+.phasen-weg{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--a2)}
+.phase{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);display:grid;align-content:start;gap:var(--a1);max-width:none;min-width:0}
+.phase-kopf{display:flex;align-items:center;gap:var(--a2);margin:0}
+.phase-nr{display:inline-grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;background:var(--lernen);color:var(--flaeche);font:700 1.25rem/1 var(--schrift-titel)}
+.phase-wann{font-size:var(--gr-klein);font-weight:700;color:var(--lernen)}
+.phase-titel{font:600 clamp(1.25rem,1.1rem + .45vw,1.5rem)/1.15 var(--schrift-titel);margin:0;text-wrap:balance}
+.phase-text{color:var(--leise);margin:0}
+.phase-links{list-style:none;margin:.25rem 0 0;padding:0;display:grid;gap:.15rem}
+.phase-links li{max-width:none}
+.phase-links a{color:var(--lernen-tief);font-weight:700;text-underline-offset:.2em;display:inline-block;padding-block:.15rem;line-height:1.3}
+.register-phase{font-size:var(--gr-text);font-weight:700;margin-top:var(--a4);color:var(--lernen-tief)}
+.register-phase + .werkzeuge{margin-top:var(--a2)}
+@media (max-width:860px){.phasen-weg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Mein Rückmeldebogen (rueckmeldebogen.html, ab 4.36): der Bogen als Liste, darunter derselbe Text zum Kopieren. Im Druck nur die Liste. */
+.rb-zeilen{margin:var(--a2) 0 0;display:grid;gap:.5rem}
+.rb-zeilen div{display:grid;grid-template-columns:minmax(9rem,14rem) minmax(0,1fr);gap:.25rem var(--a2);border-top:2px solid var(--linie);padding-top:.5rem}
+.rb-zeilen dt{font-weight:700}
+.rb-zeilen dd{margin:0;overflow-wrap:anywhere}
+@media (max-width:600px){.rb-zeilen div{grid-template-columns:1fr}}
+.rb-text-titel{display:block;font-weight:700;margin-top:var(--a2)}
+.rb-text{width:100%;font:inherit;font-size:var(--gr-klein);line-height:1.45;padding:var(--a1) var(--a2);border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);color:var(--text);resize:vertical}
+@media print{.rb-text,.rb-text-titel,#rb-kopieren,#rb-meldung{display:none!important}}
+@media (max-width:480px){.phasen-weg{grid-template-columns:1fr}}
 /* K1 · KI-Training: die sechs Wege in drei benannten Gruppen, direkt unter den zwei Türen */
 .ki-werkstatt{padding-top:var(--a4)}
 .werkzeuge.ki-gruppen{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}

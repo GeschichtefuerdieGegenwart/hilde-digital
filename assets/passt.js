@@ -81,7 +81,7 @@
       '<ul class="minis">' + r.beispiele.map(H.miniKarte).join("") + "</ul>" +
       '<div class="naechster"><h3>Risikoarme Alternative</h3><p>' + esc(r.alternative) + "</p></div>" +
       '<p class="schluss">' + esc(r.schluss) + "</p>" +
-      '<div class="ergebnis-aktionen"><a class="knopf" href="tablets.html">Zum Planungsweg »Unterricht planen«</a><a class="knopf still" href="galerie.html">Zur Galerie</a></div>' +
+      '<div class="ergebnis-aktionen"><a class="knopf" href="tablets.html">Zum Planungsweg »Unterricht neu planen«</a><a class="knopf still" href="galerie.html">Zu den Unterrichtsbeispielen</a></div>' +
       "</section>";
     if (fokus) document.getElementById("selbst-titel").focus();
   }

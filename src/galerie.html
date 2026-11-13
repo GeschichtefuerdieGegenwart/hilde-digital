@@ -1,8 +1,11 @@
 <section class="galerie-kopf" aria-labelledby="t-galerie"><div class="huelle"><div class="plattenband" id="plattenband" data-wahl="alle" aria-hidden="true"><span class="pl pl-ki"></span><span class="pl pl-le"></span></div></div><div class="huelle galerie-kopf-raster">
+  <div class="galerie-titel">
+    <h1 id="t-galerie" class="passer" data-passer="Unterrichts&shy;beispiele: analog und digital">Unterrichts&shy;beispiele: analog und digital</h1>
+    <p class="galerie-unterzeile">beides mit KI erstellt</p>
+  </div>
   <div class="galerie-kopf-text">
-    <h1 id="t-galerie" class="passer" data-passer="Galerie">Galerie</h1>
     <p class="detail-kurz">Echte Ansichten aus Lernanwendungen, die im Unterricht eingesetzt wurden. Sieh dir an, was Lernende dort tun – und probier es selbst aus.</p>
-    <p class="klein galerie-hinweis">Persönliche Erprobungen, keine Musterlösungen. Alle Bilder sind Bildschirmfotos aus den Anwendungen selbst. Bisher stammen alle Beispiele aus dem Unterricht des Urhebers von Kidu.</p>
+    <p class="klein galerie-hinweis">Persönliche Erprobungen, keine Musterlösungen. Alle Bilder sind Bildschirmfotos aus den Anwendungen selbst. Bisher stammen alle Beispiele aus dem Unterricht des Urhebers von Kidu und aus seiner Arbeit außerhalb des Unterrichts. Analoge Beispiele: noch offen.</p>
   </div>
 
   <form class="filter galerie-suche" id="filter" role="search" aria-label="Beispiele suchen und filtern">
@@ -13,8 +16,8 @@
     </div>
     <div class="filterzeile" id="bereich" role="group" aria-label="Bereich">
       <button type="button" class="chip" data-bereich="alle" aria-pressed="true">alle</button>
-      <button type="button" class="chip" data-bereich="ki" aria-pressed="false">KI-Training</button>
-      <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Digitaler Unterricht</button>
+      <button type="button" class="chip" data-bereich="lernen" aria-pressed="false">Unterricht</button>
+      <button type="button" class="chip" data-bereich="ki" aria-pressed="false">Außerhalb des Unterrichts</button>
     </div>
     <div class="filterzeile umfangzeile" id="umfang" role="group" aria-labelledby="umfang-wort"></div>
     <details class="mehr mehr-filter" id="mehr-filter">
@@ -70,21 +73,12 @@
   </div>
   <div class="anfangen-gruppen" id="anfangen-gruppen"></div>
 </div></section>
-<a class="sprung-intern" href="#t-einblicke">Fächer überspringen</a>
-<section class="laufband" id="laufband-bereich" aria-labelledby="t-laufband">
-  <div class="huelle laufband-kopf">
-    <h2 id="t-laufband" class="laufband-titel">Alle Projekte im Vorbeiziehen</h2>
-    <p class="laufband-hilfe">Der Fächer zieht langsam vorbei. Fahr darüber, tipp ihn an oder wisch selbst – dann hält er an. Die Karte in der Mitte kannst du ansehen oder gleich ausprobieren.</p>
-  </div>
-  <div class="faecher" id="galerie-faecher"></div>
-</section>
-
 <section class="galerie-buehne" aria-labelledby="t-einblicke"><div class="huelle">
-  <h2 id="t-einblicke" class="galerie-zwischen galerie-zwischen-erst" tabindex="-1">Einblicke in die Labore</h2>
+  <h2 id="t-einblicke" class="galerie-zwischen galerie-zwischen-erst" tabindex="-1">Einblicke</h2>
+  <p class="mass galerie-einblicke-satz">Große Bilder aus den Anwendungen: Was tun die Lernenden dort?</p>
   <div class="einblicke" id="einblicke"></div>
-  <h2 class="galerie-zwischen">Weitere Einblicke</h2>
   <div class="einblicke-klein" id="einblicke-klein"></div>
-  <noscript><p class="box">Die Galerie zeigt ihre Bilder mit JavaScript. Ohne JavaScript findest du die Projekte über die Beispielseiten.</p></noscript>
+  <noscript><p class="box">Die Unterrichtsbeispiele zeigen ihre Bilder mit JavaScript. Ohne JavaScript findest du die Projekte über die Beispielseiten.</p></noscript>
 </div></section>
 
 <section class="band band-karton alle-band" id="alle" aria-labelledby="t-alle"><div class="huelle alle-band-raster">
@@ -107,6 +101,5 @@
 <script src="assets/suche.js"></script>
 <script src="assets/showroom.js"></script>
 <script src="assets/anfangen.js"></script>
-<script src="assets/faecher.js"></script>
 <script src="assets/galerie-buehne.js"></script>
 <script src="assets/galerie-prinzipien.js"></script>

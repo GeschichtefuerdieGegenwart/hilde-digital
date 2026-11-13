@@ -53,6 +53,14 @@ var GALERIE = {
     { bild: "assets/galerie/beschlussapp-1.webp", text: "Zu jedem Punkt stehen Entwurf, Klärungsbedarf und Optionen mit Vor- und Nachteilen.",
       alt: "Beschlussapp, Punkt D1 »Name und Kürzel«: Entwurfsfassung, Klärungsbedarf und drei Optionen A, B, C mit Empfehlung" }
   ],
+  "praxisbesuch": [
+    { bild: "assets/galerie/praxisbesuch-1.webp", text: "Alle Besuche an einem Ort. Jeder Besuch bleibt im Browser gespeichert, bis die Lehrkraft ihn löscht.",
+      alt: "App Praxisbesuch 1BKSP, Hauptmenü »Meine Praxisbesuche« ohne Einträge, darunter die Datensicherung" },
+    { bild: "assets/galerie/praxisbesuch-2.webp", text: "Im Reflexionsgespräch stehen die Notizen neben den Gesprächsanlässen.",
+      alt: "Reiter Reflexionsgespräch, Teil 3a mit leerem Feld für Gesprächsnotizen und drei zugeklappten Hinweisen daneben" },
+    { bild: "assets/galerie/praxisbesuch-3.webp", text: "Am Ende entsteht der Bericht – zum Drucken, als PDF oder als Word-Datei.",
+      alt: "Reiter Bericht mit den Knöpfen »Bericht drucken / als PDF speichern« und »Als Word-Datei speichern« und der Auswahl der Inhalte" }
+  ],
   "politik-check": [
     { bild: "assets/galerie/politik-check-1.webp", text: "Zehn Fragen aus der Sicht von 1919. Hier: Welche Staatsform wünschst du dir?",
       alt: "Politik-Check 1919, Frage 1 von 10 zur Staatsform mit drei Antwortmöglichkeiten" }

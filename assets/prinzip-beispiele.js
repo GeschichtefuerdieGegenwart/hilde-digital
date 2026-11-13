@@ -12,7 +12,7 @@
     if (!xs.length || !text) return;
     var p = document.createElement("p");
     p.className = "sh-beispiele";
-    p.innerHTML = "<b>In der Galerie:</b> " + xs.map(function (b) {
+    p.innerHTML = "<b>Unterrichtsbeispiele:</b> " + xs.map(function (b) {
       return '<a class="textlink" href="' + HILDE.detailLink(b) + '">' + esc(b.titel) + "</a>";
     }).join(" · ");
     text.appendChild(p);

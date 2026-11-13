@@ -64,7 +64,7 @@
             "<p>Ein fertiger Auftrag für ein an deiner Schule freigegebenes KI-System. Das Ergebnis darf auf Papier bleiben.</p>" +
             auftragsfeld(m.id, "Auftrag ansehen und kopieren") + "</section>" +
           '<section class="muster-weg weg-tablet" aria-label="' + esc(m.name) + ': am Tablet"><h4>Am Tablet</h4><p>' + esc(m.tablet.text) + "</p>" +
-            (bsp.length ? '<p class="klein"><b>In der Galerie:</b></p><ul class="muster-beispiele klein">' + bsp.map(function (b) {
+            (bsp.length ? '<p class="klein"><b>Unterrichtsbeispiele:</b></p><ul class="muster-beispiele klein">' + bsp.map(function (b) {
               return '<li><a class="textlink" href="beispiel.html#' + esc(b.slug) + '">' + esc(b.titel) + "</a></li>";
             }).join("") + "</ul>" : "") +
           "</section>" +

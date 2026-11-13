@@ -389,38 +389,68 @@ test("Beobachtung: keine Noten, Punkte oder Prozentwerte in den Texten", () => {
   for (const t of [e.text, e.satz, ...e.hinweise]) assert.ok(!/\d+ ?(%|Punkte)|Note/.test(t), t);
 });
 
-/* ---------- Mein Ist-Stand (ab Version 4.5) ---------- */
-test("Ist-Stand: leere Eingabe ohne Fehler, immer der Satz »keine Bewertung«", () => {
-  for (const a of [undefined, {}]) {
-    const e = R.istStand(a);
+/* ---------- »Mein Ist-Stand« geht im Fortbildungsbogen auf (ab Version 4.36) ---------- */
+test("Ist-Stand im Bogen: die eigene Regel entfällt, ihre Fragen beantwortet der Fortbildungsbogen", () => {
+  assert.equal(R.istStand, undefined);
+  assert.equal(typeof R.startpunkt, "function");
+});
+
+test("Ist-Stand im Bogen: »vor allem Ablage« heißt organisatorischer Nutzen – ausdrücklich legitim, keine Vorstufe", () => {
+  const e = R.startpunkt({ d_klassen: "alle", tablet: ["ablage"], d_mehrwert: "selten" });
+  assert.equal(e.tablet.id, "ablage");
+  assert.match(e.tablet.text, /organisatorischer Nutzen – legitim und keine Vorstufe/);
+  assert.ok(e.schritte.some((s) => s.link === "unterricht.html#t-probe"), "die Papierfrage als Schritt");
+});
+
+test("Ist-Stand im Bogen: der Wunsch »Schnellere Rückmeldung« wird ein Schritt – direkt nach dem ersten Anlass, vor den Tablet-Phasen", () => {
+  const e = R.startpunkt({ haeufigkeit: "woechentlich", anlass: ["eltern"], d_klassen: "alle", tablet: ["ablage"], d_schwer: ["ablenkung"], d_wunsch: "feedback" });
+  assert.equal(e.schritte.length, 3);
+  assert.equal(e.schritte[0].link, "ki.html#t-schnell");
+  assert.equal(e.schritte[1].link, "digitalisieren.html");
+  assert.match(e.schritte[1].text, /Rückmeldung/);
+  assert.equal(e.schritte[1].linktext, "Bisherigen Unterricht digitalisieren");
+  assert.equal(e.schritte[2].link, "tablet-phasen.html#t-regeln", "Ablenkung führt weiter zu den Regeln für Tablet-Phasen");
+  const doppelt = R.startpunkt({ anlass: ["uebung"], d_klassen: "alle", d_wunsch: "feedback" }).schritte.filter((s) => s.link === "digitalisieren.html");
+  assert.equal(doppelt.length, 1, "derselbe Schritt nur einmal");
+  assert.ok(!R.startpunkt({ d_klassen: "keine", d_wunsch: "feedback" }).schritte.some((s) => s.link === "digitalisieren.html"), "ohne Tablet-Klasse kein Tablet-Schritt");
+});
+
+/* ---------- Mein Rückmeldebogen (ab Version 4.36) ---------- */
+test("Rückmeldebogen: leere Eingabe ohne Fehler – nur die Weitergabe »noch offen«, immer »keine Bewertung«", () => {
+  for (const a of [undefined, {}, { texte: { gut: "   " } }]) {
+    const e = R.rueckmeldebogen(a);
+    assert.equal(e.leer, true);
+    assert.deepEqual(e.zeilen, [{ titel: "Weitergabe ohne Namen", wert: "noch offen" }]);
     assert.match(e.satz, /keine Bewertung/);
-    assert.ok(e.schritte.length >= 1 && e.schritte.length <= 3);
+    assert.equal(e.hilfen.length, 0);
   }
 });
 
-test("Ist-Stand: nur Ablage heißt organisatorischer Nutzen – ausdrücklich legitim, keine Stufe", () => {
-  const e = R.istStand({ nutzung: ["ablage"], neu: "selten" });
-  assert.ok(e.spiegel.some((s) => /organisatorischer Nutzen – legitim/.test(s)));
-  assert.ok(!e.spiegel.join(" ").match(/Stufe|Niveau|Anfänger/));
-  assert.ok(e.schritte.some((s) => s.link.startsWith("unterricht.html#t-probe")));
+test("Rückmeldebogen: der Text für die Leitung nennt nur, was ausgefüllt ist – Freitexte ohne Zeilenumbrüche", () => {
+  const e = R.rueckmeldebogen({ art: ["erfahrung"], womit: ["planen", "beispiel"], hakt: ["ablenkung"], weitergabe: "ja", datum: "13. November 2026",
+    texte: { kuerzel: "AB", gut: "Alle haben\nabgestimmt.", stelle: "", frage: "Wie lang soll die Phase sein?" } });
+  assert.equal(e.text.split("\n")[0], "Rückmeldung aus Kidu · Mein Rückmeldebogen · 13. November 2026");
+  assert.match(e.text, /^Kürzel: AB$/m);
+  assert.match(e.text, /^Womit: Unterricht neu planen · Eines der Unterrichtsbeispiele$/m);
+  assert.match(e.text, /^Was gut geklappt hat: Alle haben abgestimmt\.$/m);
+  assert.match(e.text, /^Weitergabe ohne Namen: Ja, ohne meinen Namen$/m);
+  assert.ok(!/Die Stelle|Was genau|Was helfen würde/.test(e.text), "leere Felder fehlen");
+  assert.equal(e.leer, false);
 });
 
-test("Ist-Stand: der gewählte nächste Schritt kommt zuerst, höchstens drei Schritte", () => {
-  const e = R.istStand({ nutzung: ["ablage"], neu: "weissnicht", ablenkung: "oft", sicherheit: "unsicher", naechstes: "rueckmeldung" });
-  assert.equal(e.schritte[0].link, "digitalisieren.html");
-  assert.ok(e.schritte.length <= 3);
-  assert.ok(e.schritte.some((s) => s.link === "tablet-phasen.html"), "Ablenkung führt zu den Regeln für Tablet-Phasen");
+test("Rückmeldebogen: höchstens zwei Hilfen in der Reihenfolge der Kreuze – zur Technik keine", () => {
+  const e = R.rueckmeldebogen({ hakt: ["technik", "plenum", "ablenkung", "auftrag"] });
+  assert.deepEqual(e.hilfen.map((h) => h.link), ["sechs-hebel.html#fuenf-saetze", "tablet-phasen.html#t-regeln"]);
+  assert.equal(R.rueckmeldebogen({ hakt: ["technik", "nichts", "anderes"] }).hilfen.length, 0);
+  assert.equal(R.rueckmeldebogen({ hakt: ["zeit"] }).hilfen[0].link, "unterricht.html#t-probe");
+  assert.match(R.rueckmeldebogen({ hakt: ["zeit"] }).hilfen[0].text, /vollwertiges Ergebnis/);
 });
 
-test("Ist-Stand: »Papier passt« wird bestärkt, nicht umgestimmt", () => {
-  const e = R.istStand({ nutzung: ["kaum"], neu: "selten", naechstes: "papier" });
-  assert.match(e.schritte[0].text, /vollwertiges Ergebnis/);
-  assert.ok(!e.schritte.some((s) => /Kidu ansehen|Zu Kidu/.test(s.linktext) && s !== e.schritte[0]));
-});
-
-test("Ist-Stand: keine Noten, Punkte oder Prozentwerte", () => {
-  const e = R.istStand({ nutzung: ["ueben", "gemeinsam"], neu: "oft", ablenkung: "manchmal", sicherheit: "sicher", naechstes: "lernstand" });
-  for (const t of [e.satz, ...e.spiegel, ...e.schritte.map((s) => s.text)]) assert.ok(!/\d+ ?(%|Punkte)|Note/.test(t), t);
+test("Rückmeldebogen: unbekannte Werte fallen weg, keine Noten, Punkte oder Prozentwerte", () => {
+  const e = R.rueckmeldebogen({ art: ["gibt-es-nicht", "wunsch"], weitergabe: "vielleicht", hakt: ["niveau"], brauche: ["gespraech"] });
+  assert.match(e.text, /^Worum es geht: Ein Wunsch für die nächste Fortbildung$/m);
+  assert.match(e.text, /^Weitergabe ohne Namen: noch offen$/m);
+  for (const s of [e.text, e.satz, ...e.hilfen.map((h) => h.text)]) assert.ok(!/\d+ ?(%|Punkte)|Note/.test(s), s);
 });
 
 test("Umfang durchgängig: gewählt bleibt gewählt, aber mit festen Stellen im Plenum und Papier für lange Texte", () => {

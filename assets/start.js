@@ -17,7 +17,7 @@
   materialien.forEach(function (b) { b.faecher.forEach(function (f) { if (faecher.indexOf(f) < 0) faecher.push(f); }); });
 
   var zahlen = [
-    [materialien.length, "Materialien in der Galerie"],
+    [materialien.length, "Unterrichtsbeispiele"],
     [materialien.filter(function (b) { return b.status === "im Unterricht erprobt"; }).length, "davon im Unterricht erprobt"],
     [materialien.filter(function (b) { return !!b.link; }).length, "direkt im Browser nutzbar"],
     [faecher.length, "Fächer und Arbeitsbereiche"]
@@ -27,6 +27,4 @@
     return "<li><b>" + z[0] + "</b><span>" + esc(z[1]) + "</span></li>";
   }).join("");
 
-  // Fächer zum Wischen: die erste Ansicht jedes Projekts (assets/faecher.js), ohne Gleiten.
-  if (window.FAECHER) FAECHER.starte({ id: "start-faecher", name: "Ansichten aus den Projekten", eintraege: FAECHER.ansichten(true), gleiten: false, start: 2 });
 })();

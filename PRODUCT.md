@@ -18,16 +18,16 @@ Ihre Aufgabe: mit wenig Aufwand zu einer didaktisch begründeten, umsetzbaren En
 
 ## Product Purpose
 
-Kidu ist ein Orientierungs- und Werkzeugmodul zum Projekt »Vom digitalen Schnellhefter zum lernwirksamen Tablet-Unterricht«.
+Kidu ist eine Fortbildungsplattform für Lehrkräfte – zum Selbermachen und für Fortbildungen im Kollegium (seit 13.11.2026 so benannt). Sie gehört zum Projekt »Vom digitalen Schnellhefter zum lernwirksamen Tablet-Unterricht«, ist ohne Auftrag einer Schule entstanden und ist kein Schulkonzept.
 
 ### Zwei Grobziele (Entscheidung vom 26.10.2026)
 
 Kidu verfolgt zwei gleichwertige Grobziele. Beide gehören zum Kern; keines ist dem anderen vorgeordnet.
 
 - **Grobziel A – KI-Kompetenz im Kollegium.** Lehrkräfte bauen KI-Kompetenzen auf, die im Schulalltag wirklich nützen – ausdrücklich auch für analog unterrichtete Klassen: Aufgaben für unterschiedliche Lernstände anpassen, Präsentationen umgestalten, neue Aufgabenformate entwickeln, Elternbriefe und Sitzungen vorbereiten. Das Prinzip ist Hilfe zur Selbsthilfe: niederschwellig, für Einsteiger*innen mit Scheu ebenso wie für Fortgeschrittene.
-- **Grobziel B – Kompetenz, digitalen Unterricht zu gestalten.** Lehrkräfte entwickeln vorhandenen analogen Unterricht begründet digital weiter – punktuell, phasenweise oder durchgängig, ohne Rangfolge. Dazu gehört, Material zu prüfen, Tablet-Phasen zu führen und nach der Stunde hinzuschauen, wie es lief.
+- **Grobziel B – Kompetenz, digitalen Unterricht zu gestalten.** Lehrkräfte gestalten digitalen Unterricht begründet – neu geplant oder aus vorhandenem Unterricht, punktuell, phasenweise oder durchgängig, ohne Rangfolge. Der Weg hat seit 13.11.2026 vier Phasen: Grundlagen · Digitalen Unterricht erstellen · Unterrichten · Nach der Stunde. Er endet im Kollegium: Auswerten, mit anderen weiterarbeiten, die eigene Erfahrung mit »Mein Rückmeldebogen« weitergeben.
 
-Die Galerie ist der gemeinsame Beispielvorrat beider Grobziele.
+Die Unterrichtsbeispiele (»analog und digital«, beides mit KI erstellt; bis 13.11.2026 »Galerie«) sind der gemeinsame Beispielvorrat beider Grobziele.
 
 ### Zwei Bereiche
 
@@ -36,13 +36,13 @@ Die Oberfläche trennt die zwei Perspektiven, die den Grobzielen entsprechen:
 - **KI-Training (Grobziel A):** Lehrkräfte nutzen KI als professionelle Anwender*innen, um analogen oder digitalen Unterricht vorzubereiten (geführter Weg, höchstens 5 Schritte).
 - **Digitaler Unterricht (Grobziel B):** Digitalität aus Sicht der Lernenden; beginnt beim Lernzweck, nicht beim Werkzeug (geführter Weg, höchstens 6 Schritte).
 
-Es gibt genau zwei Bereiche. Ein Lernangebot, das mit KI gebaut wurde, gehört zum Digitalen Unterricht, sobald Lernende damit arbeiten; eine eigene Kategorie »mit KI entwickelt« gibt es nicht. Dazu kommt eine Galerie mit echten Beispielen aus dem Kollegium.
+Es gibt genau zwei Bereiche. Ein Lernangebot, das mit KI gebaut wurde, gehört zum Digitalen Unterricht, sobald Lernende damit arbeiten; eine eigene Kategorie »mit KI entwickelt« gibt es nicht. Dazu kommen die Unterrichtsbeispiele mit echten Beispielen. Ihre Maske unterscheidet »Unterricht« und »Außerhalb des Unterrichts« (Schlüssel `lernen` und `ki`, Farben Petrol und Ocker). Bisher stammen alle Beispiele aus dem Unterricht des Urhebers und aus seiner Arbeit außerhalb des Unterrichts.
 
 Erfolg heißt: Eine Lehrkraft findet nach kurzer Einführung sofort den passenden Einstieg, versteht den Unterschied zwischen KI-Unterstützung und digitalem Lernen, erhält mit wenigen Entscheidungen eine nachvollziehbare Empfehlung, kann den Mehrwert eines Tableteinsatzes kritisch einschätzen, findet ein passendes Beispiel und fühlt sich unterstützt, aber weder geprüft noch bewertet.
 
 ## Positioning
 
-Erst das Anliegen, dann das Werkzeug. Kidu empfiehlt digitalen Einsatz nie um seiner selbst willen: Zulässige Ergebnisse sind ausdrücklich auch »analog wahrscheinlich sinnvoller«, »punktueller Einsatz reicht« oder »vor allem organisatorischer Nutzen«. Der Prüfstein lautet: »Geht es auf Papier genauso gut? Dann bleib beim Papier.« Alle Beispiele stammen aus dem eigenen Kollegium; nichts ist erfunden.
+Erst das Anliegen, dann das Werkzeug. Kidu empfiehlt digitalen Einsatz nie um seiner selbst willen: Zulässige Ergebnisse sind ausdrücklich auch »analog wahrscheinlich sinnvoller«, »punktueller Einsatz reicht« oder »vor allem organisatorischer Nutzen«. Der Prüfstein lautet: »Geht es auf Papier genauso gut? Dann bleib beim Papier.« Alle Beispiele stammen bisher aus dem Unterricht und der Arbeit des Urhebers; nichts ist erfunden. Analoge Beispiele: noch offen.
 
 ## Operating Context
 
@@ -50,19 +50,19 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 
 ## Capabilities and Constraints
 
-- Hauptnavigation mit drei Punkten: KI-Training · Digitaler Unterricht · Galerie. Die Wortmarke führt zum Start. »Über Kidu«, »Inhalte und Funktionen« und »Hinweise« stehen im Fuß.
+- Hauptnavigation mit drei Punkten: KI-Training · Digitaler Unterricht · Unterrichtsbeispiele. Die Wortmarke führt zum Start. »Über Kidu«, »Inhalte und Funktionen« und »Hinweise« stehen im Fuß.
 - Digital-Check mit zwei Wegen: »Selbst prüfen« und »Mit KI prüfen« (ein Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren; die Lehrkraft gibt ihn mit ihrem Material in ein an der Schule freigegebenes KI-System ein; keine Anbindung, kein Upload auf dieser Seite).
-- Galerie mit echten Ansichten aus den Anwendungen (1–4 je Projekt) und einer Bildansicht für Maus, Tastatur und Finger.
+- Unterrichtsbeispiele mit echten Ansichten aus den Anwendungen (1–4 je Projekt) und einer Bildansicht für Maus, Tastatur und Finger.
 - Geführte Wege mit einer Entscheidung pro Schritt, Zurück, »Noch nicht sicher«, Ergebnis ohne Sackgasse, »Neu starten« und »Eingaben löschen«.
-- Galerie mit Freitextsuche und Filtern (Bereich, Phase, Anliegen, Umfang, Rolle, Fach), entfernbaren Chips, Ergebniszeile und kontrollierter Lockerung bei zu wenigen Treffern.
+- Unterrichtsbeispiele mit Freitextsuche und Filtern (Bereich »Unterricht« oder »Außerhalb des Unterrichts«, Phase, Anliegen, Umfang, Rolle, Fach), entfernbaren Chips, Ergebniszeile und kontrollierter Lockerung bei zu wenigen Treffern.
 - Umfang der Digitalität ohne Rangfolge: punktuell, phasenweise, durchgängig. Rollen der Lehrkraft ohne Wertung: Anleiten, Erklären, Moderieren, Begleiten, Rückmelden.
-- Digital-Check (Entscheidungskarte), Papierfrage (früher Kidu) und Digital-Check, Weg A »Selbst prüfen«: regelbasiert und transparent (`assets/regeln.js`, `assets/check-regeln.js`, jeweils mit Tests), vier qualitative Einstufungen, keine Prozentwerte oder Noten.
+- Entscheidungskarte (»Unterricht neu planen«), Papierfrage und Digital-Check, Weg A »Selbst prüfen«: regelbasiert und transparent (`assets/regeln.js`, `assets/check-regeln.js`, jeweils mit Tests), vier qualitative Einstufungen, keine Prozentwerte oder Noten.
 - Keine echte KI-Anbindung, keine simulierten KI-Antworten, keine Nennung konkreter KI-Anbieter (»ein an deiner Schule freigegebenes KI-System«).
 - Keine Anmeldung, kein Server, keine Tracker; Eingaben nur lokal (localStorage in try/catch), Freitexte werden nicht gespeichert.
 - Externe Anwendungen werden verlinkt, nicht eingebettet; das Bildschirmfoto dient als Vorschau und als Ersatz ohne Netz.
 - Fachbegriffe (Adaptivität, kognitive Aktivierung, formative Diagnostik u. a.) nur in aufklappbaren Vertiefungen.
-- Bewegung: kein Autoplay – mit einer bewusst gewählten Ausnahme (Entscheidung vom 18.10.2026, ab Version 4.3 als Fächer): der gleitende Fächer der Galerie. Es läuft sehr langsam (etwa 24 px/s), hält beim Überfahren, beim Fokus, per Knopf »Anhalten« und außerhalb des Bildschirms an und steht bei `prefers-reduced-motion` still. Zweite Ausnahme (Version 4.2): Abschnitte außerhalb des Bildschirms gleiten beim Scrollen einmal kurz herein (höchstens 24 px, 240 ms), und die Collage der Startseite verschiebt sich beim Scrollen leicht (höchstens 16 px, ab 1024 px). Beides entfällt bei `prefers-reduced-motion` und ohne JavaScript; Text ist nie erst nach der Bewegung lesbar. Alle anderen bewegten Bereiche starten nur auf Knopfdruck; eine statische Ansicht ist jederzeit verfügbar.
-- Galerie: Die Suche steht oben im Kopf; Treffer erscheinen direkt darunter, die Adresse merkt sich das Suchwort (`#suche=…`). Jede Karte im Laufband führt mit einem Klick zur Beschreibung und mit einem weiteren in die laufende Anwendung.
+- Bewegung: kein Autoplay. Die frühere Ausnahme, der gleitende Fächer der Galerie (Entscheidung vom 18.10.2026, ab Version 4.3), ist mit Version 4.36 entfallen (Entscheidung vom 13.11.2026): Er zeigte dieselben Karten wie »Alle Beispiele« und bewegte sich ohne Eingabe. Weitere Ausnahme (Version 4.2): Abschnitte außerhalb des Bildschirms gleiten beim Scrollen einmal kurz herein (höchstens 24 px, 240 ms), und die Collage der Startseite verschiebt sich beim Scrollen leicht (höchstens 16 px, ab 1024 px). Beides entfällt bei `prefers-reduced-motion` und ohne JavaScript; Text ist nie erst nach der Bewegung lesbar. Alle anderen bewegten Bereiche starten nur auf Knopfdruck; eine statische Ansicht ist jederzeit verfügbar.
+- Unterrichtsbeispiele: Die Suche steht oben im Kopf; Treffer erscheinen direkt darunter, die Adresse merkt sich das Suchwort (`#suche=…`). Jede Karte führt mit einem Klick zur Beschreibung und mit einem weiteren in die laufende Anwendung.
 - Offene Punkte zu den Daten stehen in `docs/datenluecken.md`, offene Punkte der Versionen in `docs/version-*.md`.
 
 ## Brand Commitments

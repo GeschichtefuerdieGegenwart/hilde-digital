@@ -114,9 +114,11 @@ var TAXONOMIEN = {
   status: ["Idee", "in Entwicklung", "Prototyp", "im Unterricht erprobt", "In Überarbeitung",
            "für die Präsentation vorbereitet", "noch offen"],
 
+  /* Bereiche der Unterrichtsbeispiele (seit 4.36, Entscheidung Mario 13.11.2026): »Unterricht« und »Außerhalb des Unterrichts«.
+     Die Schlüssel bleiben (lernen, ki); die Farben auch: Petrol für Unterricht, Ocker für außerhalb – keine dritte Farbe. */
   bereiche: [
-    { id: "ki", name: "KI-Training" },
-    { id: "lernen", name: "Digitaler Unterricht" }
+    { id: "ki", name: "Außerhalb des Unterrichts" },
+    { id: "lernen", name: "Unterricht" }
   ],
 
   kiEinsatz: [

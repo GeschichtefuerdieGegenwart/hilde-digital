@@ -63,6 +63,20 @@ Rechte an Bildern innerhalb der Anwendungen (z. B. Illustrationen): **noch offen
 |---|---|---|
 | `beschlussapp-1.webp` | Zu jedem Punkt stehen Entwurf, Klärungsbedarf und Optionen mit Vor- und Nachteilen. | Klick im Inhalt (a:has-text('Name und Kürzel')); Seite bei 0 px |
 
+## Praxisbesuch 1BKSP · Begleiter
+
+- Keine öffentliche Anwendung, kein Link (Entscheidung Mario, 13.11.2026). Die App enthält fremden Wortlaut (GinA-Merkmale nach Weltzien, Bücklein & Huber-Kebbe 2018, zitiert nach der Praxishandreichung 1BKSP 2026/27; Beurteilungsraster der Handreichung) und bleibt deshalb unveröffentlicht.
+- Aufgenommen am 13. November 2026 aus einer lokalen Kopie der App (eine HTML-Datei, Stand Version 3), leer, ohne Netz, ohne Eingaben. Gezeigt werden nur Ansichten ohne fremden Wortlaut; die Hinweise »Was die Handreichung vorsieht« bleiben zugeklappt.
+- Die Besuchsdaten im Ordner der App wurden nicht geöffnet und gehören nicht in dieses Repository.
+
+| Bild | Was zu sehen ist | Weg in der Anwendung |
+|---|---|---|
+| `praxisbesuch-1.webp` | Alle Besuche an einem Ort. Jeder Besuch bleibt im Browser gespeichert, bis die Lehrkraft ihn löscht. | Start der App ohne gespeicherte Besuche; Seite bei 0 px |
+| `praxisbesuch-2.webp` | Im Reflexionsgespräch stehen die Notizen neben den Gesprächsanlässen. | Klick auf »Neuer Besuch«; Klick auf den Reiter »Reflexionsgespräch«; Hinweis »Neuer Besuch angelegt« abgewartet |
+| `praxisbesuch-3.webp` | Am Ende entsteht der Bericht – zum Drucken, als PDF oder als Word-Datei. | Klick auf den Reiter »Bericht«; Seite bei 0 px |
+
+Das Vorschaubild `assets/bilder/praxisbesuch.jpg` ist das Hauptmenü bei 1280 × 800, verkleinert auf 960 × 600.
+
 ## Politik-Check 1919
 
 - Repository: `GeschichtefuerdieGegenwart/Wahl-o-Mat-1919`, Datei `index.html`

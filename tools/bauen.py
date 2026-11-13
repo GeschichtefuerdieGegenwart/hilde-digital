@@ -2,7 +2,8 @@
 """Baut die Seiten von Kidu aus src/*.html (nur Seiteninhalt) und dem gemeinsamen Rahmen.
 
 Aufruf:  python3 tools/bauen.py
-Ergebnis: alle Seiten aus SEITEN. showroom.html leitet auf galerie.html weiter, startpunkt.html auf fortbildungsbogen.html (alte Links bleiben gültig).
+Ergebnis: alle Seiten aus SEITEN. Alte Adressen leiten weiter (WEITERLEITUNGEN): showroom.html auf galerie.html, startpunkt.html und
+(ab 4.36) ist-stand.html auf fortbildungsbogen.html, fuenf-saetze.html auf sechs-hebel.html#fuenf-saetze – alte Links bleiben gültig.
 Kopfzeile, Statuszeile und Fußzeile stehen nur hier – so bleiben sie auf allen Seiten gleich.
 Im Fuß stehen die Schalter »Weniger Bewegung« (ab Version 4.8) und »Beamer-Ansicht« (ab 4.8 Teil 2); ein kleines Skript im Kopf
 setzt die gemerkten Wahlen (hilde.bewegung, hilde.theme) vor dem ersten Zeichnen.
@@ -16,18 +17,19 @@ SEITEN = [
     ("index.html", "Kidu · Künstliche Intelligenz und digitaler Unterricht", ""),
     ("ki.html", "KI-Training – Kidu", "ki"),
     ("unterricht.html", "Digitaler Unterricht – Kidu", "unterricht"),
-    ("tablets.html", "Unterricht planen – Kidu", "unterricht"),
+    ("tablets.html", "Unterricht neu planen – Kidu", "unterricht"),
     ("passt.html", "Was passt gerade zu mir? – Kidu", "unterricht"),
-    ("digitalisieren.html", "Unterricht digitalisieren – Kidu", "unterricht"),
+    ("digitalisieren.html", "Bisherigen Unterricht digitalisieren – Kidu", "unterricht"),
     ("beobachtung.html", "Nach der Stunde: Beobachtungsbogen – Kidu", "unterricht"),
     ("tablet-phasen.html", "Tablet-Phasen gut führen – Kidu", "unterricht"),
-    ("ist-stand.html", "Mein Ist-Stand – Kidu", "unterricht"),
+    ("ist-stand.html", "Mein Fortbildungsbogen – Kidu", "unterricht"),
     ("fortbildungsbogen.html", "Mein Fortbildungsbogen – Kidu", "unterricht"),
     ("startpunkt.html", "Mein Fortbildungsbogen – Kidu", "unterricht"),
     ("fortbildung.html", "Fortbildungsbaustein: 45 Minuten – Kidu", "unterricht"),
     ("beratung.html", "Beratungsstunde: acht Wochen – Kidu", "unterricht"),
-    ("leitsaetze.html", "Leitsätze zur Diskussion – Kidu", ""),
-    ("fuenf-saetze.html", "Guter digitaler Unterricht in fünf Sätzen – Kidu", "unterricht"),
+    ("leitsaetze.html", "Leitsätze zur Diskussion – Kidu", "unterricht"),
+    ("rueckmeldebogen.html", "Mein Rückmeldebogen – Kidu", "unterricht"),
+    ("fuenf-saetze.html", "Wann digitaler Unterricht funktioniert – Kidu", "unterricht"),
     ("sechs-hebel.html", "Wann digitaler Unterricht funktioniert – Kidu", "unterricht"),
     ("sechs-hebel-film.html", "Film: Was das Gerät kann – Kidu", "unterricht"),
     ("digital-check.html", "Digital-Check – Kidu", "unterricht"),
@@ -39,9 +41,9 @@ SEITEN = [
     ("ki-fach.html", "KI für dein Fach einrichten – Kidu", "ki"),
     ("sicher.html", "Sicher arbeiten in fünf Regeln – Kidu", "ki"),
     ("lernende-ki.html", "Wenn deine Lernenden mit KI arbeiten – Kidu", "ki"),
-    ("galerie.html", "Galerie – Kidu", "galerie"),
+    ("galerie.html", "Unterrichtsbeispiele – Kidu", "galerie"),
     ("beispiel.html", "Beispiel – Kidu", "galerie"),
-    ("showroom.html", "Galerie – Kidu", "galerie"),
+    ("showroom.html", "Unterrichtsbeispiele – Kidu", "galerie"),
     ("ueber.html", "Über Kidu", ""),
     ("gestaltung.html", "Gestaltungssystem – Kidu", ""),
     ("werkzeugkiste.html", "Methodenkoffer – Kidu", ""),
@@ -56,13 +58,14 @@ ZEILE = ('<span class="ini ki">K</span>ünstliche <span class="ini ki">I</span>n
          'und <span class="ini du">d</span>igitaler <span class="ini du">U</span>nterricht')
 
 # Alte Adressen leiten weiter (alte Links bleiben gültig).
-WEITERLEITUNGEN = {"showroom.html": "galerie.html", "startpunkt.html": "fortbildungsbogen.html"}
+WEITERLEITUNGEN = {"showroom.html": "galerie.html", "startpunkt.html": "fortbildungsbogen.html",
+                   "ist-stand.html": "fortbildungsbogen.html", "fuenf-saetze.html": "sechs-hebel.html#fuenf-saetze"}  # ab 4.36
 
 NAV = [
     # Die drei Kernbereiche. Die Wortmarke führt zum Start.
     ("ki", "ki.html", "KI-Training"),
     ("unterricht", "unterricht.html", "Digitaler Unterricht"),
-    ("galerie", "galerie.html", "Galerie"),
+    ("galerie", "galerie.html", "Unterrichts&shy;beispiele"),  # ab 4.36, vorher »Galerie«; weiches Trennzeichen für das Telefon
 ]
 
 FUSS = [
@@ -86,14 +89,14 @@ def rahmen(titel, aktiv, inhalt, datei):
     )
     fuss = "".join(f'<li><a href="{href}">{text}</a></li>' for href, text in FUSS)
     ziel = WEITERLEITUNGEN.get(datei)
-    weiterleitung = (f'<meta http-equiv="refresh" content="0; url={ziel}">\n<script>location.replace("{ziel}" + location.hash)</script>\n' if ziel else "")
+    weiterleitung = (f'<meta http-equiv="refresh" content="0; url={ziel}">\n<script>location.replace("{ziel}"{"" if "#" in ziel else " + location.hash"})</script>\n' if ziel else "")
     return f"""<!doctype html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Unterricht.">
+<meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 {weiterleitung}<title>{titel}</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/hilde.css">

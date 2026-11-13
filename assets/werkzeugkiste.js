@@ -29,7 +29,7 @@
         ' <span class="leise klein">· ' + esc(standVon(id)) + "</span></li>" : "";
     };
     var gruppen = [
-      { href: "digitalisieren.html", name: "Unterricht digitalisieren", satz: "Der Prompt folgt zwei Anleitungen.",
+      { href: "digitalisieren.html", name: "Bisherigen Unterricht digitalisieren", satz: "Der Prompt folgt zwei Anleitungen.",
         teile: teil("digitalisieren.html", "Unterricht digitalisieren", "so geht das KI-System vor", "unterricht-digitalisieren") +
                teil("digitalisieren.html", "Lernseite bauen", "nur wenn du als Ausgabe eine Lernseite wählst", "lernseite-bauen") },
       { href: "digital-check.html#mit-ki", name: "Digital-Check: Mit KI prüfen", satz: "Der Prüf-Auftrag folgt einer Anleitung.",
