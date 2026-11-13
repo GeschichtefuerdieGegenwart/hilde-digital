@@ -20,11 +20,13 @@
     umfang: { name: "Umfang", werte: T.umfang, chips: true },
     rolle: { name: "Rolle", werte: T.rollen },
     fach: { name: "Fach", werte: faecher.map(function (f) { return { id: f, name: f }; }), weitere: true },
-    ki: { name: "KI-Einsatz", werte: T.kiEinsatz.filter(function (k) { return k.id !== "keiner"; }), weitere: true }
+    ki: { name: "KI-Einsatz", werte: T.kiEinsatz.filter(function (k) { return k.id !== "keiner"; }), weitere: true },
+    /* Ab 4.37: Teil einer Einheit – zeigt die Einheit und ihre Teile (Fassung B). */
+    einheit: { name: "Einheit", werte: BEISPIELE.filter(function (b) { return b.art === "einheit"; }).map(function (b) { return { id: b.id, name: b.titel }; }), weitere: true }
   };
 
   var gespeichert = H.lies(SPEICHER) || {};
-  var wahl = { bereich: "alle", phase: "", anliegen: "", umfang: "", rolle: "", fach: "", ki: "" };
+  var wahl = { bereich: "alle", phase: "", anliegen: "", umfang: "", rolle: "", fach: "", ki: "", einheit: "" };
   Object.keys(wahl).forEach(function (k) { if (typeof gespeichert[k] === "string") wahl[k] = gespeichert[k]; });
   var suche = "", alleZeigen = false;
   // Suchwort aus der Adresse übernehmen (#suche=…)

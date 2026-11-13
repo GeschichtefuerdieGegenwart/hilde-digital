@@ -55,3 +55,11 @@ test("Suchwort ohne Treffer wird benannt; gelockert wird nur über Filter", () =
   assert.equal(mit.suchtrefferLeer, true);
   assert.ok(mit.treffer.length > 0 && mit.treffer.every((b) => b.anliegen.includes("ueben")));
 });
+
+test("Filter »Einheit« (4.37): zeigt die Einheit und ihre Teile, sonst nichts", () => {
+  const B = require("../assets/daten/beispiele.js");
+  const r = S.finde(B, { einheit: "ns-einheit" }, "");
+  assert.equal(r.gelockert, false);
+  assert.deepEqual(r.treffer.map((b) => b.id).sort(), ["m19-appeasement", "m20-dilemmata", "m22-wie-war-das-moeglich", "ns-einheit", "ns-ideologie"]);
+  assert.ok(S.REIHENFOLGE.includes("einheit"));
+});

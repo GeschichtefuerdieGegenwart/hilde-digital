@@ -6,12 +6,14 @@
 var TAXONOMIEN = {
 
   /* Unterrichtsphasen – eine Orientierung, kein starres Modell. */
+  /* Phasen (ab 4.37 neue Namen und Hilfetexte, Entscheidung Mario 13.11.2026; die Schlüssel bleiben).
+     kurz = Wort unter der Stundenlinie. Bis 4.36: Sicherung · Abschluss & Transfer · Phasenübergreifend. */
   phasen: [
-    { id: "einstieg", name: "Einstieg" },
-    { id: "erarbeitung", name: "Erarbeitung" },
-    { id: "sicherung", name: "Sicherung", hilfe: "Ergebnisse ordnen, festhalten und festigen" },
-    { id: "abschluss", name: "Abschluss & Transfer" },
-    { id: "uebergreifend", name: "Phasenübergreifend" },
+    { id: "einstieg", name: "Einstieg", kurz: "Einstieg", hilfe: "Eine Frage öffnen, Vorwissen holen, das Ziel nennen." },
+    { id: "erarbeitung", name: "Erarbeitung", kurz: "Erarbeitung", hilfe: "Neues verstehen: zeigen, erklären, selbst denken." },
+    { id: "sicherung", name: "Sichern und üben", kurz: "Sichern", hilfe: "Festhalten, was gilt. Üben. Später wiederholen." },
+    { id: "abschluss", name: "Übertragen und Ausblick", kurz: "Übertragen", hilfe: "Auf einen neuen Fall übertragen. Sagen, was als Nächstes kommt." },
+    { id: "uebergreifend", name: "In jeder Phase", hilfe: "Führen, prüfen, zurückmelden – die ganze Stunde." },
     { id: "offen", name: "Noch offen" }
   ],
 
@@ -111,8 +113,32 @@ var TAXONOMIEN = {
   ],
 
   /* Erlaubte Status. Technischer Reifegrad ist nicht gleich didaktischer Qualität. */
-  status: ["Idee", "in Entwicklung", "Prototyp", "im Unterricht erprobt", "In Überarbeitung",
-           "für die Präsentation vorbereitet", "noch offen"],
+  status: ["Idee", "in Entwicklung", "Prototyp", "im Unterricht erprobt", "in der Praxis erprobt", "In Überarbeitung",
+           "für die Präsentation vorbereitet", "noch offen"],  /* »in der Praxis erprobt« ab 4.37: außerhalb des Unterrichts im Einsatz */
+
+  /* Ganze Einheit (ab 4.37, Fassung B, Entscheidung Mario 13.11.2026): eine eigene Ebene über mehreren Stunden,
+     keine vierte Stufe des Umfangs. Der Umfang bleibt eine Entscheidung je Stunde – auch »ohne Gerät«.
+     merkmale: die fünf Merkmale einer Einheit. schritte: Schritt E »Landkarte der Einheit« (Wortlaut wie im Skill
+     unterricht-digitalisieren). Regel dazu: REGELN.einheit (assets/regeln.js). */
+  einheit: {
+    name: "Ganze Einheit",
+    satz: "Plane mehrere Stunden als Ganzes: eine Landkarte, eine Leitfrage, eine Sicherung. In jeder Stunde entscheidest du neu, wie viel Gerät sie braucht – auch keins.",
+    abgrenzung: "»Durchgängig« beschreibt eine Stunde. »Ganze Einheit« beschreibt den Rahmen über mehrere Stunden. Eine Einheit kann Papierstunden enthalten.",
+    merkmale: [
+      { id: "landkarte", name: "Landkarte", hilfe: "Eine Landkarte, die in jeder Stunde wiederkommt." },
+      { id: "leitfrage", name: "Leitfrage", hilfe: "Eine Leitfrage über die Stunden." },
+      { id: "bausteine", name: "Wiederkehrende Bausteine", hilfe: "Am Anfang und am Ende jeder Stunde dasselbe." },
+      { id: "sicherung", name: "Sicherung über die Einheit", hilfe: "Sie richtet sich an der Klassenarbeit oder Prüfung aus." },
+      { id: "stundenfolge", name: "Stundenfolge", hilfe: "Jede Stunde hat ihren eigenen Umfang – auch Papier." }
+    ],
+    schritte: [
+      "Schreib die Leitfrage der Einheit in einem Satz.",
+      "Leg die Stundenfolge an: je Stunde ein Satz und die Frage der Stunde.",
+      "Lege fest, was jede Stunde wiederkehrt: am Anfang die Landkarte mit dem heutigen Standort, am Ende ein Satz in die Lernspur.",
+      "Plane die Sicherung über die Einheit. Richte sie an der Klassenarbeit oder Prüfung aus.",
+      "Mach je Stunde eine vorläufige Papierprobe: Welche Stunde braucht ein Gerät, welche nicht? Keine Stunde bekommt ein Gerät, nur weil die Nachbarstunde eins hat."
+    ]
+  },
 
   /* Bereiche der Unterrichtsbeispiele (seit 4.36, Entscheidung Mario 13.11.2026): »Unterricht« und »Außerhalb des Unterrichts«.
      Die Schlüssel bleiben (lernen, ki); die Farben auch: Petrol für Unterricht, Ocker für außerhalb – keine dritte Farbe. */

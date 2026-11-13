@@ -15,6 +15,7 @@
     materialien: Array.isArray(g.materialien) ? g.materialien : ["arbeitsblatt"],
     vorhaben: D.vorhaben.some(function (v) { return v.id === g.vorhaben; }) ? g.vorhaben : "ideen",
     umfang: typeof g.umfang === "string" ? g.umfang : "",
+    einheit: g.einheit === true,
     ausgabe: typeof g.ausgabe === "string" ? g.ausgabe : "ideen"
   };
   var feld = document.getElementById("d-prompt"), status = document.getElementById("d-status");
@@ -32,6 +33,9 @@
   document.getElementById("d-umfang").innerHTML = D.umfang.map(function (u) {
     return '<option value="' + u.id + '"' + (wahl.umfang === u.id ? " selected" : "") + ">" + esc(u.name) + (u.hilfe ? " – " + esc(u.hilfe) : "") + "</option>";
   }).join("");
+  /* Ab 4.37: eine Stunde oder mehrere Stunden als Einheit (Fassung B). Bei einer Einheit gilt der Umfang je Stunde. */
+  document.getElementById("d-ebene").value = wahl.einheit ? "einheit" : "stunde";
+  document.getElementById("d-umfang").disabled = wahl.einheit;
   document.getElementById("d-ausgabe").innerHTML = D.ausgaben.map(function (a) {
     return '<option value="' + a.id + '"' + (wahl.ausgabe === a.id ? " selected" : "") + ">" + esc(a.name) + "</option>";
   }).join("");
@@ -39,7 +43,7 @@
   function wert(id) { return document.getElementById(id).value; }
   function neu() {
     feld.value = DIGITALISIEREN_PROMPT.baue({ fach: wert("d-fach"), thema: wert("d-thema"), gruppe: wert("d-gruppe"),
-      phase: wahl.phase, materialien: wahl.materialien, vorhaben: wahl.vorhaben, umfang: wahl.umfang, ausgabe: wahl.ausgabe });
+      phase: wahl.phase, materialien: wahl.materialien, vorhaben: wahl.vorhaben, umfang: wahl.umfang, ausgabe: wahl.ausgabe, einheit: wahl.einheit });
     var v = D.vorhaben.filter(function (x) { return x.id === wahl.vorhaben; })[0];
     document.getElementById("d-zusammenfassung").textContent = v.name + (wahl.materialien.length ? " · " + wahl.materialien.length + (wahl.materialien.length === 1 ? " Material" : " Materialien") : "");
     H.schreib(SPEICHER, wahl);
@@ -49,6 +53,7 @@
     if (t.name === "material") wahl.materialien = [].slice.call(form.querySelectorAll('input[name="material"]:checked')).map(function (x) { return x.value; });
     if (t.name === "vorhaben") wahl.vorhaben = t.value;
     if (t.id === "d-umfang") wahl.umfang = t.value;
+    if (t.id === "d-ebene") { wahl.einheit = t.value === "einheit"; document.getElementById("d-umfang").disabled = wahl.einheit; }
     if (t.id === "d-ausgabe") wahl.ausgabe = t.value;
     neu(); status.textContent = "";
   });

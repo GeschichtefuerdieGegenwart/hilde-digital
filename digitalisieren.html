@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Bisherigen Unterricht digitalisieren – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=2fd80b7f">
+<link rel="stylesheet" href="assets/hilde.css?v=6900bfa9">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -72,7 +72,8 @@
     <details class="mehr bk-mehr">
       <summary>Mehr einstellen <span class="leise">(freiwillig)</span></summary>
       <div class="bk-felder">
-        <div class="eingabe"><label for="d-umfang">Wie viel Tablet?</label><select id="d-umfang"></select></div>
+        <div class="eingabe"><label for="d-ebene">Eine Stunde oder mehrere?</label><select id="d-ebene"><option value="stunde">Eine Stunde oder ein Material</option><option value="einheit">Mehrere Stunden als ganze Einheit</option></select></div>
+        <div class="eingabe"><label for="d-umfang">Wie viel Tablet?</label><select id="d-umfang"></select><p class="leise klein">Bei einer ganzen Einheit entscheidest du je Stunde.</p></div>
         <div class="eingabe"><label for="d-ausgabe">Was möchtest du zurückbekommen?</label><select id="d-ausgabe"></select></div>
       </div>
     </details>
@@ -97,13 +98,13 @@
   <noscript><p class="box">Der Baukasten braucht JavaScript.</p></noscript>
 </div></section>
 </div>
-<script src="assets/daten/taxonomien.js?v=1b20e922"></script>
+<script src="assets/daten/taxonomien.js?v=eb73b10b"></script>
 <script src="assets/daten/qualitaet.js?v=d8e57ce3"></script>
 <script src="assets/daten/digitalisieren.js?v=dc6b91fc"></script>
 <script src="assets/daten/kurzfassungen.js?v=d0de096b"></script>
-<script src="assets/digitalisieren-prompt.js?v=41856ea9"></script>
-<script src="assets/hilde.js?v=eee045bc"></script>
-<script src="assets/digitalisieren.js?v=a03e89d4"></script>
+<script src="assets/digitalisieren-prompt.js?v=c6875692"></script>
+<script src="assets/hilde.js?v=01f2d897"></script>
+<script src="assets/digitalisieren.js?v=0f3d189c"></script>
 <script src="assets/werkzeugkiste.js?v=13f6395e"></script>
 
 </main>

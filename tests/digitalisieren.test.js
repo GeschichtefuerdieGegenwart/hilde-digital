@@ -54,3 +54,14 @@ test("Prompt nennt Festlegung vor Auflösung, Ruhe vor Bewegung und die Rückkeh
   assert.ok(/Erst denken, dann zeigen/.test(t) && /Erst Ruhe, dann Bewegung/.test(t) && /zurück ins Gespräch/.test(t));
   assert.ok(/drei Tipps/.test(t));
 });
+
+test("Ganze Einheit (4.37): erst die Landkarte der Einheit, der Umfang gilt je Stunde – ohne Einheit bleibt alles wie bisher", () => {
+  const e = P.baue({ vorhaben: "praesentation", umfang: "durchgaengig", einheit: true }, D, Q, T);
+  assert.match(e, /# Ganze Einheit/);
+  for (const s of T.einheit.schritte) assert.ok(e.includes(s), s);
+  assert.match(e, /Umfang: je Stunde neu entscheiden/);
+  assert.ok(!e.includes("Umfang: Durchgängig"), "kein Umfang für die ganze Einheit");
+  const s = P.baue({ vorhaben: "praesentation", umfang: "durchgaengig" }, D, Q, T);
+  assert.ok(!s.includes("# Ganze Einheit"));
+  assert.match(s, /Umfang: Durchgängig/);
+});

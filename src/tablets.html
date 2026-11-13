@@ -6,6 +6,17 @@
   <p class="kopfnotiz">Du hast schon ein Material? <a class="textlink" href="digital-check.html">Zum Digital-Check</a></p>
 </div></section>
 
+<section class="abschnitt einheit-abschnitt" aria-labelledby="t-ebene"><div class="huelle">
+  <fieldset class="einheit-wahl" id="einheit-wahl">
+    <legend id="t-ebene">Planst du eine Stunde – oder mehrere Stunden als ganze Einheit?</legend>
+    <div class="probe-wahl">
+      <label><input type="radio" name="ebene" value="stunde" checked><span>Eine Stunde</span></label>
+      <label><input type="radio" name="ebene" value="einheit"><span>Mehrere Stunden als ganze Einheit</span></label>
+    </div>
+  </fieldset>
+  <div class="einheit-karte" id="einheit-karte" aria-live="polite" hidden></div>
+</div></section>
+
 <section class="abschnitt weg-abschnitt"><div class="huelle">
   <nav class="schritte-nav" aria-label="Schritte des Wegs"><ol class="schritte" id="fortschritt"></ol><p class="schritte-stand" id="schritte-stand" aria-hidden="true"></p></nav>
   <form id="weg" class="weg" novalidate></form>
@@ -25,3 +36,4 @@
 <script src="assets/regeln.js"></script>
 <script src="assets/hilde.js"></script>
 <script src="assets/tablets-weg.js"></script>
+<script src="assets/einheit.js"></script>

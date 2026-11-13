@@ -35,12 +35,13 @@ SEITEN = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "ta
 MIT_VERTIEFUNG = ["mehrwert.html", "selbstcheck.html", "digital-check.html", "ueber.html"]
 EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "tablets.html", "passt.html", "beobachtung.html", "tablet-phasen.html", "ist-stand.html", "fortbildungsbogen.html", "rueckmeldebogen.html", "fortbildung.html", "leitsaetze.html", "fuenf-saetze.html", "sechs-hebel.html", "galerie.html", "muster.html", "aufgabenkoffer.html", "auftraege.html", "ki-fach.html", "sicher.html", "lernende-ki.html", "beratung.html"]
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
-EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/regeln.js", "assets/daten/taxonomien.js",
+EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/einheit.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/fortbildungsbogen.js", "assets/rueckmeldebogen.js",
-                    "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js", "assets/werkstatt.js", "assets/werkstatt-anfrage.js", "assets/daten/werkstatt.js", "assets/sechs-hebel.js", "assets/sechs-hebel-proben.js", "assets/sechs-hebel-rad.js"]
+                    "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js", "assets/werkstatt.js", "assets/werkstatt-anfrage.js", "assets/daten/werkstatt.js", "assets/sechs-hebel.js", "assets/sechs-hebel-proben.js", "assets/sechs-hebel-rad.js", "assets/phasen-bild.js"]
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation",
-                "Anforderungsbereich", "Beutelsbacher", "Binnendifferenzierung"]  # ab 4.19: nur in Vertiefungen (<details>)
+                "Anforderungsbereich", "Beutelsbacher", "Binnendifferenzierung",
+                "Lehrfunktion", "Konsolidierung"]  # ab 4.19: nur in Vertiefungen (<details>); die letzten zwei ab 4.37
 # Wörter, die auf Start- und Bereichsseiten und in den geführten Wegen nicht stehen sollen (Kritik vom 18.10.2026)
 EINSTIEG_WOERTER = ["Digitalität", "Lernsetting", "HTML-Lernumgebung"]
 VERBOTEN = ["ergänzen]", "Schullogo", "Kontaktadresse", "offizielles Digitalkonzept", "@"]
@@ -221,9 +222,38 @@ def pruefe_daten(fehler):
         for feld in (b.get("vorschlag") or {}):
             if feld not in b:
                 fehler.append(f"Beispiel {wer}: Vorschlag für unbekanntes Feld »{feld}«")
+    pruefe_einheiten(fehler, beispiele, tax)
     pruefe_auswahl(fehler, beispiele)
     pruefe_galerie(fehler, beispiele, galerie)
     print(f"Daten: {len(beispiele)} Beispiele geprüft")
+
+
+def pruefe_einheiten(fehler, beispiele, tax):
+    """ab 4.37 (Fassung B): Eine Einheit ist ein Rahmen über mehrere Stunden, keine vierte Stufe – also kein eigener Umfang.
+    Sie nennt mindestens zwei Stunden, die es in Kidu gibt; jede Stunde gehört höchstens zu einer Einheit.
+    Der Rahmen hat genau die fünf Merkmale aus taxonomien.js; leer heißt »noch offen«."""
+    ids = {b["id"]: b for b in beispiele}
+    merkmale = [m["id"] for m in tax["einheit"]["merkmale"]]
+    gesehen = {}
+    for e in (b for b in beispiele if b.get("art") == "einheit"):
+        wer = e["id"]
+        if e.get("umfang"):
+            fehler.append(f"Einheit {wer}: keinen eigenen Umfang – der Umfang gilt je Stunde")
+        if e.get("auswahl"):
+            fehler.append(f"Einheit {wer}: gehört nicht zu den sechs Beispielen »Zum Anfangen«")
+        if len(e.get("stunden") or []) < 2:
+            fehler.append(f"Einheit {wer}: mindestens zwei Stunden")
+        for s in e.get("stunden") or []:
+            if s not in ids:
+                fehler.append(f"Einheit {wer}: Stunde »{s}« gibt es nicht")
+            elif ids[s].get("art") == "einheit":
+                fehler.append(f"Einheit {wer}: »{s}« ist selbst eine Einheit")
+            elif s in gesehen:
+                fehler.append(f"Einheit {wer}: Stunde »{s}« gehört schon zu {gesehen[s]}")
+            gesehen[s] = wer
+        if sorted((e.get("rahmen") or {}).keys()) != sorted(merkmale):
+            fehler.append(f"Einheit {wer}: Rahmen braucht genau die Merkmale {', '.join(merkmale)}")
+    print(f"Einheiten: {sum(1 for b in beispiele if b.get('art') == 'einheit')} geprüft")
 
 
 def pruefe_auswahl(fehler, beispiele):

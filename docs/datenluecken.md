@@ -261,7 +261,7 @@ Vorschläge zum Prüfen:
   - Begründung: README: »iPad-Fassung nach der Print-Stunde; ?ansicht=lehrkraft öffnet den verschlüsselten Lehrkraftbereich«; Faktensicherung M19 als PDF, 2 Seiten.
 - [ ] anliegen: Verstehen & vertiefen, Reflektieren & übertragen
   - Begründung: Einstieg: »In fünf Bausteinen erfahren Sie, was von 1933 bis 1939 geschieht – immer nur so viel, wie man in London zum jeweiligen Zeitpunkt wusste.«
-- [ ] phasen: Erarbeitung, Sicherung
+- [ ] phasen: Erarbeitung, Sichern und üben
   - Begründung: Seitenbeschreibung: »fünf Bausteine nach der Print-Stunde, drei Entscheidungen, Sicherung an der Tafel« – Erarbeitung im Labor, Sicherung im Protokoll.
 - [ ] umfang: Phasenweise
   - Begründung: Die Abstimmung und das Tafelbild laufen im Plenum ohne Gerät; das iPad trägt die Bausteine und das Protokoll – also nicht die ganze Stunde.
@@ -287,7 +287,7 @@ Vorschläge zum Prüfen:
   - Begründung: README: »Nach jeder Abstimmung gibt es die Beamer-Ansicht ›Ergebnis der Klasse‹«; »?ansicht=lehrkraft öffnet den verschlüsselten Lehrkraftbereich«; »Bilder M20 … liegen nur im Moodle-Paket«.
 - [ ] anliegen: Verstehen & vertiefen, Reflektieren & übertragen
   - Begründung: Jedes Dilemma endet mit der Auswertung: Schwärzung aufgedeckt, fünf Ereignisse, eine Besprechungsfrage – die eigene Entscheidung wird am Verlauf geprüft.
-- [ ] phasen: Erarbeitung, Sicherung
+- [ ] phasen: Erarbeitung, Sichern und üben
   - Begründung: Die sieben Schritte erarbeiten je ein Dilemma; die Zusammenfassung auf zwei Seiten A4 sichert am Ende.
 - [ ] umfang: Durchgängig
   - Begründung: README: »durchgängige iPad-Fassung mit geprüften Quellen«.
@@ -313,7 +313,7 @@ Vorschläge zum Prüfen:
   - Begründung: Lehrkraftseite im Modul: »Die Lernenden arbeiten mit dem iPad. Gespeichert wird nur in ihrem Browser. Hier trägst du die Modelle der Tischgruppen ein und startest die Moderation.«
 - [ ] anliegen: Verstehen & vertiefen, Zusammenarbeiten, Reflektieren & übertragen
   - Begründung: Akten mit Gewichtungs-Check, Marktplatz mit Streitpaaren am Tisch, Rückblick »Person oder Umstände?« – verstehen, gemeinsam aushandeln, übertragen.
-- [ ] phasen: Einstieg, Erarbeitung, Sicherung
+- [ ] phasen: Einstieg, Erarbeitung, Sichern und üben
   - Begründung: Ablauf der Lehrkraftseite: 0–10 Einstieg, 10–55 Inputs und Akten, 55–82 Marktplatz und Diskussion, 82–90 Rückblick; Zusammenfassung danach.
 - [ ] umfang: Durchgängig
   - Begründung: Ablauf der Lehrkraftseite: Das iPad ist in fast allen Phasen »auf«; nur Input 2 und die Diskussion laufen mit »iPad zu«.
@@ -339,7 +339,7 @@ Vorschläge zum Prüfen:
   - Begründung: Lehrkraft-Modus: »Wahllokal am Lehrkraftgerät«, »Beamer-Ansichten (1280 × 720)«, »Läuft offline über Datei-Doppelklick, über GitHub Pages und als Datei in Moodle«.
 - [ ] anliegen: Verstehen & vertiefen, Erkunden & entdecken, Reflektieren & übertragen
   - Begründung: Startseite: »Aufgaben und Funktionen von Parteien kennen«, »Die Stimme abgeben und Ergebnisse auswerten«, »Beurteilen, welche Rolle das Alter bei einer Wahl spielt«.
-- [ ] phasen: Erarbeitung, Sicherung
+- [ ] phasen: Erarbeitung, Sichern und üben
   - Begründung: Verlaufsplan: Stationen 1 bis 5 als Erarbeitung, dazu »Sicherung: Drei Lernende lesen ihren Vergleich vor« und »Zusammenfassung ausdrucken oder speichern«.
 - [ ] umfang: Durchgängig
   - Begründung: Verlaufsplan über zwei Doppelstunden, fast jede Phase am Gerät; Regel laut Einstieg: »eine Seite pro Phase, Gerät nur bei Auftrag«.
@@ -411,7 +411,7 @@ Vorschläge zum Prüfen:
   - Begründung: README: »Die Seiten speichern keine Daten. Alle Eingaben bleiben im Browser der Nutzenden«; PDF-Zusammenfassung im Ordner pdf/.
 - [ ] anliegen: Verstehen & vertiefen, Reflektieren & übertragen
   - Begründung: Einleitung: »du untersuchst, an welchen Punkten nationale Zugehörigkeit mit Demokratie in Konflikt gerät. Und du entwickelst dazu ein eigenes, begründetes Urteil.«
-- [ ] phasen: Erarbeitung, Abschluss & Transfer
+- [ ] phasen: Erarbeitung, Übertragen und Ausblick
   - Begründung: Begriffe, Experiment und Maßstab als Erarbeitung; der Urteilsbaukasten beantwortet am Ende die Leitfrage des Projekts.
 - [ ] umfang: Phasenweise
   - Begründung: Das Modul ist in sich geschlossen; eine Dauer nennt die Quelle nicht.
@@ -441,3 +441,33 @@ Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird ben
 Keine offenen Vorschläge.
 
 Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, KI-Einsatz, Link.
+
+### GGK-Labor: Einheit Nationalsozialismus (`ns-einheit`)
+
+Vorschläge zum Prüfen:
+- [ ] stunden: ns-ideologie, m19-appeasement, m20-dilemmata, m22-wie-war-das-moeglich
+  - Begründung: Zuordnung aus der Sichtung vom 13.11.2026: alle vier Module gehören zur Einheit im Repository GGK-Einheit-Nationalsozialismus (M18–M23; M21 und M23 stehen nicht in Kidu).
+- [ ] rahmen: landkarte: Eine Landkarte über die Module, mit einem Landkarten-Moment je Stunde. In M19, M20 und M23 fehlt er noch.; leitfrage: Je Modul eine Leitfrage. Eine Leitfrage über alle Module ist noch offen.; bausteine: Festlegung vor der Auflösung, Codewort nach der Abstimmung, Stimmkarte und Tafel am Beamer, Abrufübung.; sicherung: Je Stunde Merkseiten und die eigenen Ergebnisse als PDF. Die Klassenarbeit prüft die Begriffe der Landkarte.; stundenfolge: M18 und M19 phasenweise, ab M20 durchgängig – mit Plenumsphasen bei geschlossenem Gerät.
+  - Begründung: Aus der Sichtung vom 13.11.2026 (Repository und Tresor M18–M23).
+
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
+
+### Wahlfach Demokratiebildung: Einheit Nationalismus (`nationalismus-einheit`)
+
+Vorschläge zum Prüfen:
+- [ ] stunden: nation, gene, erfundene-traditionen, nationalismus-demokratie
+  - Begründung: Zuordnung aus der Sichtung vom 13.11.2026 (Tresor »Wahlfach Demokratiebildung«, Zeile »Exkurs«).
+- [ ] rahmen: landkarte: noch offen; leitfrage: Eine Leitfrage über die Module.; bausteine: noch offen; sicherung: Die Einheit schließt mit der Klassenarbeit ab.; stundenfolge: »Gene ohne Reisepass« punktuell, die anderen Module phasenweise. Eine Grobplanung mit Stundenfolge fehlt noch.
+  - Begründung: Aus der Sichtung vom 13.11.2026; Abschluss mit der Klassenarbeit laut Entscheidung vom 11.11.2026.
+
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform, Link.
+
+### Psycho-Labor: Reihe im Wahlfach Psychologie (`psycho-einheit`)
+
+Vorschläge zum Prüfen:
+- [ ] stunden: psycho-ds2, psycho-ds3-6
+  - Begründung: Zuordnung aus der Sichtung vom 13.11.2026 (Tresor »Leitlinien der Reihe«, 18.10.2026).
+- [ ] rahmen: landkarte: Eine Lernübersicht über die Reihe.; leitfrage: noch offen; bausteine: Das Labor als Einstieg, danach die Theorie auf Arbeitsblättern.; sicherung: Eine Lernmappe über die Reihe.; stundenfolge: Für jede weitere Stunde wird je nach Lernziel entschieden und begründet; seit der fünften Doppelstunde das Gerät nur bei echtem Mehrwert.
+  - Begründung: Aus den Leitlinien der Reihe (Tresor, 08. und 18.10.2026).
+
+Noch offen: Was tun die Lernenden?, Lernmehrwert in eigenen Worten, Was wird benötigt?, Nötige Anpassungen, Stolpersteine, Dauer, Vorbereitungsaufwand, Sozialform.

@@ -46,7 +46,7 @@ Erst das Anliegen, dann das Werkzeug. Kidu empfiehlt digitalen Einsatz nie um se
 
 ## Operating Context
 
-Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Scrollen), Unterrichtsvorbereitung am Laptop oder iPad, Lernumgebungen als einzelne HTML-Dateien auf GitHub Pages (`geschichtefuerdiegegenwart.github.io`) oder als Moodle-Datei-Ressource. Unterrichtsphasen als gemeinsame Sprache: Einstieg, Erarbeitung, Sicherung, Abschluss & Transfer, Phasenübergreifend, Noch offen.
+Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Scrollen), Unterrichtsvorbereitung am Laptop oder iPad, Lernumgebungen als einzelne HTML-Dateien auf GitHub Pages (`geschichtefuerdiegegenwart.github.io`) oder als Moodle-Datei-Ressource. Unterrichtsphasen als gemeinsame Sprache (seit 13.11.2026): Einstieg, Erarbeitung, Sichern und üben, Übertragen und Ausblick, In jeder Phase, Noch offen. Mehrere Stunden lassen sich als ganze Einheit planen: eine eigene Ebene mit Landkarte, Leitfrage und Sicherung, keine vierte Stufe des Umfangs.
 
 ## Capabilities and Constraints
 
@@ -55,7 +55,7 @@ Konferenzen und Fortbildungen mit Beamer (1280 × 720, alles Wesentliche ohne Sc
 - Unterrichtsbeispiele mit echten Ansichten aus den Anwendungen (1–4 je Projekt) und einer Bildansicht für Maus, Tastatur und Finger.
 - Geführte Wege mit einer Entscheidung pro Schritt, Zurück, »Noch nicht sicher«, Ergebnis ohne Sackgasse, »Neu starten« und »Eingaben löschen«.
 - Unterrichtsbeispiele mit Freitextsuche und Filtern (Bereich »Unterricht« oder »Außerhalb des Unterrichts«, Phase, Anliegen, Umfang, Rolle, Fach), entfernbaren Chips, Ergebniszeile und kontrollierter Lockerung bei zu wenigen Treffern.
-- Umfang der Digitalität ohne Rangfolge: punktuell, phasenweise, durchgängig. Rollen der Lehrkraft ohne Wertung: Anleiten, Erklären, Moderieren, Begleiten, Rückmelden.
+- Umfang der Digitalität ohne Rangfolge: punktuell, phasenweise, durchgängig – je Stunde. Eine ganze Einheit hat keinen eigenen Umfang; jede ihrer Stunden entscheidet neu, auch »ohne Gerät«. Rollen der Lehrkraft ohne Wertung: Anleiten, Erklären, Moderieren, Begleiten, Rückmelden.
 - Entscheidungskarte (»Unterricht neu planen«), Papierfrage und Digital-Check, Weg A »Selbst prüfen«: regelbasiert und transparent (`assets/regeln.js`, `assets/check-regeln.js`, jeweils mit Tests), vier qualitative Einstufungen, keine Prozentwerte oder Noten.
 - Keine echte KI-Anbindung, keine simulierten KI-Antworten, keine Nennung konkreter KI-Anbieter (»ein an deiner Schule freigegebenes KI-System«).
 - Keine Anmeldung, kein Server, keine Tracker; Eingaben nur lokal (localStorage in try/catch), Freitexte werden nicht gespeichert.

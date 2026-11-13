@@ -48,7 +48,9 @@ def main():
             z.append("Vorschläge zum Prüfen:")
             for f, an in vorschlaege.items():
                 wert = b.get(f)
-                if isinstance(wert, list):
+                if isinstance(wert, dict):  # ab 4.37: Rahmen einer Einheit
+                    text = "; ".join(f"{k}: {v if v else 'noch offen'}" for k, v in wert.items())
+                elif isinstance(wert, list):
                     text = ", ".join(name(listen.get(f, f), w) if f in listen else w for w in wert)
                 else:
                     text = name("umfang", wert) if f == "umfang" else str(wert)
