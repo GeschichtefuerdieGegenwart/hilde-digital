@@ -1,5 +1,5 @@
-/* Kidu – Film »Kidu in zwei Minuten« auf der Startseite (ab Version 4.34; löst »Kidu in 44 Sekunden« aus 4.16 ab).
-   Die Bühne (neun Kapitel, 120 Sekunden) steht in assets/film-buehne.js und stammt aus dem Drehbuch des Pitch-Films.
+/* Kidu – Film auf der Startseite (ab Version 4.34 »Kidu in zwei Minuten«; löst »Kidu in 44 Sekunden« aus 4.16 ab; ab 4.35 knapp drei Minuten).
+   Die Bühne (neun Kapitel, Dauer in KIDU_FILM.dauer) steht in assets/film-buehne.js und stammt aus dem Drehbuch des Pitch-Films.
    Jede Bewegung ist eine CSS-Animation mit fester Verzögerung calc(Xs + var(--o)); --o verschiebt die Zeit.
    Dieses Skript baut die Bühne ein, zählt die Zeit und steuert Start, Halt und Ende.
    Startet nur auf Knopfdruck (»Film ansehen«) oder über die Adresse mit ?film=1; am Ende »Film nochmal ansehen« oder »Zur Startseite«.
@@ -47,14 +47,13 @@
     if (weniger) { knopfHalt.textContent = "Nächstes Bild"; knopfHalt.removeAttribute("aria-pressed"); return; }
     knopfHalt.textContent = laeuft ? "Anhalten" : "Weiter"; knopfHalt.setAttribute("aria-pressed", laeuft ? "false" : "true");
   }
-  /* Standbild: das Ende eines Kapitels, angehalten */
+  /* Standbild: das Ende eines Kapitels, angehalten. Ab 4.35 nennt die Bühne die Zeit selbst (kapitel[n].bild), weil die Kamera am Kapitelende schon weiterfährt. */
   function standbild(n) {
     bild = n;
     var k = D.kapitel[n], naechstes = D.kapitel[n + 1];
     buehne.classList.add("halt");
-    aufbauen((naechstes ? naechstes.start : ENDE + 4) - 0.2);
+    aufbauen(typeof k.bild === "number" ? k.bild : (naechstes ? naechstes.start : ENDE + 4) - 0.2);
     if (!naechstes) amEnde();
-    void k;
   }
   function merken() { try { sessionStorage.setItem("papierprobe.film", "gelaufen"); } catch (e) { /* ohne Speicher läuft er beim nächsten Aufruf wieder */ } }
   function vonVorn() {
