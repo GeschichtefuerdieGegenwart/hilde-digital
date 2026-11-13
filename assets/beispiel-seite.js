@@ -88,7 +88,7 @@
 
   function zurueckLeiste() {
     var weg = H.lies("tabletweg");
-    var html = '<a class="textlink" href="galerie.html" id="zur-galerie"><span aria-hidden="true">←</span> Zur Galerie</a>';
+    var html = '<a class="textlink" href="galerie.html" id="zur-galerie"><span aria-hidden="true">←</span> Zu den Unterrichtsbeispielen</a>';
     if (weg && weg.erreicht >= 4) {
       html += '<a class="textlink" href="tablets.html" id="zur-karte"><span aria-hidden="true">←</span> Zurück zu deiner Entscheidungskarte</a>';
     }
@@ -119,7 +119,7 @@
       document.title = "Beispiel nicht gefunden – Kidu";
       ziel.innerHTML = '<section class="abschnitt"><div class="huelle stapel">' + zurueckLeiste() +
         '<h1 tabindex="-1" id="detail-titel">Dieses Beispiel gibt es hier nicht.</h1>' +
-        '<p>Vielleicht hat sich die Adresse geändert. In der <a href="galerie.html">Galerie</a> findest du alle Beispiele.</p></div></section>';
+        '<p>Vielleicht hat sich die Adresse geändert. Bei den <a href="galerie.html">Unterrichtsbeispielen</a> findest du alle.</p></div></section>';
       return;
     }
     document.title = b.titel + " – Kidu";

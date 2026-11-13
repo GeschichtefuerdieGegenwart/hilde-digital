@@ -2,7 +2,7 @@
 
 Seit 10. November 2026 heißt das Projekt **Kidu** – Künstliche Intelligenz und digitaler Unterricht. Vorher: »Hilde Digital« (bis 1. November 2026), »Papierprobe« (1.–10. November 2026). Kidu ist nicht an eine Schule gebunden. Repository und Adresse heißen `kidu`.
 
-Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.
+Kidu ist eine Fortbildungsplattform für Lehrkräfte: KI-Training, Digitaler Unterricht in vier Phasen (Grundlagen · Digitalen Unterricht erstellen · Unterrichten · Nach der Stunde) und Unterrichtsbeispiele, analog und digital – beides mit KI erstellt. Kidu ist ohne Auftrag einer Schule entstanden. Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.
 
 ## Aufbau
 
@@ -18,16 +18,15 @@ Ideen für KI und digitalen Unterricht. Persönlicher Entwicklungsstand zur Disk
 | `assets/daten/taxonomien.js` | Phasen, Anliegen, Umfang, Rollen, Mehrwert-Arten, Status |
 | `assets/daten/texte.js` | Texte des KI-Wegs: Ziele, Ergebnisformen, Bausteine, Prüflisten |
 | `assets/regeln.js` | Regeln der Entscheidungskarte und der Selbsteinschätzung, kommentiert |
-| `assets/suche.js`, `assets/ki-anfrage.js` | Suche und Filter in der Galerie, Anfrage-Baukasten |
+| `assets/suche.js`, `assets/ki-anfrage.js` | Suche und Filter der Unterrichtsbeispiele (`galerie.html`), Anfrage-Baukasten |
 | `assets/hilde.js` | gemeinsame Helfer: Speichern im Browser, Karten, Bildansicht |
-| `tools/duplex.py` | erzeugt die Duplex-Vorschauen der Galerie in `assets/galerie/duplex/` (braucht Pillow, nur beim Bauen) |
-| `assets/daten/galerie.js`, `assets/galerie-buehne.js`, `assets/galerie/` | Galerie: echte Ansichten mit Bild- und Alternativtexten, Einblicke; Herkunft in `docs/galerie-quellen.md` |
-| `assets/anfangen.js` | Galerie: »Zum Anfangen« – sechs erprobte Beispiele, zwei je Umfang (Feld `auswahl` in `beispiele.js`) |
+| `tools/duplex.py` | erzeugt die Duplex-Vorschauen der Unterrichtsbeispiele in `assets/galerie/duplex/` (braucht Pillow, nur beim Bauen) |
+| `assets/daten/galerie.js`, `assets/galerie-buehne.js`, `assets/galerie/` | Unterrichtsbeispiele: echte Ansichten mit Bild- und Alternativtexten, Einblicke; Herkunft in `docs/galerie-quellen.md` |
+| `assets/anfangen.js` | Unterrichtsbeispiele: »Zum Anfangen« – sechs erprobte Beispiele, zwei je Umfang (Feld `auswahl` in `beispiele.js`) |
 | `assets/daten/schnell.js`, `assets/schnell-anfrage.js`, `assets/ki-schnell.js` | KI-Training: Schnell-Anfrage für häufige Anlässe |
-| `assets/daten/digitalisieren.js`, `assets/digitalisieren-prompt.js`, `assets/digitalisieren.js` | Werkzeug »Unterricht digitalisieren« |
-| `assets/faecher.js` | Fächer mit Tiefe (Galerie gleitend, Startseite von Hand) |
-| `assets/fuenf-saetze.js` | Seite »Guter digitaler Unterricht in fünf Sätzen«: der Weg durch die Stunde folgt dem Scrollen (ab 4.18) |
-| `assets/fortbildungsbogen.js` | Seite »Mein Fortbildungsbogen«: Eröffnung in vier Sätzen (einmal je Sitzung), eine Frage je Bild auf einer Fragekarte, Fragen zu KI und zum Unterricht mit Tablets (bedingt), fertiger Bogen mit Karte, Schritten, Kniffen, Codeblock und »Als PDF sichern« (ab 4.29; Fragekarte und Tablet-Fragen seit 4.30) |
+| `assets/daten/digitalisieren.js`, `assets/digitalisieren-prompt.js`, `assets/digitalisieren.js` | Werkzeug »Bisherigen Unterricht digitalisieren« |
+| `assets/rueckmeldebogen.js` | Seite »Mein Rückmeldebogen« (ab 4.36): Rückmeldung nach der Stunde als Text zum Kopieren oder als PDF, für die Leitung der Fortbildung; Kidu verschickt nichts |
+| `assets/fortbildungsbogen.js` | Seite »Mein Fortbildungsbogen« (seit 4.36 mit dem früheren »Mein Ist-Stand«): Eröffnung in vier Sätzen (einmal je Sitzung), eine Frage je Bild auf einer Fragekarte, Fragen zu KI und zum Unterricht mit Tablets (bedingt), fertiger Bogen mit Karte, Schritten, Kniffen, Codeblock und »Als PDF sichern« (ab 4.29; Fragekarte und Tablet-Fragen seit 4.30) |
 | `assets/sechs-hebel-rad.js` | Seite »Wann funktioniert digitaler Unterricht?«: Prinzipienrad im Kopf – Prinzip antippen, Karte wechselt (Muster Y, ab 4.21); das Rad blättert die Bänder als Register, Weiter/Zurück (Z1, ab 4.22) |
 | `assets/sechs-hebel-film.js` | Seite »Film: Was das Gerät kann« (`sechs-hebel-film.html`): Erklärfilm in sieben Kapiteln auf einer Zeitachse, Start nur auf Knopfdruck (Muster AW, ab 4.21) |
 | `assets/sechs-hebel-proben.js` | Seite »Wann funktioniert digitaler Unterricht?«: Proben S bis X zu den sechs Prinzipien – erst festlegen, dann ein Zustandswechsel (ab 4.20) |
@@ -52,7 +51,7 @@ Die Browser-Tests brauchen Python Playwright mit Chromium. Für die Prüfung mit
 
 Nach Änderungen an den Beispielen: `python3 tools/datenluecken.py` aktualisiert `docs/datenluecken.md`.
 
-Die fertigen Seiten (`index.html`, `ki.html`, `unterricht.html`, `digital-check.html`, `selbstcheck.html`, `tablets.html`, `passt.html`, `galerie.html`, `beispiel.html`, `mehrwert.html`, `ueber.html`, `gestaltung.html`; `showroom.html` leitet zur Galerie weiter) lassen sich ohne Server direkt im Browser öffnen.
+Die fertigen Seiten (`index.html`, `ki.html`, `unterricht.html`, `digital-check.html`, `selbstcheck.html`, `tablets.html`, `passt.html`, `galerie.html`, `beispiel.html`, `mehrwert.html`, `ueber.html`, `gestaltung.html`; `showroom.html` leitet zu den Unterrichtsbeispielen weiter, `startpunkt.html` und `ist-stand.html` zum Fortbildungsbogen, `fuenf-saetze.html` zu den fünf Sätzen auf `sechs-hebel.html`) lassen sich ohne Server direkt im Browser öffnen.
 
 ## Urheberschaft und Lizenz
 

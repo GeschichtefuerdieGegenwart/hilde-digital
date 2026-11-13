@@ -1,4 +1,4 @@
-/* Kidu – Regeln der Entscheidungskarte (Unterricht planen), der Papierfrage und der Beispielsuche.
+/* Kidu – Regeln der Entscheidungskarte (Unterricht neu planen), der Papierfrage und der Beispielsuche.
 
    Grundsätze
    - Regelbasiert und deterministisch: gleiche Antworten ergeben immer dieselbe Karte.
@@ -444,57 +444,17 @@
   }
 
 
-  /* 12. »Mein Ist-Stand« (ist-stand.html) – fünf Fragen nur für die Lehrkraft selbst.
-        Eingabe (alle Felder dürfen fehlen):
-          nutzung:    Liste aus ablage | recherche | ueben | gemeinsam | erstellen | kaum
-          neu:        selten | manchmal | oft | weissnicht   (Tun die Lernenden etwas, das auf Papier nicht ginge?)
-          ablenkung:  selten | manchmal | oft
-          sicherheit: unsicher | teils | sicher               (eine Tablet-Phase führen)
-          naechstes:  rueckmeldung | gemeinsam | lernstand | ablenkung | papier
-        Regeln:
-          - Keine Bewertung, keine Stufe, kein Typ. Der Spiegel gibt Antworten in eigenen Worten wieder.
-          - Nur Ablage (oder Ablage und »selten/weiß nicht« bei neu) → organisatorischer Nutzen,
-            ausdrücklich als legitim benannt; das ist keine Vorstufe.
-          - Höchstens drei nächste Schritte, in dieser Reihenfolge: gewählter nächster Schritt,
-            Ablenkung (manchmal/oft) oder Unsicherheit → »Tablet-Phasen gut führen«, Papierfrage.
-          - »Papier passt« wird bestärkt, nicht umgestimmt. */
-  function istStand(a) {
-    a = a || {};
-    var n = a.nutzung || [], spiegel = [], schritte = [];
-    var nurAblage = n.length > 0 && n.every(function (x) { return x === "ablage"; });
-    if (n.indexOf("kaum") > -1) spiegel.push("Deine Klasse nutzt das Tablet im Unterricht bisher kaum.");
-    else if (nurAblage || (n.indexOf("ablage") > -1 && (a.neu === "selten" || a.neu === "weissnicht")))
-      spiegel.push("Das Tablet dient bei dir vor allem zum Verteilen und Ablegen. Das ist organisatorischer Nutzen – legitim, aber noch kein Lernmehrwert.");
-    if (a.neu === "oft") spiegel.push("Deine Lernenden tun am Tablet oft etwas, das auf Papier kaum ginge. Prüf ab und zu, ob es dem Lernziel dient.");
-    else if (a.neu === "manchmal") spiegel.push("Manchmal tun deine Lernenden am Tablet etwas, das auf Papier kaum ginge.");
-    if (a.ablenkung === "oft") spiegel.push("Ablenkung ist bei dir ein häufiges Thema.");
-    if (a.sicherheit === "unsicher") spiegel.push("Beim Führen einer Tablet-Phase fühlst du dich noch unsicher. Das geht vielen so.");
-
-    var ZIEL = {
-      rueckmeldung: { text: "Mach aus einem Arbeitsblatt eine Übung mit Rückmeldung.", link: "digitalisieren.html", linktext: "Unterricht digitalisieren" },
-      gemeinsam: { text: "Plane eine Phase, in der die Lernenden an einem gemeinsamen Ergebnis arbeiten.", link: "tablets.html", linktext: "Unterricht planen" },
-      lernstand: { text: "Plane zwei bis drei kurze Stellen, an denen du siehst, wo die Klasse steht.", link: "tablets.html", linktext: "Unterricht planen" },
-      ablenkung: { text: "Gib jeder Tablet-Phase Auftrag, Zeit und ein Ende im Plenum.", link: "tablet-phasen.html", linktext: "Tablet-Phasen gut führen" },
-      papier: { text: "Papier passt gerade gut zu deinem Unterricht. Das ist ein vollwertiges Ergebnis.", link: "unterricht.html#t-probe", linktext: "Papierfrage ansehen" }
-    };
-    if (ZIEL[a.naechstes]) schritte.push(ZIEL[a.naechstes]);
-    if ((a.ablenkung === "oft" || a.ablenkung === "manchmal" || a.sicherheit === "unsicher") && a.naechstes !== "ablenkung")
-      schritte.push(ZIEL.ablenkung);
-    if (a.naechstes !== "papier" && (nurAblage || a.neu === "weissnicht" || a.neu === "selten"))
-      schritte.push({ text: "Prüf eine geplante Aktivität mit drei Fragen: Geht es auf Papier genauso gut?", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
-    if (!schritte.length) schritte.push({ text: "Sieh dir an, was im Unterricht schon ausprobiert wurde.", link: "galerie.html", linktext: "Zur Galerie" });
-    return { spiegel: spiegel, schritte: schritte.slice(0, 3),
-             satz: "Das ist keine Bewertung. Es ist ein Blick auf deinen Unterricht heute – nur für dich." };
-  }
-
-
   /* Mein Fortbildungsbogen (fortbildungsbogen.html, ab 4.29; Fragen seit 4.24, Fragen zum Unterricht mit Tablets seit 4.30):
      Fragen vor einer Fortbildung oder Beratungsstunde.
      Vier Ausgangslagen ohne Rangfolge – sie beschreiben, womit die erste Stunde beginnt, nicht wie gut jemand ist.
      Ergebnis: Lage, Stärken zuerst, vier Sicherheitsfelder für die Karte, höchstens drei Schritte, höchstens zwei Kniffe,
      ein Codeblock für die Leitung (nur Auswahlwerte, keine Texte). Keine Noten, Punkte oder Prozentwerte.
      Seit 4.30 dazu `tablet`: eine Beschreibung des Unterrichts mit Tablets (keine · ablage · phasen · offen) – ebenfalls ohne
-     Rangfolge: »vor allem Mappe« ist ein Ausgangspunkt, kein Mangel, und »bleibt auf Papier« bleibt ein vollwertiges Ergebnis. */
+     Rangfolge: »vor allem Mappe« ist ein Ausgangspunkt, kein Mangel, und »bleibt auf Papier« bleibt ein vollwertiges Ergebnis.
+     Seit 4.36 geht »Mein Ist-Stand« im Bogen auf (Entscheidung Mario, 13.11.2026): Seine fünf Fragen stehen fast gleich in Schritt 2
+     und 5. Übernommen werden der Satz zum organisatorischen Nutzen (legitim, keine Vorstufe) und der gewählte nächste Schritt
+     »Schnellere Rückmeldung« (d_wunsch=feedback → Übung mit Rückmeldung). Ablenkung und Unsicherheit führten schon vorher zu
+     »Tablet-Phasen gut führen«, »Papier passt« wird weiter bestärkt, nicht umgestimmt. */
   var SP_LAGEN = {
     anfang: { titel: "Du fängst gerade an",
       text: "Das ist ein häufiger Startpunkt. Für die erste Stunde reicht ein einziger Anlass aus deinem Alltag – und die Sicherheit, dass du nichts falsch machst." },
@@ -511,7 +471,7 @@
     keine: { titel: "Du unterrichtest zurzeit nicht in Tablet-Klassen",
       text: "Dann beginnt die Fortbildung bei deiner Vorbereitung – und bei der Frage, was auf Papier bleibt." },
     ablage: { titel: "Das Tablet ist bei dir vor allem Mappe und Nachschlagewerk",
-      text: "So wird das Tablet häufig genutzt. Die erste Frage ist dann nicht »mehr Tablet«, sondern: An welcher einen Stelle könnte es mehr als Papier?" },
+      text: "So wird das Tablet häufig genutzt. Das ist organisatorischer Nutzen – legitim und keine Vorstufe. Die erste Frage ist dann nicht »mehr Tablet«, sondern: An welcher einen Stelle könnte es mehr als Papier?" },
     phasen: { titel: "In einzelnen Phasen kann das Tablet bei dir mehr als Papier",
       text: "Du hast schon Stellen, an denen das Gerät etwas beiträgt. Die Fortbildung fragt: Was tun die Lernenden dort selbst – und woran merkst du, dass es hilft?" },
     offen: { titel: "Dein Unterricht mit Tablets ist noch offen",
@@ -521,13 +481,13 @@
   var SP_ANLASS = {
     vereinfachen: { text: "Vereinfach ein eigenes Arbeitsblatt mit der Schnell-Anfrage – das ist der Anlass mit dem sichersten ersten Ergebnis.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
     einstieg: { text: "Lass dir für deine Stunde einen Einstieg mit Vermutung entwerfen und prüf ihn mit den drei Fragen vor dem Kopieren.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
-    uebung: { text: "Mach aus einem Arbeitsblatt eine Übung, deren Rückmeldung erklärt statt nur richtig oder falsch zu zeigen.", link: "digitalisieren.html", linktext: "Unterricht digitalisieren" },
+    uebung: { text: "Mach aus einem Arbeitsblatt eine Übung, deren Rückmeldung erklärt statt nur richtig oder falsch zu zeigen.", link: "digitalisieren.html", linktext: "Bisherigen Unterricht digitalisieren" },
     erwartung: { text: "Lass dir einen Erwartungshorizont zu einer eigenen Aufgabe entwerfen und streiche, was zu viel ist.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
-    praesentation: { text: "Bau eine Präsentation um: eine Frage je Folie, Vermutung vor der Auflösung.", link: "digitalisieren.html", linktext: "Unterricht digitalisieren" },
+    praesentation: { text: "Bau eine Präsentation um: eine Frage je Folie, Vermutung vor der Auflösung.", link: "digitalisieren.html", linktext: "Bisherigen Unterricht digitalisieren" },
     eltern: { text: "Lass dir eine Elterninformation entwerfen – ohne Namen – und formuliere sie in deinen Ton um.", link: "ki.html#t-schnell", linktext: "Schnell-Anfrage" },
-    lernseite: { text: "Sieh dir ein Beispiel aus deinem Fach in der Galerie an, bevor du selbst etwas baust.", link: "galerie.html", linktext: "Zur Galerie" },
+    lernseite: { text: "Sieh dir bei den Unterrichtsbeispielen eines aus deinem Fach an, bevor du selbst etwas baust.", link: "galerie.html", linktext: "Zu den Unterrichtsbeispielen" },
     lernende: { text: "Leg für eine eigene Aufgabe fest, was Lernende mit KI dürfen und was sie selbst tun.", link: "lernende-ki.html", linktext: "Wenn deine Lernenden mit KI arbeiten" },
-    zuschauen: { text: "Zuschauen ist ein guter Anfang. Sieh dir an, was im Unterricht schon ausprobiert wurde.", link: "galerie.html", linktext: "Zur Galerie" }
+    zuschauen: { text: "Zuschauen ist ein guter Anfang. Sieh dir an, was im Unterricht schon ausprobiert wurde.", link: "galerie.html", linktext: "Zu den Unterrichtsbeispielen" }
   };
   var SP_KNIFFE = {
     sprechen: { titel: "Einsprechen statt eintippen", text: "Sprich die Anfrage ein, als würdest du sie einer Referendarin erklären: Klasse, Ziel, was schon da ist, was fehlt. So wird sie in einer Minute lang genug." },
@@ -589,10 +549,12 @@
     var schritte = [], seen = {};
     function push(s) { if (s && !seen[s.link + s.text]) { seen[s.link + s.text] = 1; schritte.push(s); } }
     if (skeptisch) push({ text: "Prüf deine mitgebrachte Stunde mit der Papierfrage. »Bleibt auf Papier« ist ein gutes Ergebnis.", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
-    /* Der erste Anlass, dann höchstens ein Schritt zum Unterricht mit Tablets, dann die übrigen Anlässe. */
+    /* Der erste Anlass, dann der gewählte Wunsch »Schnellere Rückmeldung« (aus dem Ist-Stand, ab 4.36),
+       dann höchstens ein weiterer Schritt zum Unterricht mit Tablets, dann die übrigen Anlässe. */
     push(SP_ANLASS[(a.anlass || [])[0]]);
     var papier = skeptisch;
     if (tid !== "keine") {
+      if (a.d_wunsch === "feedback") push(SP_ANLASS.uebung);
       if (unruhe) push({ text: "Lies die sechs Regeln für Tablet-Phasen und nimm eine davon in deine nächste Stunde mit.", link: "tablet-phasen.html#t-regeln", linktext: "Tablet-Phasen gut führen" });
       else if (!papier && a.d_wunsch === "papier") { papier = true; push({ text: "Prüf eine Tablet-Phase mit der Papierfrage. »Zurück auf Papier« ist ein vollwertiges Ergebnis.", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" }); }
       else if (!papier && (tid === "ablage" || hat("d_schwer", "ideen") || a.d_wunsch === "mehrwert")) { papier = true; push({ text: "Such in deiner mitgebrachten Stunde die eine Stelle, an der das Tablet mehr kann als Papier.", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" }); }
@@ -603,7 +565,7 @@
     if (id === "fuersich" && !papier) push({ text: "Prüf eine Stelle deiner Stunde mit der Papierfrage: Was kann das Tablet hier besser?", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" });
     if (id === "weit") push({ text: "Prüf dein bestes Material mit dem Digital-Check. Der Bericht beginnt mit den Stärken.", link: "selbstcheck.html", linktext: "Digital-Check" });
     if (id === "offen") push({ text: "Bring deine Stunde mit und nenn die Stelle, an der die Lernenden hängen bleiben. Mehr braucht die erste Stunde nicht.", link: "beratung.html", linktext: "Beratungsstunde" });
-    push({ text: "Sieh dir an, was im Unterricht schon ausprobiert wurde.", link: "galerie.html", linktext: "Zur Galerie" });
+    push({ text: "Sieh dir an, was im Unterricht schon ausprobiert wurde.", link: "galerie.html", linktext: "Zu den Unterrichtsbeispielen" });
 
     /* Kniffe: zwei, passend zur Lage und zur Arbeitsweise. */
     var kniffe = [];
@@ -626,11 +588,72 @@
              satz: "Das ist keine Bewertung. Es ist dein Startpunkt – damit die Fortbildung bei dir anfängt und nicht irgendwo." };
   }
 
+  /* 13. »Mein Rückmeldebogen« (rueckmeldebogen.html, ab 4.36; Entscheidung Mario, 13.11.2026) – der letzte Schritt nach der Stunde.
+        Kolleg*innen halten fest, was gelungen ist und wo es hakt, und geben den Bogen selbst an die Person weiter,
+        die ihre Fortbildung leitet. Die Seite verschickt und speichert nichts außer den Kreuzen im Browser.
+        Eingabe (alle Felder dürfen fehlen):
+          art:        Liste aus erfahrung | herausforderung | kidu | wunsch
+          womit:      Liste aus planen | digitalisieren | koffer | check | phasen | beispiel | ki | anderes
+          hakt:       Liste aus technik | zeit | ablenkung | auftrag | niveau | plenum | anderes | nichts
+          brauche:    Liste aus beispiel | gespraech | planung | technik | nichts
+          weitergabe: ja | fragen | nein
+          texte:      { kuerzel, was, gut, stelle, geaendert, frage } – Freitexte, nie gespeichert
+          datum:      Text für den Kopf (die Seite setzt das heutige Datum)
+        Regeln:
+          - Keine Bewertung, keine Punkte, keine Noten. Der Bogen gibt die Antworten in eigenen Worten wieder.
+          - Höchstens zwei Hilfen, in der Reihenfolge der Kreuze bei »Wo hat es gehakt?«. Zur Technik gibt es keine
+            Hilfe auf Kidu – dafür ist die Leitung da.
+          - Ohne Kreuz bei der Weitergabe steht dort »noch offen« – nie stillschweigend »ja«.
+          - Leere Felder fehlen im Bogen; die Seite füllt nichts mit allgemeinen Sätzen. */
+  var RB = {
+    art: { erfahrung: "Eine Erfahrung aus meinem Unterricht", herausforderung: "Eine Herausforderung, bei der ich nicht weiterkomme", kidu: "Eine Rückmeldung zu Kidu", wunsch: "Ein Wunsch für die nächste Fortbildung" },
+    womit: { planen: "Unterricht neu planen", digitalisieren: "Bisherigen Unterricht digitalisieren", koffer: "Aufgabenkoffer oder Methodenkoffer", check: "Papierfrage oder Digital-Check", phasen: "Tablet-Phasen gut führen", beispiel: "Eines der Unterrichtsbeispiele", ki: "KI-Training", anderes: "Etwas anderes" },
+    hakt: { technik: "Technik: Anmelden, Netz, Akku", zeit: "Die Zeit hat nicht gereicht", ablenkung: "Ablenkung am Gerät", auftrag: "Der Auftrag war nicht klar", niveau: "Für manche zu schwer oder zu leicht", plenum: "Das Ergebnis kam nicht zurück ins Gespräch", anderes: "Woanders", nichts: "Nirgends" },
+    brauche: { beispiel: "Ein Beispiel aus meinem Fach", gespraech: "Ein kurzes Gespräch", planung: "Hilfe beim Planen der nächsten Stunde", technik: "Hilfe bei der Technik", nichts: "Nichts – ich möchte nur berichten" },
+    weitergabe: { ja: "Ja, ohne meinen Namen", fragen: "Erst mich fragen", nein: "Nein, nur für die Leitung" },
+    hilfe: {
+      zeit: { text: "Prüf mit der Papierfrage, ob die Phase am Gerät die Zeit wert ist. »Zurück auf Papier« ist ein vollwertiges Ergebnis.", link: "unterricht.html#t-probe", linktext: "Zur Papierfrage" },
+      ablenkung: { text: "Lies die sechs Regeln für Tablet-Phasen und nimm eine davon in die nächste Stunde mit.", link: "tablet-phasen.html#t-regeln", linktext: "Tablet-Phasen gut führen" },
+      auftrag: { text: "Im Aufgabenkoffer steht zu jeder Aufgabenform, wie du sie stellst.", link: "aufgabenkoffer.html", linktext: "Aufgabenkoffer" },
+      niveau: { text: "Ein Inhalt, mehrere Zugänge: das Prinzip »Stufen«.", link: "sechs-hebel.html#sh-stufen", linktext: "Prinzip Stufen" },
+      plenum: { text: "Plane eine feste Stelle, an der das Ergebnis vom Gerät zurück ins Gespräch kommt (Satz 5).", link: "sechs-hebel.html#fuenf-saetze", linktext: "Die fünf Sätze" }
+    }
+  };
+  function rueckmeldebogen(a) {
+    a = a || {};
+    var tx = a.texte || {};
+    function liste(feld) { return (a[feld] || []).filter(function (w) { return RB[feld][w]; }).map(function (w) { return RB[feld][w]; }); }
+    function sauber(s) { return String(s == null ? "" : s).replace(/\s+/g, " ").trim(); }
+    var zeilen = [];
+    function zeile(titel, wert) { if (wert) zeilen.push({ titel: titel, wert: wert }); }
+    zeile("Kürzel", sauber(tx.kuerzel));
+    zeile("Worum es geht", liste("art").join(" · "));
+    zeile("Womit", liste("womit").join(" · "));
+    zeile("Was genau", sauber(tx.was));
+    zeile("Was gut geklappt hat", sauber(tx.gut));
+    zeile("Wo es gehakt hat", liste("hakt").join(" · "));
+    zeile("Die Stelle", sauber(tx.stelle));
+    zeile("Geändert oder zu ändern", sauber(tx.geaendert));
+    zeile("Was helfen würde", liste("brauche").join(" · "));
+    zeile("Frage an die Leitung", sauber(tx.frage));
+    var weitergabe = RB.weitergabe[a.weitergabe] || "noch offen";
+    zeilen.push({ titel: "Weitergabe ohne Namen", wert: weitergabe });
+
+    var hilfen = [];
+    (a.hakt || []).forEach(function (w) { if (RB.hilfe[w] && hilfen.length < 2) hilfen.push(RB.hilfe[w]); });
+
+    var kopf = "Rückmeldung aus Kidu · Mein Rückmeldebogen" + (a.datum ? " · " + a.datum : "");
+    var text = [kopf].concat(zeilen.map(function (z) { return z.titel + ": " + z.wert; })).join("\n");
+    return { titel: "Meine Rückmeldung", zeilen: zeilen, hilfen: hilfen, weitergabe: weitergabe, text: text,
+             leer: zeilen.length === 1,
+             satz: "Das ist keine Bewertung. Es ist deine Erfahrung – sie hilft, die Fortbildung und Kidu besser zu machen." };
+  }
+
   var REGELN = {
     PASST: PASST, einstufung: einstufung, umfang: umfang, rollen: rollen, anpassung: anpassung,
     stolperstein: stolperstein, naechsterSchritt: naechsterSchritt, beispiele: beispiele,
     entscheidungskarte: entscheidungskarte, selbsteinschaetzung: selbsteinschaetzung,
-    papierprobe: papierprobe, beobachtung: beobachtung, istStand: istStand, startpunkt: startpunkt
+    papierprobe: papierprobe, beobachtung: beobachtung, startpunkt: startpunkt, rueckmeldebogen: rueckmeldebogen
   };
   if (typeof module !== "undefined") module.exports = REGELN;
   else wurzel.REGELN = REGELN;

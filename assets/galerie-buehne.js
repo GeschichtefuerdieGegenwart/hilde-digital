@@ -61,8 +61,6 @@
         '<p class="einblick-aktionen">' + H.merkKnopf(b) + '<a class="textlink" href="' + H.detailLink(b) + '">Beispiel ansehen<span class="sr-only">: ' + esc(b.titel) + '</span> <span aria-hidden="true">→</span></a> ' + oeffnen(b) + "</p></div></article>";
   }).join("");
 
-  /* ---------- Fächer: alle Ansichten, gleitet langsam von selbst (assets/faecher.js) ---------- */
-  if (window.FAECHER) FAECHER.starte({ id: "galerie-faecher", name: "Alle Projekte im Vorbeiziehen", eintraege: FAECHER.ansichten(false), gleiten: true, tempo: 24, start: 3 });
 
   document.addEventListener("click", function (e) {
     var k = e.target.closest("[data-projekt]");

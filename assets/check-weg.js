@@ -228,7 +228,7 @@
 
     var hinweise = r.hinweise.length
       ? '<ul class="label-vorschau" aria-label="Mögliche Stärke-Hinweise">' + r.hinweise.map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") + "</ul>" +
-        '<p class="leise klein">Diese Hinweise sind nicht veröffentlicht. In der Galerie erscheinen sie erst nach Prüfung und Freigabe.</p>'
+        '<p class="leise klein">Diese Hinweise sind nicht veröffentlicht. Bei den Unterrichtsbeispielen erscheinen sie erst nach Prüfung und Freigabe.</p>'
       : '<p class="leise klein">' + (r.fachlichOffen ? "Stärke-Hinweise erscheinen erst, wenn der Inhalt fachlich geprüft ist." :
           r.sicherheit !== "mittel" ? "Stärke-Hinweise erscheinen erst bei mindestens mittlerer Sicherheit." :
           "Für einen Stärke-Hinweis braucht ein Bereich mindestens Stufe 3.") + "</p>";
@@ -248,7 +248,7 @@
       ? '<ol class="leitsaetze">' + r.schritte.map(function (s) { return "<li>" + esc(s.text) + ' <span class="leise">Aufwand: ' + esc(s.aufwand) + "</span></li>"; }).join("") + "</ol>"
       : "<p>Kein Bereich fällt deutlich ab. Du kannst die beratenden Fragen unten nutzen, um weiterzudenken.</p>";
     var beispiele = bsp.liste.length
-      ? '<h3 class="minis-titel">In der Galerie zum Weiterdenken</h3><p class="leise klein">Beispiele zum selben Anliegen. Sie sind noch nicht nach diesem Check geprüft.</p><ul class="minis">' + bsp.liste.map(H.miniKarte).join("") + "</ul>"
+      ? '<h3 class="minis-titel">Unterrichtsbeispiele zum Weiterdenken</h3><p class="leise klein">Beispiele zum selben Anliegen. Sie sind noch nicht nach diesem Check geprüft.</p><ul class="minis">' + bsp.liste.map(H.miniKarte).join("") + "</ul>"
       : "";
 
     return '<section class="entscheidung" aria-labelledby="ergebnis-titel">' +

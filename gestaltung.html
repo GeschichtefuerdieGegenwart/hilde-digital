@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: KI-Training, Digitaler Unterricht und eine Galerie echter Lernanwendungen aus dem Unterricht.">
+<meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Gestaltungssystem – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=8305cd9c">
+<link rel="stylesheet" href="assets/hilde.css?v=2fd80b7f">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 <header class="kopf"><div class="huelle">
   <a class="marke" href="index.html"><span class="marke-text"><span class="marke-name"><span class="sr-only">Kidu</span><img class="kidu-wortmarke" src="assets/logo/kidu-logo.svg" alt="" width="224" height="92"></span><span class="marke-zeile" aria-hidden="true"><span class="ini ki">K</span>ünstliche <span class="ini ki">I</span>ntelligenz und <span class="ini du">d</span>igitaler <span class="ini du">U</span>nterricht</span></span><span class="sr-only">, zum Start</span></a>
-  <nav class="nav" aria-label="Bereiche"><a href="ki.html">KI-Training</a><a href="unterricht.html">Digitaler Unterricht</a><a href="galerie.html">Galerie</a></nav>
+  <nav class="nav" aria-label="Bereiche"><a href="ki.html">KI-Training</a><a href="unterricht.html">Digitaler Unterricht</a><a href="galerie.html">Unterrichts&shy;beispiele</a></nav>
   <a class="hefter-link" href="galerie.html#hefter" aria-label="Mein Schnellhefter"><svg viewBox="0 0 30 24" aria-hidden="true"><rect x="1" y="2" width="28" height="21" rx="2" fill="#b68235" stroke="#7d5a1c" stroke-width="2"/><rect x="1" y="2" width="6" height="21" fill="#7d5a1c"/><circle cx="4" cy="8" r="1.3" fill="#efeadf"/><circle cx="4" cy="17" r="1.3" fill="#efeadf"/></svg><span class="hefter-zahl" aria-hidden="true">0</span></a>
 </div></header>
 <main id="inhalt" tabindex="-1">
@@ -27,7 +27,7 @@
   <h2>Haltung: Überdruck</h2>
   <ul class="mass" style="margin:0;padding-left:1.2rem;display:grid;gap:.4rem">
     <li>Ein Arbeitsbogen in zwei Druckfarben auf ungebleichtem Büttenpapier: Ocker für »KI-Training«, Petrol für »Digitaler Unterricht«. Der Grund hat eine dezente Körnung. Sie entfällt in der Beamer-Ansicht, bei »Weniger Bewegung« und im Druck.</li>
-    <li>Wo beide Platten übereinander drucken, entsteht das Überdruck-Grün. Es ist keine eigene Kategorie, sondern zeigt sich nur dort, wo sich die Platten wirklich überlagern: in der Wortmarke, bei den Platten der Startseite und beim Plattenwechsel in der Galerie.</li>
+    <li>Wo beide Platten übereinander drucken, entsteht das Überdruck-Grün. Es ist keine eigene Kategorie, sondern zeigt sich nur dort, wo sich die Platten wirklich überlagern: in der Wortmarke, bei den Platten der Startseite und beim Plattenwechsel bei den Unterrichtsbeispielen.</li>
     <li>Flach und ruhig: Ecken 4 Pixel, keine weichen Schatten. Tiefe zeigt nur eine versetzte Farbplatte beim Überfahren.</li>
     <li>Bereich und Status stehen immer auch als Wort da, nie nur als Farbe.</li>
     <li>Fachbegriffe erst in der Vertiefung. Die ausführlichen Regeln stehen in DESIGN.md.</li>
@@ -108,8 +108,8 @@
       <p><button type="button" class="knopf still bewegung-schalter" data-bewegung-schalter aria-pressed="false">Weniger Bewegung</button></p></div>
     <div class="stapel"><h3>Beamer-Ansicht</h3><p class="leise klein mass">Steht im Fuß jeder Seite neben »Weniger Bewegung«. Gedrückt: reines Weiß als Grund, tiefes Schwarz als Text, tiefere Perspektivfarben – für den Beamer im Klassenzimmer, wo Licht und Wand Kontrast nehmen. Nur die Farbwerte ändern sich; Bilder, Honigplatte und zarte Flächen bleiben. Jeder Text erreicht mindestens 4,5:1, Fließtext auf Grund und Karten mindestens 7:1. Die Wahl bleibt in diesem Browser; »Eingaben löschen« setzt sie mit zurück.</p>
       <p><button type="button" class="knopf still theme-schalter" data-theme-schalter aria-pressed="false">Beamer-Ansicht</button></p></div>
-    <div class="stapel"><h3>Von der Karte zum Beispiel</h3><p class="leise klein mass">Wer in der Galerie ein Beispiel öffnet, sieht Bild und Titel von der Karte auf die Detailseite wandern – und zurück. Das kann nur ein Browser, der Ansichtswechsel zwischen Seiten beherrscht; alle anderen wechseln sofort. Bei weniger Bewegung bleibt nur ein kurzes Überblenden. Die Collage auf der Startseite bewegt sich beim Scrollen nicht mehr; Abschnitte rücken beim Hereinscrollen nur noch 6 px an ihren Platz.</p></div>
-    <div class="stapel"><h3>Vom Blatt zum Tablet</h3><p class="leise klein mass">Auf »Unterricht digitalisieren« zieht ein Regler zwischen Arbeitsblatt und Tablet. Beide Zustände stehen als Text dabei. Einmal spielt es von selbst, wenn das Bild erscheint; sobald du anfasst, bestimmst du.</p></div>
+    <div class="stapel"><h3>Von der Karte zum Beispiel</h3><p class="leise klein mass">Wer bei den Unterrichtsbeispielen ein Beispiel öffnet, sieht Bild und Titel von der Karte auf die Detailseite wandern – und zurück. Das kann nur ein Browser, der Ansichtswechsel zwischen Seiten beherrscht; alle anderen wechseln sofort. Bei weniger Bewegung bleibt nur ein kurzes Überblenden. Die Collage auf der Startseite bewegt sich beim Scrollen nicht mehr; Abschnitte rücken beim Hereinscrollen nur noch 6 px an ihren Platz.</p></div>
+    <div class="stapel"><h3>Vom Blatt zum Tablet</h3><p class="leise klein mass">Auf »Bisherigen Unterricht digitalisieren« zieht ein Regler zwischen Arbeitsblatt und Tablet. Beide Zustände stehen als Text dabei. Einmal spielt es von selbst, wenn das Bild erscheint; sobald du anfasst, bestimmst du.</p></div>
     <div class="stapel"><h3>Status-Farben</h3><p class="leise klein mass">Erfolg, Warnung und Fehler, jede mit einer zarten Fläche. Der Status steht immer auch als Wort. Text auf der zarten Fläche liest sich gut (mindestens 4,5:1).</p>
       <ul class="farbliste anliegen klein">
         <li><span class="farbfeld" style="background:var(--erfolg)"></span><span class="farbfeld rand" style="background:var(--erfolg-zart)"></span> Erfolg und Erfolg zart</li>
@@ -117,7 +117,7 @@
         <li><span class="farbfeld" style="background:var(--fehler)"></span><span class="farbfeld rand" style="background:var(--fehler-zart)"></span> Fehler und Fehler zart</li>
       </ul>
       <p class="hinweis-fehler mass">So sieht ein Hinweis aus, wenn etwas fehlt.</p></div>
-    <div class="stapel"><h3>Stundenlinie</h3><p class="leise klein mass">Der Umfang als Form auf der Linie der Stunde: Punkt, Abschnitt oder ganze Stunde. Ohne Rangfolge. Das Wort steht immer daneben, die Linie ist nur ein Bild dazu. Auf Galerie-Karten in der kleinsten Form, im Filter »Umfang« gleitet der Balken beim Überfahren eines Chips in diesen Umfang.</p>
+    <div class="stapel"><h3>Stundenlinie</h3><p class="leise klein mass">Der Umfang als Form auf der Linie der Stunde: Punkt, Abschnitt oder ganze Stunde. Ohne Rangfolge. Das Wort steht immer daneben, die Linie ist nur ein Bild dazu. Auf den Karten der Unterrichtsbeispiele in der kleinsten Form, im Filter »Umfang« gleitet der Balken beim Überfahren eines Chips in diesen Umfang.</p>
       <p class="umfang-zeile"><span class="stundenlinie zeile" data-umfang="punktuell" aria-hidden="true"><span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></span><span>Umfang: <b>Punktuell</b></span></p>
       <p class="umfang-zeile"><span class="stundenlinie zeile" data-umfang="phasenweise" aria-hidden="true"><span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></span><span>Umfang: <b>Phasenweise</b></span></p>
       <p class="umfang-zeile"><span class="stundenlinie zeile" data-umfang="durchgaengig" aria-hidden="true"><span class="sl-spur"><i></i><i></i><i></i><i></i><i></i></span><span class="sl-balken"></span></span><span>Umfang: <b>Durchgängig</b></span></p>
@@ -140,6 +140,6 @@
   <p class="kennzeichnung">Kidu · Künstliche Intelligenz und digitaler Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
   <p class="kennzeichnung urheber leise">© 2026 Mario Walter · entwickelt mit Unterstützung eines KI-Systems · Texte CC BY-NC-SA 4.0 · Code MIT · <a href="ueber.html#t-entstehung">Entstehung und Lizenz</a></p>
 </div></footer>
-<script src="assets/motion.js?v=5aa96b3e"></script>
+<script src="assets/motion.js?v=30e2bad3"></script>
 </body>
 </html>

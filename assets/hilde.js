@@ -42,8 +42,8 @@ var HILDE = (function () {
   /* Bereich immer als Text und Farbe, nie nur Farbe. */
   function kennzeichen(b) {
     var k = [];
-    if (b.bereich === "ki") k.push('<span class="kz ki">KI-Training</span>');
-    if (b.bereich === "lernen") k.push('<span class="kz lernen">Digitaler Unterricht</span>');
+    if (b.bereich === "ki") k.push('<span class="kz ki">Außerhalb des Unterrichts</span>');
+    if (b.bereich === "lernen") k.push('<span class="kz lernen">Unterricht</span>');
     if (b.status === "In Überarbeitung") k.push('<span class="kz ueberarbeitung">In Überarbeitung</span>');
     if (b.vorschauArt === "konzept") k.push('<span class="kz konzept">Konzeptbeispiel – noch nicht erprobt</span>');
     return '<div class="kennzeichen">' + k.join("") + "</div>";

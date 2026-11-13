@@ -1,4 +1,4 @@
-/* Kidu – Digitaler Unterricht: Planungsweg »Unterricht planen«: vier kurze Fragen bis zur Entscheidungskarte.
+/* Kidu – Digitaler Unterricht: Planungsweg »Unterricht neu planen«: vier kurze Fragen bis zur Entscheidungskarte.
    Eine Entscheidung pro Schritt. Zuerst stehen nur die wichtigsten Antworten da, der Rest unter »Weitere anzeigen«.
    Die Angaben zur Klasse (Rahmen) sind freiwillig und stehen aufklappbar unter der Frage nach dem Umfang.
    »Noch nicht sicher« ist überall erlaubt, wo es fachlich sinnvoll ist.
@@ -156,7 +156,7 @@
         (k.ohneNetz ? '<p class="leise klein">Ohne Netz zeigen wir nur Beispiele, die nicht online geöffnet werden müssen.</p>' : "") +
         '<ul class="minis">' + k.beispiele.map(H.miniKarte).join("") + "</ul>";
     } else {
-      bsp = '<p class="box">Für diese Angaben gibt es noch kein Beispiel. In der <a href="galerie.html">Galerie</a> findest du alle Ideen.</p>';
+      bsp = '<p class="box">Für diese Angaben gibt es noch kein Beispiel. Bei den <a href="galerie.html">Unterrichtsbeispielen</a> findest du alle Ideen.</p>';
     }
 
     return '<section class="entscheidung stufe-' + k.einstufung + '" aria-labelledby="ergebnis-titel">' +
@@ -181,7 +181,7 @@
       '<div class="ergebnis-aktionen">' +
         '<button type="button" class="knopf still" data-gehe="0">Antworten ändern</button>' +
         '<button type="button" class="knopf still" id="neu">Neu starten</button>' +
-        '<a class="knopf" href="galerie.html" id="zum-showroom">In der Galerie weitersuchen</a>' +
+        '<a class="knopf" href="galerie.html" id="zum-showroom">Bei den Unterrichtsbeispielen weitersuchen</a>' +
         '<a class="knopf still" href="beobachtung.html">Nach der Stunde: Beobachtungsbogen</a>' +
       "</div></section>";
   }

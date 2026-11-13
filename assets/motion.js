@@ -10,7 +10,7 @@
   "use strict";
   var doc = document, root = doc.documentElement;
   /* »Weniger Bewegung« gilt bei der Systemeinstellung oder beim Schalter im Fuß (html[data-bewegung="weniger"]).
-     Dieselbe Prüfung steht in hilde.js, faecher.js, digitalisieren.js und showroom.js – jede Datei läuft für sich. */
+     Dieselbe Prüfung steht in hilde.js, digitalisieren.js und showroom.js – jede Datei läuft für sich. */
   function ruhig() {
     return root.getAttribute("data-bewegung") === "weniger" ||
       !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);

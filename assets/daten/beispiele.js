@@ -63,7 +63,7 @@ var BEISPIELE = [
       prinzipien: "Tresor »Muster aus der Praxis«: Zuordnen mit Begründung, Rückmeldung zur Zuordnung.", aufgaben: "Tresor »Muster aus der Praxis«: Zuordnen mit Begründung, Rückmeldung zur Zuordnung.", lernaktivitaeten: true, technik: true, dauer: true, sozialformen: true } },
 
   { id: "quest", titel: "Gruppenpädagogik-Quest", fach: "Sozialpädagogik",
-    faecher: ["Sozialpädagogik"], bereich: "lernen",
+    faecher: ["Sozialpädagogik"], bereich: "lernen", kiEinsatz: "entwicklung-anwendung",
     kurz: "Angehende Erzieher*innen lösen Fälle aus einem Kindergarten und sehen, wie ihre Maßnahmen wirken.",
     status: "im Unterricht erprobt", bild: "assets/bilder/quest.jpg", link: null, zuerst: true,
     erfahrung: "Im Unterricht durchgeführt. Persönlicher Eindruck: Es lief sehr gut.",
@@ -89,6 +89,15 @@ var BEISPIELE = [
     status: "noch offen", bild: "assets/bilder/beschlussapp.jpg",
     link: GH + "anlaufstelle-entscheidungen-neu/", zuerst: true,
     anliegen: ["ablaeufe"], rollen: ["moderieren"] },
+
+  /* Ab 4.36 (Entscheidung Mario, 13.11.2026): Eintrag ohne App. Die App enthält fremden Wortlaut (GinA-Merkmale,
+     Raster der Praxishandreichung) und wird deshalb nicht veröffentlicht – nur Bildschirmfotos der leeren App, kein Link.
+     Status: noch offen (nicht beantwortet, ob sie schon bei Besuchen im Einsatz war). */
+  { id: "praxisbesuch", aufgenommen: "2026-11", titel: "Praxisbesuch 1BKSP · Begleiter", fach: "Praxisbesuch · 1BKSP",
+    faecher: ["Praxisbesuch"], bereich: "ki", kiEinsatz: "entwicklung-anwendung",
+    kurz: "Die besuchende Lehrkraft führt einen Praxisbesuch von der Vorbereitung bis zum Bericht in einer App, die ohne Netz läuft.",
+    status: "noch offen", bild: "assets/bilder/praxisbesuch.jpg", link: null,
+    suchbegriffe: ["Praxisbesuch", "Praxisstelle", "Reflexionsgespräch", "Bericht", "Sozialpädagogik"] },
 
   { id: "anleitertreffen", titel: "Präsentation für das Anleiter*innentreffen", fach: "Praxisanleitung · 1BKSP",
     faecher: ["Praxisanleitung"], bereich: "ki", kiEinsatz: "vorbereitung-lehrkraft",
