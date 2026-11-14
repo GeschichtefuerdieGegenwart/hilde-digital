@@ -78,13 +78,33 @@
       phasen.map(function (p) {
         return '<button type="button" class="chip" data-filter="' + p.id + '" aria-pressed="' + (phase === p.id) + '">' + esc(p.name) + "</button>";
       }).join("");
+    /* Ab 4.42: Landkarte – alle Muster nach Phase, eine Tabelle (wie im Aufgabenkoffer). Die Spaltenköpfe filtern wie die Chips
+       (unter 1024 px stehen nur die Chips, siehe hilde.css). Ein Name führt zum Muster und zeigt dafür wieder alle. */
+    var landkarte = document.getElementById("muster-landkarte");
+    if (landkarte) {
+      landkarte.innerHTML = '<table><caption>Jedes Muster steht unter der Phase, in der es gut passt. Die meisten lassen sich auch an anderer Stelle einsetzen.</caption>' +
+        '<thead><tr><td class="landkarte-ecke"><button type="button" class="landkarte-kopf ist-alle" data-filter="">Alle Phasen</button></td>' +
+        phasen.map(function (p) { return '<th scope="col"><button type="button" class="landkarte-kopf" data-filter="' + p.id + '">' + esc(p.name) + "</button></th>"; }).join("") +
+        '</tr></thead><tbody><tr><th scope="row"><span class="landkarte-zeile">Die Muster</span></th>' +
+        phasen.map(function (p) {
+          return '<td data-filter="' + p.id + '"><ul>' + W.muster.filter(function (m) { return m.phase === p.id; }).map(function (m) {
+            return '<li><a href="#m-' + m.id + '">' + esc(m.name) + "</a></li>";
+          }).join("") + "</ul></td>";
+        }).join("") + "</tr></tbody></table>";
+      landkarte.addEventListener("click", function (e) {
+        var b = e.target.closest("button[data-filter]");
+        if (b) { phase = b.getAttribute("data-filter"); H.schreib("muster", { phase: phase }); zeige(); return; }
+        if (e.target.closest('a[href^="#m-"]') && phase) { phase = ""; H.schreib("muster", { phase: phase }); zeige(); }
+      });
+    }
     function zeige() {
       var n = 0;
       liste.querySelectorAll(".muster-karte").forEach(function (k) {
         var an = !phase || k.getAttribute("data-phase") === phase;
         k.hidden = !an; if (an) n++;
       });
-      filterZiel.querySelectorAll("[data-filter]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-filter") === phase)); });
+      document.querySelectorAll("#muster-filter [data-filter], #muster-landkarte button[data-filter]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-filter") === phase)); });
+      if (landkarte) landkarte.querySelectorAll("td[data-filter]").forEach(function (td) { td.classList.toggle("ist-gewaehlt", !!phase && td.getAttribute("data-filter") === phase); });
       document.getElementById("muster-anzahl").textContent = n === 1 ? "1 Muster" : n + " Muster";
     }
     filterZiel.addEventListener("click", function (e) {

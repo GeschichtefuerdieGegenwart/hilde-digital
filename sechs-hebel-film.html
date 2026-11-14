@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Film: Was das Gerät kann – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=7afb121e">
+<link rel="stylesheet" href="assets/hilde.css?v=5cf929e4">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -19,14 +19,20 @@
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt" aria-labelledby="t-hf"><div class="huelle">
-  <p class="leise klein"><a class="textlink" href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> · Film</p>
-  <h1 id="t-hf" class="h1-frage">Was das Gerät kann</h1>
-  <p class="marker">Film · 2 Minuten · Entwurf vom 10. November 2026 · kein Beschluss</p>
-  <p class="detail-kurz">Sieben Kapitel über die sechs Prinzipien. Der Film startet erst, wenn du es willst. Du kannst anhalten, ziehen und zu jedem Kapitel springen.</p>
+<nav class="ort-zeile" aria-label="Wo du bist"><div class="huelle huelle-weit"><ol><li class="ort-weg"><a href="unterricht.html#fahrplan">Fahrplan Digitaler Unterricht</a></li><li><a href="unterricht.html#phase-grundlagen">1 · Grundlagen</a> <span class="ort-wann">(zuerst)</span></li></ol></div></nav>
+<section class="bereichskopf kompakt" aria-labelledby="t-hf"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <p class="leise klein"><a class="textlink" href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> · Film</p>
+    <h1 id="t-hf" class="h1-frage">Was das Gerät kann</h1>
+    <p class="marker">Film · 2 Minuten · Entwurf vom 10. November 2026 · kein Beschluss</p>
+  </div>
+  <div class="werkzeugkopf-seite">
+    <p class="detail-kurz">Sieben Kapitel über die sechs Prinzipien. Der Film startet erst, wenn du es willst. Du kannst anhalten, ziehen und zu jedem Kapitel springen.</p>
+    <p class="kopfnotiz"><button type="button" class="knopf" id="hf-los-kopf" hidden>Film starten (2 Min.)</button></p>
+  </div>
 </div></section>
 
-<section class="abschnitt" aria-labelledby="t-hf-film"><div class="huelle stapel">
+<section class="abschnitt" style="padding-top:var(--a3)" aria-labelledby="t-hf-film"><div class="huelle huelle-weit stapel">
   <h2 id="t-hf-film" class="sr-only">Der Film</h2>
   <div class="hf" id="hf">
     <div class="hf-rahmen" id="hf-rahmen">
@@ -55,7 +61,9 @@
       <label class="hf-regler"><span class="sr-only">Zeit im Film</span><input type="range" id="hf-regler" min="0" max="120" step="0.5" value="0" disabled></label>
       <span class="hf-zeit" id="hf-zeit">0:00 / 2:00</span>
     </div>
-    <ol class="hf-kapitel hf-nur-mit-js" id="hf-kapitel" aria-label="Kapitel">
+    <div class="hf-kapitel-spalte hf-nur-mit-js">
+    <p class="blick-titel" id="t-hf-kapitel">Auf einen Blick: sieben Kapitel</p>
+    <ol class="hf-kapitel" id="hf-kapitel" aria-labelledby="t-hf-kapitel">
       <li><button type="button" data-kapitel="0" aria-current="false"><b>1</b> Der Schnellhefter</button></li>
       <li><button type="button" data-kapitel="1" aria-current="false"><b>2</b> Sechs Prinzipien</button></li>
       <li><button type="button" data-kapitel="2" aria-current="false"><b>3</b> Drei Beispiele</button></li>
@@ -64,11 +72,12 @@
       <li><button type="button" data-kapitel="5" aria-current="false"><b>6</b> Keiner? Dann Papier.</button></li>
       <li><button type="button" data-kapitel="6" aria-current="false"><b>7</b> Jetzt du</button></li>
     </ol>
+    </div>
   </div>
   <p class="leise klein">Pfeiltasten wechseln das Kapitel, die Leertaste hält an. Bei »Weniger Bewegung« zeigt der Film sieben Standbilder, die du mit »Weiter« durchgehst. Wechselst du den Tab, hält er an. Zahlen im Film sind Beispiele, keine Messwerte. Nichts wird gespeichert.</p>
 </div></section>
 
-<section class="abschnitt" aria-labelledby="t-hf-text"><div class="huelle stapel-gross">
+<section class="abschnitt" aria-labelledby="t-hf-text"><div class="huelle huelle-weit stapel-gross">
   <div class="stapel">
     <h2 id="t-hf-text">Der Film als Text</h2>
     <p class="mass">Sieben Kapitel, ein Satz oben je Takt. Die Beispiele sind erprobte Lernseiten aus den Unterrichtsbeispielen.</p>
@@ -87,9 +96,30 @@
     <p>Eine Zeitachse von 120 Sekunden; jedes Bild wird aus der Zeit berechnet, darum kannst du ziehen und springen. Bewegt werden nur Lage und Deckkraft. Der Satz oben baut sich wortweise auf, höchstens 2,4 Sekunden; für Hilfstechnik wird jeder Satz vollständig angesagt. Schriften und Farben kommen aus dem Gestaltungssystem der Seite, nichts wird nachgeladen. Muster AW in <a href="gestaltung.html">Gestaltungssystem</a>.</p>
   </details>
 </div></section>
+<nav class="fahrplan-fuss" aria-label="Fahrplan Digitaler Unterricht"><div class="huelle huelle-weit fahrplan-fuss-innen">
+  <div class="fahrplan-fuss-auch">
+    <h2 class="fahrplan-fuss-titel">Auch bei den Grundlagen</h2>
+    <ul class="fahrplan-werkzeuge">
+      <li><a href="sechs-hebel.html"><b>Wann funktioniert digitaler Unterricht?</b><span class="fahrplan-text">Sechs Dinge kann das Gerät besser als Papier. Dazu fünf Sätze, die in jeder Stunde gelten.</span></a></li>
+      <li><a href="passt.html"><b>Was passt gerade zu mir?</b> <span class="fahrplan-fuer">für dich</span><span class="fahrplan-text">Ein paar kurze Fragen zu deinem Vorhaben. Du bekommst einen passenden Einstieg.</span></a></li>
+      <li><a href="fortbildungsbogen.html"><b>Mein Fortbildungsbogen</b> <span class="fahrplan-fuer">für dich</span><span class="fahrplan-text">Wo du mit KI und Tablets stehst. Am Ende eine PDF für deine Fortbildung und bis zu drei nächste Schritte.</span></a></li>
+    </ul>
+  </div>
+  <div class="fahrplan-fuss-plan">
+    <h2 class="fahrplan-fuss-titel">Der Fahrplan</h2>
+    <ol class="fahrplan-klein">
+      <li class="ist-vorspann ist-hier"><a href="unterricht.html#phase-grundlagen" aria-current="location"><span class="fahrplan-klein-nr" aria-hidden="true">1</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">1 · </span>Grundlagen</span><b class="fahrplan-klein-hier">Du bist hier</b></span></a></li>
+      <li class="ist-zart ist-ring-start"><a href="unterricht.html#phase-erstellen"><span class="fahrplan-klein-nr" aria-hidden="true">2</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">2 · </span>Digitalen Unterricht erstellen</span><span class="fahrplan-klein-wann">vor der Stunde</span></span></a></li>
+      <li class="ist-ring-mitte"><a href="unterricht.html#phase-unterrichten"><span class="fahrplan-klein-nr" aria-hidden="true">3</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">3 · </span>Unterrichten</span><span class="fahrplan-klein-wann">in der Stunde</span></span></a></li>
+      <li class="ist-zart ist-ring-ende"><a href="unterricht.html#phase-nach"><span class="fahrplan-klein-nr" aria-hidden="true">4</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">4 · </span>Nach der Stunde</span><span class="fahrplan-klein-wann">nach der Stunde</span></span></a></li>
+    </ol>
+    <p class="fahrplan-ring"><span class="fahrplan-ring-pfeil" aria-hidden="true">↑</span> Nach der Stunde geht es mit der nächsten Stunde wieder bei 2 weiter.</p>
+    <p class="fahrplan-fuss-alle"><a class="textlink" href="unterricht.html#fahrplan">Alle Werkzeuge im Fahrplan <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></nav>
 </div>
 <script src="assets/hilde.js?v=e22353fb"></script>
-<script src="assets/sechs-hebel-film.js?v=3ab9a392"></script>
+<script src="assets/sechs-hebel-film.js?v=4ec74548"></script>
 
 </main>
 <footer class="fuss"><div class="huelle">

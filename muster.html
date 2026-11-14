@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Unterrichtsmuster aus der Praxis – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=7afb121e">
+<link rel="stylesheet" href="assets/hilde.css?v=5cf929e4">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -19,14 +19,15 @@
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Unterrichtsmuster aus der Praxis</h1>
-  <p class="marker">Ideen und Kniffe zum Stöbern · kein Weg, keine Reihenfolge · auch für das KI-Training</p>
-  <p class="detail-kurz">Eine Sammlung, kein Weg: elf Muster aus dem Unterricht, die in vielen Fächern passen. Wenn du erst wissen willst, wann sich das Gerät lohnt, fang bei <a href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> an. Zu jedem Muster gibt es drei Wege: auf Papier, mit KI vorbereitet und am Tablet. Kein Weg ist besser als der andere.</p>
-</div></section>
-
-<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-angaben"><div class="huelle stapel-gross">
-  <div class="stapel">
+<nav class="ort-zeile" aria-label="Wo du bist"><div class="huelle huelle-weit"><ol><li class="ort-weg"><a href="unterricht.html#fahrplan">Fahrplan Digitaler Unterricht</a></li><li><a href="unterricht.html#phase-erstellen">2 · Digitalen Unterricht erstellen</a> <span class="ort-wann">(vor der Stunde)</span></li></ol></div></nav>
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Unterrichtsmuster aus der Praxis</h1>
+    <p class="marker">Ideen und Kniffe zum Stöbern · kein Weg, keine Reihenfolge · auch für das KI-Training</p>
+    <p class="detail-kurz">Eine Sammlung, kein Weg: elf Muster aus dem Unterricht, die in vielen Fächern passen. Wenn du erst wissen willst, wann sich das Gerät lohnt, fang bei <a href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> an. Zu jedem Muster gibt es drei Wege: auf Papier, mit KI vorbereitet und am Tablet. Kein Weg ist besser als der andere.</p>
+  </div>
+  <!-- Ab 4.42: die Angaben für alle Aufträge neben dem Kopf (Screen-Width Rule); darunter gleich die Landkarte der Muster. -->
+  <div class="werkzeugkopf-seite stapel">
     <h2 id="t-angaben" class="klein-titel">Deine Angaben für alle Aufträge</h2>
     <p class="mass">Trag Fach, Thema und Lerngruppe einmal ein. Sie stehen dann in jedem Auftrag auf dieser Seite. Fehlt etwas, fragt die KI zuerst danach.</p>
     <form class="schnell-felder" id="werkstatt-form" novalidate>
@@ -36,11 +37,15 @@
     </form>
     <p class="datenhinweis leise klein">Keine Namen, Noten oder anderen personenbezogenen Daten eingeben. Deine Angaben werden nicht gespeichert.</p>
   </div>
+</div></section>
 
+<section class="abschnitt" style="padding-top:var(--a3)" aria-labelledby="t-muster"><div class="huelle huelle-weit stapel-gross">
   <div class="stapel">
     <h2 id="t-muster">Die Muster</h2>
+    <!-- Ab 4.42: Landkarte – alle Muster nach Phase (assets/werkstatt.js); unter 1024 px die Chips. -->
+    <div class="landkarte" id="muster-landkarte"></div>
     <div class="muster-filter-zeile">
-      <div class="muster-filter" id="muster-filter" role="group" aria-label="Nach Unterrichtsphase filtern"></div>
+      <div class="muster-filter filter-schmal" id="muster-filter" role="group" aria-label="Nach Unterrichtsphase filtern"></div>
       <p class="leise" id="muster-anzahl" aria-live="polite"></p>
     </div>
     <ol class="muster-liste" id="muster-liste"></ol>
@@ -55,6 +60,30 @@
     <p class="mass">Bevor du einen Tablet-Weg wählst: <a class="textlink" href="unterricht.html#t-probe">Geht es auf Papier genauso gut? <span aria-hidden="true">→</span></a></p>
   </div>
 </div></section>
+<nav class="fahrplan-fuss" aria-label="Fahrplan Digitaler Unterricht"><div class="huelle huelle-weit fahrplan-fuss-innen">
+  <div class="fahrplan-fuss-auch">
+    <h2 class="fahrplan-fuss-titel">Auch vor der Stunde</h2>
+    <ul class="fahrplan-werkzeuge">
+      <li><a href="tablets.html"><b>Unterricht neu planen</b><span class="fahrplan-text">Vier kurze Fragen, dann deine Entscheidungskarte: Lohnt sich das Tablet – oder bleibst du beim Papier?</span></a></li>
+      <li><a href="digitalisieren.html"><b>Bisherigen Unterricht digitalisieren</b><span class="fahrplan-text">Ein Arbeitsblatt, eine Präsentation, ein Verlaufsplan? Wähle, was entstehen soll, und hol dir einen Prompt mit Ideen, die mehr können als Papier.</span></a></li>
+      <li><a href="aufgabenkoffer.html"><b>Aufgabenkoffer</b><span class="fahrplan-text">Welche Aufgabe kann ich wie stellen – und was fördert sie? 18 Aufgabenformen, je mit »sinnvoll« und »wenig sinnvoll«.</span></a></li>
+      <li><a href="werkzeugkiste.html"><b>Methodenkoffer</b><span class="fahrplan-text">Die Anleitungen hinter den Werkzeugen, zum Ansehen und Herunterladen.</span></a></li>
+      <li><a href="unterricht.html#t-probe"><b>Papierfrage</b><span class="fahrplan-text">Geht es auf Papier genauso gut? Höchstens drei Fragen, auf der Seite »Digitaler Unterricht«.</span></a></li>
+      <li><a href="digital-check.html"><b>Digital-Check</b><span class="fahrplan-text">Prüfe ein fertiges Material – selbst oder mit einem Prüf-Auftrag.</span></a></li>
+    </ul>
+  </div>
+  <div class="fahrplan-fuss-plan">
+    <h2 class="fahrplan-fuss-titel">Der Fahrplan</h2>
+    <ol class="fahrplan-klein">
+      <li class="ist-vorspann"><a href="unterricht.html#phase-grundlagen"><span class="fahrplan-klein-nr" aria-hidden="true">1</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">1 · </span>Grundlagen</span><span class="fahrplan-klein-wann">zuerst</span></span></a></li>
+      <li class="ist-zart ist-ring-start ist-hier"><a href="unterricht.html#phase-erstellen" aria-current="location"><span class="fahrplan-klein-nr" aria-hidden="true">2</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">2 · </span>Digitalen Unterricht erstellen</span><b class="fahrplan-klein-hier">Du bist hier</b></span></a></li>
+      <li class="ist-ring-mitte"><a href="unterricht.html#phase-unterrichten"><span class="fahrplan-klein-nr" aria-hidden="true">3</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">3 · </span>Unterrichten</span><span class="fahrplan-klein-wann">in der Stunde</span></span></a></li>
+      <li class="ist-zart ist-ring-ende"><a href="unterricht.html#phase-nach"><span class="fahrplan-klein-nr" aria-hidden="true">4</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">4 · </span>Nach der Stunde</span><span class="fahrplan-klein-wann">nach der Stunde</span></span></a></li>
+    </ol>
+    <p class="fahrplan-ring"><span class="fahrplan-ring-pfeil" aria-hidden="true">↑</span> Nach der Stunde geht es mit der nächsten Stunde wieder bei 2 weiter.</p>
+    <p class="fahrplan-fuss-alle"><a class="textlink" href="unterricht.html#fahrplan">Alle Werkzeuge im Fahrplan <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></nav>
 </div>
 <script src="assets/daten/taxonomien.js?v=eb73b10b"></script>
 <script src="assets/daten/beispiele.js?v=859fc8ba"></script>
@@ -64,7 +93,7 @@
 <script src="assets/daten/kurzfassungen.js?v=cb40a1db"></script>
 <script src="assets/daten/werkstatt.js?v=66bf926c"></script>
 <script src="assets/werkstatt-anfrage.js?v=0e98b217"></script>
-<script src="assets/werkstatt.js?v=9e7ddadb"></script>
+<script src="assets/werkstatt.js?v=2b6946b4"></script>
 
 </main>
 <footer class="fuss"><div class="huelle">

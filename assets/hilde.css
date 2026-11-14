@@ -1363,6 +1363,9 @@ main .ls-eins-satz{max-width:16ch}
 .ls-fahrplan a{display:flex;flex-direction:column;gap:.1rem;min-height:44px;font-weight:700;text-decoration:none;font-size:1.0625rem;line-height:1.25}
 .ls-fahrplan a span{font-weight:400;font-size:var(--gr-klein);color:var(--leise);font-variant-numeric:tabular-nums}
 .ls-fahrplan a:hover{color:var(--lernen-tief)}
+.ls-kopf-seite{gap:var(--a3)}
+.ls-kopf-seite .ls-fahrplan{padding-top:0} /* ab 4.42 im Kopf neben dem Text */
+.ls-kopf-seite .ls-fahrplan ol{margin-top:.5rem}
 .ls-station{scroll-margin-top:var(--a4)}
 .ls-station-kopf{display:grid;grid-template-columns:minmax(6rem,9rem) minmax(0,1fr) auto;gap:var(--a2) var(--a6);align-items:end;padding-block:var(--a8) var(--a3)}
 .ls-station-kopf h3{font:600 var(--gr-h2)/1.12 var(--schrift-titel);letter-spacing:-.01em}
@@ -2217,7 +2220,11 @@ html[data-bewegung="weniger"]::view-transition-group(sh-w-text){animation:none}
    »Deine Wahl« = --wahl (--lernen-tief, zweite Druckfarbe bleibt), gewählte Kachel hebt sich 2 px auf ihre Platte.
    Ohne JavaScript: Kacheln sind Sprungmarken, die Karte zeigt alle sechs Sätze. Bewegung nur transform/opacity. */
 .sh-rad-figur{--wahl:var(--lernen-tief)}
-.sh-rad-bund{--rad:clamp(17rem,100svh - 21rem,34rem);display:grid;grid-template-columns:var(--rad) minmax(0,1fr);gap:var(--a3) var(--a4);align-items:start;margin-top:var(--a3)}
+/* Ab 4.42: Kopf in drei Spalten – Text mit Knöpfen, Rad, Karte (Screen-Width Rule). Das Rad steht neben der Überschrift und wächst mit der
+   Höhe des Bildschirms; so passen am Beamer Rad und erster Knopf in 720 px, obwohl oben die Zeile »Fahrplan …« steht. Bis 4.41: .sh-rad-bund (Rad | Seite). */
+.sh-kopf-raster{--rad:clamp(17rem,min(100svh - 12.5rem,36vw),34rem);display:grid;grid-template-columns:minmax(0,1fr) var(--rad) minmax(0,1fr);gap:var(--a3) var(--a4);align-items:start}
+.sh-kopf-text{display:grid;align-content:start;min-width:0}
+.sh-kopf-text .sh-aktionen{margin-top:var(--a3)}
 .sh-rad-figur{margin:0}
 .sh-rad-seite{display:grid;gap:var(--a3);align-content:start;min-width:0}
 .sh-rad-seite .detail-kurz{margin:0}
@@ -2260,10 +2267,10 @@ html[data-bewegung="weniger"]::view-transition-group(sh-w-text){animation:none}
 .sh-rad-karte:has(.sh-rad-karte-kopf){border-color:var(--wahl)}
 .sh-rad-neu{animation:sh-rad-neu var(--dauer-aufdecken) var(--ease-out)}
 @keyframes sh-rad-neu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media (max-width:900px){
-  .sh-rad-bund{grid-template-columns:1fr;justify-items:center}
+@media (max-width:1023px){
+  .sh-kopf-raster{grid-template-columns:minmax(0,1fr);justify-items:center}
   .sh-rad-figur{width:min(100%,34rem)}
-  .sh-rad-seite{justify-self:stretch}
+  .sh-kopf-text,.sh-rad-seite{justify-self:stretch}
 }
 html[data-bewegung="weniger"] .sh-rad-kachel,html[data-bewegung="weniger"] .sh-rad-neu{transition:none;animation:none}
 @media (prefers-reduced-motion:reduce){.sh-rad-kachel,.sh-rad-neu{transition:none;animation:none}}
@@ -2304,6 +2311,9 @@ html[data-bewegung="weniger"] .sh-rad-kachel,html[data-bewegung="weniger"] .sh-r
 .hf-kapitel button{width:100%;min-height:44px;text-align:left;padding:.45rem .7rem;font:var(--gr-klein)/1.25 var(--schrift);color:var(--text);background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);cursor:pointer;touch-action:manipulation}
 .hf-kapitel button b{margin-right:.35em}
 .hf-kapitel button[aria-current="true"]{background:var(--text);color:var(--aktion-text);border-color:var(--text);font-weight:700}
+.hf-kapitel-spalte{display:grid;gap:var(--a1);align-content:start;min-width:0}
+/* Ab 4.42: Die Bühne nutzt die ganze weite Hülle; die sieben Kapitel stehen darunter nebeneinander (Screen-Width Rule).
+   Weil die Bühne am Beamer nicht ganz in 720 px passt, steht »Film starten« zusätzlich im Kopf (assets/sechs-hebel-film.js). */
 .hf-text{margin:0;padding:0;list-style:none;display:grid;gap:var(--a3)}
 .hf-text li p{margin:0}
 .hf-text-kapitel{font-family:var(--schrift-titel);font-weight:600;font-size:var(--gr-h3);margin-bottom:.25rem!important}
@@ -2709,6 +2719,134 @@ body:has(#inhalt > section:first-child > .huelle-weit, #inhalt > div:first-child
   .fahrplan-platte,.fahrplan-platte[open],.fahrplan-karte-blatt{box-shadow:none}
   .fahrplan-kopf,.fahrplan-phase:not(.ist-ring-start){break-inside:avoid} /* Kopf und kurze Phasen bleiben auf einer Seite; Phase 2 ist länger als eine */
 }
+/* Ab 4.42 · Werkzeugseiten: Wo bin ich? (Weg B der Recherche vom 14.11.2026, Entscheidung Mario am selben Tag).
+   Oben eine Zeile wie »Part of …« (GOV.UK) – kein Schritt-Anzeiger, keine Phasenleiste, nichts Haftendes. Unten »Auch vor der Stunde«
+   (die anderen Werkzeuge der Phase, aussehend wie im Fahrplan der Bereichsseite) und »Der Fahrplan« im Kleinen: vier Platten,
+   Nummern im Petrol-Kreis, Petrol von Phase zu Phase, Druckschwarz von 4 zurück zu 2 (Same-Face mit der Bereichsseite).
+   »Du bist hier« steht als Wort da. Beides schreibt tools/bauen.py aus src/fahrplan.json in jede Seite – ohne Skript. */
+.ort-zeile{padding-top:.75rem}
+.ort-zeile ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;column-gap:.5rem;min-height:44px;font-size:var(--gr-klein);line-height:1.35}
+.ort-zeile li{max-width:none}
+.ort-zeile li + li::before{content:"›";content:"›" / "";margin-right:.5rem;color:var(--leise);font-weight:700}
+.ort-zeile a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--text);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+@media (hover:hover) and (pointer:fine){.ort-zeile a:hover{text-decoration-color:var(--lernen)}}
+.ort-wann{color:var(--leise)}
+.ort-zeile + .bereichskopf{padding-top:var(--a2)}
+@media (max-width:520px){ /* Telefon: nur der Weg zurück, mit »‹« */
+  .ort-zeile .ort-weg,.ort-wann{display:none}
+  .ort-zeile li + li::before{content:"‹";content:"‹" / ""}
+}
+.fahrplan-fuss{padding:var(--a6) 0 var(--a8)}
+.fahrplan-fuss-innen{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,30rem);gap:var(--a4) var(--a6);align-items:start}
+.fahrplan-fuss-innen > :only-child{grid-column:1 / -1;max-width:34rem}
+.fahrplan-fuss-titel{font-size:var(--gr-h3);margin-bottom:var(--a1)}
+.fahrplan-fuss-auch .fahrplan-werkzeuge{grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr))}
+.fahrplan-fuss-gruppen{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));column-gap:var(--a4);align-items:start}
+.fahrplan-fuss-gruppen .fahrplan-werkzeuge{grid-template-columns:1fr}
+.fahrplan-fuss-gruppen .fahrplan-gruppe h3{margin:var(--a1) 0 0;font:700 var(--gr-klein)/1.3 var(--schrift);color:var(--leise)}
+.fahrplan-klein{--fk-kreis:2.25rem;--fk-rand:3px;--fk-rinne:1.75rem;--fk-abstand:.5rem;--fk-zeile:3rem;--fk-oben:calc((var(--fk-zeile) - var(--fk-kreis)) / 2);
+  list-style:none;margin:0;padding:0 0 0 var(--fk-rinne);display:grid;gap:var(--fk-abstand)}
+.fahrplan-klein li{position:relative;max-width:none}
+.fahrplan-klein a{display:grid;grid-template-columns:var(--fk-kreis) minmax(0,1fr);column-gap:.75rem;align-items:start;color:var(--text);text-decoration:none}
+.fahrplan-klein-nr{position:relative;z-index:1;width:var(--fk-kreis);height:var(--fk-kreis);margin-top:var(--fk-oben);border-radius:50%;border:var(--fk-rand) solid var(--lernen);background:var(--grund);color:var(--lernen);display:grid;place-items:center;font:700 1.0625rem/1 var(--schrift-titel)}
+.fahrplan-klein-platte{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem .75rem;min-height:var(--fk-zeile);padding:.375rem .875rem;box-sizing:border-box;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund);font-weight:700;line-height:1.3}
+.fahrplan-klein li.ist-zart .fahrplan-klein-platte{background:var(--lernen-zart)}
+.fahrplan-klein-name{flex:1 1 12rem}
+.fahrplan-klein-wann{font-size:var(--gr-klein);color:var(--leise)}
+.fahrplan-klein li.ist-hier .fahrplan-klein-platte{background:var(--lernen);border-color:var(--lernen);color:var(--aktion-text)}
+.fahrplan-klein li.ist-hier .fahrplan-klein-nr{background:var(--lernen);color:var(--aktion-text)}
+.fahrplan-klein-hier{background:var(--aktion-text);color:var(--text);border-radius:var(--rund);padding:.1rem .6rem;font-size:var(--gr-klein)}
+@media (hover:hover) and (pointer:fine){.fahrplan-klein a:hover .fahrplan-klein-name{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.15em}}
+.fahrplan-klein li::before{content:"";position:absolute;left:calc(var(--fk-kreis) / 2 - 1.5px);top:calc(var(--fk-oben) + var(--fk-kreis));bottom:calc(-1 * (var(--fk-abstand) + var(--fk-oben)));border-left:3px solid var(--lernen)}
+.fahrplan-klein li.ist-vorspann::before{border-left-style:dashed}
+.fahrplan-klein li:last-child::before{content:none}
+.fahrplan-klein li.ist-ring-start::after,.fahrplan-klein li.ist-ring-mitte::after,.fahrplan-klein li.ist-ring-ende::after{content:"";position:absolute;box-sizing:border-box;left:calc(-1 * var(--fk-rinne) + 3px);width:calc(var(--fk-rinne) - 5px);border-left:3px solid var(--text)}
+.fahrplan-klein li.ist-ring-start::after{top:calc(var(--fk-oben) + var(--fk-kreis) / 2 - 1.5px);bottom:calc(-1 * var(--fk-abstand) - 2px);border-top:3px solid var(--text);border-top-left-radius:6px}
+.fahrplan-klein li.ist-ring-mitte::after{top:calc(-1 * var(--fk-abstand) - 2px);bottom:calc(-1 * var(--fk-abstand) - 2px)}
+.fahrplan-klein li.ist-ring-ende::after{top:calc(-1 * var(--fk-abstand) - 2px);height:calc(var(--fk-abstand) + 2px + var(--fk-oben) + var(--fk-kreis) / 2 + 1.5px);border-bottom:3px solid var(--text);border-bottom-left-radius:6px}
+.fahrplan-klein li.ist-ring-start .fahrplan-klein-nr::before{content:"";position:absolute;left:calc(-8px - var(--fk-rand));top:50%;margin-top:-6px;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid var(--text)}
+.fahrplan-fuss .fahrplan-ring{margin-left:var(--fk-rinne,1.75rem)}
+.fahrplan-fuss-alle{margin-top:var(--a1)}
+@media (max-width:1023px){.fahrplan-fuss-innen{grid-template-columns:1fr}.fahrplan-fuss-innen > .fahrplan-fuss-plan{max-width:34rem}}
+@media print{ /* taste-skill-ignore: Druckfassung */ .ort-zeile,.fahrplan-fuss{display:none}}
+/* Ab 4.42 · Werkzeugseiten nutzen die Breite (Screen-Width Rule jetzt auf jeder Werkzeugseite, Auftrag Mario 14.11.2026).
+   Weite Hülle; links der Text in Lesebreite, daneben »Auf einen Blick«: ein Schaubild aus den Inhalten der Seite, als HTML gebaut
+   (Text bleibt Text, Druck und Beamer gehen mit). Unter 1024 px steht alles untereinander. Was nebeneinander passt, steht nebeneinander. */
+body:has(.ort-zeile > .huelle-weit) .kopf > .huelle{max-width:var(--breite-weit)}
+.werkzeugkopf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--a3) var(--a6);align-items:start}
+.werkzeugkopf-text,.werkzeugkopf-seite{min-width:0}
+.werkzeugkopf-seite{display:grid;gap:var(--a1);align-content:start}
+.werkzeugkopf-mehr{margin-top:var(--a4)}
+.werkzeug-mit-blick{display:grid;grid-template-columns:minmax(0,2fr) minmax(16rem,1fr);gap:var(--a4) var(--a6);align-items:start} /* Formular und daneben »Auf einen Blick« */
+.werkzeug-arbeit{min-width:0}
+@media (max-width:1023px){.werkzeug-mit-blick{grid-template-columns:minmax(0,1fr)}}
+.nebeneinander{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,26rem),1fr));gap:var(--a4) var(--a6);align-items:start}
+.blick{margin:0;display:grid;gap:var(--a1);align-content:start;min-width:0}
+.blick-titel{font:700 var(--gr-klein)/1.3 var(--schrift);color:var(--leise)}
+.blick figcaption{font-size:var(--gr-klein);color:var(--leise)}
+.blick-karte{max-width:26rem}
+.schritte-vorschau li>.ohne{border:2px solid var(--linie);background:var(--flaeche)} /* Mein Fortbildungsbogen: die Schritte, bevor es losgeht */
+.schritte-vorschau .schritte-ziel>.ohne{padding-left:.8rem;border-color:var(--lernen);background:var(--lernen-zart);font-weight:700}
+.schritte-vorschau .schritte-ziel>.ohne::before{content:"→";content:"→" / "";margin-right:.1rem}
+.blick-karte .fahrplan-karte-titel{font-size:1.75rem}
+.werkzeugkopf-seite.einheit-abschnitt{padding:0} /* Unterricht neu planen: die erste Frage neben der Überschrift */
+@media (max-width:640px){.blick.nicht-am-telefon{display:none}} /* wenn das Schaubild am Telefon die erste Eingabe unter den ersten Bildschirm schöbe; der Inhalt steht darunter */
+@media (max-width:1023px){.werkzeugkopf{grid-template-columns:minmax(0,1fr)}}
+/* Zeitleiste (Fortbildungsbaustein, Beratungsstunde): die Höhe zeigt die Dauer – 8,8 px je Minute, fünf Minuten sind eine Zielfläche von 44 px;
+   in Wochen (.zeitleiste-wochen) 44 px je Woche.
+   Petrol ist die Zeitachse, die Platten wechseln hell und Petrol-zart (Nachbarn trennen, kein Rang). */
+.zeitleiste{--pro-einheit:8.8px;list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.zeitleiste-wochen{--pro-einheit:2.75rem}
+.zeitleiste li{max-width:none}
+.zeitleiste a{display:grid;grid-template-columns:6.25rem minmax(0,1fr);column-gap:var(--a2);color:var(--text);text-decoration:none}
+.zeitleiste-zeit{padding-top:.6rem;font-size:var(--gr-klein);font-weight:700;font-variant-numeric:tabular-nums;color:var(--lernen-tief);text-align:right;white-space:nowrap}
+.zeitleiste-platte{min-height:calc((var(--bis) - var(--von)) * var(--pro-einheit));box-sizing:border-box;padding:.55rem .875rem;border-left:6px solid var(--lernen);border-radius:var(--rund);background:var(--flaeche);font-size:var(--gr-klein);line-height:1.35}
+.zeitleiste li:nth-child(even) .zeitleiste-platte{background:var(--lernen-zart)}
+.zeitleiste-platte b{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+@media (hover:hover) and (pointer:fine){.zeitleiste a:hover b{text-decoration-color:var(--lernen)}}
+.ablauf.ablauf-breit{max-width:none;grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr));align-items:stretch}
+.ablauf.ablauf-breit>li{grid-template-columns:1fr;align-content:start;gap:.4rem;border-top:6px solid var(--lernen)}
+@media print{ /* taste-skill-ignore: Druckfassung */ .blick{display:none}.ablauf.ablauf-breit{grid-template-columns:1fr}.ablauf.ablauf-breit>li{grid-template-columns:7.5rem minmax(0,1fr);border-top:0}}
+/* Landkarte: eine Sammlung auf einen Blick, eine echte Tabelle (Aufgabenkoffer: Aufgaben nach Ziel und Ort; Ideen und Kniffe: Muster nach Phase).
+   Die Spaltenköpfe filtern wie die Chips; ein Name führt zum Eintrag. Unter 1024 px stehen statt der Tabelle die Chips (.filter-schmal). */
+.landkarte table{width:calc(100% + 8px);margin-inline:-4px;border-collapse:separate;border-spacing:4px;table-layout:fixed}
+.landkarte th,.landkarte td{vertical-align:top;text-align:left;padding:0;max-width:none}
+.landkarte .landkarte-ecke{width:clamp(8.5rem,12vw,11.75rem);vertical-align:bottom;background:none;padding:0}
+.landkarte thead th,.landkarte thead td{height:1px} /* damit die Knöpfe einer Zeile gleich hoch sind */
+.landkarte-kopf{width:100%;height:100%;min-height:3.75rem;display:flex;align-items:center;gap:.5rem;padding:.45rem .6rem;hyphens:auto;hyphenate-limit-chars:10 4 4;overflow-wrap:break-word;box-sizing:border-box;border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);font:700 var(--gr-klein)/1.25 var(--schrift);color:var(--text);text-align:left;cursor:pointer;touch-action:manipulation}
+.landkarte-kopf.ist-alle{min-height:44px;font-weight:400}
+.landkarte-kopf[aria-pressed="true"]{background:var(--text);color:var(--flaeche);border-color:var(--text)}
+.landkarte-kopf[aria-pressed="true"]::before{content:"";flex:none;width:.4em;height:.75em;border:solid currentColor;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg)}
+.landkarte tbody th{padding:.55rem .25rem 0 0}
+.landkarte tbody th .koffer-ort{white-space:normal;display:inline-block}
+.landkarte td{background:var(--flaeche);border-radius:var(--rund);padding:.5rem .6rem;hyphens:auto;hyphenate-limit-chars:10 4 4;overflow-wrap:break-word}
+.landkarte td.ist-gewaehlt{background:var(--lernen-zart)}
+.landkarte td.ist-leer{background:none;border:2px dashed var(--linie);color:var(--leise)}
+.landkarte td ul{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+.landkarte td li{max-width:none}
+.landkarte td a{display:block;padding:.2rem 0;font-size:var(--gr-klein);font-weight:700;line-height:1.3;color:var(--text);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+@media (hover:hover) and (pointer:fine){.landkarte td a:hover{text-decoration-color:var(--lernen)}}
+.landkarte-zeile{display:inline-block;font-size:var(--gr-klein);font-weight:700;color:var(--leise)}
+.landkarte caption{caption-side:bottom;text-align:left;padding-top:var(--a1);font-size:var(--gr-klein);color:var(--leise)}
+@media (min-width:1024px){.filter-schmal{display:none}}
+@media (max-width:1023px){.landkarte{display:none}}
+/* Bogen auf einen Blick (Beobachtungsbogen): fünf Fragen sammeln, die sechste entscheidet. Drei je Zeile, die Entscheidung darunter
+   über die ganze Breite – die Nummer nennt die Reihenfolge, keine Linien. */
+.bogen-blick{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a1)}
+.bogen-blick li{max-width:none;min-width:0}
+.bogen-blick a,.bogen-blick-feld{display:flex;align-items:center;gap:.6rem;height:100%;min-height:3rem;box-sizing:border-box;padding:.4rem .7rem;border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);color:var(--text);text-decoration:none;font-size:var(--gr-klein);line-height:1.3}
+.bogen-blick-nr{flex:none;display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;border:3px solid var(--lernen);background:var(--grund);color:var(--lernen);font:700 1rem/1 var(--schrift-titel)}
+.bogen-blick-name{min-width:0;font-weight:700;hyphens:auto;hyphenate-limit-chars:10 4 4;overflow-wrap:break-word}
+.bogen-blick-ende{grid-column:1 / -1}
+.bogen-blick-ende a,.bogen-blick-ende .bogen-blick-feld{flex-wrap:wrap;gap:.5rem .75rem;background:var(--lernen-zart);border-color:var(--lernen)}
+.bogen-blick-wahl{display:flex;flex-wrap:wrap;gap:.4rem}
+.bogen-blick-wahl span{padding:.1rem .55rem;border:2px solid var(--lernen);border-radius:var(--rund);background:var(--flaeche);font-weight:700}
+@media (hover:hover) and (pointer:fine){.bogen-blick a:hover .bogen-blick-name{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.15em}}
+@media (max-width:640px){.bogen-blick{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bogen-breit .bogen-form{max-width:none;grid-template-columns:repeat(auto-fill,minmax(min(100%,32rem),1fr));column-gap:var(--a6);align-items:start}
+.bogen-breit .bogen-form > .eingabe:first-child,.bogen-breit .bogen-form > .probe-frage:last-of-type,.bogen-breit .bogen-form > .weg-steuerung{grid-column:1 / -1}
+.bogen-breit .bogen-form > .eingabe:first-child{max-width:46rem}
+@media print{ /* taste-skill-ignore: Druckfassung */ .bogen-breit .bogen-form{grid-template-columns:1fr}}
 /* Schaubild »Wo in der Stunde das Gerät hilft« (sechs-hebel.html, ab 4.37): vier Spalten, Petrol heißt »am Gerät« – auch als Wort. */
 .ph-bild{margin:0;display:grid;gap:var(--a2)}
 .ph-spalten{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--a2)}

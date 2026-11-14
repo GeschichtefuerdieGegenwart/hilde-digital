@@ -1,11 +1,26 @@
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Nach der Stunde: Wie lief es mit dem Tablet?</h1>
-  <p class="marker">Bereich: Digitaler Unterricht</p>
-  <p class="kopfnotiz">Sechs Fragen, zwei Minuten, direkt nach der Stunde. Du hältst fest, was du beobachtet hast, und entscheidest: so lassen, nachschärfen oder zurück zu Papier. Es gibt keine Note.</p>
+<!-- fahrplan:zeile weit -->
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Nach der Stunde: Wie lief es mit dem Tablet?</h1>
+    <p class="kopfnotiz">Sechs Fragen, zwei Minuten, direkt nach der Stunde. Du hältst fest, was du beobachtet hast, und entscheidest: so lassen, nachschärfen oder zurück zu Papier. Es gibt keine Note.</p>
+  </div>
+  <!-- Ab 4.42: »Auf einen Blick« – der Bogen in einer Zeile. Namen wie die Überschriften der Fragen unten. -->
+  <figure class="blick nicht-am-telefon" aria-labelledby="t-blick">
+    <p class="blick-titel" id="t-blick">Auf einen Blick: fünf Fragen sammeln, die sechste entscheidet</p>
+    <ol class="bogen-blick">
+      <li><a href="#frage-1"><span class="bogen-blick-nr" aria-hidden="true">1</span><span class="bogen-blick-name"><span class="sr-only">Frage 1: </span>Lernen</span></a></li>
+      <li><a href="#frage-2"><span class="bogen-blick-nr" aria-hidden="true">2</span><span class="bogen-blick-name"><span class="sr-only">Frage 2: </span>Lernnachweis</span></a></li>
+      <li><a href="#frage-3"><span class="bogen-blick-nr" aria-hidden="true">3</span><span class="bogen-blick-name"><span class="sr-only">Frage 3: </span>Tablet oder Papier</span></a></li>
+      <li><a href="#frage-4"><span class="bogen-blick-nr" aria-hidden="true">4</span><span class="bogen-blick-name"><span class="sr-only">Frage 4: </span>Ablauf</span></a></li>
+      <li><a href="#frage-5"><span class="bogen-blick-nr" aria-hidden="true">5</span><span class="bogen-blick-name"><span class="sr-only">Frage 5: </span>Aufmerksamkeit</span></a></li>
+      <li class="bogen-blick-ende"><a href="#frage-6"><span class="bogen-blick-nr" aria-hidden="true">6</span><span class="bogen-blick-name"><span class="sr-only">Frage 6: </span>Entscheidung:</span><span class="bogen-blick-wahl"><span>So lassen</span><span>Nachschärfen</span><span>Zurück zu Papier</span></span></a></li>
+    </ol>
+    <figcaption>Du entscheidest selbst. Die Auswertung danach gibt Hinweise, keine Note.</figcaption>
+  </figure>
 </div></section>
 
-<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle bogen">
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle huelle-weit bogen bogen-breit">
   <h2 id="t-bogen" class="sr-only">Beobachtungsbogen</h2>
   <form id="bogen" class="bogen-form" novalidate>
     <div class="eingabe">
@@ -13,7 +28,7 @@
       <input type="text" id="b-was" autocomplete="off" placeholder="z. B. Zeitleiste ordnen in der Erarbeitung">
     </div>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-1">
       <legend><span class="leise klein">Frage 1 von 6 · Lernen</span><br>Haben die Lernenden das Entscheidende selbst getan – abrufen, erklären, ordnen, begründen?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="lernhandlung" value="ja"><span>Ja</span></label>
@@ -22,7 +37,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-2">
       <legend><span class="leise klein">Frage 2 von 6 · Lernnachweis</span><br>Konnten die Lernenden es danach ohne Gerät und ohne Hilfe – zum Beispiel bei einer kurzen Aufgabe am Ende?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="nachweis" value="ja"><span>Ja</span></label>
@@ -32,7 +47,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-3">
       <legend><span class="leise klein">Frage 3 von 6 · Tablet oder Papier</span><br>Ging mit dem Tablet etwas besser als auf Papier?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="mehrwert" value="ja"><span>Ja</span></label>
@@ -44,7 +59,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-4">
       <legend><span class="leise klein">Frage 4 von 6 · Ablauf</span><br>Wie viel Zeit ging für Technik verloren – Anmelden, Laden, Suchen?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="technik" value="kaum"><span>Kaum</span></label>
@@ -53,7 +68,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-5">
       <legend><span class="leise klein">Frage 5 von 6 · Aufmerksamkeit</span><br>Waren die Lernenden bei der Sache?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="aufmerksamkeit" value="ja"><span>Ja</span></label>
@@ -66,7 +81,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-6">
       <legend><span class="leise klein">Frage 6 von 6 · Entscheidung</span><br>Wie geht es weiter?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="entscheidung" value="lassen"><span>So lassen</span></label>
@@ -95,7 +110,7 @@
   <noscript><p class="box">Ohne JavaScript kannst du den Bogen ausdrucken und von Hand ausfüllen.</p></noscript>
 </div></section>
 
-<section class="band band-flaeche" aria-labelledby="t-lernende"><div class="huelle">
+<section class="band band-flaeche" aria-labelledby="t-lernende"><div class="huelle huelle-weit">
   <h2 id="t-lernende">Willst du die Lernenden fragen?</h2>
   <p>Zwei Fragen genügen. Die Lernenden antworten auf einem Zettel, ohne Namen.</p>
   <ol class="zwei-fragen">
@@ -104,6 +119,7 @@
   </ol>
   <p class="leise klein">Die Antworten zeigen dir, wie die Stunde bei den Lernenden ankam. Auch sie sind kein Nachweis der Wirkung.</p>
 </div></section>
+<!-- fahrplan:fuss weit -->
 </div>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/regeln.js"></script>

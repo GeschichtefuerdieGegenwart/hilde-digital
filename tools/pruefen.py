@@ -382,14 +382,26 @@ def pruefe_film(fehler):
                 fehler.append(f"Film: Zahl passt nicht zu den Daten – erwartet {was} (src/film/)")
 
 
+# ab 4.42: Seiten, deren »Auf einen Blick« Wörter aus einem Skript zeigt (Schritte, Felder des Ergebnisses)
+BLICK_AUS_SKRIPT = {"passt.html": "assets/passt.js", "fortbildungsbogen.html": "assets/fortbildungsbogen.js"}
+
+
 def pruefe_fahrplan(fehler):
     """ab Version 4.41: Fahrplan der Bereichsseite »Digitaler Unterricht« – vier Phasen, jede ein <details>.
     Die Zahl im Kopf (»7 Werkzeuge«) muss zu den Links in der Phase passen, und jedes Werkzeug steht nur einmal
-    auf der Seite (eine Struktur, keine doppelten Links; One-Order Rule)."""
-    html = (WURZEL / "src" / "unterricht.html").read_text(encoding="utf-8")
+    auf der Seite (eine Struktur, keine doppelten Links; One-Order Rule).
+    Ab 4.42 kommen die Werkzeuge aus src/fahrplan.json (tools/fahrplan.py): geprüft wird die Seite, wie sie gebaut wird,
+    dazu, dass jede Werkzeugseite die Zeile oben und den Fahrplan unten trägt – und nur sie."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("fahrplan", WURZEL / "tools" / "fahrplan.py")
+    fp = importlib.util.module_from_spec(spec); spec.loader.exec_module(fp)
+    daten = fp.laden()
+    html = fp.einsetzen((WURZEL / "src" / "unterricht.html").read_text(encoding="utf-8"), "unterricht.html", daten)
     phasen = re.findall(r'<details class="fahrplan-platte">([\s\S]*?)</details>', html)
     if len(phasen) != 4:
         fehler.append(f"unterricht.html: Fahrplan braucht vier Phasen, gefunden {len(phasen)}")
+    if re.findall(r'id="phase-([a-z]+)"', html) != [q["id"] for q in daten["phasen"]]:
+        fehler.append("unterricht.html: die Phasen der Bereichsseite und von src/fahrplan.json stimmen nicht überein")
     alle = []
     for nr, phase in enumerate(phasen, 1):
         zahl = re.search(r'class="fahrplan-zahl">(\d+) Werkzeug', phase)
@@ -407,6 +419,44 @@ def pruefe_fahrplan(fehler):
             continue
         if f'href="{ziel}"' in rest:
             fehler.append(f"unterricht.html: {ziel} steht außerhalb des Fahrplans noch einmal (eine Struktur)")
+    # ab 4.42: Zeile und Fahrplan auf jeder Werkzeugseite (Weg B der Recherche »Werkzeugseiten: Wo bin ich?«)
+    seiten = {fp.seite(w["href"]) for w in daten["werkzeuge"] if "#" not in w["href"]}
+    seiten |= {u for w in daten["werkzeuge"] for u in w.get("unterseiten", [])}
+    for w in daten["werkzeuge"]:
+        if not (WURZEL / "src" / fp.seite(w["href"])).exists():
+            fehler.append(f"src/fahrplan.json: {w['href']} gibt es nicht")
+    for datei in sorted(p.name for p in (WURZEL / "src").glob("*.html")):
+        quelle = (WURZEL / "src" / datei).read_text(encoding="utf-8")
+        zeilen, fuesse = len(re.findall(r"<!-- fahrplan:zeile( weit)? -->", quelle)), len(re.findall(r"<!-- fahrplan:fuss( weit)? -->", quelle))
+        if datei in seiten and (zeilen, fuesse) != (1, 1):
+            fehler.append(f"src/{datei}: Werkzeugseite braucht genau eine Zeile oben und einen Fahrplan unten (gefunden {zeilen} und {fuesse})")
+        if datei not in seiten and (zeilen or fuesse):
+            fehler.append(f"src/{datei}: trägt Fahrplan-Zeichen, steht aber nicht in src/fahrplan.json")
+        if datei in seiten and re.search(r'class="marker">[^<]*Bereich: Digitaler Unterricht', quelle):
+            fehler.append(f"src/{datei}: »Bereich: Digitaler Unterricht« steht schon in der Zeile oben")
+        # ab 4.42: »Auf einen Blick« zeigt dieselben Werte wie die Seite
+        if 'class="zeitleiste' in quelle:
+            blick = [(int(a), int(b)) for a, b in re.findall(r"--von:(\d+);--bis:(\d+)", quelle)]
+            minuten = [(int(a), int(b)) for a, b in re.findall(r'class="ablauf-zeit">(\d+)–(\d+) Min\.', quelle)]
+            wochen = [(int(w) - 1, int(w)) for w in re.findall(r'class="ablauf-zeit">Woche (\d+)</span>', quelle)]
+            if blick != (minuten or wochen):
+                fehler.append(f"src/{datei}: Zeitleiste {blick} und Ablauf {minuten or wochen} nennen verschiedene Zeiten")
+            namen = [re.sub(r"<[^>]+>", "", x) for x in re.findall(r'<span class="zeitleiste-platte">(.*?)</span></a>', quelle)]
+            titel = [x.replace(": ", " · ") for x in re.findall(r'class="ablauf-zeit">[^<]+</span><div><h3>([^<]+)</h3>', quelle)]
+            if namen != titel:
+                fehler.append(f"src/{datei}: Zeitleiste {namen} und Ablauf {titel} heißen verschieden")
+        if datei in BLICK_AUS_SKRIPT:  # Überblick über Schritte oder Ergebnis, die ein Skript zeichnet: dieselben Wörter
+            skript = (WURZEL / BLICK_AUS_SKRIPT[datei]).read_text(encoding="utf-8")
+            blick = quelle[quelle.index('<figure class="blick'):quelle.index("</figure>")]
+            namen = re.findall(r'class="fahrplan-karte-feld">([^<]+)<', blick) + re.findall(r'<span class="sr-only">Schritt \d: </span>([^<]+)</span>', blick)
+            fehlt = [n for n in namen if f'"{n}' not in skript and f">{n}<" not in skript]
+            if not namen or fehlt:
+                fehler.append(f"src/{datei}: »Auf einen Blick« nennt, was {BLICK_AUS_SKRIPT[datei]} nicht kennt: {fehlt or 'nichts gefunden'}")
+        if 'class="bogen-blick"' in quelle:
+            blick = re.findall(r'<span class="sr-only">Frage \d: </span>([^<:]+):?</span>', quelle)
+            fragen = re.findall(r"Frage \d von \d · ([^<]+)</span>", quelle)
+            if blick != fragen:
+                fehler.append(f"src/{datei}: Überblick {blick} und Fragen {fragen} heißen verschieden")
 
 
 def main():

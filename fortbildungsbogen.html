@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Mein Fortbildungsbogen – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=7afb121e">
+<link rel="stylesheet" href="assets/hilde.css?v=5cf929e4">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -19,13 +19,31 @@
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Mein Fortbildungsbogen</h1>
-  <p class="marker">Voranalyse vor einer Fortbildung oder Beratungsstunde · Bereich: Digitaler Unterricht</p>
-  <p class="kopfnotiz">Kurze Fragen über dich, KI und deinen Unterricht mit Tablets, eine nach der anderen – etwa zwölf Minuten. Damit die Leitung der Fortbildung bei dir anfängt und nicht irgendwo. Am Ende sicherst du deinen Bogen als PDF; vorher verlässt nichts dein Gerät.</p>
+<nav class="ort-zeile" aria-label="Wo du bist"><div class="huelle huelle-weit"><ol><li class="ort-weg"><a href="unterricht.html#fahrplan">Fahrplan Digitaler Unterricht</a></li><li><a href="unterricht.html#phase-grundlagen">1 · Grundlagen</a> <span class="ort-wann">(zuerst)</span></li></ol></div></nav>
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Mein Fortbildungsbogen</h1>
+    <p class="marker">Voranalyse vor einer Fortbildung oder Beratungsstunde</p>
+    <p class="kopfnotiz">Kurze Fragen über dich, KI und deinen Unterricht mit Tablets, eine nach der anderen – etwa zwölf Minuten. Damit die Leitung der Fortbildung bei dir anfängt und nicht irgendwo.</p>
+  </div>
+  <!-- Ab 4.42: »Auf einen Blick« – die sechs Schritte so, wie sie im Bogen oben stehen werden (Same-Face). Namen wie SCHRITTE in
+       assets/fortbildungsbogen.js (tools/pruefen.py vergleicht). -->
+  <figure class="blick" aria-labelledby="t-blick">
+    <p class="blick-titel" id="t-blick">Auf einen Blick: sechs Schritte, dann dein Bogen</p>
+    <ol class="schritte schritte-vorschau">
+      <li><span class="ohne"><span class="nr" aria-hidden="true">1</span><span><span class="sr-only">Schritt 1: </span>KI bisher</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">2</span><span><span class="sr-only">Schritt 2: </span>Tablet bisher</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">3</span><span><span class="sr-only">Schritt 3: </span>Deine Arbeitsweise</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">4</span><span><span class="sr-only">Schritt 4: </span>Deine Vorstellungen</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">5</span><span><span class="sr-only">Schritt 5: </span>Deine Wünsche</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">6</span><span><span class="sr-only">Schritt 6: </span>Deine Stunde</span></span></li>
+      <li class="schritte-ziel"><span class="ohne">dein Bogen als PDF, mit bis zu drei nächsten Schritten</span></li>
+    </ol>
+    <figcaption>Kein Richtig, kein Falsch, keine Bewertung. Am Ende sicherst du deinen Bogen als PDF; vorher verlässt nichts dein Gerät.</figcaption>
+  </figure>
 </div></section>
 
-<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle">
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle huelle-weit">
   <h2 id="t-bogen" class="sr-only">Der Bogen</h2>
 
   <div class="mfb-eroeffnung" id="mfb-eroeffnung" data-takt="0" hidden>
@@ -69,6 +87,27 @@
   <p class="leise klein speicherhinweis">Deine Kreuze bleiben nur in diesem Browser; die Textfelder werden nicht gespeichert. Niemand sonst sieht etwas – bis du den Bogen als PDF weitergibst. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen und neu beginnen</button></p>
   <noscript><p class="box">Der Fortbildungsbogen braucht JavaScript.</p></noscript>
 </div></section>
+<nav class="fahrplan-fuss" aria-label="Fahrplan Digitaler Unterricht"><div class="huelle huelle-weit fahrplan-fuss-innen">
+  <div class="fahrplan-fuss-auch">
+    <h2 class="fahrplan-fuss-titel">Auch bei den Grundlagen</h2>
+    <ul class="fahrplan-werkzeuge">
+      <li><a href="sechs-hebel.html"><b>Wann funktioniert digitaler Unterricht?</b><span class="fahrplan-text">Sechs Dinge kann das Gerät besser als Papier. Dazu fünf Sätze, die in jeder Stunde gelten.</span></a></li>
+      <li><a href="sechs-hebel-film.html"><b>Film: Was das Gerät kann</b><span class="fahrplan-text">Die sechs Prinzipien in zwei Minuten, ohne Ton.</span></a></li>
+      <li><a href="passt.html"><b>Was passt gerade zu mir?</b> <span class="fahrplan-fuer">für dich</span><span class="fahrplan-text">Ein paar kurze Fragen zu deinem Vorhaben. Du bekommst einen passenden Einstieg.</span></a></li>
+    </ul>
+  </div>
+  <div class="fahrplan-fuss-plan">
+    <h2 class="fahrplan-fuss-titel">Der Fahrplan</h2>
+    <ol class="fahrplan-klein">
+      <li class="ist-vorspann ist-hier"><a href="unterricht.html#phase-grundlagen" aria-current="location"><span class="fahrplan-klein-nr" aria-hidden="true">1</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">1 · </span>Grundlagen</span><b class="fahrplan-klein-hier">Du bist hier</b></span></a></li>
+      <li class="ist-zart ist-ring-start"><a href="unterricht.html#phase-erstellen"><span class="fahrplan-klein-nr" aria-hidden="true">2</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">2 · </span>Digitalen Unterricht erstellen</span><span class="fahrplan-klein-wann">vor der Stunde</span></span></a></li>
+      <li class="ist-ring-mitte"><a href="unterricht.html#phase-unterrichten"><span class="fahrplan-klein-nr" aria-hidden="true">3</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">3 · </span>Unterrichten</span><span class="fahrplan-klein-wann">in der Stunde</span></span></a></li>
+      <li class="ist-zart ist-ring-ende"><a href="unterricht.html#phase-nach"><span class="fahrplan-klein-nr" aria-hidden="true">4</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">4 · </span>Nach der Stunde</span><span class="fahrplan-klein-wann">nach der Stunde</span></span></a></li>
+    </ol>
+    <p class="fahrplan-ring"><span class="fahrplan-ring-pfeil" aria-hidden="true">↑</span> Nach der Stunde geht es mit der nächsten Stunde wieder bei 2 weiter.</p>
+    <p class="fahrplan-fuss-alle"><a class="textlink" href="unterricht.html#fahrplan">Alle Werkzeuge im Fahrplan <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></nav>
 </div>
 <script src="assets/daten/taxonomien.js?v=eb73b10b"></script>
 <script src="assets/regeln.js?v=fb711ed9"></script>

@@ -419,6 +419,12 @@
   function amEnde() { halten(); ende.hidden = false; var b = ende.querySelector("button"); if (b) b.focus({ preventScroll: true }); }
 
   los.addEventListener("click", function () { oeffnen(true); });
+  /* Ab 4.42: »Film starten« auch im Kopf – am Beamer 1280 × 720 passt die Bühne nicht ganz in den ersten Bildschirm (Beamer Rule). */
+  var losKopf = document.getElementById("hf-los-kopf");
+  if (losKopf) {
+    losKopf.hidden = false;
+    losKopf.addEventListener("click", function () { oeffnen(true); rahmen.scrollIntoView({ block: "start" }); });
+  }
   nochmal.addEventListener("click", function () { springe(ruhig() ? standbildZeit(0) : 0); if (!ruhig()) spielen(); buehne.focus({ preventScroll: true }); });
   halt.addEventListener("click", function () { if (laeuft) halten(); else spielen(); });
   regler.addEventListener("input", function () {

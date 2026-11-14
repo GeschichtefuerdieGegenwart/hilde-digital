@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Tablet-Phasen gut führen – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=7afb121e">
+<link rel="stylesheet" href="assets/hilde.css?v=5cf929e4">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -19,14 +19,33 @@
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Tablet-Phasen gut führen</h1>
-  <p class="marker">Bereich: Digitaler Unterricht</p>
-  <p class="detail-kurz">Tablets bringen Lernchancen – und Ablenkung. Sechs Regeln helfen, dass eine Tablet-Phase dem Lernen dient. Unten findest du eine Karte zum Ausdrucken für die Tafel.</p>
-  <p class="kopfnotiz"><a class="knopf" href="#t-karte">Zur Karte für die Tafel <span aria-hidden="true">↓</span></a></p>
+<nav class="ort-zeile" aria-label="Wo du bist"><div class="huelle huelle-weit"><ol><li class="ort-weg"><a href="unterricht.html#fahrplan">Fahrplan Digitaler Unterricht</a></li><li><a href="unterricht.html#phase-unterrichten">3 · Unterrichten</a> <span class="ort-wann">(in der Stunde)</span></li></ol></div></nav>
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Tablet-Phasen gut führen</h1>
+    <p class="detail-kurz">Tablets bringen Lernchancen – und Ablenkung. Sechs Regeln helfen, dass eine Tablet-Phase dem Lernen dient. Unten findest du eine Karte zum Ausdrucken für die Tafel.</p>
+    <p class="kopfnotiz"><a class="knopf" href="#t-karte">Zur Karte für die Tafel <span aria-hidden="true">↓</span></a></p>
+  </div>
+  <!-- Ab 4.42: »Auf einen Blick« – die Karte für die Tafel, wie im Fahrplan der Bereichsseite (Same-Face). Text wie die Karte unten. -->
+  <figure class="blick fahrplan-karte blick-karte" aria-labelledby="t-blick">
+    <p class="blick-titel" id="t-blick">Auf einen Blick: die Karte für die Tafel</p>
+    <div class="fahrplan-karte-blatt" aria-hidden="true">
+      <p class="fahrplan-karte-titel">Tablet-Phase</p>
+      <p class="fahrplan-karte-feld">Unser Auftrag</p>
+      <p class="fahrplan-karte-feld">Zeit bis</p>
+      <p class="fahrplan-karte-feld">Wir nutzen nur</p>
+      <ul class="fahrplan-karte-regeln">
+        <li>Alle anderen Apps bleiben zu.</li>
+        <li>Fertig? Tablet umdrehen.</li>
+        <li>Danach: Besprechung in der Klasse.</li>
+      </ul>
+    </div>
+    <figcaption>Vorschau, quer auf A4. Unten trägst du Auftrag, Zeit und App ein – oder druckst sie leer.</figcaption>
+  </figure>
 </div></section>
 
-<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-regeln"><div class="huelle stapel-gross">
+<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-regeln"><div class="huelle huelle-weit stapel-gross">
+  <div class="nebeneinander">
   <div class="stapel">
     <h2 id="t-regeln">Sechs Regeln für jede Tablet-Phase</h2>
     <ol class="regel-liste">
@@ -58,6 +77,9 @@
     <p class="leise klein">Die letzten drei Stolpersteine stammen aus Erprobungen am 8. November 2026 (Politik-Werkstatt, GGK-Labor). Persönliche Beobachtungen, kein Wirksamkeitsnachweis.</p>
   </div>
 
+  </div>
+
+  <div class="nebeneinander">
   <div class="stapel">
     <h2 id="t-vorschlag">Ein Vorschlag, noch nicht erprobt</h2>
     <p class="mass"><b>Erst ohne Gerät erinnern.</b> Bevor die Tablet-Phase beginnt: drei kurze Fragen zur letzten Stunde, im Kopf oder auf dem Zettel, erst dann aufdecken. Abrufen vor Wiederlesen hilft dem Behalten; am Gerät wird es sonst leicht übersprungen. In der Politik-Werkstatt eingebaut, Rückblick Ende November 2026.</p>
@@ -73,9 +95,10 @@
       <li>Ablenkende Gedanken auf einem Zettel parken und später erledigen.</li>
     </ul>
   </div>
+  </div>
 </div></section>
 
-<section class="band band-flaeche" aria-labelledby="t-karte"><div class="huelle stapel-gross">
+<section class="band band-flaeche" aria-labelledby="t-karte"><div class="huelle huelle-weit stapel-gross">
   <div class="stapel">
     <h2 id="t-karte">Karte für die Tafel</h2>
     <p class="mass">Trag Auftrag, Zeit und App ein und drucke die Karte quer auf A4. Du kannst sie auch leer drucken und von Hand ausfüllen. Deine Eingaben werden nicht gespeichert.</p>
@@ -96,6 +119,19 @@
   <div class="weg-steuerung"><button type="button" class="knopf" data-drucken="nur-karte">Karte drucken</button></div>
   <p class="leise klein">Nach der Stunde: <a class="textlink" href="beobachtung.html">Beobachtungsbogen ausfüllen <span aria-hidden="true">→</span></a></p>
 </div></section>
+<nav class="fahrplan-fuss" aria-label="Fahrplan Digitaler Unterricht"><div class="huelle huelle-weit fahrplan-fuss-innen">
+  <div class="fahrplan-fuss-plan">
+    <h2 class="fahrplan-fuss-titel">Der Fahrplan</h2>
+    <ol class="fahrplan-klein">
+      <li class="ist-vorspann"><a href="unterricht.html#phase-grundlagen"><span class="fahrplan-klein-nr" aria-hidden="true">1</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">1 · </span>Grundlagen</span><span class="fahrplan-klein-wann">zuerst</span></span></a></li>
+      <li class="ist-zart ist-ring-start"><a href="unterricht.html#phase-erstellen"><span class="fahrplan-klein-nr" aria-hidden="true">2</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">2 · </span>Digitalen Unterricht erstellen</span><span class="fahrplan-klein-wann">vor der Stunde</span></span></a></li>
+      <li class="ist-ring-mitte ist-hier"><a href="unterricht.html#phase-unterrichten" aria-current="location"><span class="fahrplan-klein-nr" aria-hidden="true">3</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">3 · </span>Unterrichten</span><b class="fahrplan-klein-hier">Du bist hier</b></span></a></li>
+      <li class="ist-zart ist-ring-ende"><a href="unterricht.html#phase-nach"><span class="fahrplan-klein-nr" aria-hidden="true">4</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">4 · </span>Nach der Stunde</span><span class="fahrplan-klein-wann">nach der Stunde</span></span></a></li>
+    </ol>
+    <p class="fahrplan-ring"><span class="fahrplan-ring-pfeil" aria-hidden="true">↑</span> Nach der Stunde geht es mit der nächsten Stunde wieder bei 2 weiter.</p>
+    <p class="fahrplan-fuss-alle"><a class="textlink" href="unterricht.html#fahrplan">Alle Werkzeuge im Fahrplan <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></nav>
 </div>
 <script src="assets/druck.js?v=474b771e"></script>
 
