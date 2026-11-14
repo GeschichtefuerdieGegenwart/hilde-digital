@@ -1321,7 +1321,7 @@ def main():
         # Film auf der Startseite (ab Version 4.16, Ablauf ab 4.17)
         f = neue_seite(b)
         f.goto(url("index.html") + "?film=1"); f.wait_for_timeout(400)
-        pruefe(f.locator("#film").is_visible() and f.evaluate("document.activeElement.hasAttribute('data-film-weg')"), "Film: läuft mit ?film=1, der Fokus liegt auf »Überspringen«")
+        pruefe(f.locator("#film").is_visible() and f.evaluate("document.activeElement.hasAttribute('data-film-halt')"), "Film: läuft mit ?film=1, der Fokus liegt auf »Anhalten« (ab 4.40; vorher »Überspringen«: die Leertaste soll anhalten, nicht schließen)")
         f.wait_for_timeout(1500)
         pruefe(f.evaluate("getComputedStyle(document.querySelector('.film-buehne .s1 .e')).opacity") != "0" and "Viele Klassen" in f.inner_text(".film-buehne .s1"), "Film: der Auftakt erscheint (ab 4.34: neun Kapitel aus dem Pitch-Film)")
         pruefe(f.locator(".film-buehne .s").count() == 9 and "@" not in f.inner_text(".film-buehne"), "Film: neun Kapitel, keine Kontaktadresse")
@@ -1331,6 +1331,40 @@ def main():
         pruefe(f.evaluate("window.KiduFilm.kapitel.every(k=>typeof k.bild==='number') && window.KiduFilm.kapitel.length===9"), "Film: jedes Kapitel nennt die Zeit seines Standbilds (4.35)")
         pruefe(all(w in f.inner_text(".film-buehne .s8") for w in ("1 Wählen", "2 Auszählen", "3 Rückmeldung", "4 Koalition", "Prinzip: Variieren", "Prinzip: Rückmelden", "kein Wirksamkeitsnachweis")), "Film: die vier Schritte der Politik-Werkstatt und die Prinzipien stehen im Bild (4.35)")
         pruefe(f.evaluate("window.KiduFilm.ENDE") == 170 and "knapp 3 Minuten" in f.text_content("[data-film-start]") and "erprobt" in f.inner_text(".film-buehne .s7"), "Film: 170 Sekunden, der Knopf nennt die Länge, die Lernschleife nennt die Erprobung (4.35)")
+        # ab 4.40: Kapitelleiste, Pfeiltasten, Leertaste, Ansage, Text, ruhende Seite (wie der Erklärfilm »Was das Gerät kann«)
+        pruefe(f.locator(".film-kapitel button").count() == 9 and f.get_attribute(".film-kapitel button[data-kapitel='2']", "aria-label") == "Kapitel 3: Zwei Säulen"
+               and f.get_attribute(".film-buehne", "aria-hidden") == "true", "Film: Kapitelleiste mit neun Kapiteln, die Bühne ist für Hilfstechnik verborgen (4.40)")
+        pruefe(f.evaluate("document.querySelector('header').inert && document.querySelector('.start').inert") and f.get_attribute("#film", "role") == "dialog",
+               "Film: solange er offen ist, ruht die Seite dahinter (4.40)")
+        f.evaluate("window.KiduFilm.springe(1)"); f.wait_for_timeout(200)
+        f.keyboard.press("ArrowRight"); f.wait_for_timeout(250)
+        pruefe(12 <= f.evaluate("window.KiduFilm.zeit()") < 13.5 and f.get_attribute(".film-kapitel button[data-kapitel='1']", "aria-current") == "true"
+               and "2 / 9 · Frage" in f.inner_text("[data-film-ort]") and "Kapitel 2 von 9" in f.text_content("[data-film-ansage]"),
+               "Film: Pfeil nach rechts springt ins nächste Kapitel, »Du bist hier« und die Ansage folgen (4.40)")
+        f.evaluate("window.KiduFilm.springe(100)"); f.wait_for_timeout(200)
+        f.keyboard.press("ArrowRight"); f.wait_for_timeout(250)
+        pruefe(106 <= f.evaluate("window.KiduFilm.zeit()") < 107.5 and "Politik-Werkstatt" in f.inner_text("[data-film-ort]"),
+               "Film: im langen Kapitel 8 springen die Pfeiltasten auch zu den Abschnitten (4.40)")
+        f.click(".film-kapitel button[data-kapitel='4']"); f.wait_for_timeout(250)
+        pruefe(52 <= f.evaluate("window.KiduFilm.zeit()") < 53.5 and f.inner_text("[data-film-halt]") == "Anhalten", "Film: Tippen auf ein Kapitel springt an seinen Anfang (4.40)")
+        bx = f.locator(".film-kapitel").bounding_box(); y = bx["y"] + bx["height"] / 2
+        f.mouse.move(bx["x"] + 10, y); f.mouse.down(); f.mouse.move(bx["x"] + bx["width"] * 0.3, y, steps=5); f.mouse.move(bx["x"] + bx["width"] * 0.7, y, steps=5); f.mouse.up(); f.wait_for_timeout(250)
+        pruefe(110 < f.evaluate("window.KiduFilm.zeit()") < 130 and f.inner_text("[data-film-halt]") == "Anhalten" and f.get_attribute(".film-kapitel button[data-kapitel='7']", "aria-current") == "true",
+               "Film: Ziehen in der Kapitelleiste spult, danach läuft er weiter (4.40)")
+        f.mouse.click(640, 200); f.keyboard.press(" "); f.wait_for_timeout(150)
+        z1 = f.evaluate("window.KiduFilm.zeit()"); f.wait_for_timeout(600)
+        pruefe(f.inner_text("[data-film-halt]") == "Weiter" and f.evaluate("window.KiduFilm.zeit()") == z1, "Film: die Leertaste hält an (4.40)")
+        f.keyboard.press(" "); f.wait_for_timeout(150)
+        f.click("[data-film-text]"); f.wait_for_timeout(250)
+        pruefe(f.locator(".film-text").is_visible() and f.locator(".film-text-liste li").count() == 9 and f.inner_text("[data-film-halt]") == "Weiter"
+               and "Unterrichtsbeispiele, analog und digital" in f.inner_text(".film-text") and f.get_attribute("[data-film-text]", "aria-expanded") == "true",
+               "Film: »Als Text« zeigt alle neun Kapitel zum Lesen und hält den Film an (4.40)")
+        f.keyboard.press("Escape"); f.wait_for_timeout(250)
+        pruefe(f.locator(".film-text").is_hidden() and f.locator("#film").is_visible(), "Film: Esc schließt zuerst den Text, nicht den Film (4.40)")
+        f.click("[data-film-text]"); f.wait_for_timeout(200)
+        f.locator(".film-text-liste li").nth(7).locator("button").click(); f.wait_for_timeout(250)
+        pruefe(95 <= f.evaluate("window.KiduFilm.zeit()") < 96.5 and f.locator(".film-text").is_hidden() and f.inner_text("[data-film-halt]") == "Anhalten",
+               "Film: »Ab hier ansehen« springt aus dem Text in den Film (4.40)")
         f.evaluate("window.KiduFilm.springe(1)"); f.wait_for_timeout(300)
         f.click("[data-film-halt]"); t1 = f.inner_text("[data-film-halt]")
         pruefe(t1 == "Weiter", "Film: lässt sich anhalten")
@@ -1348,6 +1382,8 @@ def main():
         pruefe(f.locator("#film").is_visible(), "Film: »Film ansehen« spielt ihn wieder ab")
         f.click(".film-steuerung [data-film-weg]"); f.wait_for_timeout(400)
         pruefe(f.locator("#film").is_hidden(), "Film: »Überspringen« schließt ihn")
+        pruefe(not f.evaluate("document.querySelector('header').inert || document.querySelector('.start').inert") and f.evaluate("document.activeElement.hasAttribute('data-film-start')"),
+               "Film: nach dem Schließen ist die Seite wieder bedienbar, der Fokus steht auf »Film ansehen« (4.40)")
         pruefe(not f.konsole and not f.extern, f"Film: keine Konsolenfehler, nichts aus dem Netz {f.konsole} {f.extern}")
         o = b.new_context(); op = o.new_page(); op.add_init_script("Object.defineProperty(navigator,'webdriver',{get:()=>false})")
         op.goto(url("index.html")); op.wait_for_timeout(400)
@@ -1365,10 +1401,26 @@ def main():
         pruefe(r.inner_text("[data-film-halt]") == "Nächstes Bild" and "Schnellhefter" in r.inner_text(".film-buehne .s1"), "Film: bei weniger Bewegung Standbilder mit »Nächstes Bild« (4.34)")
         for _ in range(2): r.click("[data-film-halt]")
         pruefe(abs(r.evaluate("window.KiduFilm.zeit()") - 35.0) < 0.01, "Film: das Standbild zu den zwei Säulen zeigt den Weitwinkel, nicht das Ende der Kamerafahrt (4.35)")
-        for _ in range(6): r.click("[data-film-halt]")
+        r.click(".film-kapitel button[data-kapitel='7']"); r.wait_for_timeout(250)
+        pruefe(abs(r.evaluate("window.KiduFilm.zeit()") - 105.2) < 0.01 and len(r.evaluate("window.KiduFilm.bilder")) == 13 and "Bild 8 von 13" in r.inner_text("[data-film-zeit]"),
+               "Film: bei weniger Bewegung zeigt Kapitel 8 fünf Standbilder, die Leiste springt zum ersten (4.40)")
+        r.click(".film-kapitel button[data-kapitel='2']"); r.wait_for_timeout(250)
+        for _ in range(10): r.click("[data-film-halt]")
         r.wait_for_timeout(300)
-        pruefe(r.locator(".film-ende").is_visible(), "Film: nach dem neunten Standbild das Ende")
+        pruefe(r.locator(".film-ende").is_visible(), "Film: nach dem letzten Standbild das Ende")
         r.context.close()
+        h = neue_seite(b, viewport={"width": 390, "height": 844})
+        h.goto(url("index.html")); h.wait_for_timeout(200); h.click("[data-film-start]"); h.wait_for_timeout(400)
+        pruefe(h.locator(".film-hochkant").is_visible() and h.locator("[data-film-text]").is_visible() and h.evaluate("document.documentElement.scrollWidth") <= 390,
+               "Film: auf dem Telefon hochkant der Hinweis »Dreh das Gerät quer … oder lies ihn als Text«, nichts ragt heraus (4.40)")
+        h.context.close()
+        w = neue_seite(b)
+        w.goto(url("index.html")); w.wait_for_timeout(200)
+        w.evaluate("document.documentElement.setAttribute('data-bewegung','weniger')")  # wie der Schalter im Fuß, nach dem Laden
+        w.click("[data-film-start]"); w.wait_for_timeout(300)
+        pruefe(w.inner_text("[data-film-halt]") == "Nächstes Bild" and "Standbilder" in w.inner_text("[data-film-bedienung]"),
+               "Film: »Weniger Bewegung« gilt auch, wenn der Schalter erst nach dem Laden umgelegt wurde (4.40)")
+        w.context.close()
         b.close()
     print(f"\n{'Alle Browser-Tests bestanden' if not fehler else str(len(fehler)) + ' Fehler'}")
     sys.exit(1 if fehler else 0)

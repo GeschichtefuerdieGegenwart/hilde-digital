@@ -144,6 +144,9 @@ def main():
     import importlib.util
     spec = importlib.util.spec_from_file_location("werkzeugkiste", WURZEL / "tools" / "werkzeugkiste.py")
     wk = importlib.util.module_from_spec(spec); spec.loader.exec_module(wk); wk.main()
+    # ab Version 4.40: die Bühne des Films auf der Startseite aus src/film/ (tools/film.py)
+    spec = importlib.util.spec_from_file_location("film", WURZEL / "tools" / "film.py")
+    fm = importlib.util.module_from_spec(spec); spec.loader.exec_module(fm); fm.main()
     for alt in ("lernen.html", "beispiele.html"):  # umbenannt in tablets.html und showroom.html
         (WURZEL / alt).unlink(missing_ok=True)
     for datei, titel, aktiv in SEITEN:
