@@ -15,6 +15,8 @@ Ab Version 4.25: Methodenkoffer, Kurzfassungen aus den Skills in den Aufträgen,
 Ab Version 4.39: Input-First (nach dem Laden läuft nichts von selbst, außer Passer und Platten einmal je Sitzung;
 Leporello, Abspielen »Vom Blatt zum Tablet« und Zeichnen der Stundenlinie gestrichen) und Screen-Width
 (Startseite, KI-Training, Digitaler Unterricht und Unterrichtsbeispiele nutzen bei 1920 px die Breite, der Kopf folgt).
+Ab Version 4.41: Fahrplan der Bereichsseite »Digitaler Unterricht« – vier aufklappbare Phasen, Flächen im Wechsel, Ringlinie
+von 4 zurück zu 2, »Alle Werkzeuge zeigen«, Sprungmarken, Druck, ohne Skript, Beamer, iPad quer, Telefon, zwei Tipps zu jedem Werkzeug.
 """
 import re
 import os
@@ -83,11 +85,12 @@ def main():
         hoehe = pg.locator(".galerie-zugang").bounding_box()
         pruefe(hoehe and hoehe["y"] + hoehe["height"] <= 720, "Start: beide Einstiege und die Galerie ohne Scrollen bei 1280 × 720")
         pg.click('a.wahlflaeche[href="unterricht.html"]'); pg.wait_for_url("**/unterricht.html")
-        reg = [a.get_attribute("href") for a in pg.locator(".register a").all()]
-        titel = [x.strip() for x in pg.locator(".phasen-weg .phase-titel").all_inner_texts()]
-        pruefe(titel == ["Grundlagen", "Digitalen Unterricht erstellen", "Unterrichten", "Nach der Stunde"] and pg.locator(".phasen-weg > li").count() == 4, f"Digitaler Unterricht (4.36): vier Phasen in dieser Reihenfolge {titel}")
-        pruefe(pg.locator(".werkzeuge.tueren .werkzeug").count() == 2 and "Unterricht neu planen" in pg.inner_text(".werkzeuge.tueren") and "Bisherigen Unterricht digitalisieren" in pg.inner_text(".werkzeuge.tueren") and pg.locator('#phase-grundlagen a[href="sechs-hebel.html"]').count() == 1 and reg == ["sechs-hebel.html", "sechs-hebel-film.html", "passt.html", "fortbildungsbogen.html", "aufgabenkoffer.html", "muster.html", "werkzeugkiste.html", "#t-probe", "digital-check.html", "tablet-phasen.html", "beobachtung.html", "fortbildung.html", "beratung.html", "leitsaetze.html", "rueckmeldebogen.html"] and "Ideen und Kniffe" in pg.inner_text("main") and pg.locator('#phase-nach a[href="rueckmeldebogen.html"]').count() == 1, f"Digitaler Unterricht (4.36): Werkzeuge nach Phasen, zwei Türen in Phase 2, der Rückmeldebogen als letzter Schritt {reg}")
+        reg = [a.get_attribute("href") for a in pg.locator("#fahrplan .fahrplan-inhalt a").all()]
+        titel = [x.strip() for x in pg.locator("#fahrplan .fahrplan-name").all_inner_texts()]
+        pruefe(titel == ["Grundlagen", "Digitalen Unterricht erstellen", "Unterrichten", "Nach der Stunde"] and pg.locator("#fahrplan > li.fahrplan-phase").count() == 4, f"Digitaler Unterricht (4.36, Fahrplan ab 4.41): vier Phasen in dieser Reihenfolge {titel}")
+        pruefe(pg.locator(".werkzeuge.tueren .werkzeug").count() == 2 and "Unterricht neu planen" in pg.text_content(".werkzeuge.tueren") and "Bisherigen Unterricht digitalisieren" in pg.text_content(".werkzeuge.tueren") and pg.locator('#phase-grundlagen a[href="sechs-hebel.html"]').count() == 1 and reg == ["sechs-hebel.html", "sechs-hebel-film.html", "passt.html", "fortbildungsbogen.html", "tablets.html", "digitalisieren.html", "aufgabenkoffer.html", "muster.html", "werkzeugkiste.html", "#t-probe", "digital-check.html", "tablet-phasen.html", "tablet-phasen.html#t-karte", "beobachtung.html", "fortbildung.html", "beratung.html", "leitsaetze.html", "rueckmeldebogen.html"] and "Ideen und Kniffe" in pg.text_content("main") and pg.locator('#phase-nach a[href="rueckmeldebogen.html"]').count() == 1 and pg.locator(".register, .phasen-weg").count() == 0, f"Digitaler Unterricht (4.41): alle Werkzeuge im Fahrplan, eine Struktur, zwei Türen in Phase 2, der Rückmeldebogen als letzter Schritt {reg}")
         pruefe(pg.locator('.leitband-beispiele a[href="galerie.html"]').count() == 1 and "beides mit KI erstellt" in pg.inner_text(".leitband-beispiele"), "Digitaler Unterricht (4.36): Weg zu den Unterrichtsbeispielen im Kopf")
+        pg.click("#phase-erstellen summary")
         pg.click('.werkzeug a[href="tablets.html"]')
         pg.click("#weiter")
         pruefe(pg.is_visible("#hinweis"), "Planungsweg: Hinweis, wenn nichts gewählt ist")
@@ -206,6 +209,7 @@ def main():
         gesp = pg.evaluate("JSON.stringify(localStorage)")
         pruefe(pg.is_checked('input[name="anlass"][value="exit"]') and "Kfz" not in gesp and "Bremsanlage" not in gesp, "Schnell-Anfrage: nur der Anlass bleibt gespeichert, keine Freitexte")
         pg.goto(url("unterricht.html"))
+        pg.click("#phase-erstellen summary")
         pruefe("Bisherigen Unterricht digitalisieren" in pg.inner_text(".werkzeuge.tueren") and pg.locator(".werkzeug-nr").count() == 0, "Digitaler Unterricht: »Bisherigen Unterricht digitalisieren« als Tür in Phase 2, keine Nummern")
         pg.click('.werkzeuge.tueren a[href="digitalisieren.html"]')
         pg.wait_for_url("**/digitalisieren.html")
@@ -777,7 +781,7 @@ def main():
         pruefe(pg.locator(".probe-lesen").count() == 0, "Papierfrage: ohne längeren Text kein Lesehinweis")
         pg.check('input[name="lesen"][value="ja"]')
         pruefe(pg.locator(".probe-lesen").count() == 1 and "Papier" in pg.inner_text(".probe-lesen"), "Papierfrage: Lese-Kriterium ergänzt einen Hinweis")
-        pruefe(pg.locator('#t-nach + .register a[href="beratung.html"]').count() == 1, "Nach der Stunde: Beratungsstunde verlinkt (seit 4.36 in Phase 4)")
+        pruefe(pg.locator('#phase-nach a[href="beratung.html"]').count() == 1, "Nach der Stunde: Beratungsstunde verlinkt (seit 4.36 in Phase 4, ab 4.41 im Fahrplan)")
         pg.goto(url("muster.html"))
         pruefe(pg.locator("#m-ranking .muster-lernende").count() == 1, "Muster: Weg für Lernende mit KI bei »Antworten vergleichen«")
         pg.goto(url("mehrwert.html"))
@@ -1115,8 +1119,8 @@ def main():
         # 5e. Version 4.8: Bewegungsschalter, Beamer, Regler, Stufenwort, Schrittstand, Tafelkarte, Status (seit 4.36 ohne Fächer)
         w = neue_seite(b)
         w.goto(url("unterricht.html"))
-        h1 = w.locator("h1").first.bounding_box(); ph = w.locator(".phasen-weg").bounding_box()
-        pruefe(h1 and ph and h1["y"] + h1["height"] <= 720 and ph["y"] + ph["height"] <= 720, f"Beamer 1280 × 720: Digitaler Unterricht zeigt Überschrift und alle vier Phasen ohne Scrollen ({ph and round(ph['y'] + ph['height'])} px)")
+        h1 = w.locator("h1").first.bounding_box(); ph = w.locator("#fahrplan").bounding_box(); al = w.locator("#fahrplan-alle").bounding_box()
+        pruefe(h1 and ph and al and h1["y"] + h1["height"] <= 720 and ph["y"] + ph["height"] <= 720 and al["y"] + al["height"] <= 720, f"Beamer 1280 × 720: Digitaler Unterricht zeigt Überschrift, alle vier Phasen und »Alle Werkzeuge zeigen« ohne Scrollen ({ph and round(ph['y'] + ph['height'])} px)")
         w.goto(url("galerie.html"))
         h1 = w.locator("h1").first.bounding_box(); su = w.locator("#suche").bounding_box(); an = w.locator("#prinzip-buehne h2").first.bounding_box()
         pruefe(all(x and x["y"] + x["height"] <= 720 for x in (h1, su, an)), "Beamer 1280 × 720: Unterrichtsbeispiele zeigen Überschrift, Suche und »Was das Gerät hier kann« ohne Scrollen")
@@ -1238,7 +1242,7 @@ def main():
         h1 = w.locator("h1").first.bounding_box(); su = w.locator("#suche").bounding_box(); an = w.locator("#prinzip-buehne h2").first.bounding_box()
         pruefe(w.get_attribute("html", "data-theme") == "beamer" and all(x and x["y"] + x["height"] <= 720 for x in (h1, su, an)), "Beamer 1280 × 720: Galerie im Beamer-Theme zeigt Überschrift, Suche und »Was das Gerät hier kann« ohne Scrollen")
         w.goto(url("unterricht.html"))
-        h1 = w.locator("h1").first.bounding_box(); ph = w.locator(".phasen-weg").bounding_box()
+        h1 = w.locator("h1").first.bounding_box(); ph = w.locator("#fahrplan").bounding_box()
         pruefe(h1 and ph and h1["y"] + h1["height"] <= 720 and ph["y"] + ph["height"] <= 720, f"Beamer 1280 × 720: Digitaler Unterricht im Beamer-Theme zeigt alle vier Phasen ohne Scrollen ({ph and round(ph['y'] + ph['height'])} px)")
         w.goto(url("ueber.html")); w.click("#alles-loeschen"); w.reload()
         pruefe(not w.evaluate("document.documentElement.hasAttribute('data-theme')") and w.get_attribute("#theme-schalter", "aria-pressed") == "false", "Beamer: »Eingaben löschen« setzt die Beamer-Ansicht zurück")
@@ -1278,7 +1282,7 @@ def main():
                 pruefe(abs(weit - ziel) < 2 and abs(kopf - weit) < 2 and sw.evaluate("document.documentElement.scrollWidth") <= breite,
                        f"Screen-Width (4.39) {breite} px {s_}: der erste Bildschirm nutzt die Breite ({weit:.0f} px), der Kopf steht in derselben Breite")
                 zu_breit = sw.evaluate("""[...document.querySelectorAll('.huelle-weit p, .huelle-weit li')].filter(e => {
-                    if (!e.offsetParent) return false; const cs = getComputedStyle(e); let lh = parseFloat(cs.lineHeight); if (isNaN(lh)) lh = parseFloat(cs.fontSize) * 1.5;
+                    if (!e.offsetParent || e.querySelector('details, ul, ol, div, p, figure')) return false; const cs = getComputedStyle(e); let lh = parseFloat(cs.lineHeight); if (isNaN(lh)) lh = parseFloat(cs.fontSize) * 1.5;
                     if (e.getBoundingClientRect().height < lh * 1.8) return false;
                     const p = document.createElement('span'); p.style.cssText = 'display:inline-block;width:68ch;visibility:hidden;position:absolute'; e.appendChild(p);
                     const g = p.getBoundingClientRect().width; p.remove(); return e.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) > g + 1; }).map(e => e.innerText.slice(0, 30))""")
@@ -1297,6 +1301,109 @@ def main():
         kn = [bm.locator(s).first.bounding_box() for s in ("h1", ".erste-minuten h2")]
         pruefe(all(k and k["y"] + k["height"] <= 720 for k in kn), "Beamer 1280 × 720 (4.39): KI-Training zeigt Überschrift, beide Einstiege und »Deine ersten zehn Minuten« ohne Scrollen")
         bm.context.close()
+
+        # 5h. Version 4.41: Fahrplan der Bereichsseite »Digitaler Unterricht« (Entwurf B2 aus Claude Design, Entscheidung Mario 14.11.2026)
+        fp = neue_seite(b)
+        fp.goto(url("unterricht.html")); fp.wait_for_timeout(100)
+        auf = "[...document.querySelectorAll('#fahrplan details')].map(d => d.open)"
+        pruefe(fp.locator("#fahrplan details.fahrplan-platte").count() == 4 and fp.evaluate(auf) == [False] * 4 and fp.is_visible("#fahrplan-alle")
+               and fp.get_attribute("#fahrplan-alle", "aria-expanded") == "false" and fp.inner_text("#fahrplan-alle") == "Alle Werkzeuge zeigen",
+               "Fahrplan (4.41): vier Phasen als <details>, alle zu; »Alle Werkzeuge zeigen« steht da (aria-expanded=false)")
+        wann = [x.strip() for x in fp.locator("#fahrplan .fahrplan-wann").all_inner_texts()]
+        ids = fp.evaluate("[...document.querySelectorAll('#fahrplan > li.fahrplan-phase')].map(l => l.id)")
+        pruefe(wann == ["zuerst", "vor der Stunde", "in der Stunde", "nach der Stunde"] and ids == ["phase-grundlagen", "phase-erstellen", "phase-unterrichten", "phase-nach"],
+               f"Fahrplan (4.41): Wann je Phase und die Sprungmarken von 4.36 bleiben {wann}")
+        zahlen = fp.evaluate("[...document.querySelectorAll('#fahrplan details')].map(d => [parseInt(d.querySelector('.fahrplan-zahl').textContent), d.querySelectorAll('.fahrplan-inhalt a').length])")
+        pruefe([z[0] for z in zahlen] == [4, 7, 2, 5] and all(z[0] == z[1] for z in zahlen), f"Fahrplan (4.41): die Zahl im Kopf stimmt mit den Werkzeugen der Phase überein {zahlen}")
+        flaechen = fp.evaluate("[...document.querySelectorAll('#fahrplan .fahrplan-platte')].map(d => getComputedStyle(d).backgroundColor)")
+        pruefe(flaechen == ["rgb(248, 245, 238)", "rgb(219, 231, 230)"] * 2, f"Fahrplan (4.41): Flächen im Wechsel – 1 und 3 hell, 2 und 4 Petrol-zart (Two-Inks Rule) {flaechen}")
+        linien = fp.evaluate("""(() => { const li = [...document.querySelectorAll('#fahrplan > li')]; const cs = (e, p) => getComputedStyle(e, p);
+            return [cs(li[0], '::before').borderLeftStyle, cs(li[1], '::before').borderLeftStyle, cs(li[2], '::before').borderLeftStyle, cs(li[3], '::before').borderLeftStyle,
+                    cs(li[4], '::before').content, cs(li[2], '::after').borderTopWidth, cs(li[3], '::after').borderLeftWidth, cs(li[4], '::after').borderBottomWidth]; })()""")
+        pruefe(linien == ["dashed", "dashed", "solid", "solid", "none", "3px", "3px", "3px"], f"Fahrplan (4.41): Petrol von Phase zu Phase (von den Grundlagen gestrichelt), der Rückweg von 4 zu 2 in Druckschwarz {linien}")
+        spitze = fp.evaluate("""(() => { const k = document.querySelector('#phase-erstellen .fahrplan-nr'), r = k.getBoundingClientRect(), s = getComputedStyle(k, '::before');
+            const rand = parseFloat(getComputedStyle(k).borderLeftWidth);
+            return [r.left + rand + parseFloat(s.left) + parseFloat(s.borderLeftWidth) - r.left,
+                    r.top + rand + parseFloat(s.top) + parseFloat(s.marginTop) + parseFloat(s.borderTopWidth) - (r.top + r.height / 2)]; })()""")
+        ring = fp.evaluate("""(() => { const l = id => document.getElementById(id); const z = id => { const r = l(id).querySelector('.fahrplan-nr').getBoundingClientRect(); return r.top + r.height / 2; };
+            const a = getComputedStyle(l('phase-erstellen'), '::after'), e = getComputedStyle(l('phase-nach'), '::after');
+            return [l('phase-erstellen').getBoundingClientRect().top + parseFloat(a.top) + parseFloat(a.borderTopWidth) / 2 - z('phase-erstellen'),
+                    l('phase-nach').getBoundingClientRect().top + parseFloat(e.top) + parseFloat(e.height) - parseFloat(e.borderBottomWidth) / 2 - z('phase-nach')]; })()""")
+        pruefe(all(abs(x) <= 1.5 for x in spitze + ring), f"Fahrplan (4.41): der Rückweg beginnt an Kreis 4 und endet mit der Spitze am Rand von Kreis 2 (Line-to-Target), Abweichungen {[round(x, 1) for x in spitze + ring]} px")
+        kontrast = fp.evaluate(r"""(() => { const lum = c => { const [r, g, b] = c.match(/\d+/g).slice(0, 3).map(Number).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * r + .7152 * g + .0722 * b; };
+            const k = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+            return [...document.querySelectorAll('#fahrplan .fahrplan-platte')].flatMap(p => { const bg = getComputedStyle(p).backgroundColor;
+              return ['.fahrplan-wann', '.fahrplan-name', '.fahrplan-satz', '.fahrplan-zahl'].map(s => k(getComputedStyle(p.querySelector(s)).color, bg)); }); })()""")
+        pruefe(min(kontrast) >= 4.5, f"Fahrplan (4.41): Kontrast aller Texte im Kopf auf beiden Flächen mindestens 4,5:1 (kleinster {min(kontrast):.1f}:1)")
+        ziele = fp.evaluate("[...document.querySelectorAll('#fahrplan summary')].map(s => Math.round(s.getBoundingClientRect().height)).concat(Math.round(document.getElementById('fahrplan-alle').getBoundingClientRect().height))")
+        pruefe(min(ziele[:4]) >= 44 and ziele[4] >= 48, f"Fahrplan (4.41): jeder Kopf mindestens 44 px hoch, der Knopf 48 px (Zielfläche) {ziele}")
+        # Maus und Tastatur
+        fp.click("#phase-unterrichten summary")
+        pruefe(fp.evaluate(auf) == [False, False, True, False] and fp.is_visible('#phase-unterrichten a[href="tablet-phasen.html#t-karte"]') and fp.is_visible("#phase-unterrichten .fahrplan-karte"),
+               "Fahrplan (4.41): Maus – die Phase klappt am selben Ort auf; Werkzeuge und Vorschau der Karte für die Tafel stehen da")
+        fp.click("#phase-unterrichten summary")
+        pruefe(fp.evaluate(auf) == [False] * 4, "Fahrplan (4.41): Maus – noch einmal tippen klappt zu")
+        fp.focus("#phase-grundlagen summary"); fp.keyboard.press("Enter")
+        offen = fp.evaluate(auf)[0]
+        fp.keyboard.press("Tab")
+        pruefe(offen and fp.evaluate("document.activeElement.getAttribute('href')") == "sechs-hebel.html", "Fahrplan (4.41): Tastatur – Enter klappt auf, Tab führt zum ersten Werkzeug")
+        fp.focus("#phase-grundlagen summary"); fp.keyboard.press(" ")
+        pruefe(fp.evaluate(auf) == [False] * 4, "Fahrplan (4.41): Tastatur – die Leertaste klappt zu")
+        pruefe(fp.evaluate("document.getAnimations().filter(a => a.playState === 'running').length") == 0, "Fahrplan (4.41): Auf- und Zuklappen bewegt nichts (Input-First)")
+        # »Alle Werkzeuge zeigen«
+        fp.click("#fahrplan-alle")
+        pruefe(fp.evaluate(auf) == [True] * 4 and fp.inner_text("#fahrplan-alle") == "Alle zuklappen" and fp.get_attribute("#fahrplan-alle", "aria-expanded") == "true",
+               "Fahrplan (4.41): »Alle Werkzeuge zeigen« öffnet alle vier Phasen, dann heißt der Knopf »Alle zuklappen«")
+        fp.click("#fahrplan-alle")
+        pruefe(fp.evaluate(auf) == [False] * 4 and fp.inner_text("#fahrplan-alle") == "Alle Werkzeuge zeigen" and fp.get_attribute("#fahrplan-alle", "aria-expanded") == "false",
+               "Fahrplan (4.41): »Alle zuklappen« schließt alle vier")
+        for s_ in ("#phase-grundlagen", "#phase-erstellen", "#phase-unterrichten", "#phase-nach"):
+            fp.click(s_ + " summary")
+        fp.wait_for_timeout(80)
+        pruefe(fp.inner_text("#fahrplan-alle") == "Alle zuklappen", "Fahrplan (4.41): Sind alle einzeln offen, sagt der Knopf »Alle zuklappen«")
+        # Three-Tap: Phase antippen, Werkzeug wählen
+        fp.goto(url("unterricht.html"))
+        tipps = fp.evaluate("""(() => { let da = 0, n = 0; for (const d of document.querySelectorAll('#fahrplan details')) { d.querySelector('summary').click();
+            for (const a of d.querySelectorAll('.fahrplan-inhalt a')) { n++; if (a.getBoundingClientRect().height > 0) da++; } d.querySelector('summary').click(); } return [da, n]; })()""")
+        pruefe(tipps == [18, 18], f"Three-Tap (4.41): jedes der {tipps[1]} Werkzeuge ist mit zwei Tipps erreichbar – Phase antippen, Werkzeug wählen ({tipps[0]} sichtbar)")
+        # Sprungmarken öffnen ihre Phase
+        fp.goto(url("unterricht.html#phase-unterrichten")); fp.wait_for_timeout(120)
+        pruefe(fp.evaluate(auf) == [False, False, True, False], "Fahrplan (4.41): eine Sprungmarke auf eine Phase öffnet genau diese Phase")
+        fp.goto(url("unterricht.html#t-kollegium")); fp.wait_for_timeout(120)
+        box = fp.locator("#t-kollegium").bounding_box()
+        pruefe(fp.evaluate(auf)[3] and box and 0 <= box["y"] < 720, "Fahrplan (4.41): die Sprungmarke #t-kollegium öffnet Phase 4 und zeigt »Im Kollegium«")
+        fp.goto(url("unterricht.html#t-probe")); fp.wait_for_timeout(120)
+        pruefe(fp.is_visible("#probe-ziel") and fp.evaluate(auf) == [False, False, True, True], "Fahrplan (4.41): #t-probe führt weiter zur Papierfrage unter dem Fahrplan")
+        # Druck: alle Phasen offen, kein Knopf; danach wie vorher
+        fp.goto(url("unterricht.html")); fp.click("#phase-erstellen summary")
+        fp.evaluate("window.dispatchEvent(new Event('beforeprint'))")
+        alle_auf = fp.evaluate(auf) == [True] * 4
+        fp.emulate_media(media="print")
+        ohne_knopf = fp.evaluate("getComputedStyle(document.getElementById('fahrplan-alle')).display") == "none"
+        fp.emulate_media(media="screen")
+        fp.evaluate("window.dispatchEvent(new Event('afterprint'))")
+        pruefe(alle_auf and ohne_knopf and fp.evaluate(auf) == [False, True, False, False], "Fahrplan (4.41): Druck zeigt alle Phasen offen und keinen Knopf, danach ist alles wie vorher")
+        pruefe(not fp.konsole and not fp.extern, f"Fahrplan (4.41): keine Konsolenfehler, keine Anfragen nach außen {fp.konsole} {fp.extern}")
+        fp.context.close()
+        # Ohne Skript
+        oj = b.new_context(java_script_enabled=False, viewport={"width": 1280, "height": 720}); oq = oj.new_page()
+        oq.goto(url("unterricht.html"))
+        ohne = oq.locator("#fahrplan-alle").is_hidden()
+        oq.click("#phase-erstellen summary")
+        pruefe(ohne and oq.is_visible('#phase-erstellen a[href="digitalisieren.html"]'), "Fahrplan (4.41): ohne Skript klappen die Phasen trotzdem auf; »Alle Werkzeuge zeigen« fehlt dann")
+        oj.close()
+        # iPad quer und Telefon
+        ip = neue_seite(b, viewport={"width": 1180, "height": 820})
+        ip.goto(url("unterricht.html"))
+        unten = ip.evaluate("Math.max(...[...document.querySelectorAll('#fahrplan .fahrplan-platte')].map(e => e.getBoundingClientRect().bottom))")
+        pruefe(unten <= 820, f"Fahrplan (4.41) iPad quer 1180 × 820: Überschrift und alle vier Phasen ohne Scrollen ({round(unten)} px)")
+        ip.context.close()
+        tf = neue_seite(b, viewport={"width": 390, "height": 844})
+        tf.goto(url("unterricht.html")); tf.click("#fahrplan-alle")
+        breit = tf.evaluate("document.documentElement.scrollWidth")
+        hoch = tf.evaluate("Math.min(...[...document.querySelectorAll('#fahrplan summary')].map(s => s.getBoundingClientRect().height))")
+        pruefe(breit <= 390 and hoch >= 44, f"Fahrplan (4.41) 390 px: kein waagerechtes Scrollen, auch mit allen Phasen offen; jeder Kopf mindestens 44 px ({breit} px, {round(hoch)} px)")
+        tf.context.close()
 
         # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
         for breite in (375, 768, 1280, 1440, 1920):

@@ -38,7 +38,8 @@ EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/einheit.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/fortbildungsbogen.js", "assets/rueckmeldebogen.js",
                     "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js", "assets/werkstatt.js", "assets/werkstatt-anfrage.js", "assets/daten/werkstatt.js", "assets/sechs-hebel.js", "assets/sechs-hebel-proben.js", "assets/sechs-hebel-rad.js", "assets/phasen-bild.js",
-                    "assets/film-buehne.js", "assets/film.js"]  # ab 4.40: der Film auf der Startseite
+                    "assets/film-buehne.js", "assets/film.js",  # ab 4.40: der Film auf der Startseite
+                    "assets/fahrplan.js"]  # ab 4.41: Fahrplan der Bereichsseite »Digitaler Unterricht«
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation",
                 "Anforderungsbereich", "Beutelsbacher", "Binnendifferenzierung",
@@ -381,10 +382,38 @@ def pruefe_film(fehler):
                 fehler.append(f"Film: Zahl passt nicht zu den Daten – erwartet {was} (src/film/)")
 
 
+def pruefe_fahrplan(fehler):
+    """ab Version 4.41: Fahrplan der Bereichsseite »Digitaler Unterricht« – vier Phasen, jede ein <details>.
+    Die Zahl im Kopf (»7 Werkzeuge«) muss zu den Links in der Phase passen, und jedes Werkzeug steht nur einmal
+    auf der Seite (eine Struktur, keine doppelten Links; One-Order Rule)."""
+    html = (WURZEL / "src" / "unterricht.html").read_text(encoding="utf-8")
+    phasen = re.findall(r'<details class="fahrplan-platte">([\s\S]*?)</details>', html)
+    if len(phasen) != 4:
+        fehler.append(f"unterricht.html: Fahrplan braucht vier Phasen, gefunden {len(phasen)}")
+    alle = []
+    for nr, phase in enumerate(phasen, 1):
+        zahl = re.search(r'class="fahrplan-zahl">(\d+) Werkzeug', phase)
+        links = re.findall(r'<a href="([^"]+)"', phase)
+        alle += links
+        if not zahl or int(zahl.group(1)) != len(links):
+            fehler.append(f"unterricht.html: Phase {nr} nennt {zahl.group(1) if zahl else 'keine'} Werkzeuge, verlinkt sind {len(links)}")
+    doppelt = sorted({x for x in alle if alle.count(x) > 1})
+    if doppelt:
+        fehler.append(f"unterricht.html: Werkzeug mehrfach im Fahrplan {doppelt}")
+    # die Übersicht: alles vor der Papierfrage (deren eigene Verweise, etwa »Genauer planen«, gehören zum Werkzeug)
+    rest = re.sub(r'<ol class="fahrplan"[\s\S]*?</ol>', " ", html.split('aria-labelledby="t-probe"')[0])
+    for ziel in alle:
+        if ziel.startswith("#"):
+            continue
+        if f'href="{ziel}"' in rest:
+            fehler.append(f"unterricht.html: {ziel} steht außerhalb des Fahrplans noch einmal (eine Struktur)")
+
+
 def main():
     fehler = []
     pruefe_werkzeugkiste(fehler)
     pruefe_film(fehler)
+    pruefe_fahrplan(fehler)
     pruefe_seiten(fehler)
     pruefe_skripte(fehler)
     pruefe_css(fehler)

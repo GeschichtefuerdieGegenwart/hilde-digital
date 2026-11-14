@@ -3,104 +3,142 @@
   <div class="leitband-text">
     <h1 class="leitband-bereich">Digitaler Unterricht · Fortbildung zum Selbermachen</h1>
     <h2 id="t-leitfrage" class="leitband-frage">In vier Phasen zu deinem digitalen Unterricht</h2>
-    <p>Erst die Grundlagen, dann erstellen, dann unterrichten, dann auswerten. Geh die Phasen der Reihe nach. Oder spring zu dem, was du gerade brauchst.</p>
+    <p>Erst die Grundlagen, dann vor, in und nach der Stunde.</p>
   </div>
   <p class="leitband-beispiele"><a href="galerie.html"><b>Unterrichtsbeispiele: analog und digital</b><span>beides mit KI erstellt <span aria-hidden="true">→</span></span></a></p>
 </div></section>
 
+<!-- Ab 4.41: Fahrplan (Entwurf B2 aus Claude Design, Entscheidung Mario 14.11.2026). Jede Phase ist ein <details> – Aufklappen geht ohne Skript.
+     Flächen im Wechsel: 1 und 3 hell, 2 und 4 Petrol-zart. Die Ringlinie führt von 4 zurück zu 2: Die Grundlagen klärst du einmal, 2 bis 4 laufen jede Stunde. -->
 <section class="abschnitt phasen-abschnitt" aria-labelledby="t-phasen"><div class="huelle huelle-weit">
-  <h2 id="t-phasen" class="sr-only">Die vier Phasen</h2>
-  <ol class="phasen-weg">
-    <li class="phase" id="phase-grundlagen">
-      <p class="phase-kopf"><span class="phase-nr" aria-hidden="true">1</span><span class="phase-wann">zuerst</span></p>
-      <h3 class="phase-titel">Grundlagen</h3>
-      <p class="phase-text">Was beim Lernen wirkt – und was zu dir passt.</p>
-      <ul class="phase-links">
-        <li><a href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a></li>
-        <li><a href="passt.html">Was passt gerade zu mir?</a></li>
-        <li><a href="fortbildungsbogen.html">Mein Fortbildungsbogen</a></li>
-      </ul>
+  <div class="fahrplan-leiste">
+    <h2 id="t-phasen" class="fahrplan-titel">Die vier Phasen</h2>
+    <p class="fahrplan-bedienung">Tipp eine Phase an. Du kannst bei jeder Nummer einsteigen.</p>
+    <button type="button" class="knopf still fahrplan-alle" id="fahrplan-alle" aria-expanded="false" aria-controls="fahrplan" hidden>Alle Werkzeuge zeigen</button>
+  </div>
+  <ol class="fahrplan" id="fahrplan">
+    <li class="fahrplan-phase ist-vorspann" id="phase-grundlagen">
+      <span class="fahrplan-nr" aria-hidden="true">1</span>
+      <details class="fahrplan-platte">
+        <summary class="fahrplan-kopf">
+          <span class="fahrplan-wann">zuerst</span>
+          <h3 class="fahrplan-name">Grundlagen</h3>
+          <span class="fahrplan-satz">Was beim Lernen wirkt – und was zu dir passt.</span>
+          <span class="fahrplan-zahl">4 Werkzeuge</span>
+        </summary>
+        <div class="fahrplan-inhalt">
+          <ul class="fahrplan-werkzeuge">
+            <li><a href="sechs-hebel.html"><b>Wann funktioniert digitaler Unterricht?</b><span class="fahrplan-text">Sechs Dinge kann das Gerät besser als Papier. Dazu fünf Sätze, die in jeder Stunde gelten.</span></a></li>
+            <li><a href="sechs-hebel-film.html"><b>Film: Was das Gerät kann</b><span class="fahrplan-text">Die sechs Prinzipien in zwei Minuten, ohne Ton.</span></a></li>
+            <li><a href="passt.html"><b>Was passt gerade zu mir?</b> <span class="fahrplan-fuer">für dich</span><span class="fahrplan-text">Ein paar kurze Fragen zu deinem Vorhaben. Du bekommst einen passenden Einstieg.</span></a></li>
+            <li><a href="fortbildungsbogen.html"><b>Mein Fortbildungsbogen</b> <span class="fahrplan-fuer">für dich</span><span class="fahrplan-text">Wo du mit KI und Tablets stehst. Am Ende eine PDF für deine Fortbildung und bis zu drei nächste Schritte.</span></a></li>
+          </ul>
+        </div>
+      </details>
     </li>
-    <li class="phase" id="phase-erstellen">
-      <p class="phase-kopf"><span class="phase-nr" aria-hidden="true">2</span><span class="phase-wann">vor der Stunde</span></p>
-      <h3 class="phase-titel">Digitalen Unterricht erstellen</h3>
-      <p class="phase-text">Für eine Stunde oder eine ganze Einheit.</p>
-      <ul class="phase-links">
-        <li><a href="tablets.html">Unterricht neu planen</a></li>
-        <li><a href="digitalisieren.html">Bisherigen Unterricht digitalisieren</a></li>
-        <li><a href="aufgabenkoffer.html">Aufgabenkoffer</a></li>
-        <li><a href="werkzeugkiste.html">Methodenkoffer</a></li>
-      </ul>
+    <li class="fahrplan-zwischen" aria-hidden="true">dann rund um jede Stunde</li>
+    <li class="fahrplan-phase ist-zart ist-ring-start" id="phase-erstellen">
+      <span class="fahrplan-nr" aria-hidden="true">2</span>
+      <details class="fahrplan-platte">
+        <summary class="fahrplan-kopf">
+          <span class="fahrplan-wann">vor der Stunde</span>
+          <h3 class="fahrplan-name">Digitalen Unterricht erstellen</h3>
+          <span class="fahrplan-satz">Für eine Stunde oder eine ganze Einheit.</span>
+          <span class="fahrplan-zahl">7 Werkzeuge</span>
+        </summary>
+        <div class="fahrplan-inhalt">
+          <ul class="werkzeuge tueren">
+            <li class="werkzeug tuer">
+              <a href="tablets.html">
+                <span class="werkzeug-text"><span class="tuer-ueber">Ich fange neu an</span><b>Unterricht neu planen</b>Vier kurze Fragen, dann deine Entscheidungskarte: Lohnt sich das Tablet – oder bleibst du beim Papier?</span>
+                <span class="werkzeug-los" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="tueren-oder" aria-hidden="true">oder</li>
+            <li class="werkzeug tuer">
+              <a href="digitalisieren.html">
+                <span class="werkzeug-text"><span class="tuer-ueber">Ich habe schon Material</span><b>Bisherigen Unterricht digitalisieren</b>Ein Arbeitsblatt, eine Präsentation, ein Verlaufsplan? Wähle, was entstehen soll, und hol dir einen Prompt mit Ideen, die mehr können als Papier.</span>
+                <span class="werkzeug-los" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+          <p class="fahrplan-dazu">Dazu, wenn du willst:</p>
+          <ul class="fahrplan-werkzeuge">
+            <li><a href="aufgabenkoffer.html"><b>Aufgabenkoffer</b><span class="fahrplan-text">Welche Aufgabe kann ich wie stellen – und was fördert sie? 18 Aufgabenformen, je mit »sinnvoll« und »wenig sinnvoll«.</span></a></li>
+            <li><a href="muster.html"><b>Ideen und Kniffe</b><span class="fahrplan-text">Muster aus der Praxis, je auf Papier, mit KI vorbereitet und am Tablet.</span></a></li>
+            <li><a href="werkzeugkiste.html"><b>Methodenkoffer</b><span class="fahrplan-text">Die Anleitungen hinter den Werkzeugen, zum Ansehen und Herunterladen.</span></a></li>
+            <li><a href="#t-probe"><b>Papierfrage</b><span class="fahrplan-text">Geht es auf Papier genauso gut? Höchstens drei Fragen, hier auf der Seite.</span></a></li>
+            <li><a href="digital-check.html"><b>Digital-Check</b><span class="fahrplan-text">Prüfe ein fertiges Material – selbst oder mit einem Prüf-Auftrag.</span></a></li>
+          </ul>
+        </div>
+      </details>
     </li>
-    <li class="phase" id="phase-unterrichten">
-      <p class="phase-kopf"><span class="phase-nr" aria-hidden="true">3</span><span class="phase-wann">in der Stunde</span></p>
-      <h3 class="phase-titel">Unterrichten</h3>
-      <p class="phase-text">Die Phase am Gerät gut führen – für jedes Thema und jeden Umfang.</p>
-      <ul class="phase-links">
-        <li><a href="tablet-phasen.html">Tablet-Phasen gut führen</a></li>
-        <li><a href="tablet-phasen.html#t-karte">Karte für die Tafel</a></li>
-      </ul>
+    <li class="fahrplan-phase ist-ring-mitte" id="phase-unterrichten">
+      <span class="fahrplan-nr" aria-hidden="true">3</span>
+      <details class="fahrplan-platte">
+        <summary class="fahrplan-kopf">
+          <span class="fahrplan-wann">in der Stunde</span>
+          <h3 class="fahrplan-name">Unterrichten</h3>
+          <span class="fahrplan-satz">Die Phase am Gerät gut führen – für jedes Thema und jeden Umfang.</span>
+          <span class="fahrplan-zahl">2 Werkzeuge</span>
+        </summary>
+        <div class="fahrplan-inhalt fahrplan-mit-karte">
+          <ul class="fahrplan-werkzeuge">
+            <li><a href="tablet-phasen.html"><b>Tablet-Phasen gut führen</b><span class="fahrplan-text">Sechs Regeln gegen Ablenkung, typische Stolpersteine und eine Karte für die Tafel.</span></a></li>
+            <li><a href="tablet-phasen.html#t-karte"><b>Karte für die Tafel</b><span class="fahrplan-text">Auftrag, Zeit und App eintragen und quer auf A4 drucken – oder leer drucken und von Hand ausfüllen.</span></a></li>
+          </ul>
+          <figure class="fahrplan-karte">
+            <div class="fahrplan-karte-blatt" aria-hidden="true">
+              <p class="fahrplan-karte-titel">Tablet-Phase</p>
+              <p class="fahrplan-karte-feld">Unser Auftrag</p>
+              <p class="fahrplan-karte-feld">Zeit bis</p>
+              <p class="fahrplan-karte-feld">Wir nutzen nur</p>
+              <ul class="fahrplan-karte-regeln">
+                <li>Alle anderen Apps bleiben zu.</li>
+                <li>Fertig? Tablet umdrehen.</li>
+                <li>Danach: Besprechung in der Klasse.</li>
+              </ul>
+            </div>
+            <figcaption>Vorschau: die Karte für die Tafel, quer auf A4.</figcaption>
+          </figure>
+        </div>
+      </details>
     </li>
-    <li class="phase" id="phase-nach">
-      <p class="phase-kopf"><span class="phase-nr" aria-hidden="true">4</span><span class="phase-wann">nach der Stunde</span></p>
-      <h3 class="phase-titel">Nach der Stunde</h3>
-      <p class="phase-text">Auswerten, mit anderen weiterarbeiten und deine Erfahrung weitergeben.</p>
-      <ul class="phase-links">
-        <li><a href="beobachtung.html">Beobachtungsbogen</a></li>
-        <li><a href="#t-kollegium">Im Kollegium</a></li>
-        <li><a href="rueckmeldebogen.html">Mein Rückmeldebogen</a></li>
-      </ul>
+    <li class="fahrplan-phase ist-zart ist-ring-ende" id="phase-nach">
+      <span class="fahrplan-nr" aria-hidden="true">4</span>
+      <details class="fahrplan-platte">
+        <summary class="fahrplan-kopf">
+          <span class="fahrplan-wann">nach der Stunde</span>
+          <h3 class="fahrplan-name">Nach der Stunde</h3>
+          <span class="fahrplan-satz">Auswerten, mit anderen weiterarbeiten und deine Erfahrung weitergeben.</span>
+          <span class="fahrplan-zahl">5 Werkzeuge</span>
+        </summary>
+        <div class="fahrplan-inhalt fahrplan-gruppen">
+          <div class="fahrplan-gruppe">
+            <h4>Für dich</h4>
+            <ul class="fahrplan-werkzeuge">
+              <li><a href="beobachtung.html"><b>Nach der Stunde: Beobachtungsbogen</b><span class="fahrplan-text">Sechs Fragen in zwei Minuten: so lassen, nachschärfen oder zurück zu Papier.</span></a></li>
+            </ul>
+          </div>
+          <div class="fahrplan-gruppe">
+            <h4 id="t-kollegium">Im Kollegium</h4>
+            <ul class="fahrplan-werkzeuge">
+              <li><a href="fortbildung.html"><b>Fortbildungsbaustein: 45 Minuten</b><span class="fahrplan-text">Der Einstieg für Konferenz oder Fachgruppe. Alle arbeiten an eigenem Material.</span></a></li>
+              <li><a href="beratung.html"><b>Beratungsstunde: acht Wochen</b><span class="fahrplan-text">Zwei bis drei Lehrkräfte, eine eigene Stunde, zweimal ausprobiert.</span></a></li>
+              <li><a href="leitsaetze.html"><b>Leitsätze zur Diskussion</b><span class="fahrplan-text">Zehn Sätze auf einer Seite – ein Entwurf zum Gespräch, kein Beschluss.</span></a></li>
+            </ul>
+          </div>
+          <div class="fahrplan-gruppe">
+            <h4>Zum Weitergeben</h4>
+            <ul class="fahrplan-werkzeuge">
+              <li><a href="rueckmeldebogen.html"><b>Mein Rückmeldebogen</b><span class="fahrplan-text">Was dich beim Ausprobieren beschäftigt hat. Am Ende eine PDF für die Person, die deine Fortbildung leitet.</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </details>
     </li>
   </ol>
-</div></section>
-
-<section class="abschnitt" aria-labelledby="t-werkzeuge"><div class="huelle">
-  <h2 id="t-werkzeuge" class="register-titel">Alle Werkzeuge nach Phasen</h2>
-
-  <h3 class="register-phase" id="t-grundlagen"><span aria-hidden="true">1 · </span>Grundlagen</h3>
-  <ul class="register" aria-labelledby="t-grundlagen">
-    <li><a href="sechs-hebel.html"><b>Wann funktioniert digitaler Unterricht?</b><span>Sechs Dinge kann das Gerät besser als Papier. Dazu fünf Sätze, die in jeder Stunde gelten.</span><span class="register-wann">zuerst</span></a></li>
-    <li><a href="sechs-hebel-film.html"><b>Film: Was das Gerät kann</b><span>Die sechs Prinzipien in zwei Minuten, ohne Ton.</span><span class="register-wann">zuerst</span></a></li>
-    <li><a href="passt.html"><b>Was passt gerade zu mir?</b><span>Ein paar kurze Fragen zu deinem Vorhaben. Du bekommst einen passenden Einstieg.</span><span class="register-wann">für dich</span></a></li>
-    <li><a href="fortbildungsbogen.html"><b>Mein Fortbildungsbogen</b><span>Wo du mit KI und Tablets stehst. Am Ende eine PDF für deine Fortbildung und bis zu drei nächste Schritte.</span><span class="register-wann">für dich</span></a></li>
-  </ul>
-
-  <h3 class="register-phase" id="t-erstellen"><span aria-hidden="true">2 · </span>Digitalen Unterricht erstellen</h3>
-  <ul class="werkzeuge tueren">
-    <li class="werkzeug tuer">
-      <a href="tablets.html">
-        <span class="werkzeug-text"><span class="tuer-ueber">Ich fange neu an</span><b>Unterricht neu planen</b>Vier kurze Fragen, dann deine Entscheidungskarte: Lohnt sich das Tablet – oder bleibst du beim Papier?</span>
-        <span class="werkzeug-los" aria-hidden="true">→</span>
-      </a>
-    </li>
-    <li class="werkzeug tuer">
-      <a href="digitalisieren.html">
-        <span class="werkzeug-text"><span class="tuer-ueber">Ich habe schon Material</span><b>Bisherigen Unterricht digitalisieren</b>Ein Arbeitsblatt, eine Präsentation, ein Verlaufsplan? Wähle, was entstehen soll, und hol dir einen Prompt mit Ideen, die mehr können als Papier.</span>
-        <span class="werkzeug-los" aria-hidden="true">→</span>
-      </a>
-    </li>
-  </ul>
-  <ul class="register" aria-labelledby="t-erstellen">
-    <li><a href="aufgabenkoffer.html"><b>Aufgabenkoffer</b><span>Welche Aufgabe kann ich wie stellen – und was fördert sie? 18 Aufgabenformen, je mit »sinnvoll« und »wenig sinnvoll«.</span><span class="register-wann">vor der Stunde</span></a></li>
-    <li><a href="muster.html"><b>Ideen und Kniffe</b><span>Muster aus der Praxis, je auf Papier, mit KI vorbereitet und am Tablet.</span><span class="register-wann">vor der Stunde</span></a></li>
-    <li><a href="werkzeugkiste.html"><b>Methodenkoffer</b><span>Die Anleitungen hinter den Werkzeugen, zum Ansehen und Herunterladen.</span><span class="register-wann">vor der Stunde</span></a></li>
-    <li><a href="#t-probe"><b>Papierfrage</b><span>Geht es auf Papier genauso gut? Höchstens drei Fragen, hier auf der Seite.</span><span class="register-wann">vor der Stunde</span></a></li>
-    <li><a href="digital-check.html"><b>Digital-Check</b><span>Prüfe ein fertiges Material – selbst oder mit einem Prüf-Auftrag.</span><span class="register-wann">vor der Stunde</span></a></li>
-  </ul>
-
-  <h3 class="register-phase" id="t-unterrichten"><span aria-hidden="true">3 · </span>Unterrichten</h3>
-  <ul class="register" aria-labelledby="t-unterrichten">
-    <li><a href="tablet-phasen.html"><b>Tablet-Phasen gut führen</b><span>Sechs Regeln gegen Ablenkung, typische Stolpersteine und eine Karte für die Tafel.</span><span class="register-wann">in der Stunde</span></a></li>
-  </ul>
-
-  <h3 class="register-phase" id="t-nach"><span aria-hidden="true">4 · </span>Nach der Stunde</h3>
-  <ul class="register" aria-labelledby="t-nach">
-    <li><a href="beobachtung.html"><b>Nach der Stunde: Beobachtungsbogen</b><span>Sechs Fragen in zwei Minuten: so lassen, nachschärfen oder zurück zu Papier.</span><span class="register-wann">für dich</span></a></li>
-    <li id="t-kollegium"><a href="fortbildung.html"><b>Fortbildungsbaustein: 45 Minuten</b><span>Der Einstieg für Konferenz oder Fachgruppe. Alle arbeiten an eigenem Material.</span><span class="register-wann">im Kollegium</span></a></li>
-    <li><a href="beratung.html"><b>Beratungsstunde: acht Wochen</b><span>Zwei bis drei Lehrkräfte, eine eigene Stunde, zweimal ausprobiert.</span><span class="register-wann">im Kollegium</span></a></li>
-    <li><a href="leitsaetze.html"><b>Leitsätze zur Diskussion</b><span>Zehn Sätze auf einer Seite – ein Entwurf zum Gespräch, kein Beschluss.</span><span class="register-wann">im Kollegium</span></a></li>
-    <li><a href="rueckmeldebogen.html"><b>Mein Rückmeldebogen</b><span>Was dich beim Ausprobieren beschäftigt hat. Am Ende eine PDF für die Person, die deine Fortbildung leitet.</span><span class="register-wann">weitergeben</span></a></li>
-  </ul>
+  <p class="fahrplan-ring"><span class="fahrplan-ring-pfeil" aria-hidden="true">↑</span> Nächste Stunde: wieder bei 2</p>
   <p class="bezug-ki">KI kann Teil digitalen Unterrichts sein – muss es aber nicht. Wenn du KI für deine Vorbereitung nutzen willst: <a class="textlink" href="ki.html">Zum KI-Training <span aria-hidden="true">→</span></a></p>
 </div></section>
 
@@ -167,3 +205,4 @@
 <script src="assets/hilde.js"></script>
 <script src="assets/regeln.js"></script>
 <script src="assets/probe.js"></script>
+<script src="assets/fahrplan.js"></script>
