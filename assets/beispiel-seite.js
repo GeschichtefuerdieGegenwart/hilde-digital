@@ -201,7 +201,7 @@
     // Wie umfangreich ist der digitale Einsatz? Ohne Rangfolge: punktuell ist keine Vorstufe.
     if (!nurKI && b.umfang) {
       var u = T.umfang.filter(function (y) { return y.id === b.umfang; })[0];
-      // I2 · Stundenlinie: Der Umfang als Form auf der Linie der Stunde; zeichnet sich einmal beim Erscheinen (siehe unten).
+      // I2 · Stundenlinie: Der Umfang als Form auf der Linie der Stunde; steht gleich fertig da (seit 4.39).
       abschnitt("Wie umfangreich ist der digitale Einsatz?", "<p><b>" + esc(u.name) + "</b> – " + esc(u.hilfe) + vorschlag(b, "umfang") + "</p>" +
         H.stundenlinie(b.umfang) + H.stundenlinieNamen() +
         '<p class="leise klein">Mehr Tablet ist nicht besser. Ein punktueller Einsatz ist keine Vorstufe.</p>');
@@ -251,7 +251,6 @@
         "</aside>" +
       "</div></section>" + passtDazu(b) + "</div>";
 
-    H.stundenlinieZeichnen(ziel.querySelectorAll(".stundenlinie"));
     benenne(b);
     var zk = document.getElementById("zur-karte");
     if (zk) zk.addEventListener("click", function () {

@@ -12,6 +12,9 @@ Ab Version 4.7: »Zum Anfangen«, Stundenlinie auf Karten und Detailseite, Umfan
 Ab Version 4.8: Schalter »Weniger Bewegung«, Beamer-Prüfung für Digitaler Unterricht und Galerie, Fächer nur ein Durchlauf,
 Regler »Vom Blatt zum Tablet«, Wort der Stufe, »Schritt n von m«, Tafelkarte in Bricolage, Status-Variablen.
 Ab Version 4.25: Methodenkoffer, Kurzfassungen aus den Skills in den Aufträgen, im Prompt und im Prüf-Auftrag.
+Ab Version 4.39: Input-First (nach dem Laden läuft nichts von selbst, außer Passer und Platten einmal je Sitzung;
+Leporello, Abspielen »Vom Blatt zum Tablet« und Zeichnen der Stundenlinie gestrichen) und Screen-Width
+(Startseite, KI-Training, Digitaler Unterricht und Unterrichtsbeispiele nutzen bei 1920 px die Breite, der Kopf folgt).
 """
 import re
 import os
@@ -1085,9 +1088,9 @@ def main():
         pruefe(v.locator("#karten .karte:has(.kz.ki) .umfang-zeile").count() == 0, "Galerie-Karten: KI-Training ohne Umfang-Zeile")
         v.goto(url("beispiel.html#m19-appeasement")); v.wait_for_selector("#detail-titel"); v.wait_for_timeout(400)
         sl = v.locator(".detail-haupt .stundenlinie")
-        pruefe(sl.count() == 1 and sl.get_attribute("data-umfang") == "phasenweise" and not v.evaluate("document.querySelector('.detail-haupt .stundenlinie').classList.contains('sl-von')"), "Detail: Stundenlinie zum Umfang, einmal gezeichnet")
+        pruefe(sl.count() == 1 and sl.get_attribute("data-umfang") == "phasenweise" and not v.evaluate("document.querySelector('.detail-haupt .stundenlinie').classList.contains('sl-von')"), "Detail: Stundenlinie zum Umfang, steht fertig da (seit 4.39 ohne Zeichnen)")
         b_breite = v.evaluate("document.querySelector('.detail-haupt .sl-balken').getBoundingClientRect().width")
-        pruefe(b_breite > 40, f"Detail: Balken ist auf seinen Umfang gewachsen ({b_breite:.0f} px)")
+        pruefe(b_breite > 40, f"Detail: Balken steht in seinem Umfang ({b_breite:.0f} px)")
         dauer = v.evaluate("getComputedStyle(document.querySelector('.detail-haupt .sl-balken')).transitionDuration")
         pruefe(all(float(d.strip().rstrip("s")) <= .3 for d in dauer.split(",")), f"Detail: Stundenlinie höchstens 300 ms {dauer}")
         v.goto(url("index.html"))
@@ -1128,9 +1131,9 @@ def main():
         w.click("#bewegung-schalter")
         pruefe(not w.evaluate("document.documentElement.hasAttribute('data-bewegung')") and w.get_attribute("#bewegung-schalter", "aria-pressed") == "false", "Schalter: zweiter Klick schaltet zurück")
         # Regler »Vom Blatt zum Tablet«
-        w.goto(url("digitalisieren.html")); w.wait_for_timeout(700)
+        w.goto(url("digitalisieren.html"))
         t = lambda: float(w.evaluate("getComputedStyle(document.getElementById('geraet')).getPropertyValue('--t')"))
-        pruefe(w.input_value("#geraet-stufe") == "100" and t() == 1 and w.inner_text("#geraet-titel") == "Am Tablet", "Blatt zu Tablet: spielt einmal von selbst bis zum Tablet")
+        pruefe(w.input_value("#geraet-stufe") == "100" and t() == 1 and w.inner_text("#geraet-titel") == "Am Tablet" and w.get_attribute("#geraet-stufe", "aria-valuetext") == "Dieselbe Aufgabe am Tablet", "Blatt zu Tablet: steht gleich nach dem Laden am Tablet, nichts spielt von selbst (4.39)")
         pruefe(w.locator("#geraet-stufe").is_visible() and w.inner_text('label[for="geraet-stufe"]') == "Vom Blatt zum Tablet" and "Arbeitsblatt auf Papier" in w.inner_text(".geraet-enden") and "Dieselbe Aufgabe am Tablet" in w.inner_text(".geraet-enden"), "Blatt zu Tablet: beschrifteter Regler, beide Zustände stehen als Text")
         w.focus("#geraet-stufe"); w.keyboard.press("Home")
         pruefe(w.input_value("#geraet-stufe") == "0" and t() == 0 and w.get_attribute("#geraet-stufe", "aria-valuetext") == "Arbeitsblatt auf Papier" and w.inner_text("#geraet-titel") == "Arbeitsblatt", "Blatt zu Tablet: Tastatur zieht zurück zum Blatt")
@@ -1138,8 +1141,8 @@ def main():
         pruefe(0 < t() < 1 and all(0 <= float(o) <= 1 for o in w.eval_on_selector_all(".geraet .aufgabe", "els => els.map(e => getComputedStyle(e).opacity)")), f"Blatt zu Tablet: Zwischenstand per Tastatur ({t():.2f})")
         pruefe(w.evaluate("getComputedStyle(document.querySelector('.geraet')).transitionProperty") in ("all", "none") and w.evaluate("getComputedStyle(document.querySelector('.geraet')).transitionDuration") == "0s", "Blatt zu Tablet: keine Übergänge, der Regler bewegt direkt")
         pruefe(w.evaluate("document.documentElement.scrollWidth") <= 1280, "Blatt zu Tablet: kein waagerechtes Scrollen")
-        w.reload(); w.wait_for_timeout(100); w.evaluate("document.getElementById('geraet-stufe').focus()"); w.keyboard.press("Home"); w.wait_for_timeout(500)
-        pruefe(w.input_value("#geraet-stufe") == "0", "Blatt zu Tablet: eine Berührung übernimmt, das Abspielen läuft nicht weiter")
+        w.reload(); w.evaluate("document.getElementById('geraet-stufe').focus()"); w.keyboard.press("Home"); w.wait_for_timeout(500)
+        pruefe(w.input_value("#geraet-stufe") == "0" and t() == 0, "Blatt zu Tablet: wer zieht, bestimmt – danach bewegt sich nichts von selbst")
         # Selbsteinschätzung: das Wort der Stufe steht sichtbar
         w.goto(url("passt.html"))
         pruefe(w.locator(".stufe-wort").count() == 5 and all(x == "Noch nichts gewählt" for x in w.locator(".stufe-wort").all_inner_texts()), "Stufenwort: zuerst »Noch nichts gewählt«")
@@ -1176,8 +1179,8 @@ def main():
         # 5f. Version 4.8 Teil 2: Tokens, Andruck, keine Parallaxe, Ansichtswechsel, Beamer-Ansicht
         w = neue_seite(b)
         w.goto(url("index.html"))
-        tok = w.evaluate("(() => { const s = getComputedStyle(document.documentElement); return ['flug','reihe','passer','zaehlwerk','einflug','blatt'].map(n => s.getPropertyValue('--dauer-' + n).trim()); })()")
-        pruefe(tok == ["440ms", "440ms", "620ms", "720ms", "240ms", "380ms"] and w.evaluate("HILDE.dauer('flug')") == 440 and w.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--ease-beidseits').trim()") != "", f"Tokens: Dauern stehen in hilde.css und HILDE.dauer liest sie ({tok})")
+        tok = w.evaluate("(() => { const s = getComputedStyle(document.documentElement); return ['flug','reihe','passer','zaehlwerk','einflug','blatt','leporello'].map(n => s.getPropertyValue('--dauer-' + n).trim()); })()")
+        pruefe(tok == ["440ms", "440ms", "620ms", "720ms", "240ms", "", ""] and w.evaluate("HILDE.dauer('flug')") == 440 and w.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--ease-beidseits').trim()") != "", f"Tokens: Dauern stehen in hilde.css und HILDE.dauer liest sie; Blatt und Leporello seit 4.39 gestrichen ({tok})")
         css = (W / "assets" / "hilde.css").read_text(encoding="utf-8")
         pruefe("collage-drift" not in css and "animation-timeline" not in css, "Collage: keine scroll-gesteuerte Parallaxe mehr")
         knopf = [z for z in css.splitlines() if z.startswith(".knopf:active")]
@@ -1244,8 +1247,59 @@ def main():
         pruefe(not w.konsole, f"Version 4.8 Teil 2: keine Konsolenfehler {w.konsole}")
         w.context.close()
 
+        # 5g. Version 4.39: Nichts bewegt sich ohne Eingabe (Input-First Rule), Startbildschirme nutzen die Breite (Screen-Width Rule)
+        laufend = ("(sel) => document.getAnimations().filter(a => a.playState === 'running' && "
+                   "!(sel && a.effect && a.effect.target && a.effect.target.closest && a.effect.target.closest(sel))).length")
+        i = neue_seite(b)
+        for s_ in ["index.html", "ki.html", "unterricht.html", "galerie.html", "beispiel.html#m19-appeasement", "beispiel.html#ns-einheit", "digitalisieren.html", "tablets.html", "sechs-hebel.html"]:
+            i.goto(url(s_)); i.wait_for_timeout(60)
+            erst = i.evaluate(laufend, "[data-passer], .platten, .collage")
+            i.reload(); i.wait_for_timeout(60)
+            zweit = i.evaluate(laufend, "")
+            pruefe(erst == 0 and zweit == 0, f"Input-First (4.39) {s_}: nach dem Laden läuft nichts von selbst – beim ersten Besuch nur Passer und Platten, beim zweiten nichts ({erst}, {zweit})")
+        i.goto(url("beispiel.html#m19-appeasement")); i.wait_for_selector("#detail-titel")
+        pruefe(i.evaluate("document.querySelector('.detail-haupt .sl-balken').getBoundingClientRect().width") > 40 and i.evaluate("typeof HILDE.stundenlinieZeichnen") == "undefined" and i.locator(".sl-von").count() == 0, "Input-First (4.39): die Stundenlinie der Detailseite steht sofort in ihrem Umfang, nichts zeichnet sich")
+        i.goto(url("galerie.html")); i.wait_for_selector("#anfangen .anfangen-gruppe-kopf .sl-balken")
+        pruefe(i.evaluate("[...document.querySelectorAll('#anfangen .anfangen-gruppe-kopf .sl-balken')].every(e => e.getBoundingClientRect().width > 0)") and i.locator(".sl-von").count() == 0, "Input-First (4.39): die Kopflinien von »Zum Anfangen« stehen sofort fertig da")
+        i.wait_for_selector(".einblick .einblick-schritte li")
+        i.evaluate("document.querySelector('#einblicke > .einblick:last-of-type').scrollIntoView()"); i.wait_for_timeout(120)
+        pruefe(not i.evaluate("document.documentElement.classList.contains('leporello-an')") and i.locator(".gefaltet").count() == 0 and i.evaluate(laufend, "") == 0
+               and i.evaluate("[...document.querySelectorAll('.einblick-schritte li')].every(li => getComputedStyle(li).transform === 'none' && getComputedStyle(li).opacity === '1')"),
+               "Input-First (4.39): die Schritte der Einblicke stehen offen da, auch beim Scrollen (Leporello gestrichen)")
+        pruefe(not i.konsole, f"Version 4.39, Input-First: keine Konsolenfehler {i.konsole}")
+        i.context.close()
+        for breite, hoehe in ((1920, 1080), (1440, 900)):
+            sw = neue_seite(b, viewport={"width": breite, "height": hoehe})
+            for s_, sel in [("index.html", ".start > .huelle"), ("ki.html", ".bereichskopf > .huelle"), ("unterricht.html", ".phasen-abschnitt > .huelle"), ("galerie.html", ".galerie-kopf-raster")]:
+                sw.goto(url(s_))
+                weit = sw.evaluate(f"document.querySelector('{sel}').getBoundingClientRect().width")
+                kopf = sw.evaluate("document.querySelector('.kopf > .huelle').getBoundingClientRect().width")
+                ziel = min(breite, 1792)
+                pruefe(abs(weit - ziel) < 2 and abs(kopf - weit) < 2 and sw.evaluate("document.documentElement.scrollWidth") <= breite,
+                       f"Screen-Width (4.39) {breite} px {s_}: der erste Bildschirm nutzt die Breite ({weit:.0f} px), der Kopf steht in derselben Breite")
+                zu_breit = sw.evaluate("""[...document.querySelectorAll('.huelle-weit p, .huelle-weit li')].filter(e => {
+                    if (!e.offsetParent) return false; const cs = getComputedStyle(e); let lh = parseFloat(cs.lineHeight); if (isNaN(lh)) lh = parseFloat(cs.fontSize) * 1.5;
+                    if (e.getBoundingClientRect().height < lh * 1.8) return false;
+                    const p = document.createElement('span'); p.style.cssText = 'display:inline-block;width:68ch;visibility:hidden;position:absolute'; e.appendChild(p);
+                    const g = p.getBoundingClientRect().width; p.remove(); return e.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) > g + 1; }).map(e => e.innerText.slice(0, 30))""")
+                pruefe(not zu_breit, f"Screen-Width (4.39) {breite} px {s_}: Fließtext bleibt höchstens 68ch breit {zu_breit}")
+            sw.goto(url("ueber.html"))
+            pruefe(sw.evaluate("document.querySelector('.kopf > .huelle').getBoundingClientRect().width") <= 1216, f"Screen-Width (4.39) {breite} px: Seiten zum Lesen behalten die normale Breite, auch im Kopf")
+            sw.goto(url("galerie.html")); sw.click("#alle-zeigen"); sw.wait_for_timeout(300)
+            reihe = sw.evaluate("(() => { const k = [...document.querySelectorAll('#karten > *')].filter(x => x.offsetParent); const t = Math.round(k[0].getBoundingClientRect().top); return k.filter(x => Math.round(x.getBoundingClientRect().top) === t).length; })()")
+            pruefe(reihe == (5 if breite == 1920 else 4), f"Screen-Width (4.39) {breite} px: Treffer – so viele Karten nebeneinander, wie die Breite trägt ({reihe})")
+            sw.context.close()
+        bm = neue_seite(b)
+        bm.goto(url("index.html"))
+        kn = [bm.locator(s).first.bounding_box() for s in (".wahlflaeche.ki .weiter", ".wahlflaeche.lernen .weiter", ".galerie-zugang")]
+        pruefe(all(k and k["y"] + k["height"] <= 720 for k in kn), "Beamer 1280 × 720 (4.39): Startseite zeigt beide Einstiege und den Weg zu den Unterrichtsbeispielen ohne Scrollen")
+        bm.goto(url("ki.html"))
+        kn = [bm.locator(s).first.bounding_box() for s in ("h1", ".erste-minuten h2")]
+        pruefe(all(k and k["y"] + k["height"] <= 720 for k in kn), "Beamer 1280 × 720 (4.39): KI-Training zeigt Überschrift, beide Einstiege und »Deine ersten zehn Minuten« ohne Scrollen")
+        bm.context.close()
+
         # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
-        for breite in (375, 768, 1280, 1440):
+        for breite in (375, 768, 1280, 1440, 1920):
             q = neue_seite(b, viewport={"width": breite, "height": 900})
             for s_ in ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "digital-check.html", "galerie.html", "beispiel.html#psycho-ds2", "ueber.html", "gestaltung.html"]:
                 q.goto(url(s_))

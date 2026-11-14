@@ -1,7 +1,7 @@
 /* Kidu – Galerie: »Zum Anfangen« (ab Version 4.7).
    Sechs erprobte Beispiele, zwei je Umfang, aus dem Feld »auswahl« in assets/daten/beispiele.js.
    Drei Gruppen in der Reihenfolge von TAXONOMIEN.umfang, jede mit einer Stundenlinie (Muster I) als Kopf.
-   Keine Rangfolge: Die drei Linien zeichnen sich gleichzeitig, die Karten stehen ohne Nummer.
+   Keine Rangfolge: Die drei Linien stehen gleich fertig da, die Karten ohne Nummer.
    Braucht: TAXONOMIEN, BEISPIELE, HILDE. */
 (function () {
   "use strict";
@@ -45,6 +45,4 @@
         "<p>" + esc(e.kurz) + "</p>" + H.umfangZeile(e) + '</div><div class="fussleiste"><span class="status">Status: <b>' + esc(e.status) + '</b></span><span class="fuss-knoepfe"><a class="knopf" href="' + H.detailLink(e) + '">Mehr dazu<span class="sr-only">: ' + esc(e.titel) + "</span></a></span></div></article>";
     }).join("") + "</section>");
 
-  // Die drei Kopflinien zeichnen sich einmal beim Erscheinen – gleichzeitig, ohne Staffelung (keine Rangfolge).
-  H.stundenlinieZeichnen(ort.querySelectorAll(".anfangen-gruppe-kopf .stundenlinie"));
 })();

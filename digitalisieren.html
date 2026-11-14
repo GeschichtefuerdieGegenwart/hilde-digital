@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Bisherigen Unterricht digitalisieren – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=6b7f9192">
+<link rel="stylesheet" href="assets/hilde.css?v=d105bec1">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -28,9 +28,9 @@
   </div>
   <div class="blatt-tablet">
     <p class="geraet-frage" id="geraet-frage">Was ändert sich an der Aufgabe, wenn aus dem Blatt ein Tablet wird – und was bleibt gleich?</p>
-    <div class="geraet" id="geraet" aria-hidden="true">
+    <div class="geraet digital" id="geraet" aria-hidden="true">
       <span class="geraet-rahmen"></span>
-      <p class="geraet-titel" id="geraet-titel">Arbeitsblatt</p>
+      <p class="geraet-titel" id="geraet-titel">Am Tablet</p>
       <div class="geraet-inhalt">
         <div class="zeilen"><span class="zeile l"></span><span class="zeile m"></span><span class="zeile k"></span><span class="zeile l"></span><span class="zeile m"></span></div>
         <div class="aufgaben">
@@ -43,8 +43,8 @@
     </div>
     <p class="geraet-regler">
       <label for="geraet-stufe">Vom Blatt zum Tablet</label>
-      <input type="range" id="geraet-stufe" min="0" max="100" step="1" value="0" aria-valuetext="Arbeitsblatt auf Papier">
-      <span class="geraet-enden"><span class="ist" data-geraet-ende="papier">Arbeitsblatt auf Papier</span><span data-geraet-ende="tablet">Dieselbe Aufgabe am Tablet</span></span>
+      <input type="range" id="geraet-stufe" min="0" max="100" step="1" value="100" aria-valuetext="Dieselbe Aufgabe am Tablet">
+      <span class="geraet-enden"><span data-geraet-ende="papier">Arbeitsblatt auf Papier</span><span class="ist" data-geraet-ende="tablet">Dieselbe Aufgabe am Tablet</span></span>
     </p>
   </div>
 </div></section>
@@ -103,8 +103,8 @@
 <script src="assets/daten/digitalisieren.js?v=dc6b91fc"></script>
 <script src="assets/daten/kurzfassungen.js?v=cb40a1db"></script>
 <script src="assets/digitalisieren-prompt.js?v=c6875692"></script>
-<script src="assets/hilde.js?v=01f2d897"></script>
-<script src="assets/digitalisieren.js?v=0f3d189c"></script>
+<script src="assets/hilde.js?v=e22353fb"></script>
+<script src="assets/digitalisieren.js?v=c35acce8"></script>
 <script src="assets/werkzeugkiste.js?v=13f6395e"></script>
 
 </main>
@@ -117,6 +117,6 @@
   <p class="kennzeichnung">Kidu · Künstliche Intelligenz und digitaler Unterricht · Persönlicher Entwicklungsstand zur Diskussion – noch kein beschlossenes Schulkonzept.</p>
   <p class="kennzeichnung urheber leise">© 2026 Mario Walter · entwickelt mit Unterstützung eines KI-Systems · Texte CC BY-NC-SA 4.0 · Code MIT · <a href="ueber.html#t-entstehung">Entstehung und Lizenz</a></p>
 </div></footer>
-<script src="assets/motion.js?v=30e2bad3"></script>
+<script src="assets/motion.js?v=f6a039f2"></script>
 </body>
 </html>
