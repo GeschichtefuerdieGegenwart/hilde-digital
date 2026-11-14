@@ -1,7 +1,7 @@
 /* Kidu – Werkzeug »Unterricht digitalisieren«: Auswahl → Prompt zum Kopieren.
    Der Prompt entsteht bei jeder Änderung neu (assets/digitalisieren-prompt.js).
    Gespeichert werden nur Auswahlwerte (Phase, Material, Vorhaben, Umfang, Ausgabe), nie Freitexte.
-   Erklär-Bewegung im Kopf: Das Blatt wird einmal zum Tablet (nicht bei »weniger Bewegung«).
+   Erklär-Bild im Kopf: ein Regler zwischen Blatt und Tablet. Es steht gleich am Tablet und bewegt sich nur, wenn du ziehst.
    Braucht: TAXONOMIEN, QUALITAET, DIGITALISIEREN, DIGITALISIEREN_PROMPT, HILDE. */
 (function () {
   "use strict";
@@ -75,17 +75,11 @@
 
   /* Vom Blatt zum Tablet (ab Version 4.8): ein Regler zieht zwischen »Arbeitsblatt auf Papier« (0) und
      »Dieselbe Aufgabe am Tablet« (100) – mit Finger, Maus oder Tastatur. Das Bild hängt an --t (nur Deckkraft und Lage).
-     Abspielen von selbst: höchstens einmal, erst wenn das Motiv ins Bild kommt (380 ms, auslaufend); jede Berührung
-     übernimmt sofort. Bei »weniger Bewegung« (System oder Schalter im Fuß) kein Abspielen: Es steht gleich der Endzustand.
-     Die Dauer kommt aus dem Token --dauer-blatt (HILDE.dauer). */
+     Seit 4.39 spielt nichts von selbst (Input-First Rule in DESIGN.md): Beim Laden steht der Regler am Tablet,
+     dem Ende des Wegs – so steht es auch im HTML. Wer zurückzieht, sieht das Blatt. */
   var geraet = document.getElementById("geraet"), regler = document.getElementById("geraet-stufe");
-  function ruhig() {
-    return document.documentElement.getAttribute("data-bewegung") === "weniger" ||
-      !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }
   if (geraet && regler) {
     var titel = document.getElementById("geraet-titel"), enden = [].slice.call(document.querySelectorAll("[data-geraet-ende]"));
-    var angefasst = false, lauf = 0, gespielt = false;
     function setze(v) {
       v = Math.max(0, Math.min(100, v));
       var tablet = v >= 50;
@@ -95,32 +89,7 @@
       regler.setAttribute("aria-valuetext", tablet ? "Dieselbe Aufgabe am Tablet" : "Arbeitsblatt auf Papier");
       enden.forEach(function (e) { e.classList.toggle("ist", (e.getAttribute("data-geraet-ende") === "tablet") === tablet); });
     }
-    function uebernehmen() { angefasst = true; if (lauf) { cancelAnimationFrame(lauf); lauf = 0; } }
-    regler.addEventListener("pointerdown", uebernehmen);
-    regler.addEventListener("keydown", uebernehmen);
-    regler.addEventListener("input", function () { uebernehmen(); setze(+regler.value); });
-    function spiele() {
-      if (gespielt || angefasst) return;
-      gespielt = true;
-      if (ruhig()) { regler.value = 100; setze(100); return; }
-      var start = 0, DAUER = H.dauer("blatt"); // --dauer-blatt aus hilde.css (380 ms)
-      lauf = requestAnimationFrame(function schritt(t) {
-        if (angefasst) return;
-        if (!start) start = t;
-        var p = Math.min(1, (t - start) / DAUER), e = 1 - Math.pow(1 - p, 3); // auslaufend (ease-out)
-        regler.value = Math.round(e * 100); setze(e * 100);
-        if (p < 1) lauf = requestAnimationFrame(schritt); else lauf = 0;
-      });
-    }
+    regler.addEventListener("input", function () { setze(+regler.value); });
     setze(+regler.value);
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (es) {
-        if (!es.some(function (x) { return x.isIntersecting; })) return;
-        io.disconnect(); spiele();
-      }, { threshold: .5 });
-      io.observe(geraet);
-    } else spiele();
-    // Wird »weniger Bewegung« eingeschaltet, während es läuft: anhalten und den Endzustand zeigen.
-    document.addEventListener("hilde:bewegung", function () { if (lauf && ruhig()) { cancelAnimationFrame(lauf); lauf = 0; regler.value = 100; setze(100); } });
   }
 })();

@@ -1,9 +1,10 @@
 /* Kidu – Bewegungsmuster aus dem Motion-Musterbuch 2 (ab Version 4.4).
    F Passer · G Farbauszug (CSS, hier nur nichts zu tun) · J Stanzloch (CSS) · I Stundenlinie (in tablets-weg.js)
-   K Schnellhefter · L Durchschlag · M Zählwerk · N Leporello · O Plattenwechsel · Schalter »Weniger Bewegung« (ab 4.8)
+   K Schnellhefter · L Durchschlag · M Zählwerk · O Plattenwechsel · Schalter »Weniger Bewegung« (ab 4.8)
    und »Beamer-Ansicht« (ab 4.8 Teil 2). Alle Dauern kommen aus den Tokens in hilde.css (dauer(), wie HILDE.dauer).
    Grundsätze (Emil Kowalski): Jede Bewegung hat einen Zweck, ist kurz (unter 500 ms), startet durch die Nutzerin
-   oder einmal beim Erscheinen und läuft nie in Schleife. Bei »weniger Bewegung« bleibt der Zustand, die Bewegung entfällt.
+   und läuft nie in Schleife. Von selbst läuft nur, was die Input-First Rule in DESIGN.md erlaubt: der Passer (F),
+   einmal je Sitzung. N Leporello ist seit 4.39 gestrichen – die Schritte der Einblicke stehen gleich offen da. Bei »weniger Bewegung« bleibt der Zustand, die Bewegung entfällt.
    Mit der Tastatur ausgelöste Handlungen werden nicht animiert. Nichts Lesbares wird versteckt, was beim Laden schon zu sehen ist.
    Läuft eigenständig auf jeder Seite; nutzt BEISPIELE und HILDE nur, wenn vorhanden. */
 (function () {
@@ -185,23 +186,6 @@
     io.observe(liste);
   }
 
-  /* ---------- N · Leporello: Schritte der Labore entfalten sich einmal ---------- */
-  function leporello() {
-    var listen = [].slice.call(doc.querySelectorAll(".einblick"));
-    if (!listen.length || ruhig() || !("IntersectionObserver" in window)) return;
-    var spaeter = listen.filter(function (x) { return x.getBoundingClientRect().top > innerHeight; });
-    if (!spaeter.length) return;
-    root.classList.add("leporello-an");
-    spaeter.forEach(function (x) {
-      x.querySelectorAll(".einblick-schritte li").forEach(function (li, i) { li.style.setProperty("--i", i); });
-      x.classList.add("gefaltet");
-    });
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("gefaltet"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -15% 0px" });
-    spaeter.forEach(function (x) { io.observe(x); });
-  }
-
   /* ---------- O · Plattenwechsel über der Galerie ---------- */
   function plattenwechsel() {
     var band = doc.getElementById("plattenband"), gruppe = doc.getElementById("bereich");
@@ -215,7 +199,7 @@
   }
 
   function start() {
-    bewegungZeigen(); themeZeigen(); passer(); zeigeZahl(false); zeigeKnoepfe(); zeigeHefter(); zaehlwerk(); leporello(); plattenwechsel();
+    bewegungZeigen(); themeZeigen(); passer(); zeigeZahl(false); zeigeKnoepfe(); zeigeHefter(); zaehlwerk(); plattenwechsel();
     // Später gezeichnete Karten (Galerie-Treffer, Detailseite) bekommen ihren Merk-Zustand nachgereicht.
     new MutationObserver(function (m) {
       if (m.some(function (x) { return x.addedNodes.length; })) zeigeKnoepfe();

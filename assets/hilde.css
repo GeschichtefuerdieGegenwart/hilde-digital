@@ -79,8 +79,6 @@
   /* Begründete Ausnahmen über 300 ms (DESIGN.md): selten, einmalig oder räumlich, keine blockiert eine Eingabe. */
   --dauer-plattenwechsel:320ms; /* O · Platte über der Galerie */
   --dauer-uebergang:320ms; /* Q · Ansichtswechsel eines ganzen Ausschnitts (Bühne »Fünf Sätze«); Token »übergang« aus signatur-design v7 */
-  --dauer-leporello:380ms; --dauer-leporello-staffel:70ms; /* N · Schritte entfalten sich */
-  --dauer-blatt:380ms;    /* P · Vom Blatt zum Tablet, einmaliges Abspielen (assets/digitalisieren.js) */
   --dauer-durchschlag:420ms; /* L · Durchschlag beim Kopieren */
   --dauer-aufdecken:360ms; /* S–X · Zustandswechsel nach einer Festlegung (Token »reveal« aus signatur-design 4a): Schwärzung, Rückmeldung, Messpunkt */
   --dauer-flug:440ms;     /* K · Flug in den Schnellhefter; X · die eigene Stimme fliegt ins Halbrund */
@@ -1003,6 +1001,9 @@ details.mehr.mehr-filter{padding:0;background:transparent}
   .collage:hover .c2,.start-galerie:has(.galerie-zugang:hover) .c2{transform:translate(8px,-4px) rotate(6deg)}
   .collage:hover .c3,.start-galerie:has(.galerie-zugang:hover) .c3{transform:translateY(-6px)}
 }
+/* Ab 4.39 (Screen-Width Rule): Auf breiten Bildschirmen wächst die Collage mit, damit die Leiste unter den Platten
+   die Breite trägt; Seitenverhältnis wie oben (etwa 3 : 1). */
+@media (min-width:1500px){.start .collage{flex-basis:clamp(27rem,28vw,34rem);height:clamp(9rem,9.5vw,11.5rem)}}
 .registrieren .collage-karte.c1{animation:reg-ki var(--dauer-register) var(--ease-register) both}
 .registrieren .collage-karte.c2{animation:reg-lernen var(--dauer-register) var(--ease-register) both}
 
@@ -1115,10 +1116,10 @@ main .werkzeug,main .sh-hebel{max-width:none}
 /* Vom Blatt zum Tablet (Seite »Unterricht digitalisieren«, ab 1024 px). Ab Version 4.8 ein Regler:
    --t läuft von 0 (Arbeitsblatt auf Papier) bis 1 (dieselbe Aufgabe am Tablet). Alles hängt an --t,
    nur Deckkraft und Lage ändern sich; der Tablet-Rahmen liegt als eigene Fläche über dem Blatt und blendet ein.
-   Keine Übergänge: Der Regler bewegt direkt, das einmalige Abspielen rechnet assets/digitalisieren.js. */
+   Keine Übergänge: Der Regler bewegt direkt. Seit 4.39 spielt nichts von selbst: Das Bild steht gleich am Tablet (--t:1). */
 .blatt-tablet{display:none}
 @media (min-width:1024px){.blatt-tablet{display:grid;gap:var(--a2);justify-self:end;width:min(100%,16rem)}}
-.geraet{--t:0;position:relative;width:100%;aspect-ratio:3/4;background:var(--flaeche);border:2px solid var(--stahl);border-radius:3px;padding:1.1rem 1rem;display:grid;align-content:start;gap:.7rem}
+.geraet{--t:1;position:relative;width:100%;aspect-ratio:3/4;background:var(--flaeche);border:2px solid var(--stahl);border-radius:3px;padding:1.1rem 1rem;display:grid;align-content:start;gap:.7rem}
 .geraet-rahmen{position:absolute;inset:-8px;border:10px solid var(--lernen);border-radius:18px;box-shadow:8px 8px 0 0 var(--lernen-tief);opacity:var(--t);pointer-events:none} /* taste-skill-ignore: versetzte Druckplatte */
 .geraet-titel{font:700 1.05rem/1.2 var(--schrift-titel);position:relative}
 .geraet-inhalt{position:relative;min-height:8.4rem}
@@ -1196,8 +1197,7 @@ main .werkzeug,main .sh-hebel{max-width:none}
 .stundenlinie.zeile .sl-balken{top:4px;height:12px;border-radius:6px;width:12px;left:calc(37% - 6px)}
 .stundenlinie.zeile[data-umfang="phasenweise"] .sl-balken{left:25%;width:25%}
 .stundenlinie.zeile[data-umfang="durchgaengig"] .sl-balken{left:0;width:100%}
-/* Zeichnen beim Erscheinen: Der Balken startet ohne Breite und wächst auf seinen Umfang (HILDE.stundenlinieZeichnen). */
-.stundenlinie.sl-von .sl-balken{width:0!important;transition:none!important}
+/* Bis 4.38 zeichnete sich die Linie beim Erscheinen (.sl-von). Seit 4.39 steht sie gleich fertig da (Input-First Rule). */
 /* Auf Karten: Linie und Wort in einer Zeile. Ohne Umfang nur das Wort »noch offen«. */
 .umfang-zeile{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-size:var(--gr-klein);color:var(--leise)}
 .umfang-zeile b{color:var(--text)}
@@ -1207,7 +1207,7 @@ main .werkzeug,main .sh-hebel{max-width:none}
 .umfangzeile .stundenlinie.zeile .sl-balken{transition-duration:var(--dauer-mittel),var(--dauer-mittel),var(--dauer-schnell)}
 
 /* Zum Anfangen (ab Version 4.7): sechs erprobte Beispiele, zwei je Umfang. Drei Gruppen nebeneinander ab 900 px,
-   jede mit einer Stundenlinie als Kopf. Keine Rangfolge: alle drei Linien zeichnen sich gleichzeitig. */
+   jede mit einer Stundenlinie als Kopf. Keine Rangfolge: Die drei Linien stehen gleich fertig da, ohne Nummer. */
 .anfangen{padding-block:var(--a2) var(--a6)}
 .anfangen-kopf{display:grid;gap:.6rem;max-width:64ch;margin-bottom:var(--a4)}
 .anfangen-kopf h2{font-size:var(--gr-h2);font-weight:700}
@@ -1252,15 +1252,6 @@ main .werkzeug,main .sh-hebel{max-width:none}
 .zaehlwerk .band{display:flex;flex-direction:column;transition:transform var(--dauer-zaehlwerk) var(--ease-out)}
 .zaehlwerk .band span{display:block;height:1em;line-height:1}
 
-/* N · Leporello: Die Schritte eines Labors entfalten sich einmal, wenn sie ins Bild kommen. */
-.leporello-an .einblick-schritte{perspective:900px}
-.leporello-an .einblick-schritte li{transform-origin:50% 0;transition:transform var(--dauer-leporello) var(--ease-out),opacity var(--dauer-leporello) var(--ease-out);transition-delay:calc(var(--i,0) * var(--dauer-leporello-staffel))}
-@media (min-width:700px){
-  .leporello-an .gefaltet .einblick-schritte{overflow:hidden}
-  .leporello-an .gefaltet .einblick-schritte li{transform:rotateX(-70deg);opacity:.25}
-  .leporello-an .gefaltet .einblick-schritte li:nth-child(even){transform:rotateX(70deg)}
-}
-
 /* O · Plattenwechsel: Über der Galerie schiebt sich die Platte des gewählten Bereichs ins Bild. */
 .plattenband{position:relative;height:clamp(14px,2vw,22px);overflow:hidden;margin-bottom:var(--a3);background:var(--flaeche)}
 .plattenband .pl{position:absolute;inset:0;mix-blend-mode:multiply;transition:transform var(--dauer-plattenwechsel) var(--ease-beidseits)}
@@ -1276,15 +1267,13 @@ main .werkzeug,main .sh-hebel{max-width:none}
   .passer.passer-lauf,.passer.passer-lauf::before,.passer.passer-lauf::after{animation:none!important}
   .auszug .platte{transform:none!important}
   .schritte .nr,.schritte .nr::after,.hefter-link svg{animation:none!important}
-  .leporello-an .gefaltet .einblick-schritte li{transform:none!important;opacity:1!important}
   .plattenband .pl{transition:none!important}
 }
 html[data-bewegung="weniger"] .passer.passer-lauf,html[data-bewegung="weniger"] .passer.passer-lauf::before,html[data-bewegung="weniger"] .passer.passer-lauf::after{animation:none!important}
 html[data-bewegung="weniger"] .auszug .platte{transform:none!important}
 html[data-bewegung="weniger"] .schritte .nr,html[data-bewegung="weniger"] .schritte .nr::after,html[data-bewegung="weniger"] .hefter-link svg{animation:none!important}
-html[data-bewegung="weniger"].leporello-an .gefaltet .einblick-schritte li{transform:none!important;opacity:1!important}
 html[data-bewegung="weniger"] .plattenband .pl{transition:none!important}
-@media print{ /* taste-skill-ignore: Druckfassung */ .leporello-an .einblick-schritte li{transform:none!important;opacity:1!important}.hefter-link,.plattenband{display:none}}
+@media print{ /* taste-skill-ignore: Druckfassung */ .hefter-link,.plattenband{display:none}}
 .fuss-knoepfe{display:flex;flex-wrap:wrap;gap:.5rem}
 .einblick-aktionen .merken{min-height:44px}
 .collage-karte .auszug{width:100%;height:100%}
@@ -2581,6 +2570,10 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
    Grundlagen · Digitalen Unterricht erstellen · Unterrichten · Nach der Stunde. Die Übersicht nutzt die Bildschirmbreite
    (breitere Hülle als der Lesetext); vier Phasen je Zeile ab 861 px, zwei darunter, eine auf dem Telefon. Nichts bewegt sich. */
 .huelle-weit{max-width:var(--breite-weit)}
+/* Ab 4.39: Nutzt der erste Bildschirm einer Seite die weite Hülle (Startseite, KI-Training, Digitaler Unterricht,
+   Unterrichtsbeispiele), steht der Kopf in derselben Breite: Marke und Schnellhefter an den Kanten der Übersicht.
+   Zwei Formen, weil tools/bauen.py die Bereichsseiten in <div class="bereich-…"> legt. */
+body:has(#inhalt > section:first-child > .huelle-weit, #inhalt > div:first-child > section:first-child > .huelle-weit) .kopf > .huelle{max-width:var(--breite-weit)}
 .leitband-weg .leitband-innen{grid-template-columns:minmax(0,1fr) minmax(15rem,21rem);align-items:center;padding-block:var(--a3)}
 .leitband-weg .leitband-frage{max-width:none;font-size:var(--gr-h2)}
 .leitband-weg .leitband-text p{max-width:64ch}

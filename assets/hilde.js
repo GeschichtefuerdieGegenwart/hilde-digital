@@ -127,16 +127,8 @@ var HILDE = (function () {
       "</span><span>Umfang: <b>je Stunde</b> · ganze Einheit mit " + teile.length + " Teilen</span></p>";
   }
 
-  /* I2 · Die Stundenlinie zeichnet sich einmal beim Erscheinen: Der Balken wächst von 0 auf seinen Umfang (260 ms).
-     Bei »weniger Bewegung« steht sofort der Endzustand. Zwei Bildwechsel, damit der Browser den Start sieht. */
-  function stundenlinieZeichnen(elemente) {
-    var liste = elemente && elemente.length !== undefined ? [].slice.call(elemente) : (elemente ? [elemente] : []);
-    if (!liste.length || ruhig()) return;
-    liste.forEach(function (el) { el.classList.add("sl-von"); });
-    requestAnimationFrame(function () { requestAnimationFrame(function () {
-      liste.forEach(function (el) { el.classList.remove("sl-von"); });
-    }); });
-  }
+  /* I2 · Bis 4.38 zeichnete sich die Stundenlinie beim Erscheinen (stundenlinieZeichnen). Seit 4.39 steht sie gleich fertig da:
+     Nichts bewegt sich ohne Eingabe (Input-First Rule in DESIGN.md). */
 
   /* Große Galerie-Karte */
   function karte(b) {
@@ -293,6 +285,6 @@ var HILDE = (function () {
   return { lies: lies, schreib: schreib, loescheAlles: loescheAlles, esc: esc, name: name, ruhig: ruhig, dauer: dauer,
            wechselId: wechselId, wechselMerken: wechselMerken, wechselBenennen: benenne, wechselMoeglich: wechselMoeglich,
            kennzeichen: kennzeichen, merkmale: merkmale, prinzipMarken: prinzipMarken, geraetSatz: geraetSatz, karte: karte, miniKarte: miniKarte, detailLink: detailLink, merkKnopf: merkKnopf,
-           stundenlinie: stundenlinie, stundenlinieNamen: stundenlinieNamen, umfangZeile: umfangZeile, teileDerEinheit: teileDerEinheit, stundenlinieZeichnen: stundenlinieZeichnen,
+           stundenlinie: stundenlinie, stundenlinieNamen: stundenlinieNamen, umfangZeile: umfangZeile, teileDerEinheit: teileDerEinheit,
            lichtbild: oeffne };
 })();
