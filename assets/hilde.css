@@ -2587,15 +2587,6 @@ html[data-bewegung="weniger"] :is(.mfb-figur,.mfb-blase,.mfb-loch,.mfb-loch::bef
 .werkzeug.tuer .werkzeug-text b{font-size:var(--gr-h2)}
 .tuer-ueber{font-size:var(--gr-klein);font-weight:700;color:var(--lernen)}
 @media (hover:hover) and (pointer:fine){.werkzeug.tuer a:hover{box-shadow:6px 6px 0 0 var(--lernen)}} /* taste-skill-ignore: versetzte Platte nur beim Überfahren */
-.register-titel{font-size:var(--gr-h3);margin-top:var(--a6)}
-.register-titel:first-child{margin-top:0} /* ab 4.36 steht das Register in einem eigenen Abschnitt */
-.register{list-style:none;margin:var(--a2) 0 0;padding:0;border-top:2px solid var(--text)}
-.register li{border-bottom:1px solid var(--linie);max-width:none}
-.register a{display:grid;grid-template-columns:minmax(12rem,17rem) minmax(0,1fr) 9rem;gap:var(--a1) var(--a3);align-items:baseline;padding:.85rem .5rem;color:var(--text);text-decoration:none;transition:background-color var(--dauer-schnell) var(--ease-out)}
-.register a b{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
-.register-wann{font-size:var(--gr-klein);color:var(--leise)}
-@media (hover:hover) and (pointer:fine){.register a:hover{background:var(--lernen-zart)}}
-@media (max-width:760px){.register a{grid-template-columns:1fr}.register-wann{order:-1}}
 .werkzeuge.kompakt{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a2)}
 .werkzeuge.kompakt .werkzeug a{padding:var(--a2)}
 .werkzeuge.kompakt .werkzeug-text b{font-size:var(--gr-text)}
@@ -2617,20 +2608,107 @@ body:has(#inhalt > section:first-child > .huelle-weit, #inhalt > div:first-child
 .leitband-beispiele span{color:var(--text)}
 .leitband-beispiele a:focus-visible{outline:3px solid var(--flaeche);outline-offset:3px}
 @media (max-width:860px){.leitband-weg .leitband-innen{grid-template-columns:1fr}}
-.phasen-abschnitt{padding-top:var(--a3);padding-bottom:var(--a3)} /* das Register darunter gehört dazu: kein großer Abstand */
-.phasen-weg{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--a2)}
-.phase{background:var(--flaeche);border-radius:var(--rund);padding:var(--a2) var(--a3);display:grid;align-content:start;gap:var(--a1);max-width:none;min-width:0}
-.phase-kopf{display:flex;align-items:center;gap:var(--a2);margin:0}
-.phase-nr{display:inline-grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;background:var(--lernen);color:var(--flaeche);font:700 1.25rem/1 var(--schrift-titel)}
-.phase-wann{font-size:var(--gr-klein);font-weight:700;color:var(--lernen)}
-.phase-titel{font:600 clamp(1.25rem,1.1rem + .45vw,1.5rem)/1.15 var(--schrift-titel);margin:0;text-wrap:balance}
-.phase-text{color:var(--leise);margin:0}
-.phase-links{list-style:none;margin:.25rem 0 0;padding:0;display:grid;gap:.15rem}
-.phase-links li{max-width:none}
-.phase-links a{color:var(--lernen-tief);font-weight:700;text-underline-offset:.2em;display:inline-block;padding-block:.15rem;line-height:1.3}
-.register-phase{font-size:var(--gr-text);font-weight:700;margin-top:var(--a4);color:var(--lernen-tief)}
-.register-phase + .werkzeuge{margin-top:var(--a2)}
-@media (max-width:860px){.phasen-weg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Ab 4.41 · Fahrplan der Bereichsseite »Digitaler Unterricht« (Entwurf B2 aus Claude Design, Entscheidung Mario 14.11.2026).
+   Ersetzt die vier Phasen nebeneinander und das Register »Alle Werkzeuge nach Phasen« (4.36–4.40): eine Struktur, keine doppelten Links.
+   Vier Phasen untereinander, jede ein <details> – Aufklappen geht ohne Skript (assets/fahrplan.js ergänzt »Alle Werkzeuge zeigen«,
+   Sprungmarken und den Druck). Der Kopf nutzt die Breite: Wann und Name, Satz, Zahl der Werkzeuge; aufgeklappt stehen die Werkzeuge
+   in so vielen Spalten, wie die Breite trägt (Screen-Width Rule). Flächen im Wechsel – 1 und 3 hell, 2 und 4 Petrol-zart: zwei Töne
+   trennen Nachbarn, die Nummer nennt die Phase (Two-Inks Rule: keine Farbe je Phase, abgestufte Töne sähen nach Rangfolge aus).
+   Linien tragen eine Beziehung (Line-to-Target Rule): Petrol führt von Phase zu Phase, von den Grundlagen gestrichelt hinein;
+   Druckschwarz führt in der Rinne links von 4 zurück zu 2 und endet mit der Spitze am Rand von Kreis 2. Nichts bewegt sich. */
+.phasen-abschnitt{--fp-kreis:3rem;--fp-rand:4px;--fp-rinne:2.5rem;--fp-abstand:.5rem;--fp-kopf:4.25rem;--fp-oben:calc((var(--fp-kopf) - var(--fp-kreis)) / 2);
+  padding-top:.75rem;padding-bottom:var(--a4)}
+.fahrplan-leiste{display:flex;flex-wrap:wrap;align-items:center;gap:var(--a1) var(--a3);margin-bottom:.5rem;padding-left:var(--fp-rinne)}
+.fahrplan-titel{font-size:var(--gr-h3)}
+.fahrplan-bedienung{max-width:none}
+.fahrplan-alle{margin-left:auto}
+.fahrplan{list-style:none;margin:0;padding:0 0 0 var(--fp-rinne);display:grid;gap:var(--fp-abstand)}
+.fahrplan-phase{position:relative;display:grid;grid-template-columns:var(--fp-kreis) minmax(0,1fr);column-gap:var(--a2);align-items:start;max-width:none}
+.fahrplan-nr{grid-column:1;grid-row:1;position:relative;z-index:1;width:var(--fp-kreis);height:var(--fp-kreis);margin-top:var(--fp-oben);border-radius:50%;border:var(--fp-rand) solid var(--lernen);background:var(--grund);color:var(--lernen);display:grid;place-items:center;font:700 1.375rem/1 var(--schrift-titel)}
+/* Petrol: von Phase zu Phase (von den Grundlagen gestrichelt bis in die Zwischenzeile, dann weiter bis Kreis 2) */
+.fahrplan-phase::before,.fahrplan-zwischen::before{content:"";position:absolute;left:calc(var(--fp-kreis) / 2 - 2px);bottom:calc(-1 * (var(--fp-abstand) + var(--fp-oben)) - 2px);border-left:4px solid var(--lernen)}
+.fahrplan-phase::before{top:calc(var(--fp-oben) + var(--fp-kreis))}
+.fahrplan-phase.ist-vorspann::before{border-left-style:dashed;bottom:calc(-1 * var(--fp-abstand))}
+.fahrplan-phase:last-child::before{content:none}
+.fahrplan-zwischen{position:relative;max-width:none;min-height:1.5rem;padding-left:calc(var(--fp-kreis) + var(--a2));font-size:var(--gr-klein);font-weight:700;line-height:1.5;color:var(--leise)}
+.fahrplan-zwischen::before{top:0;border-left-style:dashed}
+/* Druckschwarz: der Rückweg von 4 zu 2 – nächste Stunde */
+.fahrplan-phase.ist-ring-start::after,.fahrplan-phase.ist-ring-mitte::after,.fahrplan-phase.ist-ring-ende::after{content:"";position:absolute;box-sizing:border-box;left:calc(-1 * var(--fp-rinne) + 4px);width:calc(var(--fp-rinne) - 6px);border-left:3px solid var(--text)}
+.fahrplan-phase.ist-ring-start::after{top:calc(var(--fp-oben) + var(--fp-kreis) / 2 - 1.5px);bottom:calc(-1 * var(--fp-abstand) - 2px);border-top:3px solid var(--text);border-top-left-radius:8px}
+.fahrplan-phase.ist-ring-mitte::after{top:calc(-1 * var(--fp-abstand) - 2px);bottom:calc(-1 * var(--fp-abstand) - 2px)}
+.fahrplan-phase.ist-ring-ende::after{top:calc(-1 * var(--fp-abstand) - 2px);height:calc(var(--fp-abstand) + 2px + var(--fp-oben) + var(--fp-kreis) / 2 + 1.5px);border-bottom:3px solid var(--text);border-bottom-left-radius:8px}
+.fahrplan-phase.ist-ring-start .fahrplan-nr::before{content:"";position:absolute;left:calc(-10px - var(--fp-rand));top:50%;margin-top:-7px;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:10px solid var(--text)}
+.fahrplan-ring{display:flex;align-items:baseline;gap:.5rem;margin-top:.5rem;font-size:var(--gr-klein);font-weight:700;max-width:none}
+.fahrplan-ring-pfeil{display:inline-block;width:12px;text-align:center}
+/* Platten: Flächen im Wechsel; die offene Phase liegt auf ihrer Petrol-Platte */
+.fahrplan-platte{grid-column:2;grid-row:1;min-width:0;background:var(--flaeche);border:2px solid var(--stahl);border-radius:var(--rund)}
+.fahrplan-phase.ist-zart .fahrplan-platte{background:var(--lernen-zart)}
+.fahrplan-platte[open]{border-color:var(--text);box-shadow:8px 8px 0 0 var(--lernen)} /* taste-skill-ignore: versetzte Petrol-Platte = die offene Phase */
+.fahrplan-kopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr) auto;grid-template-areas:"wann satz zahl" "name satz zahl";column-gap:var(--a3);align-items:center;min-height:var(--fp-kopf);padding:.625rem var(--a3);cursor:pointer;list-style:none}
+.fahrplan-kopf::-webkit-details-marker{display:none}
+.fahrplan-wann{grid-area:wann;align-self:end;font-size:var(--gr-klein);font-weight:700;line-height:1.35;color:var(--lernen)}
+.fahrplan-name{grid-area:name;align-self:start;font-size:clamp(1.25rem,1.1rem + .45vw,1.5rem);line-height:1.15}
+.fahrplan-satz{grid-area:satz;font-size:var(--gr-klein);line-height:1.4}
+.fahrplan-zahl{grid-area:zahl;display:inline-flex;align-items:center;gap:.6rem;font-size:var(--gr-klein);font-weight:700;white-space:nowrap}
+.fahrplan-zahl::after{content:"+";content:"+" / "";display:grid;place-items:center;width:28px;height:28px;border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);font-size:1.125rem;line-height:1}
+.fahrplan-platte[open] .fahrplan-zahl::after{content:"–";content:"–" / ""}
+@media (hover:hover) and (pointer:fine){.fahrplan-kopf:hover .fahrplan-name{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.15em}}
+/* Aufgeklappt: die Werkzeuge */
+.fahrplan-inhalt{display:grid;gap:var(--a1) var(--a6);padding:var(--a1) var(--a3) var(--a3)}
+.fahrplan-werkzeuge{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,22rem),1fr));gap:0 var(--a4)}
+.fahrplan-werkzeuge li{max-width:68ch}
+.fahrplan-werkzeuge a{display:block;padding:.55rem 0;color:var(--text);text-decoration:none}
+.fahrplan-werkzeuge b{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+.fahrplan-text{display:block;max-width:68ch}
+.fahrplan-fuer{font-size:var(--gr-klein);font-weight:700;color:var(--leise)}
+.fahrplan-fuer::before{content:"· ";content:"· " / ""}
+@media (hover:hover) and (pointer:fine){.fahrplan-werkzeuge a:hover b{text-decoration-color:var(--lernen)}}
+.fahrplan-dazu{margin-top:var(--a1);font-weight:700}
+.fahrplan .werkzeuge.tueren{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:var(--a2);margin-top:var(--a1)}
+.fahrplan .werkzeug.tuer .werkzeug-text b{font-size:var(--gr-h3)}
+.tueren-oder{align-self:center;justify-self:center;display:grid;place-items:center;width:3.5rem;height:3.5rem;border-radius:50%;border:2px solid var(--text);background:var(--grund);font-weight:700;max-width:none}
+.fahrplan-mit-karte{grid-template-columns:minmax(0,68ch) minmax(0,19rem);justify-content:start;align-items:start}
+.fahrplan-mit-karte .fahrplan-werkzeuge{grid-template-columns:1fr}
+.fahrplan-karte{margin:var(--a1) 0 0;display:grid;gap:var(--a1)}
+.fahrplan-karte-blatt{background:var(--grund);border-top:8px solid var(--lernen);border-radius:var(--rund);padding:var(--a2) var(--a3);display:grid;gap:.4rem;box-shadow:var(--platte)}
+.fahrplan-karte-titel{font:700 1.5rem/1.05 var(--schrift-titel)}
+.fahrplan-karte-feld{font-size:var(--gr-klein);font-weight:700;border-bottom:2px solid var(--stahl);padding-bottom:.35rem}
+.fahrplan-karte-regeln{margin:.25rem 0 0;padding-left:1.1rem;list-style:disc;display:grid;gap:.15rem;font-size:var(--gr-klein);font-weight:700}
+.fahrplan-karte-regeln li{max-width:none}
+.fahrplan-karte figcaption{font-size:var(--gr-klein);color:var(--leise)}
+.fahrplan-gruppen{grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));column-gap:var(--a4);align-items:start}
+.fahrplan-gruppe{display:grid;min-width:0}
+.fahrplan-gruppe h4{margin:var(--a1) 0 0;font:700 var(--gr-klein)/1.3 var(--schrift);color:var(--leise)}
+.fahrplan-gruppe .fahrplan-werkzeuge{grid-template-columns:1fr}
+.phasen-abschnitt .bezug-ki{max-width:68ch}
+@media (min-width:1440px){.fahrplan-kopf{grid-template-columns:minmax(0,22rem) minmax(0,1fr) auto}.fahrplan-satz{max-width:68ch}} /* breit: der Satz rückt an den Namen */
+@media (max-width:1023px){.fahrplan .werkzeuge.tueren{grid-template-columns:1fr}}
+@media (max-width:860px){
+  .fahrplan-kopf{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"wann zahl" "name name" "satz satz";row-gap:.15rem}
+  .fahrplan-wann{align-self:center}
+  .fahrplan-satz{margin-top:.2rem}
+  .fahrplan-mit-karte{grid-template-columns:1fr}
+  .fahrplan-karte{max-width:19rem}
+}
+@media (max-width:520px){
+  .phasen-abschnitt{--fp-kreis:2.5rem;--fp-rand:3px;--fp-rinne:1.75rem;--fp-kopf:3.5rem}
+  .fahrplan-phase{column-gap:.75rem}
+  .fahrplan-nr{font-size:1.125rem}
+  .fahrplan-zwischen{padding-left:calc(var(--fp-kreis) + .75rem)}
+  .fahrplan-kopf{grid-template-columns:minmax(0,1fr);grid-template-areas:"wann" "name" "satz" "zahl";padding:.5rem .75rem}
+  .fahrplan-wann{align-self:start}
+  .fahrplan-zahl{justify-self:start;margin-top:.35rem}
+  .fahrplan-inhalt{padding:var(--a1) .75rem var(--a2)}
+  .fahrplan .werkzeug.tuer a{padding:.75rem;gap:.5rem}
+  .fahrplan .werkzeug.tuer .werkzeug-text b{font-size:1.25rem}
+  .fahrplan-leiste{padding-left:0}
+  .fahrplan-alle{margin-left:0;width:100%;justify-content:center}
+}
+@media print{ /* taste-skill-ignore: Druckfassung */
+  .fahrplan-alle,.fahrplan-zahl::after{display:none}
+  .fahrplan-platte,.fahrplan-platte[open],.fahrplan-karte-blatt{box-shadow:none}
+  .fahrplan-kopf,.fahrplan-phase:not(.ist-ring-start){break-inside:avoid} /* Kopf und kurze Phasen bleiben auf einer Seite; Phase 2 ist länger als eine */
+}
 /* Schaubild »Wo in der Stunde das Gerät hilft« (sechs-hebel.html, ab 4.37): vier Spalten, Petrol heißt »am Gerät« – auch als Wort. */
 .ph-bild{margin:0;display:grid;gap:var(--a2)}
 .ph-spalten{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--a2)}
@@ -2676,7 +2754,6 @@ body:has(#inhalt > section:first-child > .huelle-weit, #inhalt > div:first-child
 .rb-text-titel{display:block;font-weight:700;margin-top:var(--a2)}
 .rb-text{width:100%;font:inherit;font-size:var(--gr-klein);line-height:1.45;padding:var(--a1) var(--a2);border:2px solid var(--stahl);border-radius:var(--rund);background:var(--flaeche);color:var(--text);resize:vertical}
 @media print{.rb-text,.rb-text-titel,#rb-kopieren,#rb-meldung{display:none!important}}
-@media (max-width:480px){.phasen-weg{grid-template-columns:1fr}}
 /* K1 · KI-Training: die sechs Wege in drei benannten Gruppen, direkt unter den zwei Türen */
 .ki-werkstatt{padding-top:var(--a4)}
 .werkzeuge.ki-gruppen{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
