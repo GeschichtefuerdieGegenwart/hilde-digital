@@ -1,0 +1,85 @@
+{
+  "dauer": 170,
+  "kapitel": [
+    {
+      "start": 0,
+      "name": "Problem",
+      "bild": 11.8,
+      "text": "Viele Klassen haben inzwischen Tablets. Digitaler Unterricht findet darauf selten statt. Das Arbeitsblatt wird nur digital abgeheftet. Ein digitaler Schnellhefter."
+    },
+    {
+      "start": 12,
+      "name": "Frage",
+      "bild": 18.8,
+      "text": "Wann macht das Gerät den Unterricht besser? Und wann nicht? Darum geht es in Kidu: Künstliche Intelligenz und digitaler Unterricht."
+    },
+    {
+      "start": 19,
+      "name": "Zwei Säulen",
+      "bild": 35.0,
+      "text": "Kidu steht auf zwei Säulen. Digitaler Unterricht fragt: Wann lohnt sich das Gerät? Dazu gehören die Papierfrage, die sechs Prinzipien und »Digitalen Unterricht erstellen«. KI-Training fragt: Wie hilft mir KI bei meiner Arbeit? Dazu gehören die Schnell-Anfrage, »Prompten lernen« und »KI für dein Fach einrichten«. Auf beiden Säulen stehen die Unterrichtsbeispiele, analog und digital. Sie zeigen, wie beides im Unterricht aussieht."
+    },
+    {
+      "start": 36,
+      "name": "Sechs Prinzipien",
+      "bild": 51.8,
+      "text": "Am Anfang steht die Papierfrage: Geht es auf Papier genauso gut? Dann bleib beim Papier. Das ist ein gutes Ergebnis. Sechs Prinzipien zeigen, was das Gerät kann und Papier nicht. Verdecken hält die Auflösung zurück. Rückmelden antwortet sofort, mit Grund. Messen misst, teilt zu, rechnet aus. Variieren verschiebt einen Wert und zeigt die Folge. Stufen: ein Inhalt, mehrere Zugänge. Bündeln sammelt die Klasse ohne Namen. Was am Gerät entsteht, geht zurück in den Raum. Dort wird gedeutet, gestritten und geurteilt. Das Gerät bereitet vor. Der Raum entscheidet."
+    },
+    {
+      "start": 52,
+      "name": "Digitalen Unterricht erstellen",
+      "bild": 68.8,
+      "text": "Digitalen Unterricht erstellen: Fang mit dem an, was du schon hast. Oder plane neu. Für eine Stunde oder eine ganze Einheit. Den Umfang wählst du: punktuell, phasenweise oder durchgängig. Keiner ist besser als der andere. Dann prüft der Digital-Check das Ergebnis: 14 Bereiche, Stärken zuerst, keine Noten. Das ist die zweite von vier Phasen: Grundlagen, Digitalen Unterricht erstellen, Unterrichten, Nach der Stunde. Dazu der Aufgabenkoffer mit 18 Aufgabenformen."
+    },
+    {
+      "start": 69,
+      "name": "KI-Training",
+      "bild": 82.8,
+      "text": "Nicht nur »Nutzt KI«, sondern: wie genau. Für jede Vorerfahrung gibt es eine Stufe. Stufe 1: Deine ersten zehn Minuten – öffnen, einfügen, prüfen, nachfragen. Stufe 2: Schnell-Anfrage – drei Angaben, ein fertiger Auftrag, in 30 Sekunden. Stufe 3: Prompten lernen – fünf Teile: Ziel, Kontext, Anforderungen, Format, Prüfkriterien. Stufe 4: KI für dein Fach einrichten – einmal aufschreiben, was in deinem Fach gilt. Danach reicht ein kurzer Auftrag. Die Anleitungen dahinter sind schon geschrieben: zum Kopieren oder zum Laden im Methodenkoffer. Auf jeder Stufe gelten fünf Regeln für sicheres Arbeiten. Die Prüfung bleibt bei der Lehrkraft."
+    },
+    {
+      "start": 83,
+      "name": "Lernschleife",
+      "bild": 94.8,
+      "text": "Die Beispiele werden im Unterricht erprobt. Aus der Rückmeldung werden sie weiterentwickelt. Ein Beispiel aus dem Unterricht: Lernseiten in Geschichte, die Klasse am Tablet. Die Rückmeldung: »Zu viel Rumgedrücke.« Überarbeitet: weniger Klicken, ein Arbeitsfenster. Daraus wurde eine Regel für alle. Sie steht jetzt als Prüffrage im Digital-Check. Wird eine Regel besser, ändern sich die Werkzeuge mit."
+    },
+    {
+      "start": 95,
+      "name": "Unterrichtsbeispiele",
+      "bild": 162.8,
+      "text": "Echte Lernseiten aus dem Unterricht. Die Kamera fährt über die Startseite von Kidu zu den Unterrichtsbeispielen. Jedes Beispiel zeigt, was das Gerät hier kann. Politik-Werkstatt in Gemeinschaftskunde: Erst wählen, der Stimmzettel folgt dem amtlichen. Wer leer abgibt, erfährt, was dann gilt. Dann auszählen und die Hürde abschalten: Die Sitze verteilen sich neu (Prinzip Variieren). Das Gerät meldet zurück, sofort und mit Grund (Prinzip Rückmelden). Dann sucht die Klasse eine Mehrheit und verhandelt, was in den Vertrag kommt. Psycho-Labor in Psychologie: ein Versuch. Siehst du, was sich verändert? Das Gerät misst deine Zeit (Prinzip Messen). GGK-Labor in Geschichte: eine ganze Einheit in neun Modulen. Mai 1940: Erst stimmt die Klasse ab. Geschwärzt ist, was damals geheim war. Nach der Abstimmung wird es aufgedeckt (Prinzip Verdecken). 29 Beispiele sind im eigenen Unterricht erprobt. Das sind Beobachtungen aus dem Unterricht, kein Wirksamkeitsnachweis. Ansehen. Ausprobieren. Darüber sprechen.",
+      "halte": [
+        {
+          "start": 106,
+          "name": "Politik-Werkstatt"
+        },
+        {
+          "start": 137.5,
+          "name": "Psycho-Labor"
+        },
+        {
+          "start": 146.4,
+          "name": "GGK-Labor"
+        },
+        {
+          "start": 157.2,
+          "name": "Alle Beispiele"
+        }
+      ],
+      "bilder": [
+        105.2,
+        135.8,
+        145.0,
+        156.8,
+        162.8
+      ]
+    },
+    {
+      "start": 163,
+      "name": "Einladung",
+      "bild": 173.8,
+      "text": "Kidu ist nicht fertig. Das ist die Einladung: an weitere Schulen, für weitere Fächer, zur Begleitung. Gemeinsam erproben, prüfen, wo die Prinzipien tragen, und weiterentwickeln. Kidu – Künstliche Intelligenz und digitaler Unterricht – ist eine Fortbildungsplattform für Lehrkräfte. Arbeitsstand November 2026."
+    }
+  ],
+  "_hinweis": "Kapitel des Films auf der Startseite. start = Beginn in Sekunden, bild = Zeit des Standbilds (Ende des Kapitels), bilder = mehrere Standbilder (bei »Weniger Bewegung«), halte = Abschnitte eines langen Kapitels, text = der Film als Text. Zahlen im Text kommen aus den Daten und werden von tools/pruefen.py nachgezählt."
+}

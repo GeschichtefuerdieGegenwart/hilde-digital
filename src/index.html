@@ -27,15 +27,36 @@
     <span class="collage-karte c3"><img src="assets/galerie/psycho-ds2-1.webp" alt="" width="1040" height="650"></span>
   </a>
   </div>
-  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung. <button type="button" class="knopf still film-knopf" data-film-start>Film ansehen · knapp 3 Minuten</button></p>
+  <p class="hinweis-stand">Arbeitsstand – Einladung zur gemeinsamen Weiterentwicklung. <button type="button" class="knopf still film-knopf" data-film-start hidden>Film ansehen · knapp 3 Minuten</button></p>
 </div></section>
 
-<div class="film" id="film" hidden role="region" aria-label="Film: Kidu in knapp drei Minuten">
-  <div class="film-buehne"></div>
+<div class="film" id="film" hidden role="dialog" aria-modal="true" tabindex="-1" aria-label="Film: Kidu in knapp drei Minuten">
+  <div class="film-flaeche">
+    <div class="film-buehne" aria-hidden="true"></div>
+    <section class="film-text" id="film-text" hidden aria-labelledby="film-text-titel">
+      <div class="film-text-innen">
+        <div class="film-text-kopf">
+          <h2 id="film-text-titel" tabindex="-1">Der Film als Text</h2>
+          <button type="button" class="knopf" data-film-text-zu>Zurück zum Film</button>
+        </div>
+        <p class="leise">Neun Kapitel, knapp drei Minuten, ohne Ton. Von jedem Kapitel aus kannst du in den Film springen.</p>
+        <ol class="film-text-liste"></ol>
+      </div>
+    </section>
+  </div>
+  <p class="film-hochkant">Dreh das Gerät quer, dann wird der Film größer. Oder lies ihn als Text.</p>
   <div class="film-steuerung">
-    <span class="film-fortschritt" aria-hidden="true"><i></i></span>
-    <button type="button" class="knopf still" data-film-halt aria-pressed="false">Anhalten</button>
-    <button type="button" class="knopf" data-film-weg>Überspringen <span aria-hidden="true">→</span></button>
+    <div class="film-ort">
+      <p data-film-ort aria-hidden="true"></p>
+      <p class="film-bedienung" data-film-bedienung>Du kannst anhalten, ziehen und zu jedem Kapitel springen<span class="film-tasten"> – auch mit Leertaste und Pfeiltasten</span>.</p>
+    </div>
+    <div class="film-leiste">
+      <button type="button" class="knopf still" data-film-halt aria-pressed="false">Anhalten</button>
+      <ol class="film-kapitel" aria-label="Kapitel"></ol>
+      <span class="film-zeit" data-film-zeit aria-hidden="true"></span>
+      <button type="button" class="knopf still" data-film-text aria-expanded="false" aria-controls="film-text">Als Text</button>
+      <button type="button" class="knopf" data-film-weg>Überspringen <span aria-hidden="true">→</span></button>
+    </div>
   </div>
   <div class="film-ende" hidden>
     <div class="film-ende-knoepfe">
@@ -43,20 +64,7 @@
       <button type="button" class="knopf" data-film-weg>Zur Startseite <span aria-hidden="true">→</span></button>
     </div>
   </div>
-  <div class="sr-only">
-    <p>Der Film zeigt in neun Kapiteln, was Kidu ist.</p>
-    <ol>
-      <li>Das Problem: Viele Klassen haben inzwischen Tablets. Das Arbeitsblatt wird oft nur digital abgeheftet.</li>
-      <li>Die Frage: Wann macht das Gerät den Unterricht besser? Und wann nicht?</li>
-      <li>Kidu steht auf zwei Säulen: Digitaler Unterricht und KI-Training. Auf beiden Säulen steht die Galerie. Sie zeigt, wie beides im Unterricht aussieht.</li>
-      <li>Säule 1: Erst die Papierfrage. Dann sechs Prinzipien: verdecken, rückmelden, messen, variieren, stufen, bündeln. Das Gerät bereitet vor, der Raum entscheidet.</li>
-      <li>Unterricht digitalisieren: Fang mit dem an, was du schon hast. Der Digital-Check prüft das Ergebnis. Neu ist der Aufgabenkoffer.</li>
-      <li>Säule 2, KI-Training: vier Stufen von den ersten zehn Minuten bis zur KI für dein Fach. Die Prüfung bleibt bei der Lehrkraft.</li>
-      <li>Die Lernschleife: Die Beispiele werden im Unterricht erprobt. Aus der Rückmeldung werden sie weiterentwickelt. Was in der Stunde auffällt, wird zur Regel im Werkzeug.</li>
-      <li>Die Galerie: echte Lernseiten aus dem Unterricht, zum Ansehen, Ausprobieren und Weiterdenken. Die Kamera fährt über die Startseite von Kidu in die Galerie. In der Politik-Werkstatt folgen vier Schritte: wählen mit dem Stimmzettel, auszählen mit und ohne Hürde, Rückmeldung zur Kontrollfrage, eine Koalition suchen und verhandeln. In Psychologie misst das Gerät, wie schnell du eine Änderung findest. In Geschichte stimmt die Klasse ab, danach wird die geschwärzte Quelle aufgedeckt. Am Ende: ansehen, ausprobieren, darüber sprechen.</li>
-      <li>Kidu ist nicht fertig. Das ist die Einladung.</li>
-    </ol>
-  </div>
+  <p class="sr-only" aria-live="polite" data-film-ansage></p>
 </div>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/daten/beispiele.js"></script>

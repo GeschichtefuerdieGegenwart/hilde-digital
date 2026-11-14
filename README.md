@@ -21,6 +21,7 @@ Kidu ist eine Fortbildungsplattform für Lehrkräfte: KI-Training, Digitaler Unt
 | `assets/suche.js`, `assets/ki-anfrage.js` | Suche und Filter der Unterrichtsbeispiele (`galerie.html`), Anfrage-Baukasten |
 | `assets/hilde.js` | gemeinsame Helfer: Speichern im Browser, Karten, Bildansicht |
 | `tools/duplex.py` | erzeugt die Duplex-Vorschauen der Unterrichtsbeispiele in `assets/galerie/duplex/` (braucht Pillow, nur beim Bauen) |
+| `src/film/`, `tools/film.py`, `assets/film.js` | Film auf der Startseite (ab 4.40 eine Quelle): Bühne in `src/film/buehne.html`, Kapitel, Standbilder, Abschnitte und der Film als Text in `src/film/kapitel.json`; `tools/film.py` erzeugt `assets/film-buehne.js` (nie von Hand ändern, läuft in `tools/bauen.py`); `assets/film.js` spielt ihn ab – Kapitelleiste, Tastatur, »Als Text«; Bilder in `assets/film/` |
 | `assets/daten/galerie.js`, `assets/galerie-buehne.js`, `assets/galerie/` | Unterrichtsbeispiele: echte Ansichten mit Bild- und Alternativtexten, Einblicke; Herkunft in `docs/galerie-quellen.md` |
 | `assets/anfangen.js` | Unterrichtsbeispiele: »Zum Anfangen« – sechs erprobte Beispiele, zwei je Umfang (Feld `auswahl` in `beispiele.js`) |
 | `assets/daten/schnell.js`, `assets/schnell-anfrage.js`, `assets/ki-schnell.js` | KI-Training: Schnell-Anfrage für häufige Anlässe |

@@ -37,7 +37,8 @@ EINSTIEG = ["index.html", "ki.html", "unterricht.html", "digitalisieren.html", "
 # Skripte, deren Texte auf Einstiegs- und Bereichsseiten erscheinen
 EINSTIEG_SKRIPTE = ["assets/start.js", "assets/check-weg.js", "assets/check-regeln.js", "assets/tablets-weg.js", "assets/einheit.js", "assets/regeln.js", "assets/daten/taxonomien.js",
                     "assets/ki-weg.js", "assets/ki-anfrage.js", "assets/daten/texte.js", "assets/passt.js", "assets/beobachtung.js", "assets/fortbildungsbogen.js", "assets/rueckmeldebogen.js",
-                    "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js", "assets/werkstatt.js", "assets/werkstatt-anfrage.js", "assets/daten/werkstatt.js", "assets/sechs-hebel.js", "assets/sechs-hebel-proben.js", "assets/sechs-hebel-rad.js", "assets/phasen-bild.js"]
+                    "assets/probe.js", "assets/digital-check.js", "assets/ki-schnell.js", "assets/schnell-anfrage.js", "assets/daten/schnell.js", "assets/digitalisieren.js", "assets/daten/digitalisieren.js", "assets/galerie-buehne.js", "assets/daten/galerie.js", "assets/anfangen.js", "assets/werkstatt.js", "assets/werkstatt-anfrage.js", "assets/daten/werkstatt.js", "assets/sechs-hebel.js", "assets/sechs-hebel-proben.js", "assets/sechs-hebel-rad.js", "assets/phasen-bild.js",
+                    "assets/film-buehne.js", "assets/film.js"]  # ab 4.40: der Film auf der Startseite
 FACHBEGRIFFE = ["Adaptivität", "kognitive Aktivierung", "formative Diagnostik", "Multimodalität",
                 "Gamification", "selbstreguliert", "responsive Lernumgebung", "digitale Transformation",
                 "Anforderungsbereich", "Beutelsbacher", "Binnendifferenzierung",
@@ -328,9 +329,62 @@ def pruefe_werkzeugkiste(fehler):
                 fehler.append(f"Methodenkoffer: Kurzfassung »{name}« nennt einen Anbieter, ein Prozentzeichen oder ein @")
 
 
+
+def pruefe_film(fehler):
+    """ab Version 4.40: assets/film-buehne.js muss zur Quelle in src/film/ passen; Bilder des Films müssen da sein."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("film", WURZEL / "tools" / "film.py")
+    fm = importlib.util.module_from_spec(spec); spec.loader.exec_module(fm)
+    fehler.extend(fm.veraltet())
+    d = fm.daten()
+    if len(d["kapitel"]) != len(re.findall(r'<div class="s s\d', d["buehne"])):
+        fehler.append("src/film: Zahl der Kapitel und der Szenen auf der Bühne passen nicht zusammen")
+    for bild in sorted(set(re.findall(r'src="(assets/film/[^"]+)"', d["buehne"]))):
+        if not (WURZEL / bild).exists():
+            fehler.append(f"src/film/buehne.html: Bild {bild} fehlt")
+    # ab 4.40: der Film als Text, Abschnitte und Standbilder liegen im Kapitel, Zeiten passen zum Kapitel
+    kap = d["kapitel"]
+    for i, k in enumerate(kap):
+        bis = kap[i + 1]["start"] if i + 1 < len(kap) else d["dauer"] + 5
+        if not (k.get("text") or "").strip():
+            fehler.append(f"src/film/kapitel.json: Kapitel {i + 1} ohne Text (der Film als Text)")
+        for t in k.get("bilder", [k["bild"]]):
+            if not k["start"] <= t < bis:
+                fehler.append(f"src/film/kapitel.json: Standbild {t} liegt nicht in Kapitel {i + 1}")
+        for h in k.get("halte", []):
+            if not k["start"] < h["start"] < min(bis, d["dauer"]):
+                fehler.append(f"src/film/kapitel.json: Abschnitt »{h['name']}« liegt nicht in Kapitel {i + 1}")
+    # ab 4.40: sichtbarer Text des Films ohne alte Namen (Namen seit 13.11.2026, CLAUDE.md)
+    sichtbar = re.sub(r"<[^>]+>", " ", d["buehne"].replace("<br>", " "))
+    sichtbar = " ".join([sichtbar] + [k["name"] + " " + k.get("text", "") for k in kap])
+    for alt, muster in [("Galerie", r"Galerie"), ("Unterricht planen", r"Unterricht planen"),
+                        ("Unterricht digitalisieren", r"(?<!Bisherigen )Unterricht digitalisieren"),
+                        ("Mein Ist-Stand", r"Ist-Stand"), ("Werkzeugkiste", r"Werkzeugkiste"), ("Hebel", r"Hebel")]:
+        if re.search(muster, sichtbar):
+            fehler.append(f"Film: alter Name »{alt}« (src/film/)")
+    # ab 4.40: Zahlen im Film zählt das Prüfskript in den Daten nach (Wahrheit der Daten)
+    node = shutil.which("node")
+    if node:
+        skript = ("const b=require('./assets/daten/beispiele.js'),q=require('./assets/daten/qualitaet.js'),a=require('./assets/daten/aufgaben.js');"
+                  "process.stdout.write(JSON.stringify({erprobt:b.filter(x=>x.status==='im Unterricht erprobt').length,"
+                  "bereiche:q.bereiche.length,formen:a.aufgaben.length}))")
+        z = json.loads(subprocess.run([node, "-e", skript], cwd=WURZEL, capture_output=True, text=True, check=True).stdout)
+        texte = " ".join(k.get("text", "") for k in kap)
+        proben = [(rf">{z['erprobt']}</div><div[^>]*>Beispiele, im eigenen Unterricht erprobt", d["buehne"], f"{z['erprobt']} erprobte Beispiele"),
+                  (rf"\b{z['erprobt']} Beispiele sind im eigenen Unterricht erprobt", texte, f"{z['erprobt']} erprobte Beispiele im Text"),
+                  (rf"\b{z['bereiche']} Bereiche\. Stärken zuerst", d["buehne"], f"{z['bereiche']} Bereiche des Digital-Checks"),
+                  (rf"\b{z['bereiche']} Bereiche, Stärken zuerst", texte, f"{z['bereiche']} Bereiche im Text"),
+                  (rf"\b{z['formen']} Aufgabenformen", d["buehne"], f"{z['formen']} Aufgabenformen"),
+                  (rf"\b{z['formen']} Aufgabenformen", texte, f"{z['formen']} Aufgabenformen im Text")]
+        for muster, wo, was in proben:
+            if not re.search(muster, wo):
+                fehler.append(f"Film: Zahl passt nicht zu den Daten – erwartet {was} (src/film/)")
+
+
 def main():
     fehler = []
     pruefe_werkzeugkiste(fehler)
+    pruefe_film(fehler)
     pruefe_seiten(fehler)
     pruefe_skripte(fehler)
     pruefe_css(fehler)

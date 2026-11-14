@@ -1508,23 +1508,56 @@ main .muster-karte,main .werkstatt-karte,main .sicher-liste>li{max-width:none} /
 @media (max-width:900px){.muster-wege{grid-template-columns:1fr}.fach-raster{grid-template-columns:1fr}}
 @media print{ /* taste-skill-ignore: Druckfassung */ .sicher-liste>li{border:1px solid #bbb}.sicher-liste details{display:none}}
 
-/* Film »Kidu in zwei Minuten« (ab Version 4.34, assets/film.js; bis 4.33 »Kidu in 44 Sekunden«). Bühne 1280 × 720, auf den Bildschirm skaliert.
-   Läuft einmal, keine Schleife; Anhalten, Überspringen, Esc. Farben und Schriften nur aus den Variablen oben. */
+/* Film »Kidu in knapp drei Minuten« (ab Version 4.34, assets/film.js; bis 4.33 »Kidu in 44 Sekunden«). Bühne 1280 × 720, auf die Fläche über der Steuerung skaliert.
+   Läuft einmal, keine Schleife. Steuerung ab 4.40 wie beim Erklärfilm »Was das Gerät kann« (Muster AW): Anhalten, Kapitelleiste mit »Du bist hier«,
+   Zeit, »Als Text«, Überspringen; Leertaste, Pfeiltasten, Esc. Farben und Schriften nur aus den Variablen oben. */
 main .start .hinweis-stand:has(.film-knopf){max-width:none;display:flex;align-items:center;flex-wrap:wrap;gap:var(--a1) var(--a3)}
 #t-start:focus{outline:none;box-shadow:none} /* Fokus nach dem Film landet hier; die Überschrift ist kein Bedienelement */
 .film-knopf{min-height:44px;padding-block:.35rem}
 html.film-offen,html.film-offen body{overflow:hidden}
-.film{position:fixed;inset:0;z-index:100;background:var(--grund);opacity:0;transition:opacity var(--dauer-mittel) var(--ease-out)}
+.film{position:fixed;inset:0;z-index:100;background:var(--grund);opacity:0;transition:opacity var(--dauer-mittel) var(--ease-out);display:flex;flex-direction:column}
+.film:focus{outline:none}
 .film.da{opacity:1}
-.film-buehne{position:absolute;left:50%;top:calc(50% - 40px);width:1280px;height:720px;transform-origin:50% 50%;overflow:hidden;background:var(--grund);font-family:var(--schrift);color:var(--text)}
-.film-steuerung{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,32px);display:flex;align-items:center;gap:var(--a2);flex-wrap:wrap;justify-content:flex-end}
+.film-flaeche{position:relative;flex:1 1 auto;min-height:0;overflow:hidden}
+.film-buehne{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:50% 50%;overflow:hidden;background:var(--grund);font-family:var(--schrift);color:var(--text)}
+.film-steuerung{display:grid;gap:.15rem;padding:.3rem clamp(16px,3vw,40px) clamp(8px,2vh,24px)}
 .film-steuerung .knopf.still{background:var(--flaeche)}
-.film-ende{position:absolute;left:0;right:0;bottom:clamp(24px,6vh,64px);display:flex;justify-content:center;padding-inline:16px}
+.film-ort{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 var(--a3);font-size:var(--gr-klein);line-height:1.35}
+.film-ort p{margin:0;max-width:none}
+.film-ort [data-film-ort]{font-weight:700;font-variant-numeric:tabular-nums}
+.film-bedienung{color:var(--leise)}
+.film-tasten{display:none}
+@media (hover:hover) and (pointer:fine){.film-tasten{display:inline}}
+.film-leiste{display:flex;align-items:center;gap:var(--a2);flex-wrap:wrap}
+/* Kapitelleiste: je Kapitel ein Abschnitt, so breit wie das Kapitel lang ist. Gefüllt = gesehen; das laufende Kapitel ist dicker (»Du bist hier«). */
+.film-kapitel{list-style:none;margin:0;padding:0;display:flex;gap:3px;flex:1 1 16rem;min-width:min(16rem,100%);touch-action:none;user-select:none;-webkit-user-select:none}
+.film-kapitel li{display:flex;flex-basis:0;flex-shrink:1;min-width:24px}
+.film-kapitel button{position:relative;flex:1;min-height:40px;margin:0;padding:0;border:0;border-radius:4px;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.film-kapitel button::before,.film-kapitel button i{content:"";position:absolute;left:0;right:0;top:50%;height:6px;margin-top:-3px;border-radius:3px}
+.film-kapitel button::before{background:var(--flaeche);box-shadow:inset 0 0 0 2px var(--stahl)} /* Umriss in Stahl: Grenze eines Bedienelements, 4,6:1 */
+.film-kapitel button i{background:var(--text);transform-origin:0 50%;transform:scaleX(0)}
+.film-kapitel button[aria-current="true"]::before,.film-kapitel button[aria-current="true"] i{height:14px;margin-top:-7px}
+.film-kapitel button:hover::before{background:var(--linie)}
+.film-marke{position:absolute;top:50%;width:2px;height:18px;margin:-9px 0 0 -1px;background:var(--grund);pointer-events:none}
+.film-zeit{font-variant-numeric:tabular-nums;color:var(--leise);font-size:var(--gr-klein);white-space:nowrap;min-width:6.2em;text-align:right}
+@media (max-width:900px){.film-kapitel{order:-1;flex-basis:100%}.film-zeit{min-width:0;text-align:left}} /* schmal: die Leiste bekommt eine eigene Zeile */
+.film-hochkant{display:none;margin:0;padding:.5rem clamp(16px,3vw,40px) 0;font-size:var(--gr-klein);line-height:1.4}
+@media (orientation:portrait) and (max-width:700px){.film-hochkant{display:block}}
+.film-ende{display:flex;justify-content:center;padding:var(--a2) 16px clamp(24px,6vh,64px)}
 .film-ende-knoepfe{display:flex;flex-wrap:wrap;gap:var(--a2);justify-content:center}
 .film-ende .knopf{font-size:1.125rem;min-height:56px;padding-inline:1.5rem}
 .film-ende .knopf.still{background:var(--flaeche)}
-.film-fortschritt{display:block;width:clamp(6rem,14vw,12rem);height:4px;background:var(--linie);border-radius:2px;overflow:hidden}
-.film-fortschritt i{display:block;height:100%;background:var(--text);transform-origin:0 50%;transform:scaleX(0)}
+/* Der Film als Text (ab 4.40): über der Bühne, so lang wie nötig, in Lesebreite. */
+.film-text{position:absolute;inset:0;overflow:auto;background:var(--grund);padding:clamp(16px,4vw,48px)}
+.film-text-innen{max-width:46rem;margin:0 auto;display:grid;gap:var(--a3)}
+.film-text-kopf{display:flex;justify-content:space-between;align-items:center;gap:var(--a2);flex-wrap:wrap}
+.film-text-kopf h2{font:700 var(--gr-h2)/1.15 var(--schrift-titel);margin:0}
+.film-text-kopf h2:focus{outline:none}
+.film-text-liste{list-style:none;margin:0;padding:0;display:grid;gap:var(--a3)}
+.film-text-liste li{display:grid;gap:.5rem;justify-items:start;padding-top:var(--a2);border-top:2px solid var(--linie)}
+.film-text-liste h3{font:600 var(--gr-h3)/1.25 var(--schrift-titel);margin:0}
+.film-text-liste .zeit{color:var(--leise);font:400 var(--gr-klein)/1 var(--schrift);font-variant-numeric:tabular-nums}
+.film-text-liste p{margin:0;max-width:68ch}
 /* Bühne des Films (ab Version 4.34): erzeugt aus dem Drehbuch des Pitch-Films, siehe assets/film-buehne.js. Zeitachse in CSS:
    jede Bewegung hat eine feste Verzögerung calc(Xs + var(--o)); --o setzt assets/film.js. Farben nur aus den Variablen oben. */
 .film-buehne{--f-paper:var(--grund);--f-sheet:var(--flaeche);--f-karton:var(--karton);--f-ink:var(--text);--f-leise:var(--leise);--f-ocker:var(--ki-platte);--f-ockerl:#dba94a;--f-petrol:var(--lernen);--f-pdeep:var(--lernen-tief);--f-pzart:var(--lernen-zart);--f-oliv:var(--ueberdruck);--f-mute:#c9d6d4;--f-h:var(--schrift-titel);--f-b:var(--schrift);--f-m:var(--schrift)}
@@ -1617,6 +1650,7 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne .d498{animation-delay:calc(49.8s + var(--o,0s))}
 .film-buehne .d524{animation-delay:calc(52.4s + var(--o,0s))}
 .film-buehne .d532{animation-delay:calc(53.2s + var(--o,0s))}
+.film-buehne .d536{animation-delay:calc(53.6s + var(--o,0s))}
 .film-buehne .d540{animation-delay:calc(54.0s + var(--o,0s))}
 .film-buehne .d543{animation-delay:calc(54.3s + var(--o,0s))}
 .film-buehne .d544{animation-delay:calc(54.4s + var(--o,0s))}
@@ -1857,7 +1891,7 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne .q26{animation:ff-q26 17.000s linear 1 both;animation-delay:calc(19.000s + var(--o,0s))}
 @keyframes ff-q27{0.000%{transform:translate(10.0px,45.0px) scale(1.05);animation-timing-function:linear}21.250%{transform:translate(-32.0px,24.0px) scale(1.12);animation-timing-function:cubic-bezier(.65,0,.35,1)}26.875%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}34.688%{transform:translate(-25.6px,12.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}41.875%{transform:translate(-48.7px,4.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}49.063%{transform:translate(-48.7px,-12.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}56.250%{transform:translate(-25.6px,-20.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}63.438%{transform:translate(-2.5px,-12.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}70.625%{transform:translate(-2.5px,4.0px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}77.500%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}85.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:ease-in-out}100.000%{transform:translate(-22.4px,-18.8px) scale(1.035);animation-timing-function:linear}}
 .film-buehne .q27{animation:ff-q27 16.000s linear 1 both;animation-delay:calc(36.000s + var(--o,0s))}
-@keyframes ff-q28{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}14.118%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}18.824%{transform:translate(24.4px,-2.5px) scale(1.14);animation-timing-function:ease-in-out}48.235%{transform:translate(-226.4px,-2.5px) scale(1.14);animation-timing-function:cubic-bezier(.65,0,.35,1)}54.118%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}76.471%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:ease-in-out}100.000%{transform:translate(-25.6px,-35.2px) scale(1.04);animation-timing-function:linear}}
+@keyframes ff-q28{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}14.118%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}18.824%{transform:translate(24.4px,-2.5px) scale(1.14);animation-timing-function:ease-in-out}48.235%{transform:translate(-226.4px,-2.5px) scale(1.14);animation-timing-function:cubic-bezier(.65,0,.35,1)}54.118%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}76.471%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:ease-in-out}100.000%{transform:translate(-25.6px,-6.8px) scale(1.04);animation-timing-function:linear}}
 .film-buehne .q28{animation:ff-q28 17.000s linear 1 both;animation-delay:calc(52.000s + var(--o,0s))}
 @keyframes ff-q29{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}12.143%{transform:translate(-11.0px,-30.6px) scale(1.05);animation-timing-function:linear}24.286%{transform:translate(-12.7px,-46.6px) scale(1.07);animation-timing-function:cubic-bezier(.65,0,.35,1)}30.714%{transform:translate(310.0px,-280.2px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}39.643%{transform:translate(-46.4px,-250.5px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}48.571%{transform:translate(-402.8px,-220.8px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}57.500%{transform:translate(-759.2px,-191.1px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}65.714%{transform:translate(-759.2px,-191.8px) scale(1.32);animation-timing-function:cubic-bezier(.65,0,.35,1)}72.143%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}100.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}}
 .film-buehne .q29{animation:ff-q29 14.000s linear 1 both;animation-delay:calc(69.000s + var(--o,0s))}
@@ -1865,11 +1899,11 @@ html.film-offen,html.film-offen body{overflow:hidden}
 .film-buehne .q30{animation:ff-q30 4.600s ease-in-out 1 both;animation-delay:calc(85.000s + var(--o,0s))}
 @keyframes ff-q31{0.000%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}13.333%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:cubic-bezier(.65,0,.35,1)}18.333%{transform:translate(348.6px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}28.333%{transform:translate(38.6px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}38.333%{transform:translate(-321.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}48.333%{transform:translate(-631.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}58.333%{transform:translate(-631.0px,-49.2px) scale(1.24);animation-timing-function:cubic-bezier(.65,0,.35,1)}65.833%{transform:translate(0.0px,0.0px) scale(1.0);animation-timing-function:linear}100.000%{transform:translate(-19.2px,-17.0px) scale(1.03);animation-timing-function:linear}}
 .film-buehne .q31{animation:ff-q31 12.000s linear 1 both;animation-delay:calc(83.000s + var(--o,0s))}
-@keyframes ff-q32{0.000%{transform:translate(422.4px,237.6px) scale(0.34);animation-timing-function:cubic-bezier(.16,1,.3,1)}30.769%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}38.462%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}51.923%{transform:translate(-5.0px,-318.0px) scale(1.5);animation-timing-function:cubic-bezier(.65,0,.35,1)}65.385%{transform:translate(-635.0px,-348.0px) scale(1.5);animation-timing-function:cubic-bezier(.65,0,.35,1)}80.769%{transform:translate(-48.0px,-432.0px) scale(1.6);animation-timing-function:linear}86.538%{transform:translate(-48.0px,-432.0px) scale(1.6);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-905.6px,-2294.4px) scale(4.2);animation-timing-function:linear}}
+@keyframes ff-q32{0.000%{transform:translate(422.4px,237.6px) scale(0.34);animation-timing-function:cubic-bezier(.16,1,.3,1)}30.769%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}38.462%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.65,0,.35,1)}51.923%{transform:translate(-5.0px,-318.0px) scale(1.5);animation-timing-function:cubic-bezier(.65,0,.35,1)}65.385%{transform:translate(-635.0px,-348.0px) scale(1.5);animation-timing-function:cubic-bezier(.65,0,.35,1)}80.769%{transform:translate(-48.0px,-432.0px) scale(1.6);animation-timing-function:linear}86.538%{transform:translate(-48.0px,-432.0px) scale(1.6);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-838.4px,-2294.4px) scale(4.2);animation-timing-function:linear}}
 .film-buehne .q32{animation:ff-q32 5.200s linear 1 both;animation-delay:calc(97.800s + var(--o,0s))}
 @keyframes ff-q33{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
 .film-buehne .q33{animation:ff-q33 0.600s cubic-bezier(.23,1,.32,1) 1 both;animation-delay:calc(102.150s + var(--o,0s))}
-@keyframes ff-q34{0.000%{transform:translateY(0.0px);animation-timing-function:linear}42.857%{transform:translateY(0.0px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translateY(-520.0px);animation-timing-function:linear}}
+@keyframes ff-q34{0.000%{transform:translateY(0.0px);animation-timing-function:linear}42.857%{transform:translateY(0.0px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100.000%{transform:translateY(-564.0px);animation-timing-function:linear}}
 .film-buehne .q34{animation:ff-q34 2.100s linear 1 both;animation-delay:calc(102.700s + var(--o,0s))}
 @keyframes ff-q35{0.000%{transform:translate(-192.0px,-108.0px) scale(1.3);animation-timing-function:cubic-bezier(.23,1,.32,1)}24.242%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:linear}81.818%{transform:translate(-25.6px,-14.4px) scale(1.04);animation-timing-function:cubic-bezier(.55,0,.9,.4)}100.000%{transform:translate(-1536.0px,-1068.0px) scale(3.4);animation-timing-function:linear}}
 .film-buehne .q35{animation:ff-q35 3.300s linear 1 both;animation-delay:calc(102.700s + var(--o,0s))}
