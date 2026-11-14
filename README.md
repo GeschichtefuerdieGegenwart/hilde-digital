@@ -33,11 +33,11 @@ Kidu ist eine Fortbildungsplattform für Lehrkräfte: KI-Training, Digitaler Unt
 | `assets/sechs-hebel-film.js` | Seite »Film: Was das Gerät kann« (`sechs-hebel-film.html`): Erklärfilm in sieben Kapiteln auf einer Zeitachse, Start nur auf Knopfdruck (Muster AW, ab 4.21) |
 | `assets/sechs-hebel-proben.js` | Seite »Wann funktioniert digitaler Unterricht?«: Proben S bis X zu den sechs Prinzipien – erst festlegen, dann ein Zustandswechsel (ab 4.20) |
 | `assets/sechs-hebel.js` | Seite »Wann funktioniert digitaler Unterricht?«: Muster R1 – gewählte Prinzipien wandern über die Plenumsstelle an die Tafel (ab 4.19) |
-| `assets/pruef-prompt.js`, `assets/digital-check.js` | Digital-Check Weg B: Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren in ein freigegebenes KI-System (keine Anbindung) |
+| `assets/pruef-prompt.js`, `assets/digital-check.js` | Digital-Check Weg B: Prüf-Auftrag aus dem Qualitätsmodell zum Kopieren in ein freigegebenes KI-System (keine Anbindung); ab 4.38 mit eigenem Block »Gestaltung« aus dem Skill `digital-check` |
 | `tests/` | Unit-Tests (`node --test`) und Browser-Tests (`tests/e2e.py`) |
 | `docs/` | Versionen 1 bis 4 im Überblick, Herkunft der Galeriebilder, Annahmen, Datenschutz, Datenlücken zur Prüfung |
 | `assets/fonts/` | Bricolage Grotesque (Überschriften) und Atkinson Hyperlegible Next (Text), beide SIL Open Font License (OFL-*.txt) |
-| `PRODUCT.md`, `DESIGN.md`, `.impeccable/design.json` | Produktbeschreibung und Gestaltungssystem »Überdruck« (Format von Impeccable) |
+| `PRODUCT.md`, `DESIGN.md`, `.impeccable/design.json` | Produktbeschreibung und Gestaltungssystem »Überdruck« (Format von Impeccable); ab 4.38 mit elf benannten Gestaltungsregeln und der einzigen Liste erlaubter Ausnahmen von »kein Autoplay« |
 | `.taste-skill/direction.json` | begründete Ausnahmen für die Gestaltungsprüfung mit dem Taste Skill |
 | `assets/bilder/` | Bildschirmfotos der Beispiele, auch für den Betrieb ohne Netz |
 

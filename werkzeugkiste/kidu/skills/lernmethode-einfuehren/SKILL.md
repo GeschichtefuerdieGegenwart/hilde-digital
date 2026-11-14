@@ -27,11 +27,26 @@ Grundregeln wie in `unterricht-digitalisieren`: nichts erfinden, einfache Sprach
 4. **Einführung planen:** erste Anwendung im Unterricht an echtem Stoff, nicht abstrakt; Minutenplan; was die Lehrkraft beobachtet; wann die Methode zum zweiten und dritten Mal kommt (eine Methode, die nur einmal vorkommt, wird nicht gelernt).
 5. **Liefern** mit der Liste »Vor dem Kopieren prüfen« und dem Hinweis auf den Beobachtungsbogen aus `unterricht-digitalisieren`.
 
+## Sichern und üben – mit Methode
+
+In Kidu heißt die Phase nach der Erarbeitung »Sichern und üben« (viele sagen Konsolidierung). Sie hat drei Teile, und jeder braucht eine Methode:
+
+| Teil | Was die Lernenden tun | passende Methoden |
+| --- | --- | --- |
+| **Festhalten, was gilt** | den Kern in eigenen Worten sichern, eine Struktur selbst legen | Kernsatz zur Leitfrage, Begriffsnetz selbst legen, Vergleichstabelle, Cornell-Notizen |
+| **Üben** | erst mit Hilfe, dann allein; die meisten Übungen gelingen | Abrufübungen, Partnerabfrage, Lernen mit Lösungsbeispielen, Hilfe- und Expertenkarten |
+| **Später wieder abrufen** | ohne Vorlage, nach Tagen und Wochen | Abrufstart mit drei Fragen zu Stundenbeginn, Brain Dump, Leitner-Karteikasten, Verteiltes Wiederholen |
+
+- Eine Sicherung ohne späteres Abrufen ist nur Festhalten. Plane den dritten Teil gleich mit: wann, mit welchen Fragen, ohne Heft.
+- In einer Einheit ist der Abrufstart ein Baustein, der jede Stunde wiederkehrt (Schritt E in `unterricht-digitalisieren`). Die Fragen kommen aus den Stunden davor; die Sicherung richtet sich an der Klassenarbeit oder Prüfung aus.
+- Bei Urteilsaufgaben (Gemeinschaftskunde, Geschichte, Pädagogik) zählt beim Üben die Begründung, nicht eine hohe Quote richtiger Antworten. Geübt wird dann das Begründen: Kriterien anwenden, Gegenposition prüfen, Urteil in einem Satz.
+- Mit Tablet nur, wenn es etwas kann, was Papier nicht kann: Abstände planen (Karteikarten-App), Rückmeldung je Antwort mit Erklärung, den eigenen Stand von gestern wieder aufrufen. Sonst: auf Papier gleich gut.
+
 ## Methoden nach Stelle
 
 | Die Stelle soll … | Methoden |
 | --- | --- |
-| festigen, üben | **Abrufübungen**, **Brain Dump**, **Leitner-Karteikasten**, **Partnerabfrage**, **Verteiltes Wiederholen**, Interleaving |
+| sichern und üben: festigen, üben, später abrufen | **Abrufübungen**, **Brain Dump**, **Leitner-Karteikasten**, **Partnerabfrage**, **Verteiltes Wiederholen**, Interleaving |
 | Verständnis aufbauen | Feynman-Technik, Elaborationsfragen, **Begriffsnetz selbst legen (Concept Map)**, Struktur-Lege-Technik, **Lernen mit Lösungsbeispielen**, Lernen durch Lehren, Vergleichstabelle |
 | einsteigen | Advance Organizer, Mindmap, Think-Pair-Share, *Placemat* |
 | Texte erschließen | **Lesestrategien gebündelt: vorher – während – nachher**, **Reziprokes Lesen** (vorhersagen, fragen, klären, zusammenfassen), Fünf-Schritt-Lesemethode (SQ3R), Markieren mit Regel, Deeper Reading (mehrfach lesen), Cornell-Notizen, *Zusammenfassen* |
@@ -86,6 +101,7 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 - Nenne bei jeder Methode, wofür sie weniger geeignet ist. Sinneskanäle sind keine Lerntypen.
 - Gib nur dann an, wie gut die Methode belegt ist, wenn du eine Quelle nennen kannst: gut belegt · teilweise belegt · wenig erforscht. Sonst schreib »noch offen«.
 - Plane, wann die Methode zum zweiten und dritten Mal vorkommt. Eine Methode, die nur einmal vorkommt, wird nicht gelernt.
+- Gehört die Stelle zum Sichern und Üben, plane drei Teile: festhalten, was gilt; üben, erst mit Hilfe, dann allein; nach einigen Tagen ohne Vorlage wieder abrufen. Bei Urteilsaufgaben wird das Begründen geübt.
 
 **Prüfen**
 
@@ -94,6 +110,7 @@ Aus diesem Abschnitt baut `tools/werkzeugkiste.py` im Repository `kidu` den kopi
 
 ## Versionen
 
+- **v1.3, 13.11.2026:** Neuer Abschnitt »Sichern und üben – mit Methode« zur neuen Phase von Kidu (Konsolidierung): drei Teile – festhalten, üben, später wieder abrufen – mit passenden Methoden; Abrufstart als wiederkehrender Baustein einer Einheit; bei Urteilsaufgaben das Begründen üben; Tablet nur, wo es mehr kann als Papier. Tabellenzeile »festigen, üben« umbenannt; Kurzfassung um eine Regel ergänzt.
 - **v1.2, 11.11.2026:** Lesen und Strukturlegen: neue Referenz `references/lesen-und-strukturlegen.md` (Lesekompetenz in drei Ebenen, Strategietrainings, Markieren, Papier oder Bildschirm, Begriffsnetze und Struktur-Lege-Technik, Faustregeln, was das Gerät wirklich besser kann – mit Quellen und Belegstand); Tabelle »Texte erschließen« und »Verständnis aufbauen« erweitert; Haltung und Kurzfassung um Regeln zu Lesen und Strukturlegen ergänzt.
 - **v1.1, 10.11.2026:** Name Kidu (vorher »Hilde Digital«); Abschnitt »Kurzfassung für Kidu« als einzige Quelle für den kopierbaren Auftrag auf der Website.
 - **v1, 25.10.2026:** Aus `unterricht-digitalisieren` v3 und `website-design-workflow` v4 ausgegliedert. Neu: Vorgehen mit Einführungsplanung und Wiederholung, bewährte Bausteine aus dem Tresor, Handout-Teil »Mit Tablet« ehrlich, Regel für fehlende Handouts.

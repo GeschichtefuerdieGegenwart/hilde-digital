@@ -5,17 +5,21 @@
 var KURZFASSUNGEN = {
   "plugin": {
     "name": "kidu",
-    "version": "0.5.1"
+    "version": "0.6.0"
   },
   "skills": {
     "digital-check": {
       "anforderungen": [
         "Erfundenes: Zitate ohne Nachweis, Wirkungszahlen ohne Herkunft, KI-Bilder ohne Kennzeichnung, Reste aus KI-Antworten im Text.",
         "Rechen- und Sachfehler: Angaben nachrechnen, Begriffe auf ihre Zeit prüfen.",
-        "Verratene Lösungen: ein Hinweis in Klammern, die richtige Antwort immer an derselben Stelle, die Lösung sichtbar im Text.",
+        "Verratene Lösungen: ein Hinweis in Klammern, die richtige Antwort immer an derselben Stelle, die Lösung sichtbar im Text, die Rückmeldung zu einer Antwort schon vor der eigenen Wahl lesbar, oder eine Übersicht zeigt vorab, was die Aufgabe danach abfragt.",
         "Zu viel auf einmal: mehr als fünf bis sechs neue Begriffe, kaum unterscheidbare Antworten, mehrere Auflösungen direkt hintereinander.",
         "Lesen ohne Tun: Texte ohne Eingabe und Rückmeldung, ein Quiz nur mit richtig oder falsch, Notizen gehen beim Weiterklicken verloren.",
         "Ohne Plenum: Die Tablet-Phase endet ohne ein Ergebnis, das im Gespräch aufgegriffen wird.",
+        "Sichern ohne Üben: Wird nur festgehalten, oder rufen die Lernenden ohne Vorlage ab – auch Tage später?",
+        "Kein Übertragen: Gibt es einen neuen Fall, an dem das Gelernte gilt oder nicht gilt?",
+        "Mehrere Stunden: Hat jede Stunde ihren eigenen, begründeten Umfang? Gibt es eine Leitfrage und eine Landkarte über alle Stunden?",
+        "Ohne Weg und Ende: Ist klar, wohin es geht und wann eine Station fertig ist? Zählt der Fortschritt Können statt Klicks?",
         "Lange Sachtexte am Gerät, besonders unter Zeitdruck: eine Papierfassung vorschlagen.",
         "Leseaufgabe ohne Weg: Fehlt eine Frage, mit der man liest, eine Regel fürs Markieren oder ein Schritt danach?",
         "Legeaufgabe ohne Beziehungen: Werden Karten nur sortiert, ohne benannte Beziehung und Begründung? Ist die fertige Lösung vorher zu sehen? Gibt es bei vielen Karten einen Zwischenstand?",
@@ -24,9 +28,21 @@ var KURZFASSUNGEN = {
         "Abhängig vom Netz: Schriften, Skripte, Videos oder Dienste von fremden Seiten; die Seite läuft nicht ohne Internet."
       ],
       "pruef": [],
-      "wo": "Digital-Check · Weg »Mit KI prüfen«, Abschnitt »Typische Schwächen«",
-      "fassung": "v1.3",
-      "datum": "11.11.2026",
+      "gestaltung": [
+        "Erst Ruhe, dann Bewegung: Bewegt sich etwas, ohne dass die Lernenden etwas getan haben? Bewegung zählt nur, wenn sie eine Veränderung, einen Ablauf oder einen Zusammenhang zeigt und die Lernenden sie selbst auslösen oder steuern. Bewegung beim bloßen Lesen oder als Belohnung ist ein Mangel.",
+        "Ruhe in der Arbeitsphase: Bewegt sich dort etwas anderes als die Antwort auf eine eigene Handlung? Gibt es ein Arbeitsfenster je Phase?",
+        "Zähle den Weg: Wie viele Tipps oder Klicks brauchen die Lernenden bis zur ersten eigenen Antwort, und wie oft wechselt die Seite innerhalb einer Arbeitsphase? Mehr als drei Tipps oder ein Seitenwechsel mitten in der Phase sind ein Hinweis auf Unruhe. Öffnet sich die Hilfe am selben Ort?",
+        "Zwischenstand und Ergebnis: Gibt es bei Sortier- und Legeaufgaben einen Zwischenstand, kann man Fehler einzeln zurücknehmen, bleibt der Stand gespeichert? Überleben die Ergebnisse die Stunde außerhalb des Browsers, etwa als Datei?",
+        "Bildschirmbreite: Nutzt eine Übersicht die Breite des Tablets quer und hoch, ohne dass eine Textzeile zu lang wird?",
+        "Linien: Trägt jede Linie und jeder Rahmen eine Beziehung? Endet jede Verbindungslinie an ihrem Ziel, ohne fremde Felder zu kreuzen?",
+        "Eine Ordnung je Bild: Zeigt ein Bild zwei Reihenfolgen zugleich, etwa eine Zeitachse und eine zweite Zählung?",
+        "Filme: Steht vor einem interaktiven Film ein Satz, was man tun kann? Zeigt ein Erklärfilm die echte Oberfläche der Seite, die er erklärt?",
+        "Kontrast über Bildern: Ist Text über einem Bild auch an der ungünstigsten Stelle gut lesbar, mindestens 4,5 zu 1?",
+        "Lehrkraftbereich: Wenn es einen gibt – ist er von Anfang an verschlüsselt und in die Seite eingebettet, nicht nur hinter einem Codewort?"
+      ],
+      "wo": "Digital-Check · Weg »Mit KI prüfen«, Abschnitte »Typische Schwächen« und »Gestaltung«",
+      "fassung": "v1.4",
+      "datum": "13.11.2026",
       "lizenz": false,
       "herunterladen": true
     },
@@ -92,7 +108,8 @@ var KURZFASSUNGEN = {
         "Bewerte keine Lehrkräfte und erfasse keine Namen. Eine Umfrage nur anonym, Ergebnisse nur gesammelt.",
         "Versprich keine Zeitersparnis. Sag stattdessen: Der Entwurf geht schneller, die Prüfung bleibt bei dir.",
         "Zufriedenheit ist kein Maß für Wirkung. Plane, dass jede Person einen Anlass im Unterricht erprobt und mit einem kurzen Beobachtungsbogen auswertet.",
-        "Halte am Ende gemeinsame Regeln auf höchstens einer Seite fest. Was noch nicht geklärt ist, bleibt als »noch offen« stehen."
+        "Halte am Ende gemeinsame Regeln auf höchstens einer Seite fest. Was noch nicht geklärt ist, bleibt als »noch offen« stehen.",
+        "Plane einen kurzen Bogen vor der Fortbildung (Ausgangslage, nur für die Person selbst und freiwillig für die Leitung) und einen Rückmeldebogen danach: Was ist gelungen? Wo hakt es? Was würde jetzt helfen? Ohne Namen, und jede Person entscheidet, ob ihre Rückmeldung weitergegeben werden darf."
       ],
       "pruef": [
         "Geht jeder Baustein von einem echten Anlass aus?",
@@ -104,8 +121,8 @@ var KURZFASSUNGEN = {
       "ziel": "Plane mit mir eine KI-Fortbildung für mein Kollegium. Sie geht von echten Aufgaben im Schulalltag aus, nicht von einzelnen Werkzeugen.",
       "format": "Ein Ablaufplan mit Minuten je Baustein, die Übung am eigenen Material, eine Materialliste und ein Entwurf für die Regel-Seite. Dann: was nach der Fortbildung passiert – Erprobung und ein Termin für die Auswertung.",
       "wo": "Aufträge zum Kopieren · »Eine KI-Fortbildung im Kollegium planen«",
-      "fassung": "v2.1",
-      "datum": "10.11.2026",
+      "fassung": "v2.2",
+      "datum": "13.11.2026",
       "lizenz": false,
       "herunterladen": true
     },
@@ -119,7 +136,8 @@ var KURZFASSUNGEN = {
         "Erst verstehen, dann abrufen. Merkhilfen wie Eselsbrücken nur zusammen mit Abrufen.",
         "Nenne bei jeder Methode, wofür sie weniger geeignet ist. Sinneskanäle sind keine Lerntypen.",
         "Gib nur dann an, wie gut die Methode belegt ist, wenn du eine Quelle nennen kannst: gut belegt · teilweise belegt · wenig erforscht. Sonst schreib »noch offen«.",
-        "Plane, wann die Methode zum zweiten und dritten Mal vorkommt. Eine Methode, die nur einmal vorkommt, wird nicht gelernt."
+        "Plane, wann die Methode zum zweiten und dritten Mal vorkommt. Eine Methode, die nur einmal vorkommt, wird nicht gelernt.",
+        "Gehört die Stelle zum Sichern und Üben, plane drei Teile: festhalten, was gilt; üben, erst mit Hilfe, dann allein; nach einigen Tagen ohne Vorlage wieder abrufen. Bei Urteilsaufgaben wird das Begründen geübt."
       ],
       "pruef": [
         "Passt das Handout gedruckt auf eine Seite?",
@@ -130,8 +148,8 @@ var KURZFASSUNGEN = {
       "ziel": "Wähle für die Stelle im Unterricht, die ich unten beschreibe, eine passende Lernmethode und schreib ein Handout für die Lernenden auf einer Seite.",
       "format": "Ein Handout mit diesen Teilen: Kopf (Name, Dauer, Sozialform, wie gut belegt) · Was das ist (drei Sätze) · Gut geeignet / weniger geeignet · So geht's (fünf Schritte) · Beispiel aus meinem Fach mit einem typischen Fehler · Mit Tablet (nur, wenn es etwas kann, was Papier nicht kann; sonst »auf Papier gleich gut«) · KI-Unterstützung (ein Auftrag mit [Platzhaltern] und Grenzen: erst selbst, dann KI; die Lösung erst auf Bitte; Selbsttest ohne KI) · Datenschutz · Quelle mit Datum. Danach ein Minutenplan für die erste Anwendung im Unterricht.",
       "wo": "Aufträge zum Kopieren · »Eine Lernmethode einführen«",
-      "fassung": "v1.2",
-      "datum": "11.11.2026",
+      "fassung": "v1.3",
+      "datum": "13.11.2026",
       "lizenz": false,
       "herunterladen": true
     },
@@ -167,6 +185,9 @@ var KURZFASSUNGEN = {
         "Fasse zuerst in drei bis fünf Zeilen zusammen, was du verstanden hast: Ziel, Lerngruppe, gewünschtes Ergebnis, Einsatz. Stell höchstens drei Rückfragen, und nur solche, die das Ergebnis verändern.",
         "Geh den Verlaufsplan Zeile für Zeile durch, mit Minuten. Frag je Zeile: Tun die Lernenden am Tablet etwas, das auf Papier nicht oder nur mühsam ginge? Hilft es nur beim Verteilen und Einsammeln? Dient es dem Lernziel? Ergebnis je Zeile in einem Satz.",
         "Wähl eine Stelle, nicht die ganze Stunde: wo Lernende hängen, wo Rückmeldung fehlt, wo geraten statt begründet wird.",
+        "Geht es um mehrere Stunden, leg zuerst die Landkarte der Einheit an: eine Leitfrage, je Stunde ein Satz, die Bausteine, die jede Stunde wiederkehren, und die Sicherung bis zur Prüfung. Entscheide dann je Stunde, wie viel Gerät sie braucht. Auch keins ist ein gutes Ergebnis.",
+        "Prüf je Phase, ob sie mit Gerät ihre Aufgabe fürs Lernen noch erfüllt: Im Einstieg legt sich jede Person fest, bevor erklärt wird. In der Erarbeitung begründen und ordnen alle, nicht nur wenige. Beim Sichern und Üben rufen die Lernenden ohne Vorlage ab, auch Tage später. Beim Übertragen wenden sie das Gelernte auf einen neuen Fall an.",
+        "Trenn Didaktik und Gestaltung: Erst entscheidest du, was die Lernenden tun und wie viel Gerät es braucht. Wie eine Seite aussieht und sich bedient, prüfst du danach für sich.",
         "Was das Tablet wirklich besser kann: messen, zufällig zuteilen, sofort auswerten, Ergebnisse bündeln, simulieren, Rückmeldung geben, verdecken und aufdecken, fotografieren. Alles andere ist meist Verteilen.",
         "Keine Mischform: Das Gerät trägt einen Moment, eine Phase oder die ganze Stunde – nicht dieselbe Aufgabe halb am Gerät und halb auf Papier.",
         "Längere Sachtexte lesen und markieren die Lernenden auf Papier. Am Gerät nur kurze Texte, und dann mit einer Aufgabe beim Lesen: ein Stichwort je Abschnitt oder eine Frage an den Text. Markieren nur mit Regel, danach folgt ein Stichwort, eine Frage oder eine Struktur.",
@@ -178,9 +199,9 @@ var KURZFASSUNGEN = {
         "Gib mir zum Schluss fünf kurze Fragen für die Beobachtung nach der Stunde, ohne Noten: Haben die Lernenden das Entscheidende selbst getan? Was ging besser als auf Papier? Wie viel Zeit ging an die Technik? Waren sie bei der Sache? So lassen, nachschärfen oder zurück zu Papier?"
       ],
       "pruef": [],
-      "wo": "Unterricht digitalisieren · Abschnitt »Vorgehen« im Prompt",
-      "fassung": "v4.4",
-      "datum": "11.11.2026",
+      "wo": "Bisherigen Unterricht digitalisieren · Abschnitt »Vorgehen« im Prompt",
+      "fassung": "v4.5",
+      "datum": "13.11.2026",
       "lizenz": false,
       "herunterladen": true
     },
@@ -192,33 +213,40 @@ var KURZFASSUNGEN = {
         "Hilfen erst nach dem eigenen Versuch, direkt an der Aufgabe und jederzeit wieder aufrufbar. Eine Aufgabe für Schnelle.",
         "Wenig auf einmal: Abschnitte höchstens eine Bildschirmseite, höchstens fünf bis sechs neue Begriffe. Lange Texte gehören auf Papier.",
         "Die Seite endet mit einem eigenen Ergebnis – Urteil, Einordnung oder Erklärung –, das im Plenum aufgegriffen wird. Am Ende steht sichtbar: »Tablet umdrehen«.",
+        "Gehört die Seite zu einer Einheit, steht dieselbe Leitfrage auf jeder Seite. Am Anfang zeigt die Landkarte, wo die Stunde steht. Am Ende hält ein Satz in der Lernspur fest, was heute dazugekommen ist. Nicht jede Stunde braucht eine Seite: Papierstunden stehen auf der Landkarte mit.",
         "Jedes Element trägt seinen Status: belegte Quelle mit Fundstelle · Modell, die Zahlen sind keine Messwerte · ausgedachter Fall · noch offen. Erfinde keine Quellen, Zitate oder Bilder.",
-        "Technik: eine einzige HTML-Datei, die ohne Internet läuft. Keine Schriften, Skripte, Bilder oder Videos von fremden Seiten. Gespeichert wird nur im Browser, ohne Namen, mit einem Knopf »Eingaben löschen«.",
+        "Technik: eine einzige HTML-Datei, die ohne Internet läuft. Keine Schriften, Skripte, Bilder oder Videos von fremden Seiten. Gespeichert wird nur im Browser, ohne Namen, mit einem Knopf »Eingaben löschen«. Ergebnisse, die nach der Stunde gebraucht werden, kann man zusätzlich als Datei herunterladen.",
+        "Lösungen und Erwartungshorizonte stehen nicht in der Seite für Lernende. Ein Codewort schützt nichts: Die Lösung stünde trotzdem im Quelltext.",
         "Für das Tablet: Zielflächen mindestens 44 Pixel, Schrift ab 16 Pixel, Farbe nie allein, mit Tastatur bedienbar. Die Seite wird per Link oder QR-Code im Browser geöffnet, nicht als Datei aus der Dateien-App."
       ],
       "pruef": [],
       "format": "Gib mir die Lernseite als eine einzige HTML-Datei. Davor: deine Antworten auf die vier Fragen und den Ablauf mit Minuten. Danach: die Listen »Vor dem Kopieren prüfen« und »Nur du kannst das«.",
-      "wo": "Unterricht digitalisieren · Ausgabe »Lernseite als eine HTML-Datei«",
-      "fassung": "v2.2",
-      "datum": "10.11.2026",
+      "wo": "Bisherigen Unterricht digitalisieren · Ausgabe »Lernseite als eine HTML-Datei«",
+      "fassung": "v2.3",
+      "datum": "13.11.2026",
       "lizenz": false,
       "herunterladen": false
     }
   },
   "gestaltung": {
     "anforderungen": [
-      "Ruhig und flach wie ein gut gedrucktes Arbeitsblatt: heller, warmer Grund (#F8F5EE), Text in fast schwarzem Druckschwarz (#2B2A24).",
-      "Höchstens zwei Farben für Bereiche oder Kategorien, zum Beispiel Ocker (#7D5A1C) und Moosgrün (#4A6645). Keine dritte Akzentfarbe, keine Verläufe, kein Glas, kein Neon. Ocker nie für Fließtext.",
+      "Ruhig und flach wie ein gut gedrucktes Arbeitsblatt: heller, warmer Grund (#F8F5EE), Text in fast schwarzem Druckschwarz (#201F1D).",
+      "Höchstens zwei Farben für Bereiche oder Kategorien, zum Beispiel Ocker (#B68235 als Fläche, darauf nur dunkle Schrift) und Petrol (#2F5D62). Keine dritte Akzentfarbe, keine Verläufe, kein Glas, kein Neon. Ocker nie für Fließtext.",
       "Hauptknöpfe in Druckschwarz, mindestens 48 Pixel hoch. Ecken 4 Pixel, auch bei Karten und Feldern.",
       "Keine weichen Schatten. Tiefe, wenn nötig, durch eine harte, um 6 Pixel versetzte Farbfläche hinter der Karte.",
       "Systemschrift, keine Schriften aus dem Netz. Überschriften kräftig und höchstens zwei Zeilen lang. Kein Text unter 16 Pixel.",
       "Erst Ruhe, dann Bewegung: Bewegung nur als Antwort auf eine Handlung der Lernenden, höchstens 300 Millisekunden, nur Lage und Deckkraft. Ist im System »Bewegung reduzieren« eingestellt, bewegt sich nichts.",
+      "Ruhe in der Arbeitsphase: Dort bewegt sich nur die Antwort auf eine eigene Handlung. Ein Arbeitsfenster je Phase, höchstens drei Tipps bis zur ersten eigenen Antwort, Hilfen öffnen sich am selben Ort.",
+      "Linien nur, wo sie eine Beziehung tragen. Eine Verbindungslinie endet an ihrem Ziel und kreuzt keine fremden Felder. Ein Bild hat eine Ordnung: Ordnet es nach der Zeit, zeigt es keine zweite Zählung.",
+      "Text über einem Bild ist auch an der ungünstigsten Stelle gut lesbar, mindestens 4,5 zu 1.",
+      "Vor einem interaktiven Film steht ein Satz, was man tun kann. Ein Erklärfilm zeigt die echte Oberfläche der Seite.",
+      "Übersichten auf einem Startbildschirm nutzen die Breite des Tablets quer: mehrere Karten nebeneinander, Fließtext trotzdem höchstens 68 Zeichen breit.",
       "Status und Rückmeldung immer auch als Wort, nie nur als Farbe. Keine Ampeln, Punkte, Sterne, Abzeichen oder Konfetti.",
       "Fehlende Bilder nicht erfinden: ein ruhiges Punktraster mit »noch kein Bild«. Keine Stockfotos, keine KI-Bilder als Fotos.",
       "Lesbar am Beamer: Das Wichtigste jedes Abschnitts passt in 1280 × 720 Pixel."
     ],
     "pruef": [],
-    "stand": "10.11.2026",
+    "stand": "13.11.2026",
     "wo": "Unterricht digitalisieren"
   }
 };

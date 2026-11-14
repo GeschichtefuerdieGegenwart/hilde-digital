@@ -27,6 +27,8 @@ Format einer Kurzfassung im Skill:
     - …
     **Prüfen**   (freiwillig)
     - …
+    **Gestaltung**   (freiwillig, ab 4.38; im Skill digital-check: Prüfblock 2, getrennt von der Didaktik)
+    - …
 """
 import io
 import json
@@ -56,7 +58,7 @@ def lies_kurzfassung(teil):
         m = re.search(r"^- \*\*" + feld + r":\*\* (.+)$", teil, re.M)
         if m:
             k[schluessel] = m.group(1).strip()
-    for marke, schluessel in (("Anforderungen", "anforderungen"), ("Prüfen", "pruef")):
+    for marke, schluessel in (("Anforderungen", "anforderungen"), ("Prüfen", "pruef"), ("Gestaltung", "gestaltung")):
         m = re.search(r"^\*\*" + marke + r"\*\*\n([\s\S]*?)(?=^\*\*|\Z)", teil, re.M)
         if m:
             k[schluessel] = [z[2:].strip() for z in m.group(1).splitlines() if z.startswith("- ")]

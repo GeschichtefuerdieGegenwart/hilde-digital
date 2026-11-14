@@ -79,3 +79,37 @@ test("Prüf-Auftrag fragt nach Ruhe, Festlegung, Klickweg und Zwischenstand", ()
   assert.ok(/drei Tipps/.test(t) && /Seitenwechsel/.test(t));
   assert.ok(/Zwischenstand/.test(t) && /außerhalb des Browsers/.test(t));
 });
+
+/* ab 4.38: Gestaltung ist ein eigener Prüfblock (Skill digital-check v1.4, Liste »Gestaltung« der Kurzfassung).
+   Sie steht nach den typischen Schwächen und vor der Form der Antwort; unter »Regeln« steht keine Gestaltung mehr. */
+test("Gestaltung ist ein eigener Block aus dem Skill, getrennt von den Regeln der Didaktik", () => {
+  const K = require("../assets/daten/kurzfassungen.js");
+  const g = K.skills["digital-check"].gestaltung;
+  assert.ok(Array.isArray(g) && g.length >= 8, "Liste »Gestaltung« im Skill");
+  const t = P.baue({ typ: "html" }, Q);
+  const regeln = t.indexOf("# Regeln"), schwaechen = t.indexOf("# Typische Schwächen"),
+    block = t.indexOf("# Gestaltung – ein eigener Prüfblock"), form = t.indexOf("# Form deiner Antwort");
+  assert.ok(regeln > 0 && schwaechen > regeln && block > schwaechen && form > block, "Reihenfolge der Abschnitte");
+  for (const x of g) assert.ok(t.indexOf(x) > block && t.indexOf(x) < form, "im Block: " + x.slice(0, 30));
+  const teilRegeln = t.slice(regeln, t.indexOf("# Qualitätsmodell"));
+  assert.doesNotMatch(teilRegeln, /Erst Ruhe, dann Bewegung|Zähle den Weg/, "keine Gestaltung unter »Regeln«");
+  assert.match(teilRegeln, /Erst denken, dann zeigen/, "die Festlegung bleibt eine Regel der Didaktik");
+  assert.match(t, /ändert keine Stufe/);
+  assert.match(t, /3\. Beobachtungen am Material[^\n]*eigenen Absatz »Gestaltung«/);
+});
+
+test("ohne Liste »Gestaltung« entfällt der Block, die Gliederung bleibt", () => {
+  const K = require("../assets/daten/kurzfassungen.js");
+  const ohne = JSON.parse(JSON.stringify(K));
+  delete ohne.skills["digital-check"].gestaltung;
+  const t = P.baue({}, Q, ohne);
+  assert.doesNotMatch(t, /# Gestaltung – ein eigener Prüfblock/);
+  assert.doesNotMatch(t, /eigenen Absatz »Gestaltung«/);
+  assert.match(t, /# Typische Schwächen/);
+});
+
+test("Material auf Papier: kein Gestaltungsblock", () => {
+  const t = P.baue({ typ: "arbeitsblatt" }, Q);
+  assert.doesNotMatch(t, /# Gestaltung – ein eigener Prüfblock/);
+  assert.match(t, /kein Mangel/);
+});
