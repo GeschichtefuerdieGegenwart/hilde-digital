@@ -1,12 +1,13 @@
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Unterrichtsmuster aus der Praxis</h1>
-  <p class="marker">Ideen und Kniffe zum Stöbern · kein Weg, keine Reihenfolge · auch für das KI-Training</p>
-  <p class="detail-kurz">Eine Sammlung, kein Weg: elf Muster aus dem Unterricht, die in vielen Fächern passen. Wenn du erst wissen willst, wann sich das Gerät lohnt, fang bei <a href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> an. Zu jedem Muster gibt es drei Wege: auf Papier, mit KI vorbereitet und am Tablet. Kein Weg ist besser als der andere.</p>
-</div></section>
-
-<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-angaben"><div class="huelle stapel-gross">
-  <div class="stapel">
+<!-- fahrplan:zeile weit -->
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Unterrichtsmuster aus der Praxis</h1>
+    <p class="marker">Ideen und Kniffe zum Stöbern · kein Weg, keine Reihenfolge · auch für das KI-Training</p>
+    <p class="detail-kurz">Eine Sammlung, kein Weg: elf Muster aus dem Unterricht, die in vielen Fächern passen. Wenn du erst wissen willst, wann sich das Gerät lohnt, fang bei <a href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> an. Zu jedem Muster gibt es drei Wege: auf Papier, mit KI vorbereitet und am Tablet. Kein Weg ist besser als der andere.</p>
+  </div>
+  <!-- Ab 4.42: die Angaben für alle Aufträge neben dem Kopf (Screen-Width Rule); darunter gleich die Landkarte der Muster. -->
+  <div class="werkzeugkopf-seite stapel">
     <h2 id="t-angaben" class="klein-titel">Deine Angaben für alle Aufträge</h2>
     <p class="mass">Trag Fach, Thema und Lerngruppe einmal ein. Sie stehen dann in jedem Auftrag auf dieser Seite. Fehlt etwas, fragt die KI zuerst danach.</p>
     <form class="schnell-felder" id="werkstatt-form" novalidate>
@@ -16,11 +17,15 @@
     </form>
     <p class="datenhinweis leise klein">Keine Namen, Noten oder anderen personenbezogenen Daten eingeben. Deine Angaben werden nicht gespeichert.</p>
   </div>
+</div></section>
 
+<section class="abschnitt" style="padding-top:var(--a3)" aria-labelledby="t-muster"><div class="huelle huelle-weit stapel-gross">
   <div class="stapel">
     <h2 id="t-muster">Die Muster</h2>
+    <!-- Ab 4.42: Landkarte – alle Muster nach Phase (assets/werkstatt.js); unter 1024 px die Chips. -->
+    <div class="landkarte" id="muster-landkarte"></div>
     <div class="muster-filter-zeile">
-      <div class="muster-filter" id="muster-filter" role="group" aria-label="Nach Unterrichtsphase filtern"></div>
+      <div class="muster-filter filter-schmal" id="muster-filter" role="group" aria-label="Nach Unterrichtsphase filtern"></div>
       <p class="leise" id="muster-anzahl" aria-live="polite"></p>
     </div>
     <ol class="muster-liste" id="muster-liste"></ol>
@@ -35,6 +40,7 @@
     <p class="mass">Bevor du einen Tablet-Weg wählst: <a class="textlink" href="unterricht.html#t-probe">Geht es auf Papier genauso gut? <span aria-hidden="true">→</span></a></p>
   </div>
 </div></section>
+<!-- fahrplan:fuss weit -->
 </div>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/daten/beispiele.js"></script>

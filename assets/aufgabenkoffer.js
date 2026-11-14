@@ -89,6 +89,33 @@
     return "<li>" + esc(q.text) + (q.ort ? ' <span class="leise">' + esc(q.ort) + "</span>" : "") + "</li>";
   }).join("");
 
+  /* Ab 4.42: Landkarte des Koffers – alle Aufgaben nach Ziel (Spalten) und Ort (Zeilen), eine Tabelle.
+     Die Spaltenköpfe filtern wie die Chips (unter 1024 px stehen nur die Chips, siehe hilde.css).
+     Ein Name ist eine Sprungmarke (#k-…): Die Aufgabe klappt auf (oeffne, unten). */
+  var landkarte = document.getElementById("koffer-landkarte");
+  if (landkarte) {
+    var ORTE = ["papier", "hybrid", "geraet"];
+    landkarte.innerHTML = '<table><caption>Jede Aufgabe steht einmal: unter ihrem Ziel und in der Zeile, wo sie meist am besten läuft. ' +
+      "Eine leere Zelle heißt: Dafür liegt noch keine Aufgabe im Koffer.</caption>" +
+      '<thead><tr><td class="landkarte-ecke"><button type="button" class="landkarte-kopf ist-alle" data-zweck="">Alle Ziele</button></td>' +
+      A.zwecke.map(function (z) {
+        return '<th scope="col"><button type="button" class="landkarte-kopf" data-zweck="' + z.id + '">' + esc(z.name) + "</button></th>";
+      }).join("") + "</tr></thead><tbody>" +
+      ORTE.map(function (o) {
+        return '<tr><th scope="row"><span class="koffer-ort ort-' + o + '">' + esc(A.orte[o]) + "</span></th>" +
+          A.zwecke.map(function (z) {
+            var xs = A.aufgaben.filter(function (a) { return a.zweck === z.id && a.ort === o; });
+            if (!xs.length) return '<td class="ist-leer" data-zweck="' + z.id + '"><span aria-hidden="true">–</span><span class="sr-only">keine Aufgabe</span></td>';
+            return '<td data-zweck="' + z.id + '"><ul>' + xs.map(function (a) {
+              return '<li><a href="#k-' + a.id + '">' + esc(a.name) + "</a></li>";
+            }).join("") + "</ul></td>";
+          }).join("") + "</tr>";
+      }).join("") + "</tbody></table>";
+    landkarte.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-zweck]"); if (b) setze(b.getAttribute("data-zweck"));
+    });
+  }
+
   function setze(id) {
     var n = 0;
     liste.querySelectorAll(".koffer-gruppe").forEach(function (g) {
@@ -96,8 +123,11 @@
       g.hidden = !zeigen;
       if (zeigen) n += g.querySelectorAll(".koffer-karte").length;
     });
-    if (filter) filter.querySelectorAll("button").forEach(function (b) {
+    document.querySelectorAll("#koffer-filter button, #koffer-landkarte button").forEach(function (b) {
       b.setAttribute("aria-pressed", String((b.getAttribute("data-zweck") || "") === (id || "")));
+    });
+    if (landkarte) landkarte.querySelectorAll("td[data-zweck]").forEach(function (td) {
+      td.classList.toggle("ist-gewaehlt", !!id && td.getAttribute("data-zweck") === id);
     });
     if (anzahl) anzahl.textContent = n + (n === 1 ? " Aufgabe" : " Aufgaben");
   }
@@ -122,10 +152,14 @@
     } catch (err) { selbst(); }
   });
 
-  /* Sprungmarke auf eine Aufgabe (#k-…): aufklappen. */
+  /* Sprungmarke auf eine Aufgabe (#k-…): aufklappen. Ab 4.42 auch aus der Landkarte – dort auch beim zweiten Tipp auf denselben Namen. */
   function oeffne() {
     var z = location.hash && document.getElementById(location.hash.slice(1));
     if (z && z.classList.contains("koffer-karte")) { setze(""); z.querySelector("details").open = true; z.scrollIntoView(); }
   }
   window.addEventListener("hashchange", oeffne); oeffne();
+  if (landkarte) landkarte.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#k-"]');
+    if (a && a.getAttribute("href") === location.hash) oeffne();
+  });
 })();

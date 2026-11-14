@@ -1,12 +1,18 @@
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt" aria-labelledby="t-hf"><div class="huelle">
-  <p class="leise klein"><a class="textlink" href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> · Film</p>
-  <h1 id="t-hf" class="h1-frage">Was das Gerät kann</h1>
-  <p class="marker">Film · 2 Minuten · Entwurf vom 10. November 2026 · kein Beschluss</p>
-  <p class="detail-kurz">Sieben Kapitel über die sechs Prinzipien. Der Film startet erst, wenn du es willst. Du kannst anhalten, ziehen und zu jedem Kapitel springen.</p>
+<!-- fahrplan:zeile weit -->
+<section class="bereichskopf kompakt" aria-labelledby="t-hf"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <p class="leise klein"><a class="textlink" href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> · Film</p>
+    <h1 id="t-hf" class="h1-frage">Was das Gerät kann</h1>
+    <p class="marker">Film · 2 Minuten · Entwurf vom 10. November 2026 · kein Beschluss</p>
+  </div>
+  <div class="werkzeugkopf-seite">
+    <p class="detail-kurz">Sieben Kapitel über die sechs Prinzipien. Der Film startet erst, wenn du es willst. Du kannst anhalten, ziehen und zu jedem Kapitel springen.</p>
+    <p class="kopfnotiz"><button type="button" class="knopf" id="hf-los-kopf" hidden>Film starten (2 Min.)</button></p>
+  </div>
 </div></section>
 
-<section class="abschnitt" aria-labelledby="t-hf-film"><div class="huelle stapel">
+<section class="abschnitt" style="padding-top:var(--a3)" aria-labelledby="t-hf-film"><div class="huelle huelle-weit stapel">
   <h2 id="t-hf-film" class="sr-only">Der Film</h2>
   <div class="hf" id="hf">
     <div class="hf-rahmen" id="hf-rahmen">
@@ -35,7 +41,9 @@
       <label class="hf-regler"><span class="sr-only">Zeit im Film</span><input type="range" id="hf-regler" min="0" max="120" step="0.5" value="0" disabled></label>
       <span class="hf-zeit" id="hf-zeit">0:00 / 2:00</span>
     </div>
-    <ol class="hf-kapitel hf-nur-mit-js" id="hf-kapitel" aria-label="Kapitel">
+    <div class="hf-kapitel-spalte hf-nur-mit-js">
+    <p class="blick-titel" id="t-hf-kapitel">Auf einen Blick: sieben Kapitel</p>
+    <ol class="hf-kapitel" id="hf-kapitel" aria-labelledby="t-hf-kapitel">
       <li><button type="button" data-kapitel="0" aria-current="false"><b>1</b> Der Schnellhefter</button></li>
       <li><button type="button" data-kapitel="1" aria-current="false"><b>2</b> Sechs Prinzipien</button></li>
       <li><button type="button" data-kapitel="2" aria-current="false"><b>3</b> Drei Beispiele</button></li>
@@ -44,11 +52,12 @@
       <li><button type="button" data-kapitel="5" aria-current="false"><b>6</b> Keiner? Dann Papier.</button></li>
       <li><button type="button" data-kapitel="6" aria-current="false"><b>7</b> Jetzt du</button></li>
     </ol>
+    </div>
   </div>
   <p class="leise klein">Pfeiltasten wechseln das Kapitel, die Leertaste hält an. Bei »Weniger Bewegung« zeigt der Film sieben Standbilder, die du mit »Weiter« durchgehst. Wechselst du den Tab, hält er an. Zahlen im Film sind Beispiele, keine Messwerte. Nichts wird gespeichert.</p>
 </div></section>
 
-<section class="abschnitt" aria-labelledby="t-hf-text"><div class="huelle stapel-gross">
+<section class="abschnitt" aria-labelledby="t-hf-text"><div class="huelle huelle-weit stapel-gross">
   <div class="stapel">
     <h2 id="t-hf-text">Der Film als Text</h2>
     <p class="mass">Sieben Kapitel, ein Satz oben je Takt. Die Beispiele sind erprobte Lernseiten aus den Unterrichtsbeispielen.</p>
@@ -67,6 +76,7 @@
     <p>Eine Zeitachse von 120 Sekunden; jedes Bild wird aus der Zeit berechnet, darum kannst du ziehen und springen. Bewegt werden nur Lage und Deckkraft. Der Satz oben baut sich wortweise auf, höchstens 2,4 Sekunden; für Hilfstechnik wird jeder Satz vollständig angesagt. Schriften und Farben kommen aus dem Gestaltungssystem der Seite, nichts wird nachgeladen. Muster AW in <a href="gestaltung.html">Gestaltungssystem</a>.</p>
   </details>
 </div></section>
+<!-- fahrplan:fuss weit -->
 </div>
 <script src="assets/hilde.js"></script>
 <script src="assets/sechs-hebel-film.js"></script>

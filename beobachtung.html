@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Nach der Stunde: Beobachtungsbogen – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=7afb121e">
+<link rel="stylesheet" href="assets/hilde.css?v=5cf929e4">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -19,13 +19,28 @@
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Nach der Stunde: Wie lief es mit dem Tablet?</h1>
-  <p class="marker">Bereich: Digitaler Unterricht</p>
-  <p class="kopfnotiz">Sechs Fragen, zwei Minuten, direkt nach der Stunde. Du hältst fest, was du beobachtet hast, und entscheidest: so lassen, nachschärfen oder zurück zu Papier. Es gibt keine Note.</p>
+<nav class="ort-zeile" aria-label="Wo du bist"><div class="huelle huelle-weit"><ol><li class="ort-weg"><a href="unterricht.html#fahrplan">Fahrplan Digitaler Unterricht</a></li><li><a href="unterricht.html#phase-nach">4 · Nach der Stunde</a> <span class="ort-wann">(nach der Stunde)</span></li></ol></div></nav>
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Nach der Stunde: Wie lief es mit dem Tablet?</h1>
+    <p class="kopfnotiz">Sechs Fragen, zwei Minuten, direkt nach der Stunde. Du hältst fest, was du beobachtet hast, und entscheidest: so lassen, nachschärfen oder zurück zu Papier. Es gibt keine Note.</p>
+  </div>
+  <!-- Ab 4.42: »Auf einen Blick« – der Bogen in einer Zeile. Namen wie die Überschriften der Fragen unten. -->
+  <figure class="blick nicht-am-telefon" aria-labelledby="t-blick">
+    <p class="blick-titel" id="t-blick">Auf einen Blick: fünf Fragen sammeln, die sechste entscheidet</p>
+    <ol class="bogen-blick">
+      <li><a href="#frage-1"><span class="bogen-blick-nr" aria-hidden="true">1</span><span class="bogen-blick-name"><span class="sr-only">Frage 1: </span>Lernen</span></a></li>
+      <li><a href="#frage-2"><span class="bogen-blick-nr" aria-hidden="true">2</span><span class="bogen-blick-name"><span class="sr-only">Frage 2: </span>Lernnachweis</span></a></li>
+      <li><a href="#frage-3"><span class="bogen-blick-nr" aria-hidden="true">3</span><span class="bogen-blick-name"><span class="sr-only">Frage 3: </span>Tablet oder Papier</span></a></li>
+      <li><a href="#frage-4"><span class="bogen-blick-nr" aria-hidden="true">4</span><span class="bogen-blick-name"><span class="sr-only">Frage 4: </span>Ablauf</span></a></li>
+      <li><a href="#frage-5"><span class="bogen-blick-nr" aria-hidden="true">5</span><span class="bogen-blick-name"><span class="sr-only">Frage 5: </span>Aufmerksamkeit</span></a></li>
+      <li class="bogen-blick-ende"><a href="#frage-6"><span class="bogen-blick-nr" aria-hidden="true">6</span><span class="bogen-blick-name"><span class="sr-only">Frage 6: </span>Entscheidung:</span><span class="bogen-blick-wahl"><span>So lassen</span><span>Nachschärfen</span><span>Zurück zu Papier</span></span></a></li>
+    </ol>
+    <figcaption>Du entscheidest selbst. Die Auswertung danach gibt Hinweise, keine Note.</figcaption>
+  </figure>
 </div></section>
 
-<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle bogen">
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle huelle-weit bogen bogen-breit">
   <h2 id="t-bogen" class="sr-only">Beobachtungsbogen</h2>
   <form id="bogen" class="bogen-form" novalidate>
     <div class="eingabe">
@@ -33,7 +48,7 @@
       <input type="text" id="b-was" autocomplete="off" placeholder="z. B. Zeitleiste ordnen in der Erarbeitung">
     </div>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-1">
       <legend><span class="leise klein">Frage 1 von 6 · Lernen</span><br>Haben die Lernenden das Entscheidende selbst getan – abrufen, erklären, ordnen, begründen?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="lernhandlung" value="ja"><span>Ja</span></label>
@@ -42,7 +57,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-2">
       <legend><span class="leise klein">Frage 2 von 6 · Lernnachweis</span><br>Konnten die Lernenden es danach ohne Gerät und ohne Hilfe – zum Beispiel bei einer kurzen Aufgabe am Ende?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="nachweis" value="ja"><span>Ja</span></label>
@@ -52,7 +67,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-3">
       <legend><span class="leise klein">Frage 3 von 6 · Tablet oder Papier</span><br>Ging mit dem Tablet etwas besser als auf Papier?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="mehrwert" value="ja"><span>Ja</span></label>
@@ -64,7 +79,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-4">
       <legend><span class="leise klein">Frage 4 von 6 · Ablauf</span><br>Wie viel Zeit ging für Technik verloren – Anmelden, Laden, Suchen?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="technik" value="kaum"><span>Kaum</span></label>
@@ -73,7 +88,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-5">
       <legend><span class="leise klein">Frage 5 von 6 · Aufmerksamkeit</span><br>Waren die Lernenden bei der Sache?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="aufmerksamkeit" value="ja"><span>Ja</span></label>
@@ -86,7 +101,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-6">
       <legend><span class="leise klein">Frage 6 von 6 · Entscheidung</span><br>Wie geht es weiter?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="entscheidung" value="lassen"><span>So lassen</span></label>
@@ -115,7 +130,7 @@
   <noscript><p class="box">Ohne JavaScript kannst du den Bogen ausdrucken und von Hand ausfüllen.</p></noscript>
 </div></section>
 
-<section class="band band-flaeche" aria-labelledby="t-lernende"><div class="huelle">
+<section class="band band-flaeche" aria-labelledby="t-lernende"><div class="huelle huelle-weit">
   <h2 id="t-lernende">Willst du die Lernenden fragen?</h2>
   <p>Zwei Fragen genügen. Die Lernenden antworten auf einem Zettel, ohne Namen.</p>
   <ol class="zwei-fragen">
@@ -124,6 +139,38 @@
   </ol>
   <p class="leise klein">Die Antworten zeigen dir, wie die Stunde bei den Lernenden ankam. Auch sie sind kein Nachweis der Wirkung.</p>
 </div></section>
+<nav class="fahrplan-fuss" aria-label="Fahrplan Digitaler Unterricht"><div class="huelle huelle-weit fahrplan-fuss-innen">
+  <div class="fahrplan-fuss-auch">
+    <h2 class="fahrplan-fuss-titel">Auch nach der Stunde</h2>
+    <div class="fahrplan-fuss-gruppen">
+      <div class="fahrplan-gruppe">
+        <h3>Im Kollegium</h3>
+        <ul class="fahrplan-werkzeuge">
+          <li><a href="fortbildung.html"><b>Fortbildungsbaustein: 45 Minuten</b><span class="fahrplan-text">Der Einstieg für Konferenz oder Fachgruppe. Alle arbeiten an eigenem Material.</span></a></li>
+          <li><a href="beratung.html"><b>Beratungsstunde: acht Wochen</b><span class="fahrplan-text">Zwei bis drei Lehrkräfte, eine eigene Stunde, zweimal ausprobiert.</span></a></li>
+          <li><a href="leitsaetze.html"><b>Leitsätze zur Diskussion</b><span class="fahrplan-text">Zehn Sätze auf einer Seite – ein Entwurf zum Gespräch, kein Beschluss.</span></a></li>
+        </ul>
+      </div>
+      <div class="fahrplan-gruppe">
+        <h3>Zum Weitergeben</h3>
+        <ul class="fahrplan-werkzeuge">
+          <li><a href="rueckmeldebogen.html"><b>Mein Rückmeldebogen</b><span class="fahrplan-text">Was dich beim Ausprobieren beschäftigt hat. Am Ende eine PDF für die Person, die deine Fortbildung leitet.</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="fahrplan-fuss-plan">
+    <h2 class="fahrplan-fuss-titel">Der Fahrplan</h2>
+    <ol class="fahrplan-klein">
+      <li class="ist-vorspann"><a href="unterricht.html#phase-grundlagen"><span class="fahrplan-klein-nr" aria-hidden="true">1</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">1 · </span>Grundlagen</span><span class="fahrplan-klein-wann">zuerst</span></span></a></li>
+      <li class="ist-zart ist-ring-start"><a href="unterricht.html#phase-erstellen"><span class="fahrplan-klein-nr" aria-hidden="true">2</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">2 · </span>Digitalen Unterricht erstellen</span><span class="fahrplan-klein-wann">vor der Stunde</span></span></a></li>
+      <li class="ist-ring-mitte"><a href="unterricht.html#phase-unterrichten"><span class="fahrplan-klein-nr" aria-hidden="true">3</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">3 · </span>Unterrichten</span><span class="fahrplan-klein-wann">in der Stunde</span></span></a></li>
+      <li class="ist-zart ist-ring-ende ist-hier"><a href="unterricht.html#phase-nach" aria-current="location"><span class="fahrplan-klein-nr" aria-hidden="true">4</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">4 · </span>Nach der Stunde</span><b class="fahrplan-klein-hier">Du bist hier</b></span></a></li>
+    </ol>
+    <p class="fahrplan-ring"><span class="fahrplan-ring-pfeil" aria-hidden="true">↑</span> Nach der Stunde geht es mit der nächsten Stunde wieder bei 2 weiter.</p>
+    <p class="fahrplan-fuss-alle"><a class="textlink" href="unterricht.html#fahrplan">Alle Werkzeuge im Fahrplan <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></nav>
 </div>
 <script src="assets/daten/taxonomien.js?v=eb73b10b"></script>
 <script src="assets/regeln.js?v=fb711ed9"></script>

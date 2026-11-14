@@ -1,15 +1,23 @@
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Aufgabenkoffer</h1>
-  <p class="marker">Welche Aufgabe kann ich wie stellen – und was fördert sie?</p>
-  <p class="detail-kurz">Im Koffer liegen 18 Aufgabenformen. Wähl zuerst, was deine Lernenden können sollen. Dann siehst du, welche Aufgabe dazu passt, wann sie sinnvoll ist und wann wenig. Bei jeder steht, wie sie auf Papier geht und was das Gerät beiträgt.</p>
+<!-- fahrplan:zeile weit -->
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Aufgabenkoffer</h1>
+    <p class="marker">Welche Aufgabe kann ich wie stellen – und was fördert sie?</p>
+    <p class="detail-kurz">Im Koffer liegen 18 Aufgabenformen. Wähl zuerst, was deine Lernenden können sollen. Dann siehst du, welche Aufgabe dazu passt, wann sie sinnvoll ist und wann wenig. Bei jeder steht, wie sie auf Papier geht und was das Gerät beiträgt.</p>
+  </div>
+  <div class="werkzeugkopf-seite">
+    <h2 id="t-koffer">Was sollen deine Lernenden können?</h2>
+    <p class="koffer-bedienung">Tipp ein Ziel an. Dann siehst du nur die Aufgaben dazu.</p>
+  </div>
 </div></section>
 
-<section class="abschnitt" style="padding-top:var(--a4)" aria-labelledby="t-koffer"><div class="huelle stapel-gross">
+<section class="abschnitt" style="padding-top:var(--a2)" aria-labelledby="t-koffer"><div class="huelle huelle-weit stapel-gross">
   <div class="stapel">
-    <h2 id="t-koffer">Was sollen deine Lernenden können?</h2>
+    <!-- Ab 4.42: Landkarte des Koffers – alle Aufgaben nach Ziel und Ort (assets/aufgabenkoffer.js); unter 1024 px die Chips. -->
+    <div class="landkarte" id="koffer-landkarte"></div>
     <div class="muster-filter-zeile">
-      <div class="muster-filter" id="koffer-filter" role="group" aria-label="Nach Ziel filtern"></div>
+      <div class="muster-filter filter-schmal" id="koffer-filter" role="group" aria-label="Nach Ziel filtern"></div>
       <p class="leise" id="koffer-anzahl" aria-live="polite"></p>
     </div>
     <p class="koffer-legende leise klein">Rechts steht, wo die Aufgabe meist am besten läuft: <span class="koffer-ort ort-papier">meist Papier</span> <span class="koffer-ort ort-hybrid">Papier und Gerät</span> <span class="koffer-ort ort-geraet">Gerät lohnt sich oft</span> Das ist kein Rang. Papier ist ein vollwertiges Ergebnis.</p>
@@ -17,6 +25,7 @@
     <noscript><p class="box">Der Aufgabenkoffer braucht JavaScript. Ohne JavaScript findest du Beispiele bei den <a href="galerie.html">Unterrichtsbeispielen</a> und die Regeln auf der Seite <a href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a>.</p></noscript>
   </div>
 
+  <div class="nebeneinander">
   <div class="stapel box">
     <h2 id="t-faust" class="klein-titel">Fünf Faustregeln für jede Aufgabe</h2>
     <ol class="mass">
@@ -34,6 +43,7 @@
     <p class="mass">Bei jeder Aufgabe steht ein Prinzip aus <a class="textlink" href="sechs-hebel.html">Wann funktioniert digitaler Unterricht?</a> – oder »keines der sechs«. Dann trägt das Gerät dort wenig bei.</p>
     <p class="mass">Fertige Abläufe für eine ganze Phase findest du in <a class="textlink" href="muster.html">Ideen und Kniffe</a>.</p>
   </div>
+  </div>
 
   <details class="mehr" id="vertiefung-belege">
     <summary>Zum Nachlesen: Belegstand und Quellen</summary>
@@ -44,6 +54,7 @@
     </div>
   </details>
 </div></section>
+<!-- fahrplan:fuss weit -->
 </div>
 <script src="assets/hilde.js"></script>
 <script src="assets/daten/aufgaben.js"></script>

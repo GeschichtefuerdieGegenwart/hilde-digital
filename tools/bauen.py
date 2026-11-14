@@ -46,7 +46,7 @@ SEITEN = [
     ("showroom.html", "Unterrichtsbeispiele – Kidu", "galerie"),
     ("ueber.html", "Über Kidu", ""),
     ("gestaltung.html", "Gestaltungssystem – Kidu", ""),
-    ("werkzeugkiste.html", "Methodenkoffer – Kidu", ""),
+    ("werkzeugkiste.html", "Methodenkoffer – Kidu", "unterricht"),  # ab 4.42 im Fahrplan, Phase 2
 ]
 
 # Logo Kidu (ab Version 4.26, Logo 5f aus Claude Design): Wortmarke »Kidu« in IBM Plex Mono (als Umrisse),
@@ -149,8 +149,13 @@ def main():
     fm = importlib.util.module_from_spec(spec); spec.loader.exec_module(fm); fm.main()
     for alt in ("lernen.html", "beispiele.html"):  # umbenannt in tablets.html und showroom.html
         (WURZEL / alt).unlink(missing_ok=True)
+    # ab Version 4.42: der Fahrplan »Digitaler Unterricht« aus src/fahrplan.json (tools/fahrplan.py) –
+    # Werkzeuglisten der Bereichsseite, Zeile oben und Fahrplan unten auf jeder Werkzeugseite
+    spec = importlib.util.spec_from_file_location("fahrplan", WURZEL / "tools" / "fahrplan.py")
+    fp = importlib.util.module_from_spec(spec); spec.loader.exec_module(fp)
+    fahrplan = fp.laden()
     for datei, titel, aktiv in SEITEN:
-        inhalt = (WURZEL / "src" / datei).read_text(encoding="utf-8")
+        inhalt = fp.einsetzen((WURZEL / "src" / datei).read_text(encoding="utf-8"), datei, fahrplan)
         (WURZEL / datei).write_text(mit_stand(rahmen(titel, aktiv, inhalt, datei)), encoding="utf-8")
         print("gebaut:", datei)
 

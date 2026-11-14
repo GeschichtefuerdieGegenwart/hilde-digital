@@ -1,11 +1,29 @@
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Mein Fortbildungsbogen</h1>
-  <p class="marker">Voranalyse vor einer Fortbildung oder Beratungsstunde · Bereich: Digitaler Unterricht</p>
-  <p class="kopfnotiz">Kurze Fragen über dich, KI und deinen Unterricht mit Tablets, eine nach der anderen – etwa zwölf Minuten. Damit die Leitung der Fortbildung bei dir anfängt und nicht irgendwo. Am Ende sicherst du deinen Bogen als PDF; vorher verlässt nichts dein Gerät.</p>
+<!-- fahrplan:zeile weit -->
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Mein Fortbildungsbogen</h1>
+    <p class="marker">Voranalyse vor einer Fortbildung oder Beratungsstunde</p>
+    <p class="kopfnotiz">Kurze Fragen über dich, KI und deinen Unterricht mit Tablets, eine nach der anderen – etwa zwölf Minuten. Damit die Leitung der Fortbildung bei dir anfängt und nicht irgendwo.</p>
+  </div>
+  <!-- Ab 4.42: »Auf einen Blick« – die sechs Schritte so, wie sie im Bogen oben stehen werden (Same-Face). Namen wie SCHRITTE in
+       assets/fortbildungsbogen.js (tools/pruefen.py vergleicht). -->
+  <figure class="blick" aria-labelledby="t-blick">
+    <p class="blick-titel" id="t-blick">Auf einen Blick: sechs Schritte, dann dein Bogen</p>
+    <ol class="schritte schritte-vorschau">
+      <li><span class="ohne"><span class="nr" aria-hidden="true">1</span><span><span class="sr-only">Schritt 1: </span>KI bisher</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">2</span><span><span class="sr-only">Schritt 2: </span>Tablet bisher</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">3</span><span><span class="sr-only">Schritt 3: </span>Deine Arbeitsweise</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">4</span><span><span class="sr-only">Schritt 4: </span>Deine Vorstellungen</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">5</span><span><span class="sr-only">Schritt 5: </span>Deine Wünsche</span></span></li>
+      <li><span class="ohne"><span class="nr" aria-hidden="true">6</span><span><span class="sr-only">Schritt 6: </span>Deine Stunde</span></span></li>
+      <li class="schritte-ziel"><span class="ohne">dein Bogen als PDF, mit bis zu drei nächsten Schritten</span></li>
+    </ol>
+    <figcaption>Kein Richtig, kein Falsch, keine Bewertung. Am Ende sicherst du deinen Bogen als PDF; vorher verlässt nichts dein Gerät.</figcaption>
+  </figure>
 </div></section>
 
-<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle">
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-bogen"><div class="huelle huelle-weit">
   <h2 id="t-bogen" class="sr-only">Der Bogen</h2>
 
   <div class="mfb-eroeffnung" id="mfb-eroeffnung" data-takt="0" hidden>
@@ -49,6 +67,7 @@
   <p class="leise klein speicherhinweis">Deine Kreuze bleiben nur in diesem Browser; die Textfelder werden nicht gespeichert. Niemand sonst sieht etwas – bis du den Bogen als PDF weitergibst. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen und neu beginnen</button></p>
   <noscript><p class="box">Der Fortbildungsbogen braucht JavaScript.</p></noscript>
 </div></section>
+<!-- fahrplan:fuss weit -->
 </div>
 <script src="assets/daten/taxonomien.js"></script>
 <script src="assets/regeln.js"></script>

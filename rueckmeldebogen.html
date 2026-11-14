@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Mein Rückmeldebogen – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=7afb121e">
+<link rel="stylesheet" href="assets/hilde.css?v=5cf929e4">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -19,16 +19,31 @@
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Mein Rückmeldebogen</h1>
-  <p class="marker">Phase 4 · Nach der Stunde · Bereich: Digitaler Unterricht</p>
-  <p class="kopfnotiz">Du hast etwas ausprobiert. Hier hältst du fest, was gelungen ist und wo es noch hakt. Am Ende steht ein Bogen. Den schickst du selbst an die Person, die deine Fortbildung leitet. So wird aus deiner Erfahrung etwas für alle.</p>
+<nav class="ort-zeile" aria-label="Wo du bist"><div class="huelle huelle-weit"><ol><li class="ort-weg"><a href="unterricht.html#fahrplan">Fahrplan Digitaler Unterricht</a></li><li><a href="unterricht.html#phase-nach">4 · Nach der Stunde</a> <span class="ort-wann">(nach der Stunde)</span></li></ol></div></nav>
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit werkzeugkopf">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Mein Rückmeldebogen</h1>
+    <p class="kopfnotiz">Du hast etwas ausprobiert. Hier hältst du fest, was gelungen ist und wo es noch hakt. Am Ende steht ein Bogen. Den schickst du selbst an die Person, die deine Fortbildung leitet. So wird aus deiner Erfahrung etwas für alle.</p>
+  </div>
+  <!-- Ab 4.42: »Auf einen Blick« – der Bogen in fünf Fragen. Namen wie die Überschriften der Fragen unten (tools/pruefen.py vergleicht). -->
+  <figure class="blick nicht-am-telefon" aria-labelledby="t-blick">
+    <p class="blick-titel" id="t-blick">Auf einen Blick: fünf Fragen, dann dein Bogen</p>
+    <ol class="bogen-blick">
+      <li><a href="#frage-1"><span class="bogen-blick-nr" aria-hidden="true">1</span><span class="bogen-blick-name"><span class="sr-only">Frage 1: </span>Worum es geht</span></a></li>
+      <li><a href="#frage-2"><span class="bogen-blick-nr" aria-hidden="true">2</span><span class="bogen-blick-name"><span class="sr-only">Frage 2: </span>Was du ausprobiert hast</span></a></li>
+      <li><a href="#frage-3"><span class="bogen-blick-nr" aria-hidden="true">3</span><span class="bogen-blick-name"><span class="sr-only">Frage 3: </span>Was gelungen ist</span></a></li>
+      <li><a href="#frage-4"><span class="bogen-blick-nr" aria-hidden="true">4</span><span class="bogen-blick-name"><span class="sr-only">Frage 4: </span>Wo es hakt</span></a></li>
+      <li><a href="#frage-5"><span class="bogen-blick-nr" aria-hidden="true">5</span><span class="bogen-blick-name"><span class="sr-only">Frage 5: </span>Was du brauchst</span></a></li>
+      <li class="bogen-blick-ende"><a href="#frage-6"><span class="bogen-blick-name">Zum Schluss:</span><span class="bogen-blick-wahl"><span>dein Bogen als PDF</span></span></a></li>
+    </ol>
+    <figcaption>Den Bogen schickst du selbst an die Person, die deine Fortbildung leitet.</figcaption>
+  </figure>
 </div></section>
 
-<section class="abschnitt weg-abschnitt" aria-labelledby="t-rueckmeldung"><div class="huelle bogen">
+<section class="abschnitt weg-abschnitt" aria-labelledby="t-rueckmeldung"><div class="huelle huelle-weit bogen bogen-breit">
   <h2 id="t-rueckmeldung" class="sr-only">Rückmeldebogen</h2>
   <form id="rb-form" class="bogen-form" novalidate>
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-1">
       <legend><span class="leise klein">Frage 1 von 5 · Worum es geht</span><br>Was möchtest du weitergeben?</legend>
       <div class="probe-wahl">
         <label><input type="checkbox" name="art" value="erfahrung"><span>Eine Erfahrung aus meinem Unterricht</span></label>
@@ -38,7 +53,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-2">
       <legend><span class="leise klein">Frage 2 von 5 · Was du ausprobiert hast</span><br>Womit hast du gearbeitet?</legend>
       <div class="probe-wahl">
         <label><input type="checkbox" name="womit" value="planen"><span>Unterricht neu planen</span></label>
@@ -56,7 +71,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-3">
       <legend><span class="leise klein">Frage 3 von 5 · Was gelungen ist</span><br>Was hat gut geklappt?</legend>
       <div class="eingabe bogen-notiz">
         <label for="rb-gut">In ein, zwei Sätzen <span class="leise">(freiwillig)</span></label>
@@ -64,7 +79,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-4">
       <legend><span class="leise klein">Frage 4 von 5 · Wo es hakt</span><br>Wo hat es gehakt?</legend>
       <div class="probe-wahl">
         <label><input type="checkbox" name="hakt" value="technik"><span>Technik: Anmelden, Netz, Akku</span></label>
@@ -86,7 +101,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-5">
       <legend><span class="leise klein">Frage 5 von 5 · Was du brauchst</span><br>Was würde dir jetzt helfen?</legend>
       <div class="probe-wahl">
         <label><input type="checkbox" name="brauche" value="beispiel"><span>Ein Beispiel aus meinem Fach</span></label>
@@ -101,7 +116,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="probe-frage">
+    <fieldset class="probe-frage" id="frage-6">
       <legend><span class="leise klein">Zum Schluss</span><br>Darf die Leitung deine Rückmeldung ohne deinen Namen weitergeben – zum Beispiel in einer Fortbildung oder bei Kidu?</legend>
       <div class="probe-wahl">
         <label><input type="radio" name="weitergabe" value="ja"><span>Ja, ohne meinen Namen</span></label>
@@ -120,6 +135,38 @@
   <p class="leise klein speicherhinweis">Deine Kreuze bleiben nur in diesem Browser. Die Textfelder werden nicht gespeichert. Kidu verschickt nichts: Erst wenn du den Bogen selbst weitergibst, verlässt etwas dieses Gerät. Schreib keine Namen von Lernenden oder Kolleg*innen auf. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button></p>
   <noscript><p class="box">Ohne JavaScript kannst du die Seite ausdrucken und die Fragen von Hand beantworten.</p></noscript>
 </div></section>
+<nav class="fahrplan-fuss" aria-label="Fahrplan Digitaler Unterricht"><div class="huelle huelle-weit fahrplan-fuss-innen">
+  <div class="fahrplan-fuss-auch">
+    <h2 class="fahrplan-fuss-titel">Auch nach der Stunde</h2>
+    <div class="fahrplan-fuss-gruppen">
+      <div class="fahrplan-gruppe">
+        <h3>Für dich</h3>
+        <ul class="fahrplan-werkzeuge">
+          <li><a href="beobachtung.html"><b>Nach der Stunde: Beobachtungsbogen</b><span class="fahrplan-text">Sechs Fragen in zwei Minuten: so lassen, nachschärfen oder zurück zu Papier.</span></a></li>
+        </ul>
+      </div>
+      <div class="fahrplan-gruppe">
+        <h3>Im Kollegium</h3>
+        <ul class="fahrplan-werkzeuge">
+          <li><a href="fortbildung.html"><b>Fortbildungsbaustein: 45 Minuten</b><span class="fahrplan-text">Der Einstieg für Konferenz oder Fachgruppe. Alle arbeiten an eigenem Material.</span></a></li>
+          <li><a href="beratung.html"><b>Beratungsstunde: acht Wochen</b><span class="fahrplan-text">Zwei bis drei Lehrkräfte, eine eigene Stunde, zweimal ausprobiert.</span></a></li>
+          <li><a href="leitsaetze.html"><b>Leitsätze zur Diskussion</b><span class="fahrplan-text">Zehn Sätze auf einer Seite – ein Entwurf zum Gespräch, kein Beschluss.</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="fahrplan-fuss-plan">
+    <h2 class="fahrplan-fuss-titel">Der Fahrplan</h2>
+    <ol class="fahrplan-klein">
+      <li class="ist-vorspann"><a href="unterricht.html#phase-grundlagen"><span class="fahrplan-klein-nr" aria-hidden="true">1</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">1 · </span>Grundlagen</span><span class="fahrplan-klein-wann">zuerst</span></span></a></li>
+      <li class="ist-zart ist-ring-start"><a href="unterricht.html#phase-erstellen"><span class="fahrplan-klein-nr" aria-hidden="true">2</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">2 · </span>Digitalen Unterricht erstellen</span><span class="fahrplan-klein-wann">vor der Stunde</span></span></a></li>
+      <li class="ist-ring-mitte"><a href="unterricht.html#phase-unterrichten"><span class="fahrplan-klein-nr" aria-hidden="true">3</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">3 · </span>Unterrichten</span><span class="fahrplan-klein-wann">in der Stunde</span></span></a></li>
+      <li class="ist-zart ist-ring-ende ist-hier"><a href="unterricht.html#phase-nach" aria-current="location"><span class="fahrplan-klein-nr" aria-hidden="true">4</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">4 · </span>Nach der Stunde</span><b class="fahrplan-klein-hier">Du bist hier</b></span></a></li>
+    </ol>
+    <p class="fahrplan-ring"><span class="fahrplan-ring-pfeil" aria-hidden="true">↑</span> Nach der Stunde geht es mit der nächsten Stunde wieder bei 2 weiter.</p>
+    <p class="fahrplan-fuss-alle"><a class="textlink" href="unterricht.html#fahrplan">Alle Werkzeuge im Fahrplan <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></nav>
 </div>
 <script src="assets/daten/taxonomien.js?v=eb73b10b"></script>
 <script src="assets/regeln.js?v=fb711ed9"></script>

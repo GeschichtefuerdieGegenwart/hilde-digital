@@ -681,7 +681,7 @@ def main():
         pruefe(pg.locator(".muster-karte").count() == 11 and pg.locator(".muster-karte .muster-weg").count() == 33, "Muster: elf Muster mit je drei Wegen")
         pg.fill("#w-fach", "Pflege")
         pruefe("Fach: Pflege" in pg.input_value("#a-stolper") and "# Prüfkriterien" in pg.input_value("#a-stolper"), "Muster: Fach steht in jedem Auftrag")
-        pg.click('#muster-filter [data-filter="erarbeitung"]')
+        pg.click('#muster-landkarte [data-filter="erarbeitung"]')  # ab 4.42 filtert am Beamer die Landkarte
         sichtbar = pg.locator(".muster-karte:not([hidden])").count()
         pruefe(0 < sichtbar < 11 and "Muster" in pg.inner_text("#muster-anzahl"), f"Muster: Filter nach Phase ({sichtbar})")
         pg.reload()
@@ -713,7 +713,8 @@ def main():
         pg.goto(url("aufgabenkoffer.html"))
         vorher = pg.evaluate("Object.keys(localStorage).length")
         pruefe(pg.locator(".koffer-karte").count() == 18 and pg.locator(".koffer-gruppe").count() == 7 and "18 Aufgaben" in pg.inner_text("#koffer-anzahl"), "Aufgabenkoffer: 18 Aufgaben in sieben Zielen")
-        pg.click('#koffer-filter [data-zweck="wissen"]')
+        # ab 4.42 filtern am Beamer die Spaltenköpfe der Landkarte; die Chips stehen erst unter 1024 px (Test 5i)
+        pg.click('#koffer-landkarte [data-zweck="wissen"]')
         pruefe(pg.locator(".koffer-gruppe:not([hidden]) .koffer-karte").count() == 3 and "3 Aufgaben" in pg.inner_text("#koffer-anzahl"), "Aufgabenkoffer: Filter »Wissen festigen« zeigt drei Aufgaben")
         pg.click("#k-auswahl summary")
         innen = pg.inner_text("#k-auswahl .koffer-innen")
@@ -1404,6 +1405,148 @@ def main():
         hoch = tf.evaluate("Math.min(...[...document.querySelectorAll('#fahrplan summary')].map(s => s.getBoundingClientRect().height))")
         pruefe(breit <= 390 and hoch >= 44, f"Fahrplan (4.41) 390 px: kein waagerechtes Scrollen, auch mit allen Phasen offen; jeder Kopf mindestens 44 px ({breit} px, {round(hoch)} px)")
         tf.context.close()
+
+        # 5i. Version 4.42: Werkzeugseiten – wo bin ich? (Weg B der Recherche vom 14.11.2026, Entscheidung Mario) und die Breite
+        import json
+        daten = json.loads((W / "src" / "fahrplan.json").read_text(encoding="utf-8"))
+        heimat = {}
+        for w_ in daten["werkzeuge"]:
+            if "#" not in w_["href"]:
+                heimat[w_["href"]] = w_["phase"]
+            for u in w_.get("unterseiten", []):
+                heimat[u] = w_["phase"]
+        nr = {q["id"]: q["nr"] for q in daten["phasen"]}
+        pruefe(len(heimat) == 18, f"Wo bin ich (4.42): 18 Seiten tragen den Fahrplan – 16 Werkzeuge und zwei Unterseiten des Digital-Checks ({len(heimat)})")
+        wo = neue_seite(b)
+        for s_, ph in heimat.items():
+            wo.goto(url(s_))
+            zeile = wo.evaluate("[...document.querySelectorAll('.ort-zeile a')].map(a => a.getAttribute('href'))")
+            hier = wo.evaluate("[...document.querySelectorAll('.fahrplan-fuss [aria-current]')].map(a => [a.getAttribute('href'), a.innerText])")
+            pruefe(zeile[:2] == ["unterricht.html#fahrplan", f"unterricht.html#phase-{ph}"] and len(hier) == 1 and hier[0][0] == f"unterricht.html#phase-{ph}" and "Du bist hier" in hier[0][1]
+                   and wo.locator(".fahrplan-klein > li").count() == 4 and wo.locator(f'.fahrplan-fuss-auch a[href="{s_}"]').count() == 0
+                   and wo.evaluate("document.querySelector('.ort-zeile').compareDocumentPosition(document.querySelector('main h1')) & Node.DOCUMENT_POSITION_FOLLOWING") > 0,
+                   f"Wo bin ich (4.42) {s_}: oben die Zeile zu Phase {nr[ph]} vor der Überschrift, unten der Fahrplan mit »Du bist hier« bei {nr[ph]}; die Seite selbst steht nicht unter »Auch …«")
+        wo.goto(url("selbstcheck.html"))
+        pruefe(wo.evaluate("[...document.querySelectorAll('.ort-zeile a')].map(a => a.getAttribute('href'))")[-1] == "digital-check.html", "Wo bin ich (4.42): die Unterseite nennt in der Zeile auch den Digital-Check")
+        wo.goto(url("tablet-phasen.html"))
+        pruefe(wo.locator(".fahrplan-fuss-auch").count() == 0 and wo.locator(".fahrplan-fuss .fahrplan-klein").count() == 1, "Wo bin ich (4.42): Phase 3 hat keine weitere Seite – unten steht nur der Fahrplan")
+        wo.goto(url("beobachtung.html"))
+        gruppen = wo.locator(".fahrplan-fuss-auch h3").all_inner_texts()
+        pruefe(gruppen == ["Im Kollegium", "Zum Weitergeben"], f"Wo bin ich (4.42): in Phase 4 stehen die Nachbarn in ihren Gruppen, die eigene Gruppe fällt weg {gruppen}")
+        wo.goto(url("aufgabenkoffer.html"))
+        papier = wo.locator('.fahrplan-fuss-auch a[href="unterricht.html#t-probe"]')
+        pruefe(papier.count() == 1 and "hier auf der Seite" not in papier.inner_text(), "Wo bin ich (4.42): die Papierfrage führt auf die Bereichsseite und sagt nicht »hier auf der Seite«")
+        ring = wo.evaluate("""(() => { const li = [...document.querySelectorAll('.fahrplan-klein > li')], cs = (e, p) => getComputedStyle(e, p);
+            return [cs(li[0], '::before').borderLeftStyle, cs(li[1], '::before').borderLeftStyle, cs(li[3], '::before').content, cs(li[1], '::after').borderTopWidth, cs(li[3], '::after').borderBottomWidth]; })()""")
+        pruefe(ring == ["dashed", "solid", "none", "3px", "3px"], f"Wo bin ich (4.42): der Fahrplan im Kleinen wie auf der Bereichsseite – Petrol von Phase zu Phase, Rückweg von 4 zu 2 (Same-Face) {ring}")
+        ziele = wo.evaluate("[...document.querySelectorAll('.ort-zeile a, .fahrplan-klein a')].map(a => Math.round(a.getBoundingClientRect().height))")
+        pruefe(min(ziele) >= 44, f"Wo bin ich (4.42): jede Zeile und jeder Link mindestens 44 px hoch {ziele}")
+        wo.goto(url("unterricht.html#phase-erstellen")); wo.wait_for_timeout(120)
+        pruefe(wo.evaluate("[...document.querySelectorAll('#fahrplan details')].map(d => d.open)") == [False, True, False, False], "Wo bin ich (4.42): der Link zur Phase öffnet sie auf der Bereichsseite")
+        wo.emulate_media(media="print"); wo.goto(url("fortbildung.html"))
+        pruefe(wo.evaluate("[...document.querySelectorAll('.ort-zeile, .fahrplan-fuss, .blick')].every(e => getComputedStyle(e).display === 'none')"), "Wo bin ich (4.42): im Druck fallen Zeile, Fahrplan und »Auf einen Blick« weg")
+        wo.emulate_media(media="screen")
+        pruefe(not wo.konsole and not wo.extern, f"Wo bin ich (4.42): keine Konsolenfehler, keine Anfragen nach außen {wo.konsole} {wo.extern}")
+        wo.context.close()
+        tf = neue_seite(b, viewport={"width": 390, "height": 844})
+        for s_ in ("aufgabenkoffer.html", "selbstcheck.html", "beobachtung.html"):
+            tf.goto(url(s_))
+            sichtbar = tf.evaluate("[...document.querySelectorAll('.ort-zeile li')].filter(l => getComputedStyle(l).display !== 'none').map(l => [getComputedStyle(l, '::before').content, l.innerText.trim()])")
+            pruefe(len(sichtbar) == 1 and "‹" in sichtbar[0][0] and tf.evaluate("document.documentElement.scrollWidth") <= 390, f"Wo bin ich (4.42) 390 px {s_}: nur der Weg zurück, mit »‹« {sichtbar}")
+        tf.goto(url("beobachtung.html"))
+        pruefe(tf.locator(".blick").is_hidden() and tf.locator("#b-was").bounding_box()["y"] < 844, "Auf einen Blick (4.42) 390 px: am Beobachtungsbogen fällt der Überblick weg, das erste Feld steht im ersten Bildschirm")
+        tf.context.close()
+        # Breite: jede Werkzeugseite nutzt sie (Screen-Width Rule), Fließtext bleibt schmal
+        for breite, hoehe in ((1920, 1080), (1440, 900)):
+            sw = neue_seite(b, viewport={"width": breite, "height": hoehe})
+            for s_ in heimat:
+                sw.goto(url(s_))
+                weit = sw.evaluate("document.querySelector('.ort-zeile > .huelle').getBoundingClientRect().width")
+                kopf = sw.evaluate("document.querySelector('.kopf > .huelle').getBoundingClientRect().width")
+                inhalt = sw.evaluate("document.querySelector('main section .huelle').getBoundingClientRect().width")
+                ziel = min(breite, 1792)
+                zu_breit = sw.evaluate("""[...document.querySelectorAll('main p, main li')].filter(e => {
+                    if (!e.offsetParent || e.querySelector('details, ul, ol, div, p, figure, section') || e.closest('.zeitleiste, .bogen-blick, .landkarte, .fahrplan-klein, .schritte, .ort-zeile, .hf-kapitel, .ls-fahrplan') || (e.closest('details:not([open])') && !e.closest('summary')) || !e.innerText.trim()) return false; const cs = getComputedStyle(e); let lh = parseFloat(cs.lineHeight); if (isNaN(lh)) lh = parseFloat(cs.fontSize) * 1.5;
+                    if (e.getBoundingClientRect().height < lh * 1.8) return false;
+                    const p = document.createElement('span'); p.style.cssText = 'display:inline-block;width:68ch;visibility:hidden;position:absolute'; e.appendChild(p);
+                    const g = p.getBoundingClientRect().width; p.remove(); return e.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) > g + 1; }).map(e => e.innerText.slice(0, 30))""")
+                pruefe(abs(weit - ziel) < 2 and abs(kopf - ziel) < 2 and abs(inhalt - ziel) < 2 and sw.evaluate("document.documentElement.scrollWidth") <= breite and not zu_breit,
+                       f"Screen-Width (4.42) {breite} px {s_}: Zeile, Kopf und erster Abschnitt nutzen die Breite ({weit:.0f}/{kopf:.0f}/{inhalt:.0f} px), Fließtext höchstens 68ch {zu_breit}")
+            sw.context.close()
+        for breite, hoehe in ((1180, 820), (1024, 768)):
+            sw = neue_seite(b, viewport={"width": breite, "height": hoehe})
+            quer = []
+            for s_ in heimat:
+                sw.goto(url(s_))
+                if sw.evaluate("document.documentElement.scrollWidth") > breite:
+                    quer.append(s_)
+            pruefe(not quer, f"Screen-Width (4.42) {breite} × {hoehe}: kein waagerechtes Scrollen auf den Werkzeugseiten {quer}")
+            sw.context.close()
+        # Beamer: die erste Handlung jeder Werkzeugseite im ersten Bildschirm (Methodenkoffer und Digital-Check beginnen mit Links)
+        bm = neue_seite(b)
+        erste = """() => { const sel = 'button, input:not([type=hidden]), select, textarea, summary, a.knopf, [role=button]';
+          const k = [...document.querySelectorAll('main ' + sel.split(', ').join(', main '))].filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== 'hidden'; });
+          return k.length ? Math.round(k[0].getBoundingClientRect().bottom + scrollY) : null; }"""
+        unten = {}
+        for s_ in heimat:
+            if s_ in ("werkzeugkiste.html", "digital-check.html", "selbstcheck.html", "mehrwert.html"):
+                continue
+            bm.goto(url(s_)); bm.wait_for_timeout(250)
+            unten[s_] = bm.evaluate(erste)
+        drueber = {s_: v for s_, v in unten.items() if not v or v > 720}
+        pruefe(len(unten) == 14 and not drueber, f"Beamer 1280 × 720 (4.42): auf allen 14 Werkzeugseiten steht die erste Handlung im ersten Bildschirm {drueber or max(unten.values())}")
+        # Auf einen Blick: Aufgabenkoffer (Landkarte)
+        bm.goto(url("aufgabenkoffer.html"))
+        knoepfe = bm.locator("#koffer-landkarte button").count()
+        namen = bm.locator("#koffer-landkarte td a").count()
+        leer = bm.locator("#koffer-landkarte td.ist-leer").count()
+        pruefe(knoepfe == 8 and namen == 18 and leer == 6 and bm.locator("#koffer-filter").is_hidden(), f"Aufgabenkoffer (4.42): Landkarte mit »Alle Ziele« und sieben Zielen, 18 Aufgaben, 6 leere Zellen; die Chips ruhen ({knoepfe}, {namen}, {leer})")
+        bm.click('#koffer-landkarte [data-zweck="untersuchen"]')
+        pruefe(bm.locator(".koffer-gruppe:not([hidden]) .koffer-karte").count() == 3 and bm.locator("#koffer-landkarte td.ist-gewaehlt").count() == 3
+               and bm.get_attribute('#koffer-landkarte [data-zweck="untersuchen"]', "aria-pressed") == "true", "Aufgabenkoffer (4.42): ein Spaltenkopf filtert die Liste und hebt seine Spalte hervor")
+        bm.click('#koffer-landkarte a[href="#k-abruf"]'); bm.wait_for_timeout(150)
+        pruefe(bm.evaluate("document.querySelector('#k-abruf details').open") and bm.locator(".koffer-gruppe[hidden]").count() == 0, "Aufgabenkoffer (4.42): ein Name in der Landkarte öffnet die Aufgabe, auch wenn ein anderes Ziel gewählt war")
+        bm.goto(url("muster.html"))
+        pruefe(bm.locator("#muster-landkarte button").count() == 6 and bm.locator("#muster-landkarte td a").count() == 11, "Ideen und Kniffe (4.42): Landkarte mit fünf Phasen und allen elf Mustern")
+        bm.click('#muster-landkarte [data-filter="erarbeitung"]')
+        gefiltert = bm.locator(".muster-karte:not([hidden])").count()
+        bm.click('#muster-landkarte a[href^="#m-"] >> nth=0'); bm.wait_for_timeout(100)
+        pruefe(gefiltert == 5 and bm.locator(".muster-karte[hidden]").count() == 0, f"Ideen und Kniffe (4.42): Spaltenkopf filtert ({gefiltert}), ein Name zeigt wieder alle und springt zum Muster")
+        bm.evaluate("localStorage.removeItem('hilde.muster')")
+        sm = neue_seite(b, viewport={"width": 900, "height": 900})
+        sm.goto(url("aufgabenkoffer.html"))
+        sm.click('#koffer-filter [data-zweck="wissen"]')
+        pruefe(sm.locator("#koffer-landkarte").is_hidden() and sm.locator(".koffer-gruppe:not([hidden]) .koffer-karte").count() == 3, "Aufgabenkoffer (4.42) 900 px: statt der Landkarte filtern die Chips")
+        sm.goto(url("muster.html")); sm.click('#muster-filter [data-filter="erarbeitung"]')
+        pruefe(sm.locator("#muster-landkarte").is_hidden() and sm.locator(".muster-karte:not([hidden])").count() == 5, "Ideen und Kniffe (4.42) 900 px: statt der Landkarte filtern die Chips")
+        sm.evaluate("localStorage.removeItem('hilde.muster')")
+        sm.context.close()
+        # Auf einen Blick: Zeitleisten (die Höhe zeigt die Dauer)
+        bm.goto(url("fortbildung.html"))
+        hoehen = bm.evaluate("[...document.querySelectorAll('.zeitleiste .zeitleiste-platte')].map(e => Math.round(e.getBoundingClientRect().height))")
+        pruefe(len(hoehen) == 5 and abs(hoehen[0] - 44) <= 2 and abs(hoehen[2] - 132) <= 2 and abs(hoehen[1] - 88) <= 2, f"Fortbildungsbaustein (4.42): Zeitleiste – fünf Minuten 44 px, zehn 88 px, fünfzehn 132 px {hoehen}")
+        bm.goto(url("beratung.html"))
+        wochen = bm.evaluate("[...document.querySelectorAll('.zeitleiste .zeitleiste-platte')].map(e => Math.round(e.getBoundingClientRect().height))")
+        pruefe(len(wochen) == 8 and max(wochen) - min(wochen) <= 2 and bm.locator(".zeitleiste a[href='#woche-8']").count() == 1 and bm.locator("#woche-8").count() == 1,
+               f"Beratungsstunde (4.42): acht gleich hohe Wochen, jede führt zu ihrer Woche {wochen}")
+        for s_, n_ in (("beobachtung.html", 6), ("rueckmeldebogen.html", 6)):
+            bm.goto(url(s_))
+            ziele_ = bm.evaluate("[...document.querySelectorAll('.bogen-blick a')].map(a => a.getAttribute('href'))")
+            oben = bm.evaluate("[...document.querySelectorAll('.bogen-form > .probe-frage')].slice(0, 2).map(f => Math.round(f.getBoundingClientRect().top))")
+            pruefe(ziele_ == [f"#frage-{i}" for i in range(1, n_ + 1)] and all(bm.locator(z).count() == 1 for z in ziele_) and len(oben) == 2 and oben[0] == oben[1],
+                   f"Auf einen Blick (4.42) {s_}: sechs Felder führen zu ihren Fragen; die Fragen stehen nebeneinander {oben}")
+        bm.goto(url("sechs-hebel-film.html")); bm.wait_for_timeout(200)
+        pruefe(bm.is_visible("#hf-los-kopf"), "Film (4.42): »Film starten« steht auch im Kopf")
+        bm.click("#hf-los-kopf"); bm.wait_for_timeout(300)
+        pruefe(bm.is_enabled("#hf-halt") and bm.is_hidden("#hf-start"), "Film (4.42): der Knopf im Kopf startet den Film")
+        bm.keyboard.press("Escape")
+        pruefe(not bm.konsole, f"Auf einen Blick (4.42): keine Konsolenfehler {bm.konsole}")
+        bm.context.close()
+        # Ohne Skript: Zeile, Fahrplan und die gebauten Überblicke stehen trotzdem da
+        oj = b.new_context(java_script_enabled=False, viewport={"width": 1280, "height": 720}); oq = oj.new_page()
+        oq.goto(url("fortbildung.html"))
+        pruefe(oq.is_visible(".ort-zeile") and oq.is_visible(".fahrplan-fuss") and oq.locator(".zeitleiste li").count() == 5, "Wo bin ich (4.42): ohne Skript stehen Zeile, Fahrplan und Zeitleiste da")
+        oj.close()
 
         # 5c. Breiten 375, 768, 1280, 1440: kein waagerechtes Scrollen, Navigation sichtbar
         for breite in (375, 768, 1280, 1440, 1920):

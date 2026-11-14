@@ -7,7 +7,7 @@
 <meta name="description" content="Kidu · Künstliche Intelligenz und digitaler Unterricht: eine Fortbildungsplattform für Lehrkräfte – KI-Training, Digitaler Unterricht und Unterrichtsbeispiele, analog und digital.">
 <title>Was passt gerade zu mir? – Kidu</title>
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/hilde.css?v=7afb121e">
+<link rel="stylesheet" href="assets/hilde.css?v=5cf929e4">
 <script>/* Schalter »Weniger Bewegung« und »Beamer-Ansicht« (Fuß): die gemerkten Wahlen vor dem ersten Zeichnen setzen, damit nichts flackert. */try{var b=JSON.parse(localStorage.getItem("hilde.bewegung"));if(b&&b.weniger)document.documentElement.setAttribute("data-bewegung","weniger");var t=JSON.parse(localStorage.getItem("hilde.theme"));if(t&&t.beamer)document.documentElement.setAttribute("data-theme","beamer")}catch(e){}</script>
 </head>
 <body>
@@ -19,13 +19,16 @@
 </div></header>
 <main id="inhalt" tabindex="-1">
 <div class="bereich-lernen">
-<section class="bereichskopf kompakt"><div class="huelle">
-  <h1 class="h1-frage">Was passt gerade zu mir?</h1>
-  <p class="marker">Bereich: Digitaler Unterricht</p>
-  <p class="kopfnotiz">Diese kurze Selbsteinschätzung bewertet dich nicht. Sie hilft dir, einen passenden Einstieg für dein aktuelles Vorhaben zu finden.</p>
+<nav class="ort-zeile" aria-label="Wo du bist"><div class="huelle huelle-weit"><ol><li class="ort-weg"><a href="unterricht.html#fahrplan">Fahrplan Digitaler Unterricht</a></li><li><a href="unterricht.html#phase-grundlagen">1 · Grundlagen</a> <span class="ort-wann">(zuerst)</span></li></ol></div></nav>
+<section class="bereichskopf kompakt"><div class="huelle huelle-weit">
+  <div class="werkzeugkopf-text">
+    <h1 class="h1-frage">Was passt gerade zu mir?</h1>
+    <p class="kopfnotiz">Diese kurze Selbsteinschätzung bewertet dich nicht. Sie hilft dir, einen passenden Einstieg für dein aktuelles Vorhaben zu finden.</p>
+  </div>
 </div></section>
 
-<section class="abschnitt weg-abschnitt"><div class="huelle">
+<section class="abschnitt weg-abschnitt"><div class="huelle huelle-weit werkzeug-mit-blick">
+  <div class="werkzeug-arbeit">
   <form id="selbst" class="selbst" novalidate>
     <div id="fragen" class="stapel-gross"></div>
     <div class="felder-eingabe kontextfragen" id="kontextfragen"></div>
@@ -34,7 +37,43 @@
   <div id="ergebnis" aria-live="polite"></div>
   <p class="leise klein speicherhinweis">Deine Antworten bleiben nur in diesem Browser. <button type="button" class="linkknopf" id="loeschen">Eingaben löschen</button></p>
   <noscript><p class="box">Die Selbsteinschätzung braucht JavaScript.</p></noscript>
+  </div>
+  <!-- Ab 4.42: »Auf einen Blick« neben dem Formular – was am Ende dasteht. Felder wie in der Einschätzung (assets/passt.js; tools/pruefen.py vergleicht). -->
+  <figure class="blick fahrplan-karte blick-karte nicht-am-telefon" aria-labelledby="t-blick">
+    <p class="blick-titel" id="t-blick">Auf einen Blick: fünf Fragen, dann das hier</p>
+    <div class="fahrplan-karte-blatt" aria-hidden="true">
+      <p class="fahrplan-karte-titel">Ein Einstieg, der jetzt zu dir passt</p>
+      <p class="fahrplan-karte-feld">Warum</p>
+      <p class="fahrplan-karte-feld">Passendes Format</p>
+      <p class="fahrplan-karte-feld">Umfang</p>
+      <p class="fahrplan-karte-feld">Deine Rolle</p>
+      <p class="fahrplan-karte-feld">Beispiele zum Anschauen</p>
+      <p class="fahrplan-karte-feld">Risikoarme Alternative</p>
+    </div>
+    <figcaption>Vorschau. Die Einschätzung bewertet dich nicht.</figcaption>
+  </figure>
 </div></section>
+<nav class="fahrplan-fuss" aria-label="Fahrplan Digitaler Unterricht"><div class="huelle huelle-weit fahrplan-fuss-innen">
+  <div class="fahrplan-fuss-auch">
+    <h2 class="fahrplan-fuss-titel">Auch bei den Grundlagen</h2>
+    <ul class="fahrplan-werkzeuge">
+      <li><a href="sechs-hebel.html"><b>Wann funktioniert digitaler Unterricht?</b><span class="fahrplan-text">Sechs Dinge kann das Gerät besser als Papier. Dazu fünf Sätze, die in jeder Stunde gelten.</span></a></li>
+      <li><a href="sechs-hebel-film.html"><b>Film: Was das Gerät kann</b><span class="fahrplan-text">Die sechs Prinzipien in zwei Minuten, ohne Ton.</span></a></li>
+      <li><a href="fortbildungsbogen.html"><b>Mein Fortbildungsbogen</b> <span class="fahrplan-fuer">für dich</span><span class="fahrplan-text">Wo du mit KI und Tablets stehst. Am Ende eine PDF für deine Fortbildung und bis zu drei nächste Schritte.</span></a></li>
+    </ul>
+  </div>
+  <div class="fahrplan-fuss-plan">
+    <h2 class="fahrplan-fuss-titel">Der Fahrplan</h2>
+    <ol class="fahrplan-klein">
+      <li class="ist-vorspann ist-hier"><a href="unterricht.html#phase-grundlagen" aria-current="location"><span class="fahrplan-klein-nr" aria-hidden="true">1</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">1 · </span>Grundlagen</span><b class="fahrplan-klein-hier">Du bist hier</b></span></a></li>
+      <li class="ist-zart ist-ring-start"><a href="unterricht.html#phase-erstellen"><span class="fahrplan-klein-nr" aria-hidden="true">2</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">2 · </span>Digitalen Unterricht erstellen</span><span class="fahrplan-klein-wann">vor der Stunde</span></span></a></li>
+      <li class="ist-ring-mitte"><a href="unterricht.html#phase-unterrichten"><span class="fahrplan-klein-nr" aria-hidden="true">3</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">3 · </span>Unterrichten</span><span class="fahrplan-klein-wann">in der Stunde</span></span></a></li>
+      <li class="ist-zart ist-ring-ende"><a href="unterricht.html#phase-nach"><span class="fahrplan-klein-nr" aria-hidden="true">4</span><span class="fahrplan-klein-platte"><span class="fahrplan-klein-name"><span class="sr-only">4 · </span>Nach der Stunde</span><span class="fahrplan-klein-wann">nach der Stunde</span></span></a></li>
+    </ol>
+    <p class="fahrplan-ring"><span class="fahrplan-ring-pfeil" aria-hidden="true">↑</span> Nach der Stunde geht es mit der nächsten Stunde wieder bei 2 weiter.</p>
+    <p class="fahrplan-fuss-alle"><a class="textlink" href="unterricht.html#fahrplan">Alle Werkzeuge im Fahrplan <span aria-hidden="true">→</span></a></p>
+  </div>
+</div></nav>
 </div>
 <script src="assets/daten/taxonomien.js?v=eb73b10b"></script>
 <script src="assets/daten/beispiele.js?v=859fc8ba"></script>

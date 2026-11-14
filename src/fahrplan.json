@@ -1,0 +1,32 @@
+{
+  "_hinweis": "Eine Quelle für den Fahrplan »Digitaler Unterricht« (ab 4.42). tools/fahrplan.py baut daraus die Werkzeuglisten der Bereichsseite, die Zeile oben und den Fahrplan unten auf jeder Werkzeugseite. Neues Werkzeug = neuer Eintrag hier und auf seiner Seite die Zeichen <!-- fahrplan:zeile --> und <!-- fahrplan:fuss -->.",
+  "phasen": [
+    {"id": "grundlagen", "nr": 1, "wann": "zuerst", "name": "Grundlagen", "satz": "Was beim Lernen wirkt – und was zu dir passt.", "auch": "Auch bei den Grundlagen"},
+    {"id": "erstellen", "nr": 2, "wann": "vor der Stunde", "name": "Digitalen Unterricht erstellen", "satz": "Für eine Stunde oder eine ganze Einheit.", "auch": "Auch vor der Stunde"},
+    {"id": "unterrichten", "nr": 3, "wann": "in der Stunde", "name": "Unterrichten", "satz": "Die Phase am Gerät gut führen – für jedes Thema und jeden Umfang.", "auch": "Auch in der Stunde"},
+    {"id": "nach", "nr": 4, "wann": "nach der Stunde", "name": "Nach der Stunde", "satz": "Auswerten, mit anderen weiterarbeiten und deine Erfahrung weitergeben.", "auch": "Auch nach der Stunde"}
+  ],
+  "werkzeuge": [
+    {"phase": "grundlagen", "href": "sechs-hebel.html", "name": "Wann funktioniert digitaler Unterricht?", "text": "Sechs Dinge kann das Gerät besser als Papier. Dazu fünf Sätze, die in jeder Stunde gelten."},
+    {"phase": "grundlagen", "href": "sechs-hebel-film.html", "name": "Film: Was das Gerät kann", "text": "Die sechs Prinzipien in zwei Minuten, ohne Ton."},
+    {"phase": "grundlagen", "href": "passt.html", "name": "Was passt gerade zu mir?", "fuer": "für dich", "text": "Ein paar kurze Fragen zu deinem Vorhaben. Du bekommst einen passenden Einstieg."},
+    {"phase": "grundlagen", "href": "fortbildungsbogen.html", "name": "Mein Fortbildungsbogen", "fuer": "für dich", "text": "Wo du mit KI und Tablets stehst. Am Ende eine PDF für deine Fortbildung und bis zu drei nächste Schritte."},
+
+    {"phase": "erstellen", "href": "tablets.html", "name": "Unterricht neu planen", "tuer": "Ich fange neu an", "text": "Vier kurze Fragen, dann deine Entscheidungskarte: Lohnt sich das Tablet – oder bleibst du beim Papier?"},
+    {"phase": "erstellen", "href": "digitalisieren.html", "name": "Bisherigen Unterricht digitalisieren", "tuer": "Ich habe schon Material", "text": "Ein Arbeitsblatt, eine Präsentation, ein Verlaufsplan? Wähle, was entstehen soll, und hol dir einen Prompt mit Ideen, die mehr können als Papier."},
+    {"phase": "erstellen", "href": "aufgabenkoffer.html", "name": "Aufgabenkoffer", "text": "Welche Aufgabe kann ich wie stellen – und was fördert sie? 18 Aufgabenformen, je mit »sinnvoll« und »wenig sinnvoll«."},
+    {"phase": "erstellen", "href": "muster.html", "name": "Ideen und Kniffe", "text": "Muster aus der Praxis, je auf Papier, mit KI vorbereitet und am Tablet."},
+    {"phase": "erstellen", "href": "werkzeugkiste.html", "name": "Methodenkoffer", "text": "Die Anleitungen hinter den Werkzeugen, zum Ansehen und Herunterladen."},
+    {"phase": "erstellen", "href": "unterricht.html#t-probe", "name": "Papierfrage", "text": "Geht es auf Papier genauso gut? Höchstens drei Fragen, hier auf der Seite.", "text_anderswo": "Geht es auf Papier genauso gut? Höchstens drei Fragen, auf der Seite »Digitaler Unterricht«."},
+    {"phase": "erstellen", "href": "digital-check.html", "name": "Digital-Check", "text": "Prüfe ein fertiges Material – selbst oder mit einem Prüf-Auftrag.", "unterseiten": ["selbstcheck.html", "mehrwert.html"]},
+
+    {"phase": "unterrichten", "href": "tablet-phasen.html", "name": "Tablet-Phasen gut führen", "text": "Sechs Regeln gegen Ablenkung, typische Stolpersteine und eine Karte für die Tafel."},
+    {"phase": "unterrichten", "href": "tablet-phasen.html#t-karte", "name": "Karte für die Tafel", "text": "Auftrag, Zeit und App eintragen und quer auf A4 drucken – oder leer drucken und von Hand ausfüllen."},
+
+    {"phase": "nach", "gruppe": "Für dich", "href": "beobachtung.html", "name": "Nach der Stunde: Beobachtungsbogen", "text": "Sechs Fragen in zwei Minuten: so lassen, nachschärfen oder zurück zu Papier."},
+    {"phase": "nach", "gruppe": "Im Kollegium", "gruppe_id": "t-kollegium", "href": "fortbildung.html", "name": "Fortbildungsbaustein: 45 Minuten", "text": "Der Einstieg für Konferenz oder Fachgruppe. Alle arbeiten an eigenem Material."},
+    {"phase": "nach", "gruppe": "Im Kollegium", "gruppe_id": "t-kollegium", "href": "beratung.html", "name": "Beratungsstunde: acht Wochen", "text": "Zwei bis drei Lehrkräfte, eine eigene Stunde, zweimal ausprobiert."},
+    {"phase": "nach", "gruppe": "Im Kollegium", "gruppe_id": "t-kollegium", "href": "leitsaetze.html", "name": "Leitsätze zur Diskussion", "text": "Zehn Sätze auf einer Seite – ein Entwurf zum Gespräch, kein Beschluss."},
+    {"phase": "nach", "gruppe": "Zum Weitergeben", "href": "rueckmeldebogen.html", "name": "Mein Rückmeldebogen", "text": "Was dich beim Ausprobieren beschäftigt hat. Am Ende eine PDF für die Person, die deine Fortbildung leitet."}
+  ]
+}
